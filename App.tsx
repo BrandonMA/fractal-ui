@@ -1,21 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
+import { enableScreens } from 'react-native-screens';
+import { AppExample } from './src/Navigation/components';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+enableScreens();
+
+export default function App(): React.ReactNode {
+    return (
+        <View
+            style={{
+                height: '100%',
+                width: '100%',
+                justifyContent: 'flex-end',
+                backgroundColor: '#D8D8D8'
+            }}
+        >
+            <AppExample />
+        </View>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
