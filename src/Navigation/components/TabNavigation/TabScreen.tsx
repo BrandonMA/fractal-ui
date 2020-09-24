@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
-import { TabScreenContentProps } from './TabScreenContent';
-import { TabItemProps } from './TabItem';
+import { TabContentProps } from './TabContent';
+import { TabBarItemProps } from './TabBarItem';
 
 export interface TabScreenProps {
-    children: [ReactElement<TabScreenContentProps>, ReactElement<TabItemProps>];
+    children: [ReactElement<TabContentProps>, ReactElement<TabBarItemProps>];
     path: string;
 }
 

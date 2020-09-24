@@ -1,10 +1,10 @@
-import React, { useCallback, ReactElement } from 'react';
+import React, { useCallback, ReactElement, useState, useEffect } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
-import { useHistory } from '../../NavigationItems';
+import { useHistory, useLocation } from '../../../ReactRouter';
 import { Ionicons } from '@expo/vector-icons';
-import { useMatch } from '../hooks/useMatch';
+import { useMatch } from '../../hooks/useMatch';
 
-export interface TabItemProps {
+export interface TabBarItemProps {
     path?: string;
     activeColor: string;
     inactiveColor: string;
@@ -15,18 +15,29 @@ function getColorByActiveState(active: boolean, activeColor: string, inactiveCol
     return active ? activeColor : inactiveColor;
 }
 
-export function TabItem(props: TabItemProps): ReactElement<TabItemProps> {
+export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps> {
     const { path, activeColor, inactiveColor, title } = props;
-
+    const [tabPathname, setTabPathname] = useState<undefined | string>(undefined);
+    const location = useLocation();
     const history = useHistory();
+    const [active] = useMatch(path);
+    const color = getColorByActiveState(active, activeColor, inactiveColor);
+
     const goToTab = useCallback(() => {
         if (path != null) {
-            return history.push(path);
+            if (tabPathname === location.pathname) {
+                history.replace(path);
+            } else {
+                history.replace(tabPathname == null ? path : tabPathname);
+            }
         }
-    }, [path, history]);
+    }, [path, history, tabPathname, location]);
 
-    const [active] = useMatch(props.path);
-    const color = getColorByActiveState(active, activeColor, inactiveColor);
+    useEffect(() => {
+        if (path != null && location.pathname.includes(path) && active) {
+            setTabPathname(location.pathname);
+        }
+    }, [path, active, location]);
 
     return (
         <TouchableOpacity

@@ -1,18 +1,19 @@
-import { matchPath, useLocation } from '../../NavigationItems';
+import { matchPath, useLocation } from '../../ReactRouter';
 import { useActivePath } from './useActivePath';
 
 export function useMatch(path: string | undefined): [boolean, number] {
     const active = useActivePath(path);
     const location = useLocation();
-    if (!active === true) {
+    if (active === true) {
+        return [true, 1];
+    } else {
         const match = matchPath(location.pathname, {
-            path: `${path}`
+            path
         });
         if (match != null) {
-            const stackRouteTitles = match.url.substring(1).split('/'); // Remove initial / before split.
+            const stackRouteTitles = location.pathname.substring(1).split('/'); // Remove initial / before split.
             return [true, stackRouteTitles.length];
         }
-        return [match != null, 1];
+        return [match != null, 0];
     }
-    return [true, 1];
 }
