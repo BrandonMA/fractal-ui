@@ -1,19 +1,24 @@
 import React, { ReactElement, useMemo } from 'react';
-import { ScreenContainer } from 'react-native-screens';
+import { ScreenContainer, ScreenContainerProps } from 'react-native-screens';
 import { TabBar } from './TabBar';
 import { TabBarItem } from './TabBarItem';
 import { TabContent } from './TabContent';
 import { TabScreenProps } from './TabScreen';
 import { Redirect, Route } from 'react-router-dom';
 import { SafeAreaView } from 'react-native';
+import styled from 'styled-components/native';
 
-export interface TabNavigatorProps {
+const StyledScreenContainer = styled(ScreenContainer)`
+    flex: 1;
+`;
+
+export interface TabNavigatorProps extends ScreenContainerProps {
     children: ReactElement<TabScreenProps> | Array<ReactElement<TabScreenProps>>;
     defaultRoute?: string;
 }
 
 export function TabNavigator(props: TabNavigatorProps): JSX.Element {
-    const { defaultRoute, children } = props;
+    const { defaultRoute, children, ...others } = props;
 
     const [content, tabItems, firstChildPath] = useMemo(() => {
         const content: Array<JSX.Element> = [];
@@ -46,7 +51,7 @@ export function TabNavigator(props: TabNavigatorProps): JSX.Element {
 
     return (
         <>
-            <ScreenContainer style={{ flex: 1 }}>{content}</ScreenContainer>
+            <StyledScreenContainer {...others}>{content}</StyledScreenContainer>
             <SafeAreaView>
                 <TabBar>{tabItems}</TabBar>
             </SafeAreaView>

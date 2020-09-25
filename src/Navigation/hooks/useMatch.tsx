@@ -4,6 +4,7 @@ import { useActivePath } from './useActivePath';
 export function useMatch(path: string | undefined): [boolean, number] {
     const active = useActivePath(path);
     const location = useLocation();
+
     if (active === true) {
         return [true, 1];
     } else {

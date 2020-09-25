@@ -1,10 +1,21 @@
 import React, { useCallback, ReactElement, useState, useEffect } from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { Pressable, PressableProps, Text } from 'react-native';
 import { useHistory, useLocation } from '../../../ReactRouter';
 import { Ionicons } from '@expo/vector-icons';
 import { useMatch } from '../../hooks/useMatch';
+import styled from 'styled-components/native';
 
-export interface TabBarItemProps {
+const StyledContainer = styled(Pressable)`
+    margin: 4;
+    padding: 4 0;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    flex-direction: column;
+    min-height: 52;
+`;
+
+export interface TabBarItemProps extends PressableProps {
     path?: string;
     activeColor: string;
     inactiveColor: string;
@@ -16,7 +27,7 @@ function getColorByActiveState(active: boolean, activeColor: string, inactiveCol
 }
 
 export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps> {
-    const { path, activeColor, inactiveColor, title } = props;
+    const { path, activeColor, inactiveColor, title, ...others } = props;
     const [tabPathname, setTabPathname] = useState<undefined | string>(undefined);
     const location = useLocation();
     const history = useHistory();
@@ -40,27 +51,15 @@ export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps
     }, [path, active, location]);
 
     return (
-        <TouchableOpacity
-            style={{
-                margin: 4,
-                paddingVertical: 4,
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexGrow: 1,
-                flexDirection: 'column',
-                minHeight: 52
-            }}
-            onPress={goToTab}
-        >
+        <StyledContainer {...others} onPress={goToTab}>
             <Ionicons name='ios-home' size={24} color={color} />
             <Text
                 style={{
-                    color,
-                    fontSize: 0
+                    color
                 }}
             >
                 {title}
             </Text>
-        </TouchableOpacity>
+        </StyledContainer>
     );
 }
