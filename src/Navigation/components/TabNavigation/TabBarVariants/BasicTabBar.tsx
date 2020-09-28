@@ -13,9 +13,10 @@ const StyledTabBarContainer = styled(View)`
     width: 100%;
     background-color: white;
     bottom: 0;
+    box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.08);
 `;
 
-export function TabBar(props: TabBarProps): JSX.Element {
+export function BasicTabBar(props: TabBarProps): JSX.Element {
     const { children, ...others } = props;
     return (
         <SafeAreaView>

@@ -1,13 +1,18 @@
 import React from 'react';
-import { ScreenStackHeaderConfig } from 'react-native-screens';
+// import { ScreenStackHeaderConfig } from 'react-native-screens';
 import List from '../DummyScreens/List';
-import { StackScreen } from '../../src/Navigation';
+import { NavigationRouteProps, StackScreen } from '../../src/Navigation';
+import styled from 'styled-components/native';
 
-export function FirstStack(): JSX.Element {
+const StyledStack = styled(StackScreen)`
+    background-color: white;
+`;
+
+export function FirstStack(props: NavigationRouteProps): JSX.Element {
     return (
-        <StackScreen path='' style={{ backgroundColor: 'white' }}>
-            <ScreenStackHeaderConfig largeTitle title='Main' hidden={false} />
+        <StyledStack {...props} path=''>
+            {/* <ScreenStackHeaderConfig largeTitle title='Main' hidden={false} /> */}
             <List />
-        </StackScreen>
+        </StyledStack>
     );
 }

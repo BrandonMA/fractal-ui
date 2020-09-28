@@ -3,13 +3,13 @@ import { matchPath, useLocation } from '../../../ReactRouter';
 import { useMatch } from '../../hooks/useMatch';
 import { NavigationRouteProps } from '../NavigationRoute';
 import styled from 'styled-components/native';
-import { ScreenStack as Screen, ScreenStackProps } from 'react-native-screens';
+import { ScreenStack as Screen, ScreenStackProps } from './Screens';
 
 export const ScreenStack = styled(Screen)`
     flex: 1;
 `;
 
-export interface StackNavigatorProps extends ScreenStackProps {
+export interface StackNavigatorProps extends Omit<ScreenStackProps, 'children'> {
     children: React.ReactNode;
     path?: string;
 }
@@ -41,5 +41,9 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
         }
     }, [childrenToRender, active]);
 
-    return <ScreenStack {...others}>{active ? childrenToRender : prevChildren}</ScreenStack>;
+    return (
+        <ScreenStack {...others}>
+            <>{active ? childrenToRender : prevChildren}</>
+        </ScreenStack>
+    );
 }

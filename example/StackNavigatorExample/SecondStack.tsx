@@ -1,8 +1,13 @@
 import React, { useCallback } from 'react';
-import { ScreenStackHeaderConfig } from 'react-native-screens';
+// import { ScreenStackHeaderConfig } from 'react-native-screens';
 import { Button, SafeAreaView } from 'react-native';
 import { useHistory } from 'react-router-dom';
 import { NavigationRouteProps, StackScreen } from '../../src/Navigation';
+import styled from 'styled-components/native';
+
+const StyledStack = styled(StackScreen)`
+    background-color: white;
+`;
 
 export function SecondStack(props: NavigationRouteProps): JSX.Element {
     const { path } = props;
@@ -13,11 +18,11 @@ export function SecondStack(props: NavigationRouteProps): JSX.Element {
     }, [path, history]);
 
     return (
-        <StackScreen {...props} style={{ backgroundColor: 'white' }}>
-            <ScreenStackHeaderConfig title='Detail' hidden={false} />
-            <SafeAreaView style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <StyledStack {...props}>
+            {/* <ScreenStackHeaderConfig title='Detail' hidden={false} /> */}
+            <SafeAreaView>
                 <Button onPress={handleGoToNextScreen} title='Go to next screen' />
             </SafeAreaView>
-        </StackScreen>
+        </StyledStack>
     );
 }

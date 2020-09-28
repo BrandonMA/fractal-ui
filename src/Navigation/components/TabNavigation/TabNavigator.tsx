@@ -1,12 +1,13 @@
 import React, { ReactElement, useMemo } from 'react';
 import { ScreenContainer, ScreenContainerProps } from 'react-native-screens';
-import { TabBar } from './TabBar';
 import { TabBarItem } from './TabBarItem';
 import { TabContent } from './TabContent';
 import { TabScreenProps } from './TabScreen';
 import { Redirect, Route } from 'react-router-dom';
 import { SafeAreaView } from 'react-native';
 import styled from 'styled-components/native';
+import { getTabBarComponent } from './util/getTabBarComponent';
+import { TabBarVariant } from './types/TabBarVariant';
 
 const StyledScreenContainer = styled(ScreenContainer)`
     flex: 1;
@@ -15,10 +16,12 @@ const StyledScreenContainer = styled(ScreenContainer)`
 export interface TabNavigatorProps extends ScreenContainerProps {
     children: ReactElement<TabScreenProps> | Array<ReactElement<TabScreenProps>>;
     defaultRoute?: string;
+    variant?: TabBarVariant;
 }
 
 export function TabNavigator(props: TabNavigatorProps): JSX.Element {
-    const { defaultRoute, children, ...others } = props;
+    const { defaultRoute, children, variant, ...others } = props;
+    const TabBar = getTabBarComponent(variant);
 
     const [content, tabItems, firstChildPath] = useMemo(() => {
         const content: Array<JSX.Element> = [];

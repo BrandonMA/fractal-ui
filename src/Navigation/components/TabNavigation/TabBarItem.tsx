@@ -1,18 +1,35 @@
 import React, { useCallback, ReactElement, useState, useEffect } from 'react';
-import { Pressable, PressableProps, Text } from 'react-native';
+import { Platform, Pressable, PressableProps, Text } from 'react-native';
 import { useHistory, useLocation } from '../../../ReactRouter';
 import { Ionicons } from '@expo/vector-icons';
 import { useMatch } from '../../hooks/useMatch';
 import styled from 'styled-components/native';
+import { TabItemVariant } from './types/TabItemVariant';
+import { getColorByActiveState } from './util/getColorByActiveState';
 
-const StyledContainer = styled(Pressable)`
-    margin: 4;
-    padding: 4 0;
+const SharedStyles = styled(Pressable)`
     justify-content: center;
     align-items: center;
-    flex-grow: 1;
     flex-direction: column;
-    min-height: 52;
+    ${Platform.OS === 'web' ? 'cursor: pointer' : null}
+`;
+
+const StyledContainer = styled(SharedStyles)`
+    margin: 4px;
+    padding: 4px 0;
+    flex-grow: 1;
+    min-height: 52px;
+    min-width: 52px;
+`;
+
+const StyledCircularContainer = styled(SharedStyles)`
+    height: 52px;
+    width: 52px;
+    border-radius: 26px;
+    background-color: #1281ff;
+    position: absolute;
+    bottom: 22px;
+    align-self: center;
 `;
 
 export interface TabBarItemProps extends PressableProps {
@@ -20,19 +37,18 @@ export interface TabBarItemProps extends PressableProps {
     activeColor: string;
     inactiveColor: string;
     title: string;
-}
-
-function getColorByActiveState(active: boolean, activeColor: string, inactiveColor: string) {
-    return active ? activeColor : inactiveColor;
+    variant?: TabItemVariant;
 }
 
 export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps> {
-    const { path, activeColor, inactiveColor, title, ...others } = props;
+    const { path, activeColor, inactiveColor, variant, title, ...others } = props;
     const [tabPathname, setTabPathname] = useState<undefined | string>(undefined);
     const location = useLocation();
     const history = useHistory();
     const [active] = useMatch(path);
-    const color = getColorByActiveState(active, activeColor, inactiveColor);
+    const color = getColorByActiveState(active, activeColor, inactiveColor, variant);
+
+    const Container = variant === 'circular' ? StyledCircularContainer : StyledContainer;
 
     const goToTab = useCallback(() => {
         if (path != null) {
@@ -51,15 +67,17 @@ export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps
     }, [path, active, location]);
 
     return (
-        <StyledContainer {...others} onPress={goToTab}>
-            <Ionicons name='ios-home' size={24} color={color} />
-            <Text
-                style={{
-                    color
-                }}
-            >
-                {title}
-            </Text>
-        </StyledContainer>
+        <Container {...others} onPress={goToTab}>
+            <Ionicons name='ios-home' size={variant === 'circular' ? 30 : 24} color={color} />
+            {variant === 'circular' ? null : (
+                <Text
+                    style={{
+                        color
+                    }}
+                >
+                    {title}
+                </Text>
+            )}
+        </Container>
     );
 }
