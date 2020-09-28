@@ -6,7 +6,7 @@ export interface TabBarProps extends Omit<ViewProps, 'children'> {
     children: React.ReactNode;
 }
 
-const StyledTabBarContainer = styled(View)`
+const StyledTabBarContainer = styled(SafeAreaView)`
     flex-direction: row;
     justify-content: space-evenly;
     position: absolute;
@@ -18,9 +18,5 @@ const StyledTabBarContainer = styled(View)`
 
 export function BasicTabBar(props: TabBarProps): JSX.Element {
     const { children, ...others } = props;
-    return (
-        <SafeAreaView>
-            <StyledTabBarContainer {...others}>{children}</StyledTabBarContainer>
-        </SafeAreaView>
-    );
+    return <StyledTabBarContainer {...others}>{children}</StyledTabBarContainer>;
 }

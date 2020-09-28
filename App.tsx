@@ -1,6 +1,6 @@
 import React from 'react';
 import { enableScreens } from 'react-native-screens';
-import { TabNavigatorExample } from './example';
+import { MiddleActionTabNavigatorExample, TabNavigatorExample } from './example';
 import { NavigationRouter, useLocation } from './src/ReactRouter';
 
 enableScreens();
@@ -20,7 +20,7 @@ export default function App(): React.ReactNode {
     return (
         <NavigationRouter>
             <LocationListener>
-                <TabNavigatorExample />
+                <MiddleActionTabNavigatorExample />
             </LocationListener>
         </NavigationRouter>
     );

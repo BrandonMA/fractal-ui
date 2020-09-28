@@ -1,9 +1,11 @@
-import { TabItemVariant } from '../types/TabItemVariant';
+import { TabBarItemVariant } from '../types/TabBarItemVariant';
 
-export function getColorByActiveState(active: boolean, activeColor: string, inactiveColor: string, variant?: TabItemVariant): string {
+export function getColorByActiveState(active: boolean, activeColor?: string, inactiveColor?: string, variant?: TabBarItemVariant): string {
     if (variant === 'circular') {
         return '#FFFFFF';
     } else {
-        return active ? activeColor : inactiveColor;
+        const finalActiveColor = activeColor ?? '#1281FF';
+        const finalInactiveColor = inactiveColor ?? '#999999';
+        return active ? finalActiveColor : finalInactiveColor;
     }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import List from '../DummyScreens/List';
 import { TabNavigator, TabScreen, TabContent, TabBarItem } from '../../src/Navigation';
 import { StackNavigatorExample } from '../StackNavigatorExample';
+import { Ionicons } from '@expo/vector-icons';
 
 export function TabNavigatorExample(): JSX.Element {
     return (
@@ -10,19 +11,21 @@ export function TabNavigatorExample(): JSX.Element {
                 <TabContent>
                     <StackNavigatorExample path='/home' />
                 </TabContent>
-                <TabBarItem activeColor='#1281FF' inactiveColor='#999999' title='Home' />
+                <TabBarItem title='Home'>{(color, size) => <Ionicons name='ios-book' size={size} color={color} />}</TabBarItem>
             </TabScreen>
             <TabScreen path='/secondary'>
                 <TabContent>
                     <List />
                 </TabContent>
-                <TabBarItem activeColor='#FF9900' inactiveColor='#999999' title='Secondary' />
+                <TabBarItem title='Home'>{(color, size) => <Ionicons name='ios-home' size={size} color={color} />}</TabBarItem>
             </TabScreen>
             <TabScreen path='/extra'>
                 <TabContent>
                     <List />
                 </TabContent>
-                <TabBarItem activeColor='#FF9900' inactiveColor='#999999' title='Extra' />
+                <TabBarItem activeColor='#FF9900' title='Home'>
+                    {(color, size) => <Ionicons name='ios-albums' size={size} color={color} />}
+                </TabBarItem>
             </TabScreen>
         </TabNavigator>
     );
@@ -35,19 +38,23 @@ export function MiddleActionTabNavigatorExample(): JSX.Element {
                 <TabContent>
                     <StackNavigatorExample path='/home' />
                 </TabContent>
-                <TabBarItem activeColor='#1281FF' inactiveColor='#999999' title='Home' />
+                <TabBarItem title='Home'>{(color, size) => <Ionicons name='ios-book' size={size} color={color} />}</TabBarItem>
             </TabScreen>
             <TabScreen path='/secondary'>
                 <TabContent>
                     <List />
                 </TabContent>
-                <TabBarItem activeColor='#FF9900' inactiveColor='#999999' title='Secondary' variant='circular' />
+                <TabBarItem activeColor='#0FD630' title='Home' variant='circular'>
+                    {(color, size) => <Ionicons name='ios-home' size={size} color={color} />}
+                </TabBarItem>
             </TabScreen>
             <TabScreen path='/extra'>
                 <TabContent>
                     <List />
                 </TabContent>
-                <TabBarItem activeColor='#FF9900' inactiveColor='#999999' title='Extra' />
+                <TabBarItem activeColor='#FF9900' title='Home'>
+                    {(color, size) => <Ionicons name='ios-albums' size={size} color={color} />}
+                </TabBarItem>
             </TabScreen>
         </TabNavigator>
     );

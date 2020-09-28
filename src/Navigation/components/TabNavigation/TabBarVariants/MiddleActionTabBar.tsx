@@ -1,16 +1,19 @@
 import React from 'react';
-import { SafeAreaView, View, ViewProps } from 'react-native';
+import { View, ViewProps } from 'react-native';
 import styled from 'styled-components/native';
 
 export interface TabBarProps extends Omit<ViewProps, 'children'> {
     children: React.ReactNode;
 }
 
-const StyledContainer = styled(View)`
-    flex-direction: row;
+const SafeView = styled.SafeAreaView`
     position: absolute;
     bottom: 0;
     width: 100%;
+`;
+
+const StyledContainer = styled(View)`
+    flex-direction: row;
 `;
 
 const StyledMiddleAction = styled.Image`
@@ -20,7 +23,7 @@ const StyledMiddleAction = styled.Image`
 `;
 
 const StyledHelperViews = styled.View`
-    box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.08);
+    box-shadow: 0px -6px 4px rgba(0, 0, 0, 0.04);
     background-color: white;
     flex-grow: 1;
 `;
@@ -50,13 +53,13 @@ export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
     }
 
     return (
-        <SafeAreaView>
+        <SafeView>
             <StyledContainer {...others}>
                 <StyledHelperViews>{leftChildren}</StyledHelperViews>
                 <StyledMiddleAction source={require('../assets/middle-action.png')} />
                 <StyledHelperViews>{rightChildren}</StyledHelperViews>
             </StyledContainer>
-            {middleChild}
-        </SafeAreaView>
+            <View>{middleChild}</View>
+        </SafeView>
     );
 }
