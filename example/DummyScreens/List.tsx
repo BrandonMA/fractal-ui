@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Text, View, SafeAreaView, ScrollView, Image, Button } from 'react-native';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from '../../src/ReactRouter';
 
 export default function List(): JSX.Element {
     const [images, setImages] = useState<Array<string>>([]);

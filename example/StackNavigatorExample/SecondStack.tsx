@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 // import { ScreenStackHeaderConfig } from 'react-native-screens';
 import { Button, SafeAreaView } from 'react-native';
-import { useHistory } from 'react-router-dom';
+import { useHistory } from '../../src/ReactRouter';
 import { NavigationRouteProps, StackScreen } from '../../src/Navigation';
 import styled from 'styled-components/native';
 
