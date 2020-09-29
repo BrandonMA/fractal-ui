@@ -1,15 +1,17 @@
 import React, { useMemo } from 'react';
-import { SafeAreaView, View } from 'react-native';
+import { View } from 'react-native';
 import styled from 'styled-components/native';
 import { getAbsolutePosition } from '../util/getAbsolutePosition';
 import { getValueBasedOnPosition } from '../util/getValueBasedOnPosition';
 import { TabBarProps } from '../types/TabBarProps';
 import { applyInsets } from '../util/applyInsets';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { TabBarPosition } from '../types/TabBarPosition';
 
-const SharedStyles = styled(SafeAreaView)`
+const SharedStyles = styled(View)`
     position: absolute;
     ${(props: TabBarProps) => getAbsolutePosition(props.position, 0)};
+    ${applyInsets}
 `;
 
 const HorizontalContainer = styled(SharedStyles)`
@@ -50,6 +52,18 @@ const SideView = styled.View`
     flex-grow: 1;
 `;
 
+function getImageBasedOnPosition(position?: TabBarPosition) {
+    if (position === 'top') {
+        return require(`../assets/middle-top.png`);
+    } else if (position === 'right') {
+        return require(`../assets/middle-right.png`);
+    } else if (position === 'left') {
+        return require(`../assets/middle-left.png`);
+    } else {
+        return require(`../assets/middle-bottom.png`);
+    }
+}
+
 export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
     const { children, ...others } = props;
     const insets = useSafeAreaInsets();
@@ -81,15 +95,13 @@ export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
     }, [children]);
 
     return (
-        <Container {...others}>
+        <Container {...others} insets={insets}>
             <ItemsContainer>
                 <SideView>{leftChildren}</SideView>
-                <MiddleActionImage position={props.position} source={require(`../assets/middle-${props.position}.png`)} />
+                <MiddleActionImage position={props.position} source={getImageBasedOnPosition(props.position)} />
                 <SideView>{rightChildren}</SideView>
             </ItemsContainer>
-            <MiddleContainer position={props.position} insets={insets}>
-                {middleChild}
-            </MiddleContainer>
+            <MiddleContainer position={props.position}>{middleChild}</MiddleContainer>
         </Container>
     );
 }
