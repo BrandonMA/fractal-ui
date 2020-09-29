@@ -13,7 +13,7 @@ export function StackNavigatorExample(props: Props): JSX.Element {
     const finalPath = props.path != null ? `${props.path}/` : '/';
     return (
         <StackNavigator path={finalPath}>
-            <FirstStack />
+            <FirstStack path='' />
             <SecondStack path={`${finalPath}one`} />
             <ThirdStack path={`${finalPath}one/:two`} />
             <SettingsStack path={`${finalPath}settings`} />

@@ -10,7 +10,7 @@ const StyledStack = styled(StackScreen)`
 
 export function FirstStack(props: NavigationRouteProps): JSX.Element {
     return (
-        <StyledStack {...props} path=''>
+        <StyledStack {...props}>
             {/* <ScreenStackHeaderConfig largeTitle title='Main' hidden={false} /> */}
             <List />
         </StyledStack>
