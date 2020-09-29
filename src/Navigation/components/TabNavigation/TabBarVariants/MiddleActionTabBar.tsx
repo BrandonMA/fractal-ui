@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { SafeAreaView, View } from 'react-native';
 import styled from 'styled-components/native';
 import { getAbsolutePosition } from '../util/getAbsolutePosition';
@@ -52,30 +52,33 @@ const SideView = styled.View`
 
 export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
     const { children, ...others } = props;
-    const allChildren = React.Children.toArray(children);
+    const insets = useSafeAreaInsets();
     const Container = getValueBasedOnPosition(HorizontalContainer, VerticalContainer, props.position);
     const ItemsContainer = getValueBasedOnPosition(ItemsContainerHorizontal, ItemsContainerVertical, props.position);
-    const insets = useSafeAreaInsets();
 
-    const leftChildren = [];
-    const rightChildren = [];
-    let middleChild: React.ReactNode = null;
+    const [leftChildren, middleChild, rightChildren] = useMemo(() => {
+        const allChildren = React.Children.toArray(children);
+        const leftChildren = [];
+        const rightChildren = [];
+        let middleChild: React.ReactNode = null;
 
-    if (allChildren.length === 1) {
-        middleChild = allChildren[0];
-    } else if (allChildren.length === 3) {
-        leftChildren.push(allChildren[0]);
-        middleChild = allChildren[1];
-        rightChildren.push(allChildren[2]);
-    } else if (allChildren.length === 5) {
-        leftChildren.push(allChildren[0]);
-        leftChildren.push(allChildren[1]);
-        middleChild = allChildren[2];
-        rightChildren.push(allChildren[3]);
-        rightChildren.push(allChildren[4]);
-    } else {
-        throw Error('The amount of items in a MiddleActionTabBar must be 1, 3 or 5');
-    }
+        if (allChildren.length === 1) {
+            middleChild = allChildren[0];
+        } else if (allChildren.length === 3) {
+            leftChildren.push(allChildren[0]);
+            middleChild = allChildren[1];
+            rightChildren.push(allChildren[2]);
+        } else if (allChildren.length === 5) {
+            leftChildren.push(allChildren[0]);
+            leftChildren.push(allChildren[1]);
+            middleChild = allChildren[2];
+            rightChildren.push(allChildren[3]);
+            rightChildren.push(allChildren[4]);
+        } else {
+            throw Error('The amount of items in a MiddleActionTabBar must be 1, 3 or 5');
+        }
+        return [leftChildren, middleChild, rightChildren];
+    }, [children]);
 
     return (
         <Container {...others}>
