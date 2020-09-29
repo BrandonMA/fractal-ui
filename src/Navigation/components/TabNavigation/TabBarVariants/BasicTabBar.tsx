@@ -1,22 +1,39 @@
 import React from 'react';
-import { SafeAreaView, View, ViewProps } from 'react-native';
+import { View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
+import { getAbsolutePosition } from '../util/getAbsolutePosition';
+import { getTabBarPosition } from '../util/getTabBarPosition';
+import { TabBarProps } from './TabBarProps';
+import { applyInsets } from '../util/applyInsets';
 
-export interface TabBarProps extends Omit<ViewProps, 'children'> {
-    children: React.ReactNode;
-}
-
-const StyledTabBarContainer = styled(SafeAreaView)`
-    flex-direction: row;
+const SharedStyles = styled(View)`
     justify-content: space-evenly;
     position: absolute;
-    width: 100%;
     background-color: white;
-    bottom: 0;
-    box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.08);
+    ${(props: TabBarProps) => getAbsolutePosition(props.position, 0)};
+    ${applyInsets}
+`;
+
+const StyledTabBarContainer = styled(SharedStyles)`
+    flex-direction: row;
+    width: 100%;
+    box-shadow: ${(props: TabBarProps) => (props.position === 'bottom' ? '0px -1px' : '0px 1px')} 4px rgba(0, 0, 0, 0.08);
+`;
+
+const StyledVerticalTabBarContainer = styled(SharedStyles)`
+    flex-direction: column;
+    height: 100%;
+    box-shadow: ${(props: TabBarProps) => (props.position === 'right' ? '-1px 0px' : '1px 0px')} 4px rgba(0, 0, 0, 0.08);
 `;
 
 export function BasicTabBar(props: TabBarProps): JSX.Element {
     const { children, ...others } = props;
-    return <StyledTabBarContainer {...others}>{children}</StyledTabBarContainer>;
+    const insets = useSafeAreaInsets();
+    const Container = getTabBarPosition(StyledTabBarContainer, StyledVerticalTabBarContainer, props.position);
+    return (
+        <Container {...others} insets={insets}>
+            {children}
+        </Container>
+    );
 }

@@ -11,8 +11,8 @@ interface Props {
 
 // This component is only to check that routing is working as expected.
 function LocationListener(props: Props): JSX.Element {
-    const location = useLocation();
-    console.log(location.pathname);
+    // const location = useLocation();
+    // console.log(location.pathname);
     return props.children;
 }
 

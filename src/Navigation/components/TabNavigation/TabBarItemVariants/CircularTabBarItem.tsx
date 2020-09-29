@@ -1,8 +1,11 @@
 import styled from 'styled-components/native';
+import { TabBarPosition } from '../types/TabBarPosition';
+import { getAbsolutePosition } from '../util/getAbsolutePosition';
 import { SharedTabBarItemStyles } from './SharedTabBarItemStyles';
 
-interface Props {
+export interface CircularTabBarItemProps {
     bg?: string;
+    position?: TabBarPosition;
 }
 
 export const CircularTabBarItem = styled(SharedTabBarItemStyles)`
@@ -10,7 +13,7 @@ export const CircularTabBarItem = styled(SharedTabBarItemStyles)`
     width: 52px;
     border-radius: 26px;
     position: absolute;
-    bottom: 22px;
     align-self: center;
-    background-color: ${(props: Props) => props.bg};
+    background-color: ${(props: CircularTabBarItemProps) => props.bg};
+    ${(props: CircularTabBarItemProps) => getAbsolutePosition(props.position, 22)};
 `;

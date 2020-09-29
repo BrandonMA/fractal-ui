@@ -1,25 +1,48 @@
 import React from 'react';
-import { View, ViewProps } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
 import styled from 'styled-components/native';
+import { TabBarPosition } from '../types/TabBarPosition';
+import { getAbsolutePosition } from '../util/getAbsolutePosition';
+import { getTabBarPosition } from '../util/getTabBarPosition';
+import { TabBarProps } from './TabBarProps';
+import { applyInsets } from '../util/applyInsets';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-export interface TabBarProps extends Omit<ViewProps, 'children'> {
-    children: React.ReactNode;
-}
-
-const SafeView = styled.SafeAreaView`
+const SharedStyles = styled(SafeAreaView)`
     position: absolute;
-    bottom: 0;
+    ${(props: TabBarProps) => getAbsolutePosition(props.position, 0)};
+`;
+
+const HorizontalSafeView = styled(SharedStyles)`
     width: 100%;
 `;
 
-const StyledContainer = styled(View)`
-    flex-direction: row;
+const VerticallSafeView = styled(SharedStyles)`
+    height: 100%;
 `;
+
+const StyledContainerHorizontal = styled(View)`
+    flex-direction: row;
+    width: 100%;
+`;
+
+const StyledContainerVertical = styled(View)`
+    flex-direction: column;
+    height: 100%;
+`;
+
+function calculateWidthForMiddleAction(props: { position?: TabBarPosition }): string | undefined {
+    return getTabBarPosition('88px', '60px', props.position);
+}
+
+function calculateHeightForMiddleAction(props: { position?: TabBarPosition }): string {
+    return getTabBarPosition('60px', '88px', props.position);
+}
 
 const StyledMiddleAction = styled.Image`
     z-index: 1000;
-    width: 88px;
-    height: 60px;
+    width: ${calculateWidthForMiddleAction};
+    height: ${calculateHeightForMiddleAction};
 `;
 
 const StyledHelperViews = styled.View`
@@ -28,9 +51,20 @@ const StyledHelperViews = styled.View`
     flex-grow: 1;
 `;
 
+const MiddleContainer = styled.View`
+    ${applyInsets};
+    position: absolute;
+    height: 100%;
+    flex-direction: ${(props: TabBarProps) => getTabBarPosition('column', 'row', props.position)};
+    width: 100%;
+`;
+
 export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
     const { children, ...others } = props;
     const allChildren = React.Children.toArray(children);
+    const Container = getTabBarPosition(HorizontalSafeView, VerticallSafeView, props.position);
+    const ItemsContainer = getTabBarPosition(StyledContainerHorizontal, StyledContainerVertical, props.position);
+    const insets = useSafeAreaInsets();
 
     const leftChildren = [];
     const rightChildren = [];
@@ -53,13 +87,15 @@ export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
     }
 
     return (
-        <SafeView>
-            <StyledContainer {...others}>
+        <Container {...others}>
+            <ItemsContainer>
                 <StyledHelperViews>{leftChildren}</StyledHelperViews>
-                <StyledMiddleAction source={require('../assets/middle-action.png')} />
+                <StyledMiddleAction position={props.position} source={require(`../assets/middle-${props.position}.png`)} />
                 <StyledHelperViews>{rightChildren}</StyledHelperViews>
-            </StyledContainer>
-            <View>{middleChild}</View>
-        </SafeView>
+            </ItemsContainer>
+            <MiddleContainer position={props.position} insets={insets}>
+                {middleChild}
+            </MiddleContainer>
+        </Container>
     );
 }

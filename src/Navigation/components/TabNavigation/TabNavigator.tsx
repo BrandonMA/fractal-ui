@@ -7,6 +7,8 @@ import { Redirect, Route } from 'react-router-dom';
 import styled from 'styled-components/native';
 import { getTabBarComponent } from './util/getTabBarComponent';
 import { TabBarVariant } from './types/TabBarVariant';
+import { TabBarPosition } from './types/TabBarPosition';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const StyledScreenContainer = styled(ScreenContainer)`
     flex: 1;
@@ -18,10 +20,11 @@ export interface TabNavigatorProps extends ScreenContainerProps {
     variant?: TabBarVariant;
     activeColor?: string;
     inactiveColor?: string;
+    position?: TabBarPosition;
 }
 
 export function TabNavigator(props: TabNavigatorProps): JSX.Element {
-    const { defaultRoute, children, variant, activeColor, inactiveColor, ...others } = props;
+    const { defaultRoute, children, variant, position, activeColor, inactiveColor, ...others } = props;
     const TabBar = getTabBarComponent(variant);
 
     const [content, tabItems, firstChildPath] = useMemo(() => {
@@ -38,18 +41,19 @@ export function TabNavigator(props: TabNavigatorProps): JSX.Element {
 
             React.Children.forEach(child.props.children, (subChild: JSX.Element) => {
                 if (subChild.type.name === TabContent.name) {
+                    const newChild = React.cloneElement(subChild, {
+                        path,
+                        key: path
+                    });
+                    content.push(newChild);
+                } else if (subChild.type.name === TabBarItem.name) {
                     const props = subChild.props as TabBarItemProps;
                     const newChild = React.cloneElement(subChild, {
                         path,
                         key: path,
                         activeColor: props.activeColor ?? activeColor,
-                        inactiveColor: props.inactiveColor ?? inactiveColor
-                    });
-                    content.push(newChild);
-                } else if (subChild.type.name === TabBarItem.name) {
-                    const newChild = React.cloneElement(subChild, {
-                        path,
-                        key: path
+                        inactiveColor: props.inactiveColor ?? inactiveColor,
+                        position: props.position ?? position
                     });
                     tabItems.push(newChild);
                 }
@@ -57,17 +61,17 @@ export function TabNavigator(props: TabNavigatorProps): JSX.Element {
         });
 
         return [content, tabItems, firstChildPath];
-    }, [children, activeColor, inactiveColor]);
+    }, [children, activeColor, inactiveColor, position]);
 
     return (
-        <>
+        <SafeAreaProvider>
             <StyledScreenContainer {...others}>{content}</StyledScreenContainer>
-            <TabBar>{tabItems}</TabBar>
+            <TabBar position={position ?? 'bottom'}>{tabItems}</TabBar>
             {firstChildPath != '/' ? (
                 <Route path='/'>
                     <Redirect to={defaultRoute ?? firstChildPath} />
                 </Route>
             ) : null}
-        </>
+        </SafeAreaProvider>
     );
 }

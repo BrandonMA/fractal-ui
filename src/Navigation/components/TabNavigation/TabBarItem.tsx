@@ -3,6 +3,7 @@ import { PressableProps, Text } from 'react-native';
 import { useHistory, useLocation } from '../../../ReactRouter';
 import { useMatch } from '../../hooks/useMatch';
 import { TabBarItemVariant } from './types/TabBarItemVariant';
+import { TabBarPosition } from './types/TabBarPosition';
 import { getColorByActiveState } from './util/getColorByActiveState';
 import { getTabBarItemComponent } from './util/getTabBarItemComponent';
 import { getTabIconSize } from './util/getTabIconSize';
@@ -13,11 +14,12 @@ export interface TabBarItemProps extends PressableProps {
     inactiveColor?: string;
     title: string;
     variant?: TabBarItemVariant;
+    position?: TabBarPosition;
     children: (color: string, size: number) => JSX.Element;
 }
 
 export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps> {
-    const { path, activeColor, inactiveColor, variant, title, children, ...others } = props;
+    const { path, activeColor, inactiveColor, variant, position, title, children, ...others } = props;
     const [tabPathname, setTabPathname] = useState<undefined | string>(undefined);
     const location = useLocation();
     const history = useHistory();
@@ -43,7 +45,7 @@ export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps
     }, [path, active, location]);
 
     return (
-        <Container {...others} onPress={goToTab} bg={activeColor}>
+        <Container {...others} onPress={goToTab} bg={activeColor} position={position}>
             {children(color, iconSize)}
             {variant === 'circular' ? null : (
                 <Text
