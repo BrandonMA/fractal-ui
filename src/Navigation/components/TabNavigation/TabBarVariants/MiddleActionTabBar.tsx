@@ -35,11 +35,11 @@ const ItemsContainerVertical = styled(View)`
 `;
 
 const MiddleContainer = styled.View`
-    ${applyInsets};
     position: absolute;
     height: 100%;
     flex-direction: ${(props: TabBarProps) => getValueBasedOnPosition('column', 'row', props.position)};
     width: 100%;
+    ${applyInsets};
 `;
 
 const MiddleActionImage = styled.Image`
@@ -103,7 +103,9 @@ export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
                 <MiddleActionImage position={props.position} source={getImageBasedOnPosition(props.position)} />
                 <SideView>{rightChildren}</SideView>
             </ItemsContainer>
-            <MiddleContainer position={props.position}>{middleChild}</MiddleContainer>
+            <MiddleContainer position={props.position} insets={insets}>
+                {middleChild}
+            </MiddleContainer>
         </Container>
     );
 }

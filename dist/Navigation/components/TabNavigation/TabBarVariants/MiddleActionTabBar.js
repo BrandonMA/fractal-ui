@@ -36,7 +36,7 @@ var HorizontalContainer = styled(SharedStyles)(templateObject_2 || (templateObje
 var VerticalContainer = styled(SharedStyles)(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n    height: 100%;\n    width: 60px;\n"], ["\n    height: 100%;\n    width: 60px;\n"])));
 var ItemsContainerHorizontal = styled(View)(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n    flex-direction: row;\n    width: 100%;\n"], ["\n    flex-direction: row;\n    width: 100%;\n"])));
 var ItemsContainerVertical = styled(View)(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n    flex-direction: column;\n    height: 100%;\n"], ["\n    flex-direction: column;\n    height: 100%;\n"])));
-var MiddleContainer = styled.View(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n    ", ";\n    position: absolute;\n    height: 100%;\n    flex-direction: ", ";\n    width: 100%;\n"], ["\n    ", ";\n    position: absolute;\n    height: 100%;\n    flex-direction: ", ";\n    width: 100%;\n"])), applyInsets, function (props) { return getValueBasedOnPosition('column', 'row', props.position); });
+var MiddleContainer = styled.View(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n    position: absolute;\n    height: 100%;\n    flex-direction: ", ";\n    width: 100%;\n    ", ";\n"], ["\n    position: absolute;\n    height: 100%;\n    flex-direction: ", ";\n    width: 100%;\n    ", ";\n"])), function (props) { return getValueBasedOnPosition('column', 'row', props.position); }, applyInsets);
 var MiddleActionImage = styled.Image(templateObject_7 || (templateObject_7 = __makeTemplateObject(["\n    z-index: 1000;\n    width: ", ";\n    height: ", ";\n"], ["\n    z-index: 1000;\n    width: ", ";\n    height: ", ";\n"])), function (props) { return getValueBasedOnPosition('88px', '60px', props.position); }, function (props) { return getValueBasedOnPosition('60px', '88px', props.position); });
 var SideView = styled.View(templateObject_8 || (templateObject_8 = __makeTemplateObject(["\n    box-shadow: 0px -6px 4px rgba(0, 0, 0, 0.04);\n    background-color: white;\n    flex-grow: 1;\n"], ["\n    box-shadow: 0px -6px 4px rgba(0, 0, 0, 0.04);\n    background-color: white;\n    flex-grow: 1;\n"])));
 function getImageBasedOnPosition(position) {
@@ -88,7 +88,7 @@ export function MiddleActionTabBar(props) {
             React.createElement(SideView, null, leftChildren),
             React.createElement(MiddleActionImage, { position: props.position, source: getImageBasedOnPosition(props.position) }),
             React.createElement(SideView, null, rightChildren)),
-        React.createElement(MiddleContainer, { position: props.position }, middleChild)));
+        React.createElement(MiddleContainer, { position: props.position, insets: insets }, middleChild)));
 }
 var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8;
 //# sourceMappingURL=MiddleActionTabBar.js.map
