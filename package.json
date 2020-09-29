@@ -1,11 +1,23 @@
 {
-    "main": "node_modules/expo/AppEntry.js",
+    "name": "@bma98/fractal-ui",
+    "version": "1.0.0",
+    "description": "UIKit meant to reduce development time.",
+    "author": "BrandonMA",
+    "license": "MIT",
+    "repository": "BrandonMA/fractal-ui",
+    "main": "dist/index.js",
     "scripts": {
         "start": "expo start",
         "android": "expo start --android",
         "ios": "expo start --ios",
         "web": "expo start --web",
-        "eject": "expo eject"
+        "eject": "expo eject",
+        "build": "expo-module build",
+        "clean": "expo-module clean",
+        "test": "expo-module test",
+        "prepare": "expo-module prepare",
+        "prepublishOnly": "expo-module prepublishOnly",
+        "expo-module": "expo-module"
     },
     "peerDependencies": {
         "react": "~16.13.0",
@@ -42,6 +54,7 @@
         "eslint-plugin-react-hooks": "^4.1.0",
         "eslint-plugin-standard": "^4.0.1",
         "expo": "^39.0.0",
+        "expo-module-scripts": "^1.2.0",
         "prettier": "^2.1.1",
         "react": "16.13.1",
         "react-dom": "16.13.1",

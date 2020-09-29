@@ -1,7 +1,7 @@
 import React from 'react';
 import { enableScreens } from 'react-native-screens';
-import { MiddleActionTabNavigatorExample, TabNavigatorExample } from './example';
-import { NavigationRouter, useLocation } from './src/ReactRouter';
+import { MiddleActionTabNavigatorExample } from './example';
+import { NavigationRouter } from './src/ReactRouter';
 
 enableScreens();
 

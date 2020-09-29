@@ -1,0 +1,1 @@
+{"version":3,"file":"getAbsolutePosition.js","sourceRoot":"","sources":["../../../../../src/Navigation/components/TabNavigation/util/getAbsolutePosition.ts"],"names":[],"mappings":"AAEA,MAAM,UAAU,mBAAmB,CAAC,QAAoC,EAAE,KAAS;IAAT,sBAAA,EAAA,SAAS;IAC/E,IAAM,aAAa,GAAG,QAAQ,aAAR,QAAQ,cAAR,QAAQ,GAAI,QAAQ,CAAC;IAC3C,OAAU,aAAa,UAAK,KAAK,OAAI,CAAC;AAC1C,CAAC"}
