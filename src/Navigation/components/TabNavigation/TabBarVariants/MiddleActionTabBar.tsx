@@ -16,10 +16,12 @@ const SharedStyles = styled(View)`
 
 const HorizontalContainer = styled(SharedStyles)`
     width: 100%;
+    height: 60px;
 `;
 
 const VerticalContainer = styled(SharedStyles)`
     height: 100%;
+    width: 60px;
 `;
 
 const ItemsContainerHorizontal = styled(View)`
