@@ -1,10 +1,9 @@
 import React from 'react';
 import { SafeAreaView, View } from 'react-native';
 import styled from 'styled-components/native';
-import { TabBarPosition } from '../types/TabBarPosition';
 import { getAbsolutePosition } from '../util/getAbsolutePosition';
-import { getTabBarPosition } from '../util/getTabBarPosition';
-import { TabBarProps } from './TabBarProps';
+import { getValueBasedOnPosition } from '../util/getValueBasedOnPosition';
+import { TabBarProps } from '../types/TabBarProps';
 import { applyInsets } from '../util/applyInsets';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -13,57 +12,49 @@ const SharedStyles = styled(SafeAreaView)`
     ${(props: TabBarProps) => getAbsolutePosition(props.position, 0)};
 `;
 
-const HorizontalSafeView = styled(SharedStyles)`
+const HorizontalContainer = styled(SharedStyles)`
     width: 100%;
 `;
 
-const VerticallSafeView = styled(SharedStyles)`
+const VerticalContainer = styled(SharedStyles)`
     height: 100%;
 `;
 
-const StyledContainerHorizontal = styled(View)`
+const ItemsContainerHorizontal = styled(View)`
     flex-direction: row;
     width: 100%;
 `;
 
-const StyledContainerVertical = styled(View)`
+const ItemsContainerVertical = styled(View)`
     flex-direction: column;
     height: 100%;
-`;
-
-function calculateWidthForMiddleAction(props: { position?: TabBarPosition }): string | undefined {
-    return getTabBarPosition('88px', '60px', props.position);
-}
-
-function calculateHeightForMiddleAction(props: { position?: TabBarPosition }): string {
-    return getTabBarPosition('60px', '88px', props.position);
-}
-
-const StyledMiddleAction = styled.Image`
-    z-index: 1000;
-    width: ${calculateWidthForMiddleAction};
-    height: ${calculateHeightForMiddleAction};
-`;
-
-const StyledHelperViews = styled.View`
-    box-shadow: 0px -6px 4px rgba(0, 0, 0, 0.04);
-    background-color: white;
-    flex-grow: 1;
 `;
 
 const MiddleContainer = styled.View`
     ${applyInsets};
     position: absolute;
     height: 100%;
-    flex-direction: ${(props: TabBarProps) => getTabBarPosition('column', 'row', props.position)};
+    flex-direction: ${(props: TabBarProps) => getValueBasedOnPosition('column', 'row', props.position)};
     width: 100%;
+`;
+
+const MiddleActionImage = styled.Image`
+    z-index: 1000;
+    width: ${(props: TabBarProps) => getValueBasedOnPosition('88px', '60px', props.position)};
+    height: ${(props: TabBarProps) => getValueBasedOnPosition('60px', '88px', props.position)};
+`;
+
+const SideView = styled.View`
+    box-shadow: 0px -6px 4px rgba(0, 0, 0, 0.04);
+    background-color: white;
+    flex-grow: 1;
 `;
 
 export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
     const { children, ...others } = props;
     const allChildren = React.Children.toArray(children);
-    const Container = getTabBarPosition(HorizontalSafeView, VerticallSafeView, props.position);
-    const ItemsContainer = getTabBarPosition(StyledContainerHorizontal, StyledContainerVertical, props.position);
+    const Container = getValueBasedOnPosition(HorizontalContainer, VerticalContainer, props.position);
+    const ItemsContainer = getValueBasedOnPosition(ItemsContainerHorizontal, ItemsContainerVertical, props.position);
     const insets = useSafeAreaInsets();
 
     const leftChildren = [];
@@ -89,9 +80,9 @@ export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
     return (
         <Container {...others}>
             <ItemsContainer>
-                <StyledHelperViews>{leftChildren}</StyledHelperViews>
-                <StyledMiddleAction position={props.position} source={require(`../assets/middle-${props.position}.png`)} />
-                <StyledHelperViews>{rightChildren}</StyledHelperViews>
+                <SideView>{leftChildren}</SideView>
+                <MiddleActionImage position={props.position} source={require(`../assets/middle-${props.position}.png`)} />
+                <SideView>{rightChildren}</SideView>
             </ItemsContainer>
             <MiddleContainer position={props.position} insets={insets}>
                 {middleChild}

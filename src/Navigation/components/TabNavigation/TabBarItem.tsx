@@ -25,7 +25,7 @@ export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps
     const history = useHistory();
     const [active] = useMatch(path);
     const color = getColorByActiveState(active, activeColor, inactiveColor, variant);
-    const Container = getTabBarItemComponent(variant);
+    const TabBarItemContainer = getTabBarItemComponent(variant);
     const iconSize = getTabIconSize(variant);
 
     const goToTab = useCallback(() => {
@@ -45,7 +45,7 @@ export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps
     }, [path, active, location]);
 
     return (
-        <Container {...others} onPress={goToTab} bg={activeColor} position={position}>
+        <TabBarItemContainer {...others} onPress={goToTab} bg={activeColor} position={position}>
             {children(color, iconSize)}
             {variant === 'circular' ? null : (
                 <Text
@@ -56,6 +56,6 @@ export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps
                     {title}
                 </Text>
             )}
-        </Container>
+        </TabBarItemContainer>
     );
 }

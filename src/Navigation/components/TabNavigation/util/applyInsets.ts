@@ -1,4 +1,4 @@
-import { TabBarProps } from '../TabBarVariants/TabBarProps';
+import { TabBarProps } from '../types/TabBarProps';
 
 export function applyInsets(props: TabBarProps): string {
     const insets = props.insets ?? {

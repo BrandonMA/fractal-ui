@@ -1,4 +1,3 @@
-import { TabBarProps } from '../TabBarVariants/TabBarProps';
 import { TabBarPosition } from '../types/TabBarPosition';
 
 export function getAbsolutePosition(position: TabBarPosition | undefined, value = 0): string {
