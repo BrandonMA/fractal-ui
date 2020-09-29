@@ -63,6 +63,5 @@
         "react-native-svg": "12.1.0",
         "react-native-web": "~0.13.7",
         "typescript": "~3.9.2"
-    },
-    "private": true
+    }
 }
