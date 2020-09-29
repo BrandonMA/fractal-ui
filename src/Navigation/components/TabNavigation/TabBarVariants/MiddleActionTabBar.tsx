@@ -52,6 +52,8 @@ const SideView = styled.View`
     box-shadow: 0px -6px 4px rgba(0, 0, 0, 0.04);
     background-color: white;
     flex-grow: 1;
+    flex-direction: row;
+    flex-basis: 0;
 `;
 
 function getImageBasedOnPosition(position?: TabBarPosition) {
