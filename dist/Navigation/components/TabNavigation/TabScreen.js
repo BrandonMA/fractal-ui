@@ -1,5 +1,5 @@
 import React from 'react';
 export function TabScreen(props) {
-    return <>{props.children}</>;
+    return React.createElement(React.Fragment, null, props.children);
 }
 //# sourceMappingURL=TabScreen.js.map

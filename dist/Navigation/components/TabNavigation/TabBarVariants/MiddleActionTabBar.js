@@ -2,6 +2,17 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
 };
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -72,14 +83,12 @@ export function MiddleActionTabBar(props) {
         }
         return [leftChildren, middleChild, rightChildren];
     }, [children]), leftChildren = _a[0], middleChild = _a[1], rightChildren = _a[2];
-    return (<Container {...others} insets={insets}>
-            <ItemsContainer>
-                <SideView>{leftChildren}</SideView>
-                <MiddleActionImage position={props.position} source={getImageBasedOnPosition(props.position)}/>
-                <SideView>{rightChildren}</SideView>
-            </ItemsContainer>
-            <MiddleContainer position={props.position}>{middleChild}</MiddleContainer>
-        </Container>);
+    return (React.createElement(Container, __assign({}, others, { insets: insets }),
+        React.createElement(ItemsContainer, null,
+            React.createElement(SideView, null, leftChildren),
+            React.createElement(MiddleActionImage, { position: props.position, source: getImageBasedOnPosition(props.position) }),
+            React.createElement(SideView, null, rightChildren)),
+        React.createElement(MiddleContainer, { position: props.position }, middleChild)));
 }
 var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8;
 //# sourceMappingURL=MiddleActionTabBar.js.map

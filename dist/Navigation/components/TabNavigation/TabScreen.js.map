@@ -1,1 +1,1 @@
-{"version":3,"file":"TabScreen.js","sourceRoot":"","sources":["../../../../src/Navigation/components/TabNavigation/TabScreen.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAuB,MAAM,OAAO,CAAC;AAS5C,MAAM,UAAU,SAAS,CAAC,KAAqB;IAC3C,OAAO,EAAE,CAAC,KAAK,CAAC,QAAQ,CAAC,GAAG,CAAC;AACjC,CAAC"}
+{"version":3,"file":"TabScreen.js","sourceRoot":"","sources":["../../../../src/Navigation/components/TabNavigation/TabScreen.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAuB,MAAM,OAAO,CAAC;AAS5C,MAAM,UAAU,SAAS,CAAC,KAAqB;IAC3C,OAAO,0CAAG,KAAK,CAAC,QAAQ,CAAI,CAAC;AACjC,CAAC"}

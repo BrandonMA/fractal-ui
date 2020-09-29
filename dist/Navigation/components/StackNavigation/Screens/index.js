@@ -13,6 +13,6 @@ export function ScreenStack(props) {
             return domNode;
         });
     }, [allChildren]);
-    return <View>{children}</View>;
+    return React.createElement(View, null, children);
 }
 //# sourceMappingURL=index.js.map
