@@ -32,7 +32,6 @@ import styled from 'styled-components/native';
 import { getTabBarComponent } from './util/getTabBarComponent';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Redirect, Route } from '../../../ReactRouter';
-import { StyleSheet } from 'react-native';
 var StyledScreenContainer = styled(ScreenContainer)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    flex: 1;\n"], ["\n    flex: 1;\n"])));
 export function TabNavigator(props) {
     var defaultRoute = props.defaultRoute, children = props.children, variant = props.variant, position = props.position, activeColor = props.activeColor, inactiveColor = props.inactiveColor, others = __rest(props, ["defaultRoute", "children", "variant", "position", "activeColor", "inactiveColor"]);
@@ -71,7 +70,7 @@ export function TabNavigator(props) {
         return [content, tabItems, firstChildPath];
     }, [children, activeColor, inactiveColor, position]), content = _a[0], tabItems = _a[1], firstChildPath = _a[2];
     return (React.createElement(SafeAreaProvider, null,
-        React.createElement(StyledScreenContainer, __assign({}, others, { style: StyleSheet.absoluteFill }), content),
+        React.createElement(StyledScreenContainer, __assign({}, others), content),
         React.createElement(TabBar, { position: position !== null && position !== void 0 ? position : 'bottom' }, tabItems),
         firstChildPath != '/' ? (React.createElement(Route, { path: '/' },
             React.createElement(Redirect, { to: defaultRoute !== null && defaultRoute !== void 0 ? defaultRoute : firstChildPath }))) : null));

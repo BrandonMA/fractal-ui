@@ -7,10 +7,21 @@ export function applyInsets(props) {
         left: 0
     };
     if (props.position === 'left' || props.position === 'right') {
-        return "margin: " + insets.top + "px " + insets.right + "px " + insets.bottom + "px " + insets.left + "px";
+        return "padding: 0px";
+    }
+    else if (props.position === 'bottom') {
+        return "padding-bottom: " + insets.bottom + "px";
     }
     else {
-        return "padding-bottom: " + insets.bottom + "px";
+        return "padding-top: " + insets.top + "px";
+    }
+}
+export function applyDimension(props) {
+    if (props.position === 'left' || props.position === 'right') {
+        return 'height: 100%';
+    }
+    else {
+        return 'width: 100%';
     }
 }
 //# sourceMappingURL=applyInsets.js.map
