@@ -5,25 +5,23 @@ import styled from 'styled-components/native';
 import { getAbsolutePosition } from '../util/getAbsolutePosition';
 import { getValueBasedOnPosition } from '../util/getValueBasedOnPosition';
 import { TabBarProps } from '../types/TabBarProps';
-import { applyInsets } from '../util/applyInsets';
+import { applyDimension, applyInsets } from '../util/applyInsets';
 
 const SharedStyles = styled(View)`
     justify-content: space-evenly;
     position: absolute;
     background-color: white;
+    flex-direction: ${(props: TabBarProps) => getValueBasedOnPosition('row', 'column', props.position)};
     ${(props: TabBarProps) => getAbsolutePosition(props.position, 0)};
     ${applyInsets}
+    ${(props: TabBarProps) => applyDimension(props)};
 `;
 
 const HorizontalContainer = styled(SharedStyles)`
-    flex-direction: row;
-    width: 100%;
     box-shadow: ${(props: TabBarProps) => (props.position === 'bottom' ? '0px -1px' : '0px 1px')} 4px rgba(0, 0, 0, 0.08);
 `;
 
 const VerticalContainer = styled(SharedStyles)`
-    flex-direction: column;
-    height: 100%;
     box-shadow: ${(props: TabBarProps) => (props.position === 'right' ? '-1px 0px' : '1px 0px')} 4px rgba(0, 0, 0, 0.08);
 `;
 

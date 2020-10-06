@@ -38,7 +38,13 @@ export function MiddleActionTabNavigatorExample(): JSX.Element {
                 <TabContent>
                     <StackNavigatorExample path='/home' />
                 </TabContent>
-                <TabBarItem title='Home'>{(color, size) => <Ionicons name='ios-book' size={size} color={color} />}</TabBarItem>
+                <TabBarItem title='One'>{(color, size) => <Ionicons name='ios-book' size={size} color={color} />}</TabBarItem>
+            </TabScreen>
+            <TabScreen path='/two'>
+                <TabContent>
+                    <StackNavigatorExample path='/two' />
+                </TabContent>
+                <TabBarItem title='Two'>{(color, size) => <Ionicons name='ios-book' size={size} color={color} />}</TabBarItem>
             </TabScreen>
             <TabScreen path='/secondary'>
                 <TabContent>
@@ -52,9 +58,13 @@ export function MiddleActionTabNavigatorExample(): JSX.Element {
                 <TabContent>
                     <List />
                 </TabContent>
-                <TabBarItem activeColor='#FF9900' title='Home'>
-                    {(color, size) => <Ionicons name='ios-albums' size={size} color={color} />}
-                </TabBarItem>
+                <TabBarItem title='Three'>{(color, size) => <Ionicons name='ios-book' size={size} color={color} />}</TabBarItem>
+            </TabScreen>
+            <TabScreen path='/four'>
+                <TabContent>
+                    <StackNavigatorExample path='/four' />
+                </TabContent>
+                <TabBarItem title='Four'>{(color, size) => <Ionicons name='ios-book' size={size} color={color} />}</TabBarItem>
             </TabScreen>
         </TabNavigator>
     );

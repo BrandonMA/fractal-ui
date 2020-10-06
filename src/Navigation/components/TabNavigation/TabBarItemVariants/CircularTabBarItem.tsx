@@ -12,7 +12,6 @@ export const CircularTabBarItem = styled(SharedTabBarItemStyles)`
     height: 52px;
     width: 52px;
     border-radius: 26px;
-    position: absolute;
     align-self: center;
     background-color: ${(props: CircularTabBarItemProps) => props.bg};
     ${(props: CircularTabBarItemProps) => getAbsolutePosition(props.position, 22)};

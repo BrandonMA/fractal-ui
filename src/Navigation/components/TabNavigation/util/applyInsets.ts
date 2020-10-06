@@ -8,8 +8,18 @@ export function applyInsets(props: TabBarProps): string {
         left: 0
     };
     if (props.position === 'left' || props.position === 'right') {
-        return `margin: ${insets.top}px ${insets.right}px ${insets.bottom}px ${insets.left}px`;
-    } else {
+        return `padding: 0px`;
+    } else if (props.position === 'bottom') {
         return `padding-bottom: ${insets.bottom}px`;
+    } else {
+        return `padding-top: ${insets.top}px`;
+    }
+}
+
+export function applyDimension(props: TabBarProps): string {
+    if (props.position === 'left' || props.position === 'right') {
+        return 'height: 100%';
+    } else {
+        return 'width: 100%';
     }
 }

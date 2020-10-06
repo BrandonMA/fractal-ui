@@ -4,56 +4,44 @@ import styled from 'styled-components/native';
 import { getAbsolutePosition } from '../util/getAbsolutePosition';
 import { getValueBasedOnPosition } from '../util/getValueBasedOnPosition';
 import { TabBarProps } from '../types/TabBarProps';
-import { applyInsets } from '../util/applyInsets';
+import { applyInsets, applyDimension } from '../util/applyInsets';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { TabBarPosition } from '../types/TabBarPosition';
 
-const SharedStyles = styled(View)`
+const Container = styled(View)`
     position: absolute;
     ${(props: TabBarProps) => getAbsolutePosition(props.position, 0)};
     ${applyInsets}
+    ${(props: TabBarProps) => applyDimension(props)};
 `;
 
-const HorizontalContainer = styled(SharedStyles)`
-    width: 100%;
-    height: 60px;
-`;
-
-const VerticalContainer = styled(SharedStyles)`
-    height: 100%;
-    width: 60px;
-`;
-
-const ItemsContainerHorizontal = styled(View)`
-    flex-direction: row;
-    width: 100%;
-`;
-
-const ItemsContainerVertical = styled(View)`
-    flex-direction: column;
-    height: 100%;
-`;
-
-const MiddleContainer = styled.View`
-    position: absolute;
-    height: 100%;
-    flex-direction: ${(props: TabBarProps) => getValueBasedOnPosition('column', 'row', props.position)};
-    width: 100%;
-    ${applyInsets};
-`;
-
-const MiddleActionImage = styled.Image`
-    z-index: 1000;
-    width: ${(props: TabBarProps) => getValueBasedOnPosition('88px', '60px', props.position)};
-    height: ${(props: TabBarProps) => getValueBasedOnPosition('60px', '88px', props.position)};
+const ItemsContainer = styled(View)`
+    flex-direction: ${(props: TabBarProps) => getValueBasedOnPosition('row', 'column', props.position)};
+    ${(props: TabBarProps) => applyDimension(props)};
 `;
 
 const SideView = styled.View`
     box-shadow: 0px -6px 4px rgba(0, 0, 0, 0.04);
     background-color: white;
     flex-grow: 1;
-    flex-direction: row;
+    flex-direction: ${(props: TabBarProps) => getValueBasedOnPosition('row', 'column', props.position)};
     flex-basis: 0;
+`;
+
+// Middle button styles
+
+const MiddleContainer = styled.View`
+    position: absolute;
+    ${(props: TabBarProps) => getAbsolutePosition(props.position, 0)};
+    ${(props: TabBarProps) => applyDimension(props)};
+    ${applyInsets};
+    flex-direction: ${(props: TabBarProps) => getValueBasedOnPosition('column', 'row', props.position)};
+`;
+
+const MiddleActionImage = styled.Image`
+    z-index: 1000;
+    width: ${(props: TabBarProps) => getValueBasedOnPosition('88px', '60px', props.position)};
+    height: ${(props: TabBarProps) => getValueBasedOnPosition('60px', '88px', props.position)};
 `;
 
 function getImageBasedOnPosition(position?: TabBarPosition) {
@@ -71,8 +59,6 @@ function getImageBasedOnPosition(position?: TabBarPosition) {
 export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
     const { children, ...others } = props;
     const insets = useSafeAreaInsets();
-    const Container = getValueBasedOnPosition(HorizontalContainer, VerticalContainer, props.position);
-    const ItemsContainer = getValueBasedOnPosition(ItemsContainerHorizontal, ItemsContainerVertical, props.position);
 
     const [leftChildren, middleChild, rightChildren] = useMemo(() => {
         const allChildren = React.Children.toArray(children);
@@ -99,15 +85,17 @@ export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
     }, [children]);
 
     return (
-        <Container {...others} insets={insets}>
-            <ItemsContainer>
-                <SideView>{leftChildren}</SideView>
-                <MiddleActionImage position={props.position} source={getImageBasedOnPosition(props.position)} />
-                <SideView>{rightChildren}</SideView>
-            </ItemsContainer>
+        <>
             <MiddleContainer position={props.position} insets={insets}>
                 {middleChild}
             </MiddleContainer>
-        </Container>
+            <Container {...others} insets={insets}>
+                <ItemsContainer position={props.position}>
+                    <SideView position={props.position}>{leftChildren}</SideView>
+                    <MiddleActionImage position={props.position} source={getImageBasedOnPosition(props.position)} />
+                    <SideView position={props.position}>{rightChildren}</SideView>
+                </ItemsContainer>
+            </Container>
+        </>
     );
 }

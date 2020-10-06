@@ -3,12 +3,12 @@ import { ScreenContainer, ScreenContainerProps } from 'react-native-screens';
 import { TabBarItem, TabBarItemProps } from './TabBarItem';
 import { TabContent } from './TabContent';
 import { TabScreenProps } from './TabScreen';
-import { Redirect, Route } from 'react-router-dom';
 import styled from 'styled-components/native';
 import { getTabBarComponent } from './util/getTabBarComponent';
 import { TabBarVariant } from './types/TabBarVariant';
 import { TabBarPosition } from './types/TabBarPosition';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Redirect, Route } from '../../../ReactRouter';
 
 const StyledScreenContainer = styled(ScreenContainer)`
     flex: 1;

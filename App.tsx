@@ -1,7 +1,8 @@
 import React from 'react';
 import { enableScreens } from 'react-native-screens';
-import { MiddleActionTabNavigatorExample } from './example';
+import { MiddleActionTabNavigatorExample, TabNavigatorExample } from './example';
 import { NavigationRouter } from './src/ReactRouter';
+import { registerRootComponent } from 'expo';
 
 enableScreens();
 
@@ -16,7 +17,7 @@ function LocationListener(props: Props): JSX.Element {
     return props.children;
 }
 
-export default function App(): React.ReactNode {
+function App(): JSX.Element {
     return (
         <NavigationRouter>
             <LocationListener>
@@ -25,3 +26,5 @@ export default function App(): React.ReactNode {
         </NavigationRouter>
     );
 }
+
+export default registerRootComponent(App);
