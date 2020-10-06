@@ -1,6 +1,6 @@
 import React from 'react';
 // import { ScreenStackHeaderConfig } from 'react-native-screens';
-import { SafeAreaView, Text } from 'react-native';
+import { Text } from 'react-native';
 import { NavigationRouteProps, StackScreen } from '../../src/Navigation';
 import { useParams } from '../../src/ReactRouter';
 import styled from 'styled-components/native';
@@ -20,14 +20,7 @@ interface Params {
 
 function Content(): JSX.Element {
     const params = useParams<Params>();
-    return (
-        <>
-            {/* <ScreenStackHeaderConfig title='Last' hidden={false} /> */}
-            <SafeAreaView>
-                <Text>{params.two}</Text>
-            </SafeAreaView>
-        </>
-    );
+    return <Text>{params.two}</Text>;
 }
 
 export function ThirdStack(props: NavigationRouteProps): JSX.Element {

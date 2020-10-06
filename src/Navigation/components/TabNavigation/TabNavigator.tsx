@@ -1,31 +1,30 @@
 import React, { ReactElement, useMemo } from 'react';
 import { ScreenContainer, ScreenContainerProps } from 'react-native-screens';
-import { TabBarItem, TabBarItemProps } from './TabBarItem';
+import { TabBarItem, TabBarItemProps } from './TabBarItem/TabBarItem';
 import { TabContent } from './TabContent';
 import { TabScreenProps } from './TabScreen';
 import styled from 'styled-components/native';
-import { getTabBarComponent } from './util/getTabBarComponent';
-import { TabBarVariant } from './types/TabBarVariant';
-import { TabBarPosition } from './types/TabBarPosition';
+import { TabBarVariant } from './TabBar/types/TabBarVariant';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Redirect, Route } from '../../../ReactRouter';
+import { TabBarInsetsProvider } from './TabBarInsetsProvider';
+import { TabBar } from './TabBar';
+import { LayoutProps } from '../../../Layout/types/LayoutProps';
 
 const StyledScreenContainer = styled(ScreenContainer)`
     flex: 1;
 `;
 
-export interface TabNavigatorProps extends ScreenContainerProps {
+export interface TabNavigatorProps extends ScreenContainerProps, LayoutProps {
     children: ReactElement<TabScreenProps> | Array<ReactElement<TabScreenProps>>;
     defaultRoute?: string;
     variant?: TabBarVariant;
     activeColor?: string;
     inactiveColor?: string;
-    position?: TabBarPosition;
 }
 
 export function TabNavigator(props: TabNavigatorProps): JSX.Element {
-    const { defaultRoute, children, variant, position, activeColor, inactiveColor, ...others } = props;
-    const TabBar = getTabBarComponent(variant);
+    const { defaultRoute, children, variant, tabBarPosition, activeColor, inactiveColor, ...others } = props;
 
     const [content, tabItems, firstChildPath] = useMemo(() => {
         const content: Array<JSX.Element> = [];
@@ -53,7 +52,7 @@ export function TabNavigator(props: TabNavigatorProps): JSX.Element {
                         key: path,
                         activeColor: props.activeColor ?? activeColor,
                         inactiveColor: props.inactiveColor ?? inactiveColor,
-                        position: props.position ?? position
+                        tabBarPosition: props.tabBarPosition ?? tabBarPosition
                     });
                     tabItems.push(newChild);
                 }
@@ -61,17 +60,21 @@ export function TabNavigator(props: TabNavigatorProps): JSX.Element {
         });
 
         return [content, tabItems, firstChildPath];
-    }, [children, activeColor, inactiveColor, position]);
+    }, [children, activeColor, inactiveColor, tabBarPosition]);
 
     return (
         <SafeAreaProvider>
-            <StyledScreenContainer {...others}>{content}</StyledScreenContainer>
-            <TabBar position={position ?? 'bottom'}>{tabItems}</TabBar>
-            {firstChildPath != '/' ? (
-                <Route path='/'>
-                    <Redirect to={defaultRoute ?? firstChildPath} />
-                </Route>
-            ) : null}
+            <TabBarInsetsProvider>
+                <StyledScreenContainer {...others}>{content}</StyledScreenContainer>
+                <TabBar variant={variant} tabBarPosition={tabBarPosition ?? 'bottom'}>
+                    {tabItems}
+                </TabBar>
+                {firstChildPath != '/' ? (
+                    <Route path='/'>
+                        <Redirect to={defaultRoute ?? firstChildPath} />
+                    </Route>
+                ) : null}
+            </TabBarInsetsProvider>
         </SafeAreaProvider>
     );
 }

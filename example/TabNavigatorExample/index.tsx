@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 export function TabNavigatorExample(): JSX.Element {
     return (
-        <TabNavigator position='bottom'>
+        <TabNavigator tabBarPosition='bottom'>
             <TabScreen path='/home'>
                 <TabContent>
                     <StackNavigatorExample path='/home' />
@@ -33,7 +33,7 @@ export function TabNavigatorExample(): JSX.Element {
 
 export function MiddleActionTabNavigatorExample(): JSX.Element {
     return (
-        <TabNavigator variant='middle-action' position='bottom'>
+        <TabNavigator variant='middle-action' tabBarPosition='bottom'>
             <TabScreen path='/home'>
                 <TabContent>
                     <StackNavigatorExample path='/home' />

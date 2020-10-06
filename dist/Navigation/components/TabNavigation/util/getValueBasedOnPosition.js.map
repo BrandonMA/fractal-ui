@@ -1,1 +1,0 @@
-{"version":3,"file":"getValueBasedOnPosition.js","sourceRoot":"","sources":["../../../../../src/Navigation/components/TabNavigation/util/getValueBasedOnPosition.ts"],"names":[],"mappings":"AAEA,MAAM,UAAU,uBAAuB,CAAO,UAAa,EAAE,QAAW,EAAE,QAAyB;IAC/F,IAAI,QAAQ,KAAK,OAAO,IAAI,QAAQ,KAAK,MAAM,EAAE;QAC7C,OAAO,QAAQ,CAAC;KACnB;SAAM;QACH,OAAO,UAAU,CAAC;KACrB;AACL,CAAC"}

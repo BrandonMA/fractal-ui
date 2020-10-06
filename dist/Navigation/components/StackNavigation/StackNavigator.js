@@ -29,6 +29,7 @@ import { matchPath, useLocation } from '../../../ReactRouter';
 import { useMatch } from '../../hooks/useMatch';
 import styled from 'styled-components/native';
 import { ScreenStack as Screen } from './Screens';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 export var ScreenStack = styled(Screen)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    flex: 1;\n"], ["\n    flex: 1;\n"])));
 export function StackNavigator(props) {
     var path = props.path, children = props.children, others = __rest(props, ["path", "children"]);
@@ -52,8 +53,9 @@ export function StackNavigator(props) {
             setPrevChildren(childrenToRender);
         }
     }, [childrenToRender, active]);
-    return (React.createElement(ScreenStack, __assign({}, others),
-        React.createElement(React.Fragment, null, active ? childrenToRender : prevChildren)));
+    return (React.createElement(SafeAreaProvider, null,
+        React.createElement(ScreenStack, __assign({}, others),
+            React.createElement(React.Fragment, null, active ? childrenToRender : prevChildren))));
 }
 var templateObject_1;
 //# sourceMappingURL=StackNavigator.js.map

@@ -1,15 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Text, View, Image, Button } from 'react-native';
-import styled from 'styled-components/native';
 import { useHistory, useLocation } from '../../src/ReactRouter';
-
-const StyledAreaView = styled.SafeAreaView`
-    height: 100vh;
-`;
-
-const StyledScrollView = styled.ScrollView`
-    margin: 0px 0px 60px 0px;
-`;
+import { Fullscreen } from '../../src/Layout/components/Fullscreen';
+import { FullscreenScrollView } from '../../src/Layout/components/FullscreenScrollView';
 
 export default function List(): JSX.Element {
     const [images, setImages] = useState<Array<string>>([]);
@@ -21,15 +14,15 @@ export default function List(): JSX.Element {
 
     useEffect(() => {
         const images = [];
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 10; i++) {
             images.push(`https://picsum.photos/${i}00/${i}00`);
         }
         setImages(images);
     }, []);
 
     return (
-        <StyledAreaView>
-            <StyledScrollView contentInset={{ top: 0, left: 0, bottom: 60, right: 0 }} contentInsetAdjustmentBehavior='always'>
+        <Fullscreen>
+            <FullscreenScrollView>
                 <Button title='Count' onPress={onPress} />
                 <Text>{count}</Text>
                 {images.map((image, index) => {
@@ -45,7 +38,7 @@ export default function List(): JSX.Element {
                         </View>
                     );
                 })}
-            </StyledScrollView>
-        </StyledAreaView>
+            </FullscreenScrollView>
+        </Fullscreen>
     );
 }

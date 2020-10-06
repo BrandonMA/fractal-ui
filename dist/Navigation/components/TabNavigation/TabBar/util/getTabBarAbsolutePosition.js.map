@@ -1,0 +1,1 @@
+{"version":3,"file":"getTabBarAbsolutePosition.js","sourceRoot":"","sources":["../../../../../../src/Navigation/components/TabNavigation/TabBar/util/getTabBarAbsolutePosition.ts"],"names":[],"mappings":"AAEA,MAAM,UAAU,yBAAyB,CAAC,QAAoC,EAAE,KAAS;IAAT,sBAAA,EAAA,SAAS;IACrF,IAAM,aAAa,GAAG,QAAQ,aAAR,QAAQ,cAAR,QAAQ,GAAI,QAAQ,CAAC;IAC3C,OAAU,aAAa,UAAK,KAAK,OAAI,CAAC;AAC1C,CAAC"}
