@@ -11,6 +11,11 @@ import { TabBarInsetsProvider } from './TabBarInsetsProvider';
 import { TabBar } from './TabBar';
 import { LayoutProps } from '../../../Layout/types/LayoutProps';
 
+const Container = styled.View`
+    flex: 1;
+    overflow: hidden;
+`;
+
 const StyledScreenContainer = styled(ScreenContainer)`
     flex: 1;
 `;
@@ -65,15 +70,17 @@ export function TabNavigator(props: TabNavigatorProps): JSX.Element {
     return (
         <SafeAreaProvider>
             <TabBarInsetsProvider>
-                <StyledScreenContainer {...others}>{content}</StyledScreenContainer>
-                <TabBar variant={variant} tabBarPosition={tabBarPosition ?? 'bottom'}>
-                    {tabItems}
-                </TabBar>
-                {firstChildPath != '/' ? (
-                    <Route path='/'>
-                        <Redirect to={defaultRoute ?? firstChildPath} />
-                    </Route>
-                ) : null}
+                <Container>
+                    <StyledScreenContainer {...others}>{content}</StyledScreenContainer>
+                    <TabBar variant={variant} tabBarPosition={tabBarPosition ?? 'bottom'}>
+                        {tabItems}
+                    </TabBar>
+                    {firstChildPath != '/' ? (
+                        <Route path='/'>
+                            <Redirect to={defaultRoute ?? firstChildPath} />
+                        </Route>
+                    ) : null}
+                </Container>
             </TabBarInsetsProvider>
         </SafeAreaProvider>
     );

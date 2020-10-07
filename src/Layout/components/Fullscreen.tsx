@@ -1,9 +1,10 @@
 import React from 'react';
-import { Platform, View, ViewProps } from 'react-native';
+import { View, ViewProps } from 'react-native';
 import styled from 'styled-components/native';
+import { applyFullScreenStyles } from '../util/applyFullScreenStyles';
 
 const Container = styled(View)`
-    height: ${Platform.OS === 'web' ? '100vh' : '100%'};
+    ${applyFullScreenStyles};
 `;
 
 export interface FullscreenProps extends Omit<ViewProps, 'children'> {

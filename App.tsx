@@ -1,6 +1,6 @@
 import React from 'react';
 import { enableScreens } from 'react-native-screens';
-import { MiddleActionTabNavigatorExample, TabNavigatorExample } from './example';
+import { MiddleActionTabNavigatorExample, TabNavigatorExample, StackNavigatorExample } from './example';
 import { NavigationRouter } from './src/ReactRouter';
 import { registerRootComponent } from 'expo';
 

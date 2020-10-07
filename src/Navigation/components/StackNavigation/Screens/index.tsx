@@ -7,19 +7,19 @@ export interface ScreenStackProps extends Props {
 }
 
 export function ScreenStack(props: ScreenStackProps): JSX.Element {
-    const allChildren = props.children;
-    const childrenSize = React.Children.count(allChildren);
+    const { children, ...others } = props;
+    const childrenSize = React.Children.count(children);
 
-    const children = useMemo(() => {
+    const finalChildren = useMemo(() => {
         const lastIndex = childrenSize - 1;
-        return React.Children.map(allChildren, (child, index) => {
+        return React.Children.map(children, (child, index) => {
             const domNode = React.cloneElement(child, {
                 visibleOnStack: index === lastIndex,
                 initialScreen: index === 0
             });
             return domNode;
         });
-    }, [allChildren, childrenSize]);
+    }, [children, childrenSize]);
 
-    return <View>{children}</View>;
+    return <View {...others}>{finalChildren}</View>;
 }

@@ -4,9 +4,16 @@ import { Text } from 'react-native';
 import { NavigationRouteProps, StackScreen } from '../../src/Navigation';
 import { useParams } from '../../src/ReactRouter';
 import styled from 'styled-components/native';
+import { Fullscreen } from '../../src';
 
 const StyledStack = styled(StackScreen)`
     background-color: white;
+`;
+
+const StyledFullScreen = styled(Fullscreen)`
+    background-color: gray;
+    justify-content: center;
+    align-items: center;
 `;
 
 // Because of the way React is going to render everything
@@ -26,7 +33,9 @@ function Content(): JSX.Element {
 export function ThirdStack(props: NavigationRouteProps): JSX.Element {
     return (
         <StyledStack {...props}>
-            <Content />
+            <StyledFullScreen>
+                <Content />
+            </StyledFullScreen>
         </StyledStack>
     );
 }

@@ -5,7 +5,7 @@ import { NavigationRouteProps, StackScreen } from '../../src/Navigation';
 import styled from 'styled-components/native';
 
 const StyledStack = styled(StackScreen)`
-    background-color: white;
+    background-color: transparent;
 `;
 
 export function FirstStack(props: NavigationRouteProps): JSX.Element {

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Text, View, Image, Button } from 'react-native';
 import { useHistory, useLocation } from '../../src/ReactRouter';
-import { Fullscreen } from '../../src/Layout/components/Fullscreen';
 import { FullscreenScrollView } from '../../src/Layout/components/FullscreenScrollView';
 
 export default function List(): JSX.Element {
@@ -21,24 +20,22 @@ export default function List(): JSX.Element {
     }, []);
 
     return (
-        <Fullscreen>
-            <FullscreenScrollView>
-                <Button title='Count' onPress={onPress} />
-                <Text>{count}</Text>
-                {images.map((image, index) => {
-                    return (
-                        <View key={index}>
-                            <Image style={{ width: '100%', height: 200 }} source={{ uri: image }} />
-                            <Button
-                                onPress={() => {
-                                    history.push(index % 2 === 0 ? `${finalPath}one` : `${finalPath}settings`);
-                                }}
-                                title={image}
-                            />
-                        </View>
-                    );
-                })}
-            </FullscreenScrollView>
-        </Fullscreen>
+        <FullscreenScrollView>
+            <Button title='Count' onPress={onPress} />
+            <Text>{count}</Text>
+            {images.map((image, index) => {
+                return (
+                    <View key={index}>
+                        <Image style={{ width: '100%', height: 200 }} source={{ uri: image }} />
+                        <Button
+                            onPress={() => {
+                                history.push(index % 2 === 0 ? `${finalPath}one` : `${finalPath}settings`);
+                            }}
+                            title={image}
+                        />
+                    </View>
+                );
+            })}
+        </FullscreenScrollView>
     );
 }

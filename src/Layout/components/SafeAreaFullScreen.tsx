@@ -5,7 +5,7 @@ import { applyFullscreenInsets } from '../util/applyFullscreenInsets';
 import { Fullscreen, FullscreenProps } from './Fullscreen';
 
 const Container = styled(Fullscreen)`
-    ${applyFullscreenInsets}
+    ${applyFullscreenInsets};
 `;
 
 export function SafeAreaFullScreen(props: FullscreenProps): JSX.Element {
