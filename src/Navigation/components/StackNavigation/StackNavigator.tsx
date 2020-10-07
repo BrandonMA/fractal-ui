@@ -11,7 +11,7 @@ export const ScreenStack = styled(Screen)`
 `;
 
 export interface StackNavigatorProps extends Omit<ScreenStackProps, 'children'> {
-    children: React.ReactNode;
+    children: Array<JSX.Element> | JSX.Element;
     path?: string;
 }
 
@@ -19,19 +19,18 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
     const { path, children, ...others } = props;
     const location = useLocation();
     const [active] = useMatch(path);
-    const [prevChildren, setPrevChildren] = useState<Array<React.ReactNode>>([]);
+    const [prevChildren, setPrevChildren] = useState<Array<JSX.Element>>([]);
 
     const childrenToRender = useMemo(() => {
-        const childrenToRender = React.Children.toArray(children).filter((child) => {
-            const childToRender = child as JSX.Element;
-            const path = (childToRender.props as NavigationRouteProps).path ?? '/';
+        const childrenToRender = React.Children.toArray(children).filter((child: JSX.Element) => {
+            const path = (child.props as NavigationRouteProps).path ?? '/';
 
             const match = matchPath(location.pathname, {
                 path
             });
 
             return match != null;
-        });
+        }) as Array<JSX.Element>;
 
         return childrenToRender;
     }, [children, location]);
@@ -44,9 +43,7 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
 
     return (
         <SafeAreaProvider>
-            <ScreenStack {...others}>
-                <>{active ? childrenToRender : prevChildren}</>
-            </ScreenStack>
+            <ScreenStack {...others}>{active ? childrenToRender : prevChildren}</ScreenStack>
         </SafeAreaProvider>
     );
 }

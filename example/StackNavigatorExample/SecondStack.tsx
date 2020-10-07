@@ -4,6 +4,7 @@ import { Button } from 'react-native';
 import { useHistory } from '../../src/ReactRouter';
 import { NavigationRouteProps, StackScreen } from '../../src/Navigation';
 import styled from 'styled-components/native';
+import { SafeAreaFullScreen } from '../../src';
 
 const StyledStack = styled(StackScreen)`
     background-color: white;
@@ -20,7 +21,9 @@ export function SecondStack(props: NavigationRouteProps): JSX.Element {
     return (
         <StyledStack {...props}>
             {/* <ScreenStackHeaderConfig title='Detail' hidden={false} /> */}
-            <Button onPress={handleGoToNextScreen} title='Go to next screen' />
+            <SafeAreaFullScreen>
+                <Button onPress={handleGoToNextScreen} title='Go to next screen' />
+            </SafeAreaFullScreen>
         </StyledStack>
     );
 }
