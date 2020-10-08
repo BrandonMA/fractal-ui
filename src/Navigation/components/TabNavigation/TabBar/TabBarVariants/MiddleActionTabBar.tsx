@@ -37,6 +37,7 @@ const MiddleContainer = styled.View`
     ${(props: LayoutProps) => getTabBarAbsolutePosition(props.tabBarPosition, 0)};
     ${applyTabBarInsets};
     ${applyDimensionBasedOnTabBarPosition};
+    z-index: 1000;
     flex-direction: ${(props: LayoutProps) => getValueBasedOnTabBarPosition('column', 'row', props.tabBarPosition)};
 `;
 
@@ -84,7 +85,7 @@ export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
 
     return (
         <>
-            <MiddleContainer tabBarPosition={props.tabBarPosition} insets={insets}>
+            <MiddleContainer tabBarPosition={props.tabBarPosition} insets={insets} pointerEvents='box-none'>
                 {middleChild}
             </MiddleContainer>
             <Container {...others}>
