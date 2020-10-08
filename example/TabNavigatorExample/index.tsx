@@ -11,19 +11,19 @@ export function TabNavigatorExample(): JSX.Element {
                 <TabContent>
                     <StackNavigatorExample path='/home' />
                 </TabContent>
-                <TabBarItem title='Home'>{(color, size) => <Ionicons name='ios-book' size={size} color={color} />}</TabBarItem>
+                <TabBarItem title='One'>{(color, size) => <Ionicons name='ios-book' size={size} color={color} />}</TabBarItem>
             </TabScreen>
             <TabScreen path='/secondary'>
                 <TabContent>
                     <List />
                 </TabContent>
-                <TabBarItem title='Home'>{(color, size) => <Ionicons name='ios-home' size={size} color={color} />}</TabBarItem>
+                <TabBarItem title='Two'>{(color, size) => <Ionicons name='ios-home' size={size} color={color} />}</TabBarItem>
             </TabScreen>
             <TabScreen path='/extra'>
                 <TabContent>
                     <List />
                 </TabContent>
-                <TabBarItem activeColor='#FF9900' title='Home'>
+                <TabBarItem activeColor='#FF9900' title='Three'>
                     {(color, size) => <Ionicons name='ios-albums' size={size} color={color} />}
                 </TabBarItem>
             </TabScreen>

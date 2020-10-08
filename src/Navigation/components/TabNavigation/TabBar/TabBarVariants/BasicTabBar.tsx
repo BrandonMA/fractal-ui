@@ -26,7 +26,7 @@ const VerticalContainer = styled(SharedStyles)`
     box-shadow: ${(props: TabBarProps) => (props.tabBarPosition === 'right' ? '-1px 0px' : '1px 0px')} 4px rgba(0, 0, 0, 0.08);
 `;
 
-export function BasicTabBar(props: TabBarProps): JSX.Element {
+function BaseBasicTabBar(props: TabBarProps): JSX.Element {
     const { children, ...others } = props;
     const insets = useSafeAreaInsets();
     const Container = getValueBasedOnTabBarPosition(HorizontalContainer, VerticalContainer, props.tabBarPosition);
@@ -36,3 +36,5 @@ export function BasicTabBar(props: TabBarProps): JSX.Element {
         </Container>
     );
 }
+
+export const BasicTabBar = React.memo(BaseBasicTabBar);

@@ -4,13 +4,13 @@ import { Text } from 'react-native';
 import { NavigationRouteProps, StackScreen } from '../../src/Navigation';
 import { useParams } from '../../src/ReactRouter';
 import styled from 'styled-components/native';
-import { Fullscreen } from '../../src';
+import { FullScreen } from '../../src';
 
 const StyledStack = styled(StackScreen)`
     background-color: white;
 `;
 
-const StyledFullScreen = styled(Fullscreen)`
+const StyledFullScreen = styled(FullScreen)`
     background-color: gray;
     justify-content: center;
     align-items: center;

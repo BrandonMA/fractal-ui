@@ -7,10 +7,10 @@ const Container = styled(View)`
     ${applyFullScreenStyles};
 `;
 
-export interface FullscreenProps extends Omit<ViewProps, 'children'> {
+export interface FullScreenProps extends Omit<ViewProps, 'children'> {
     children: JSX.Element | Array<JSX.Element> | React.ReactNode;
 }
 
-export function Fullscreen(props: FullscreenProps): JSX.Element {
+export function FullScreen(props: FullScreenProps): JSX.Element {
     return <Container {...props} />;
 }

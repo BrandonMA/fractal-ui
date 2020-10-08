@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Text, View, Image, Button } from 'react-native';
 import { useHistory, useLocation } from '../../src/ReactRouter';
-import { FullscreenScrollView } from '../../src/Layout/components/FullscreenScrollView';
+import { FullScreenScrollView } from '../../src/Layout/components/FullScreenScrollView';
 
 export default function List(): JSX.Element {
     const [images, setImages] = useState<Array<string>>([]);
@@ -20,13 +20,13 @@ export default function List(): JSX.Element {
     }, []);
 
     return (
-        <FullscreenScrollView>
+        <FullScreenScrollView>
             <Button title='Count' onPress={onPress} />
             <Text>{count}</Text>
             {images.map((image, index) => {
                 return (
                     <View key={index}>
-                        <Image style={{ width: '100%', height: 200 }} source={{ uri: image }} />
+                        {/* <Image style={{ width: '100%', height: 200 }} source={{ uri: image }} /> */}
                         <Button
                             onPress={() => {
                                 history.push(index % 2 === 0 ? `${finalPath}one` : `${finalPath}settings`);
@@ -36,6 +36,6 @@ export default function List(): JSX.Element {
                     </View>
                 );
             })}
-        </FullscreenScrollView>
+        </FullScreenScrollView>
     );
 }

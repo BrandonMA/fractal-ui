@@ -41,7 +41,7 @@ export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps
         if (path != null && location.pathname.includes(path) && active) {
             setTabPathname(location.pathname);
         }
-    }, [path, active, location]);
+    }, [path, active, location.pathname]);
 
     return (
         <TabBarItemContainer {...others} onPress={goToTab} bg={activeColor} tabBarPosition={tabBarPosition}>

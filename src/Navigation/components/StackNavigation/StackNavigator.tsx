@@ -3,10 +3,10 @@ import { matchPath, useLocation } from '../../../ReactRouter';
 import { useMatch } from '../../hooks/useMatch';
 import { NavigationRouteProps } from '../NavigationRoute';
 import styled from 'styled-components/native';
-import { ScreenStack as Screen, ScreenStackProps } from './Screens';
+import { ScreenStack, ScreenStackProps } from './Screens';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-export const ScreenStack = styled(Screen)`
+const StyledScreenStack = styled(ScreenStack)`
     flex: 1;
 `;
 
@@ -31,7 +31,6 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
 
             return match != null;
         }) as Array<JSX.Element>;
-
         return childrenToRender;
     }, [children, location]);
 
@@ -43,7 +42,7 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
 
     return (
         <SafeAreaProvider>
-            <ScreenStack {...others}>{active ? childrenToRender : prevChildren}</ScreenStack>
+            <StyledScreenStack {...others}>{active ? childrenToRender : prevChildren}</StyledScreenStack>
         </SafeAreaProvider>
     );
 }
