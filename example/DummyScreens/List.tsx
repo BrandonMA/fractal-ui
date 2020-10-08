@@ -26,7 +26,7 @@ export default function List(): JSX.Element {
             {images.map((image, index) => {
                 return (
                     <View key={index}>
-                        {/* <Image style={{ width: '100%', height: 200 }} source={{ uri: image }} /> */}
+                        <Image style={{ width: '100%', height: 200 }} source={{ uri: image }} />
                         <Button
                             onPress={() => {
                                 history.push(index % 2 === 0 ? `${finalPath}one` : `${finalPath}settings`);
