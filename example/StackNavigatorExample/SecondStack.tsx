@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { ScreenStackHeaderConfig } from 'react-native-screens';
+// import { ScreenStackHeaderConfig } from 'react-native-screens';
 import { Button } from 'react-native';
 import { useHistory } from '../../src/ReactRouter';
 import { NavigationRouteProps, StackScreen } from '../../src/Navigation';
@@ -20,9 +20,9 @@ export function SecondStack(props: NavigationRouteProps): JSX.Element {
 
     return (
         <StyledStack {...props}>
-            <ScreenStackHeaderConfig title='Detail' hidden={false} />
+            {/* <ScreenStackHeaderConfig title='Detail' hidden={false} /> */}
             <StackScreenContent>
-                <SafeAreaFullScreen>
+                <SafeAreaFullScreen style={{ justifyContent: 'flex-end', flex: 1 }}>
                     <Button onPress={handleGoToNextScreen} title='Go to next screen' />
                 </SafeAreaFullScreen>
             </StackScreenContent>
