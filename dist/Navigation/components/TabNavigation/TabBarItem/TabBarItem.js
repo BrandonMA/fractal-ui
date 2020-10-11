@@ -50,7 +50,7 @@ export function TabBarItem(props) {
         if (path != null && location.pathname.includes(path) && active) {
             setTabPathname(location.pathname);
         }
-    }, [path, active, location]);
+    }, [path, active, location.pathname]);
     return (React.createElement(TabBarItemContainer, __assign({}, others, { onPress: goToTab, bg: activeColor, tabBarPosition: tabBarPosition }),
         children(color, iconSize),
         variant === 'circular' ? null : (React.createElement(Text, { style: {

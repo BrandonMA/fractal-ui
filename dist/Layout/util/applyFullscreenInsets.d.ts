@@ -1,2 +1,2 @@
-import { EdgeInsets } from 'react-native-safe-area-context';
-export declare function applyFullscreenInsets(insets: EdgeInsets): string;
+import { LayoutProps } from '../types';
+export declare function applyFullscreenInsets(props: LayoutProps): string;

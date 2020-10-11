@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Text, View, Image, Button } from 'react-native';
 import { useHistory, useLocation } from '../../src/ReactRouter';
-import { FullScreenScrollView } from '../../src/Layout/components/FullScreenScrollView';
+import { FullScreenScrollView } from '../../src';
 
 export default function List(): JSX.Element {
     const [images, setImages] = useState<Array<string>>([]);

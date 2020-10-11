@@ -1,3 +1,3 @@
 /// <reference types="react" />
-import { FullscreenProps } from './Fullscreen';
-export declare function SafeAreaFullScreen(props: FullscreenProps): JSX.Element;
+import { FullScreenProps } from './FullScreen';
+export declare function SafeAreaFullScreen(props: FullScreenProps): JSX.Element;

@@ -1,10 +1,9 @@
-import { ReactElement } from 'react';
+/// <reference types="react" />
 import { ScreenContainerProps } from 'react-native-screens';
-import { TabScreenProps } from './TabScreen';
 import { TabBarVariant } from './TabBar/types/TabBarVariant';
 import { LayoutProps } from '../../../Layout/types/LayoutProps';
 export interface TabNavigatorProps extends ScreenContainerProps, LayoutProps {
-    children: ReactElement<TabScreenProps> | Array<ReactElement<TabScreenProps>>;
+    children: Array<JSX.Element> | JSX.Element;
     defaultRoute?: string;
     variant?: TabBarVariant;
     activeColor?: string;

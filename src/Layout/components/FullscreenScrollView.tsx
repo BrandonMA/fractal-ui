@@ -3,16 +3,16 @@ import { ScrollView, ScrollViewProps, View } from 'react-native';
 import { useNavigationInsets } from '../../Navigation/hooks/useNavigationInsets';
 
 export interface FullScreenScrollViewProps extends Omit<ScrollViewProps, 'children'> {
-    children: JSX.Element | Array<JSX.Element> | React.ReactNode;
+    children: React.ReactNode;
 }
 
 export function FullScreenScrollView(props: FullScreenScrollViewProps): JSX.Element {
-    const { noSafeAreaInsets, totalInsets } = useNavigationInsets();
+    const { totalInsets, tabBarInsets } = useNavigationInsets();
     return (
         <View style={{ flex: 1 }}>
             <ScrollView
                 {...props}
-                scrollIndicatorInsets={noSafeAreaInsets}
+                scrollIndicatorInsets={tabBarInsets}
                 contentContainerStyle={{
                     paddingTop: totalInsets.top,
                     paddingBottom: totalInsets.bottom,

@@ -1,5 +1,9 @@
-import { EdgeInsets } from 'react-native-safe-area-context';
+import { LayoutProps } from '../types';
 
-export function applyFullscreenInsets(insets: EdgeInsets): string {
-    return `margin: 0px ${insets.right}px ${insets.top + insets.bottom}px ${insets.left}px`;
+export function applyFullscreenInsets(props: LayoutProps): string {
+    const { insets } = props;
+    if (insets != null) {
+        return `padding: ${insets.top}px ${insets.right}px ${insets.bottom}px ${insets.left}px`;
+    }
+    return '';
 }

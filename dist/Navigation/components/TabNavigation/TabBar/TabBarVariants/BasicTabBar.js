@@ -35,11 +35,12 @@ import { getValueBasedOnTabBarPosition } from '../util/getValueBasedOnTabBarPosi
 var SharedStyles = styled(View)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    justify-content: space-evenly;\n    position: absolute;\n    background-color: white;\n    flex-direction: ", ";\n    ", ";\n    ", ";\n    ", ";\n"], ["\n    justify-content: space-evenly;\n    position: absolute;\n    background-color: white;\n    flex-direction: ", ";\n    ", ";\n    ", ";\n    ", ";\n"])), function (props) { return getValueBasedOnTabBarPosition('row', 'column', props.tabBarPosition); }, function (props) { return getTabBarAbsolutePosition(props.tabBarPosition, 0); }, applyTabBarInsets, applyDimensionBasedOnTabBarPosition);
 var HorizontalContainer = styled(SharedStyles)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    box-shadow: ", " 4px rgba(0, 0, 0, 0.08);\n"], ["\n    box-shadow: ", " 4px rgba(0, 0, 0, 0.08);\n"])), function (props) { return (props.tabBarPosition === 'bottom' ? '0px -1px' : '0px 1px'); });
 var VerticalContainer = styled(SharedStyles)(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n    box-shadow: ", " 4px rgba(0, 0, 0, 0.08);\n"], ["\n    box-shadow: ", " 4px rgba(0, 0, 0, 0.08);\n"])), function (props) { return (props.tabBarPosition === 'right' ? '-1px 0px' : '1px 0px'); });
-export function BasicTabBar(props) {
+function BaseBasicTabBar(props) {
     var children = props.children, others = __rest(props, ["children"]);
     var insets = useSafeAreaInsets();
     var Container = getValueBasedOnTabBarPosition(HorizontalContainer, VerticalContainer, props.tabBarPosition);
     return (React.createElement(Container, __assign({}, others, { insets: insets }), children));
 }
+export var BasicTabBar = React.memo(BaseBasicTabBar);
 var templateObject_1, templateObject_2, templateObject_3;
 //# sourceMappingURL=BasicTabBar.js.map

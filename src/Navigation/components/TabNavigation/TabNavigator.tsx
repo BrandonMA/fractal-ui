@@ -1,8 +1,7 @@
-import React, { ReactElement, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { ScreenContainer, ScreenContainerProps } from 'react-native-screens';
 import { TabBarItem, TabBarItemProps } from './TabBarItem/TabBarItem';
-import { TabContent } from './TabContent';
-import { TabScreenProps } from './TabScreen';
+import { TabScreenContent } from './TabScreenContent';
 import styled from 'styled-components/native';
 import { TabBarVariant } from './TabBar/types/TabBarVariant';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -21,7 +20,7 @@ const StyledScreenContainer = styled(ScreenContainer)`
 `;
 
 export interface TabNavigatorProps extends ScreenContainerProps, LayoutProps {
-    children: ReactElement<TabScreenProps> | Array<ReactElement<TabScreenProps>>;
+    children: Array<JSX.Element> | JSX.Element;
     defaultRoute?: string;
     variant?: TabBarVariant;
     activeColor?: string;
@@ -44,7 +43,7 @@ export function TabNavigator(props: TabNavigatorProps): JSX.Element {
             }
 
             React.Children.forEach(child.props.children, (subChild: JSX.Element) => {
-                if (subChild.type.name === TabContent.name) {
+                if (subChild.type.name === TabScreenContent.name) {
                     const newChild = React.cloneElement(subChild, {
                         path,
                         key: path

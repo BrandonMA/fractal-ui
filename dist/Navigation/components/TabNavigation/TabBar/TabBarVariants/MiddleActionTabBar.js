@@ -37,11 +37,11 @@ var Container = styled(View)(templateObject_1 || (templateObject_1 = __makeTempl
 var ItemsContainer = styled(View)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    flex-direction: ", ";\n    ", ";\n"], ["\n    flex-direction: ", ";\n    ", ";\n"])), function (props) { return getValueBasedOnTabBarPosition('row', 'column', props.tabBarPosition); }, applyDimensionBasedOnTabBarPosition);
 var SideView = styled.View(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n    box-shadow: 0px -6px 4px rgba(0, 0, 0, 0.04);\n    background-color: white;\n    flex-grow: 1;\n    flex-direction: ", ";\n    flex-basis: 0;\n    ", ";\n"], ["\n    box-shadow: 0px -6px 4px rgba(0, 0, 0, 0.04);\n    background-color: white;\n    flex-grow: 1;\n    flex-direction: ", ";\n    flex-basis: 0;\n    ", ";\n"])), function (props) { return getValueBasedOnTabBarPosition('row', 'column', props.tabBarPosition); }, applyTabBarInsets);
 // Middle button styles
-var MiddleContainer = styled.View(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n    position: absolute;\n    ", ";\n    ", ";\n    ", ";\n    flex-direction: ", ";\n"], ["\n    position: absolute;\n    ", ";\n    ", ";\n    ", ";\n    flex-direction: ", ";\n"])), function (props) { return getTabBarAbsolutePosition(props.tabBarPosition, 0); }, applyTabBarInsets, applyDimensionBasedOnTabBarPosition, function (props) { return getValueBasedOnTabBarPosition('column', 'row', props.tabBarPosition); });
+var MiddleContainer = styled.View(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n    position: absolute;\n    ", ";\n    ", ";\n    ", ";\n    z-index: 1000;\n    flex-direction: ", ";\n"], ["\n    position: absolute;\n    ", ";\n    ", ";\n    ", ";\n    z-index: 1000;\n    flex-direction: ", ";\n"])), function (props) { return getTabBarAbsolutePosition(props.tabBarPosition, 0); }, applyTabBarInsets, applyDimensionBasedOnTabBarPosition, function (props) { return getValueBasedOnTabBarPosition('column', 'row', props.tabBarPosition); });
 var MiddleActionImageContainer = styled.View(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n    z-index: 1000;\n"], ["\n    z-index: 1000;\n"])));
 var MiddleActionImageContainerFiller = styled.View(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n    flex-grow: 1;\n    background-color: white;\n"], ["\n    flex-grow: 1;\n    background-color: white;\n"])));
 var MiddleActionImage = styled.Image(templateObject_7 || (templateObject_7 = __makeTemplateObject(["\n    width: ", ";\n    height: ", ";\n"], ["\n    width: ", ";\n    height: ", ";\n"])), function (props) { return getValueBasedOnTabBarPosition('88px', '60px', props.tabBarPosition); }, function (props) { return getValueBasedOnTabBarPosition('60px', '88px', props.tabBarPosition); });
-export function MiddleActionTabBar(props) {
+function BaseMiddleActionTabBar(props) {
     var children = props.children, others = __rest(props, ["children"]);
     var insets = useSafeAreaInsets();
     var _a = useMemo(function () {
@@ -70,7 +70,7 @@ export function MiddleActionTabBar(props) {
         return [leftChildren, middleChild, rightChildren];
     }, [children]), leftChildren = _a[0], middleChild = _a[1], rightChildren = _a[2];
     return (React.createElement(React.Fragment, null,
-        React.createElement(MiddleContainer, { tabBarPosition: props.tabBarPosition, insets: insets }, middleChild),
+        React.createElement(MiddleContainer, { tabBarPosition: props.tabBarPosition, insets: insets, pointerEvents: 'box-none' }, middleChild),
         React.createElement(Container, __assign({}, others),
             React.createElement(ItemsContainer, { tabBarPosition: props.tabBarPosition },
                 React.createElement(SideView, { insets: insets, tabBarPosition: props.tabBarPosition }, leftChildren),
@@ -79,5 +79,6 @@ export function MiddleActionTabBar(props) {
                     React.createElement(MiddleActionImageContainerFiller, null)),
                 React.createElement(SideView, { insets: insets, tabBarPosition: props.tabBarPosition }, rightChildren)))));
 }
+export var MiddleActionTabBar = React.memo(BaseMiddleActionTabBar);
 var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
 //# sourceMappingURL=MiddleActionTabBar.js.map

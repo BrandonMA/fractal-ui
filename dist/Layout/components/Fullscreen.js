@@ -14,11 +14,12 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 import React from 'react';
-import { Platform, View } from 'react-native';
+import { View } from 'react-native';
 import styled from 'styled-components/native';
-var Container = styled(View)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    height: ", ";\n"], ["\n    height: ", ";\n"])), Platform.OS === 'web' ? '100vh' : '100%');
-export function Fullscreen(props) {
+import { applyFullScreenStyles } from '../util/applyFullScreenStyles';
+var Container = styled(View)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    ", ";\n"], ["\n    ", ";\n"])), applyFullScreenStyles);
+export function FullScreen(props) {
     return React.createElement(Container, __assign({}, props));
 }
 var templateObject_1;
-//# sourceMappingURL=Fullscreen.js.map
+//# sourceMappingURL=FullScreen.js.map

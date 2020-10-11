@@ -17,11 +17,11 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { useNavigationInsets } from '../../Navigation/hooks/useNavigationInsets';
 import { applyFullscreenInsets } from '../util/applyFullscreenInsets';
-import { Fullscreen } from './Fullscreen';
-var Container = styled(Fullscreen)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    ", "\n"], ["\n    ", "\n"])), applyFullscreenInsets);
+import { FullScreen } from './FullScreen';
+var Container = styled(FullScreen)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    ", ";\n"], ["\n    ", ";\n"])), applyFullscreenInsets);
 export function SafeAreaFullScreen(props) {
     var totalInsets = useNavigationInsets().totalInsets;
-    return React.createElement(Container, __assign({}, props, totalInsets));
+    return React.createElement(Container, __assign({}, props, { insets: totalInsets }));
 }
 var templateObject_1;
 //# sourceMappingURL=SafeAreaFullScreen.js.map

@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
 import { NavigationRoute, NavigationRouteProps } from '../NavigationRoute';
 
-export interface TabContentProps extends Omit<NavigationRouteProps, 'path'> {
+export interface TabScreenContentProps extends Omit<NavigationRouteProps, 'path'> {
     path?: string;
 }
 
-export function TabContent(props: TabContentProps): ReactElement<NavigationRouteProps> {
+export function TabScreenContent(props: TabScreenContentProps): ReactElement<NavigationRouteProps> {
     const { path, ...others } = props;
     return <NavigationRoute {...others} path={path ?? ''} />;
 }

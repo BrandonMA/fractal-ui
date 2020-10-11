@@ -10,5 +10,5 @@ const Container = styled(FullScreen)`
 
 export function SafeAreaFullScreen(props: FullScreenProps): JSX.Element {
     const { totalInsets } = useNavigationInsets();
-    return <Container {...props} {...totalInsets} />;
+    return <Container {...props} insets={totalInsets} />;
 }

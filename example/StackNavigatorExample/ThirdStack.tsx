@@ -1,7 +1,7 @@
 import React from 'react';
 // import { ScreenStackHeaderConfig } from 'react-native-screens';
 import { Text } from 'react-native';
-import { NavigationRouteProps, StackScreen } from '../../src/Navigation';
+import { NavigationRouteProps, StackScreen, StackScreenContent } from '../../src/Navigation';
 import { useParams } from '../../src/ReactRouter';
 import styled from 'styled-components/native';
 import { FullScreen } from '../../src';
@@ -33,9 +33,11 @@ function Content(): JSX.Element {
 export function ThirdStack(props: NavigationRouteProps): JSX.Element {
     return (
         <StyledStack {...props}>
-            <StyledFullScreen>
-                <Content />
-            </StyledFullScreen>
+            <StackScreenContent>
+                <StyledFullScreen>
+                    <Content />
+                </StyledFullScreen>
+            </StackScreenContent>
         </StyledStack>
     );
 }

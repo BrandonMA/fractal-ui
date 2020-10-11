@@ -1,8 +1,7 @@
-import React from 'react';
-import { ScreenStack as Screen, ScreenStackProps } from './Screens';
-export declare const ScreenStack: import("styled-components").StyledComponent<typeof Screen, any, {}, never>;
+/// <reference types="react" />
+import { ScreenStackProps } from './ScreenStack';
 export interface StackNavigatorProps extends Omit<ScreenStackProps, 'children'> {
-    children: React.ReactNode;
+    children: Array<JSX.Element> | JSX.Element;
     path?: string;
 }
 export declare function StackNavigator(props: StackNavigatorProps): JSX.Element;

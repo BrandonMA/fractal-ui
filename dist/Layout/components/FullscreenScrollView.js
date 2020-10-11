@@ -10,15 +10,16 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { useNavigationInsets } from '../../Navigation/hooks/useNavigationInsets';
-export function FullscreenScrollView(props) {
-    var _a = useNavigationInsets(), noSafeAreaInsets = _a.noSafeAreaInsets, totalInsets = _a.totalInsets;
-    return (React.createElement(ScrollView, __assign({}, props, { scrollIndicatorInsets: noSafeAreaInsets, contentContainerStyle: {
-            paddingTop: totalInsets.top,
-            paddingBottom: totalInsets.bottom,
-            paddingRight: totalInsets.right,
-            paddingLeft: totalInsets.left
-        } })));
+export function FullScreenScrollView(props) {
+    var _a = useNavigationInsets(), totalInsets = _a.totalInsets, tabBarInsets = _a.tabBarInsets;
+    return (React.createElement(View, { style: { flex: 1 } },
+        React.createElement(ScrollView, __assign({}, props, { scrollIndicatorInsets: tabBarInsets, contentContainerStyle: {
+                paddingTop: totalInsets.top,
+                paddingBottom: totalInsets.bottom,
+                paddingRight: totalInsets.right,
+                paddingLeft: totalInsets.left
+            } }))));
 }
-//# sourceMappingURL=FullscreenScrollView.js.map
+//# sourceMappingURL=FullScreenScrollView.js.map

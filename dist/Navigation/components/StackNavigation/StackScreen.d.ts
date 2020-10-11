@@ -1,3 +1,8 @@
 /// <reference types="react" />
 import { NavigationRouteProps } from '../NavigationRoute';
-export declare function StackScreen(props: NavigationRouteProps): JSX.Element;
+interface StackScreenProps extends NavigationRouteProps {
+    visibleOnStack?: boolean;
+    initialScreen?: boolean;
+}
+export declare function StackScreen(props: StackScreenProps): JSX.Element;
+export {};

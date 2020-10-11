@@ -28,9 +28,10 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { matchPath, useLocation } from '../../../ReactRouter';
 import { useMatch } from '../../hooks/useMatch';
 import styled from 'styled-components/native';
-import { ScreenStack as Screen } from './Screens';
+import { ScreenStack } from './ScreenStack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-export var ScreenStack = styled(Screen)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    flex: 1;\n"], ["\n    flex: 1;\n"])));
+import { NavigationBarInsetsProvider } from './NavigationBarInsetsProvider';
+var StyledScreenStack = styled(ScreenStack)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    flex: 1;\n"], ["\n    flex: 1;\n"])));
 export function StackNavigator(props) {
     var path = props.path, children = props.children, others = __rest(props, ["path", "children"]);
     var location = useLocation();
@@ -39,8 +40,7 @@ export function StackNavigator(props) {
     var childrenToRender = useMemo(function () {
         var childrenToRender = React.Children.toArray(children).filter(function (child) {
             var _a;
-            var childToRender = child;
-            var path = (_a = childToRender.props.path) !== null && _a !== void 0 ? _a : '/';
+            var path = (_a = child.props.path) !== null && _a !== void 0 ? _a : '/';
             var match = matchPath(location.pathname, {
                 path: path
             });
@@ -54,8 +54,8 @@ export function StackNavigator(props) {
         }
     }, [childrenToRender, active]);
     return (React.createElement(SafeAreaProvider, null,
-        React.createElement(ScreenStack, __assign({}, others),
-            React.createElement(React.Fragment, null, active ? childrenToRender : prevChildren))));
+        React.createElement(NavigationBarInsetsProvider, null,
+            React.createElement(StyledScreenStack, __assign({}, others), active ? childrenToRender : prevChildren))));
 }
 var templateObject_1;
 //# sourceMappingURL=StackNavigator.js.map

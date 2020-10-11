@@ -27,13 +27,14 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { useMemo } from 'react';
 import { ScreenContainer } from 'react-native-screens';
 import { TabBarItem } from './TabBarItem/TabBarItem';
-import { TabContent } from './TabContent';
+import { TabScreenContent } from './TabScreenContent';
 import styled from 'styled-components/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Redirect, Route } from '../../../ReactRouter';
 import { TabBarInsetsProvider } from './TabBarInsetsProvider';
 import { TabBar } from './TabBar';
-var StyledScreenContainer = styled(ScreenContainer)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    flex: 1;\n"], ["\n    flex: 1;\n"])));
+var Container = styled.View(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    flex: 1;\n    overflow: hidden;\n"], ["\n    flex: 1;\n    overflow: hidden;\n"])));
+var StyledScreenContainer = styled(ScreenContainer)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    flex: 1;\n"], ["\n    flex: 1;\n"])));
 export function TabNavigator(props) {
     var defaultRoute = props.defaultRoute, children = props.children, variant = props.variant, tabBarPosition = props.tabBarPosition, activeColor = props.activeColor, inactiveColor = props.inactiveColor, others = __rest(props, ["defaultRoute", "children", "variant", "tabBarPosition", "activeColor", "inactiveColor"]);
     var _a = useMemo(function () {
@@ -47,7 +48,7 @@ export function TabNavigator(props) {
             }
             React.Children.forEach(child.props.children, function (subChild) {
                 var _a, _b, _c;
-                if (subChild.type.name === TabContent.name) {
+                if (subChild.type.name === TabScreenContent.name) {
                     var newChild = React.cloneElement(subChild, {
                         path: path,
                         key: path
@@ -71,10 +72,11 @@ export function TabNavigator(props) {
     }, [children, activeColor, inactiveColor, tabBarPosition]), content = _a[0], tabItems = _a[1], firstChildPath = _a[2];
     return (React.createElement(SafeAreaProvider, null,
         React.createElement(TabBarInsetsProvider, null,
-            React.createElement(StyledScreenContainer, __assign({}, others), content),
-            React.createElement(TabBar, { variant: variant, tabBarPosition: tabBarPosition !== null && tabBarPosition !== void 0 ? tabBarPosition : 'bottom' }, tabItems),
-            firstChildPath != '/' ? (React.createElement(Route, { path: '/' },
-                React.createElement(Redirect, { to: defaultRoute !== null && defaultRoute !== void 0 ? defaultRoute : firstChildPath }))) : null)));
+            React.createElement(Container, null,
+                React.createElement(StyledScreenContainer, __assign({}, others), content),
+                React.createElement(TabBar, { variant: variant, tabBarPosition: tabBarPosition !== null && tabBarPosition !== void 0 ? tabBarPosition : 'bottom' }, tabItems),
+                firstChildPath != '/' ? (React.createElement(Route, { path: '/' },
+                    React.createElement(Redirect, { to: defaultRoute !== null && defaultRoute !== void 0 ? defaultRoute : firstChildPath }))) : null))));
 }
-var templateObject_1;
+var templateObject_1, templateObject_2;
 //# sourceMappingURL=TabNavigator.js.map

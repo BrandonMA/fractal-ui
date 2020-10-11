@@ -1067,6 +1067,11 @@
   dependencies:
     semver "^5.3.0"
 
+"@expo/status-bar-height@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@expo/status-bar-height/-/status-bar-height-0.0.1.tgz#c39df6daa018fe10bba4b699cce8a881bfc6f9e4"
+  integrity sha512-kNaX1sZ1eF0M0GvEXaAtv/6BsiPHPIAxCjkUzcUQ58E1h1rsbqO/spPxedsJkw/GneXuNLXNy8+UTkWKARFLyw==
+
 "@expo/vector-icons@^10.0.2":
   version "10.2.1"
   resolved "https://registry.yarnpkg.com/@expo/vector-icons/-/vector-icons-10.2.1.tgz#47fb2fa12d7ad601835babde6bd3ddea7f6fde89"
@@ -1443,6 +1448,11 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@types/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"
   integrity sha512-OCutwjDZ4aFS6PB1UZ988C4YgwlBHJd6wCeQqaLdmadZ/7e+w79+hbMUFC1QXDNCmdyoRfAFdm0RypzwR+Qpag==
+
+"@types/expo__status-bar-height@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@types/expo__status-bar-height/-/expo__status-bar-height-0.0.1.tgz#64f0ab9180e6ed2f873316b057481692fa3bf31c"
+  integrity sha512-u/HrofAD/cyg605f70TcAJiOdOoNDMApddEUr21cDA0EQIVTAq/VT8GsaePjY2R3lOvdMGJxxVdMAX9xj6Moqg==
 
 "@types/history@*":
   version "4.7.8"

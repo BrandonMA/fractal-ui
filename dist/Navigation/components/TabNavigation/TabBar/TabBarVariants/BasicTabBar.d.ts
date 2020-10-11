@@ -1,3 +1,5 @@
-/// <reference types="react" />
+import React from 'react';
 import { TabBarProps } from '../types/TabBarProps';
-export declare function BasicTabBar(props: TabBarProps): JSX.Element;
+declare function BaseBasicTabBar(props: TabBarProps): JSX.Element;
+export declare const BasicTabBar: React.MemoExoticComponent<typeof BaseBasicTabBar>;
+export {};

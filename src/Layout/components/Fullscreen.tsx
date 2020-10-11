@@ -8,7 +8,7 @@ const Container = styled(View)`
 `;
 
 export interface FullScreenProps extends Omit<ViewProps, 'children'> {
-    children: JSX.Element | Array<JSX.Element> | React.ReactNode;
+    children: React.ReactNode;
 }
 
 export function FullScreen(props: FullScreenProps): JSX.Element {

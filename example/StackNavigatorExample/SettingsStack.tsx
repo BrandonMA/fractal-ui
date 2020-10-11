@@ -1,7 +1,7 @@
 import React from 'react';
 // import { ScreenStackHeaderConfig } from 'react-native-screens';
 import { Text } from 'react-native';
-import { NavigationRouteProps, StackScreen } from '../../src/Navigation';
+import { NavigationRouteProps, StackScreen, StackScreenContent } from '../../src/Navigation';
 import styled from 'styled-components/native';
 import { SafeAreaFullScreen } from '../../src';
 
@@ -18,11 +18,13 @@ export function SettingsStack(props: NavigationRouteProps): JSX.Element {
     return (
         <StyledStack {...props}>
             {/* <ScreenStackHeaderConfig title='Settings' hidden={false} /> */}
-            <SafeAreaFullScreen>
-                <GrayView>
-                    <Text>We are on the settings page</Text>
-                </GrayView>
-            </SafeAreaFullScreen>
+            <StackScreenContent>
+                <SafeAreaFullScreen>
+                    <GrayView>
+                        <Text>We are on the settings page</Text>
+                    </GrayView>
+                </SafeAreaFullScreen>
+            </StackScreenContent>
         </StyledStack>
     );
 }
