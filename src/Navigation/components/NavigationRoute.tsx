@@ -6,7 +6,7 @@ import { StyleSheet } from 'react-native';
 
 export interface NavigationRouteProps extends Omit<ScreenProps, 'stackPresentation' | 'active'> {
     path: string;
-    children: Array<JSX.Element> | JSX.Element;
+    children?: Array<JSX.Element> | JSX.Element;
     stackPresentation?: StackPresentationTypes;
 }
 
