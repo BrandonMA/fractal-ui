@@ -22,7 +22,7 @@ export function SecondStack(props: NavigationRouteProps): JSX.Element {
         <StyledStack {...props}>
             {/* <ScreenStackHeaderConfig title='Detail' hidden={false} /> */}
             <StackScreenContent>
-                <SafeAreaFullScreen style={{ justifyContent: 'flex-end', flex: 1 }}>
+                <SafeAreaFullScreen>
                     <Button onPress={handleGoToNextScreen} title='Go to next screen' />
                 </SafeAreaFullScreen>
             </StackScreenContent>
