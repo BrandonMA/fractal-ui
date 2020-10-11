@@ -5,13 +5,8 @@
     "author": "BrandonMA",
     "license": "MIT",
     "repository": "BrandonMA/fractal-ui",
-    "main": "./App.tsx",
+    "main": "./src/index.ts",
     "scripts": {
-        "start": "expo start",
-        "android": "expo start --android",
-        "ios": "expo start --ios",
-        "web": "expo start --web",
-        "eject": "expo eject",
         "build": "expo-module build",
         "clean": "expo-module clean",
         "test": "expo-module test",
@@ -20,11 +15,10 @@
         "expo-module": "expo-module"
     },
     "peerDependencies": {
-        "react": "~16.13.0",
+        "react": "~16.13.1",
         "react-is": "^16.13.1"
     },
     "dependencies": {
-        "expo-constants": "~9.2.0",
         "react-native-safe-area-context": "3.1.4",
         "react-native-screens": "^2.11.0",
         "react-router-dom": "^5.2.0",
@@ -34,7 +28,6 @@
     "devDependencies": {
         "@babel/core": "^7.8.6",
         "@types/react": "~16.9.35",
-        "@types/react-dom": "^16.9.8",
         "@types/react-native": "~0.63.2",
         "@types/react-router-dom": "^5.1.5",
         "@types/react-router-native": "^5.1.0",
@@ -54,15 +47,11 @@
         "eslint-plugin-react": "^7.20.6",
         "eslint-plugin-react-hooks": "^4.1.0",
         "eslint-plugin-standard": "^4.0.1",
-        "expo": "^39.0.0",
         "expo-module-scripts": "^1.2.0",
         "prettier": "^2.1.1",
         "react": "16.13.1",
-        "react-dom": "16.13.1",
         "react-is": "^16.13.1",
         "react-native": "0.63.2",
-        "react-native-svg": "12.1.0",
-        "react-native-web": "~0.13.7",
         "typescript": "~3.9.2"
     }
 }
