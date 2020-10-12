@@ -2,6 +2,17 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
 };
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -58,25 +69,15 @@ function BaseMiddleActionTabBar(props) {
         }
         return [leftChildren, middleChild, rightChildren];
     }, [children]), leftChildren = _a[0], middleChild = _a[1], rightChildren = _a[2];
-    return (<>
-            <MiddleContainer tabBarPosition={props.tabBarPosition} insets={insets} pointerEvents='box-none'>
-                {middleChild}
-            </MiddleContainer>
-            <Container {...others}>
-                <ItemsContainer tabBarPosition={props.tabBarPosition}>
-                    <SideView insets={insets} tabBarPosition={props.tabBarPosition}>
-                        {leftChildren}
-                    </SideView>
-                    <MiddleActionImageContainer>
-                        <MiddleActionImage tabBarPosition={props.tabBarPosition} source={getImageBasedOnPosition(props.tabBarPosition)}/>
-                        <MiddleActionImageContainerFiller />
-                    </MiddleActionImageContainer>
-                    <SideView insets={insets} tabBarPosition={props.tabBarPosition}>
-                        {rightChildren}
-                    </SideView>
-                </ItemsContainer>
-            </Container>
-        </>);
+    return (React.createElement(React.Fragment, null,
+        React.createElement(MiddleContainer, { tabBarPosition: props.tabBarPosition, insets: insets, pointerEvents: 'box-none' }, middleChild),
+        React.createElement(Container, __assign({}, others),
+            React.createElement(ItemsContainer, { tabBarPosition: props.tabBarPosition },
+                React.createElement(SideView, { insets: insets, tabBarPosition: props.tabBarPosition }, leftChildren),
+                React.createElement(MiddleActionImageContainer, null,
+                    React.createElement(MiddleActionImage, { tabBarPosition: props.tabBarPosition, source: getImageBasedOnPosition(props.tabBarPosition) }),
+                    React.createElement(MiddleActionImageContainerFiller, null)),
+                React.createElement(SideView, { insets: insets, tabBarPosition: props.tabBarPosition }, rightChildren)))));
 }
 export var MiddleActionTabBar = React.memo(BaseMiddleActionTabBar);
 var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
