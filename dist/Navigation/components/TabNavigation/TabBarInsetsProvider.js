@@ -7,9 +7,11 @@ export var TabBarInsetsContext = React.createContext({
 });
 export function TabBarInsetsProvider(props) {
     var _a = useState({ top: 0, right: 0, bottom: 0, left: 0 }), insets = _a[0], setInsets = _a[1];
-    return (React.createElement(TabBarInsetsContext.Provider, { value: {
-            insets: insets,
-            setInsets: setInsets
-        } }, props.children));
+    return (<TabBarInsetsContext.Provider value={{
+        insets: insets,
+        setInsets: setInsets
+    }}>
+            {props.children}
+        </TabBarInsetsContext.Provider>);
 }
 //# sourceMappingURL=TabBarInsetsProvider.js.map

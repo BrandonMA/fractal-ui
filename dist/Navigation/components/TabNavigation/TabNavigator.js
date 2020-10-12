@@ -2,17 +2,6 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
 };
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -70,13 +59,19 @@ export function TabNavigator(props) {
         });
         return [content, tabItems, firstChildPath];
     }, [children, activeColor, inactiveColor, tabBarPosition]), content = _a[0], tabItems = _a[1], firstChildPath = _a[2];
-    return (React.createElement(SafeAreaProvider, null,
-        React.createElement(TabBarInsetsProvider, null,
-            React.createElement(Container, null,
-                React.createElement(StyledScreenContainer, __assign({}, others), content),
-                React.createElement(TabBar, { variant: variant, tabBarPosition: tabBarPosition !== null && tabBarPosition !== void 0 ? tabBarPosition : 'bottom' }, tabItems),
-                firstChildPath != '/' ? (React.createElement(Route, { path: '/' },
-                    React.createElement(Redirect, { to: defaultRoute !== null && defaultRoute !== void 0 ? defaultRoute : firstChildPath }))) : null))));
+    return (<SafeAreaProvider>
+            <TabBarInsetsProvider>
+                <Container>
+                    <StyledScreenContainer {...others}>{content}</StyledScreenContainer>
+                    <TabBar variant={variant} tabBarPosition={tabBarPosition !== null && tabBarPosition !== void 0 ? tabBarPosition : 'bottom'}>
+                        {tabItems}
+                    </TabBar>
+                    {firstChildPath != '/' ? (<Route path='/'>
+                            <Redirect to={defaultRoute !== null && defaultRoute !== void 0 ? defaultRoute : firstChildPath}/>
+                        </Route>) : null}
+                </Container>
+            </TabBarInsetsProvider>
+        </SafeAreaProvider>);
 }
 var templateObject_1, templateObject_2;
 //# sourceMappingURL=TabNavigator.js.map

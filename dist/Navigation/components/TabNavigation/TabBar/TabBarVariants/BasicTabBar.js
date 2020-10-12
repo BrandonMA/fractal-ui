@@ -2,17 +2,6 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
     if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
     return cooked;
 };
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -39,7 +28,9 @@ function BaseBasicTabBar(props) {
     var children = props.children, others = __rest(props, ["children"]);
     var insets = useSafeAreaInsets();
     var Container = getValueBasedOnTabBarPosition(HorizontalContainer, VerticalContainer, props.tabBarPosition);
-    return (React.createElement(Container, __assign({}, others, { insets: insets }), children));
+    return (<Container {...others} insets={insets}>
+            {children}
+        </Container>);
 }
 export var BasicTabBar = React.memo(BaseBasicTabBar);
 var templateObject_1, templateObject_2, templateObject_3;
