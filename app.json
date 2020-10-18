@@ -1,15 +1,14 @@
 {
     "expo": {
         "entryPoint": "./App.tsx",
-        "name": "EasyNavigation",
-        "slug": "EasyNavigation",
+        "name": "Fractal-UI",
+        "slug": "Fractal-UI",
         "version": "1.0.0",
         "orientation": "default",
         "icon": "./assets/icon.png",
         "splash": {
             "image": "./assets/splash.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
+            "resizeMode": "contain"
         },
         "updates": {
             "fallbackToCacheTimeout": 0

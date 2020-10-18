@@ -38,7 +38,7 @@ export function StackNavigator(props) {
     var active = useMatch(path)[0];
     var _a = useState([]), prevChildren = _a[0], setPrevChildren = _a[1];
     var childrenToRender = useMemo(function () {
-        var childrenToRender = React.Children.toArray(children).filter(function (child) {
+        return React.Children.toArray(children).filter(function (child) {
             var _a;
             var path = (_a = child.props.path) !== null && _a !== void 0 ? _a : '/';
             var match = matchPath(location.pathname, {
@@ -46,7 +46,6 @@ export function StackNavigator(props) {
             });
             return match != null;
         });
-        return childrenToRender;
     }, [children, location]);
     useEffect(function () {
         if (active) {

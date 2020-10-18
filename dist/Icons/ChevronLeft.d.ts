@@ -1,2 +1,3 @@
-import * as React from 'react';
-export declare function ChevronLeft(props: React.SVGProps<SVGSVGElement>): JSX.Element;
+/// <reference types="react" />
+import { SvgProps } from 'react-native-svg';
+export declare function ChevronLeft(props: SvgProps): JSX.Element;

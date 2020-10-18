@@ -9,7 +9,7 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import * as React from 'react';
+import React from 'react';
 import Svg, { Path } from 'react-native-svg';
 export function ChevronLeft(props) {
     return (React.createElement(Svg, __assign({ viewBox: '0 0 30 30', width: 60, height: 60 }, props),
