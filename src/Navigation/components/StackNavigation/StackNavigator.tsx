@@ -23,7 +23,7 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
     const [prevChildren, setPrevChildren] = useState<Array<JSX.Element>>([]);
 
     const childrenToRender = useMemo(() => {
-        const childrenToRender = React.Children.toArray(children).filter((child: JSX.Element) => {
+        return React.Children.toArray(children).filter((child: JSX.Element) => {
             const path = (child.props as NavigationRouteProps).path ?? '/';
 
             const match = matchPath(location.pathname, {
@@ -32,7 +32,6 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
 
             return match != null;
         }) as Array<JSX.Element>;
-        return childrenToRender;
     }, [children, location]);
 
     useEffect(() => {
