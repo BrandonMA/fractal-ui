@@ -9,6 +9,7 @@ import { Redirect, Route } from '../../../ReactRouter';
 import { TabBarInsetsProvider } from './TabBarInsetsProvider';
 import { TabBar } from './TabBar';
 import { LayoutProps } from '../../../Layout/types/LayoutProps';
+import { TabBarConfigProvider } from './TabBar/TabBarConfigProvider';
 
 const Container = styled.View`
     flex: 1;
@@ -25,10 +26,11 @@ export interface TabNavigatorProps extends ScreenContainerProps, LayoutProps {
     variant?: TabBarVariant;
     activeColor?: string;
     inactiveColor?: string;
+    tabBarConfig?: TabBarConfig;
 }
 
 export function TabNavigator(props: TabNavigatorProps): JSX.Element {
-    const { defaultRoute, children, variant, tabBarPosition, activeColor, inactiveColor, ...others } = props;
+    const { defaultRoute, tabBarConfig, children, variant, tabBarPosition, activeColor, inactiveColor, ...others } = props;
 
     const [content, tabItems, firstChildPath] = useMemo(() => {
         const content: Array<JSX.Element> = [];
@@ -68,19 +70,21 @@ export function TabNavigator(props: TabNavigatorProps): JSX.Element {
 
     return (
         <SafeAreaProvider>
-            <TabBarInsetsProvider>
-                <Container>
-                    <StyledScreenContainer {...others}>{content}</StyledScreenContainer>
-                    <TabBar variant={variant} tabBarPosition={tabBarPosition ?? 'bottom'}>
-                        {tabItems}
-                    </TabBar>
-                    {firstChildPath != '/' ? (
-                        <Route path='/'>
-                            <Redirect to={defaultRoute ?? firstChildPath} />
-                        </Route>
-                    ) : null}
-                </Container>
-            </TabBarInsetsProvider>
+            <TabBarConfigProvider config={tabBarConfig}>
+                <TabBarInsetsProvider>
+                    <Container>
+                        <StyledScreenContainer {...others}>{content}</StyledScreenContainer>
+                        {firstChildPath != '/' ? (
+                            <Route path='/'>
+                                <Redirect to={defaultRoute ?? firstChildPath} />
+                            </Route>
+                        ) : null}
+                        <TabBar variant={variant} tabBarPosition={tabBarPosition ?? 'bottom'}>
+                            {tabItems}
+                        </TabBar>
+                    </Container>
+                </TabBarInsetsProvider>
+            </TabBarConfigProvider>
         </SafeAreaProvider>
     );
 }

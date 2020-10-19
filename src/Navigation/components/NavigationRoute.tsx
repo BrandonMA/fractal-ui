@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Screen, ScreenProps, StackPresentationTypes } from 'react-native-screens';
 import { useMatch } from '../hooks/useMatch';
 import { Route } from '../../ReactRouter';
@@ -13,6 +13,7 @@ export interface NavigationRouteProps extends Omit<ScreenProps, 'stackPresentati
 export function NavigationRoute(props: NavigationRouteProps): JSX.Element {
     const { path, style, children, stackPresentation, ...others } = props;
     const [active] = useMatch(path);
+    const renderChildren = useMemo(() => children, [children]);
 
     return (
         <Screen
@@ -21,11 +22,7 @@ export function NavigationRoute(props: NavigationRouteProps): JSX.Element {
             stackPresentation={stackPresentation ?? 'push'}
             style={[StyleSheet.absoluteFill, style]}
         >
-            <Route path={path}>
-                {() => {
-                    return children;
-                }}
-            </Route>
+            <Route path={path}>{renderChildren}</Route>
         </Screen>
     );
 }

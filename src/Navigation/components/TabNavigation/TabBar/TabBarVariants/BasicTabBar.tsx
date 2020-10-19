@@ -13,6 +13,7 @@ const SharedStyles = styled(View)`
     position: absolute;
     background-color: white;
     flex-direction: ${(props: TabBarProps) => getValueBasedOnTabBarPosition('row', 'column', props.tabBarPosition)};
+    opacity: ${(props: TabBarProps) => (props.hidden ? 0 : 1)};
     ${(props: TabBarProps) => getTabBarAbsolutePosition(props.tabBarPosition, 0)};
     ${applyTabBarInsets};
     ${applyDimensionBasedOnTabBarPosition};
@@ -30,6 +31,7 @@ function BaseBasicTabBar(props: TabBarProps): JSX.Element {
     const { children, ...others } = props;
     const insets = useSafeAreaInsets();
     const Container = getValueBasedOnTabBarPosition(HorizontalContainer, VerticalContainer, props.tabBarPosition);
+
     return (
         <Container {...others} insets={insets}>
             {children}
