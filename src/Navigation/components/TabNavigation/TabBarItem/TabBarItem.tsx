@@ -10,12 +10,12 @@ import { useTabBarConfig } from '../TabBar/hooks';
 import styled from 'styled-components/native';
 
 export interface TabBarItemProps extends PressableProps {
-    path?: string;
+    title: string;
+    path: string;
+    children: (color: string, size: number) => JSX.Element;
     activeColor?: string;
     inactiveColor?: string;
-    title: string;
     variant?: TabBarItemVariant;
-    children: (color: string, size: number) => JSX.Element;
 }
 
 interface StyledTextProps {
@@ -35,8 +35,8 @@ export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps
     const [active] = useMatch(path);
     const color = getTabBarItemColorForState(
         active,
-        activeColor ?? config.itemActiveColor,
-        inactiveColor ?? config.itemInactiveColor,
+        activeColor ?? config.activeItemColor,
+        inactiveColor ?? config.inactiveItemColor,
         variant
     );
     const TabBarItemContainer = getTabBarItemComponent(variant);

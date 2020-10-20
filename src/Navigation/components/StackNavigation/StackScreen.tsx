@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useHistory } from '../../../ReactRouter';
 import { NavigationRoute, NavigationRouteProps } from '../NavigationRoute';
 
@@ -11,12 +11,8 @@ export function StackScreen(props: StackScreenProps): JSX.Element {
     const { visibleOnStack, initialScreen, children, ...others } = props;
     const history = useHistory();
 
-    const handleGoBack = useCallback(() => {
-        history.goBack();
-    }, [history]);
-
     return (
-        <NavigationRoute {...others} onDismissed={handleGoBack}>
+        <NavigationRoute {...others} onDismissed={history.goBack}>
             {children}
         </NavigationRoute>
     );

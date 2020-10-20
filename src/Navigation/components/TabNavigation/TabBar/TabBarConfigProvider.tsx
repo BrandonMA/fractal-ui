@@ -1,13 +1,5 @@
 import React, { useState } from 'react';
-import { TabBarConfig } from './types';
-
-const initialValue = Object.freeze<TabBarConfig>({
-    tabBarVariant: 'basic',
-    tabBarPosition: 'bottom',
-    itemActiveColor: '#1281FF',
-    itemInactiveColor: '#999999',
-    tabBarHidden: false
-});
+import { createTabBarConfig, TabBarConfig } from './types';
 
 export interface TabBarConfigContextType {
     setConfig: (config: TabBarConfig) => void;
@@ -18,16 +10,16 @@ export const TabBarConfigContext = React.createContext<TabBarConfigContextType>(
     setConfig: () => {
         return;
     },
-    config: initialValue
+    config: createTabBarConfig()
 });
 
 interface Props {
     children: JSX.Element | Array<JSX.Element> | Array<React.ReactNode>;
-    config?: TabBarConfig;
+    config: TabBarConfig;
 }
 
 export function TabBarConfigProvider(props: Props): JSX.Element {
-    const [config, setConfig] = useState<TabBarConfig>(props.config ?? initialValue);
+    const [config, setConfig] = useState<TabBarConfig>(props.config);
 
     return (
         <TabBarConfigContext.Provider

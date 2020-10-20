@@ -56,7 +56,7 @@ const MiddleActionImage = styled.Image`
     height: ${(props: TabBarConfig) => getValueBasedOnTabBarPosition('60px', '88px', props.tabBarPosition)};
 `;
 
-function BaseMiddleActionTabBar(props: TabBarProps): JSX.Element {
+export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
     const { children, style } = props;
     const { config } = useTabBarConfig();
     const tabBarInsets = useSafeAreaInsets();
@@ -104,5 +104,3 @@ function BaseMiddleActionTabBar(props: TabBarProps): JSX.Element {
         </>
     );
 }
-
-export const MiddleActionTabBar = React.memo(BaseMiddleActionTabBar);

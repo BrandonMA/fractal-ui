@@ -1,13 +1,10 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { ScreenContainer, ScreenContainerProps } from 'react-native-screens';
-import { TabBarItem } from './TabBarItem/TabBarItem';
-import { TabScreenContent } from './TabScreenContent';
 import styled from 'styled-components/native';
-import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Redirect } from '../../../ReactRouter';
 import { TabBarInsetsProvider } from './TabBar/TabBarInsetsProvider';
-import { TabBar, TabBarConfig } from './TabBar';
-import { TabBarConfigProvider } from './TabBar/TabBarConfigProvider';
+import { TabBarConfig, TabBarConfigProvider } from './TabBar';
 
 const Container = styled.View`
     flex: 1;
@@ -20,53 +17,21 @@ const StyledScreenContainer = styled(ScreenContainer)`
 
 export interface TabNavigatorProps extends ScreenContainerProps {
     children: Array<JSX.Element> | JSX.Element;
-    defaultRoute?: string;
-    tabBarConfig?: TabBarConfig;
+    defaultRoute: string;
+    tabBar: JSX.Element;
+    tabBarConfig: TabBarConfig;
 }
 
 export function TabNavigator(props: TabNavigatorProps): JSX.Element {
-    const { defaultRoute, tabBarConfig, children, ...others } = props;
-
-    const [content, tabItems, firstChildPath] = useMemo(() => {
-        const content: Array<JSX.Element> = [];
-        const tabItems: Array<JSX.Element> = [];
-        let firstChildPath = '';
-
-        React.Children.forEach(children, (child, index) => {
-            const { path } = child.props;
-
-            if (index === 0) {
-                firstChildPath = child.props.path;
-            }
-
-            React.Children.forEach(child.props.children, (subChild: JSX.Element) => {
-                if (subChild.type.name === TabScreenContent.name) {
-                    const newChild = React.cloneElement(subChild, {
-                        path,
-                        key: path
-                    });
-                    content.push(newChild);
-                } else if (subChild.type.name === TabBarItem.name) {
-                    const newChild = React.cloneElement(subChild, {
-                        path,
-                        key: path
-                    });
-                    tabItems.push(newChild);
-                }
-            });
-        });
-
-        return [content, tabItems, firstChildPath];
-    }, [children]);
-
+    const { defaultRoute, tabBar, tabBarConfig, children, ...others } = props;
     return (
-        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+        <SafeAreaProvider>
             <TabBarConfigProvider config={tabBarConfig}>
                 <TabBarInsetsProvider>
                     <Container>
-                        <StyledScreenContainer {...others}>{content}</StyledScreenContainer>
-                        <Redirect exact from='/' to={defaultRoute ?? firstChildPath} />
-                        <TabBar>{tabItems}</TabBar>
+                        <StyledScreenContainer {...others}>{children}</StyledScreenContainer>
+                        <Redirect exact from='/' to={defaultRoute} />
+                        {tabBar}
                     </Container>
                 </TabBarInsetsProvider>
             </TabBarConfigProvider>

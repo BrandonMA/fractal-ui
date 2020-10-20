@@ -2,21 +2,22 @@ import React, { useCallback, useContext, useEffect, useRef } from 'react';
 import { useTabBarInsets } from './hooks/useTabBarInsets';
 import { TabBarInsetsContext } from './TabBarInsetsProvider';
 import { getTabBarComponent } from './util/getTabBarComponent';
-import { useTabBarConfig } from './hooks';
 import { TabBarProps } from './types';
 import { Animated, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useTabBarConfig } from './hooks';
 
 export function TabBar(props: TabBarProps): JSX.Element {
+    const { style, ...others } = props;
     const { config } = useTabBarConfig();
     const { tabBarHidden } = config;
     const TabBar = getTabBarComponent(config.tabBarVariant);
-    const tabBarInsets = useTabBarInsets(config.tabBarPosition ?? 'bottom', config.tabBarHidden); // Calculate insets depending on the position of the TabBar for content screens.
+    const tabBarInsets = useTabBarInsets(config.tabBarPosition ?? 'bottom', tabBarHidden); // Calculate insets depending on the position of the TabBar for content screens.
     const { setInsets } = useContext(TabBarInsetsContext);
     const insets = useSafeAreaInsets();
     const animatedValue = useRef(new Animated.Value(insets.bottom + 62)).current;
 
-    const toggleHidden = useCallback(
+    const animateHiddenChange = useCallback(
         (hidden: boolean) => {
             Animated.spring(animatedValue, { toValue: hidden ? insets.bottom + 62 : 0, useNativeDriver: Platform.OS !== 'web' }).start();
         },
@@ -24,8 +25,8 @@ export function TabBar(props: TabBarProps): JSX.Element {
     );
 
     useEffect(() => {
-        toggleHidden(tabBarHidden ?? false);
-    }, [tabBarHidden, toggleHidden]);
+        animateHiddenChange(tabBarHidden ?? false);
+    }, [tabBarHidden, animateHiddenChange]);
 
     useEffect(() => {
         setInsets(tabBarInsets);
@@ -33,14 +34,17 @@ export function TabBar(props: TabBarProps): JSX.Element {
 
     return (
         <TabBar
-            {...props}
-            style={{
-                transform: [
-                    {
-                        translateY: animatedValue
-                    }
-                ]
-            }}
+            {...others}
+            style={[
+                style,
+                {
+                    transform: [
+                        {
+                            translateY: animatedValue
+                        }
+                    ]
+                }
+            ]}
         />
     );
 }

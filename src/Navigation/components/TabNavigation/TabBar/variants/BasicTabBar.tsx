@@ -15,7 +15,6 @@ const SharedStyles = styled(Animated.View)`
     position: absolute;
     background-color: white;
     flex-direction: ${(props: TabBarLayoutProps) => getValueBasedOnTabBarPosition('row', 'column', props.tabBarPosition)};
-
     ${(props: TabBarLayoutProps) => getTabBarAbsolutePosition(props.tabBarPosition, 0)};
     ${applyTabBarInsets};
     ${applyDimensionBasedOnTabBarPosition};
@@ -29,12 +28,10 @@ const VerticalContainer = styled(SharedStyles)`
     box-shadow: ${(props: TabBarLayoutProps) => (props.tabBarPosition === 'right' ? '-1px 0px' : '1px 0px')} 4px rgba(0, 0, 0, 0.08);
 `;
 
-function BaseBasicTabBar(props: TabBarProps): JSX.Element {
+export function BasicTabBar(props: TabBarProps): JSX.Element {
     const { config } = useTabBarConfig();
     const insets = useSafeAreaInsets(); // Do not confuse this insets with the ones provided by the TabBar itself. This are only safe are insets.
     const Container = getValueBasedOnTabBarPosition(HorizontalContainer, VerticalContainer, config.tabBarPosition);
 
     return <Container {...props} {...config} tabBarInsets={insets} />;
 }
-
-export const BasicTabBar = React.memo(BaseBasicTabBar);

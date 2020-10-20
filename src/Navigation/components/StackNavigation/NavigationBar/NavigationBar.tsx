@@ -1,43 +1,37 @@
 import React, { useContext, useEffect, useMemo } from 'react';
 import { Platform, View } from 'react-native';
-import { ScreenStackHeaderConfigProps } from 'react-native-screens';
 import styled from 'styled-components/native';
 import { ChevronLeft } from '../../../../Icons/ChevronLeft';
 import { NavigationBarInsetsContext } from '../NavigationBarInsetsProvider';
 import { useHistory } from '../../../../ReactRouter';
 import { useMatch } from '../../../hooks';
-
-const NAVIGATION_BAR_HEIGHT = 50;
-
-interface StyleProps {
-    color: string | undefined;
-    backgroundColor: string;
-    titleColor: string | undefined;
-    titleFontSize: number | undefined;
-}
-
-const StyledText = styled.Text`
-    color: ${(props: StyleProps) => props.color ?? '#1281FF'};
-    font-size: 15px;
-`;
-
-const StyledTitle = styled(StyledText)`
-    color: ${(props: StyleProps) => (props.titleColor != null ? props.titleColor : props.color ?? '#000000')};
-    font-weight: 700;
-    font-size: ${(props: StyleProps) => props.titleFontSize ?? 17}px;
-    text-align: center;
-`;
+import { NavigationBarStyleProps } from './types/NavigationBarStyleProps';
+import { NavigationBarProps } from './types/NavigationBarProps';
+import { NAVIGATION_BAR_HEIGHT } from './constants';
+import { createNavigationBarStyleProps } from './util/createNavigationBarStyleProps';
 
 const Container = styled(View)`
     flex-direction: row;
     justify-content: space-between;
     height: ${NAVIGATION_BAR_HEIGHT}px;
-    background-color: ${(props: StyleProps) => props.backgroundColor};
+    background-color: ${(props: NavigationBarStyleProps) => props.backgroundColor ?? '#ffffff'};
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
     position: absolute;
     top: 0;
     width: 100%;
     z-index: 1000;
+`;
+
+const StyledText = styled.Text`
+    color: ${(props: NavigationBarStyleProps) => props.color ?? '#1281FF'};
+    font-size: 15px;
+`;
+
+const StyledTitle = styled(StyledText)`
+    color: ${(props: NavigationBarStyleProps) => (props.titleColor != null ? props.titleColor : props.color ?? '#000000')};
+    font-weight: 700;
+    font-size: ${(props: NavigationBarStyleProps) => props.titleFontSize ?? 17}px;
+    text-align: center;
 `;
 
 const LeftContainer = styled.View`
@@ -73,15 +67,13 @@ const StyledBackButtonContainer = styled.TouchableOpacity`
     ${() => (Platform.OS === 'web' ? 'cursor: pointer' : '')};
 `;
 
-interface Props extends Omit<ScreenStackHeaderConfigProps, 'children'> {
-    children?: JSX.Element | Array<JSX.Element>;
-}
-
-export function NavigationBar(props: Props): JSX.Element | null {
-    const { hidden, title, color, titleFontSize, backgroundColor, titleColor, hideBackButton, children } = props;
+export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
+    const { hidden, title, hideBackButton, children } = props;
     const navigationBarInsets = useContext(NavigationBarInsetsContext);
     const history = useHistory();
     const [, activeRoutes] = useMatch('/');
+    const styleProps = createNavigationBarStyleProps(props);
+
     const [leftChild, centerChild, rightChild] = useMemo(() => {
         let leftChild: JSX.Element | null = null;
         let centerChild: JSX.Element | null = null;
@@ -99,13 +91,6 @@ export function NavigationBar(props: Props): JSX.Element | null {
         return [leftChild, centerChild, rightChild];
     }, [children]);
 
-    const styleProps: StyleProps = {
-        backgroundColor: backgroundColor ?? 'white',
-        color,
-        titleColor,
-        titleFontSize
-    };
-
     useEffect(() => {
         const top = Platform.OS === 'web' && !hidden ? NAVIGATION_BAR_HEIGHT : 0; // Set the value of the navigation bar for web here. For native it is already inside safeAreaInsets.
         if (top !== navigationBarInsets.insets.top) {
@@ -113,23 +98,19 @@ export function NavigationBar(props: Props): JSX.Element | null {
         }
     }, [hidden, navigationBarInsets]);
 
-    if (hidden) {
-        return null;
-    } else {
-        return (
-            <Container {...styleProps}>
-                <LeftContainer>
-                    {activeRoutes <= 1 || hideBackButton ? null : (
-                        <StyledBackButtonContainer onPress={history.goBack}>
-                            <ChevronLeft height={19} width={25} fill={styleProps.color ?? '#1281FF'} />
-                            <StyledText {...styleProps}>{title}</StyledText>
-                        </StyledBackButtonContainer>
-                    )}
-                    {leftChild}
-                </LeftContainer>
-                <MiddleContainer>{centerChild ?? <StyledTitle {...styleProps}>{title}</StyledTitle>}</MiddleContainer>
-                <RightContainer>{rightChild}</RightContainer>
-            </Container>
-        );
-    }
+    return hidden ? null : (
+        <Container {...styleProps}>
+            <LeftContainer>
+                {activeRoutes <= 1 || hideBackButton ? null : (
+                    <StyledBackButtonContainer onPress={history.goBack}>
+                        <ChevronLeft height={19} width={25} fill={styleProps.color ?? '#1281FF'} />
+                        <StyledText {...styleProps}>{title}</StyledText>
+                    </StyledBackButtonContainer>
+                )}
+                {leftChild}
+            </LeftContainer>
+            <MiddleContainer>{centerChild ?? <StyledTitle {...styleProps}>{title}</StyledTitle>}</MiddleContainer>
+            <RightContainer>{rightChild}</RightContainer>
+        </Container>
+    );
 }

@@ -4,6 +4,7 @@ import { Pressable, Text } from 'react-native';
 
 export function ToggleTabBar(): JSX.Element {
     const { config, setConfig } = useTabBarConfig();
+
     const toggleBar = useCallback(() => {
         const { tabBarHidden, ...others } = config;
         setConfig({

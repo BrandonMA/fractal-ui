@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react';
-import { TabScreenContentProps } from './TabScreenContent';
-import { TabBarItemProps } from './TabBarItem/TabBarItem';
+import { NavigationRoute } from '../NavigationRoute';
 
 export interface TabScreenProps {
-    children: [ReactElement<TabScreenContentProps>, ReactElement<TabBarItemProps>];
+    children: JSX.Element;
     path: string;
 }
 
 export function TabScreen(props: TabScreenProps): ReactElement<TabScreenProps> {
-    return <>{props.children}</>;
+    const { path, ...others } = props;
+    return <NavigationRoute {...others} path={path ?? ''} />;
 }
