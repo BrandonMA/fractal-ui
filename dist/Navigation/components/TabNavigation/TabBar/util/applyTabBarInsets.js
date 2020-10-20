@@ -1,6 +1,6 @@
 export function applyTabBarInsets(props) {
     var _a;
-    var insets = (_a = props.insets) !== null && _a !== void 0 ? _a : {
+    var insets = (_a = props.tabBarInsets) !== null && _a !== void 0 ? _a : {
         top: 0,
         right: 0,
         bottom: 0,

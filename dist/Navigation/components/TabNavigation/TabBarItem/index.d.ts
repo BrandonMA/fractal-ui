@@ -1,4 +1,4 @@
-export * from './TabBarItemVariants';
+export * from './types';
 export * from './util';
+export * from './variants';
 export * from './TabBarItem';
-export * from './TabBarItemVariant';

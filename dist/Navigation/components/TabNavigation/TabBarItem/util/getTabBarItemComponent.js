@@ -1,5 +1,5 @@
-import { BasicTabBarItem } from '../TabBarItemVariants/BasicTabBarItem';
-import { CircularTabBarItem } from '../TabBarItemVariants/CircularTabBarItem';
+import { BasicTabBarItem } from '../variants/BasicTabBarItem';
+import { CircularTabBarItem } from '../variants/CircularTabBarItem';
 export function getTabBarItemComponent(variant) {
     return variant === 'circular' ? CircularTabBarItem : BasicTabBarItem;
 }

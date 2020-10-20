@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NavigationBarInsetsContext } from '../components';
-import { TabBarInsetsContext } from '../components/TabNavigation/TabBarInsetsProvider';
+import { TabBarInsetsContext } from '../components/TabNavigation/TabBar/TabBarInsetsProvider';
 export function useNavigationInsets() {
     var insets = useSafeAreaInsets();
     var tabBarInsets = useContext(TabBarInsetsContext);

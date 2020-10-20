@@ -1,7 +1,7 @@
 import React from 'react';
 import { PressableProps } from 'react-native';
-import { CircularTabBarItemProps } from '../TabBarItemVariants/CircularTabBarItem';
-import { TabBarItemVariant } from '../TabBarItemVariant';
+import { CircularTabBarItemProps } from '../variants/CircularTabBarItem';
+import { TabBarItemVariant } from '../types/TabBarItemVariant';
 interface Props extends Omit<PressableProps, 'children'>, CircularTabBarItemProps {
     children: React.ReactNode;
 }

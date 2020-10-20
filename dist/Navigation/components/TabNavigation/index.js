@@ -1,7 +1,6 @@
 export * from './TabBar';
 export * from './TabBarItem';
-export * from './TabBarInsetsProvider';
-export * from './TabScreenContent';
 export * from './TabNavigator';
 export * from './TabScreen';
+export * from './TabScreenContent';
 //# sourceMappingURL=index.js.map

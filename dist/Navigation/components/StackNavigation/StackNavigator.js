@@ -29,7 +29,6 @@ import { matchPath, useLocation } from '../../../ReactRouter';
 import { useMatch } from '../../hooks/useMatch';
 import styled from 'styled-components/native';
 import { ScreenStack } from './ScreenStack';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationBarInsetsProvider } from './NavigationBarInsetsProvider';
 var StyledScreenStack = styled(ScreenStack)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    flex: 1;\n"], ["\n    flex: 1;\n"])));
 export function StackNavigator(props) {
@@ -52,7 +51,7 @@ export function StackNavigator(props) {
             setPrevChildren(childrenToRender);
         }
     }, [childrenToRender, active]);
-    return (React.createElement(SafeAreaProvider, null,
+    return (React.createElement(React.Fragment, null,
         React.createElement(NavigationBarInsetsProvider, null,
             React.createElement(StyledScreenStack, __assign({}, others), active ? childrenToRender : prevChildren))));
 }

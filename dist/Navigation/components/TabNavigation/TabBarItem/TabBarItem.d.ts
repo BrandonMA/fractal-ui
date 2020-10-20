@@ -1,8 +1,7 @@
 import { ReactElement } from 'react';
 import { PressableProps } from 'react-native';
-import { TabBarItemVariant } from './TabBarItemVariant';
-import { LayoutProps } from '../../../../Layout/types/LayoutProps';
-export interface TabBarItemProps extends PressableProps, LayoutProps {
+import { TabBarItemVariant } from './types/TabBarItemVariant';
+export interface TabBarItemProps extends PressableProps {
     path?: string;
     activeColor?: string;
     inactiveColor?: string;

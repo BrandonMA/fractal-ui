@@ -3,7 +3,7 @@ import { useActivePath } from './useActivePath';
 export function useMatch(path) {
     var active = useActivePath(path);
     var location = useLocation();
-    if (active === true) {
+    if (active) {
         return [true, 1];
     }
     else {

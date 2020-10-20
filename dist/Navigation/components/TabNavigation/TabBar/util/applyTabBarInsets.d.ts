@@ -1,2 +1,2 @@
-import { LayoutProps } from '../../../../../Layout/types/LayoutProps';
-export declare function applyTabBarInsets(props: LayoutProps): string;
+import { TabBarLayoutProps } from '../types';
+export declare function applyTabBarInsets(props: TabBarLayoutProps): string;

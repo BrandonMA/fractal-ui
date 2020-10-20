@@ -1,0 +1,1 @@
+{"version":3,"file":"useTabBarConfig.js","sourceRoot":"","sources":["../../../../../../src/Navigation/components/TabNavigation/TabBar/hooks/useTabBarConfig.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,OAAO,CAAC;AACnC,OAAO,EAAE,mBAAmB,EAA2B,MAAM,yBAAyB,CAAC;AAEvF,MAAM,UAAU,eAAe;IAC3B,OAAO,UAAU,CAAC,mBAAmB,CAAC,CAAC;AAC3C,CAAC"}
