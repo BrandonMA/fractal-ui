@@ -2,7 +2,7 @@ import React, { useCallback, ReactElement, useState, useEffect } from 'react';
 import { PressableProps } from 'react-native';
 import { useHistory, useLocation } from '../../../../ReactRouter';
 import { useMatch } from '../../../hooks/useMatch';
-import { TabBarItemVariant } from './TabBarItemVariant';
+import { TabBarItemVariant } from './types/TabBarItemVariant';
 import { getTabBarItemComponent } from './util/getTabBarItemComponent';
 import { getTabIconSize } from './util/getTabIconSize';
 import { getTabBarItemColorForState } from './util/getTabBarItemColorForState';

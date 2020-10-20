@@ -5,7 +5,7 @@ const initialValue = Object.freeze<TabBarConfig>({
     tabBarVariant: 'basic',
     tabBarPosition: 'bottom',
     itemActiveColor: '#1281FF',
-    itemInactiveColor: '#999',
+    itemInactiveColor: '#999999',
     tabBarHidden: false
 });
 
