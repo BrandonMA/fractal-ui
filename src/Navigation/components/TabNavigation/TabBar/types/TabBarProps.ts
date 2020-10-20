@@ -1,8 +1,5 @@
-import { ViewProps } from 'react-native';
-import { LayoutProps } from '../../../../../Layout/types/LayoutProps';
-import { TabBarVariant } from './TabBarVariant';
+import { Animated, ViewProps } from 'react-native';
 
-export interface TabBarProps extends Omit<ViewProps, 'children'>, LayoutProps, TabBarConfig {
+export interface TabBarProps extends Omit<Animated.AnimatedProps<ViewProps>, 'children'> {
     children?: Array<JSX.Element> | JSX.Element;
-    variant?: TabBarVariant;
 }

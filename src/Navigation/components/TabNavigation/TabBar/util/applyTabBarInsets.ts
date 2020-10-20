@@ -1,7 +1,7 @@
-import { LayoutProps } from '../../../../../Layout/types/LayoutProps';
+import { TabBarLayoutProps } from '../types';
 
-export function applyTabBarInsets(props: LayoutProps): string {
-    const insets = props.insets ?? {
+export function applyTabBarInsets(props: TabBarLayoutProps): string {
+    const insets = props.tabBarInsets ?? {
         top: 0,
         right: 0,
         bottom: 0,

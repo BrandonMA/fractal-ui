@@ -1,9 +1,9 @@
 import styled from 'styled-components/native';
-import { LayoutProps } from '../../../../../Layout/types/LayoutProps';
+import { TabBarConfig } from '../../TabBar/types';
 import { getTabBarAbsolutePosition } from '../../TabBar/util/getTabBarAbsolutePosition';
 import { SharedTabBarItemStyles } from './SharedTabBarItemStyles';
 
-export interface CircularTabBarItemProps extends LayoutProps {
+export interface CircularTabBarItemProps extends TabBarConfig {
     bg?: string;
 }
 

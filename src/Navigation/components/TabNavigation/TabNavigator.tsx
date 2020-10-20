@@ -1,14 +1,12 @@
 import React, { useMemo } from 'react';
 import { ScreenContainer, ScreenContainerProps } from 'react-native-screens';
-import { TabBarItem, TabBarItemProps } from './TabBarItem/TabBarItem';
+import { TabBarItem } from './TabBarItem/TabBarItem';
 import { TabScreenContent } from './TabScreenContent';
 import styled from 'styled-components/native';
-import { TabBarVariant } from './TabBar/types/TabBarVariant';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Redirect, Route } from '../../../ReactRouter';
-import { TabBarInsetsProvider } from './TabBarInsetsProvider';
-import { TabBar } from './TabBar';
-import { LayoutProps } from '../../../Layout/types/LayoutProps';
+import { SafeAreaProvider, initialWindowMetrics } from 'react-native-safe-area-context';
+import { Redirect } from '../../../ReactRouter';
+import { TabBarInsetsProvider } from './TabBar/TabBarInsetsProvider';
+import { TabBar, TabBarConfig } from './TabBar';
 import { TabBarConfigProvider } from './TabBar/TabBarConfigProvider';
 
 const Container = styled.View`
@@ -20,24 +18,21 @@ const StyledScreenContainer = styled(ScreenContainer)`
     flex: 1;
 `;
 
-export interface TabNavigatorProps extends ScreenContainerProps, LayoutProps {
+export interface TabNavigatorProps extends ScreenContainerProps {
     children: Array<JSX.Element> | JSX.Element;
     defaultRoute?: string;
-    variant?: TabBarVariant;
-    activeColor?: string;
-    inactiveColor?: string;
     tabBarConfig?: TabBarConfig;
 }
 
 export function TabNavigator(props: TabNavigatorProps): JSX.Element {
-    const { defaultRoute, tabBarConfig, children, variant, tabBarPosition, activeColor, inactiveColor, ...others } = props;
+    const { defaultRoute, tabBarConfig, children, ...others } = props;
 
     const [content, tabItems, firstChildPath] = useMemo(() => {
         const content: Array<JSX.Element> = [];
         const tabItems: Array<JSX.Element> = [];
         let firstChildPath = '';
 
-        React.Children.map(children, (child, index) => {
+        React.Children.forEach(children, (child, index) => {
             const { path } = child.props;
 
             if (index === 0) {
@@ -52,13 +47,9 @@ export function TabNavigator(props: TabNavigatorProps): JSX.Element {
                     });
                     content.push(newChild);
                 } else if (subChild.type.name === TabBarItem.name) {
-                    const props = subChild.props as TabBarItemProps;
                     const newChild = React.cloneElement(subChild, {
                         path,
-                        key: path,
-                        activeColor: props.activeColor ?? activeColor,
-                        inactiveColor: props.inactiveColor ?? inactiveColor,
-                        tabBarPosition: props.tabBarPosition ?? tabBarPosition
+                        key: path
                     });
                     tabItems.push(newChild);
                 }
@@ -66,22 +57,16 @@ export function TabNavigator(props: TabNavigatorProps): JSX.Element {
         });
 
         return [content, tabItems, firstChildPath];
-    }, [children, activeColor, inactiveColor, tabBarPosition]);
+    }, [children]);
 
     return (
-        <SafeAreaProvider>
+        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
             <TabBarConfigProvider config={tabBarConfig}>
                 <TabBarInsetsProvider>
                     <Container>
                         <StyledScreenContainer {...others}>{content}</StyledScreenContainer>
-                        {firstChildPath != '/' ? (
-                            <Route path='/'>
-                                <Redirect to={defaultRoute ?? firstChildPath} />
-                            </Route>
-                        ) : null}
-                        <TabBar variant={variant} tabBarPosition={tabBarPosition ?? 'bottom'}>
-                            {tabItems}
-                        </TabBar>
+                        <Redirect exact from='/' to={defaultRoute ?? firstChildPath} />
+                        <TabBar>{tabItems}</TabBar>
                     </Container>
                 </TabBarInsetsProvider>
             </TabBarConfigProvider>

@@ -4,7 +4,6 @@ import { useMatch } from '../../hooks/useMatch';
 import { NavigationRouteProps } from '../NavigationRoute';
 import styled from 'styled-components/native';
 import { ScreenStack, ScreenStackProps } from './ScreenStack';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationBarInsetsProvider } from './NavigationBarInsetsProvider';
 
 const StyledScreenStack = styled(ScreenStack)`
@@ -41,10 +40,10 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
     }, [childrenToRender, active]);
 
     return (
-        <SafeAreaProvider>
+        <>
             <NavigationBarInsetsProvider>
                 <StyledScreenStack {...others}>{active ? childrenToRender : prevChildren}</StyledScreenStack>
             </NavigationBarInsetsProvider>
-        </SafeAreaProvider>
+        </>
     );
 }

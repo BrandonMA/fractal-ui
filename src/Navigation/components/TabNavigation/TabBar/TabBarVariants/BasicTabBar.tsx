@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Animated } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 import { applyDimensionBasedOnTabBarPosition } from '../util/applyDimensionBasedOnTabBarPosition';
@@ -7,36 +7,34 @@ import { applyTabBarInsets } from '../util/applyTabBarInsets';
 import { getTabBarAbsolutePosition } from '../util/getTabBarAbsolutePosition';
 import { getValueBasedOnTabBarPosition } from '../util/getValueBasedOnTabBarPosition';
 import { TabBarProps } from '../types/TabBarProps';
+import { TabBarLayoutProps } from '../types';
+import { useTabBarConfig } from '../hooks';
 
-const SharedStyles = styled(View)`
+const SharedStyles = styled(Animated.View)`
     justify-content: space-evenly;
     position: absolute;
     background-color: white;
-    flex-direction: ${(props: TabBarProps) => getValueBasedOnTabBarPosition('row', 'column', props.tabBarPosition)};
-    opacity: ${(props: TabBarProps) => (props.hidden ? 0 : 1)};
-    ${(props: TabBarProps) => getTabBarAbsolutePosition(props.tabBarPosition, 0)};
+    flex-direction: ${(props: TabBarLayoutProps) => getValueBasedOnTabBarPosition('row', 'column', props.tabBarPosition)};
+
+    ${(props: TabBarLayoutProps) => getTabBarAbsolutePosition(props.tabBarPosition, 0)};
     ${applyTabBarInsets};
     ${applyDimensionBasedOnTabBarPosition};
 `;
 
 const HorizontalContainer = styled(SharedStyles)`
-    box-shadow: ${(props: TabBarProps) => (props.tabBarPosition === 'bottom' ? '0px -1px' : '0px 1px')} 4px rgba(0, 0, 0, 0.08);
+    box-shadow: ${(props: TabBarLayoutProps) => (props.tabBarPosition === 'bottom' ? '0px -1px' : '0px 1px')} 4px rgba(0, 0, 0, 0.08);
 `;
 
 const VerticalContainer = styled(SharedStyles)`
-    box-shadow: ${(props: TabBarProps) => (props.tabBarPosition === 'right' ? '-1px 0px' : '1px 0px')} 4px rgba(0, 0, 0, 0.08);
+    box-shadow: ${(props: TabBarLayoutProps) => (props.tabBarPosition === 'right' ? '-1px 0px' : '1px 0px')} 4px rgba(0, 0, 0, 0.08);
 `;
 
 function BaseBasicTabBar(props: TabBarProps): JSX.Element {
-    const { children, ...others } = props;
-    const insets = useSafeAreaInsets();
-    const Container = getValueBasedOnTabBarPosition(HorizontalContainer, VerticalContainer, props.tabBarPosition);
+    const { config } = useTabBarConfig();
+    const insets = useSafeAreaInsets(); // Do not confuse this insets with the ones provided by the TabBar itself. This are only safe are insets.
+    const Container = getValueBasedOnTabBarPosition(HorizontalContainer, VerticalContainer, config.tabBarPosition);
 
-    return (
-        <Container {...others} insets={insets}>
-            {children}
-        </Container>
-    );
+    return <Container {...props} {...config} tabBarInsets={insets} />;
 }
 
 export const BasicTabBar = React.memo(BaseBasicTabBar);
