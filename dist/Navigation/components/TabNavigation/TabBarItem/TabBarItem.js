@@ -40,7 +40,7 @@ export function TabBarItem(props) {
     var location = useLocation();
     var history = useHistory();
     var active = useMatch(path)[0];
-    var color = getTabBarItemColorForState(active, activeColor !== null && activeColor !== void 0 ? activeColor : config.itemActiveColor, inactiveColor !== null && inactiveColor !== void 0 ? inactiveColor : config.itemInactiveColor, variant);
+    var color = getTabBarItemColorForState(active, activeColor !== null && activeColor !== void 0 ? activeColor : config.activeItemColor, inactiveColor !== null && inactiveColor !== void 0 ? inactiveColor : config.inactiveItemColor, variant);
     var TabBarItemContainer = getTabBarItemComponent(variant);
     var iconSize = getTabIconSize(variant);
     var goToTab = useCallback(function () {

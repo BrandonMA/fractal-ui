@@ -7,7 +7,7 @@ export interface TabBarConfigContextType {
 export declare const TabBarConfigContext: React.Context<TabBarConfigContextType>;
 interface Props {
     children: JSX.Element | Array<JSX.Element> | Array<React.ReactNode>;
-    config?: TabBarConfig;
+    config: TabBarConfig;
 }
 export declare function TabBarConfigProvider(props: Props): JSX.Element;
 export {};

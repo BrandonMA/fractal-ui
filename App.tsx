@@ -1,11 +1,10 @@
 import React from 'react';
 import { enableScreens } from 'react-native-screens';
-import { NavigationRouter, TabBar, TabBarItem, TabNavigator, TabScreen } from './src';
+import { NavigationRouter, TabBar, TabBarItem, TabNavigator, TabScreen, useDefaultTabBarConfig } from './src';
 import { registerRootComponent } from 'expo';
 import { BookStackNavigator } from './examples/stackNavigators/BookStackNavigator';
 import { HomeStackNavigator } from './examples/stackNavigators/HomeStackNavigator';
 import { Ionicons } from '@expo/vector-icons';
-import { useDefaultTabBarConfig } from './src/Navigation/components/TabNavigation/TabBar/hooks/useDefaultTabBarConfig';
 
 enableScreens();
 

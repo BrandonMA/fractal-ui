@@ -31,7 +31,7 @@ var MiddleContainer = styled(Animated.View)(templateObject_4 || (templateObject_
 var MiddleActionImageContainer = styled.View(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n    z-index: 1000;\n"], ["\n    z-index: 1000;\n"])));
 var MiddleActionImageContainerFiller = styled.View(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n    flex-grow: 1;\n    background-color: white;\n"], ["\n    flex-grow: 1;\n    background-color: white;\n"])));
 var MiddleActionImage = styled.Image(templateObject_7 || (templateObject_7 = __makeTemplateObject(["\n    width: ", ";\n    height: ", ";\n"], ["\n    width: ", ";\n    height: ", ";\n"])), function (props) { return getValueBasedOnTabBarPosition('88px', '60px', props.tabBarPosition); }, function (props) { return getValueBasedOnTabBarPosition('60px', '88px', props.tabBarPosition); });
-function BaseMiddleActionTabBar(props) {
+export function MiddleActionTabBar(props) {
     var children = props.children, style = props.style;
     var config = useTabBarConfig().config;
     var tabBarInsets = useSafeAreaInsets();
@@ -71,6 +71,5 @@ function BaseMiddleActionTabBar(props) {
                     React.createElement(MiddleActionImageContainerFiller, null)),
                 React.createElement(SideView, __assign({}, layoutProps), rightChildren)))));
 }
-export var MiddleActionTabBar = React.memo(BaseMiddleActionTabBar);
 var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7;
 //# sourceMappingURL=MiddleActionTabBar.js.map

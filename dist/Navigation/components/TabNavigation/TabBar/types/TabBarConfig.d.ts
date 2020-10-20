@@ -3,7 +3,7 @@ import { TabBarVariant } from './TabBarVariant';
 export interface TabBarConfig {
     tabBarVariant: TabBarVariant;
     tabBarPosition: TabBarPosition;
-    itemActiveColor: string;
-    itemInactiveColor: string;
+    activeItemColor: string;
+    inactiveItemColor: string;
     tabBarHidden?: boolean;
 }

@@ -20,15 +20,12 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useHistory } from '../../../ReactRouter';
 import { NavigationRoute } from '../NavigationRoute';
 export function StackScreen(props) {
     var visibleOnStack = props.visibleOnStack, initialScreen = props.initialScreen, children = props.children, others = __rest(props, ["visibleOnStack", "initialScreen", "children"]);
     var history = useHistory();
-    var handleGoBack = useCallback(function () {
-        history.goBack();
-    }, [history]);
-    return (React.createElement(NavigationRoute, __assign({}, others, { onDismissed: handleGoBack }), children));
+    return (React.createElement(NavigationRoute, __assign({}, others, { onDismissed: history.goBack }), children));
 }
 //# sourceMappingURL=StackScreen.js.map
