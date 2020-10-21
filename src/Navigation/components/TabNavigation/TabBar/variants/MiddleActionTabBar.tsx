@@ -8,8 +8,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { applyTabBarInsets } from '../util/applyTabBarInsets';
 import { applyDimensionBasedOnTabBarPosition } from '../util/applyDimensionBasedOnTabBarPosition';
 import { getImageBasedOnPosition } from '../assets/getImageBasedOnPosition';
-import { TabBarConfig, TabBarLayoutProps } from '../types';
-import { useTabBarConfig } from '../hooks';
+import { TabBarLayoutProps } from '../types/TabBarLayoutProps';
+import { TabBarConfig } from '../types/TabBarConfig';
+import { useTabBarConfig } from '../hooks/useTabBarConfig';
 
 const Container = styled(Animated.View)`
     position: absolute;

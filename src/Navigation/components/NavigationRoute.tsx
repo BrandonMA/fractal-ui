@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { Screen, ScreenProps, StackPresentationTypes } from 'react-native-screens';
 import { useMatch } from '../hooks/useMatch';
 import { Route } from '../../ReactRouter';
@@ -18,7 +18,7 @@ export interface NavigationRouteProps extends Omit<ScreenProps, 'stackPresentati
 export function NavigationRoute(props: NavigationRouteProps): JSX.Element {
     const { path, style, children, stackPresentation, ...others } = props;
     const [active] = useMatch(path);
-    const renderChildren = useMemo(() => children, [children]);
+    const renderChildren = useCallback(() => children, [children]);
 
     return (
         <StyledScreen

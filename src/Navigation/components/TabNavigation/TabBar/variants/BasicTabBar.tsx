@@ -2,12 +2,8 @@ import React from 'react';
 import { Animated } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import { applyDimensionBasedOnTabBarPosition } from '../util/applyDimensionBasedOnTabBarPosition';
-import { applyTabBarInsets } from '../util/applyTabBarInsets';
-import { getTabBarAbsolutePosition } from '../util/getTabBarAbsolutePosition';
-import { getValueBasedOnTabBarPosition } from '../util/getValueBasedOnTabBarPosition';
-import { TabBarProps } from '../types/TabBarProps';
-import { TabBarLayoutProps } from '../types';
+import { applyTabBarInsets, getValueBasedOnTabBarPosition, getTabBarAbsolutePosition, applyDimensionBasedOnTabBarPosition } from '../util';
+import { TabBarProps, TabBarLayoutProps } from '../types';
 import { useTabBarConfig } from '../hooks';
 
 const SharedStyles = styled(Animated.View)`

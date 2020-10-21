@@ -6,6 +6,7 @@ import { ToggleTabBar } from './ToggleTabBar';
 export function Home(): JSX.Element {
     const history = useHistory();
     const goToSettings = useCallback(() => history.push('/home/settings'), []);
+    const goToProfile = useCallback(() => history.push('/profile'), []);
 
     return (
         <>
@@ -14,6 +15,9 @@ export function Home(): JSX.Element {
                 <SafeAreaFullScreen>
                     <Pressable onPress={goToSettings}>
                         <Text>Settings</Text>
+                    </Pressable>
+                    <Pressable onPress={goToProfile}>
+                        <Text>Profile</Text>
                     </Pressable>
                     <ToggleTabBar />
                 </SafeAreaFullScreen>

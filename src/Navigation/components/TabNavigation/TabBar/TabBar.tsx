@@ -21,7 +21,7 @@ export function TabBar(props: TabBarProps): JSX.Element {
         (hidden: boolean) => {
             Animated.spring(animatedValue, { toValue: hidden ? insets.bottom + 62 : 0, useNativeDriver: Platform.OS !== 'web' }).start();
         },
-        [insets]
+        [insets, animatedValue]
     );
 
     useEffect(() => {
