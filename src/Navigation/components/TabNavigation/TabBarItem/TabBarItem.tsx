@@ -1,4 +1,4 @@
-import React, { useCallback, ReactElement, useState, useEffect } from 'react';
+import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import { PressableProps } from 'react-native';
 import { useHistory, useLocation } from '../../../../ReactRouter';
 import { useMatch } from '../../../hooks/useMatch';
@@ -8,6 +8,10 @@ import { getTabIconSize } from './util/getTabIconSize';
 import { getTabBarItemColorForState } from './util/getTabBarItemColorForState';
 import { useTabBarConfig } from '../TabBar/hooks';
 import styled from 'styled-components/native';
+import { useWidthSizeGroup } from '../../../../SizeClass/hooks';
+import { Size } from '../../../../SizeClass/types';
+import { Spacer } from '../../../../Layout/components/Spacer';
+import { getValueForLargeSize } from '../../../../SizeClass/util';
 
 export interface TabBarItemProps extends PressableProps {
     title: string;
@@ -41,6 +45,9 @@ export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps
     );
     const TabBarItemContainer = getTabBarItemComponent(variant);
     const iconSize = getTabIconSize(variant);
+    const group = useWidthSizeGroup();
+    const size = group != null ? group[0] : Size.compact;
+    const spacerSize = getValueForLargeSize(size, { width: 8, height: 1 }, { width: 0, height: 0 });
 
     const goToTab = useCallback(() => {
         if (path != null) {
@@ -59,8 +66,9 @@ export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps
     }, [path, active, location.pathname]);
 
     return (
-        <TabBarItemContainer {...others} {...config} onPress={goToTab} bg={activeColor}>
+        <TabBarItemContainer {...others} {...config} onPress={goToTab} bg={activeColor} sizeGroup={group}>
             {children(color, iconSize)}
+            <Spacer width={spacerSize.width} height={spacerSize.height} />
             {variant === 'circular' ? null : <StyledText color={color}>{title}</StyledText>}
         </TabBarItemContainer>
     );

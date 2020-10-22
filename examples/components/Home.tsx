@@ -1,7 +1,18 @@
-import { NavigationBar, SafeAreaFullScreen, StackScreenContent, useHistory } from '../../src';
+import { NavigationBar, FullScreenScrollView, StackScreenContent, useHistory } from '../../src';
 import React, { useCallback } from 'react';
 import { Pressable, Text } from 'react-native';
 import { ToggleTabBar } from './ToggleTabBar';
+import styled from 'styled-components/native';
+
+const StyledScrollView = styled(FullScreenScrollView)`
+    background-color: red;
+`;
+
+const StyledPressable = styled(Pressable)`
+    height: 400px;
+    background-color: white;
+    margin-bottom: 10px;
+`;
 
 export function Home(): JSX.Element {
     const history = useHistory();
@@ -12,15 +23,15 @@ export function Home(): JSX.Element {
         <>
             <NavigationBar hidden={false} title='Home' />
             <StackScreenContent>
-                <SafeAreaFullScreen>
-                    <Pressable onPress={goToSettings}>
+                <StyledScrollView>
+                    <StyledPressable onPress={goToSettings}>
                         <Text>Settings</Text>
-                    </Pressable>
-                    <Pressable onPress={goToProfile}>
+                    </StyledPressable>
+                    <StyledPressable onPress={goToProfile}>
                         <Text>Profile</Text>
-                    </Pressable>
+                    </StyledPressable>
                     <ToggleTabBar />
-                </SafeAreaFullScreen>
+                </StyledScrollView>
             </StackScreenContent>
         </>
     );
