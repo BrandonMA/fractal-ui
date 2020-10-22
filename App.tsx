@@ -29,8 +29,8 @@ function App(): JSX.Element {
 
     return (
         <NavigationRouter>
-            <StackNavigator path='/'>
-                <StackScreen path='/'>
+            <StackNavigator>
+                <StackScreen>
                     <TabNavigator
                         defaultRoute={basePaths.home}
                         tabBarConfig={defaultTabBarConfig}

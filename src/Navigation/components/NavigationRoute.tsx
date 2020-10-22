@@ -10,14 +10,15 @@ const StyledScreen = styled(Screen)`
 `;
 
 export interface NavigationRouteProps extends Omit<ScreenProps, 'stackPresentation' | 'active'> {
-    path: string;
+    path?: string;
     children?: Array<JSX.Element> | JSX.Element;
     stackPresentation?: StackPresentationTypes;
 }
 
 export function NavigationRoute(props: NavigationRouteProps): JSX.Element {
     const { path, style, children, stackPresentation, ...others } = props;
-    const [active] = useMatch(path);
+    const basepath = path ?? '/';
+    const [active] = useMatch(basepath);
     const renderChildren = useCallback(() => children, [children]);
 
     return (
@@ -27,7 +28,7 @@ export function NavigationRoute(props: NavigationRouteProps): JSX.Element {
             stackPresentation={stackPresentation ?? 'push'}
             style={[StyleSheet.absoluteFill, style]}
         >
-            <Route path={path}>{renderChildren}</Route>
+            <Route path={basepath}>{renderChildren}</Route>
         </StyledScreen>
     );
 }

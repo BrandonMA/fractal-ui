@@ -7,6 +7,5 @@ export interface TabScreenProps {
 }
 
 export function TabScreen(props: TabScreenProps): ReactElement<TabScreenProps> {
-    const { path, ...others } = props;
-    return <NavigationRoute {...others} path={path ?? ''} />;
+    return <NavigationRoute {...props} />;
 }

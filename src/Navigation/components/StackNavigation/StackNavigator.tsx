@@ -18,7 +18,7 @@ export interface StackNavigatorProps extends Omit<ScreenStackProps, 'children'> 
 export function StackNavigator(props: StackNavigatorProps): JSX.Element {
     const { path, children, ...others } = props;
     const location = useLocation();
-    const [active] = useMatch(path);
+    const [active] = useMatch(path ?? '/');
     const [prevChildren, setPrevChildren] = useState<Array<JSX.Element>>([]);
 
     const childrenToRender = useMemo(() => {
