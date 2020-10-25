@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, createContext, ReactNode } from 'react';
 import { EdgeInsets } from 'react-native-safe-area-context';
 
 interface TabBarInsetsContextType {
@@ -6,7 +6,7 @@ interface TabBarInsetsContextType {
     insets: { top: number; right: number; bottom: number; left: number };
 }
 
-export const TabBarInsetsContext = React.createContext<TabBarInsetsContextType>({
+export const TabBarInsetsContext = createContext<TabBarInsetsContextType>({
     setInsets: () => {
         return;
     },
@@ -14,7 +14,7 @@ export const TabBarInsetsContext = React.createContext<TabBarInsetsContextType>(
 });
 
 interface Props {
-    children: JSX.Element | Array<JSX.Element> | Array<React.ReactNode>;
+    children: JSX.Element | Array<JSX.Element> | Array<ReactNode>;
 }
 
 export function TabBarInsetsProvider(props: Props): JSX.Element {

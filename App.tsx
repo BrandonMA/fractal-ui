@@ -1,7 +1,7 @@
 import React from 'react';
 import { enableScreens } from 'react-native-screens';
 import {
-    NavigationRouter,
+    NavigationRoot,
     StackNavigator,
     StackScreen,
     StackScreenContent,
@@ -21,14 +21,17 @@ enableScreens();
 
 const basePaths = {
     home: '/home',
+    types: '/types',
     book: '/book'
 };
 
 function App(): JSX.Element {
-    const defaultTabBarConfig = useDefaultTabBarConfig();
+    const defaultTabBarConfig = useDefaultTabBarConfig({
+        tabBarVariant: 'middle-action'
+    });
 
     return (
-        <NavigationRouter>
+        <NavigationRoot>
             <StackNavigator>
                 <StackScreen>
                     <TabNavigator
@@ -39,6 +42,9 @@ function App(): JSX.Element {
                                 <TabBarItem path={basePaths.home} title='Home'>
                                     {(color, size) => <Ionicons name='ios-home' size={size} color={color} />}
                                 </TabBarItem>
+                                <TabBarItem path={basePaths.types} activeColor='#0FD630' title='Home' variant='circular'>
+                                    {(color, size) => <Ionicons name='ios-home' size={size} color={color} />}
+                                </TabBarItem>
                                 <TabBarItem path={basePaths.book} title='Book'>
                                     {(color, size) => <Ionicons name='ios-book' size={size} color={color} />}
                                 </TabBarItem>
@@ -46,6 +52,9 @@ function App(): JSX.Element {
                         }
                     >
                         <TabScreen path={basePaths.home}>
+                            <HomeStackNavigator />
+                        </TabScreen>
+                        <TabScreen path={basePaths.types}>
                             <HomeStackNavigator />
                         </TabScreen>
                         <TabScreen path={basePaths.book}>
@@ -59,7 +68,7 @@ function App(): JSX.Element {
                     </StackScreenContent>
                 </StackScreen>
             </StackNavigator>
-        </NavigationRouter>
+        </NavigationRoot>
     );
 }
 

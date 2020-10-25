@@ -1,20 +1,25 @@
 import { matchPath, useLocation } from '../../ReactRouter';
-import { useActivePath } from './useActivePath';
+import { useLayoutEffect, useState } from 'react';
 
 export function useMatch(path: string | undefined): [boolean, number] {
-    const active = useActivePath(path);
-    const location = useLocation();
+    const { pathname } = useLocation();
+    const [matchValue, setMatchValue] = useState<[boolean, number]>([false, 0]);
 
-    if (active) {
-        return [true, 1];
-    } else {
-        const match = matchPath(location.pathname, {
-            path
-        });
-        if (match != null) {
-            const stackRouteTitles = location.pathname.substring(1).split('/'); // Remove initial / before split.
-            return [true, stackRouteTitles.length];
+    useLayoutEffect(() => {
+        if (pathname === path) {
+            setMatchValue([true, 1]);
+        } else {
+            const match = matchPath(pathname, {
+                path
+            });
+            if (match != null) {
+                const stackRouteTitles = pathname.substring(1).split('/'); // Remove initial / before split.
+                setMatchValue([true, stackRouteTitles.length]);
+            } else {
+                setMatchValue([false, 0]);
+            }
         }
-        return [match != null, 0];
-    }
+    }, [pathname, path]);
+
+    return matchValue;
 }

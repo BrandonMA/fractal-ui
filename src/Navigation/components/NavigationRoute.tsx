@@ -1,9 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { Screen, ScreenProps, StackPresentationTypes } from 'react-native-screens';
 import { useMatch } from '../hooks/useMatch';
 import { Route } from '../../ReactRouter';
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
+import { CurrentPresentationTypeContext } from './CurrentPresentationTypeProvider';
+import { usePrevValue } from '../../util/usePrevValue';
 
 const StyledScreen = styled(Screen)`
     background-color: white;
@@ -20,11 +22,13 @@ export function NavigationRoute(props: NavigationRouteProps): JSX.Element {
     const basepath = path ?? '/';
     const [active] = useMatch(basepath);
     const renderChildren = useCallback(() => children, [children]);
+    const prevValue = usePrevValue(active);
+    const { type } = useContext(CurrentPresentationTypeContext);
 
     return (
         <StyledScreen
             {...others}
-            active={active ? 1 : 0}
+            active={active || (prevValue && type === 'modal') ? 1 : 0}
             stackPresentation={stackPresentation ?? 'push'}
             style={[StyleSheet.absoluteFill, style]}
         >

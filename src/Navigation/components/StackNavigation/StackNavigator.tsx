@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState, Children } from 'react';
 import { matchPath, useLocation } from '../../../ReactRouter';
 import { useMatch } from '../../hooks/useMatch';
 import { NavigationRouteProps } from '../NavigationRoute';
@@ -22,8 +22,9 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
     const [prevChildren, setPrevChildren] = useState<Array<JSX.Element>>([]);
 
     const childrenToRender = useMemo(() => {
-        return React.Children.toArray(children).filter((child: JSX.Element) => {
-            const path = (child.props as NavigationRouteProps).path ?? '/';
+        return Children.toArray(children).filter((child: JSX.Element) => {
+            const props = child.props as NavigationRouteProps;
+            const path = props.path ?? '/';
 
             const match = matchPath(location.pathname, {
                 path

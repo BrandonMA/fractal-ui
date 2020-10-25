@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, createContext, ReactNode } from 'react';
 import { createTabBarConfig, TabBarConfig } from './types';
 
 export interface TabBarConfigContextType {
@@ -6,7 +6,7 @@ export interface TabBarConfigContextType {
     config: TabBarConfig;
 }
 
-export const TabBarConfigContext = React.createContext<TabBarConfigContextType>({
+export const TabBarConfigContext = createContext<TabBarConfigContextType>({
     setConfig: () => {
         return;
     },
@@ -14,7 +14,7 @@ export const TabBarConfigContext = React.createContext<TabBarConfigContextType>(
 });
 
 interface Props {
-    children: JSX.Element | Array<JSX.Element> | Array<React.ReactNode>;
+    children: JSX.Element | Array<JSX.Element> | Array<ReactNode>;
     config: TabBarConfig;
 }
 

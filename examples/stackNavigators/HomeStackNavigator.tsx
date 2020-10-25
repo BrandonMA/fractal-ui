@@ -6,7 +6,7 @@ import React from 'react';
 export function HomeStackNavigator(): JSX.Element {
     return (
         <StackNavigator path='/home'>
-            <StackScreen path=''>
+            <StackScreen>
                 <Home />
             </StackScreen>
             <StackScreen path='/home/settings'>

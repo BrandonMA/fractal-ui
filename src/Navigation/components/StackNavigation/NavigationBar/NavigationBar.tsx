@@ -70,7 +70,7 @@ const StyledBackButtonContainer = styled.TouchableOpacity`
 export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
     const { hidden, title, hideBackButton, children } = props;
     const navigationBarInsets = useContext(NavigationBarInsetsContext);
-    const history = useHistory();
+    const { goBack } = useHistory();
     const [, activeRoutes] = useMatch('/');
     const styleProps = createNavigationBarStyleProps(props);
 
@@ -102,7 +102,7 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
         <Container {...styleProps}>
             <LeftContainer>
                 {activeRoutes <= 1 || hideBackButton ? null : (
-                    <StyledBackButtonContainer onPress={history.goBack}>
+                    <StyledBackButtonContainer onPress={goBack}>
                         <ChevronLeft height={19} width={25} fill={styleProps.color ?? '#1281FF'} />
                         <StyledText {...styleProps}>{title}</StyledText>
                     </StyledBackButtonContainer>
