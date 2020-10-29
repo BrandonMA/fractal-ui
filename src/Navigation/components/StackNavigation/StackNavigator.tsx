@@ -5,6 +5,8 @@ import { NavigationRouteProps } from '../NavigationRoute';
 import styled from 'styled-components/native';
 import { ScreenStack, ScreenStackProps } from './ScreenStack';
 import { NavigationBarInsetsProvider } from './NavigationBarInsetsProvider';
+import { Platform } from 'react-native';
+import { StackScreenModal } from './StackScreenModal';
 
 const StyledScreenStack = styled(ScreenStack)`
     flex: 1;
@@ -22,7 +24,8 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
     const [prevChildren, setPrevChildren] = useState<Array<JSX.Element>>([]);
 
     const childrenToRender = useMemo(() => {
-        return Children.toArray(children).filter((child: JSX.Element) => {
+        let arrayOfChildren = Children.toArray(children) as Array<JSX.Element>;
+        arrayOfChildren = arrayOfChildren.filter((child: JSX.Element) => {
             const props = child.props as NavigationRouteProps;
             const path = props.path ?? '/';
 
@@ -31,7 +34,19 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
             });
 
             return match != null;
-        }) as Array<JSX.Element>;
+        });
+
+        if (Platform.OS === 'web') {
+            arrayOfChildren = arrayOfChildren.map((child) => {
+                const props = child.props as NavigationRouteProps;
+                if (props.stackPresentation === 'modal') {
+                    return <StackScreenModal key={props.path}>{child}</StackScreenModal>;
+                }
+                return child;
+            });
+        }
+
+        return arrayOfChildren;
     }, [children, location]);
 
     useEffect(() => {

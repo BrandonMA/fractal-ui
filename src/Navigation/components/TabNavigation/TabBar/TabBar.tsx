@@ -1,11 +1,11 @@
 import React, { useCallback, useContext, useEffect, useRef } from 'react';
 import { useTabBarInsets } from './hooks/useTabBarInsets';
 import { TabBarInsetsContext } from './TabBarInsetsProvider';
-import { getTabBarComponent } from './util/getTabBarComponent';
 import { TabBarProps } from './types';
 import { Animated, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTabBarConfig } from './hooks';
+import { getTabBarComponent } from './util/getTabBarComponent';
 
 export function TabBar(props: TabBarProps): JSX.Element {
     const { style, ...others } = props;

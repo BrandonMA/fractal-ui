@@ -1,9 +1,9 @@
 import React from 'react';
-import { ScrollView, ScrollViewProps, View } from 'react-native';
+import { Animated, ScrollViewProps } from 'react-native';
 import { useNavigationInsets } from '../../Navigation/hooks/useNavigationInsets';
 import styled from 'styled-components/native';
 
-const Container = styled(View)`
+const Container = styled(Animated.View)`
     flex: 1;
 `;
 
@@ -15,7 +15,7 @@ export function FullScreenScrollView(props: FullScreenScrollViewProps): JSX.Elem
     const { totalInsets, tabBarInsets } = useNavigationInsets();
     return (
         <Container>
-            <ScrollView
+            <Animated.ScrollView
                 {...props}
                 scrollIndicatorInsets={tabBarInsets}
                 contentContainerStyle={{

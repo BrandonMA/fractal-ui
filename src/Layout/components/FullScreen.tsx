@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, ViewProps } from 'react-native';
+import { Animated, ViewProps } from 'react-native';
 import styled from 'styled-components/native';
 import { applyFullScreenStyles } from '../util/applyFullScreenStyles';
 
-const Container = styled(View)`
+const Container = styled(Animated.View)`
     ${applyFullScreenStyles};
 `;
 
