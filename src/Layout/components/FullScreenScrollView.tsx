@@ -7,7 +7,7 @@ const Container = styled(Animated.View)`
     flex: 1;
 `;
 
-export interface FullScreenScrollViewProps extends Omit<ScrollViewProps, 'children'> {
+export interface FullScreenScrollViewProps extends Omit<Animated.AnimatedProps<ScrollViewProps>, 'children'> {
     children: React.ReactNode;
 }
 

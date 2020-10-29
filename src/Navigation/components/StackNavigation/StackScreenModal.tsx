@@ -1,17 +1,18 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import styled from 'styled-components/native';
 import { Animated, Pressable, StyleSheet } from 'react-native';
-import { useShowAnimation } from '../../../Animations/hooks';
+import { useHideAnimation, useShowAnimation } from '../../../Animations/hooks';
 import { useWidthSizeGroup } from '../../../SizeClass/hooks';
 import { Size } from '../../../SizeClass/types';
 import { useHistory } from '../../../ReactRouter';
 import { getValueForLargeSize } from '../../../SizeClass/util';
+import { SafeAreaFullScreen } from '../../../Layout/components/SafeAreaFullScreen';
 
 interface ContainerProps {
     size: Size;
 }
 
-const StyledContainer = styled(Animated.View)`
+const StyledContainer = styled(SafeAreaFullScreen)`
     justify-content: ${(props: ContainerProps) => (props.size === Size.large || props.size === Size.extraLarge ? 'center' : 'flex-start')};
     align-items: center;
 `;
@@ -37,8 +38,8 @@ const WhiteContentDesktop = styled(SharedStyles)`
 
 const WhiteContentPhone = styled(SharedStyles)`
     width: 90%;
-    height: 85%;
-    margin-top: 20px;
+    margin: 24px 0;
+    flex-grow: 1;
 `;
 
 interface StackScreenModalProps {
@@ -47,19 +48,24 @@ interface StackScreenModalProps {
 
 export function StackScreenModal(props: StackScreenModalProps): JSX.Element {
     const opacityValue = useRef(new Animated.Value(0)).current;
+    const { goBack } = useHistory();
     const show = useShowAnimation(opacityValue);
+    const hide = useHideAnimation(opacityValue, goBack);
     const widthSizeGroup = useWidthSizeGroup();
     const widthSize = widthSizeGroup != null ? widthSizeGroup[0] : Size.compact;
     const Wrapper = getValueForLargeSize(widthSize, WhiteContentDesktop, WhiteContentPhone);
-    const { goBack } = useHistory();
 
     useEffect(() => {
         show();
     }, [show]);
 
+    const handleGoBack = useCallback(() => {
+        hide();
+    }, [hide]);
+
     return (
         <StyledContainer size={widthSize} style={[StyleSheet.absoluteFill, { opacity: opacityValue }]}>
-            <Background onPress={goBack} style={[StyleSheet.absoluteFill]} />
+            <Background onPress={handleGoBack} style={[StyleSheet.absoluteFill]} />
             <Wrapper>{props.children}</Wrapper>
         </StyledContainer>
     );

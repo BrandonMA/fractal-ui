@@ -7,7 +7,7 @@ const Container = styled(Animated.View)`
     ${applyFullScreenStyles};
 `;
 
-export interface FullScreenProps extends Omit<ViewProps, 'children'> {
+export interface FullScreenProps extends Omit<Animated.AnimatedProps<ViewProps>, 'children'> {
     children: React.ReactNode;
 }
 
