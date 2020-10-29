@@ -6,13 +6,12 @@ import { useWidthSizeGroup } from '../../../SizeClass/hooks';
 import { Size } from '../../../SizeClass/types';
 import { useHistory } from '../../../ReactRouter';
 import { getValueForLargeSize } from '../../../SizeClass/util';
-import { SafeAreaFullScreen } from '../../../Layout/components/SafeAreaFullScreen';
 
 interface ContainerProps {
     size: Size;
 }
 
-const StyledContainer = styled(SafeAreaFullScreen)`
+const StyledContainer = styled(Animated.View)`
     justify-content: ${(props: ContainerProps) => (props.size === Size.large || props.size === Size.extraLarge ? 'center' : 'flex-start')};
     align-items: center;
 `;
@@ -38,8 +37,8 @@ const WhiteContentDesktop = styled(SharedStyles)`
 
 const WhiteContentPhone = styled(SharedStyles)`
     width: 90%;
-    margin: 24px 0;
-    flex-grow: 1;
+    height: 85%;
+    margin-top: 16px;
 `;
 
 interface StackScreenModalProps {
