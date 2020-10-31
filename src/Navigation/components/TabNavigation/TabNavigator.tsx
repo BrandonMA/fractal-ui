@@ -3,8 +3,8 @@ import { ScreenContainer, ScreenContainerProps } from 'react-native-screens';
 import styled from 'styled-components/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Redirect } from '../../../ReactRouter';
-import { TabBarInsetsProvider } from './TabBar/TabBarInsetsProvider';
-import { TabBarConfig, TabBarConfigProvider } from './TabBar';
+import { TabBarInsetsProvider } from './TabBarInsetsProvider';
+import { TabBarConfig, TabBarConfigProvider } from './TabBarConfigProvider';
 
 const Container = styled.View`
     flex: 1;

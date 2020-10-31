@@ -50,8 +50,7 @@ export function StackScreenModal(props: StackScreenModalProps): JSX.Element {
     const { goBack } = useHistory();
     const show = useShowAnimation(opacityValue);
     const hide = useHideAnimation(opacityValue, goBack);
-    const widthSizeGroup = useWidthSizeGroup();
-    const widthSize = widthSizeGroup != null ? widthSizeGroup[0] : Size.compact;
+    const [widthSize] = useWidthSizeGroup();
     const Wrapper = getValueForLargeSize(widthSize, WhiteContentDesktop, WhiteContentPhone);
 
     useEffect(() => {

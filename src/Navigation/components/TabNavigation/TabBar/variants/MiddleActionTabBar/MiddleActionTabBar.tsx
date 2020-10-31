@@ -1,16 +1,17 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Animated, View } from 'react-native';
 import styled from 'styled-components/native';
-import { getTabBarAbsolutePosition } from '../util/getTabBarAbsolutePosition';
-import { getValueBasedOnTabBarPosition } from '../util/getValueBasedOnTabBarPosition';
-import { TabBarProps } from '../types/TabBarProps';
+import { getTabBarAbsolutePosition } from '../../util/getTabBarAbsolutePosition';
+import { getValueBasedOnTabBarPosition } from '../../util/getValueBasedOnTabBarPosition';
+import { TabBarProps } from '../../types/TabBarProps';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { applyTabBarInsets } from '../util/applyTabBarInsets';
-import { applyDimensionBasedOnTabBarPosition } from '../util/applyDimensionBasedOnTabBarPosition';
-import { getImageBasedOnPosition } from '../assets/getImageBasedOnPosition';
-import { TabBarLayoutProps } from '../types/TabBarLayoutProps';
-import { TabBarConfig } from '../types/TabBarConfig';
-import { useTabBarConfig } from '../hooks/useTabBarConfig';
+import { applyTabBarInsets } from '../../util/applyTabBarInsets';
+import { applyDimensionBasedOnTabBarPosition } from '../../util/applyDimensionBasedOnTabBarPosition';
+import { getImageBasedOnPosition } from '../../assets/getImageBasedOnPosition';
+import { TabBarLayoutProps } from '../../types/TabBarLayoutProps';
+import { TabBarConfig } from '../../../TabBarConfigProvider/types/TabBarConfig';
+import { useCurrentTabBarConfig } from '../../../TabBarConfigProvider/hooks/useCurrentTabBarConfig';
+import { useMiddleActionTabBarChildren } from './hooks/useMiddleActionTabBarChildren';
 
 const Container = styled(Animated.View)`
     position: absolute;
@@ -59,33 +60,10 @@ const MiddleActionImage = styled.Image`
 
 export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
     const { children, style } = props;
-    const { config } = useTabBarConfig();
+    const { config } = useCurrentTabBarConfig();
     const tabBarInsets = useSafeAreaInsets();
     const layoutProps: TabBarLayoutProps = { ...config, tabBarInsets };
-
-    const [leftChildren, middleChild, rightChildren] = useMemo(() => {
-        const allChildren = React.Children.toArray(children);
-        const leftChildren = [];
-        const rightChildren = [];
-        let middleChild: React.ReactNode = null;
-
-        if (allChildren.length === 1) {
-            middleChild = allChildren[0];
-        } else if (allChildren.length === 3) {
-            leftChildren.push(allChildren[0]);
-            middleChild = allChildren[1];
-            rightChildren.push(allChildren[2]);
-        } else if (allChildren.length === 5) {
-            leftChildren.push(allChildren[0]);
-            leftChildren.push(allChildren[1]);
-            middleChild = allChildren[2];
-            rightChildren.push(allChildren[3]);
-            rightChildren.push(allChildren[4]);
-        } else {
-            throw Error('The amount of items in a MiddleActionTabBar must be 1, 3 or 5');
-        }
-        return [leftChildren, middleChild, rightChildren];
-    }, [children]);
+    const [leftChildren, middleChild, rightChildren] = useMiddleActionTabBarChildren(children);
 
     return (
         <>

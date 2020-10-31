@@ -1,20 +1,15 @@
 import { TabBarLayoutProps } from '../types';
 
 export function applyTabBarInsets(props: TabBarLayoutProps): string {
-    const insets = props.tabBarInsets ?? {
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0
-    };
+    const { tabBarInsets, tabBarPosition } = props;
 
-    if (props.tabBarPosition === 'right') {
-        return `padding: ${insets.top}px ${insets.right}px ${insets.bottom}px 0px`;
-    } else if (props.tabBarPosition === 'bottom') {
-        return `padding-bottom: ${insets.bottom}px`;
-    } else if (props.tabBarPosition === 'top') {
-        return `padding-top: ${insets.top}px`;
+    if (tabBarPosition === 'right') {
+        return `padding: ${tabBarInsets.top}px ${tabBarInsets.right}px ${tabBarInsets.bottom}px 0px`;
+    } else if (tabBarPosition === 'bottom') {
+        return `padding-bottom: ${tabBarInsets.bottom}px`;
+    } else if (tabBarPosition === 'top') {
+        return `padding-top: ${tabBarInsets.top}px`;
     } else {
-        return `padding: ${insets.top}px 0px ${insets.bottom}px ${insets.left}px`;
+        return `padding: ${tabBarInsets.top}px 0px ${tabBarInsets.bottom}px ${tabBarInsets.left}px`;
     }
 }

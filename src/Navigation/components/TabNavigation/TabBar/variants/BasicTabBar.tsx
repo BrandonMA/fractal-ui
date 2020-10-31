@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 import { applyTabBarInsets, getValueBasedOnTabBarPosition, getTabBarAbsolutePosition, applyDimensionBasedOnTabBarPosition } from '../util';
 import { TabBarProps, TabBarLayoutProps } from '../types';
-import { useTabBarConfig } from '../hooks';
+import { useCurrentTabBarConfig } from '../hooks';
 
 const SharedStyles = styled(Animated.View)`
     justify-content: space-evenly;
@@ -25,7 +25,7 @@ const VerticalContainer = styled(SharedStyles)`
 `;
 
 export function BasicTabBar(props: TabBarProps): JSX.Element {
-    const { config } = useTabBarConfig();
+    const { config } = useCurrentTabBarConfig();
     const insets = useSafeAreaInsets(); // Do not confuse this insets with the ones provided by the TabBar itself. This are only safe are insets.
     const Container = getValueBasedOnTabBarPosition(HorizontalContainer, VerticalContainer, config.tabBarPosition);
 

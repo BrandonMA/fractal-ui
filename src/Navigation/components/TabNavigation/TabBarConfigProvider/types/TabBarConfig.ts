@@ -1,5 +1,5 @@
-import { TabBarPosition } from './TabBarPosition';
-import { TabBarVariant } from './TabBarVariant';
+import { TabBarPosition } from '../../TabBar/types/TabBarPosition';
+import { TabBarVariant } from '../../TabBar/types/TabBarVariant';
 
 export interface TabBarConfig {
     tabBarVariant: TabBarVariant;

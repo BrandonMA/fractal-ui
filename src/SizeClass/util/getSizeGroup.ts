@@ -4,7 +4,7 @@ import { isDesktop } from './isDesktop';
 import { Size } from '../types';
 import { SizeClass } from '../types/SizeClass';
 
-export function getSizeGroup(type: DeviceType | null, dimension: number, SizeClass: SizeClass): SizeGroup {
+export function getSizeGroup(type: DeviceType, dimension: number, SizeClass: SizeClass): SizeGroup {
     if (type != null) {
         if (isDesktop()) {
             if (dimension >= SizeClass.extraLargeDesktop) {
@@ -42,5 +42,5 @@ export function getSizeGroup(type: DeviceType | null, dimension: number, SizeCla
             }
         }
     }
-    return null;
+    return [Size.compact, DeviceType.PHONE];
 }

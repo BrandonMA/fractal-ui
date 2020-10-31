@@ -3,14 +3,11 @@ import { match } from '../../../ReactRouter';
 import { Animated, StyleSheet } from 'react-native';
 import { useHideAnimation } from '../../../Animations/hooks/useHideAnimation';
 import { useShowAnimation } from '../../../Animations/hooks/useShowAnimation';
+import { isMatchExact } from '../../util/isMatchExact';
 
 export interface AnimatedRouteContainerProps {
     match: match | null;
     children: JSX.Element;
-}
-
-function isActive(match: match | null) {
-    return match && match.isExact;
 }
 
 export function AnimatedRouteContainer(props: AnimatedRouteContainerProps) {
@@ -20,7 +17,7 @@ export function AnimatedRouteContainer(props: AnimatedRouteContainerProps) {
     const show = useShowAnimation(opacityValue);
 
     useEffect(() => {
-        if (isActive(match)) {
+        if (isMatchExact(match)) {
             show();
         } else {
             hide();
@@ -28,7 +25,7 @@ export function AnimatedRouteContainer(props: AnimatedRouteContainerProps) {
     }, [match, hide, show]);
 
     return (
-        <Animated.View style={[StyleSheet.absoluteFill, { opacity: opacityValue, zIndex: isActive(match) ? 1000 : 0 }]}>
+        <Animated.View style={[StyleSheet.absoluteFill, { opacity: opacityValue, zIndex: isMatchExact(match) ? 1000 : 0 }]}>
             {children}
         </Animated.View>
     );

@@ -1,3 +1,3 @@
 export * from './FullScreen';
-export * from './FullScreenScrollView';
+export * from './SafeAreaFullScreenScrollView';
 export * from './SafeAreaFullScreen';

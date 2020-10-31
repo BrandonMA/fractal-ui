@@ -1,4 +1,4 @@
-import { TabBarConfig } from '../types';
+import { TabBarConfig } from '../types/TabBarConfig';
 
 export function createTabBarConfig(config?: Partial<TabBarConfig>): Readonly<TabBarConfig> {
     return Object.freeze<TabBarConfig>({

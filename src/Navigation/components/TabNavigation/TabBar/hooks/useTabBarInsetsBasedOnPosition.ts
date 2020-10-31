@@ -2,7 +2,7 @@ import { EdgeInsets } from 'react-native-safe-area-context';
 import { TabBarPosition } from '../types/TabBarPosition';
 import { useMemo } from 'react';
 
-export function useTabBarInsets(position: TabBarPosition, hidden?: boolean): EdgeInsets {
+export function useTabBarInsetsBasedOnPosition(position: TabBarPosition, hidden?: boolean): EdgeInsets {
     return useMemo(() => {
         const insets = {
             top: 0,

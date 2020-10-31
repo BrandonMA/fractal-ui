@@ -1,5 +1,6 @@
-import React, { useState, createContext, ReactNode } from 'react';
-import { createTabBarConfig, TabBarConfig } from './types';
+import React, { useState, createContext, ReactNode, useEffect } from 'react';
+import { TabBarConfig } from './types';
+import { createTabBarConfig } from './util';
 
 export interface TabBarConfigContextType {
     setConfig: (config: TabBarConfig) => void;
@@ -20,6 +21,10 @@ interface Props {
 
 export function TabBarConfigProvider(props: Props): JSX.Element {
     const [config, setConfig] = useState<TabBarConfig>(props.config);
+
+    useEffect(() => {
+        setConfig(props.config);
+    }, [props.config]);
 
     return (
         <TabBarConfigContext.Provider

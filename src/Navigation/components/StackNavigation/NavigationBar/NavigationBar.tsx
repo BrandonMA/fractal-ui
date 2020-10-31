@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useMemo } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Platform, View } from 'react-native';
 import styled from 'styled-components/native';
-import { ChevronLeft } from '../../../../Icons/ChevronLeft';
 import { NavigationBarInsetsContext } from '../NavigationBarInsetsProvider';
 import { useHistory } from '../../../../ReactRouter';
 import { useMatch } from '../../../hooks';
@@ -9,6 +8,8 @@ import { NavigationBarStyleProps } from './types/NavigationBarStyleProps';
 import { NavigationBarProps } from './types/NavigationBarProps';
 import { NAVIGATION_BAR_HEIGHT } from './constants';
 import { createNavigationBarStyleProps } from './util/createNavigationBarStyleProps';
+import { Entypo } from '@expo/vector-icons';
+import { useNavigationBarChildren } from './hooks/useNavigationBarChildren';
 
 const Container = styled(View)`
     flex-direction: row;
@@ -73,23 +74,7 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
     const { goBack } = useHistory();
     const [, activeRoutes] = useMatch('/');
     const styleProps = createNavigationBarStyleProps(props);
-
-    const [leftChild, centerChild, rightChild] = useMemo(() => {
-        let leftChild: JSX.Element | null = null;
-        let centerChild: JSX.Element | null = null;
-        let rightChild: JSX.Element | null = null;
-
-        React.Children.forEach(children, (child) => {
-            if (child?.type.name === 'NavigationBarLeftView') {
-                leftChild = child;
-            } else if (child?.type.name === 'NavigationBarCenterView') {
-                centerChild = child;
-            } else {
-                rightChild = child !== undefined ? child : null;
-            }
-        });
-        return [leftChild, centerChild, rightChild];
-    }, [children]);
+    const [leftChild, centerChild, rightChild] = useNavigationBarChildren(children);
 
     useEffect(() => {
         const top = Platform.OS === 'web' && !hidden ? NAVIGATION_BAR_HEIGHT : 0; // Set the value of the navigation bar for web here. For native it is already inside safeAreaInsets.
@@ -103,7 +88,7 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
             <LeftContainer>
                 {activeRoutes <= 1 || hideBackButton ? null : (
                     <StyledBackButtonContainer onPress={goBack}>
-                        <ChevronLeft height={19} width={25} fill={styleProps.color ?? '#1281FF'} />
+                        <Entypo name='chevron-left' size={19} color={styleProps.color ?? '#1281FF'} />
                         <StyledText {...styleProps}>{title}</StyledText>
                     </StyledBackButtonContainer>
                 )}

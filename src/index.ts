@@ -1,5 +1,4 @@
 export * from './util';
-export * from './Icons';
 export * from './Layout';
 export * from './SizeClass';
 export * from './Navigation';

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { NavigationBarInsetsContext } from '../components';
-import { TabBarInsetsContext } from '../components/TabNavigation/TabBar/TabBarInsetsProvider';
+import { TabBarInsetsContext } from '../components/TabNavigation/TabBarInsetsProvider';
 
 interface NavigationInsets {
     totalInsets: EdgeInsets;
