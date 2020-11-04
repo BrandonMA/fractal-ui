@@ -7,11 +7,10 @@ import { TabBarProps } from '../../types/TabBarProps';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { applyTabBarInsets } from '../../util/applyTabBarInsets';
 import { applyDimensionBasedOnTabBarPosition } from '../../util/applyDimensionBasedOnTabBarPosition';
-import { getImageBasedOnPosition } from '../../assets/getImageBasedOnPosition';
 import { TabBarLayoutProps } from '../../types/TabBarLayoutProps';
-import { TabBarConfig } from '../../../TabBarConfigProvider/types/TabBarConfig';
 import { useCurrentTabBarConfig } from '../../../TabBarConfigProvider/hooks/useCurrentTabBarConfig';
 import { useMiddleActionTabBarChildren } from './hooks/useMiddleActionTabBarChildren';
+import { MiddleTabBarShape } from '../../MiddleTabBarShape';
 
 const Container = styled(Animated.View)`
     position: absolute;
@@ -25,8 +24,7 @@ const ItemsContainer = styled(View)`
 `;
 
 const SideView = styled.View`
-    box-shadow: 0px -6px 4px rgba(0, 0, 0, 0.04);
-    background-color: white;
+    background-color: ${(props: TabBarLayoutProps) => props.tabBarBackgroundColor};
     flex-grow: 1;
     flex-direction: ${(props: TabBarLayoutProps) => getValueBasedOnTabBarPosition('row', 'column', props.tabBarPosition)};
     flex-basis: 0;
@@ -42,6 +40,7 @@ const MiddleContainer = styled(Animated.View)`
     ${applyDimensionBasedOnTabBarPosition};
     z-index: 1000;
     flex-direction: ${(props: TabBarLayoutProps) => getValueBasedOnTabBarPosition('column', 'row', props.tabBarPosition)};
+    background-color: transparent;
 `;
 
 const MiddleActionImageContainer = styled.View`
@@ -50,12 +49,7 @@ const MiddleActionImageContainer = styled.View`
 
 const MiddleActionImageContainerFiller = styled.View`
     flex-grow: 1;
-    background-color: white;
-`;
-
-const MiddleActionImage = styled.Image`
-    width: ${(props: TabBarConfig) => getValueBasedOnTabBarPosition('88px', '60px', props.tabBarPosition)};
-    height: ${(props: TabBarConfig) => getValueBasedOnTabBarPosition('60px', '88px', props.tabBarPosition)};
+    background-color: ${(props: TabBarLayoutProps) => props.tabBarBackgroundColor};
 `;
 
 export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
@@ -74,8 +68,8 @@ export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
                 <ItemsContainer {...layoutProps}>
                     <SideView {...layoutProps}>{leftChildren}</SideView>
                     <MiddleActionImageContainer>
-                        <MiddleActionImage {...layoutProps} source={getImageBasedOnPosition(config.tabBarPosition)} />
-                        <MiddleActionImageContainerFiller />
+                        <MiddleTabBarShape position={config.tabBarPosition} backgroundColor={config.tabBarBackgroundColor} />
+                        <MiddleActionImageContainerFiller {...layoutProps} />
                     </MiddleActionImageContainer>
                     <SideView {...layoutProps}>{rightChildren}</SideView>
                 </ItemsContainer>

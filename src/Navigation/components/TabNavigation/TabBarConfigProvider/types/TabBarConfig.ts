@@ -7,4 +7,5 @@ export interface TabBarConfig {
     activeItemColor: string;
     inactiveItemColor: string;
     tabBarHidden?: boolean;
+    tabBarBackgroundColor: string;
 }

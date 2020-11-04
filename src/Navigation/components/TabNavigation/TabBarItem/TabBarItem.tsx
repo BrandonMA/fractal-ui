@@ -28,6 +28,7 @@ interface StyledTextProps {
 
 const StyledText = styled.Text`
     color: ${(props: StyledTextProps) => props.color};
+    font-size: 11px;
 `;
 
 export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps> {

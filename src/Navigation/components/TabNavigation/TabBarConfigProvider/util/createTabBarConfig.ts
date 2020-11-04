@@ -5,6 +5,7 @@ export function createTabBarConfig(config?: Partial<TabBarConfig>): Readonly<Tab
         tabBarVariant: config?.tabBarVariant ?? 'basic',
         tabBarPosition: config?.tabBarPosition ?? 'bottom',
         activeItemColor: config?.activeItemColor ?? '#1281FF',
-        inactiveItemColor: config?.inactiveItemColor ?? '#999999'
+        inactiveItemColor: config?.inactiveItemColor ?? '#999999',
+        tabBarBackgroundColor: config?.tabBarBackgroundColor ?? 'white'
     });
 }

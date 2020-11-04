@@ -24,7 +24,7 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
 
     const childrenToRender = useMemo(() => {
         let arrayOfChildren = Children.toArray(children) as Array<JSX.Element>;
-        arrayOfChildren = filterMatchingChildren(arrayOfChildren);
+        arrayOfChildren = filterMatchingChildren(arrayOfChildren, location);
         arrayOfChildren = injectModalContainers(arrayOfChildren);
         return arrayOfChildren;
     }, [children, location]);

@@ -4,12 +4,12 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 import { applyTabBarInsets, getValueBasedOnTabBarPosition, getTabBarAbsolutePosition, applyDimensionBasedOnTabBarPosition } from '../util';
 import { TabBarProps, TabBarLayoutProps } from '../types';
-import { useCurrentTabBarConfig } from '../hooks';
+import { useCurrentTabBarConfig } from '../../TabBarConfigProvider/hooks';
 
 const SharedStyles = styled(Animated.View)`
     justify-content: space-evenly;
     position: absolute;
-    background-color: white;
+    background-color: ${(props: TabBarLayoutProps) => props.tabBarBackgroundColor ?? 'white'};
     flex-direction: ${(props: TabBarLayoutProps) => getValueBasedOnTabBarPosition('row', 'column', props.tabBarPosition)};
     ${(props: TabBarLayoutProps) => getTabBarAbsolutePosition(props.tabBarPosition, 0)};
     ${applyTabBarInsets};

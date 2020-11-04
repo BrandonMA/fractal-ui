@@ -8,9 +8,9 @@ export interface BasicTabBarItemProps {
 }
 
 export const BasicTabBarItem = styled(SharedTabBarItemStyles)`
-    margin: 4px;
+    margin: 0 4px;
     flex-grow: 1;
-    min-height: 52px;
-    min-width: 52px;
+    min-height: 48px;
+    min-width: 48px;
     flex-direction: ${(props: BasicTabBarItemProps) => getValueForLargeSize(props.sizeGroup[0], 'row', 'column')};
 `;

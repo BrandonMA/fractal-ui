@@ -6,7 +6,13 @@ import { Foundation } from '@expo/vector-icons';
 function MainTabBar(): JSX.Element {
     return (
         <TabBar>
-            <TabBarItem title='Home' path='/home'>
+            <TabBarItem title='Dashboard' path='/dashboard'>
+                {(color, size) => <Foundation name='home' size={size} color={color} />}
+            </TabBarItem>
+            <TabBarItem variant='circular' title='Home' path='/home' activeColor='#1281FF'>
+                {(color, size) => <Foundation name='home' size={size} color={color} />}
+            </TabBarItem>
+            <TabBarItem title='Notifications' path='/notifications'>
                 {(color, size) => <Foundation name='home' size={size} color={color} />}
             </TabBarItem>
         </TabBar>
@@ -14,7 +20,10 @@ function MainTabBar(): JSX.Element {
 }
 
 export function MainTabNavigator(): JSX.Element {
-    const config = useDefaultTabBarConfig();
+    const config = useDefaultTabBarConfig({
+        tabBarVariant: 'middle-action'
+    });
+
     return (
         <TabNavigator defaultRoute='/home' tabBar={<MainTabBar />} tabBarConfig={config}>
             <TabScreen path='/home'>
