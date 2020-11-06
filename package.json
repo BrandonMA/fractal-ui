@@ -56,6 +56,7 @@
         "react-is": "^16.13.1",
         "react-native": "0.63.2",
         "react-native-web": "~0.13.17",
+        "recoil": "^0.1.2",
         "typescript": "~3.9.2"
     }
 }
