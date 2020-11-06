@@ -1,4 +1,4 @@
-import React, { Children, useEffect, useMemo, useState } from 'react';
+import React, { Children, useEffect, useMemo, useRef } from 'react';
 import { useLocation } from '../../../../ReactRouter';
 import { useMatch } from '../../../hooks/useMatch';
 import styled from 'styled-components/native';
@@ -19,26 +19,27 @@ export interface StackNavigatorProps extends Omit<ScreenStackProps, 'children'> 
 export function StackNavigator(props: StackNavigatorProps): JSX.Element {
     const { path, children, ...others } = props;
     const location = useLocation();
+    const { pathname } = location;
     const [active] = useMatch(path ?? '/');
-    const [prevChildren, setPrevChildren] = useState<Array<JSX.Element>>([]);
+    const prevChildrenRef = useRef<Array<JSX.Element>>([]);
 
     const childrenToRender = useMemo(() => {
         let arrayOfChildren = Children.toArray(children) as Array<JSX.Element>;
-        arrayOfChildren = filterMatchingChildren(arrayOfChildren, location);
+        arrayOfChildren = filterMatchingChildren(arrayOfChildren, pathname);
         arrayOfChildren = injectModalContainers(arrayOfChildren);
         return arrayOfChildren;
-    }, [children, location]);
+    }, [children, pathname]);
 
     useEffect(() => {
         if (active) {
-            setPrevChildren(childrenToRender);
+            prevChildrenRef.current = childrenToRender;
         }
     }, [childrenToRender, active]);
 
     return (
         <>
             <NavigationBarInsetsProvider>
-                <StyledScreenStack {...others}>{active ? childrenToRender : prevChildren}</StyledScreenStack>
+                <StyledScreenStack {...others}>{active ? childrenToRender : prevChildrenRef.current}</StyledScreenStack>
             </NavigationBarInsetsProvider>
         </>
     );

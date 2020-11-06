@@ -68,7 +68,7 @@ export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
                 <ItemsContainer {...layoutProps}>
                     <SideView {...layoutProps}>{leftChildren}</SideView>
                     <MiddleActionImageContainer>
-                        <MiddleTabBarShape position={config.tabBarPosition} backgroundColor={config.tabBarBackgroundColor} />
+                        <MiddleTabBarShape position={config.tabBarPosition} fill={config.tabBarBackgroundColor} />
                         <MiddleActionImageContainerFiller {...layoutProps} />
                     </MiddleActionImageContainer>
                     <SideView {...layoutProps}>{rightChildren}</SideView>
