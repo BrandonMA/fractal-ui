@@ -8,5 +8,6 @@ export function useExpanded(): [boolean, () => void] {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         setExpanded((value) => !value);
     }, []);
+
     return [expanded, toggleExpanded];
 }
