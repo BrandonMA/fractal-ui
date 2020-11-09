@@ -6,19 +6,27 @@ import { productsSearchAtom } from '../../atoms/products/productsSearchAtom';
 
 function filterProducts(filters: Array<string>, products: Array<Product>): Array<Product> {
     if (filters.length > 0) {
-        return products.filter((product) => {
+        const newProducts = products.filter((product) => {
             const filter = product.filters.find((filter) => {
                 return filters.includes(filter);
             });
             return filter != null;
         });
+
+        if (newProducts.length !== products.length) {
+            return newProducts;
+        }
     }
     return products;
 }
 
 function searchOnProducts(search: string, products: Array<Product>): Array<Product> {
     if (search !== '') {
-        return products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()));
+        const newProducts = products.filter((product) => product.name.toLowerCase().includes(search.toLowerCase()));
+
+        if (newProducts.length !== products.length) {
+            return newProducts;
+        }
     }
     return products;
 }

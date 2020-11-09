@@ -18,7 +18,7 @@ const Container = styled(Pressable)`
     flex-direction: column;
     border-radius: 8px;
     flex: 1;
-    max-width: 48%;
+    max-width: 50%;
     padding: 12px 0;
     align-items: center;
     justify-content: center;

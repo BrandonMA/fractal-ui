@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import styled from 'styled-components/native';
-import { LayoutAnimation, Pressable } from 'react-native';
+import { Dimensions, LayoutAnimation, Pressable } from 'react-native';
 import { FilterIcon } from '../../icons/FilterIcon';
 import { Label } from '../Label';
 import { FiltersList } from './FiltersList';
@@ -13,14 +13,13 @@ interface ContainerProps {
 
 const Container = styled.View`
     background-color: white;
-    height: 40px;
+    height: ${(props: ContainerProps) => (props.fullScreen ? `${Dimensions.get('window').height / 3}px` : '40px')};
     border-radius: 8px;
     margin: 0 12px;
     padding: 12px;
     flex-direction: column;
     justify-content: space-between;
     align-items: ${(props: ContainerProps) => (props.fullScreen ? 'flex-start' : 'center')};
-    flex-grow: ${(props: ContainerProps) => (props.fullScreen ? 2 : 0)};
 `;
 
 const InnerContainer = styled(Pressable)`

@@ -6,7 +6,7 @@ import { NotificationCell } from './NotificationCell';
 
 const Container = styled.FlatList`
     flex: 1;
-    margin: 12px;
+    padding: 12px;
     border-radius: 8px;
 `;
 
