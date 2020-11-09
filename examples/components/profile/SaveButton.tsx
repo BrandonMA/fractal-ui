@@ -6,6 +6,7 @@ const Text = styled.Text`
     color: #005cb3;
     text-align: right;
     font-size: 16px;
+    font-weight: bold;
 `;
 
 export function SaveButton(): JSX.Element {

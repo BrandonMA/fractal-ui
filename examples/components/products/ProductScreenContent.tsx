@@ -10,7 +10,7 @@ interface ProductCellProps {
 }
 
 const ScrollView = styled.ScrollView`
-    margin: 12px;
+    margin: 12px 12px 0 12px;
 `;
 
 const Container = styled.View`

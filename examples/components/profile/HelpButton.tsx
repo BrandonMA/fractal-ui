@@ -16,7 +16,7 @@ export function HelpButton(): JSX.Element {
     }, [history]);
     return (
         <Button onPress={handleOnPress}>
-            <HelpIcon width={20} height={20} fill='#005cb3' />
+            <HelpIcon width={24} height={24} fill='#005cb3' />
         </Button>
     );
 }
