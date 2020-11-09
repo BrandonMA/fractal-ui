@@ -3,4 +3,6 @@ export interface Product {
     imageURL: string;
     price: number;
     description: string;
+    sku: string;
+    filters: Array<string>;
 }

@@ -69,7 +69,7 @@ const StyledBackButtonContainer = styled.TouchableOpacity`
 `;
 
 export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
-    const { hidden, title, hideBackButton, children } = props;
+    const { hidden, title, hideBackButton, backTitle, children } = props;
     const navigationBarInsets = useContext(NavigationBarInsetsContext);
     const { goBack } = useHistory();
     const [, activeRoutes] = useMatch('/');
@@ -88,8 +88,8 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
             <LeftContainer>
                 {activeRoutes <= 1 || hideBackButton ? null : (
                     <StyledBackButtonContainer onPress={goBack}>
-                        <Entypo name='chevron-left' size={19} color={styleProps.color ?? '#1281FF'} />
-                        <StyledText {...styleProps}>{title}</StyledText>
+                        <Entypo name='chevron-left' size={22} color={styleProps.color ?? '#1281FF'} />
+                        <StyledText {...styleProps}>{backTitle}</StyledText>
                     </StyledBackButtonContainer>
                 )}
                 {leftChild}

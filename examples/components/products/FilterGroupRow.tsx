@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { Pressable } from 'react-native';
 import { applyCursorStyle } from '../../util/applyCursorStyle';
-import { FiltersGroup } from '../../data/FiltersGroup';
+import { FiltersGroup } from '../../models/FiltersGroup';
 import { FilterItemRow } from './FilterItemRow';
 import { useExpanded } from '../../hooks/products/useExpanded';
 

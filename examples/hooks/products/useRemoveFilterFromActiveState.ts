@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil';
-import { activeFiltersAtom } from '../../atoms/activeFiltersAtom';
+import { activeFiltersAtom } from '../../atoms/products/activeFiltersAtom';
 import { useCallback } from 'react';
 
 export function useRemoveFilterFromActiveState(): (value: string) => void {

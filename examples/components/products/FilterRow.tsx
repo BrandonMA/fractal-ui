@@ -1,5 +1,5 @@
 import React from 'react';
-import { FilterSection } from '../../data/FiltersSection';
+import { FilterSection } from '../../models/FiltersSection';
 import { FilterSectionRow } from './FilterSectionRow';
 import { View } from 'react-native';
 

@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil';
-import { activeFiltersAtom } from '../../atoms/activeFiltersAtom';
+import { activeFiltersAtom } from '../../atoms/products/activeFiltersAtom';
 
 export function useIsFilterActive(filter: string): boolean {
     const activeFilters = useRecoilValue(activeFiltersAtom);
