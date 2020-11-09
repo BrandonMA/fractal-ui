@@ -4,5 +4,5 @@ import { BaseProductsList } from './BaseProductsList';
 
 export function CheckoutItemsList(): JSX.Element {
     const checkoutItems = useCartItemProducts();
-    return <BaseProductsList products={checkoutItems} />;
+    return <BaseProductsList products={checkoutItems} disablePress />;
 }

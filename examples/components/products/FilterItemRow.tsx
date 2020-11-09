@@ -4,12 +4,14 @@ import { applyCursorStyle } from '../../util/applyCursorStyle';
 import { useIsFilterActive } from '../../hooks/products/useAddFilterToActiveState';
 import { useRemoveFilterFromActiveState } from '../../hooks/products/useRemoveFilterFromActiveState';
 import { useAddFilterToActiveState } from '../../hooks/products/useIsFilterActive';
+import { LayoutAnimation, Pressable } from 'react-native';
+import { LayoutConfig } from '../../animations/LayoutConfig';
 
 interface StyledProps {
     active: boolean;
 }
 
-const Container = styled.TouchableOpacity`
+const Container = styled(Pressable)`
     background-color: ${(props: StyledProps) => (props.active ? '#005CB3' : '#f6f6f6')};
     height: 32px;
     border-radius: 8px;
@@ -35,6 +37,7 @@ export function FilterItemRow(props: FilterItemRowProps): JSX.Element {
     const addFilterToActiveState = useAddFilterToActiveState();
 
     const toggleActive = useCallback(() => {
+        LayoutAnimation.configureNext(LayoutConfig);
         if (active) {
             removeFilterFromActiveState(value);
         } else {

@@ -10,6 +10,7 @@ import { ProductCounter } from './ProductCounter';
 interface ProductCellProps {
     value: Product;
     index: number;
+    disablePress?: boolean;
 }
 
 const Container = styled(Pressable)`
@@ -27,10 +28,12 @@ const Container = styled(Pressable)`
 
 export function ProductCell(props: ProductCellProps): JSX.Element {
     const history = useHistory();
-    const { value } = props;
+    const { value, disablePress } = props;
     const handleGoToDetails = useCallback(() => {
-        history.push(`${tabRoutes.products}/details/${value.sku}`);
-    }, [value]);
+        if (!disablePress) {
+            history.push(`${tabRoutes.products}/details/${value.sku}`);
+        }
+    }, [value, disablePress]);
 
     return (
         <Container {...props} onPress={handleGoToDetails}>

@@ -5,6 +5,7 @@ import { FilterIcon } from '../../icons/FilterIcon';
 import { Label } from '../Label';
 import { FiltersList } from './FiltersList';
 import { applyCursorStyle } from '../../util/applyCursorStyle';
+import { LayoutConfig } from '../../animations/LayoutConfig';
 
 interface ContainerProps {
     fullScreen: boolean;
@@ -35,7 +36,7 @@ export function FiltersView(): JSX.Element {
     const [fullScreen, setFullScreen] = useState(false);
 
     const toggleFullScreen = useCallback(() => {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        LayoutAnimation.configureNext(LayoutConfig);
         setFullScreen((value) => !value);
     }, []);
 
