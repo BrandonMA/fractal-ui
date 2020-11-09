@@ -20,7 +20,7 @@ export function BaseProductsList(props: Props): JSX.Element {
         const { item, index } = value;
         return <ProductCell value={item} index={index} />;
     }, []);
-    const keyExtractor = useCallback((_, index) => products[index].sku, [products]);
+    const keyExtractor = useCallback((item) => item.sku, []);
 
     return (
         <Container

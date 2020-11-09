@@ -5,4 +5,5 @@ export interface Product {
     description: string;
     sku: string;
     filters: Array<string>;
+    details: Map<string, string>;
 }

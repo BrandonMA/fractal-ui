@@ -5,6 +5,7 @@ import { stackTitles } from '../../stackTitles';
 import { ProductsScreen } from './screens/ProductsScreen';
 import { FloatingCartButton } from '../../../components/products/FloatingCartButton';
 import { CheckoutScreen } from './screens/CheckoutScreen';
+import { ProductScreen } from './screens/ProductScreen';
 
 export function ProductsStackNavigator(): JSX.Element {
     return (
@@ -17,6 +18,10 @@ export function ProductsStackNavigator(): JSX.Element {
                 <StackScreen path={tabRoutes.checkout}>
                     <NavigationBar title={stackTitles.checkout} largeTitle={false} backTitle={stackTitles.products} />
                     <CheckoutScreen />
+                </StackScreen>
+                <StackScreen path={tabRoutes.product}>
+                    <NavigationBar title={stackTitles.product} largeTitle={false} backTitle={stackTitles.products} />
+                    <ProductScreen />
                 </StackScreen>
             </StackNavigator>
             <FloatingCartButton />

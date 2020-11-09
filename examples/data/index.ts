@@ -30,7 +30,17 @@ export const mockProducts: Array<Product> = [
         price: 100,
         description: '3 Leds en Blanco\nBaterias de 20 Lúmenes',
         sku: '1',
-        filters: ['BMX']
+        filters: ['BMX'],
+        details: new Map([
+            ['Gama', 'Media'],
+            ['Marca', 'HUNTER'],
+            ['Categoría', 'Componentes para bicicleta'],
+            ['Modalidad', 'City'],
+            ['Unidad de medida', 'Pieza'],
+            ['Medida', '20'],
+            ['Peso', '1'],
+            ['Material', 'Aluminio']
+        ])
     },
     {
         name: 'Luz Trasera',
@@ -38,7 +48,11 @@ export const mockProducts: Array<Product> = [
         price: 100,
         description: '3 Leds en Blanco\nBaterias de 20 Lúmenes',
         sku: '2',
-        filters: ['City']
+        filters: ['City'],
+        details: new Map([
+            ['Gama', 'Media'],
+            ['Marca', 'HUNTER']
+        ])
     }
 ];
 
