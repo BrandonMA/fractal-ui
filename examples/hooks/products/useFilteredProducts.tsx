@@ -3,6 +3,8 @@ import { mockProducts } from '../../data';
 import { useRecoilValue } from 'recoil';
 import { activeFiltersAtom } from '../../atoms/products/activeFiltersAtom';
 import { productsSearchAtom } from '../../atoms/products/productsSearchAtom';
+import { LayoutAnimation } from 'react-native';
+import { LayoutConfig } from '../../animations/LayoutConfig';
 
 function filterProducts(filters: Array<string>, products: Array<Product>): Array<Product> {
     if (filters.length > 0) {
@@ -37,5 +39,10 @@ export function useFilteredProducts(): Array<Product> {
     let products = mockProducts;
     products = filterProducts(filters, products);
     products = searchOnProducts(searchText, products);
+
+    if (products.length !== mockProducts.length) {
+        LayoutAnimation.configureNext(LayoutConfig);
+    }
+
     return products;
 }

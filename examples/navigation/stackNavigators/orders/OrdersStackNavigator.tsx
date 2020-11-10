@@ -1,13 +1,15 @@
 import React from 'react';
-import { StackNavigator, StackScreen } from '../../../../src';
+import { NavigationBar, StackNavigator, StackScreen } from '../../../../src';
 import { tabRoutes } from '../../tabRoutes';
-import { BackgroundView } from '../../../components/BackgroundView';
+import { stackTitles } from '../../stackTitles';
+import { OrdersScreen } from './screens/OrdersScreen';
 
 export function OrdersStackNavigator(): JSX.Element {
     return (
         <StackNavigator path={tabRoutes.orders}>
             <StackScreen path={tabRoutes.orders}>
-                <BackgroundView />
+                <NavigationBar title={stackTitles.orders} largeTitle />
+                <OrdersScreen />
             </StackScreen>
         </StackNavigator>
     );

@@ -11,7 +11,7 @@ export function useTabBarInsetsBasedOnPosition(position: TabBarPosition, hidden?
             left: 0
         };
 
-        insets[position] = hidden ? 0 : 52;
+        insets[position] = hidden ? 0 : 49;
 
         return insets;
     }, [position, hidden]);
