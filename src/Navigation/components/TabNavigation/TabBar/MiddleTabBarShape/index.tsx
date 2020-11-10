@@ -8,6 +8,7 @@ interface MiddleTabBarShapeProps extends SvgProps {
 }
 
 export function MiddleTabBarShape(props: MiddleTabBarShapeProps): JSX.Element {
-    const Component = useComponentBasedOnPosition(props.position);
-    return <Component {...props} />;
+    const { position, ...others } = props;
+    const Component = useComponentBasedOnPosition(position);
+    return <Component {...others} />;
 }

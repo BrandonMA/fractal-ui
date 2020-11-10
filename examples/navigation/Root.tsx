@@ -13,8 +13,8 @@ if (Platform.OS === 'android') {
 export function Root(): JSX.Element {
     return (
         <RecoilRoot>
+            {Platform.OS === 'ios' ? <StatusBar barStyle='dark-content' /> : null}
             <NavigationRoot>
-                <StatusBar barStyle='dark-content' />
                 <MainTabNavigator />
             </NavigationRoot>
         </RecoilRoot>

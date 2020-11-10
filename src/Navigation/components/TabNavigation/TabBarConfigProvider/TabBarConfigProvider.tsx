@@ -1,9 +1,9 @@
-import React, { useState, createContext, ReactNode, useEffect } from 'react';
+import React, { useState, createContext, ReactNode, useEffect, Dispatch, SetStateAction } from 'react';
 import { TabBarConfig } from './types';
 import { createTabBarConfig } from './util';
 
 export interface TabBarConfigContextType {
-    setConfig: (config: TabBarConfig) => void;
+    setConfig: Dispatch<SetStateAction<TabBarConfig>>;
     config: TabBarConfig;
 }
 
