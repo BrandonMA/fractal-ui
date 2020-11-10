@@ -14,5 +14,5 @@ export const CircularTabBarItem = styled(SharedTabBarItemStyles)`
     border-radius: 26px;
     align-self: center;
     background-color: ${(props: CircularTabBarItemProps) => props.bg};
-    ${(props: CircularTabBarItemProps) => getTabBarAbsolutePosition(props.tabBarPosition, Platform.OS === 'ios' ? 8 : 12)};
+    ${(props: CircularTabBarItemProps) => getTabBarAbsolutePosition(props.tabBarPosition, Platform.OS === 'ios' ? 9 : 13)};
 `;

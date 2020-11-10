@@ -5,7 +5,7 @@ import { SafeAreaFullScreen } from '../../../../../src/Layout/components';
 import { View } from 'react-native';
 
 export const BackgroundView = styled(SafeAreaFullScreen)`
-    background-color: #f6f6f6;
+    background-color: #f2f2f2;
 `;
 
 export function BillsResultsScreen(): JSX.Element {

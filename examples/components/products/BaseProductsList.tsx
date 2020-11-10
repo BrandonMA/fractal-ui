@@ -8,7 +8,7 @@ const Container = styled.FlatList`
     flex: 1;
     padding: 12px 12px 0;
     border-radius: 8px;
-    background-color: #f6f6f6;
+    background-color: #f2f2f2;
 `;
 
 interface Props {

@@ -5,7 +5,7 @@ import styled from 'styled-components/native';
 import { SafeAreaFullScreen } from '../../../../../src/Layout/components';
 
 export const BackgroundView = styled(SafeAreaFullScreen)`
-    background-color: #f6f6f6;
+    background-color: #f2f2f2;
 `;
 
 export function BillsScreen(): JSX.Element {

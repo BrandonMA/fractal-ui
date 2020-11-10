@@ -5,7 +5,7 @@ import { HelpContent } from '../../../../components/profile/HelpContent';
 import { SafeAreaFullScreenScrollView } from '../../../../../src/Layout/components';
 
 export const BackgroundView = styled(SafeAreaFullScreenScrollView)`
-    background-color: #f6f6f6;
+    background-color: #f2f2f2;
 `;
 
 export function HelpScreen(): JSX.Element {
