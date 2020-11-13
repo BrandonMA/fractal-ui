@@ -3,13 +3,16 @@ import styled from 'styled-components/native';
 import { Label } from '../Label';
 import { Order } from '../../models/Order';
 
+interface ContainerProps {
+    lastItem: boolean;
+}
+
 const Container = styled.View`
     background-color: white;
     flex-direction: column;
     border-radius: 8px;
-    width: 100%;
     padding: 12px 12px 0 12px;
-    margin-bottom: 12px;
+    margin: 12px 12px ${(props: ContainerProps) => (props.lastItem ? '12px' : 0)};
 `;
 
 const Title = styled.Text`
@@ -24,12 +27,13 @@ const StyledLabel = styled(Label)`
 
 interface Props {
     order: Order;
+    lastItem: boolean;
 }
 
 export function OrderCell(props: Props): JSX.Element {
-    const { order } = props;
+    const { order, lastItem } = props;
     return (
-        <Container>
+        <Container lastItem={lastItem}>
             <Title>Clave</Title>
             <StyledLabel>{order.id}</StyledLabel>
             <Title>Creado</Title>

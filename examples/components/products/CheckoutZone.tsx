@@ -9,11 +9,12 @@ import { currentAddressAtom } from '../../atoms/products/currentAddressAtom';
 
 const Container = styled.View`
     flex-direction: column;
+    margin: 12px;
 `;
 
 const Row = styled.View`
     flex-direction: row;
-    margin: 6px 12px;
+    margin: 6px 0;
     justify-content: space-between;
 `;
 
@@ -23,7 +24,7 @@ const Text = styled.Text`
 
 const VerticalRow = styled.View`
     flex-direction: column;
-    margin: 6px 12px;
+    margin: 6px 0;
     justify-content: flex-start;
     align-items: flex-start;
 `;

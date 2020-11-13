@@ -1,16 +1,30 @@
-import styled from 'styled-components/native';
-import { SharedTabBarItemStyles } from './SharedTabBarItemStyles';
+import React from 'react';
+import { sharedTabBarItemStyles } from './SharedTabBarItemStyles';
 import { SizeGroup } from '../../../../../SizeClass/types';
 import { getValueForLargeSize } from '../../../../../SizeClass/util';
+import { Dimensions, Pressable } from 'react-native';
+import { TabBarConfig } from '../../TabBarConfigProvider/types';
 
-export interface BasicTabBarItemProps {
+export interface BasicTabBarItemProps extends TabBarConfig {
     sizeGroup: SizeGroup;
+    highlightColor?: string;
+    children: JSX.Element;
 }
 
-export const BasicTabBarItem = styled(SharedTabBarItemStyles)`
-    margin: 0 4px;
-    flex-grow: 1;
-    min-height: 48px;
-    min-width: 48px;
-    flex-direction: ${(props: BasicTabBarItemProps) => getValueForLargeSize(props.sizeGroup[0], 'row', 'column')};
-`;
+export function BasicTabBarItem(props: BasicTabBarItemProps): JSX.Element {
+    return (
+        <Pressable
+            {...props}
+            style={{
+                ...sharedTabBarItemStyles,
+                flexGrow: 1,
+                flexDirection: getValueForLargeSize(props.sizeGroup[0], 'row', 'column')
+            }}
+            android_ripple={{
+                color: props.highlightColor,
+                borderless: true,
+                radius: Dimensions.get('window').width / 10
+            }}
+        />
+    );
+}

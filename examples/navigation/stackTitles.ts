@@ -4,10 +4,10 @@ export const stackTitles = {
     addressPicker: 'Dirección',
     addressCreator: 'Crear Dirección',
     product: 'Detalles',
-    bills: 'Pagos',
+    bills: 'Cuenta',
     filteredBills: 'Resultados',
     profile: 'Perfil',
     help: 'Ayuda',
     orders: 'Pedidos',
-    notifications: 'Notificaciones'
+    notifications: 'Alertas'
 };

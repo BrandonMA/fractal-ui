@@ -3,11 +3,10 @@ import styled from 'styled-components/native';
 import { SectionListRenderItemInfo } from 'react-native';
 import { Product } from '../../models/Product';
 import { ProductCell } from './ProductCell';
+import { FullScreen } from '../../../src/Layout/components';
+import { SafeAreaFullScreenFlatList } from '../../../src/Layout/components/SafeAreaFullScreenFlatList';
 
-const Container = styled.FlatList`
-    flex: 1;
-    padding: 12px 12px 0;
-    border-radius: 8px;
+const Container = styled(FullScreen)`
     background-color: #f2f2f2;
 `;
 
@@ -15,6 +14,7 @@ interface Props {
     products: Array<Product>;
     disablePress?: boolean;
     header?: JSX.Element;
+    footer?: JSX.Element;
 }
 
 export const BaseProductsList = memo(
@@ -23,21 +23,24 @@ export const BaseProductsList = memo(
         const renderItem = useCallback(
             (value: SectionListRenderItemInfo<Product>) => {
                 const { item, index } = value;
-                return <ProductCell value={item} index={index} disablePress={disablePress} />;
+                return <ProductCell value={item} index={index} disablePress={disablePress} lastItem={products.length - 2 <= index} />;
             },
             [disablePress]
         );
         const keyExtractor = useCallback((item) => item.sku, []);
 
         return (
-            <Container
-                ListHeaderComponent={props.header}
-                data={products}
-                renderItem={renderItem}
-                keyExtractor={keyExtractor}
-                numColumns={2}
-                columnWrapperStyle={{ flexDirection: 'row', flexGrow: 1 }}
-            />
+            <Container>
+                <SafeAreaFullScreenFlatList
+                    ListHeaderComponent={props.header}
+                    ListFooterComponent={props.footer}
+                    data={products}
+                    renderItem={renderItem}
+                    keyExtractor={keyExtractor}
+                    numColumns={2}
+                    columnWrapperStyle={{ flexDirection: 'row', flexGrow: 1 }}
+                />
+            </Container>
         );
     }
 );

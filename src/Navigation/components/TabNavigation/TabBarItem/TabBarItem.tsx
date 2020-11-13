@@ -19,6 +19,7 @@ export interface TabBarItemProps extends PressableProps {
     children: (color: string, size: number) => JSX.Element;
     activeColor?: string;
     inactiveColor?: string;
+    highlightColor?: string;
     variant?: TabBarItemVariant;
 }
 
@@ -32,7 +33,7 @@ const StyledText = styled.Text`
 `;
 
 export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps> {
-    const { path, activeColor, inactiveColor, variant, title, children, ...others } = props;
+    const { path, activeColor, inactiveColor, variant, title, highlightColor, children, ...others } = props;
     const [tabPathname, setTabPathname] = useState<undefined | string>(undefined);
     const { config } = useCurrentTabBarConfig();
     const location = useLocation();
@@ -66,7 +67,14 @@ export function TabBarItem(props: TabBarItemProps): ReactElement<TabBarItemProps
     }, [path, active, location.pathname]);
 
     return (
-        <TabBarItemContainer {...others} {...config} onPress={goToTab} bg={activeColor} sizeGroup={widthSizeGroup}>
+        <TabBarItemContainer
+            {...others}
+            {...config}
+            onPress={goToTab}
+            bg={activeColor ?? config.activeItemColor}
+            sizeGroup={widthSizeGroup}
+            highlightColor={highlightColor ?? config.highlightItemColor}
+        >
             {children(color, iconSize)}
             <Spacer width={spacerSize.width} height={spacerSize.height} />
             {variant === 'circular' ? null : <StyledText color={color}>{title}</StyledText>}

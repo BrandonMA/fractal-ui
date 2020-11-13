@@ -1,12 +1,9 @@
 import React from 'react';
-import { Animated, View } from 'react-native';
+import { Animated, Platform, View } from 'react-native';
 import styled from 'styled-components/native';
-import { getTabBarAbsolutePosition } from '../../util/getTabBarAbsolutePosition';
-import { getValueBasedOnTabBarPosition } from '../../util/getValueBasedOnTabBarPosition';
 import { TabBarProps } from '../../types/TabBarProps';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { applyTabBarInsets } from '../../util/applyTabBarInsets';
-import { applyDimensionBasedOnTabBarPosition } from '../../util/applyDimensionBasedOnTabBarPosition';
 import { TabBarLayoutProps } from '../../types/TabBarLayoutProps';
 import { useCurrentTabBarConfig } from '../../../TabBarConfigProvider/hooks/useCurrentTabBarConfig';
 import { useMiddleActionTabBarChildren } from './hooks/useMiddleActionTabBarChildren';
@@ -14,42 +11,46 @@ import { MiddleTabBarShape } from '../../MiddleTabBarShape';
 
 const Container = styled(Animated.View)`
     position: absolute;
-    ${(props: TabBarLayoutProps) => getTabBarAbsolutePosition(props.tabBarPosition, 0)};
-    ${applyDimensionBasedOnTabBarPosition};
+    bottom: 0;
+    width: 100%;
 `;
 
 const ItemsContainer = styled(View)`
-    flex-direction: ${(props: TabBarLayoutProps) => getValueBasedOnTabBarPosition('row', 'column', props.tabBarPosition)};
-    ${applyDimensionBasedOnTabBarPosition};
+    position: relative;
+    flex-direction: row;
+    width: 100%;
 `;
 
 const SideView = styled.View`
-    background-color: ${(props: TabBarLayoutProps) => props.tabBarBackgroundColor};
+    background-color: ${(props: TabBarLayoutProps) => props.tabBarBackgroundColor ?? 'white'};
     flex-grow: 1;
-    flex-direction: ${(props: TabBarLayoutProps) => getValueBasedOnTabBarPosition('row', 'column', props.tabBarPosition)};
     flex-basis: 0;
+    flex-direction: row;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
     ${applyTabBarInsets};
+`;
+
+const MiddleActionImageContainer = styled.View`
+    z-index: 1000;
+    flex-direction: column;
+`;
+
+const MiddleActionImageContainerFiller = styled.View`
+    flex-grow: 1;
+    background-color: ${(props: TabBarLayoutProps) => props.tabBarBackgroundColor};
+    width: 100%;
 `;
 
 // Middle button styles
 
 const MiddleContainer = styled(Animated.View)`
     position: absolute;
-    ${(props: TabBarLayoutProps) => getTabBarAbsolutePosition(props.tabBarPosition, 0)};
     ${applyTabBarInsets};
-    ${applyDimensionBasedOnTabBarPosition};
-    z-index: 1000;
-    flex-direction: ${(props: TabBarLayoutProps) => getValueBasedOnTabBarPosition('column', 'row', props.tabBarPosition)};
+    width: 100%;
+    flex-direction: column;
     background-color: transparent;
-`;
-
-const MiddleActionImageContainer = styled.View`
-    z-index: 1000;
-`;
-
-const MiddleActionImageContainerFiller = styled.View`
-    flex-grow: 1;
-    background-color: ${(props: TabBarLayoutProps) => props.tabBarBackgroundColor};
+    bottom: ${Platform.OS === 'ios' ? 20 : 32}px;
+    align-items: center;
 `;
 
 export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
@@ -61,19 +62,19 @@ export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
 
     return (
         <>
-            <MiddleContainer {...layoutProps} pointerEvents='box-none' style={style}>
-                {middleChild}
-            </MiddleContainer>
             <Container {...layoutProps} style={style}>
                 <ItemsContainer {...layoutProps}>
                     <SideView {...layoutProps}>{leftChildren}</SideView>
-                    <MiddleActionImageContainer>
-                        <MiddleTabBarShape position={config.tabBarPosition} fill={config.tabBarBackgroundColor} />
+                    <MiddleActionImageContainer {...layoutProps}>
+                        <MiddleTabBarShape fill={config.tabBarBackgroundColor} />
                         <MiddleActionImageContainerFiller {...layoutProps} />
                     </MiddleActionImageContainer>
                     <SideView {...layoutProps}>{rightChildren}</SideView>
                 </ItemsContainer>
             </Container>
+            <MiddleContainer {...layoutProps} pointerEvents='box-none' style={style}>
+                {middleChild}
+            </MiddleContainer>
         </>
     );
 }

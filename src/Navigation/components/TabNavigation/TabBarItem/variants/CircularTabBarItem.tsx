@@ -1,18 +1,33 @@
-import styled from 'styled-components/native';
-import { getTabBarAbsolutePosition } from '../../TabBar/util/getTabBarAbsolutePosition';
-import { SharedTabBarItemStyles } from './SharedTabBarItemStyles';
+import React, { useCallback } from 'react';
 import { TabBarConfig } from '../../TabBarConfigProvider/types';
-import { Platform } from 'react-native';
+import { Pressable, PressableStateCallbackType, StyleProp, ViewStyle } from 'react-native';
+import { sharedTabBarItemStyles } from './SharedTabBarItemStyles';
 
 export interface CircularTabBarItemProps extends TabBarConfig {
     bg?: string;
+    highlightColor?: string;
+    children: JSX.Element;
 }
 
-export const CircularTabBarItem = styled(SharedTabBarItemStyles)`
-    height: 44px;
-    width: 44px;
-    border-radius: 26px;
-    align-self: center;
-    background-color: ${(props: CircularTabBarItemProps) => props.bg};
-    ${(props: CircularTabBarItemProps) => getTabBarAbsolutePosition(props.tabBarPosition, Platform.OS === 'ios' ? 9 : 13)};
-`;
+export function CircularTabBarItem(props: CircularTabBarItemProps): JSX.Element {
+    const { highlightColor, bg, ...others } = props;
+
+    const handleHighlightPress = useCallback(
+        (state: PressableStateCallbackType): StyleProp<ViewStyle> => {
+            const sharedStyles = {
+                ...sharedTabBarItemStyles,
+                backgroundColor: bg,
+                borderRadius: 24
+            };
+
+            if (state.pressed && highlightColor != null) {
+                return { ...sharedStyles, backgroundColor: highlightColor };
+            }
+
+            return { ...sharedStyles };
+        },
+        [highlightColor]
+    );
+
+    return <Pressable {...others} style={handleHighlightPress} />;
+}

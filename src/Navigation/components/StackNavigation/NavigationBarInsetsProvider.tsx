@@ -19,6 +19,7 @@ interface Props {
 
 export function NavigationBarInsetsProvider(props: Props): JSX.Element {
     const [insets, setInsets] = useState({ top: 0, right: 0, bottom: 0, left: 0 });
+
     return (
         <NavigationBarInsetsContext.Provider
             value={{

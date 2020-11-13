@@ -2,9 +2,9 @@ import React from 'react';
 import { StackScreenContent } from '../../../../../src/Navigation/components/StackNavigation';
 import { BillsScreenContent } from '../../../../components/bills/BillsScreenContent';
 import styled from 'styled-components/native';
-import { SafeAreaFullScreen } from '../../../../../src/Layout/components';
+import { SafeAreaFullScreenScrollView } from '../../../../../src/Layout/components';
 
-export const BackgroundView = styled(SafeAreaFullScreen)`
+export const BackgroundView = styled(SafeAreaFullScreenScrollView)`
     background-color: #f2f2f2;
 `;
 

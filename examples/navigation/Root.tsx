@@ -1,5 +1,5 @@
 import React from 'react';
-import { MainTabNavigator } from './main/MainTabNavigator';
+import { MainTabNavigator } from './MainTabNavigator';
 import { NavigationRoot } from '../../src';
 import { Platform, StatusBar, UIManager } from 'react-native';
 import { RecoilRoot } from 'recoil';
@@ -13,7 +13,7 @@ if (Platform.OS === 'android') {
 export function Root(): JSX.Element {
     return (
         <RecoilRoot>
-            {Platform.OS === 'ios' ? <StatusBar barStyle='dark-content' /> : null}
+            {Platform.OS === 'ios' ? <StatusBar barStyle='dark-content' /> : <StatusBar barStyle='default' />}
             <NavigationRoot>
                 <MainTabNavigator />
             </NavigationRoot>

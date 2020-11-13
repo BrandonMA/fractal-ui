@@ -4,8 +4,11 @@ import { ProfileField } from '../profile/ProfileField';
 import { useSetRecoilState } from 'recoil';
 import { addressesAtom } from '../../atoms/products/addressesAtom';
 import { Address } from '../../models/Address';
-import { ScrollView } from 'react-native';
-import { useHistory } from '../../../src';
+import { SafeAreaFullScreenScrollView, useHistory } from '../../../src';
+
+const StyledSafeAreaFullScreenScrollView = styled(SafeAreaFullScreenScrollView)`
+    background-color: #f2f2f2;
+`;
 
 const Container = styled.KeyboardAvoidingView`
     flex-direction: column;
@@ -49,7 +52,7 @@ export function CreateAddressContent(): JSX.Element {
     };
 
     return (
-        <ScrollView>
+        <StyledSafeAreaFullScreenScrollView>
             <Container>
                 <ProfileField title='Calle' onChangeText={setStreet} />
                 <ProfileField title='Colonia' onChangeText={setDistrict} />
@@ -60,6 +63,6 @@ export function CreateAddressContent(): JSX.Element {
                     <Text>Agregar dirección</Text>
                 </Button>
             </Container>
-        </ScrollView>
+        </StyledSafeAreaFullScreenScrollView>
     );
 }
