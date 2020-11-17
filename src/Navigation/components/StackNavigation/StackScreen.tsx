@@ -1,16 +1,16 @@
 import React, { useContext, useEffect } from 'react';
 import { useHistory } from '../../../ReactRouter';
 import { NavigationRoute, NavigationRouteProps } from '../NavigationRoute';
-import { CurrentPresentationTypeContext } from '../CurrentPresentationTypeProvider';
+import { CurrentPresentationTypeContext } from '../PresentationTypeProvider';
 
 export function StackScreen(props: NavigationRouteProps): JSX.Element {
     const { children, stackPresentation, ...others } = props;
     const { goBack } = useHistory();
-    const { setType } = useContext(CurrentPresentationTypeContext);
+    const { setPresentationType } = useContext(CurrentPresentationTypeContext);
 
     useEffect(() => {
-        setType(stackPresentation ?? 'push');
-    }, [setType, stackPresentation]);
+        setPresentationType(stackPresentation ?? 'push');
+    }, [setPresentationType, stackPresentation]);
 
     return (
         <NavigationRoute {...others} stackPresentation={stackPresentation} onDismissed={goBack}>

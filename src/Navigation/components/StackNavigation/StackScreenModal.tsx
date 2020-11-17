@@ -2,29 +2,31 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import styled from 'styled-components/native';
 import { Animated, Pressable, StyleSheet } from 'react-native';
 import { useHideAnimation, useShowAnimation } from '../../../Animations/hooks';
-import { useWidthSizeGroup } from '../../../SizeClass/hooks';
-import { Size } from '../../../SizeClass/types';
+import { useWidthSizeGroup } from '../../../SizeGroup/hooks';
+import { Size } from '../../../SizeGroup/types';
 import { useHistory } from '../../../ReactRouter';
-import { getValueForLargeSize } from '../../../SizeClass/util';
+import { getValueForLargeSize } from '../../../SizeGroup/util';
+import { constants } from '../../constants';
+import { colors } from '../../../Colors';
 
 interface ContainerProps {
     size: Size;
 }
 
 const StyledContainer = styled(Animated.View)`
-    justify-content: ${(props: ContainerProps) => (props.size === Size.large || props.size === Size.extraLarge ? 'center' : 'flex-start')};
+    justify-content: ${(props: ContainerProps) => getValueForLargeSize(props.size, 'center', 'flext-start')};
     align-items: center;
 `;
 
 const Background = styled(Pressable)`
-    background-color: black;
+    background-color: ${colors.white.base100};
     opacity: 0.6;
 `;
 
 const SharedStyles = styled.View`
     background-color: white;
     border-radius: 20px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.08);
+    box-shadow: ${constants.shadowBottom};
     overflow: hidden;
 `;
 
@@ -38,7 +40,7 @@ const WhiteContentDesktop = styled(SharedStyles)`
 const WhiteContentPhone = styled(SharedStyles)`
     width: 90%;
     height: 85%;
-    margin-top: 16px;
+    margin-top: ${constants.basePaddingSize}px;
 `;
 
 interface StackScreenModalProps {

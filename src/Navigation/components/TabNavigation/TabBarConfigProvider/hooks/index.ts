@@ -1,2 +1,2 @@
 export * from './useCurrentTabBarConfig';
-export * from './useDefaultTabBarConfig';
+export * from './useCreateTabBarConfig';

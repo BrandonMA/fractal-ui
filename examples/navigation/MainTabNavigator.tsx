@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabBar, TabBarItem, TabNavigator, TabScreen, useDefaultTabBarConfig } from '../../src';
+import { TabBar, TabBarItem, TabNavigator, TabScreen, useCreateTabBarConfig } from '../../src';
 import { tabRoutes } from './tabRoutes';
 import { ProductsStackNavigator } from './stackNavigators/products/ProductsStackNavigator';
 import { BillsStackNavigator } from './stackNavigators/bills/BillsStackNavigator';
@@ -42,7 +42,7 @@ function MainTabBar(): JSX.Element {
 }
 
 export function MainTabNavigator(): JSX.Element {
-    const config = useDefaultTabBarConfig({
+    const config = useCreateTabBarConfig({
         tabBarVariant: 'middle-action',
         activeItemColor: '#005CB3',
         highlightItemColor: '#005CB3'

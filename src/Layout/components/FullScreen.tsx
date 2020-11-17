@@ -1,10 +1,10 @@
 import React from 'react';
 import { Animated, ViewProps } from 'react-native';
 import styled from 'styled-components/native';
-import { applyFullScreenStyles } from '../util/applyFullScreenStyles';
+import { getFullScreenStyle } from '../util/getFullScreenStyle';
 
 const Container = styled(Animated.View)`
-    ${applyFullScreenStyles};
+    ${getFullScreenStyle};
 `;
 
 export interface FullScreenProps extends Omit<Animated.AnimatedProps<ViewProps>, 'children'> {

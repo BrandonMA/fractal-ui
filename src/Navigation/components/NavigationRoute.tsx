@@ -3,8 +3,8 @@ import { Screen, ScreenProps, StackPresentationTypes } from 'react-native-screen
 import { useMatch } from '../hooks/useMatch';
 import { Route } from '../../ReactRouter';
 import { StyleSheet } from 'react-native';
-import { CurrentPresentationTypeContext } from './CurrentPresentationTypeProvider';
-import { usePrevValue } from '../../util/usePrevValue';
+import { CurrentPresentationTypeContext } from './PresentationTypeProvider';
+import { usePrevValue } from '../../hooks/usePrevValue';
 
 export interface NavigationRouteProps extends Omit<ScreenProps, 'stackPresentation' | 'active'> {
     path?: string;
@@ -18,12 +18,12 @@ export function NavigationRoute(props: NavigationRouteProps): JSX.Element {
     const [active] = useMatch(basepath);
     const renderChildren = useCallback(() => children, [children]);
     const prevValue = usePrevValue(active);
-    const { type } = useContext(CurrentPresentationTypeContext);
+    const { presentationType } = useContext(CurrentPresentationTypeContext);
 
     return (
         <Screen
             {...others}
-            active={active || (prevValue && type === 'modal') ? 1 : 0}
+            active={active || (prevValue && presentationType === 'modal') ? 1 : 0}
             stackPresentation={stackPresentation ?? 'push'}
             style={[StyleSheet.absoluteFill, style]}
         >

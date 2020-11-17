@@ -1,11 +1,6 @@
-import { useCallback } from 'react';
-import { Animated, Platform } from 'react-native';
+import { Animated } from 'react-native';
+import { useSpringAnimation } from './useSpringAnimation';
 
-export function useShowAnimation(value: Animated.Value, callback?: () => void): () => void {
-    return useCallback(() => {
-        Animated.spring(value, {
-            toValue: 1,
-            useNativeDriver: !(Platform.OS === 'web')
-        }).start(callback);
-    }, [value, callback]);
+export function useShowAnimation(animatedValue: Animated.Value, callback?: () => void): () => void {
+    return useSpringAnimation(animatedValue, 1, callback);
 }

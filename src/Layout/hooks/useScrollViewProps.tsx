@@ -16,8 +16,8 @@ export function useScrollViewProps(): Omit<Animated.AnimatedProps<ScrollViewProp
                     : {
                           paddingTop: totalInsets.top,
                           paddingBottom: totalInsets.bottom,
-                          paddingRight: totalInsets.right,
-                          paddingLeft: totalInsets.left
+                          paddingRight: 0,
+                          paddingLeft: 0
                       }
         };
     }, [totalInsets, tabBarInsets]);

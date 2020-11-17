@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
 import { EdgeInsets } from 'react-native-safe-area-context';
+import { useInsets } from '../../hooks/useInsets';
+import { constants } from '../../constants';
 
 interface NavigationBarInsetsContextType {
-    setInsets: (insets: EdgeInsets) => void;
-    insets: { top: number; right: number; bottom: number; left: number };
+    setNavigationBarInsets: (insets: EdgeInsets) => void;
+    navigationBarInsets: EdgeInsets;
 }
 
 export const NavigationBarInsetsContext = React.createContext<NavigationBarInsetsContextType>({
-    setInsets: () => {
+    setNavigationBarInsets: () => {
         return;
     },
-    insets: { top: 0, right: 0, bottom: 0, left: 0 }
+    navigationBarInsets: constants.insetsZero
 });
 
 interface Props {
@@ -18,16 +20,12 @@ interface Props {
 }
 
 export function NavigationBarInsetsProvider(props: Props): JSX.Element {
-    const [insets, setInsets] = useState({ top: 0, right: 0, bottom: 0, left: 0 });
-
-    return (
-        <NavigationBarInsetsContext.Provider
-            value={{
-                insets,
-                setInsets
-            }}
-        >
-            {props.children}
-        </NavigationBarInsetsContext.Provider>
-    );
+    const [insets, setInsets] = useInsets();
+    const value: NavigationBarInsetsContextType = useMemo(() => {
+        return {
+            navigationBarInsets: insets,
+            setNavigationBarInsets: setInsets
+        };
+    }, [insets, setInsets]);
+    return <NavigationBarInsetsContext.Provider value={value}>{props.children}</NavigationBarInsetsContext.Provider>;
 }

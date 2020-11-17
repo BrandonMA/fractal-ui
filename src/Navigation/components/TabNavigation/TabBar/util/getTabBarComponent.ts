@@ -1,4 +1,5 @@
-import { BasicTabBar, MiddleActionTabBar } from '../variants';
+import { BasicTabBar } from '../components/BasicTabBar';
+import { MiddleActionTabBar } from '../components/MiddleActionTabBar';
 import { TabBarVariant } from '../types/TabBarVariant';
 
 export function getTabBarComponent(variant?: TabBarVariant): typeof BasicTabBar | typeof MiddleActionTabBar {

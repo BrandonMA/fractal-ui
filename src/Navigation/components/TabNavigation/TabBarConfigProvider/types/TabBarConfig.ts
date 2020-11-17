@@ -7,4 +7,5 @@ export interface TabBarConfig {
     highlightItemColor?: string;
     tabBarHidden?: boolean;
     tabBarBackgroundColor: string;
+    tabBarPosition: 'left' | 'right' | 'bottom';
 }

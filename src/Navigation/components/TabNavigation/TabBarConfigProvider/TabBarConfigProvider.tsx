@@ -1,17 +1,17 @@
-import React, { useState, createContext, ReactNode, useEffect, Dispatch, SetStateAction } from 'react';
+import React, { useState, createContext, ReactNode, useEffect, Dispatch, SetStateAction, useMemo } from 'react';
 import { TabBarConfig } from './types';
 import { createTabBarConfig } from './util';
 
 export interface TabBarConfigContextType {
-    setConfig: Dispatch<SetStateAction<TabBarConfig>>;
-    config: TabBarConfig;
+    setTabBarConfig: Dispatch<SetStateAction<TabBarConfig>>;
+    tabBarConfig: TabBarConfig;
 }
 
 export const TabBarConfigContext = createContext<TabBarConfigContextType>({
-    setConfig: () => {
+    setTabBarConfig: () => {
         return;
     },
-    config: createTabBarConfig()
+    tabBarConfig: createTabBarConfig()
 });
 
 interface Props {
@@ -26,14 +26,12 @@ export function TabBarConfigProvider(props: Props): JSX.Element {
         setConfig(props.config);
     }, [props.config]);
 
-    return (
-        <TabBarConfigContext.Provider
-            value={{
-                config,
-                setConfig
-            }}
-        >
-            {props.children}
-        </TabBarConfigContext.Provider>
-    );
+    const value: TabBarConfigContextType = useMemo(() => {
+        return {
+            tabBarConfig: config,
+            setTabBarConfig: setConfig
+        };
+    }, [config, setConfig]);
+
+    return <TabBarConfigContext.Provider value={value}>{props.children}</TabBarConfigContext.Provider>;
 }

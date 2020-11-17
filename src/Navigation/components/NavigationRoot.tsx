@@ -1,5 +1,5 @@
 import React from 'react';
-import { CurrentPresentationTypeProvider } from './CurrentPresentationTypeProvider';
+import { PresentationTypeProvider } from './PresentationTypeProvider';
 import { NavigationRouter } from '../../ReactRouter';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 export function NavigationRoot(props: Props): JSX.Element {
     return (
         <NavigationRouter>
-            <CurrentPresentationTypeProvider>{props.children}</CurrentPresentationTypeProvider>
+            <PresentationTypeProvider>{props.children}</PresentationTypeProvider>
         </NavigationRouter>
     );
 }
