@@ -1,10 +1,10 @@
 import { Product } from '../../models/Product';
-import { mockProducts } from '../../data';
 import { useRecoilValue } from 'recoil';
 import { activeFiltersAtom } from '../../atoms/products/activeFiltersAtom';
 import { productsSearchAtom } from '../../atoms/products/productsSearchAtom';
 import { LayoutAnimation } from 'react-native';
 import { LayoutConfig } from '../../animations/LayoutConfig';
+import { mockProducts } from '../../data/mockProducts';
 
 function filterProducts(filters: Array<string>, products: Array<Product>): Array<Product> {
     if (filters.length > 0) {

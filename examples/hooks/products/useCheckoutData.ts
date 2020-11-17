@@ -1,5 +1,5 @@
 import { useAllCartItems } from './useAllCartItems';
-import { mockProducts } from '../../data';
+import { mockProducts } from '../../data/mockProducts';
 
 export function useCheckoutData(): [number, number, number] {
     const items = useAllCartItems();

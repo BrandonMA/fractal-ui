@@ -2,8 +2,8 @@ import React from 'react';
 import { BackgroundView } from '../../../../components/BackgroundView';
 import { StackScreenContent } from '../../../../../src/Navigation/components/StackNavigation';
 import { useParams } from '../../../../../src';
-import { mockProducts } from '../../../../data';
 import { ProductScreenContent } from '../../../../components/products/ProductScreenContent';
+import { mockProducts } from '../../../../data/mockProducts';
 
 interface Params {
     id: string;

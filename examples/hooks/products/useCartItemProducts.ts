@@ -1,6 +1,6 @@
-import { mockProducts } from '../../data';
 import { useAllCartItems } from './useAllCartItems';
 import { Product } from '../../models/Product';
+import { mockProducts } from '../../data/mockProducts';
 
 export function useCartItemProducts(): Array<Product> {
     const items = useAllCartItems();

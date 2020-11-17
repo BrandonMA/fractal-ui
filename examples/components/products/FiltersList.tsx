@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { SectionListRenderItemInfo } from 'react-native';
-import { mockFilters } from '../../data';
 import { FilterSection } from '../../models/FiltersSection';
 import styled from 'styled-components/native';
 import { FilterRow } from './FilterRow';
+import { mockFilters } from '../../data/mockFilters';
 
 const StyledFlatList = styled.FlatList`
     flex-grow: 1;
