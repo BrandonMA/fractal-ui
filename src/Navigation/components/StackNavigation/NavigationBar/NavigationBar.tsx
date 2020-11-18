@@ -67,7 +67,7 @@ const StyledBackButtonContainer = styled.TouchableOpacity`
 
 export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
     const { hidden, title, hideBackButton, backTitle, children } = props;
-    const navigationBarInsets = useContext(NavigationBarInsetsContext);
+    const { setNavigationBarInsets, navigationBarInsets } = useContext(NavigationBarInsetsContext);
     const { goBack } = useHistory();
     const [, activeRoutes] = useMatch('/');
     const styleProps = createNavigationBarStyleProps(props);
@@ -75,10 +75,10 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
 
     useEffect(() => {
         const top = Platform.OS === 'web' && !hidden ? constants.navigationBarHeightForWeb : 0; // Set the value of the navigation bar for web here. For native it is already inside safeAreaInsets.
-        if (top !== navigationBarInsets.navigationBarInsets.top) {
-            navigationBarInsets.setNavigationBarInsets(constants.insetsZero);
+        if (top !== navigationBarInsets.top) {
+            setNavigationBarInsets({ top, right: 0, bottom: 0, left: 0 });
         }
-    }, [hidden, navigationBarInsets]);
+    }, [hidden, navigationBarInsets, setNavigationBarInsets]);
 
     return hidden ? null : (
         <Container {...styleProps}>
