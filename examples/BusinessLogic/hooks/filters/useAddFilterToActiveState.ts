@@ -1,7 +1,15 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { activeFiltersAtom } from '../../atoms/filters/activeFiltersAtom';
+import { useCallback } from 'react';
 
-export function useIsFilterActive(filter: string): boolean {
-    const activeFilters = useRecoilValue(activeFiltersAtom);
-    return activeFilters.includes(filter);
+export function useAddFilterToActiveState(): (value: string) => void {
+    const [activeFilters, setActiveFilters] = useRecoilState(activeFiltersAtom);
+    return useCallback(
+        (value: string) => {
+            if (!activeFilters.includes(value)) {
+                setActiveFilters([...activeFilters, value]);
+            }
+        },
+        [activeFilters]
+    );
 }

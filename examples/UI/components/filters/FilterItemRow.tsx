@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import styled from 'styled-components/native';
-import { useIsFilterActive } from '../../../BusinessLogic/hooks/filters/useAddFilterToActiveState';
+import { useIsFilterActive } from '../../../BusinessLogic/hooks/filters/useIsFilterActive';
 import { useRemoveFilterFromActiveState } from '../../../BusinessLogic/hooks/filters/useRemoveFilterFromActiveState';
-import { useAddFilterToActiveState } from '../../../BusinessLogic/hooks/filters/useIsFilterActive';
+import { useAddFilterToActiveState } from '../../../BusinessLogic/hooks/filters/useAddFilterToActiveState';
 import { LayoutAnimation, Pressable } from 'react-native';
 import { LayoutConfig } from '../../animations/LayoutConfig';
 import { getCursorStyle } from '../../../../src/Layout/util';

@@ -2,10 +2,10 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import styled from 'styled-components/native';
 import { CartIcon } from '../../icons/CartIcon';
 import { useCartItemIsEmpty } from '../../../BusinessLogic/hooks/products/useCartItemIsEmpty';
-import { Animated, Platform } from 'react-native';
+import { Animated } from 'react-native';
 import { useNavigationInsets } from '../../../../src/Navigation/hooks';
 import { EdgeInsets } from 'react-native-safe-area-context';
-import { useHistory, useLocation } from '../../../../src';
+import { useHideAnimation, useHistory, useLocation, useShowAnimation } from '../../../../src';
 import { tabRoutes } from '../../navigation/tabRoutes';
 
 interface Props {
@@ -34,14 +34,8 @@ export function FloatingCartButton(): JSX.Element {
     const history = useHistory();
     const location = useLocation();
     const hidden = empty || location.pathname !== tabRoutes.products;
-
-    const hide = useCallback(() => {
-        Animated.spring(scaleValue, { useNativeDriver: Platform.OS !== 'web', toValue: 0 }).start();
-    }, [hidden]);
-
-    const show = useCallback(() => {
-        Animated.spring(scaleValue, { useNativeDriver: Platform.OS !== 'web', toValue: 1 }).start();
-    }, [hidden]);
+    const hide = useHideAnimation(scaleValue);
+    const show = useShowAnimation(scaleValue);
 
     useEffect(() => {
         if (hidden) {
