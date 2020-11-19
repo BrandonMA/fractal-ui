@@ -6,6 +6,7 @@ import { Address } from '../../../BusinessLogic/models/Address';
 import { addressesAtom } from '../../../BusinessLogic/atoms/addresses/addressesAtom';
 import { colors } from '../../../../src/Colors';
 import { Picker, PickerItem } from '../Picker';
+import { getHeight } from '../bills/util/getHeight';
 
 const Container = styled.View`
     padding: 12px;
@@ -33,7 +34,7 @@ export function AddressPicker(): JSX.Element {
 
     return (
         <Container>
-            <Picker selectedValue={currentAddress.id} onValueChange={handleChangeAddress}>
+            <Picker selectedValue={currentAddress.id} onValueChange={handleChangeAddress} itemStyle={{ height: getHeight() }}>
                 {allAddresses.map((address) => {
                     const value = addressToString(address);
                     return <PickerItem label={value} value={address.id} key={address.id} />;
