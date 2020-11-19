@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Animated, ViewProps } from 'react-native';
 import styled from 'styled-components/native';
 import { getFullScreenStyle } from '../util/getFullScreenStyle';
+import { PresentationTypeContext } from '../../Navigation/components/PresentationTypeProvider';
 
 const Container = styled(Animated.View)`
     ${getFullScreenStyle};
@@ -12,5 +13,6 @@ export interface FullScreenProps extends Omit<Animated.AnimatedProps<ViewProps>,
 }
 
 export function FullScreen(props: FullScreenProps): JSX.Element {
-    return <Container {...props} />;
+    const { presentationType } = useContext(PresentationTypeContext);
+    return <Container {...props} presentationType={presentationType} />;
 }

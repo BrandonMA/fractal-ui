@@ -1,12 +1,12 @@
-import React, { createContext, ReactNode, Dispatch, SetStateAction, useRef, useCallback, useMemo } from 'react';
+import React, { createContext, ReactNode, Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { StackPresentationTypes } from 'react-native-screens';
 
-interface CurrentPresentationTypeContextType {
+interface PresentationTypeContextType {
     presentationType: StackPresentationTypes;
     setPresentationType: Dispatch<SetStateAction<StackPresentationTypes>>;
 }
 
-export const CurrentPresentationTypeContext = createContext<CurrentPresentationTypeContextType>({
+export const PresentationTypeContext = createContext<PresentationTypeContextType>({
     presentationType: 'push',
     setPresentationType: () => {
         return;
@@ -18,18 +18,17 @@ interface Props {
 }
 
 export function PresentationTypeProvider(props: Props): JSX.Element {
-    const presentationTypeRef = useRef<StackPresentationTypes>('push');
+    const [presentationType, setPresentationType] = useState<StackPresentationTypes>('push');
 
-    const setPresentationType = useCallback(
-        (style: StackPresentationTypes) => {
-            presentationTypeRef.current = style;
-        },
-        [presentationTypeRef]
+    const setPresentationTypeIfNeeded = useCallback((style: StackPresentationTypes) => {
+        setPresentationType((currentType) => {
+            return currentType !== style ? style : currentType;
+        });
+    }, []);
+
+    return (
+        <PresentationTypeContext.Provider value={{ presentationType, setPresentationType: setPresentationTypeIfNeeded }}>
+            {props.children}
+        </PresentationTypeContext.Provider>
     );
-
-    const value = useMemo(() => {
-        return { presentationType: presentationTypeRef.current, setPresentationType };
-    }, [presentationTypeRef, setPresentationType]);
-
-    return <CurrentPresentationTypeContext.Provider value={value}>{props.children}</CurrentPresentationTypeContext.Provider>;
 }

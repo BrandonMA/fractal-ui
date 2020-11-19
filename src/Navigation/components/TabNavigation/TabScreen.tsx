@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { NavigationRoute } from '../NavigationRoute';
 
 export interface TabScreenProps {
@@ -6,6 +6,6 @@ export interface TabScreenProps {
     path: string;
 }
 
-export function TabScreen(props: TabScreenProps): ReactElement<TabScreenProps> {
+export function TabScreen(props: TabScreenProps): JSX.Element {
     return <NavigationRoute {...props} />;
 }

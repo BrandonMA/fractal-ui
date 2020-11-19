@@ -1,9 +1,11 @@
 import { useNavigationInsets } from '../../Navigation/hooks';
 import { Animated, Platform, ScrollViewProps } from 'react-native';
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
+import { PresentationTypeContext } from '../../Navigation/components/PresentationTypeProvider';
 
 export function useScrollViewProps(): Omit<Animated.AnimatedProps<ScrollViewProps>, 'children'> {
     const { totalInsets, tabBarInsets } = useNavigationInsets();
+    const { presentationType } = useContext(PresentationTypeContext);
     return useMemo(() => {
         return {
             automaticallyAdjustContentInsets: true,
@@ -15,10 +17,10 @@ export function useScrollViewProps(): Omit<Animated.AnimatedProps<ScrollViewProp
                     ? null
                     : {
                           paddingTop: totalInsets.top,
-                          paddingBottom: totalInsets.bottom,
+                          paddingBottom: presentationType === 'modal' ? 0 : totalInsets.bottom,
                           paddingRight: 0,
                           paddingLeft: 0
                       }
         };
-    }, [totalInsets, tabBarInsets]);
+    }, [totalInsets, tabBarInsets, presentationType]);
 }
