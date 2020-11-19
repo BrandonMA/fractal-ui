@@ -1,10 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 import { Product } from '../../../BusinessLogic/models/Product';
 import styled from 'styled-components/native';
 import { PlusIcon } from '../../icons/PlusIcon';
 import { MinusIcon } from '../../icons/MinusIcon';
 import { useRecoilState } from 'recoil';
 import { cartItemsAtomFamily } from '../../../BusinessLogic/atoms/products/cartItemsAtomFamily';
+import { Pressable } from 'react-native';
 
 interface ProductCellProps {
     value: Product;
@@ -27,7 +28,7 @@ const MiddleText = styled.Text`
     align-self: center;
 `;
 
-const SquareButton = styled.TouchableOpacity`
+const SquareButton = styled(Pressable)`
     background-color: #005cb3;
     height: 32px;
     width: 32px;
@@ -35,6 +36,30 @@ const SquareButton = styled.TouchableOpacity`
     justify-content: center;
     align-items: center;
 `;
+
+interface PlusButtonProps {
+    increateAmount: () => void;
+}
+
+const PlusButton = memo((props: PlusButtonProps) => {
+    return (
+        <SquareButton onPress={props.increateAmount}>
+            <PlusIcon width={20} height={20} />
+        </SquareButton>
+    );
+});
+
+interface MinusButtonProps {
+    decreaseAmount: () => void;
+}
+
+const MinusButton = memo((props: MinusButtonProps) => {
+    return (
+        <SquareButton onPress={props.decreaseAmount}>
+            <MinusIcon width={20} height={20} />
+        </SquareButton>
+    );
+});
 
 export function ProductCounter(props: ProductCellProps): JSX.Element {
     const { value } = props;
@@ -58,13 +83,9 @@ export function ProductCounter(props: ProductCellProps): JSX.Element {
 
     return (
         <CounterContainer>
-            <SquareButton onPress={increateAmount}>
-                <PlusIcon width={20} height={20} />
-            </SquareButton>
+            <PlusButton increateAmount={increateAmount} />
             <MiddleText>{cartItem}</MiddleText>
-            <SquareButton onPress={decreaseAmount}>
-                <MinusIcon width={20} height={20} />
-            </SquareButton>
+            <MinusButton decreaseAmount={decreaseAmount} />
         </CounterContainer>
     );
 }

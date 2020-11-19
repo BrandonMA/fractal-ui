@@ -6,7 +6,7 @@ import { ScreenStack, ScreenStackProps } from '../ScreenStack';
 import { NavigationBarInsetsProvider } from '../NavigationBarInsetsProvider';
 import { filterMatchingChildren } from './util/filterMatchingChildren';
 import { injectModalContainers } from './util/injectModalContainer';
-import { getInsetsStyle } from '../../../../Layout/util/getInsetsStyle';
+import { getInsetsStyle, InsetsStyleConfig } from '../../../../Layout/util/getInsetsStyle';
 import { TabBarInsetsContext } from '../../TabNavigation/TabBarInsetsProvider';
 
 const StyledScreenStack = styled(ScreenStack)`
@@ -18,6 +18,8 @@ export interface StackNavigatorProps extends Omit<ScreenStackProps, 'children'> 
     children: Array<JSX.Element> | JSX.Element;
     path?: string;
 }
+
+const insetsStyleConfig: InsetsStyleConfig = { type: 'margin', removeVertical: true };
 
 export function StackNavigator(props: StackNavigatorProps): JSX.Element {
     const { path, children, ...others } = props;
@@ -41,7 +43,7 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
 
     return (
         <NavigationBarInsetsProvider>
-            <StyledScreenStack {...others} insets={tabBarInsets} insetsStyleConfig={{ type: 'margin', removeVertical: true }}>
+            <StyledScreenStack {...others} insets={tabBarInsets} insetsStyleConfig={insetsStyleConfig}>
                 {active ? childrenToRender : prevChildrenRef.current}
             </StyledScreenStack>
         </NavigationBarInsetsProvider>

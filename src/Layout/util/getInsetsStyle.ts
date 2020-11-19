@@ -1,6 +1,6 @@
 import { EdgeInsets } from 'react-native-safe-area-context';
 
-interface InsetsStyleConfig {
+export interface InsetsStyleConfig {
     type: 'margin' | 'padding';
     removeHorinzontal?: boolean;
     removeVertical?: boolean;

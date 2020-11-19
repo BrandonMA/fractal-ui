@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import { PressableProps } from 'react-native';
 import { useMatch } from '../../../hooks/useMatch';
 import { TabBarItemVariant } from './types/TabBarItemVariant';
@@ -27,39 +27,47 @@ interface StyledTextProps {
     color: string;
 }
 
-const StyledText = styled.Text`
+const StyledText = memo(styled.Text`
     color: ${(props: StyledTextProps) => props.color};
     font-size: 11px;
-`;
+`);
 
-export function TabBarItem(props: TabBarItemProps): JSX.Element {
-    const { path, activeColor, inactiveColor, variant, title, highlightColor, children, ...others } = props;
-    const { tabBarConfig } = useCurrentTabBarConfig();
-    const [active] = useMatch(path);
-    const color = getTabBarItemColorForState(
-        active,
-        activeColor ?? tabBarConfig.activeItemColor,
-        inactiveColor ?? tabBarConfig.inactiveItemColor,
-        variant
-    );
-    const TabBarItemContainer = getTabBarItemComponent(variant);
-    const iconSize = getTabIconSize(variant);
-    const widthSizeGroup = useWidthSizeGroup();
-    const spacerSize = getValueForLargeSize(widthSizeGroup[0], constants.tabBarItemLargeSpacerSize, constants.tabBarItemCompactSpacerSize);
-    const goToTab = useGoToTab(path, active);
+export const TabBarItem = memo(
+    (props: TabBarItemProps): JSX.Element => {
+        const { path, activeColor, inactiveColor, variant, title, highlightColor, children, ...others } = props;
+        const { tabBarConfig } = useCurrentTabBarConfig();
+        const [active] = useMatch(path);
+        const color = useMemo(() => {
+            return getTabBarItemColorForState(
+                active,
+                activeColor ?? tabBarConfig.activeItemColor,
+                inactiveColor ?? tabBarConfig.inactiveItemColor,
+                variant
+            );
+        }, [active, activeColor, inactiveColor, tabBarConfig.activeItemColor, tabBarConfig.inactiveItemColor]);
+        const TabBarItemContainer = getTabBarItemComponent(variant);
+        const iconSize = getTabIconSize(variant);
+        const widthSizeGroup = useWidthSizeGroup();
+        const spacerSize = getValueForLargeSize(
+            widthSizeGroup[0],
+            constants.tabBarItemLargeSpacerSize,
+            constants.tabBarItemCompactSpacerSize
+        );
+        const goToTab = useGoToTab(path, active);
 
-    return (
-        <TabBarItemContainer
-            {...others}
-            {...tabBarConfig}
-            onPress={goToTab}
-            bg={activeColor ?? tabBarConfig.activeItemColor}
-            widthSizeGroup={widthSizeGroup}
-            highlightColor={highlightColor ?? tabBarConfig.highlightItemColor}
-        >
-            {children(color, iconSize)}
-            <Spacer width={spacerSize.width} height={spacerSize.height} />
-            {variant === 'circular' ? null : <StyledText color={color}>{title}</StyledText>}
-        </TabBarItemContainer>
-    );
-}
+        return (
+            <TabBarItemContainer
+                {...others}
+                {...tabBarConfig}
+                onPress={goToTab}
+                bg={activeColor ?? tabBarConfig.activeItemColor}
+                widthSizeGroup={widthSizeGroup}
+                highlightColor={highlightColor ?? tabBarConfig.highlightItemColor}
+            >
+                {children(color, iconSize)}
+                <Spacer width={spacerSize.width} height={spacerSize.height} />
+                {variant === 'circular' ? null : <StyledText color={color}>{title}</StyledText>}
+            </TabBarItemContainer>
+        );
+    }
+);
