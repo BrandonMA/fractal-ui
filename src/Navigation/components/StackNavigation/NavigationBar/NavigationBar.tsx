@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { memo, useContext, useEffect, useMemo } from 'react';
 import { Platform, View } from 'react-native';
 import styled from 'styled-components/native';
 import { NavigationBarInsetsContext } from '../NavigationBarInsetsProvider';
@@ -30,12 +30,12 @@ const StyledText = styled.Text`
     font-size: ${constants.fontSizeNormal}px;
 `;
 
-const StyledTitle = styled(StyledText)`
+const StyledTitle = memo(styled(StyledText)`
     color: ${(props: NavigationBarStyleProps) => (props.titleColor != null ? props.titleColor : props.color ?? colors.white.base100)};
     font-weight: 700;
     font-size: ${(props: NavigationBarStyleProps) => props.titleFontSize ?? constants.fontSizeTitle}px;
     text-align: center;
-`;
+`);
 
 const SharedStylesSectionContainer = styled.View`
     flex-grow: 1;
@@ -70,7 +70,9 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
     const { setNavigationBarInsets, navigationBarInsets } = useContext(NavigationBarInsetsContext);
     const { goBack } = useHistory();
     const [, activeRoutes] = useMatch('/');
-    const styleProps = createNavigationBarStyleProps(props);
+    const styleProps = useMemo(() => {
+        return createNavigationBarStyleProps(props);
+    }, [props]);
     const [leftChild, centerChild, rightChild] = useNavigationBarChildren(children);
 
     useEffect(() => {

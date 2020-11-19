@@ -18,7 +18,7 @@ export function ProductsStackNavigator(): JSX.Element {
                     <NavigationBar title={stackTitles.products} largeTitle />
                     <ProductsScreen />
                 </StackScreen>
-                <StackScreen path={tabRoutes.checkout} stackPresentation='modal'>
+                <StackScreen path={tabRoutes.checkout}>
                     <NavigationBar title={stackTitles.checkout} largeTitle={false} backTitle={stackTitles.products} />
                     <CheckoutScreen />
                 </StackScreen>

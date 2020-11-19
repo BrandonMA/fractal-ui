@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react';
 import styled from 'styled-components/native';
-import { SectionListRenderItemInfo } from 'react-native';
+import { SectionListRenderItemInfo, StyleProp, ViewStyle } from 'react-native';
 import { Product } from '../../../BusinessLogic/models/Product';
 import { ProductCell } from './ProductCell';
 import { FullScreen } from '../../../../src/Layout/components';
@@ -16,6 +16,8 @@ interface Props {
     header?: JSX.Element;
     footer?: JSX.Element;
 }
+
+const wrapperStyle: StyleProp<ViewStyle> = { flexDirection: 'row', flexGrow: 1 };
 
 export const BaseProductsList = memo(
     (props: Props): JSX.Element => {
@@ -38,7 +40,7 @@ export const BaseProductsList = memo(
                     renderItem={renderItem}
                     keyExtractor={keyExtractor}
                     numColumns={2}
-                    columnWrapperStyle={{ flexDirection: 'row', flexGrow: 1 }}
+                    columnWrapperStyle={wrapperStyle}
                 />
             </Container>
         );

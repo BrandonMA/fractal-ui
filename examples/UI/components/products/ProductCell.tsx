@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 import { Product } from '../../../BusinessLogic/models/Product';
 import styled from 'styled-components/native';
 import { ProductCellContent } from './ProductCellContent';
@@ -29,19 +29,21 @@ const Container = styled(Pressable)`
     ${getCursorStyle}
 `;
 
-export function ProductCell(props: ProductCellProps): JSX.Element {
-    const history = useHistory();
-    const { value, disablePress } = props;
-    const handleGoToDetails = useCallback(() => {
-        if (!disablePress) {
-            history.push(`${tabRoutes.products}/details/${value.sku}`);
-        }
-    }, [value, disablePress]);
+export const ProductCell = memo(
+    (props: ProductCellProps): JSX.Element => {
+        const history = useHistory();
+        const { value, disablePress } = props;
+        const handleGoToDetails = useCallback(() => {
+            if (!disablePress) {
+                history.push(`${tabRoutes.products}/details/${value.sku}`);
+            }
+        }, [value, disablePress]);
 
-    return (
-        <Container {...props} onPress={handleGoToDetails}>
-            <ProductCellContent value={value} />
-            <ProductCounter value={value} />
-        </Container>
-    );
-}
+        return (
+            <Container {...props} onPress={handleGoToDetails}>
+                <ProductCellContent value={value} />
+                <ProductCounter value={value} />
+            </Container>
+        );
+    }
+);
