@@ -3,9 +3,12 @@ import { Product } from '../../../BusinessLogic/models/Product';
 import styled from 'styled-components/native';
 import { PlusIcon } from '../../icons/PlusIcon';
 import { MinusIcon } from '../../icons/MinusIcon';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { cartItemsAtomFamily } from '../../../BusinessLogic/atoms/products/cartItemsAtomFamily';
 import { Pressable } from 'react-native';
+import { cartItemsProductArrayAtom } from '../../../BusinessLogic/atoms/products/cartItemsProductArrayAtom';
+import { useToggleItemFromArray } from '../../../../src/hooks/useToggleItemFromArray';
+import { getCursorStyle } from '../../../../src/Layout/util';
 
 interface ProductCellProps {
     value: Product;
@@ -26,6 +29,7 @@ const MiddleText = styled.Text`
     font-weight: bold;
     text-align: center;
     align-self: center;
+    flex-basis: 40%;
 `;
 
 const SquareButton = styled(Pressable)`
@@ -35,6 +39,12 @@ const SquareButton = styled(Pressable)`
     border-radius: 8px;
     justify-content: center;
     align-items: center;
+    ${getCursorStyle};
+`;
+
+const ButtonContainer = styled.View`
+    flex-basis: 30%;
+    align-items: center;
 `;
 
 interface PlusButtonProps {
@@ -43,9 +53,11 @@ interface PlusButtonProps {
 
 const PlusButton = memo((props: PlusButtonProps) => {
     return (
-        <SquareButton onPress={props.increateAmount}>
-            <PlusIcon width={20} height={20} />
-        </SquareButton>
+        <ButtonContainer>
+            <SquareButton onPress={props.increateAmount}>
+                <PlusIcon width={20} height={20} />
+            </SquareButton>
+        </ButtonContainer>
     );
 });
 
@@ -55,15 +67,19 @@ interface MinusButtonProps {
 
 const MinusButton = memo((props: MinusButtonProps) => {
     return (
-        <SquareButton onPress={props.decreaseAmount}>
-            <MinusIcon width={20} height={20} />
-        </SquareButton>
+        <ButtonContainer>
+            <SquareButton onPress={props.decreaseAmount}>
+                <MinusIcon width={20} height={20} />
+            </SquareButton>
+        </ButtonContainer>
     );
 });
 
 export function ProductCounter(props: ProductCellProps): JSX.Element {
     const { value } = props;
     const [cartItem, setCartItem] = useRecoilState(cartItemsAtomFamily(value.sku));
+    const setCartItemsProductsAtom = useSetRecoilState(cartItemsProductArrayAtom);
+    useToggleItemFromArray(cartItem > 0, value.sku, setCartItemsProductsAtom);
 
     const increateAmount = useCallback(() => {
         setCartItem((cartItem) => {
@@ -84,7 +100,7 @@ export function ProductCounter(props: ProductCellProps): JSX.Element {
     return (
         <CounterContainer>
             <PlusButton increateAmount={increateAmount} />
-            <MiddleText>{cartItem}</MiddleText>
+            <MiddleText selectable={false}>{cartItem}</MiddleText>
             <MinusButton decreaseAmount={decreaseAmount} />
         </CounterContainer>
     );

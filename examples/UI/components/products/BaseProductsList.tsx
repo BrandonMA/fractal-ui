@@ -40,6 +40,7 @@ export const BaseProductsList = memo(
                     renderItem={renderItem}
                     keyExtractor={keyExtractor}
                     numColumns={2}
+                    contentContainerStyle={{ width: '100%' }}
                     columnWrapperStyle={wrapperStyle}
                 />
             </Container>

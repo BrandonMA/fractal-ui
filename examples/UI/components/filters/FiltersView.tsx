@@ -1,11 +1,11 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components/native';
-import { Dimensions, LayoutAnimation, Pressable } from 'react-native';
+import { Dimensions, Pressable } from 'react-native';
 import { FilterIcon } from '../../icons/FilterIcon';
 import { Label } from '../Label';
 import { FiltersSectionList } from './FiltersSectionList';
-import { LayoutConfig } from '../../animations/LayoutConfig';
 import { getCursorStyle } from '../../../../src/Layout/util';
+import { useExpanded } from '../../hooks/useExpanded';
 
 interface ContainerProps {
     fullScreen: boolean;
@@ -32,20 +32,15 @@ const InnerContainer = styled(Pressable)`
 
 export const FiltersView = memo(
     (): JSX.Element => {
-        const [fullScreen, setFullScreen] = useState(false);
-
-        const toggleFullScreen = useCallback(() => {
-            LayoutAnimation.configureNext(LayoutConfig);
-            setFullScreen((value) => !value);
-        }, []);
+        const [expanded, setExpanded] = useExpanded();
 
         return (
-            <Container fullScreen={fullScreen}>
-                <InnerContainer onPress={toggleFullScreen}>
+            <Container fullScreen={expanded}>
+                <InnerContainer onPress={setExpanded}>
                     <Label>Todos los productos</Label>
                     <FilterIcon />
                 </InnerContainer>
-                {fullScreen ? <FiltersSectionList /> : null}
+                {expanded ? <FiltersSectionList /> : null}
             </Container>
         );
     }

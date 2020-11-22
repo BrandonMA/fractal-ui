@@ -1,4 +1,4 @@
 export interface FiltersGroup {
     title: string;
-    values: Array<string>;
+    filters: Array<string>;
 }

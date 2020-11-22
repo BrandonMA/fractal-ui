@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import styled from 'styled-components/native';
 import { CartIcon } from '../../icons/CartIcon';
-import { useCartItemIsEmpty } from '../../../BusinessLogic/hooks/products/useCartItemIsEmpty';
+import { useIsCartEmpty } from '../../../BusinessLogic/hooks/products/useIsCartEmpty';
 import { Animated } from 'react-native';
 import { useNavigationInsets } from '../../../../src/Navigation/hooks';
 import { EdgeInsets } from 'react-native-safe-area-context';
@@ -28,7 +28,7 @@ const CircularContainer = styled.TouchableOpacity`
 `;
 
 export function FloatingCartButton(): JSX.Element {
-    const empty = useCartItemIsEmpty();
+    const empty = useIsCartEmpty();
     const scaleValue = useRef(new Animated.Value(0)).current;
     const { totalInsets } = useNavigationInsets();
     const history = useHistory();

@@ -12,6 +12,7 @@ interface ProductCellProps {
 
 const StyledTitle = styled(Title)`
     padding-bottom: 12px;
+    align-self: center;
 `;
 
 const StyledImage: any = styled(Platform.OS === 'web' ? WebImage : Image)`
@@ -31,7 +32,7 @@ export const ProductCellContent = memo(
 
         return (
             <>
-                <StyledTitle>{value.name}</StyledTitle>
+                <StyledTitle selectable={false}>{value.name}</StyledTitle>
                 <StyledImage resizeMode='contain' uri={value.imageURL} defaultSource={{ uri: value.imageURL }} />
                 <StyledLabel>${value.price}</StyledLabel>
                 <StyledLabel>{value.description}</StyledLabel>

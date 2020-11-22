@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components/native';
 import { FiltersGroup } from '../../../BusinessLogic/models/FiltersGroup';
 import { FilterItemRow } from './FilterItemRow';
@@ -12,24 +12,26 @@ const Container = styled(SharedFilterRowStyles)`
 `;
 
 interface FilterGroupRowProps {
-    value: FiltersGroup;
+    filterGroup: FiltersGroup;
 }
 
-export function FilterGroupRow(props: FilterGroupRowProps): JSX.Element {
-    const [expanded, toggleExpanded] = useExpanded();
+export const FilterGroupRow = memo(
+    (props: FilterGroupRowProps): JSX.Element => {
+        const [expanded, toggleExpanded] = useExpanded();
 
-    return (
-        <>
-            <Container onPress={toggleExpanded}>
-                <Title>{props.value.title}</Title>
-            </Container>
-            {expanded ? (
-                <FiltersRowItemsContainer>
-                    {props.value.values.map((filter) => {
-                        return <FilterItemRow value={filter} key={filter} />;
-                    })}
-                </FiltersRowItemsContainer>
-            ) : null}
-        </>
-    );
-}
+        return (
+            <>
+                <Container onPress={toggleExpanded}>
+                    <Title>{props.filterGroup.title}</Title>
+                </Container>
+                {expanded ? (
+                    <FiltersRowItemsContainer>
+                        {props.filterGroup.filters.map((filter) => {
+                            return <FilterItemRow filter={filter} key={filter} />;
+                        })}
+                    </FiltersRowItemsContainer>
+                ) : null}
+            </>
+        );
+    }
+);

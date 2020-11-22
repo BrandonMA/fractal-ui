@@ -1,21 +1,21 @@
 import { FilterSection } from '../models/FiltersSection';
 
-export const mockFilters: Array<FilterSection> = [
+export const mockFiltersSections: Array<FilterSection> = [
     {
         title: 'Tipo',
-        filters: [
+        groups: [
             {
                 title: 'Modalidad',
-                values: ['BMX', 'City', 'Montaña', 'Ruta']
+                filters: ['BMX', 'City', 'Montaña', 'Ruta']
             }
         ]
     },
     {
         title: 'Componentes para bicicleta',
-        filters: [
+        groups: [
             {
                 title: 'Cuadro',
-                values: ['Amortiguador', 'Buje para cuadro', 'Cuadros', 'Guía pasa cable', 'Porta ejes']
+                filters: ['Amortiguador', 'Buje para cuadro', 'Cuadros', 'Guía pasa cable', 'Porta ejes']
             }
         ]
     }
