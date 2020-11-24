@@ -5,6 +5,7 @@ import { LayoutConfig } from '../../animations/LayoutConfig';
 import { getCursorStyle } from '../../../../src/Layout/util';
 import { useFilterSectionStatus } from '../../../BusinessLogic/hooks/filters/useFilterSectionStatus';
 import { useToggleFilterSectionStatus } from '../../../BusinessLogic/hooks/filters/useToggleFilterSectionStatus';
+import { Filter } from '../../../BusinessLogic/models/Filter';
 
 interface StyledProps {
     active: boolean;
@@ -26,13 +27,13 @@ export const Label = styled.Text`
 `;
 
 interface FilterItemRowProps {
-    filter: string;
+    filter: Filter;
 }
 
 export const FilterItemRow = memo(
     (props: FilterItemRowProps): JSX.Element => {
         const { filter } = props;
-        const active = useFilterSectionStatus(filter);
+        const active = useFilterSectionStatus(filter.id);
         const toggleFilter = useToggleFilterSectionStatus(filter);
 
         const toggleActive = useCallback(() => {
@@ -42,7 +43,7 @@ export const FilterItemRow = memo(
 
         return (
             <Container active={active} onPress={toggleActive}>
-                <Label active={active}>{props.filter}</Label>
+                <Label active={active}>{props.filter.name}</Label>
             </Container>
         );
     }

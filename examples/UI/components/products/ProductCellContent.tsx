@@ -8,11 +8,13 @@ import { Title } from '../Title';
 
 interface ProductCellProps {
     value: Product;
+    showFullDescription?: boolean;
 }
 
 const StyledTitle = styled(Title)`
     padding-bottom: 12px;
     align-self: center;
+    text-align: center;
 `;
 
 const StyledImage: any = styled(Platform.OS === 'web' ? WebImage : Image)`

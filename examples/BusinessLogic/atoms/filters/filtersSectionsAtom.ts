@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
-import { mockFiltersSections } from '../../data/mockFiltersSections';
+import { FiltersSection } from '../../models/FiltersSection';
 
 export const filtersSectionsAtom = atom({
     key: 'filtersSectionsAtom',
-    default: mockFiltersSections
+    default: Array<FiltersSection>()
 });

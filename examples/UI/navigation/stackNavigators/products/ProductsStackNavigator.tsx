@@ -9,9 +9,15 @@ import { ProductScreen } from './screens/ProductScreen';
 import { AddressPickingScreen } from './screens/AddressPickingScreen';
 import { CreateAddressButton } from '../../../components/addresses/CreateAddressButton';
 import { CreateAddressScreen } from './screens/CreateAddressScreen';
+import { useFetchFiltersSections } from '../../../../BusinessLogic/hooks/filters/useFetchFiltersSections';
+import { LoadingView } from '../../../components/LoadingView';
+import { useFetchProducts } from '../../../../BusinessLogic/hooks/products/useFetchProducts';
 
 export function ProductsStackNavigator(): JSX.Element {
-    return (
+    const filtersReady = useFetchFiltersSections();
+    useFetchProducts();
+
+    return filtersReady ? (
         <>
             <StackNavigator path={tabRoutes.products}>
                 <StackScreen path={tabRoutes.products}>
@@ -41,5 +47,7 @@ export function ProductsStackNavigator(): JSX.Element {
             </StackNavigator>
             <FloatingCartButton />
         </>
+    ) : (
+        <LoadingView />
     );
 }

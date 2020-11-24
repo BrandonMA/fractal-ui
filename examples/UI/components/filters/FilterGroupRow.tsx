@@ -27,7 +27,7 @@ export const FilterGroupRow = memo(
                 {expanded ? (
                     <FiltersRowItemsContainer>
                         {props.filterGroup.filters.map((filter) => {
-                            return <FilterItemRow filter={filter} key={filter} />;
+                            return <FilterItemRow filter={filter} key={filter.id} />;
                         })}
                     </FiltersRowItemsContainer>
                 ) : null}

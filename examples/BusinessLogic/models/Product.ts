@@ -4,6 +4,6 @@ export interface Product {
     price: number;
     description: string;
     sku: string;
-    filters: Array<string>;
+    filter: number;
     details: Map<string, string>;
 }

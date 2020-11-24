@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { FilterSection } from '../../../BusinessLogic/models/FiltersSection';
+import { FiltersSection } from '../../../BusinessLogic/models/FiltersSection';
 import styled from 'styled-components/native';
 import { FilterGroupRow } from './FilterGroupRow';
 import { useExpanded } from '../../hooks/useExpanded';
@@ -12,7 +12,7 @@ const Container = memo(styled(SharedFilterRowStyles)`
 `);
 
 interface FilterSectionProps {
-    filterSection: FilterSection;
+    filterSection: FiltersSection;
 }
 
 export const FilterSectionRow = memo(

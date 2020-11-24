@@ -1,4 +1,6 @@
+import { Filter } from './Filter';
+
 export interface FiltersGroup {
     title: string;
-    filters: Array<string>;
+    filters: Array<Filter>;
 }

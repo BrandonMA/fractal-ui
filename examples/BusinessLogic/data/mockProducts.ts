@@ -9,7 +9,7 @@ function createProducts(amount: number): Array<Product> {
             price: 100,
             description: '3 Leds en Blanco\nBaterias de 20 Lúmenes',
             sku: `${i}`,
-            filters: [i % 2 === 0 ? 'BMX' : 'City'],
+            filter: i % 2 === 0 ? 1 : 2,
             details: new Map([
                 ['Gama', 'Media'],
                 ['Marca', 'HUNTER'],

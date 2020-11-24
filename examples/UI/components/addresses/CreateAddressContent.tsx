@@ -4,13 +4,10 @@ import { ProfileField } from '../profile/ProfileField';
 import { useSetRecoilState } from 'recoil';
 import { addressesAtom } from '../../../BusinessLogic/atoms/addresses/addressesAtom';
 import { Address } from '../../../BusinessLogic/models/Address';
-import { SafeAreaFullScreenScrollView, useHistory } from '../../../../src';
+import { useHistory } from '../../../../src';
 import { Button } from '../Button';
 import { ButtonText } from '../ButtonText';
-
-const StyledSafeAreaFullScreenScrollView = styled(SafeAreaFullScreenScrollView)`
-    background-color: #f2f2f2;
-`;
+import { BackgroundScrollView } from '../BackgroundScrollView';
 
 const Container = styled.KeyboardAvoidingView`
     flex-direction: column;
@@ -40,7 +37,7 @@ export function CreateAddressContent(): JSX.Element {
     };
 
     return (
-        <StyledSafeAreaFullScreenScrollView>
+        <BackgroundScrollView>
             <Container>
                 <ProfileField title='Calle' onChangeText={setStreet} />
                 <ProfileField title='Colonia' onChangeText={setDistrict} />
@@ -51,6 +48,6 @@ export function CreateAddressContent(): JSX.Element {
                     <ButtonText>Agregar dirección</ButtonText>
                 </Button>
             </Container>
-        </StyledSafeAreaFullScreenScrollView>
+        </BackgroundScrollView>
     );
 }

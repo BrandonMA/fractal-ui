@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from 'react';
 import styled from 'styled-components/native';
-import { SectionListRenderItemInfo, StyleProp, ViewStyle } from 'react-native';
+import { SectionListRenderItemInfo } from 'react-native';
 import { Product } from '../../../BusinessLogic/models/Product';
 import { ProductCell } from './ProductCell';
 import { FullScreen } from '../../../../src/Layout/components';
@@ -15,19 +15,26 @@ interface Props {
     disablePress?: boolean;
     header?: JSX.Element;
     footer?: JSX.Element;
+    onEndReached?: () => void;
 }
-
-const wrapperStyle: StyleProp<ViewStyle> = { flexDirection: 'row', flexGrow: 1 };
 
 export const BaseProductsList = memo(
     (props: Props): JSX.Element => {
-        const { products, disablePress } = props;
+        const { products, disablePress, onEndReached } = props;
         const renderItem = useCallback(
             (value: SectionListRenderItemInfo<Product>) => {
                 const { item, index } = value;
-                return <ProductCell value={item} index={index} disablePress={disablePress} lastItem={products.length - 2 <= index} />;
+                return (
+                    <ProductCell
+                        key={item.sku}
+                        value={item}
+                        index={index}
+                        disablePress={disablePress}
+                        lastItem={products.length - 1 === index}
+                    />
+                );
             },
-            [disablePress]
+            [disablePress, products]
         );
         const keyExtractor = useCallback((item) => item.sku, []);
 
@@ -39,9 +46,9 @@ export const BaseProductsList = memo(
                     data={products}
                     renderItem={renderItem}
                     keyExtractor={keyExtractor}
-                    numColumns={2}
-                    contentContainerStyle={{ width: '100%' }}
-                    columnWrapperStyle={wrapperStyle}
+                    removeClippedSubviews
+                    windowSize={11}
+                    onEndReached={onEndReached}
                 />
             </Container>
         );

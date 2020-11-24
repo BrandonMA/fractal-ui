@@ -6,7 +6,6 @@ import { useHistory } from '../../../../src';
 import { tabRoutes } from '../../navigation/tabRoutes';
 import { ProductCounter } from './ProductCounter';
 import { BasicCellContainer } from '../BasicCellContainer';
-import styled from 'styled-components/native';
 
 interface ProductCellProps {
     value: Product;
@@ -14,10 +13,6 @@ interface ProductCellProps {
     lastItem: boolean;
     index: number;
 }
-
-const Container = styled(Pressable)`
-    width: 50%;
-`;
 
 export const ProductCell = memo(
     (props: ProductCellProps): JSX.Element => {
@@ -30,12 +25,12 @@ export const ProductCell = memo(
         }, [value, disablePress]);
 
         return (
-            <Container onPress={handleGoToDetails}>
-                <BasicCellContainer lastItem={props.lastItem} index={props.index} isTwoColumnsCell>
+            <Pressable onPress={handleGoToDetails}>
+                <BasicCellContainer lastItem={props.lastItem} index={props.index}>
                     <ProductCellContent value={value} />
                     <ProductCounter value={value} />
                 </BasicCellContainer>
-            </Container>
+            </Pressable>
         );
     }
 );

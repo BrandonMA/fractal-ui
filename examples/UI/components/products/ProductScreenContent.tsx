@@ -52,8 +52,8 @@ export function ProductScreenContent(props: ProductCellProps): JSX.Element {
                     <ProductCellContent value={props.value} />
                 </Content>
                 <Content>{details}</Content>
+                <ProductCounter value={props.value} />
             </Container>
-            <ProductCounter value={props.value} />
         </ScrollView>
     );
 }

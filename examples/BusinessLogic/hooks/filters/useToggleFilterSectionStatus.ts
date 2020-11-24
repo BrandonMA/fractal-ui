@@ -3,11 +3,12 @@ import { activeFiltersAtomFamily } from '../../atoms/filters/activeFiltersAtomFa
 import { useCallback } from 'react';
 import { activeFiltersArrayAtom } from '../../atoms/filters/activeFiltersArrayAtom';
 import { useToggleItemFromArray } from '../../../../src/hooks/useToggleItemFromArray';
+import { Filter } from '../../models/Filter';
 
-export function useToggleFilterSectionStatus(id: string): () => void {
-    const [filterStatus, setFilterStatus] = useRecoilState(activeFiltersAtomFamily(id));
+export function useToggleFilterSectionStatus(filter: Filter): () => void {
+    const [filterStatus, setFilterStatus] = useRecoilState(activeFiltersAtomFamily(filter.id));
     const setActiveFiltersList = useSetRecoilState(activeFiltersArrayAtom);
-    useToggleItemFromArray(filterStatus, id, setActiveFiltersList);
+    useToggleItemFromArray(filterStatus, filter.id, setActiveFiltersList);
     return useCallback(() => {
         setFilterStatus((currentStatus) => !currentStatus);
     }, [setFilterStatus]);

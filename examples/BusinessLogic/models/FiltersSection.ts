@@ -1,6 +1,6 @@
 import { FiltersGroup } from './FiltersGroup';
 
-export interface FilterSection {
+export interface FiltersSection {
     title: string;
     groups: Array<FiltersGroup>;
 }
