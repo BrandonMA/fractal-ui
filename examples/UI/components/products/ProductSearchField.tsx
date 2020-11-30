@@ -1,11 +1,13 @@
 import { SearchField } from './SearchField';
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { productsSearchAtom } from '../../../BusinessLogic/atoms/products/productsSearchAtom';
+import { productsSearchAtom } from '../../../BusinessLogic/atoms/filters/productsSearchAtom';
 
 export const ProductSearchField = memo(
     (): JSX.Element => {
+        const [localText, setLocalText] = useState('');
         const setText = useSetRecoilState(productsSearchAtom);
-        return <SearchField placeholder='Buscar...' onChangeText={setText} />;
+        const handleSubmit = () => setText(localText);
+        return <SearchField placeholder='Buscar...' value={localText} onChangeText={setLocalText} onSubmitEditing={handleSubmit} />;
     }
 );

@@ -12,10 +12,12 @@ import { CreateAddressScreen } from './screens/CreateAddressScreen';
 import { useFetchFiltersSections } from '../../../../BusinessLogic/hooks/filters/useFetchFiltersSections';
 import { LoadingView } from '../../../components/LoadingView';
 import { useFetchProducts } from '../../../../BusinessLogic/hooks/products/useFetchProducts';
+import { useFetchFilteredProducts } from '../../../../BusinessLogic/hooks/filters/useFetchFilteredProducts';
 
 export function ProductsStackNavigator(): JSX.Element {
     const filtersReady = useFetchFiltersSections();
     useFetchProducts();
+    useFetchFilteredProducts();
 
     return filtersReady ? (
         <>

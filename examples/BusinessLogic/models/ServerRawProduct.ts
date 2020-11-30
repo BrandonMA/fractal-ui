@@ -37,7 +37,7 @@ export function rawProductToProduct(value: ServerRawProduct): Product {
         imageURL: 'https://windsorciclismo.com/wp-content/uploads/2019/02/WINLZ10.jpg',
         price: price,
         description: description,
-        sku: `${id}`,
+        sku: id,
         filter: subfamily_id,
         details: new Map(Object.entries(others))
     };

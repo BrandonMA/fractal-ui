@@ -3,6 +3,9 @@ import { MainTabNavigator } from './tabNavigator/MainTabNavigator';
 import { NavigationRoot } from '../../../src';
 import { Platform, StatusBar, UIManager } from 'react-native';
 import { RecoilRoot } from 'recoil';
+import { enableMapSet } from 'immer';
+
+enableMapSet();
 
 if (Platform.OS === 'android') {
     if (UIManager.setLayoutAnimationEnabledExperimental) {

@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import styled from 'styled-components/native';
 import { SectionListRenderItemInfo } from 'react-native';
 import { Product } from '../../../BusinessLogic/models/Product';
@@ -11,7 +11,7 @@ const Container = styled(FullScreen)`
 `;
 
 interface Props {
-    products: Array<Product>;
+    products: Map<number, Product>;
     disablePress?: boolean;
     header?: JSX.Element;
     footer?: JSX.Element;
@@ -21,29 +21,22 @@ interface Props {
 export const BaseProductsList = memo(
     (props: Props): JSX.Element => {
         const { products, disablePress, onEndReached } = props;
+        const productsArray = useMemo(() => Array.from(products.values()), [products]);
         const renderItem = useCallback(
             (value: SectionListRenderItemInfo<Product>) => {
                 const { item, index } = value;
-                return (
-                    <ProductCell
-                        key={item.sku}
-                        value={item}
-                        index={index}
-                        disablePress={disablePress}
-                        lastItem={products.length - 1 === index}
-                    />
-                );
+                return <ProductCell value={item} index={index} disablePress={disablePress} lastItem={products.size - 1 === index} />;
             },
             [disablePress, products]
         );
-        const keyExtractor = useCallback((item) => item.sku, []);
+        const keyExtractor = useCallback((item) => item.sku.toString(), []);
 
         return (
             <Container>
                 <SafeAreaFullScreenFlatList
                     ListHeaderComponent={props.header}
                     ListFooterComponent={props.footer}
-                    data={products}
+                    data={productsArray}
                     renderItem={renderItem}
                     keyExtractor={keyExtractor}
                     removeClippedSubviews

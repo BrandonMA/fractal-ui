@@ -1,11 +1,11 @@
 import { selector } from 'recoil';
-import { cartItemsProductArrayAtom } from '../../atoms/products/cartItemsProductArrayAtom';
+import { cartItemsProductsAtom } from '../../atoms/cartItems/cartItemsProductsAtom';
 
 export const isCartEmptySelector = selector({
     key: 'isCartEmptySelector',
     get: (props) => {
         const { get } = props;
-        const cartItemsProducts = get(cartItemsProductArrayAtom);
-        return cartItemsProducts.length === 0;
+        const cartItemsProducts = get(cartItemsProductsAtom);
+        return cartItemsProducts.size === 0;
     }
 });

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import styled from 'styled-components/native';
 import { CartIcon } from '../../icons/CartIcon';
-import { useIsCartEmpty } from '../../../BusinessLogic/hooks/products/useIsCartEmpty';
+import { useIsCartEmpty } from '../../../BusinessLogic/hooks/cartItems/useIsCartEmpty';
 import { Animated } from 'react-native';
 import { useNavigationInsets } from '../../../../src/Navigation/hooks';
 import { EdgeInsets } from 'react-native-safe-area-context';

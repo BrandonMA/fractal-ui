@@ -3,4 +3,4 @@ import { TextField } from '../TextField';
 
 export const SearchField = styled(TextField)`
     margin: 12px;
-`;
+` as typeof TextField;

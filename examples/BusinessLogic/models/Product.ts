@@ -3,7 +3,7 @@ export interface Product {
     imageURL: string;
     price: number;
     description: string;
-    sku: string;
+    sku: number;
     filter: number;
     details: Map<string, string>;
 }

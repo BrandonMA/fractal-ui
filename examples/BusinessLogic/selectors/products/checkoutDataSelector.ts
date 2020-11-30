@@ -1,17 +1,17 @@
 import { selector } from 'recoil';
-import { cartItemsSelector } from './cartItemsSelector';
-import { productsAtom } from '../../atoms/products/productsAtom';
+import { cartItemsAmountsSelector } from './cartItemsAmountsSelector';
+import { cartItemsProductsAtom } from '../../atoms/cartItems/cartItemsProductsAtom';
 
 export const checkoutDataSelector = selector<[number, number, number]>({
     key: 'checkoutDataSelector',
     get: (props) => {
         const { get } = props;
-        const cartItems = get(cartItemsSelector);
-        const products = get(productsAtom);
+        const cartItemsAmounts = get(cartItemsAmountsSelector);
+        const cartProducts = get(cartItemsProductsAtom);
 
         let totalBeforeTaxes = 0;
-        cartItems.forEach((value, key) => {
-            const product = products.find((product) => product.sku === key);
+        cartItemsAmounts.forEach((value, key) => {
+            const product = cartProducts.get(key);
             const itemTotal = value * (product?.price ?? 0);
             totalBeforeTaxes += itemTotal;
         });

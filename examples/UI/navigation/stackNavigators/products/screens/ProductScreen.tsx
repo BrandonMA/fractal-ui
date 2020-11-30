@@ -3,16 +3,16 @@ import { BackgroundScrollView } from '../../../../components/BackgroundScrollVie
 import { StackScreenContent } from '../../../../../../src/Navigation/components/StackNavigation';
 import { useParams } from '../../../../../../src';
 import { ProductScreenContent } from '../../../../components/products/ProductScreenContent';
-import { useProducts } from '../../../../../BusinessLogic/hooks/products/useProducts';
+import { useRecoilValue } from 'recoil';
+import { productSelectorFamily } from '../../../../../BusinessLogic/selectors/products/productSelectorFamily';
 
 interface Params {
     id: string;
 }
 
 export function ProductScreen(): JSX.Element {
-    const location = useParams<Params>();
-    const products = useProducts();
-    const product = products.find((product) => product.sku === location.id);
+    const params = useParams<Params>();
+    const product = useRecoilValue(productSelectorFamily(Number(params.id)));
 
     return (
         <StackScreenContent>

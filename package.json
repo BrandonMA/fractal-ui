@@ -9,7 +9,8 @@
     "scripts": {
         "start": "expo start",
         "build": "expo-module build",
-        "clean": "rm -rf ./dist"
+        "clean": "rm -rf ./dist",
+        "format": "prettier --write \"**/*.ts && prettier --write \"**/*.tsx"
     },
     "peerDependencies": {
         "react": "~16.13.1",
@@ -52,6 +53,7 @@
         "expo": "^39.0.3",
         "expo-blur": "^8.2.0",
         "expo-module-scripts": "^1.2.0",
+        "immer": "^8.0.0",
         "prettier": "^2.1.1",
         "react": "16.13.1",
         "react-dom": "16.13.1",

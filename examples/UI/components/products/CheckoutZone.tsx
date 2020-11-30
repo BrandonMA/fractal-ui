@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { CheckoutButton } from './CheckoutButton';
-import { useCheckoutData } from '../../../BusinessLogic/hooks/products/useCheckoutData';
+import { useCheckoutData } from '../../../BusinessLogic/hooks/cartItems/useCheckoutData';
 import { ChangeAddressButton } from '../addresses/ChangeAdressButton';
 import { Label } from '../Label';
 import { useRecoilValue } from 'recoil';

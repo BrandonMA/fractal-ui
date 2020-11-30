@@ -1,17 +1,29 @@
 import { useEffect } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { currentProductPageAtom } from '../../atoms/products/currentProductPageAtom';
+import { productsPageAtom } from '../../atoms/products/productsPageAtom';
 import { productsAtom } from '../../atoms/products/productsAtom';
 import { fetchProducts } from '../../networking/products/fetchProducts';
+import produce from 'immer';
 
 export function useFetchProducts() {
-    const currentProductPage = useRecoilValue(currentProductPageAtom);
+    const currentProductPage = useRecoilValue(productsPageAtom);
     const setProducts = useSetRecoilState(productsAtom);
     useEffect(() => {
-        fetchProducts(currentProductPage)
-            .then((products) => {
-                setProducts((currentProducts) => [...currentProducts, ...products]);
+        const abortController = new AbortController();
+        fetchProducts(currentProductPage, abortController.signal)
+            .then((newProducts) => {
+                setProducts((currentProducts) =>
+                    produce(currentProducts, (draft) => {
+                        newProducts.forEach((value, key) => {
+                            draft.set(key, value);
+                        });
+                    })
+                );
             })
             .catch((error) => alert(error.message));
+
+        return () => {
+            abortController.abort();
+        };
     }, [currentProductPage]);
 }

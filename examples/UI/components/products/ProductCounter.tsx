@@ -4,11 +4,11 @@ import styled from 'styled-components/native';
 import { PlusIcon } from '../../icons/PlusIcon';
 import { MinusIcon } from '../../icons/MinusIcon';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { cartItemsAtomFamily } from '../../../BusinessLogic/atoms/products/cartItemsAtomFamily';
+import { cartItemsAmountAtomFamily } from '../../../BusinessLogic/atoms/cartItems/cartItemsAmountAtomFamily';
 import { Pressable } from 'react-native';
-import { cartItemsProductArrayAtom } from '../../../BusinessLogic/atoms/products/cartItemsProductArrayAtom';
-import { useToggleItemFromArray } from '../../../../src/hooks/useToggleItemFromArray';
+import { cartItemsProductsAtom } from '../../../BusinessLogic/atoms/cartItems/cartItemsProductsAtom';
 import { getCursorStyle } from '../../../../src/Layout/util';
+import { useToggleItemFromMap } from '../../../../src/hooks/useToggleItemFromMap';
 
 interface ProductCellProps {
     value: Product;
@@ -77,22 +77,22 @@ const MinusButton = memo((props: MinusButtonProps) => {
 
 export function ProductCounter(props: ProductCellProps): JSX.Element {
     const { value } = props;
-    const [cartItem, setCartItem] = useRecoilState(cartItemsAtomFamily(value.sku));
-    const setCartItemsProductsAtom = useSetRecoilState(cartItemsProductArrayAtom);
-    useToggleItemFromArray(cartItem > 0, value.sku, setCartItemsProductsAtom);
+    const [cartItemAmount, setCartItemAmount] = useRecoilState(cartItemsAmountAtomFamily(value.sku));
+    const setCartItemsProductsAtom = useSetRecoilState(cartItemsProductsAtom);
+    useToggleItemFromMap(cartItemAmount > 0, value.sku, value, setCartItemsProductsAtom);
 
     const increateAmount = useCallback(() => {
-        setCartItem((cartItem) => {
-            return cartItem + 1;
+        setCartItemAmount((amount) => {
+            return amount + 1;
         });
     }, []);
 
     const decreaseAmount = useCallback(() => {
-        setCartItem((cartItem) => {
-            if (cartItem > 0) {
-                return cartItem - 1;
+        setCartItemAmount((amount) => {
+            if (amount > 0) {
+                return amount - 1;
             } else {
-                return cartItem;
+                return amount;
             }
         });
     }, []);
@@ -100,7 +100,7 @@ export function ProductCounter(props: ProductCellProps): JSX.Element {
     return (
         <CounterContainer>
             <PlusButton increateAmount={increateAmount} />
-            <MiddleText selectable={false}>{cartItem}</MiddleText>
+            <MiddleText selectable={false}>{cartItemAmount}</MiddleText>
             <MinusButton decreaseAmount={decreaseAmount} />
         </CounterContainer>
     );

@@ -1,1 +1,1 @@
-export const mainURL = 'https://windsor-296519.uc.r.appspot.com';
+export const mainURL = 'http://localhost:8080';
