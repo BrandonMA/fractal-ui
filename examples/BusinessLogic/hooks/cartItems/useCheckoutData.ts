@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil';
 import { checkoutDataSelector } from '../../selectors/products/checkoutDataSelector';
 
-export function useCheckoutData(): [number, number, number] {
+export function useCheckoutData(): [string, string, string] {
     return useRecoilValue(checkoutDataSelector);
 }

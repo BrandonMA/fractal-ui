@@ -2,7 +2,7 @@ import { selector } from 'recoil';
 import { cartItemsAmountsSelector } from './cartItemsAmountsSelector';
 import { cartItemsProductsAtom } from '../../atoms/cartItems/cartItemsProductsAtom';
 
-export const checkoutDataSelector = selector<[number, number, number]>({
+export const checkoutDataSelector = selector<[string, string, string]>({
     key: 'checkoutDataSelector',
     get: (props) => {
         const { get } = props;
@@ -18,6 +18,6 @@ export const checkoutDataSelector = selector<[number, number, number]>({
 
         const taxes = totalBeforeTaxes * 0.16;
 
-        return [totalBeforeTaxes, taxes, totalBeforeTaxes + taxes];
+        return [totalBeforeTaxes.toFixed(2), taxes.toFixed(2), (totalBeforeTaxes + taxes).toFixed(2)];
     }
 });
