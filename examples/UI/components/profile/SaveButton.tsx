@@ -5,7 +5,7 @@ import styled from 'styled-components/native';
 const Text = styled.Text`
     color: #005cb3;
     text-align: right;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
 `;
 

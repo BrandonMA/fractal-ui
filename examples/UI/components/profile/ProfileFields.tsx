@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { ProfileField } from './ProfileField';
+import { BaseContainer } from '../../../../src/Layout/components';
 
 const Container = styled.KeyboardAvoidingView`
     flex-direction: column;
@@ -10,10 +11,12 @@ const Container = styled.KeyboardAvoidingView`
 export function ProfileFields(): JSX.Element {
     return (
         <Container>
-            <ProfileField title='Nombre Completo' />
-            <ProfileField title='Correo' autoCapitalize='none' />
-            <ProfileField title='Tipo de Usuario' editable={false} />
-            <ProfileField title='Celular' keyboardType='numeric' />
+            <BaseContainer>
+                <ProfileField title='Nombre Completo' />
+                <ProfileField title='Correo' autoCapitalize='none' />
+                <ProfileField title='Tipo de Usuario' editable={false} />
+                <ProfileField title='Celular' keyboardType='numeric' />
+            </BaseContainer>
         </Container>
     );
 }

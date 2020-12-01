@@ -12,7 +12,7 @@ export function CreateAddressButton(): JSX.Element {
 
     return (
         <TouchableOpacity onPress={navigateToAddressSelector}>
-            <PlusIcon width={24} height={24} stroke='#005cb3' />
+            <PlusIcon width={22} height={22} stroke='#005cb3' />
         </TouchableOpacity>
     );
 }

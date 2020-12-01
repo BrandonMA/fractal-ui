@@ -1,13 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Title } from './Title';
-import { colors } from '../../../src/Colors';
+import { BaseContainer } from '../../../src/Layout/components';
 
-const Container = styled.View`
+const Container = styled(BaseContainer)`
     width: 100%;
-    background-color: ${colors.white.base};
-    border-radius: 8px;
-    padding: 12px;
     margin-bottom: 12px;
 `;
 

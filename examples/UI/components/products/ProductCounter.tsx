@@ -5,10 +5,9 @@ import { PlusIcon } from '../../icons/PlusIcon';
 import { MinusIcon } from '../../icons/MinusIcon';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { cartItemsAmountAtomFamily } from '../../../BusinessLogic/atoms/cartItems/cartItemsAmountAtomFamily';
-import { Pressable } from 'react-native';
 import { cartItemsProductsAtom } from '../../../BusinessLogic/atoms/cartItems/cartItemsProductsAtom';
-import { getCursorStyle } from '../../../../src/Layout/util';
 import { useToggleItemFromMap } from '../../../../src/hooks/useToggleItemFromMap';
+import { BaseButton } from '../../../../src/Layout/components';
 
 interface ProductCellProps {
     value: Product;
@@ -32,14 +31,9 @@ const MiddleText = styled.Text`
     flex-basis: 40%;
 `;
 
-const SquareButton = styled(Pressable)`
+const SquareButton = styled(BaseButton)`
+    width: 44px;
     background-color: #005cb3;
-    height: 32px;
-    width: 32px;
-    border-radius: 8px;
-    justify-content: center;
-    align-items: center;
-    ${getCursorStyle};
 `;
 
 const ButtonContainer = styled.View`
@@ -54,7 +48,7 @@ interface PlusButtonProps {
 const PlusButton = memo((props: PlusButtonProps) => {
     return (
         <ButtonContainer>
-            <SquareButton onPress={props.increateAmount}>
+            <SquareButton onPress={props.increateAmount} removeShadow>
                 <PlusIcon width={20} height={20} />
             </SquareButton>
         </ButtonContainer>
@@ -68,7 +62,7 @@ interface MinusButtonProps {
 const MinusButton = memo((props: MinusButtonProps) => {
     return (
         <ButtonContainer>
-            <SquareButton onPress={props.decreaseAmount}>
+            <SquareButton onPress={props.decreaseAmount} removeShadow>
                 <MinusIcon width={20} height={20} />
             </SquareButton>
         </ButtonContainer>

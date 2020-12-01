@@ -14,7 +14,7 @@ export const PresentationTypeContext = createContext<PresentationTypeContextType
 });
 
 interface Props {
-    children: JSX.Element | Array<JSX.Element> | Array<ReactNode>;
+    children: JSX.Element | Array<JSX.Element> | Array<ReactNode> | ReactNode;
 }
 
 export function PresentationTypeProvider(props: Props): JSX.Element {

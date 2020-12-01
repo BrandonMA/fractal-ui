@@ -4,15 +4,12 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { currentAddressAtom } from '../../../BusinessLogic/atoms/addresses/currentAddressAtom';
 import { Address } from '../../../BusinessLogic/models/Address';
 import { addressesAtom } from '../../../BusinessLogic/atoms/addresses/addressesAtom';
-import { colors } from '../../../../src/Colors';
 import { Picker, PickerItem } from '../Picker';
 import { getHeight } from '../bills/util/getHeight';
+import { BaseContainer } from '../../../../src/Layout/components';
 
-const Container = styled.View`
-    padding: 12px;
-    background-color: ${colors.white.base};
+const Container = styled(BaseContainer)`
     margin: 12px;
-    border-radius: 8px;
 `;
 
 function addressToString(address: Address) {

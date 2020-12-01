@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { Alert, Platform } from 'react-native';
-import { ButtonText } from '../ButtonText';
-import { Button } from '../Button';
+import { BaseButton } from '../../../../src/Layout/components';
 
 export function CheckoutButton(): JSX.Element {
     const showAlert = useCallback(() => {
@@ -32,9 +31,5 @@ export function CheckoutButton(): JSX.Element {
         }
     }, []);
 
-    return (
-        <Button onPress={showAlert}>
-            <ButtonText>Generar Pedido</ButtonText>
-        </Button>
-    );
+    return <BaseButton backgroundColor='#005cb3' text='Generar Pedido' onPress={showAlert} />;
 }

@@ -1,8 +1,6 @@
 import React, { useCallback } from 'react';
-import { useHistory } from '../../../../src';
+import { BaseButton, useHistory } from '../../../../src';
 import { tabRoutes } from '../../navigation/tabRoutes';
-import { ButtonText } from '../ButtonText';
-import { Button } from '../Button';
 
 export function SearchButton(): JSX.Element {
     const history = useHistory();
@@ -10,9 +8,5 @@ export function SearchButton(): JSX.Element {
         history.push(`${tabRoutes.bills}/2020`);
     }, []);
 
-    return (
-        <Button onPress={search}>
-            <ButtonText>Buscar estados de cuenta</ButtonText>
-        </Button>
-    );
+    return <BaseButton backgroundColor='#005cb3' text='Buscar estados de cuenta' onPress={search} />;
 }

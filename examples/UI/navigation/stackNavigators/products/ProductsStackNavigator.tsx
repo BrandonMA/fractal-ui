@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { NavigationBar, NavigationBarRightView, StackNavigator, StackScreen } from '../../../../../src';
 import { tabRoutes } from '../../tabRoutes';
 import { stackTitles } from '../../stackTitles';
@@ -14,12 +14,8 @@ import { LoadingView } from '../../../components/LoadingView';
 import { useFetchProducts } from '../../../../BusinessLogic/hooks/products/useFetchProducts';
 import { useFetchFilteredProducts } from '../../../../BusinessLogic/hooks/filters/useFetchFilteredProducts';
 
-export function ProductsStackNavigator(): JSX.Element {
-    const filtersReady = useFetchFiltersSections();
-    useFetchProducts();
-    useFetchFilteredProducts();
-
-    return filtersReady ? (
+const ProductsStackNavigatorContent = memo(() => {
+    return (
         <>
             <StackNavigator path={tabRoutes.products}>
                 <StackScreen path={tabRoutes.products}>
@@ -49,7 +45,13 @@ export function ProductsStackNavigator(): JSX.Element {
             </StackNavigator>
             <FloatingCartButton />
         </>
-    ) : (
-        <LoadingView />
     );
+});
+
+export function ProductsStackNavigator(): JSX.Element {
+    const filtersReady = useFetchFiltersSections();
+    useFetchProducts();
+    useFetchFilteredProducts();
+
+    return filtersReady ? <ProductsStackNavigatorContent /> : <LoadingView />;
 }

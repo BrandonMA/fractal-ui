@@ -4,6 +4,7 @@ export interface Color {
     base300: string;
     base400: string;
     base: string;
+    shadow: string;
     base600: string;
     base700: string;
     base800: string;

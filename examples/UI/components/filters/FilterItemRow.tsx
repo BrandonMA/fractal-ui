@@ -1,25 +1,21 @@
 import React, { memo, useCallback } from 'react';
 import styled from 'styled-components/native';
-import { LayoutAnimation, Pressable } from 'react-native';
+import { LayoutAnimation } from 'react-native';
 import { LayoutConfig } from '../../animations/LayoutConfig';
-import { getCursorStyle } from '../../../../src/Layout/util';
 import { useFilterSectionStatus } from '../../../BusinessLogic/hooks/filters/useFilterSectionStatus';
 import { useToggleFilterSectionStatus } from '../../../BusinessLogic/hooks/filters/useToggleFilterSectionStatus';
 import { Filter } from '../../../BusinessLogic/models/Filter';
+import { BaseButton } from '../../../../src/Layout/components';
+import { colors } from '../../../../src/Colors';
 
 interface StyledProps {
     active: boolean;
 }
 
-const Container = styled(Pressable)`
-    background-color: ${(props: StyledProps) => (props.active ? '#005CB3' : '#f6f6f6')};
-    height: 32px;
-    border-radius: 8px;
+const StyledButton = styled(BaseButton)`
     justify-content: center;
     width: 90%;
-    padding: 0 12px;
     margin-bottom: 12px;
-    ${getCursorStyle}
 `;
 
 export const Label = styled.Text`
@@ -42,9 +38,13 @@ export const FilterItemRow = memo(
         }, [toggleFilter]);
 
         return (
-            <Container active={active} onPress={toggleActive}>
-                <Label active={active}>{props.filter.name}</Label>
-            </Container>
+            <StyledButton
+                onPress={toggleActive}
+                text={props.filter.name}
+                backgroundColor={active ? '#005cb3' : colors.white.base}
+                backgroundShadow={active ? undefined : colors.white.shadow}
+                color={active ? undefined : colors.white.base100}
+            />
         );
     }
 );

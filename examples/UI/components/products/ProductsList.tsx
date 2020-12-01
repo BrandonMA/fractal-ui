@@ -9,6 +9,12 @@ import { useProducts } from '../../../BusinessLogic/hooks/products/useProducts';
 import { useFilteredProducts } from '../../../BusinessLogic/hooks/filters/useFilteredProducts';
 import { useResetPageState } from '../../../BusinessLogic/hooks/products/useResetPageState';
 import { useFiltersAreClean } from '../../../BusinessLogic/hooks/filters/useFiltersAreClean';
+import { BaseContainer } from '../../../../src/Layout/components';
+import styled from 'styled-components/native';
+
+const StyledHeader = styled(BaseContainer)`
+    margin: 12px 12px 0;
+`;
 
 export function ProductList(): JSX.Element {
     const products = useProducts();
@@ -21,10 +27,10 @@ export function ProductList(): JSX.Element {
 
     const header = useMemo(() => {
         return (
-            <>
+            <StyledHeader>
                 <ProductSearchField />
                 <FiltersView />
-            </>
+            </StyledHeader>
         );
     }, []);
 

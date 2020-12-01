@@ -5,7 +5,7 @@ import { useIsCartEmpty } from '../../../BusinessLogic/hooks/cartItems/useIsCart
 import { Animated } from 'react-native';
 import { useNavigationInsets } from '../../../../src/Navigation/hooks';
 import { EdgeInsets } from 'react-native-safe-area-context';
-import { useHideAnimation, useHistory, useLocation, useShowAnimation } from '../../../../src';
+import { BaseButton, useHideAnimation, useHistory, useLocation, useShowAnimation } from '../../../../src';
 import { tabRoutes } from '../../navigation/tabRoutes';
 
 interface Props {
@@ -18,13 +18,10 @@ const Container = styled(Animated.View)`
     right: 16px;
 `;
 
-const CircularContainer = styled.TouchableOpacity`
-    background-color: #005cb3;
+const CircularContainer = styled(BaseButton)`
     width: 52px;
     height: 52px;
     border-radius: 26px;
-    justify-content: center;
-    align-items: center;
 `;
 
 export function FloatingCartButton(): JSX.Element {
@@ -51,7 +48,7 @@ export function FloatingCartButton(): JSX.Element {
 
     return (
         <Container tabBarInsets={totalInsets} style={{ transform: [{ scale: scaleValue }] }}>
-            <CircularContainer onPress={goToCheckout}>
+            <CircularContainer onPress={goToCheckout} backgroundColor='#005cb3'>
                 <CartIcon width={26} height={26} fill='#fff' />
             </CircularContainer>
         </Container>

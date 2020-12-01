@@ -4,10 +4,12 @@ import { ProfileField } from '../profile/ProfileField';
 import { useSetRecoilState } from 'recoil';
 import { addressesAtom } from '../../../BusinessLogic/atoms/addresses/addressesAtom';
 import { Address } from '../../../BusinessLogic/models/Address';
-import { useHistory } from '../../../../src';
-import { Button } from '../Button';
-import { ButtonText } from '../ButtonText';
+import { BaseButton, BaseContainer, useHistory } from '../../../../src';
 import { BackgroundScrollView } from '../BackgroundScrollView';
+
+const Form = styled(BaseContainer)`
+    margin-bottom: 12px;
+`;
 
 const Container = styled.KeyboardAvoidingView`
     flex-direction: column;
@@ -39,14 +41,14 @@ export function CreateAddressContent(): JSX.Element {
     return (
         <BackgroundScrollView>
             <Container>
-                <ProfileField title='Calle' onChangeText={setStreet} />
-                <ProfileField title='Colonia' onChangeText={setDistrict} />
-                <ProfileField title='Código Postal' onChangeText={setPostalCode} />
-                <ProfileField title='Ciudad' onChangeText={setCity} />
-                <ProfileField title='Estado' onChangeText={setState} />
-                <Button onPress={addAddress}>
-                    <ButtonText>Agregar dirección</ButtonText>
-                </Button>
+                <Form>
+                    <ProfileField title='Calle' onChangeText={setStreet} />
+                    <ProfileField title='Colonia' onChangeText={setDistrict} />
+                    <ProfileField title='Código Postal' onChangeText={setPostalCode} />
+                    <ProfileField title='Ciudad' onChangeText={setCity} />
+                    <ProfileField title='Estado' onChangeText={setState} />
+                </Form>
+                <BaseButton backgroundColor='#005cb3' text='Agregar dirección' onPress={addAddress} />
             </Container>
         </BackgroundScrollView>
     );

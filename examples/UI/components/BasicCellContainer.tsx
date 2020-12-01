@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { getCursorStyle } from '../../../src/Layout/util';
+import { BaseContainer } from '../../../src/Layout/components/BaseContainer';
 
 interface ContainerProps {
     lastItem: boolean;
@@ -25,10 +26,7 @@ function handleNormalCell(props: ContainerProps): string {
     return `12px 12px ${handleLastItemBottom(props)}`;
 }
 
-export const BasicCellContainer = styled.View`
-    background-color: white;
-    border-radius: 8px;
-    padding: 12px;
+export const BasicCellContainer = styled(BaseContainer)`
     margin: ${(props: ContainerProps) => (props.isTwoColumnsCell ? handleTwoColumnsCell(props) : handleNormalCell(props))};
     ${getCursorStyle}
 `;

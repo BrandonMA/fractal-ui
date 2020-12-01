@@ -6,17 +6,14 @@ import { Label } from '../Label';
 import { FiltersSectionList } from './FiltersSectionList';
 import { getCursorStyle } from '../../../../src/Layout/util';
 import { useExpanded } from '../../hooks/useExpanded';
+import { BaseInputContainer } from '../../../../src/Layout/components/BaseInputContainer';
 
 interface ContainerProps {
     fullScreen: boolean;
 }
 
-const Container = styled.ScrollView`
-    background-color: white;
+const Container = styled(BaseInputContainer)`
     height: ${(props: ContainerProps) => (props.fullScreen ? `${Dimensions.get('window').height / 3}px` : '40px')};
-    border-radius: 8px;
-    margin: 0 12px;
-    padding: 12px;
     flex-direction: column;
     overflow: hidden;
 `;
