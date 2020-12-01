@@ -1,1 +1,1 @@
-export const mainURL = 'http://localhost:8080';
+export const mainURL = 'http://192.168.0.104:8080';
