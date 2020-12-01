@@ -52,6 +52,5 @@ export function ProductsStackNavigator(): JSX.Element {
     const filtersReady = useFetchFiltersSections();
     useFetchProducts();
     useFetchFilteredProducts();
-
     return filtersReady ? <ProductsStackNavigatorContent /> : <LoadingView />;
 }

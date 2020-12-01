@@ -19,6 +19,7 @@ interface BaseAuthenticationProps {
     swapToSignIn: string;
     onSignIn: () => void;
     onSignUp: () => void;
+    tint?: string;
 }
 
 type AuthenticationType = 'signIn' | 'signUp';
@@ -46,7 +47,7 @@ const RowContainer = styled.View`
 `;
 
 export function BaseAuthentication(props: BaseAuthenticationProps): JSX.Element {
-    const { onSignIn, onSignUp, signIn, signUp, swapToSignIn, swapToSignUp } = props;
+    const { onSignIn, onSignUp, signIn, signUp, swapToSignIn, swapToSignUp, tint } = props;
     const [type, setType] = useState<AuthenticationType>('signIn');
 
     const toggleType = useCallback(() => {
@@ -63,11 +64,13 @@ export function BaseAuthentication(props: BaseAuthenticationProps): JSX.Element 
                     <Spacer height={12} width={1} />
                     <BaseTextInput placeholder={props.password} />
                     <Spacer height={12} width={1} />
-                    <BaseButton text={getValue(signIn, signUp, type)} onPress={handleButtonPress} />
+                    <BaseButton text={getValue(signIn, signUp, type)} onPress={handleButtonPress} backgroundColor={tint} />
                     <Spacer height={12} width={1} />
                     <RowContainer>
                         <BaseLabel>{getValue(swapToSignUp, swapToSignIn, type)} </BaseLabel>
-                        <BaseLabelButton onPress={toggleType}>{getValue(signUp, signIn, type)}</BaseLabelButton>
+                        <BaseLabelButton onPress={toggleType} color={tint}>
+                            {getValue(signUp, signIn, type)}
+                        </BaseLabelButton>
                     </RowContainer>
                 </StyledContainer>
             </SafeAreaFullScreenScrollView>

@@ -14,9 +14,8 @@ export function useFetchFilteredProducts() {
     const setFilteredProducts = useSetRecoilState(filteredProductsAtom);
 
     useEffect(() => {
-        const abortController = new AbortController();
         if (activeFilters.length > 0 || search !== '') {
-            fetchProducts(page, abortController.signal, activeFilters, search).then((newProducts) => {
+            fetchProducts(page, activeFilters, search).then((newProducts) => {
                 setFilteredProducts((currentProducts) => {
                     if (page === 1) {
                         return newProducts;

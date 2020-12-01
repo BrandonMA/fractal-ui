@@ -9,5 +9,6 @@ export const stackTitles = {
     profile: 'Perfil',
     help: 'Ayuda',
     orders: 'Pedidos',
-    notifications: 'Alertas'
+    notifications: 'Alertas',
+    orderDetails: 'Detalles del Pedido'
 };

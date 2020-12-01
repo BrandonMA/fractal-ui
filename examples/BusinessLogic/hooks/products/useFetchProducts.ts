@@ -10,7 +10,7 @@ export function useFetchProducts() {
     const setProducts = useSetRecoilState(productsAtom);
     useEffect(() => {
         const abortController = new AbortController();
-        fetchProducts(currentProductPage, abortController.signal)
+        fetchProducts(currentProductPage)
             .then((newProducts) => {
                 setProducts((currentProducts) =>
                     produce(currentProducts, (draft) => {

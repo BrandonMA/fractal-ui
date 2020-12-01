@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
-import { mockOrders } from '../../data/mockOrders';
+import { Order } from '../../models/Order';
 
 export const ordersAtom = atom({
     key: 'ordersAtom',
-    default: mockOrders
+    default: Array<Order>()
 });

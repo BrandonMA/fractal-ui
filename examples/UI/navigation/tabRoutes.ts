@@ -9,5 +9,6 @@ export const tabRoutes = {
     profile: '/profile',
     help: '/profile/help',
     orders: '/orders',
+    orderDetails: '/orders/:id',
     notifications: '/notifications'
 };

@@ -36,6 +36,7 @@ export function Root(): JSX.Element {
                             swapToSignIn={'¿Ya tienes cuenta?'}
                             onSignIn={finishAuthentication}
                             onSignUp={finishAuthentication}
+                            tint='#005CB3'
                         />
                     </SafeAreaProvider>
                 )}
