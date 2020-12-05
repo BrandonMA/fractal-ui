@@ -11,7 +11,7 @@ import { useNavigationBarChildren } from './hooks/useNavigationBarChildren';
 import { useMatch } from '../../../hooks/useMatch';
 import { constants } from '../../../constants';
 import { getCursorStyle } from '../../../../Layout/util/getCursorStyle';
-import { colors } from '../../../../Colors';
+import { colors } from '../../../../ThemeState/Colors';
 
 const Container = styled(View)`
     flex-direction: row;
@@ -47,16 +47,16 @@ const SharedStylesSectionContainer = styled.View`
 const LeftContainer = styled(SharedStylesSectionContainer)`
     justify-content: flex-start;
     padding-left: ${constants.basePaddingSize}px;
-`;
+` as typeof SharedStylesSectionContainer;
 
 const MiddleContainer = styled(SharedStylesSectionContainer)`
     justify-content: center;
-`;
+` as typeof SharedStylesSectionContainer;
 
 const RightContainer = styled(SharedStylesSectionContainer)`
     justify-content: flex-end;
     padding-right: ${constants.basePaddingSize}px;
-`;
+` as typeof SharedStylesSectionContainer;
 
 const StyledBackButtonContainer = styled.TouchableOpacity`
     flex-direction: row;

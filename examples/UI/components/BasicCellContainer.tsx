@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { getCursorStyle } from '../../../src/Layout/util';
-import { BaseContainer } from '../../../src/Layout/components/BaseContainer';
+import { BaseContainer } from '../../../src/ThemeState/ThemedComponents/BaseContainer';
 
 interface ContainerProps {
     lastItem: boolean;

@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
-import { BaseContainer } from './BaseContainer';
-import { BaseButton } from './BaseButton';
+import { BaseContainer } from '../../ThemeState/ThemedComponents/BaseContainer';
+import { BaseButton } from '../../ThemeState/ThemedComponents/BaseButton';
 import { BaseTextInput } from './BaseTextInput';
 import { BaseLabel } from './BaseLabel';
 import styled from 'styled-components/native';
@@ -8,7 +8,7 @@ import { BaseLabelButton } from './BaseLabelButton';
 import { Spacer } from './Spacer';
 import { FullScreen } from './FullScreen';
 import { SafeAreaFullScreenScrollView } from './SafeAreaFullScreenScrollView';
-import { colors } from '../../Colors';
+import { colors } from '../../ThemeState/Colors';
 
 interface BaseAuthenticationProps {
     email: string;

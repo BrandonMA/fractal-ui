@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { colors } from '../../../src/Colors';
+import { colors } from '../../../src/ThemeState/Colors';
 
 export const TextField = styled.TextInput`
     background-color: ${colors.white.base};

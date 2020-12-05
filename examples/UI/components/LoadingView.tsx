@@ -2,7 +2,7 @@ import React from 'react';
 import { ActivityIndicator } from 'react-native';
 import styled from 'styled-components/native';
 import { SafeAreaFullScreen } from '../../../src/Layout/components';
-import { colors } from '../../../src/Colors';
+import { colors } from '../../../src/ThemeState/Colors';
 
 const BackgroundView = styled(SafeAreaFullScreen)`
     background-color: ${colors.white.base400};

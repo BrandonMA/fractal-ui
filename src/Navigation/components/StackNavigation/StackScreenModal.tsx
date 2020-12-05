@@ -7,7 +7,7 @@ import { Size } from '../../../SizeGroup/types';
 import { useHistory } from '../../../ReactRouter';
 import { getValueForLargeSize } from '../../../SizeGroup/util';
 import { constants } from '../../constants';
-import { colors } from '../../../Colors';
+import { colors } from '../../../ThemeState/Colors';
 
 interface ContainerProps {
     size: Size;
@@ -35,13 +35,13 @@ const WhiteContentDesktop = styled(SharedStyles)`
     height: 60%;
     max-width: 550px;
     max-height: 550px;
-`;
+` as typeof SharedStyles;
 
 const WhiteContentPhone = styled(SharedStyles)`
     width: 90%;
     height: 85%;
     margin-top: ${constants.basePaddingSize}px;
-`;
+` as typeof SharedStyles;
 
 interface StackScreenModalProps {
     children: JSX.Element;

@@ -9,7 +9,7 @@ import { useMiddleActionTabBarChildren } from './hooks/useMiddleActionTabBarChil
 import { MiddleTabBarShape } from './MiddleTabBarShape';
 import { getTabBarSafeAreaPadding } from '../../util/getTabBarSafeAreaPadding';
 import { constants } from '../../../../../constants';
-import { colors } from '../../../../../../Colors';
+import { colors } from '../../../../../../ThemeState/Colors';
 
 const Container = styled(Animated.View)`
     position: absolute;

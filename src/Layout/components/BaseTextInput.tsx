@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { TextInput, TextInputProps } from 'react-native';
-import { colors } from '../../Colors';
+import { colors } from '../../ThemeState/Colors';
 
 const StyledTextInput = styled(TextInput)`
     background-color: ${colors.white.base400};

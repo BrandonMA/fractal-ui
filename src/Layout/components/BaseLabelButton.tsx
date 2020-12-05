@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { colors } from '../../Colors';
+import { colors } from '../../ThemeState/Colors';
 import { Pressable } from 'react-native';
 
 interface BaseLabelButtonProps {

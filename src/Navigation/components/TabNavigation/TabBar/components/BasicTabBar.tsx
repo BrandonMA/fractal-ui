@@ -6,7 +6,7 @@ import { TabBarLayoutProps, TabBarProps } from '../types';
 import { useCurrentTabBarConfig } from '../../TabBarConfigProvider/hooks';
 import { getTabBarSafeAreaPadding } from '../util/getTabBarSafeAreaPadding';
 import { constants } from '../../../../constants';
-import { colors } from '../../../../../Colors';
+import { colors } from '../../../../../ThemeState/Colors';
 
 const Container = styled(Animated.View)`
     justify-content: space-evenly;

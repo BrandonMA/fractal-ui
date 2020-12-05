@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { ScrollView, ViewProps } from 'react-native';
-import { colors } from '../../Colors';
+import { colors } from '../../ThemeState/Colors';
 
 const StyledInputContainer = styled(ScrollView)`
     background-color: ${colors.white.base400};

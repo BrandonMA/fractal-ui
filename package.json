@@ -62,6 +62,7 @@
         "react-native-expo-image-cache": "^4.1.0",
         "react-native-web": "~0.13.17",
         "recoil": "^0.1.2",
-        "typescript": "~3.9.2"
+        "typescript": "~3.9.2",
+        "utility-types": "^3.10.0"
     }
 }

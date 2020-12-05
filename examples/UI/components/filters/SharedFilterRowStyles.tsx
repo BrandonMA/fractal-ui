@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { colors } from '../../../../src/Colors';
+import { colors } from '../../../../src/ThemeState/Colors';
 import { BaseButton, BaseButtonProps } from '../../../../src/Layout/components';
 
 export const StyledButton = styled(BaseButton)`

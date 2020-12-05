@@ -6,7 +6,7 @@ import { useFilterSectionStatus } from '../../../BusinessLogic/hooks/filters/use
 import { useToggleFilterSectionStatus } from '../../../BusinessLogic/hooks/filters/useToggleFilterSectionStatus';
 import { Filter } from '../../../BusinessLogic/models/Filter';
 import { BaseButton } from '../../../../src/Layout/components';
-import { colors } from '../../../../src/Colors';
+import { colors } from '../../../../src/ThemeState/Colors';
 
 interface StyledProps {
     active: boolean;
