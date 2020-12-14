@@ -1,4 +1,4 @@
-import { NavigationRouteProps } from '../../../NavigationRoute';
+import { NavigationRouteProps } from '../../../NavigationRoute/NavigationRoute';
 import { StackScreenModal } from '../../StackScreenModal';
 import React from 'react';
 import { Platform } from 'react-native';

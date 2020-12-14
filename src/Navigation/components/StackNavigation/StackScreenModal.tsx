@@ -7,7 +7,7 @@ import { Size } from '../../../SizeGroup/types';
 import { useHistory } from '../../../ReactRouter';
 import { getValueForLargeSize } from '../../../SizeGroup/util';
 import { constants } from '../../constants';
-import { colors } from '../../../ThemeState/Colors';
+import { useThemeColor } from '../../../ThemeState';
 
 interface ContainerProps {
     size: Size;
@@ -18,8 +18,12 @@ const StyledContainer = styled(Animated.View)`
     align-items: center;
 `;
 
+interface BackgroundProps {
+    color: string;
+}
+
 const Background = styled(Pressable)`
-    background-color: ${colors.white.base100};
+    background-color: ${(props: BackgroundProps) => props.color};
     opacity: 0.6;
 `;
 
@@ -54,6 +58,7 @@ export function StackScreenModal(props: StackScreenModalProps): JSX.Element {
     const hide = useHideAnimation(opacityValue, goBack);
     const [widthSize] = useWidthSizeGroup();
     const Wrapper = getValueForLargeSize(widthSize, WhiteContentDesktop, WhiteContentPhone);
+    const containerColor = useThemeColor('containerColor');
 
     useEffect(() => {
         show();
@@ -65,7 +70,7 @@ export function StackScreenModal(props: StackScreenModalProps): JSX.Element {
 
     return (
         <StyledContainer size={widthSize} style={[StyleSheet.absoluteFill, { opacity: opacityValue }]}>
-            <Background onPress={handleGoBack} style={[StyleSheet.absoluteFill]} />
+            <Background color={containerColor.base} onPress={handleGoBack} style={[StyleSheet.absoluteFill]} />
             <Wrapper>{props.children}</Wrapper>
         </StyledContainer>
     );

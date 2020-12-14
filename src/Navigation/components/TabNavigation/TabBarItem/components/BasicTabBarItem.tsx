@@ -3,9 +3,8 @@ import { sharedTabBarItemStyles } from './SharedTabBarItemStyles';
 import { SizeGroup } from '../../../../../SizeGroup/types';
 import { getValueForLargeSize } from '../../../../../SizeGroup/util';
 import { Dimensions, Pressable } from 'react-native';
-import { TabBarConfig } from '../../TabBarConfigProvider/types';
 
-export interface BasicTabBarItemProps extends TabBarConfig {
+export interface BasicTabBarItemProps {
     widthSizeGroup: SizeGroup;
     highlightColor?: string;
     children: React.ReactNode;

@@ -1,26 +1,29 @@
 import React from 'react';
-import { Animated } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import { TabBarLayoutProps, TabBarProps } from '../types';
-import { useCurrentTabBarConfig } from '../../TabBarConfigProvider/hooks';
+import { TabBarProps } from '../types';
 import { getTabBarSafeAreaPadding } from '../util/getTabBarSafeAreaPadding';
-import { constants } from '../../../../constants';
-import { colors } from '../../../../../ThemeState/Colors';
+import { Color, useThemeColor } from '../../../../../ThemeState';
+import { Animated, ViewProps } from 'react-native';
+
+interface ContainerProps extends Animated.AnimatedProps<ViewProps> {
+    tabBarColor: Color;
+    safeAreaInsets: EdgeInsets;
+}
 
 const Container = styled(Animated.View)`
     justify-content: space-evenly;
     position: absolute;
     bottom: 0;
-    background-color: ${(props: TabBarLayoutProps) => props.tabBarBackgroundColor ?? colors.white.base};
+    background-color: ${(props: ContainerProps) => props.tabBarColor.base};
     flex-direction: row;
     width: 100%;
-    box-shadow: ${constants.shadowBottom};
-    ${getTabBarSafeAreaPadding}
+    box-shadow: ${(props: ContainerProps) => props.tabBarColor.shadow};
+    ${(props: ContainerProps) => getTabBarSafeAreaPadding(props)}
 `;
 
 export function BasicTabBar(props: TabBarProps): JSX.Element {
-    const { tabBarConfig } = useCurrentTabBarConfig();
+    const tabBarColor = useThemeColor('tabBarColor');
     const safeAreaInsets = useSafeAreaInsets();
-    return <Container {...props} {...tabBarConfig} safeAreaInsets={safeAreaInsets} />;
+    return <Container {...props} safeAreaInsets={safeAreaInsets} tabBarColor={tabBarColor} />;
 }

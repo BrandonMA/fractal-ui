@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigationRoute } from '../NavigationRoute';
+import { NavigationRoute } from '../NavigationRoute/NavigationRoute';
 
 export interface TabScreenProps {
     children: JSX.Element;

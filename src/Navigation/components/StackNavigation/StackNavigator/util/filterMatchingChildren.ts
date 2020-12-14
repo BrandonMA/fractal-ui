@@ -1,4 +1,4 @@
-import { NavigationRouteProps } from '../../../NavigationRoute';
+import { NavigationRouteProps } from '../../../NavigationRoute/NavigationRoute';
 import { matchPath } from '../../../../../ReactRouter';
 
 export function filterMatchingChildren(children: Array<JSX.Element>, pathname: string): Array<JSX.Element> {

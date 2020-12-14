@@ -2,7 +2,8 @@ import React, { ReactNode } from 'react';
 import { RecoilRoot } from 'recoil';
 import { enableScreens } from 'react-native-screens';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { FractalThemeAppRoot, FractalThemeAppRootProps } from './ThemeState/FractalThemeAppRoot';
+import { FractalThemeRoot, FractalThemeAppRootProps } from './ThemeState/FractalThemeRoot';
+import { NavigationRoot } from './Navigation';
 
 enableScreens();
 
@@ -15,9 +16,11 @@ export function FractalAppRoot(props: FractalAppRootProps) {
 
     return (
         <RecoilRoot>
-            <FractalThemeAppRoot themeSet={themeSet}>
-                <SafeAreaProvider>{children}</SafeAreaProvider>
-            </FractalThemeAppRoot>
+            <FractalThemeRoot themeSet={themeSet}>
+                <NavigationRoot>
+                    <SafeAreaProvider>{children}</SafeAreaProvider>
+                </NavigationRoot>
+            </FractalThemeRoot>
         </RecoilRoot>
     );
 }

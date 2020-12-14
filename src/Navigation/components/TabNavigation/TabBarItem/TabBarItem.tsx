@@ -1,27 +1,16 @@
-import React, { memo, useMemo } from 'react';
-import { PressableProps } from 'react-native';
+import React, { memo } from 'react';
 import { useMatch } from '../../../hooks/useMatch';
-import { TabBarItemVariant } from './types/TabBarItemVariant';
 import { getTabBarItemComponent } from './util/getTabBarItemComponent';
 import { getTabIconSize } from './util/getTabIconSize';
-import { getTabBarItemColorForState } from './util/getTabBarItemColorForState';
 import styled from 'styled-components/native';
 import { useWidthSizeGroup } from '../../../../SizeGroup/hooks';
 import { Spacer } from '../../../../Layout/components/Spacer';
 import { getValueForLargeSize } from '../../../../SizeGroup/util';
-import { useCurrentTabBarConfig } from '../TabBarConfigProvider/hooks';
 import { constants } from '../../../constants';
 import { useGoToTab } from './hooks/useGoToTab';
-
-export interface TabBarItemProps extends PressableProps {
-    title: string;
-    path: string;
-    children: (color: string, size: number) => JSX.Element;
-    activeColor?: string;
-    inactiveColor?: string;
-    highlightColor?: string;
-    variant?: TabBarItemVariant;
-}
+import { TabBarItemProps } from './types/TabBarItemProps';
+import { useTabBarItemColor } from './hooks/useTabBarItemColor';
+import { useThemeColor } from '../../../../ThemeState';
 
 interface StyledTextProps {
     color: string;
@@ -34,17 +23,9 @@ const StyledText = memo(styled.Text`
 
 export const TabBarItem = memo(
     (props: TabBarItemProps): JSX.Element => {
-        const { path, activeColor, inactiveColor, variant, title, highlightColor, children, ...others } = props;
-        const { tabBarConfig } = useCurrentTabBarConfig();
+        const { path, variant, title, children, ...others } = props;
         const [active] = useMatch(path);
-        const color = useMemo(() => {
-            return getTabBarItemColorForState(
-                active,
-                activeColor ?? tabBarConfig.activeItemColor,
-                inactiveColor ?? tabBarConfig.inactiveItemColor,
-                variant
-            );
-        }, [active, activeColor, inactiveColor, tabBarConfig.activeItemColor, tabBarConfig.inactiveItemColor]);
+        const color = useTabBarItemColor(active, props);
         const TabBarItemContainer = getTabBarItemComponent(variant);
         const iconSize = getTabIconSize(variant);
         const widthSizeGroup = useWidthSizeGroup();
@@ -54,15 +35,16 @@ export const TabBarItem = memo(
             constants.tabBarItemCompactSpacerSize
         );
         const goToTab = useGoToTab(path, active);
+        const tabBarItemColor = useThemeColor('mainInteractiveColor');
+        console.log(tabBarItemColor.base);
 
         return (
             <TabBarItemContainer
                 {...others}
-                {...tabBarConfig}
                 onPress={goToTab}
-                bg={activeColor ?? tabBarConfig.activeItemColor}
+                bg={tabBarItemColor.base}
                 widthSizeGroup={widthSizeGroup}
-                highlightColor={highlightColor ?? tabBarConfig.highlightItemColor}
+                highlightColor={tabBarItemColor.base600}
             >
                 {children(color, iconSize)}
                 <Spacer width={spacerSize.width} height={spacerSize.height} />

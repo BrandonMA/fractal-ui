@@ -1,7 +1,8 @@
-import { useContext, useMemo } from 'react';
+import { useMemo } from 'react';
 import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { NavigationBarInsetsContext } from '../components';
-import { TabBarInsetsContext } from '../components/TabNavigation/TabBarInsetsProvider/TabBarInsetsProvider';
+import { useRecoilValue } from 'recoil';
+import { navigationBarInsetsAtom } from '../recoil/atoms/navigationBarInsetsAtom';
+import { tabBarInsetsAtom } from '../recoil/atoms/tabBarInsetsAtom';
 
 interface NavigationInsets {
     totalInsets: EdgeInsets;
@@ -11,8 +12,8 @@ interface NavigationInsets {
 
 export function useNavigationInsets(): NavigationInsets {
     const insets = useSafeAreaInsets();
-    const { tabBarInsets } = useContext(TabBarInsetsContext);
-    const { navigationBarInsets } = useContext(NavigationBarInsetsContext);
+    const tabBarInsets = useRecoilValue(tabBarInsetsAtom);
+    const navigationBarInsets = useRecoilValue(navigationBarInsetsAtom);
 
     const totalInsets = useMemo(() => {
         return {

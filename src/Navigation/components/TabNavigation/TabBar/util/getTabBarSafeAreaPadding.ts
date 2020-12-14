@@ -1,6 +1,10 @@
-import { TabBarLayoutProps } from '../types';
+import { EdgeInsets } from 'react-native-safe-area-context';
 
-export function getTabBarSafeAreaPadding(props: TabBarLayoutProps): string {
+interface SafeAreaProps {
+    safeAreaInsets: EdgeInsets;
+}
+
+export function getTabBarSafeAreaPadding(props: SafeAreaProps): string {
     const { safeAreaInsets } = props;
     return `padding-bottom: ${safeAreaInsets.bottom}px`;
 }

@@ -1,23 +1,26 @@
-import React, { memo, useContext, useEffect, useMemo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { Platform, View } from 'react-native';
 import styled from 'styled-components/native';
-import { NavigationBarInsetsContext } from '../NavigationBarInsetsProvider';
 import { useHistory } from '../../../../ReactRouter';
-import { NavigationBarStyleProps } from './types/NavigationBarStyleProps';
 import { NavigationBarProps } from './types/NavigationBarProps';
-import { createNavigationBarStyleProps } from './util/createNavigationBarStyleProps';
 import { Entypo } from '@expo/vector-icons';
 import { useNavigationBarChildren } from './hooks/useNavigationBarChildren';
 import { useMatch } from '../../../hooks/useMatch';
 import { constants } from '../../../constants';
 import { getCursorStyle } from '../../../../Layout/util/getCursorStyle';
-import { colors } from '../../../../ThemeState/Colors';
+import { useRecoilState } from 'recoil';
+import { navigationBarInsetsAtom } from '../../../recoil/atoms/navigationBarInsetsAtom';
+import { useThemeColor } from '../../../../ThemeState';
+
+interface ContainerProps {
+    backgroundColor: string;
+}
 
 const Container = styled(View)`
     flex-direction: row;
     justify-content: space-between;
     height: ${constants.navigationBarHeightForWeb}px;
-    background-color: ${(props: NavigationBarStyleProps) => props.backgroundColor ?? colors.white.base};
+    background-color: ${(props: ContainerProps) => props.backgroundColor};
     box-shadow: ${constants.shadowBottom};
     position: absolute;
     top: 0;
@@ -25,15 +28,20 @@ const Container = styled(View)`
     z-index: 1000;
 `;
 
+interface TextProps {
+    color: string;
+    fontSize?: number;
+}
+
 const StyledText = styled.Text`
-    color: ${(props: NavigationBarStyleProps) => props.color ?? colors.blue.base};
-    font-size: ${constants.fontSizeNormal}px;
+    color: ${(props: TextProps) => props.color};
+    font-size: ${(props: TextProps) => props.fontSize ?? constants.fontSizeNormal}px;
 `;
 
-const StyledTitle = memo(styled(StyledText)`
-    color: ${(props: NavigationBarStyleProps) => (props.titleColor != null ? props.titleColor : props.color ?? colors.white.base100)};
+const StyledTitle = memo(styled.Text`
+    color: ${(props: TextProps) => props.color};
     font-weight: 700;
-    font-size: ${(props: NavigationBarStyleProps) => props.titleFontSize ?? constants.fontSizeTitle}px;
+    font-size: ${(props: TextProps) => props.fontSize ?? constants.fontSizeTitle}px;
     text-align: center;
 `);
 
@@ -66,13 +74,24 @@ const StyledBackButtonContainer = styled.TouchableOpacity`
 `;
 
 export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
-    const { hidden, title, hideBackButton, backTitle, children } = props;
-    const { setNavigationBarInsets, navigationBarInsets } = useContext(NavigationBarInsetsContext);
+    const {
+        hidden,
+        title,
+        hideBackButton,
+        backTitle,
+        backTitleFontSize,
+        color,
+        titleColor,
+        backgroundColor,
+        titleFontSize,
+        children
+    } = props;
+    const [navigationBarInsets, setNavigationBarInsets] = useRecoilState(navigationBarInsetsAtom);
+    const mainInteractiveColor = useThemeColor('mainInteractiveColor');
+    const navigationBarColor = useThemeColor('navigationBarColor');
+    const textColor = useThemeColor('textColor');
     const { goBack } = useHistory();
     const [, activeRoutes] = useMatch('/');
-    const styleProps = useMemo(() => {
-        return createNavigationBarStyleProps(props);
-    }, [props]);
     const [leftChild, centerChild, rightChild] = useNavigationBarChildren(children);
 
     useEffect(() => {
@@ -83,21 +102,29 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
     }, [hidden, navigationBarInsets, setNavigationBarInsets]);
 
     return hidden ? null : (
-        <Container {...styleProps}>
+        <Container backgroundColor={backgroundColor ?? navigationBarColor.base}>
             <LeftContainer>
                 {activeRoutes <= 1 || hideBackButton ? null : (
                     <StyledBackButtonContainer onPress={goBack}>
                         <Entypo
                             name='chevron-left'
                             size={constants.navigationBarBackButtonSize}
-                            color={styleProps.color ?? colors.blue.base}
+                            color={color ?? mainInteractiveColor.base}
                         />
-                        <StyledText {...styleProps}>{backTitle}</StyledText>
+                        <StyledText color={color ?? mainInteractiveColor.base} fontSize={backTitleFontSize}>
+                            {backTitle}
+                        </StyledText>
                     </StyledBackButtonContainer>
                 )}
                 {leftChild}
             </LeftContainer>
-            <MiddleContainer>{centerChild ?? <StyledTitle {...styleProps}>{title}</StyledTitle>}</MiddleContainer>
+            <MiddleContainer>
+                {centerChild ?? (
+                    <StyledTitle color={titleColor ?? textColor.base100} fontSize={titleFontSize}>
+                        {title}
+                    </StyledTitle>
+                )}
+            </MiddleContainer>
             <RightContainer>{rightChild}</RightContainer>
         </Container>
     );

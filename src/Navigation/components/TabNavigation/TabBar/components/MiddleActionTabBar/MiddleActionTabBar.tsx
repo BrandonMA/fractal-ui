@@ -2,14 +2,17 @@ import React from 'react';
 import { Animated, View } from 'react-native';
 import styled from 'styled-components/native';
 import { TabBarProps } from '../../types/TabBarProps';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { TabBarLayoutProps } from '../../types/TabBarLayoutProps';
-import { useCurrentTabBarConfig } from '../../../TabBarConfigProvider/hooks/useCurrentTabBarConfig';
+import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useMiddleActionTabBarChildren } from './hooks/useMiddleActionTabBarChildren';
 import { MiddleTabBarShape } from './MiddleTabBarShape';
 import { getTabBarSafeAreaPadding } from '../../util/getTabBarSafeAreaPadding';
 import { constants } from '../../../../../constants';
-import { colors } from '../../../../../../ThemeState/Colors';
+import { Color, useThemeColor } from '../../../../../../ThemeState';
+
+interface StyledComponentsProps {
+    tabBarColor: Color;
+    safeAreaInsets: EdgeInsets;
+}
 
 const Container = styled(Animated.View)`
     position: absolute;
@@ -24,12 +27,12 @@ const ItemsContainer = styled(View)`
 `;
 
 const SideView = styled.View`
-    background-color: ${(props: TabBarLayoutProps) => props.tabBarBackgroundColor ?? colors.white.base};
+    background-color: ${(props: StyledComponentsProps) => props.tabBarColor.base};
     flex-grow: 1;
     flex-basis: 0;
     flex-direction: row;
     box-shadow: ${constants.shadowBottom};
-    ${getTabBarSafeAreaPadding};
+    ${(props: StyledComponentsProps) => getTabBarSafeAreaPadding(props)}
 `;
 
 const MiddleActionImageContainer = styled.View`
@@ -39,7 +42,7 @@ const MiddleActionImageContainer = styled.View`
 
 const MiddleActionImageContainerFiller = styled.View`
     flex-grow: 1;
-    background-color: ${(props: TabBarLayoutProps) => props.tabBarBackgroundColor};
+    background-color: ${(props: StyledComponentsProps) => props.tabBarColor.base};
     width: 100%;
 `;
 
@@ -57,24 +60,27 @@ const MiddleContainer = styled(Animated.View)`
 
 export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
     const { children, style } = props;
-    const { tabBarConfig } = useCurrentTabBarConfig();
+    const tabBarColor = useThemeColor('tabBarColor');
     const safeAreaInsets = useSafeAreaInsets();
-    const layoutProps: TabBarLayoutProps = { ...tabBarConfig, safeAreaInsets };
     const [leftChildren, middleChild, rightChildren] = useMiddleActionTabBarChildren(children);
 
     return (
         <>
             <Container style={style}>
                 <ItemsContainer>
-                    <SideView {...layoutProps}>{leftChildren}</SideView>
+                    <SideView tabBarColor={tabBarColor} safeAreaInsets={safeAreaInsets}>
+                        {leftChildren}
+                    </SideView>
                     <MiddleActionImageContainer>
-                        <MiddleTabBarShape fill={tabBarConfig.tabBarBackgroundColor} />
-                        <MiddleActionImageContainerFiller {...layoutProps} />
+                        <MiddleTabBarShape fill={tabBarColor.base} />
+                        <MiddleActionImageContainerFiller tabBarColor={tabBarColor} safeAreaInsets={safeAreaInsets} />
                     </MiddleActionImageContainer>
-                    <SideView {...layoutProps}>{rightChildren}</SideView>
+                    <SideView tabBarColor={tabBarColor} safeAreaInsets={safeAreaInsets}>
+                        {rightChildren}
+                    </SideView>
                 </ItemsContainer>
             </Container>
-            <MiddleContainer {...layoutProps} pointerEvents='box-none' style={style}>
+            <MiddleContainer safeAreaInsets={safeAreaInsets} pointerEvents='box-none' style={style}>
                 {middleChild}
             </MiddleContainer>
         </>

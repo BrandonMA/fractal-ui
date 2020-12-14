@@ -1,13 +1,13 @@
-import React, { Children, useContext, useEffect, useMemo, useRef } from 'react';
+import React, { Children, useEffect, useMemo, useRef } from 'react';
 import { useLocation } from '../../../../ReactRouter';
 import { useMatch } from '../../../hooks/useMatch';
 import styled from 'styled-components/native';
 import { ScreenStack, ScreenStackProps } from '../ScreenStack';
-import { NavigationBarInsetsProvider } from '../NavigationBarInsetsProvider';
 import { filterMatchingChildren } from './util/filterMatchingChildren';
 import { injectModalContainers } from './util/injectModalContainer';
 import { getInsetsStyle, InsetsStyleConfig } from '../../../../Layout/util/getInsetsStyle';
-import { TabBarInsetsContext } from '../../TabNavigation/TabBarInsetsProvider';
+import { useRecoilValue } from 'recoil';
+import { tabBarInsetsAtom } from '../../../recoil/atoms/tabBarInsetsAtom';
 
 const StyledScreenStack = styled(ScreenStack)`
     flex: 1;
@@ -26,7 +26,7 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
     const { pathname } = useLocation();
     const [active] = useMatch(path ?? '/');
     const prevChildrenRef = useRef<Array<JSX.Element>>([]);
-    const { tabBarInsets } = useContext(TabBarInsetsContext);
+    const tabBarInsets = useRecoilValue(tabBarInsetsAtom);
 
     const childrenToRender = useMemo(() => {
         let arrayOfChildren = Children.toArray(children) as Array<JSX.Element>;
@@ -42,10 +42,8 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
     }, [childrenToRender, active]);
 
     return (
-        <NavigationBarInsetsProvider>
-            <StyledScreenStack {...others} insets={tabBarInsets} insetsStyleConfig={insetsStyleConfig}>
-                {active ? childrenToRender : prevChildrenRef.current}
-            </StyledScreenStack>
-        </NavigationBarInsetsProvider>
+        <StyledScreenStack {...others} insets={tabBarInsets} insetsStyleConfig={insetsStyleConfig}>
+            {active ? childrenToRender : prevChildrenRef.current}
+        </StyledScreenStack>
     );
 }

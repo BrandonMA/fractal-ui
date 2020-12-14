@@ -1,10 +1,9 @@
 import React, { memo, useCallback, useMemo } from 'react';
-import { TabBarConfig } from '../../TabBarConfigProvider/types';
 import { Pressable, PressableStateCallbackType, StyleProp, ViewStyle } from 'react-native';
 import { sharedTabBarItemStyles } from './SharedTabBarItemStyles';
 import { constants } from '../../../../constants';
 
-export interface CircularTabBarItemProps extends TabBarConfig {
+export interface CircularTabBarItemProps {
     bg?: string;
     highlightColor?: string;
     children: React.ReactNode;

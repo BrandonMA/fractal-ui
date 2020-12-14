@@ -1,5 +1,5 @@
 export * from './Animations';
-export * from './ThemeState/Colors';
+export * from './ThemeState';
 export * from './hooks';
 export * from './Navigation';
 export * from './Layout';
