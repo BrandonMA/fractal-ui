@@ -17,19 +17,20 @@
         "react-is": "^16.13.1"
     },
     "dependencies": {
-        "expo-device": "^2.3.0",
+        "expo-device": "~2.4.0",
         "react-native-responsive-dimensions": "^3.1.1",
-        "react-native-safe-area-context": "3.1.4",
-        "react-native-screens": "~2.10.1",
-        "react-native-svg": "^12.1.0",
+        "react-native-safe-area-context": "3.1.9",
+        "react-native-screens": "~2.15.0",
+        "react-native-svg": "12.1.0",
         "react-router-dom": "^5.2.0",
         "react-router-native": "^5.2.0",
-        "styled-components": "^5.2.0"
+        "styled-components": "^5.2.0",
+        "recoil": "^0.1.2"
     },
     "devDependencies": {
-        "@babel/core": "^7.8.6",
-        "@expo/vector-icons": "^10.2.1",
-        "@react-native-picker/picker": "^1.9.2",
+        "@babel/core": "~7.9.0",
+        "@expo/vector-icons": "^12.0.0",
+        "@react-native-picker/picker": "1.9.2",
         "@types/react": "~16.9.35",
         "@types/react-native": "~0.63.2",
         "@types/react-router-dom": "^5.1.5",
@@ -50,19 +51,17 @@
         "eslint-plugin-react": "^7.20.6",
         "eslint-plugin-react-hooks": "^4.1.0",
         "eslint-plugin-standard": "^4.0.1",
-        "expo": "^39.0.3",
-        "expo-blur": "^8.2.0",
+        "expo": "^40.0.0",
+        "expo-blur": "~8.2.2",
         "expo-module-scripts": "^1.2.0",
         "immer": "^8.0.0",
         "prettier": "^2.1.1",
         "react": "16.13.1",
         "react-dom": "16.13.1",
         "react-is": "^16.13.1",
-        "react-native": "0.63.2",
-        "react-native-expo-image-cache": "^4.1.0",
-        "react-native-web": "~0.13.17",
-        "recoil": "^0.1.2",
-        "typescript": "~3.9.2",
+        "react-native": "0.63.4",
+        "react-native-web": "~0.13.12",
+        "typescript": "~4.0.0",
         "utility-types": "^3.10.0"
     }
 }
