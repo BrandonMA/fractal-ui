@@ -10,7 +10,7 @@
         "start": "expo start",
         "build": "expo-module build",
         "clean": "rm -rf ./dist",
-        "format": "prettier --write \"**/*.ts && prettier --write \"**/*.tsx"
+        "format": "prettier --write \"src/**/*.ts\" && prettier --write \"src/**/*.tsx\""
     },
     "peerDependencies": {
         "react": "~16.13.1",
