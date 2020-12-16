@@ -1,10 +1,10 @@
 import React from 'react';
 import { useBaseButtonAnimations } from './hooks/useBaseButtonAnimations';
 import { BaseButtonProps } from './types/BaseButtonProps';
-import { useThemeColor } from '../../hooks';
+import { useThemeColor } from '../../../hooks';
 import { Animated, Pressable, PressableProps } from 'react-native';
 import styled from 'styled-components/native';
-import { getCursorStyle } from '../../../Layout';
+import { getCursorStyle } from '../../../../Layout';
 import { memo } from 'react';
 
 export interface StyledButtonProps extends Animated.AnimatedProps<PressableProps> {
@@ -17,7 +17,7 @@ const StyledButton = Animated.createAnimatedComponent(styled(Pressable)`
     border-radius: 12px;
     justify-content: center;
     align-items: center;
-    box-shadow: 2px 2px 8px ${(props: StyledButtonProps) => props.backgroundShadow};
+    box-shadow: ${(props: StyledButtonProps) => props.backgroundShadow};
     height: 44px;
     ${getCursorStyle()}
 `);
@@ -46,7 +46,7 @@ export function BaseButton(props: BaseButtonProps): JSX.Element {
             onPressOut={handlePressOut}
             style={finalStyle}
             backgroundColor={interactiveColor.base}
-            backgroundShadow={interactiveColor.base300}
+            backgroundShadow={interactiveColor.shadow}
         >
             {text != null ? (
                 <StyledText textColor={textColor.base} selectable={false}>

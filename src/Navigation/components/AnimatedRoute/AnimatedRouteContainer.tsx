@@ -10,7 +10,7 @@ export interface AnimatedRouteContainerProps {
     children: JSX.Element;
 }
 
-export function AnimatedRouteContainer(props: AnimatedRouteContainerProps) {
+export function AnimatedRouteContainer(props: AnimatedRouteContainerProps): JSX.Element {
     const opacityValue = useRef(new Animated.Value(1)).current;
     const { match, children } = props;
     const hide = useHideAnimation(opacityValue);

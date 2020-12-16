@@ -17,7 +17,7 @@ export function FractalThemeRoot(props: FractalThemeAppRootProps): JSX.Element {
         if (themeSet != null) {
             setThemeSet(themeSet);
         }
-    }, [setThemeSet]);
+    }, [setThemeSet, themeSet]);
 
     useUpdateThemeProperties();
 

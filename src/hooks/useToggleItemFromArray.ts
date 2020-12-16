@@ -1,7 +1,7 @@
 import { SetterOrUpdater } from 'recoil';
 import { useEffect } from 'react';
 
-export function useToggleItemFromArray<T>(active: boolean, item: T, setArray: SetterOrUpdater<Array<T>>) {
+export function useToggleItemFromArray<T>(active: boolean, item: T, setArray: SetterOrUpdater<Array<T>>): void {
     useEffect(() => {
         setArray((currentArray) => {
             const arrayIncludesItem = currentArray.includes(item);

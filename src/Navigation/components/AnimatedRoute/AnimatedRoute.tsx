@@ -9,9 +9,12 @@ interface AnimatedRouteProps extends Omit<RouteProps, 'children'> {
 export function AnimatedRoute(props: AnimatedRouteProps): JSX.Element {
     const { children, ...others } = props;
 
-    const render = useCallback((routeProps) => {
-        return <AnimatedRouteContainer {...routeProps}>{children}</AnimatedRouteContainer>;
-    }, []);
+    const render = useCallback(
+        (routeProps) => {
+            return <AnimatedRouteContainer {...routeProps}>{children}</AnimatedRouteContainer>;
+        },
+        [children]
+    );
 
     return <Route {...others}>{render}</Route>;
 }

@@ -4,7 +4,7 @@ import { FractalAppRoot } from './src/FractalAppRoot';
 import { defaultTheme } from './src/ThemeState/recoil/atoms/fractalThemeSetAtom';
 import { useSetRecoilState } from 'recoil';
 import { currentThemeIdentifierAtom } from './src/ThemeState/recoil/atoms/currentThemeIdentifierAtom';
-import { BaseButton } from './src/ThemeState/components/BaseButton';
+import { BaseButton } from './src/ThemeState/components/Interactive/BaseButton';
 import { SafeAreaView } from 'react-native';
 import { BaseContainer, green, orange } from './src';
 import { FractalThemeSet } from './src/ThemeState/types/FractalThemeSet';
@@ -25,7 +25,7 @@ function ThemeSwapper(): JSX.Element {
 
     const callback = useCallback(() => {
         setCurrentThemeIdentifier((current) => (current === 'default' ? 'darkMode' : 'default'));
-    }, []);
+    }, [setCurrentThemeIdentifier]);
 
     return <BaseButton colorStyle='mainInteractiveColor' onPress={callback} text='Prueba' removeShadow />;
 }

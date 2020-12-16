@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useRef } from 'react';
 import { Animated } from 'react-native';
-import { useSpringAnimation } from '../../../../Animations';
+import { useSpringAnimation } from '../../../../../Animations';
 import { BaseButtonProps } from '../types/BaseButtonProps';
 
 export function useBaseButtonAnimations(props: BaseButtonProps) {

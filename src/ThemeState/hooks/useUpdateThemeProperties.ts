@@ -43,7 +43,19 @@ export function useUpdateThemeProperties(): void {
 
             setContainerColor(currentTheme.containerColor);
         }
-    }, [currentTheme]);
+    }, [
+        currentTheme,
+        setMainInteractiveColor,
+        setAlternativeInteractiveColor,
+        setSuccessInteractiveColor,
+        setWarningInteractiveColor,
+        setDangerInteractiveColor,
+        setNavigationBarColor,
+        setTabBarColor,
+        setTextColor,
+        setFieldColor,
+        setContainerColor
+    ]);
 
     useRecoilValue(fractalThemeSetAtom);
 }

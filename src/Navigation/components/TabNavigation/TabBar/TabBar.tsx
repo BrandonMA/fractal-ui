@@ -14,7 +14,7 @@ export function TabBar(props: TabBarProps): JSX.Element {
 
     useLayoutEffect(() => {
         setTabBarInsets(createTabBarInsetsDependingOnPosition(tabBarPosition));
-    }, [tabBarPosition]);
+    }, [tabBarPosition, setTabBarInsets]);
 
     useEffect(() => {
         animateHiddenChange(tabBarHidden ?? false);

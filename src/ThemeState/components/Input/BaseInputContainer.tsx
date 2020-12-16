@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { ViewProps } from 'react-native';
-import { useThemeColor } from '../index';
+import { useThemeColor } from '../../index';
 
 interface StyledInputCotainer {
     backgroundColor: string;

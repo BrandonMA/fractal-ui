@@ -12,3 +12,4 @@ export * from './presets/skyBlue';
 export * from './presets/turquoise';
 export * from './presets/yellow';
 export * from './presets/white';
+export * from './presets/black';

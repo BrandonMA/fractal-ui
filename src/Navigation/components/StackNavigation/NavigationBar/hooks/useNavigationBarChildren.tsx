@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
 
-export function useNavigationBarChildren(children: Array<JSX.Element> | JSX.Element | undefined) {
+export function useNavigationBarChildren(
+    children: Array<JSX.Element> | JSX.Element | undefined
+): [JSX.Element | null, JSX.Element | null, JSX.Element | null] {
     return useMemo(() => {
         let leftChild: JSX.Element | null = null;
         let centerChild: JSX.Element | null = null;
