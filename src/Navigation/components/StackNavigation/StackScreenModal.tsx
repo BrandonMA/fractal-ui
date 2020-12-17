@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components/native';
 import { Animated, Pressable, StyleSheet } from 'react-native';
-import { useHideAnimation, useShowAnimation } from '../../../Animations/hooks';
+import { useShowAnimation } from '../../../Animations/hooks';
 import { useWidthSizeGroup } from '../../../SizeGroup/hooks';
 import { Size } from '../../../SizeGroup/types';
 import { useHistory } from '../../../ReactRouter';
@@ -54,7 +54,6 @@ export function StackScreenModal(props: StackScreenModalProps): JSX.Element {
     const opacityValue = useRef(new Animated.Value(0)).current;
     const { goBack } = useHistory();
     const show = useShowAnimation(opacityValue);
-    const hide = useHideAnimation(opacityValue, goBack);
     const [widthSize] = useWidthSizeGroup();
     const Wrapper = getValueForLargeSize(widthSize, WhiteContentDesktop, WhiteContentPhone);
     const containerColor = useThemeColor('containerColor');
@@ -63,13 +62,9 @@ export function StackScreenModal(props: StackScreenModalProps): JSX.Element {
         show();
     }, [show]);
 
-    const handleGoBack = useCallback(() => {
-        hide();
-    }, [hide]);
-
     return (
         <StyledContainer size={widthSize} style={[StyleSheet.absoluteFill, { opacity: opacityValue }]}>
-            <Background color={containerColor.base600} onPress={handleGoBack} style={[StyleSheet.absoluteFill]} />
+            <Background color={containerColor.base600} onPress={goBack} style={[StyleSheet.absoluteFill]} />
             <Wrapper>{props.children}</Wrapper>
         </StyledContainer>
     );
