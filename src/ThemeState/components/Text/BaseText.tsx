@@ -21,6 +21,7 @@ interface BaseTextProps extends TextProps {
     textSize: TextSize;
     bold?: boolean;
     textType?: TextType;
+    children: string;
 }
 
 export function BaseText(props: BaseTextProps): JSX.Element {

@@ -1,11 +1,12 @@
 import { useNavigationInsets } from '../../Navigation/hooks';
 import { Animated, Platform, ScrollViewProps } from 'react-native';
-import { useContext, useMemo } from 'react';
-import { PresentationTypeContext } from '../../Navigation/components/PresentationTypeProvider';
+import { useMemo } from 'react';
+import { useRecoilValue } from 'recoil';
+import { presentationTypeAtom } from '../../Navigation/recoil/atoms/presentationTypeAtom';
 
 export function useScrollViewProps(): Omit<Animated.AnimatedProps<ScrollViewProps>, 'children'> {
     const { totalInsets, tabBarInsets } = useNavigationInsets();
-    const { presentationType } = useContext(PresentationTypeContext);
+    const presentationType = useRecoilValue(presentationTypeAtom);
     return useMemo(() => {
         return {
             automaticallyAdjustContentInsets: true,

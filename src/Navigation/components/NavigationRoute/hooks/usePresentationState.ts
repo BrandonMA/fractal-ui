@@ -1,8 +1,9 @@
 import { useMatch } from '../../../hooks/useMatch';
 import { usePrevValue } from '../../../../hooks';
-import { useContext, useEffect } from 'react';
-import { PresentationTypeContext } from '../../PresentationTypeProvider';
+import { useEffect } from 'react';
 import { StackPresentationTypes } from 'react-native-screens';
+import { useRecoilState } from 'recoil';
+import { presentationTypeAtom } from '../../../recoil/atoms/presentationTypeAtom';
 
 // Return 1 for an active state and 0 for the contrary
 export function usePresentationState(basepath: string, stackPresentation?: StackPresentationTypes): 1 | 0 {
@@ -10,7 +11,7 @@ export function usePresentationState(basepath: string, stackPresentation?: Stack
     const prevActiveValue = usePrevValue(active);
     const prevPrevActiveValue = usePrevValue(prevActiveValue);
 
-    const { presentationType, setPresentationType } = useContext(PresentationTypeContext);
+    const [presentationType, setPresentationType] = useRecoilState(presentationTypeAtom);
     const prevPresentationType = usePrevValue(presentationType);
     const show = active || ((prevActiveValue || prevPrevActiveValue) && presentationType === 'modal') ? 1 : 0;
 

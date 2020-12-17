@@ -49,7 +49,7 @@ export function BaseButton(props: BaseButtonProps): JSX.Element {
             backgroundShadow={interactiveColor.shadow}
         >
             {text != null ? (
-                <StyledText textColor={textColor.base} selectable={false}>
+                <StyledText textColor={textColor.base700} selectable={false}>
                     {text}
                 </StyledText>
             ) : (

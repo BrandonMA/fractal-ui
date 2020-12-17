@@ -28,10 +28,9 @@ const Background = styled(Pressable)`
 `;
 
 const SharedStyles = styled.View`
-    background-color: white;
-    border-radius: 20px;
     box-shadow: ${constants.shadowBottom};
     overflow: hidden;
+    border-radius: 20px;
 `;
 
 const WhiteContentDesktop = styled(SharedStyles)`
@@ -70,7 +69,7 @@ export function StackScreenModal(props: StackScreenModalProps): JSX.Element {
 
     return (
         <StyledContainer size={widthSize} style={[StyleSheet.absoluteFill, { opacity: opacityValue }]}>
-            <Background color={containerColor.base} onPress={handleGoBack} style={[StyleSheet.absoluteFill]} />
+            <Background color={containerColor.base600} onPress={handleGoBack} style={[StyleSheet.absoluteFill]} />
             <Wrapper>{props.children}</Wrapper>
         </StyledContainer>
     );

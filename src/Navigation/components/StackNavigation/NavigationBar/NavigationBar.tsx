@@ -74,18 +74,7 @@ const StyledBackButtonContainer = styled.TouchableOpacity`
 `;
 
 export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
-    const {
-        hidden,
-        title,
-        hideBackButton,
-        backTitle,
-        backTitleFontSize,
-        color,
-        titleColor,
-        backgroundColor,
-        titleFontSize,
-        children
-    } = props;
+    const { hidden, title, hideBackButton, backTitle, backTitleFontSize, titleFontSize, children } = props;
     const [navigationBarInsets, setNavigationBarInsets] = useRecoilState(navigationBarInsetsAtom);
     const mainInteractiveColor = useThemeColor('mainInteractiveColor');
     const navigationBarColor = useThemeColor('navigationBarColor');
@@ -102,16 +91,12 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
     }, [hidden, navigationBarInsets, setNavigationBarInsets]);
 
     return hidden ? null : (
-        <Container backgroundColor={backgroundColor ?? navigationBarColor.base}>
+        <Container backgroundColor={navigationBarColor.base}>
             <LeftContainer>
                 {activeRoutes <= 1 || hideBackButton ? null : (
                     <StyledBackButtonContainer onPress={goBack}>
-                        <Entypo
-                            name='chevron-left'
-                            size={constants.navigationBarBackButtonSize}
-                            color={color ?? mainInteractiveColor.base}
-                        />
-                        <StyledText color={color ?? mainInteractiveColor.base} fontSize={backTitleFontSize}>
+                        <Entypo name='chevron-left' size={constants.navigationBarBackButtonSize} color={mainInteractiveColor.base} />
+                        <StyledText color={mainInteractiveColor.base} fontSize={backTitleFontSize}>
                             {backTitle}
                         </StyledText>
                     </StyledBackButtonContainer>
@@ -120,7 +105,7 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
             </LeftContainer>
             <MiddleContainer>
                 {centerChild ?? (
-                    <StyledTitle color={titleColor ?? textColor.base100} fontSize={titleFontSize}>
+                    <StyledTitle color={textColor.base900} fontSize={titleFontSize}>
                         {title}
                     </StyledTitle>
                 )}

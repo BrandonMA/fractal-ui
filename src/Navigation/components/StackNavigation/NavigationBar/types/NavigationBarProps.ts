@@ -1,5 +1,11 @@
-import { ScreenStackHeaderConfigProps } from 'react-native-screens';
-
-export interface NavigationBarProps extends Omit<ScreenStackHeaderConfigProps, 'children'> {
+export interface NavigationBarProps {
     children?: JSX.Element | Array<JSX.Element>;
+    hidden?: boolean;
+
+    hideBackButton?: boolean;
+    backTitle?: string;
+    backTitleFontSize?: number;
+
+    title?: string;
+    titleFontSize?: number;
 }
