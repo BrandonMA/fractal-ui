@@ -6,11 +6,11 @@ export function getFontSize(textSize: TextSize): string {
             case 'xl':
                 return 21;
             case 'lg':
-                return 17;
+                return 19;
             case 'md':
-                return 15;
+                return 17;
             case 'sm':
-                return 13;
+                return 15;
         }
     };
     return `${fontSize()}px`;

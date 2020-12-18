@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { NavigationBarCenterView, NavigationBarLeftView, NavigationBarRightView } from '../../NavigationBarViews';
 
 export function useNavigationBarChildren(
     children: Array<JSX.Element> | JSX.Element | undefined
@@ -13,8 +14,14 @@ export function useNavigationBarChildren(
                 leftChild = child;
             } else if (child?.type.name === 'NavigationBarCenterView') {
                 centerChild = child;
-            } else {
-                rightChild = child !== undefined ? child : null;
+            } else if (child?.type.name === 'NavigationBarRightView') {
+                rightChild = child;
+            } else if (child?.type.name === 'ScreenStackHeaderRightView') {
+                rightChild = <NavigationBarRightView {...child.props} />;
+            } else if (child?.type.name === 'ScreenStackHeaderCenterView') {
+                centerChild = <NavigationBarCenterView {...child.props} />;
+            } else if (child?.type.name === 'ScreenStackHeaderLeftView') {
+                leftChild = <NavigationBarLeftView {...child.props} />;
             }
         });
         return [leftChild, centerChild, rightChild];

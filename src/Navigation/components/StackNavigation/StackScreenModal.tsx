@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components/native';
-import { Animated, Pressable, StyleSheet } from 'react-native';
+import { Animated, Pressable, StatusBar, StyleSheet } from 'react-native';
 import { useShowAnimation } from '../../../Animations/hooks';
 import { useWidthSizeGroup } from '../../../SizeGroup/hooks';
 import { Size } from '../../../SizeGroup/types';

@@ -1,9 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import { registerRootComponent } from 'expo';
 import { FractalAppRoot } from './src/FractalAppRoot';
 import { defaultTheme } from './src/ThemeState/recoil/atoms/fractalThemeSetAtom';
-import { useSetRecoilState } from 'recoil';
-import { currentThemeIdentifierAtom } from './src/ThemeState/recoil/atoms/currentThemeIdentifierAtom';
 import { BaseButton } from './src/ThemeState/components/Interactive/BaseButton';
 import {
     black,
@@ -24,13 +22,16 @@ import { BaseBackground } from './src/ThemeState/components/Containers/BaseBackg
 import { Entypo } from '@expo/vector-icons';
 import { BaseText } from './src/ThemeState/components/Text/BaseText';
 import { useHistory } from './src';
+import { PlarformBarConfig } from './src/Navigation/components/StackNavigation/PlarformBarConfig';
+import { BaseTextButton } from './src/ThemeState/components/Interactive/BaseTextButton';
+import { PlatformBarRightView } from './src/Navigation/components/StackNavigation/PlatformBarViews';
 
 const newThemeSet: FractalThemeSet = {
     default: {
         ...defaultTheme,
         mainInteractiveColor: green
     },
-    darkMode: {
+    dark: {
         ...defaultTheme,
         mainInteractiveColor: orange,
         navigationBarColor: black,
@@ -40,44 +41,44 @@ const newThemeSet: FractalThemeSet = {
     }
 };
 
-function ThemeSwapper(): JSX.Element {
-    const setCurrentThemeIdentifier = useSetRecoilState(currentThemeIdentifierAtom);
+function HomeContent(): JSX.Element {
     const history = useHistory();
 
     const callback = useCallback(() => {
-        setCurrentThemeIdentifier((current) => (current === 'default' ? 'darkMode' : 'default'));
         history.push('/home/profile');
-    }, [setCurrentThemeIdentifier]);
+    }, [history]);
 
     return <BaseButton colorStyle='mainInteractiveColor' onPress={callback} text='Prueba' removeShadow />;
+}
+
+const MemoizedHomeIcon = memo(Entypo);
+
+function MainTabBar(): JSX.Element {
+    const renderHomeItem = useMemo(
+        () => (color: string, size: number): JSX.Element => <MemoizedHomeIcon name='home' size={size} color={color} />,
+        []
+    );
+    return (
+        <TabBar tabBarVariant='basic' tabBarPosition='bottom'>
+            <TabBarItem title='Home' path='/home'>
+                {renderHomeItem}
+            </TabBarItem>
+        </TabBar>
+    );
 }
 
 function App(): JSX.Element {
     return (
         <FractalAppRoot themeSet={newThemeSet}>
-            <TabNavigator
-                defaultRoute='/home'
-                tabBar={
-                    <TabBar tabBarVariant='basic' tabBarPosition='bottom'>
-                        <TabBarItem title='Home' path='/home'>
-                            {(color, size) => <Entypo name='home' size={size} color={color} />}
-                        </TabBarItem>
-                    </TabBar>
-                }
-            >
+            <TabNavigator defaultRoute='/home' tabBar={<MainTabBar />}>
                 <TabScreen path='/home'>
                     <StackNavigator path='/home'>
-                        <StackScreen
-                            path='/home'
-                            navBarConfig={{
-                                title: 'Home'
-                            }}
-                        >
+                        <StackScreen path='/home' navBarConfig={<PlarformBarConfig title='Home' />}>
                             <StackScreenContent>
                                 <BaseBackground>
                                     <SafeAreaFullScreen>
                                         <BaseContainer>
-                                            <ThemeSwapper />
+                                            <HomeContent />
                                         </BaseContainer>
                                     </SafeAreaFullScreen>
                                 </BaseBackground>
@@ -86,9 +87,15 @@ function App(): JSX.Element {
                         <StackScreen
                             path='/home/profile'
                             stackPresentation='modal'
-                            navBarConfig={{
-                                title: 'Modal'
-                            }}
+                            navBarConfig={
+                                <PlarformBarConfig title='Modal'>
+                                    <PlatformBarRightView>
+                                        <BaseTextButton colorStyle='mainInteractiveColor' textSize='md'>
+                                            Right
+                                        </BaseTextButton>
+                                    </PlatformBarRightView>
+                                </PlarformBarConfig>
+                            }
                         >
                             <StackScreenContent>
                                 <BaseBackground>

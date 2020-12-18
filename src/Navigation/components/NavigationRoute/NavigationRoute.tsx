@@ -17,7 +17,13 @@ export function NavigationRoute(props: NavigationRouteProps): JSX.Element {
     const show = usePresentationState(basepath, stackPresentation);
 
     return (
-        <Screen {...others} activityState={show} stackPresentation={stackPresentation ?? 'push'} style={[StyleSheet.absoluteFill, style]}>
+        <Screen
+            {...others}
+            activityState={show}
+            active={show as never}
+            stackPresentation={stackPresentation ?? 'push'}
+            style={[StyleSheet.absoluteFill, style]}
+        >
             <Route path={basepath}>{renderChildren}</Route>
         </Screen>
     );

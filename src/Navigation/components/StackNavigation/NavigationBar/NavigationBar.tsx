@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import styled from 'styled-components/native';
 import { useHistory } from '../../../../ReactRouter';
 import { NavigationBarProps } from './types/NavigationBarProps';
-import { Entypo } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { useNavigationBarChildren } from './hooks/useNavigationBarChildren';
 import { useMatch } from '../../../hooks/useMatch';
 import { constants } from '../../../constants';
@@ -17,12 +17,12 @@ interface ContainerProps {
 
 const Container = styled(View)`
     flex-direction: row;
-    justify-content: space-between;
     height: ${constants.navigationBarHeightForWeb}px;
     background-color: ${(props: ContainerProps) => props.backgroundColor};
     box-shadow: ${constants.shadowBottom};
     width: 100%;
     z-index: 1000;
+    padding: 0 ${constants.basePaddingSize}px;
 `;
 
 interface TextProps {
@@ -37,13 +37,13 @@ const StyledText = styled.Text`
 
 const StyledTitle = memo(styled.Text`
     color: ${(props: TextProps) => props.color};
-    font-weight: 700;
+    font-weight: 600;
     font-size: ${(props: TextProps) => props.fontSize ?? constants.fontSizeTitle}px;
     text-align: center;
 `);
 
 const SharedStylesSectionContainer = styled.View`
-    flex-grow: 1;
+    flex: 1;
     flex-direction: row;
     align-items: center;
     flex-basis: 0;
@@ -51,7 +51,6 @@ const SharedStylesSectionContainer = styled.View`
 
 const LeftContainer = styled(SharedStylesSectionContainer)`
     justify-content: flex-start;
-    padding-left: ${constants.basePaddingSize}px;
 ` as typeof SharedStylesSectionContainer;
 
 const MiddleContainer = styled(SharedStylesSectionContainer)`
@@ -60,22 +59,40 @@ const MiddleContainer = styled(SharedStylesSectionContainer)`
 
 const RightContainer = styled(SharedStylesSectionContainer)`
     justify-content: flex-end;
-    padding-right: ${constants.basePaddingSize}px;
 ` as typeof SharedStylesSectionContainer;
 
 const StyledBackButtonContainer = styled.TouchableOpacity`
+    margin-left: -8px;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
     ${getCursorStyle};
 `;
 
+interface BackButtonProps {
+    backTitleFontSize?: number;
+    backTitle?: string;
+}
+
+function BackButton(props: BackButtonProps): JSX.Element {
+    const { backTitleFontSize, backTitle } = props;
+    const { goBack } = useHistory();
+    const mainInteractiveColor = useThemeColor('mainInteractiveColor');
+
+    return (
+        <StyledBackButtonContainer onPress={goBack}>
+            <Feather name='chevron-left' size={constants.navigationBarBackButtonSize + 6} color={mainInteractiveColor.base} />
+            <StyledText color={mainInteractiveColor.base} fontSize={backTitleFontSize}>
+                {backTitle}
+            </StyledText>
+        </StyledBackButtonContainer>
+    );
+}
+
 export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
     const { hidden, title, hideBackButton, backTitle, path, backTitleFontSize, titleFontSize, children } = props;
-    const mainInteractiveColor = useThemeColor('mainInteractiveColor');
     const navigationBarColor = useThemeColor('navigationBarColor');
     const textColor = useThemeColor('textColor');
-    const { goBack } = useHistory();
     const isPathActive = usePathIsActive(path);
     const [, activeRoutes] = useMatch('/');
     const [leftChild, centerChild, rightChild] = useNavigationBarChildren(children);
@@ -84,12 +101,7 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
         <Container backgroundColor={navigationBarColor.base}>
             <LeftContainer>
                 {activeRoutes > 1 && isPathActive && !hideBackButton ? (
-                    <StyledBackButtonContainer onPress={goBack}>
-                        <Entypo name='chevron-left' size={constants.navigationBarBackButtonSize} color={mainInteractiveColor.base} />
-                        <StyledText color={mainInteractiveColor.base} fontSize={backTitleFontSize}>
-                            {backTitle}
-                        </StyledText>
-                    </StyledBackButtonContainer>
+                    <BackButton backTitle={backTitle} backTitleFontSize={backTitleFontSize} />
                 ) : null}
                 {leftChild}
             </LeftContainer>

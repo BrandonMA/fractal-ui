@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { StackPresentationTypes } from 'react-native-screens';
 import { useRecoilState } from 'recoil';
 import { presentationTypeAtom } from '../../../recoil/atoms/presentationTypeAtom';
+import { Platform } from 'react-native';
 
 // Return 1 for an active state and 0 for the contrary
 export function usePresentationState(basepath: string, stackPresentation?: StackPresentationTypes): 2 | 1 | 0 {
@@ -13,7 +14,7 @@ export function usePresentationState(basepath: string, stackPresentation?: Stack
 
     const [presentationType, setPresentationType] = useRecoilState(presentationTypeAtom);
     const prevPresentationType = usePrevValue(presentationType);
-    const show = active || ((prevActiveValue || prevPrevActiveValue) && presentationType === 'modal') ? 2 : 0;
+    const show = active || ((prevActiveValue || prevPrevActiveValue) && presentationType === 'modal') ? (Platform.OS === 'web' ? 1 : 2) : 0;
 
     useEffect(() => {
         setPresentationType(stackPresentation ?? 'push');

@@ -12,7 +12,6 @@ interface StyledTextProps {
 }
 
 export const StyledText = styled.Text`
-    font-weight: bold;
     font-size: ${(props: StyledTextProps) => getFontSize(props.textSize)};
     color: ${(props: StyledTextProps) => props.color};
 `;
@@ -21,6 +20,7 @@ interface BaseTextButtonProps extends TextProps {
     onPress?: () => void;
     colorStyle: RequiredKeys<InteractiveColors>;
     textSize: TextSize;
+    children: string;
 }
 
 export function BaseTextButton(props: BaseTextButtonProps): JSX.Element {
