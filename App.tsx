@@ -8,7 +8,6 @@ import { BaseButton } from './src/ThemeState/components/Interactive/BaseButton';
 import {
     black,
     green,
-    NavigationBar,
     orange,
     SafeAreaFullScreen,
     StackNavigator,
@@ -68,8 +67,12 @@ function App(): JSX.Element {
             >
                 <TabScreen path='/home'>
                     <StackNavigator path='/home'>
-                        <StackScreen path='/home'>
-                            <NavigationBar title='Home' />
+                        <StackScreen
+                            path='/home'
+                            navBarConfig={{
+                                title: 'Home'
+                            }}
+                        >
                             <StackScreenContent>
                                 <BaseBackground>
                                     <SafeAreaFullScreen>
@@ -80,7 +83,13 @@ function App(): JSX.Element {
                                 </BaseBackground>
                             </StackScreenContent>
                         </StackScreen>
-                        <StackScreen path='/home/profile' stackPresentation='modal'>
+                        <StackScreen
+                            path='/home/profile'
+                            stackPresentation='modal'
+                            navBarConfig={{
+                                title: 'Modal'
+                            }}
+                        >
                             <StackScreenContent>
                                 <BaseBackground>
                                     <BaseText textSize='md'>This is a modal</BaseText>

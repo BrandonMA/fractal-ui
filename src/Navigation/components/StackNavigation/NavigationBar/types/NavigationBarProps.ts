@@ -8,4 +8,6 @@ export interface NavigationBarProps {
 
     title?: string;
     titleFontSize?: number;
+
+    path?: string;
 }

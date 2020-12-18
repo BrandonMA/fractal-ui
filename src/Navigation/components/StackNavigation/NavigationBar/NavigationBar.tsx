@@ -1,5 +1,5 @@
-import React, { memo, useEffect } from 'react';
-import { Platform, View } from 'react-native';
+import React, { memo } from 'react';
+import { View } from 'react-native';
 import styled from 'styled-components/native';
 import { useHistory } from '../../../../ReactRouter';
 import { NavigationBarProps } from './types/NavigationBarProps';
@@ -8,9 +8,8 @@ import { useNavigationBarChildren } from './hooks/useNavigationBarChildren';
 import { useMatch } from '../../../hooks/useMatch';
 import { constants } from '../../../constants';
 import { getCursorStyle } from '../../../../Layout/util/getCursorStyle';
-import { useRecoilState } from 'recoil';
-import { navigationBarInsetsAtom } from '../../../recoil/atoms/navigationBarInsetsAtom';
 import { useThemeColor } from '../../../../ThemeState';
+import { usePathIsActive } from '../../../hooks/usePathIsActive';
 
 interface ContainerProps {
     backgroundColor: string;
@@ -22,8 +21,6 @@ const Container = styled(View)`
     height: ${constants.navigationBarHeightForWeb}px;
     background-color: ${(props: ContainerProps) => props.backgroundColor};
     box-shadow: ${constants.shadowBottom};
-    position: absolute;
-    top: 0;
     width: 100%;
     z-index: 1000;
 `;
@@ -74,33 +71,26 @@ const StyledBackButtonContainer = styled.TouchableOpacity`
 `;
 
 export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
-    const { hidden, title, hideBackButton, backTitle, backTitleFontSize, titleFontSize, children } = props;
-    const [navigationBarInsets, setNavigationBarInsets] = useRecoilState(navigationBarInsetsAtom);
+    const { hidden, title, hideBackButton, backTitle, path, backTitleFontSize, titleFontSize, children } = props;
     const mainInteractiveColor = useThemeColor('mainInteractiveColor');
     const navigationBarColor = useThemeColor('navigationBarColor');
     const textColor = useThemeColor('textColor');
     const { goBack } = useHistory();
+    const isPathActive = usePathIsActive(path);
     const [, activeRoutes] = useMatch('/');
     const [leftChild, centerChild, rightChild] = useNavigationBarChildren(children);
-
-    useEffect(() => {
-        const top = Platform.OS === 'web' && !hidden ? constants.navigationBarHeightForWeb : 0; // Set the value of the navigation bar for web here. For native it is already inside safeAreaInsets.
-        if (top !== navigationBarInsets.top) {
-            setNavigationBarInsets({ top, right: 0, bottom: 0, left: 0 });
-        }
-    }, [hidden, navigationBarInsets, setNavigationBarInsets]);
 
     return hidden ? null : (
         <Container backgroundColor={navigationBarColor.base}>
             <LeftContainer>
-                {activeRoutes <= 1 || hideBackButton ? null : (
+                {activeRoutes > 1 && isPathActive && !hideBackButton ? (
                     <StyledBackButtonContainer onPress={goBack}>
                         <Entypo name='chevron-left' size={constants.navigationBarBackButtonSize} color={mainInteractiveColor.base} />
                         <StyledText color={mainInteractiveColor.base} fontSize={backTitleFontSize}>
                             {backTitle}
                         </StyledText>
                     </StyledBackButtonContainer>
-                )}
+                ) : null}
                 {leftChild}
             </LeftContainer>
             <MiddleContainer>

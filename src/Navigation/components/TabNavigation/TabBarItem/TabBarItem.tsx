@@ -36,7 +36,6 @@ export const TabBarItem = memo(
         );
         const goToTab = useGoToTab(path, active);
         const tabBarItemColor = useThemeColor('mainInteractiveColor');
-        console.log(tabBarItemColor.base);
 
         return (
             <TabBarItemContainer

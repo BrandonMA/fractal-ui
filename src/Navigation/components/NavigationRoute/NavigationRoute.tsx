@@ -6,7 +6,7 @@ import { usePresentationState } from './hooks/usePresentationState';
 
 export interface NavigationRouteProps extends Omit<ScreenProps, 'stackPresentation' | 'active'> {
     path?: string;
-    children?: Array<JSX.Element> | JSX.Element;
+    children?: Array<JSX.Element> | JSX.Element | React.ReactNode;
     stackPresentation?: StackPresentationTypes;
 }
 
@@ -17,7 +17,7 @@ export function NavigationRoute(props: NavigationRouteProps): JSX.Element {
     const show = usePresentationState(basepath, stackPresentation);
 
     return (
-        <Screen {...others} active={show} stackPresentation={stackPresentation ?? 'push'} style={[StyleSheet.absoluteFill, style]}>
+        <Screen {...others} activityState={show} stackPresentation={stackPresentation ?? 'push'} style={[StyleSheet.absoluteFill, style]}>
             <Route path={basepath}>{renderChildren}</Route>
         </Screen>
     );

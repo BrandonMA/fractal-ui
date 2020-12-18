@@ -14,7 +14,7 @@ interface StyledTextProps {
 const StyledText = styled.Text`
     font-size: ${(props: StyledTextProps) => getFontSize(props.textSize)};
     color: ${(props: StyledTextProps) => props.color};
-    font-weight: ${(props: StyledTextProps) => (props.bold ? 'bold' : 'regular')};
+    font-weight: ${(props: StyledTextProps) => (props.bold ? 'bold' : 'normal')};
 `;
 
 interface BaseTextProps extends TextProps {

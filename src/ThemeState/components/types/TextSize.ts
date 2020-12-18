@@ -13,5 +13,5 @@ export function getFontSize(textSize: TextSize): string {
                 return 13;
         }
     };
-    return `${fontSize()} px`;
+    return `${fontSize()}px`;
 }
