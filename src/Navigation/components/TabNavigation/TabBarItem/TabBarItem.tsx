@@ -11,6 +11,8 @@ import { useGoToTab } from './hooks/useGoToTab';
 import { TabBarItemProps } from './types/TabBarItemProps';
 import { useTabBarItemColor } from './hooks/useTabBarItemColor';
 import { useThemeColor } from '../../../../ThemeState';
+import { useRecoilValue } from 'recoil';
+import { tabBarPositionAtom } from '../../../recoil/atoms/tabBarPositionAtom';
 
 interface StyledTextProps {
     color: string;
@@ -29,11 +31,11 @@ export const TabBarItem = memo(
         const TabBarItemContainer = getTabBarItemComponent(variant);
         const iconSize = getTabIconSize(variant);
         const widthSizeGroup = useWidthSizeGroup();
-        const spacerSize = getValueForLargeSize(
-            widthSizeGroup[0],
-            constants.tabBarItemLargeSpacerSize,
-            constants.tabBarItemCompactSpacerSize
-        );
+        const tabBarPosition = useRecoilValue(tabBarPositionAtom);
+        const spacerSize =
+            tabBarPosition !== 'bottom'
+                ? constants.tabBarItemCompactSpacerSize
+                : getValueForLargeSize(widthSizeGroup[0], constants.tabBarItemLargeSpacerSize, constants.tabBarItemCompactSpacerSize);
         const goToTab = useGoToTab(path, active);
         const tabBarItemColor = useThemeColor('mainInteractiveColor');
 

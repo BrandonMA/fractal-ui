@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components/native';
-import { Animated, Pressable, StatusBar, StyleSheet } from 'react-native';
+import { Animated, Pressable, StyleSheet } from 'react-native';
 import { useShowAnimation } from '../../../Animations/hooks';
 import { useWidthSizeGroup } from '../../../SizeGroup/hooks';
 import { Size } from '../../../SizeGroup/types';
@@ -25,6 +25,8 @@ interface BackgroundProps {
 const Background = styled(Pressable)`
     background-color: ${(props: BackgroundProps) => props.color};
     opacity: 0.6;
+    width: 100vh;
+    margin: -100px;
 `;
 
 const SharedStyles = styled.View`

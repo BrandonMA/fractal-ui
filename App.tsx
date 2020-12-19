@@ -59,8 +59,14 @@ function MainTabBar(): JSX.Element {
         []
     );
     return (
-        <TabBar tabBarVariant='basic' tabBarPosition='bottom'>
+        <TabBar tabBarVariant='middle-action' tabBarPosition='bottom'>
             <TabBarItem title='Home' path='/home'>
+                {renderHomeItem}
+            </TabBarItem>
+            <TabBarItem title='Middle' path='/middle' variant='circular'>
+                {renderHomeItem}
+            </TabBarItem>
+            <TabBarItem title='Home 3' path='/two'>
                 {renderHomeItem}
             </TabBarItem>
         </TabBar>

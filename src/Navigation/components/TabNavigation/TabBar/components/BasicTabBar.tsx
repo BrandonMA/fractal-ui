@@ -1,29 +1,30 @@
 import React from 'react';
-import { EdgeInsets, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
 import { TabBarProps } from '../types';
+import { useThemeColor } from '../../../../../ThemeState';
+import { Animated } from 'react-native';
+import { usePositionValues } from '../hooks/usePositionValues';
+import { StyledTabBarProps } from '../types/StyledTabBarProps';
 import { getTabBarSafeAreaPadding } from '../util/getTabBarSafeAreaPadding';
-import { Color, useThemeColor } from '../../../../../ThemeState';
-import { Animated, ViewProps } from 'react-native';
-
-interface ContainerProps extends Animated.AnimatedProps<ViewProps> {
-    tabBarColor: Color;
-    safeAreaInsets: EdgeInsets;
-}
 
 const Container = styled(Animated.View)`
-    justify-content: space-evenly;
+    justify-content: center;
     position: absolute;
-    bottom: 0;
-    background-color: ${(props: ContainerProps) => props.tabBarColor.base};
-    flex-direction: row;
-    width: 100%;
-    box-shadow: ${(props: ContainerProps) => props.tabBarColor.shadow};
-    ${(props: ContainerProps) => getTabBarSafeAreaPadding(props)}
+    ${(props: StyledTabBarProps) => props.side}
+    background-color: ${(props: StyledTabBarProps) => props.tabBarColor.base};
+    flex-direction: ${(props: StyledTabBarProps) => props.flexDirection};
+    width: ${(props: StyledTabBarProps) => props.tabBarWidth};
+    height: ${(props: StyledTabBarProps) => props.tabBarHeight};
+    box-shadow: ${(props: StyledTabBarProps) => props.tabBarColor.shadow};
+    ${(props: StyledTabBarProps) => getTabBarSafeAreaPadding(props)}
 `;
 
 export function BasicTabBar(props: TabBarProps): JSX.Element {
+    const { tabBarPosition } = props;
     const tabBarColor = useThemeColor('tabBarColor');
     const safeAreaInsets = useSafeAreaInsets();
-    return <Container {...props} safeAreaInsets={safeAreaInsets} tabBarColor={tabBarColor} />;
+    const positionValues = usePositionValues(tabBarPosition, safeAreaInsets);
+
+    return <Container {...props} safeAreaInsets={safeAreaInsets} tabBarColor={tabBarColor} {...positionValues} />;
 }

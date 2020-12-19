@@ -2,8 +2,10 @@ import { Platform } from 'react-native';
 
 export const constants = {
     tabBarHeight: Platform.OS === 'ios' ? 49 : 61,
+    tabBarWidth: 61,
     tabBarButtonSize: 48,
-    tabBarCircularButtonOffset: Platform.OS === 'ios' ? 20 : 32,
+    tabBarCircularButtonOffset: 32,
+    tabBarCircularButtonOffsetBottom: Platform.OS === 'ios' ? 20 : 32,
     tabBarItemCompactSpacerSize: { width: 0, height: 0 },
     tabBarItemLargeSpacerSize: { width: 8, height: 1 },
     navigationBarHeightForWeb: 50,

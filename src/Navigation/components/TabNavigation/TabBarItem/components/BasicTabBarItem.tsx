@@ -3,6 +3,8 @@ import { sharedTabBarItemStyles } from './SharedTabBarItemStyles';
 import { SizeGroup } from '../../../../../SizeGroup/types';
 import { getValueForLargeSize } from '../../../../../SizeGroup/util';
 import { Dimensions, Pressable } from 'react-native';
+import { useRecoilValue } from 'recoil';
+import { tabBarPositionAtom } from '../../../../recoil/atoms/tabBarPositionAtom';
 
 export interface BasicTabBarItemProps {
     widthSizeGroup: SizeGroup;
@@ -13,6 +15,7 @@ export interface BasicTabBarItemProps {
 export const BasicTabBarItem = memo(
     (props: BasicTabBarItemProps): JSX.Element => {
         const { widthSizeGroup, highlightColor } = props;
+        const tabBarPosition = useRecoilValue(tabBarPositionAtom);
 
         const ripple = useMemo(() => {
             return {
@@ -26,7 +29,7 @@ export const BasicTabBarItem = memo(
             return {
                 ...sharedTabBarItemStyles,
                 flexGrow: 1,
-                flexDirection: getValueForLargeSize(widthSizeGroup[0], 'row', 'column')
+                flexDirection: tabBarPosition !== 'bottom' ? 'column' : getValueForLargeSize(widthSizeGroup[0], 'row', 'column')
             };
         }, [widthSizeGroup]);
 
