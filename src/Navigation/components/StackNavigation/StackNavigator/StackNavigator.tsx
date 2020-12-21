@@ -6,8 +6,7 @@ import { ScreenStack, ScreenStackProps } from '../ScreenStack';
 import { filterMatchingChildren } from './util/filterMatchingChildren';
 import { injectModalContainers } from './util/injectModalContainer';
 import { getInsetsStyle, InsetsStyleConfig } from '../../../../Layout/util/getInsetsStyle';
-import { useRecoilValue } from 'recoil';
-import { tabBarInsetsAtom } from '../../../recoil/atoms/tabBarInsetsAtom';
+import { useTabBarInsets } from '../../../hooks';
 
 const StyledScreenStack = styled(ScreenStack)`
     flex: 1;
@@ -26,7 +25,7 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
     const { pathname } = useLocation();
     const [active] = useMatch(path ?? '/');
     const prevChildrenRef = useRef<Array<JSX.Element>>([]);
-    const tabBarInsets = useRecoilValue(tabBarInsetsAtom);
+    const tabBarInsets = useTabBarInsets();
 
     const childrenToRender = useMemo(() => {
         let arrayOfChildren = Children.toArray(children) as Array<JSX.Element>;

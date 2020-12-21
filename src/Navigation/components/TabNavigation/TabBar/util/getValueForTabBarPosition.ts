@@ -1,6 +1,6 @@
 import { TabBarPosition } from '../types/TabBarPosition';
 
-export function getValueForPosition<T>(position: TabBarPosition, bottom: T, left: T, right: T): T {
+export function getValueForTabBarPosition<T>(position: TabBarPosition, bottom: T, left: T, right: T): T {
     switch (position) {
         case 'bottom':
             return bottom;

@@ -8,18 +8,18 @@ import { useNavigationBarChildren } from './hooks/useNavigationBarChildren';
 import { useMatch } from '../../../hooks/useMatch';
 import { constants } from '../../../constants';
 import { getCursorStyle } from '../../../../Layout/util/getCursorStyle';
-import { useThemeColor } from '../../../../ThemeState';
+import { Color, useThemeColor } from '../../../../ThemeState';
 import { usePathIsActive } from '../../../hooks/usePathIsActive';
 
 interface ContainerProps {
-    backgroundColor: string;
+    backgroundColor: Color;
 }
 
 const Container = styled(View)`
     flex-direction: row;
     height: ${constants.navigationBarHeightForWeb}px;
-    background-color: ${(props: ContainerProps) => props.backgroundColor};
-    box-shadow: ${constants.shadowBottom};
+    background-color: ${(props: ContainerProps) => props.backgroundColor.base};
+    box-shadow: ${(props: ContainerProps) => props.backgroundColor.shadow};
     width: 100%;
     z-index: 1000;
     padding: 0 ${constants.basePaddingSize}px;
@@ -98,7 +98,7 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
     const [leftChild, centerChild, rightChild] = useNavigationBarChildren(children);
 
     return hidden ? null : (
-        <Container backgroundColor={navigationBarColor.base}>
+        <Container backgroundColor={navigationBarColor}>
             <LeftContainer>
                 {activeRoutes > 1 && isPathActive && !hideBackButton ? (
                     <BackButton backTitle={backTitle} backTitleFontSize={backTitleFontSize} />

@@ -9,7 +9,7 @@ import { getTabBarSafeAreaPadding } from '../../util/getTabBarSafeAreaPadding';
 import { constants } from '../../../../../constants';
 import { useThemeColor } from '../../../../../../ThemeState';
 import { usePositionValues } from '../../hooks/usePositionValues';
-import { getValueForPosition } from '../../util/getValueForPosition';
+import { getValueForTabBarPosition } from '../../util/getValueForTabBarPosition';
 import { StyledTabBarProps } from '../../types/StyledTabBarProps';
 
 type ContainerProps = Omit<StyledTabBarProps, 'tabBarColor' | 'safeAreaInsets' | 'tabBarPosition'>;
@@ -80,15 +80,15 @@ export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
     const constantSize = `${
         tabBarPosition === 'bottom' ? constants.tabBarCircularButtonOffsetBottom : constants.tabBarCircularButtonOffset
     }px`;
-    const floatingPadding = getValueForPosition(
+    const floatingPadding = getValueForTabBarPosition(
         tabBarPosition,
         `bottom: ${constantSize}`,
         `left: ${constantSize}`,
         `right: ${constantSize}`
     );
     const constantDimension = 'auto';
-    const width = getValueForPosition(tabBarPosition, '100%', constantDimension, constantDimension);
-    const height = getValueForPosition(tabBarPosition, constantDimension, '100%', '100%');
+    const width = getValueForTabBarPosition(tabBarPosition, '100%', constantDimension, constantDimension);
+    const height = getValueForTabBarPosition(tabBarPosition, constantDimension, '100%', '100%');
 
     return (
         <>

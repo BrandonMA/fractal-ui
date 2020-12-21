@@ -4,3 +4,4 @@ export * from './types';
 export * from './FractalThemeRoot';
 export * from './hooks';
 export * from './components';
+export * from './defaultThemes';

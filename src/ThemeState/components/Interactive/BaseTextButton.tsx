@@ -4,7 +4,8 @@ import { TextProps, TouchableOpacity } from 'react-native';
 import { RequiredKeys } from 'utility-types';
 import { InteractiveColors } from '../../types';
 import { useThemeColor } from '../../hooks';
-import { getFontSize, TextSize } from '../types/TextSize';
+import { TextSize } from '../types/TextSize';
+import { getFontSize } from '../util/getFontSize';
 
 interface StyledTextProps {
     color: string;

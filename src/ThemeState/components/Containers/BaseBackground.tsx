@@ -13,11 +13,11 @@ const StyledContainer = styled(FullScreen)`
     padding: 16px;
 `;
 
-export interface BaseContainerProps extends Omit<ViewProps, 'children'> {
+export interface BaseBackgroundProps extends Omit<ViewProps, 'children'> {
     children: React.ReactNode;
 }
 
-export function BaseBackground(props: BaseContainerProps): JSX.Element {
+export function BaseBackground(props: BaseBackgroundProps): JSX.Element {
     const containerColor = useThemeColor('containerColor');
     return <StyledContainer {...props} backgroundColor={containerColor.base400} />;
 }

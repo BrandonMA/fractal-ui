@@ -1,6 +1,5 @@
 import { Color } from '../../../../../ThemeState';
 import { EdgeInsets } from 'react-native-safe-area-context';
-import { TabBarSideStyle } from './TabBarSideStyle';
 import { TabBarPosition } from './TabBarPosition';
 
 export interface StyledTabBarProps {
@@ -9,6 +8,6 @@ export interface StyledTabBarProps {
     safeAreaInsets: EdgeInsets;
     tabBarWidth: string;
     flexDirection: 'row' | 'column';
-    side: TabBarSideStyle;
+    side: string;
     tabBarHeight: string;
 }

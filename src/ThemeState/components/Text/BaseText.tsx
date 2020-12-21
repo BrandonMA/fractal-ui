@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { useThemeColor } from '../../index';
 import { TextProps } from 'react-native';
-import { getFontSize, TextSize } from '../types/TextSize';
+import { TextSize } from '../types/TextSize';
 import { TextType } from '../types/TextType';
+import { getFontSize } from '../util/getFontSize';
 
 interface StyledTextProps {
     color: string;

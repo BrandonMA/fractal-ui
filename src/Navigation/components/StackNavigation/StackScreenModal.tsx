@@ -25,12 +25,15 @@ interface BackgroundProps {
 const Background = styled(Pressable)`
     background-color: ${(props: BackgroundProps) => props.color};
     opacity: 0.6;
-    width: 100vh;
     margin: -100px;
 `;
 
+interface SharedStylesProps {
+    shadow: string;
+}
+
 const SharedStyles = styled.View`
-    box-shadow: ${constants.shadowBottom};
+    box-shadow: ${(props: SharedStylesProps) => props.shadow}
     overflow: hidden;
     border-radius: 20px;
 `;
@@ -67,7 +70,7 @@ export function StackScreenModal(props: StackScreenModalProps): JSX.Element {
     return (
         <StyledContainer size={widthSize} style={[StyleSheet.absoluteFill, { opacity: opacityValue }]}>
             <Background color={containerColor.base600} onPress={goBack} style={[StyleSheet.absoluteFill]} />
-            <Wrapper>{props.children}</Wrapper>
+            <Wrapper shadow={containerColor.shadow}>{props.children}</Wrapper>
         </StyledContainer>
     );
 }

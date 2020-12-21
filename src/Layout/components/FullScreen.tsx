@@ -2,8 +2,7 @@ import React from 'react';
 import { Animated, ViewProps } from 'react-native';
 import styled from 'styled-components/native';
 import { getFullScreenStyle } from '../util/getFullScreenStyle';
-import { useRecoilValue } from 'recoil';
-import { presentationTypeAtom } from '../../Navigation/recoil/atoms/presentationTypeAtom';
+import { usePresentationType } from '../../Navigation';
 
 const Container = styled(Animated.View)`
     ${getFullScreenStyle};
@@ -14,6 +13,6 @@ export interface FullScreenProps extends Omit<Animated.AnimatedProps<ViewProps>,
 }
 
 export function FullScreen(props: FullScreenProps): JSX.Element {
-    const presentationType = useRecoilValue(presentationTypeAtom);
+    const presentationType = usePresentationType();
     return <Container {...props} presentationType={presentationType} />;
 }

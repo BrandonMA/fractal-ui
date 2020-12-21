@@ -1,7 +1,7 @@
 import { FractalTheme } from '../types';
 import { black, blue, green, orange, red, yellow } from '../baseColors';
 
-export const lightTheme: FractalTheme = {
+export const darkTheme: FractalTheme = {
     mainInteractiveColor: blue,
     alternativeInteractiveColor: orange,
     successInteractiveColor: green,

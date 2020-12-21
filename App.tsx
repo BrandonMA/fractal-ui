@@ -1,12 +1,8 @@
 import React, { memo, useCallback, useMemo } from 'react';
 import { registerRootComponent } from 'expo';
 import { FractalAppRoot } from './src/FractalAppRoot';
-import { defaultTheme } from './src/ThemeState/recoil/atoms/fractalThemeSetAtom';
 import { BaseButton } from './src/ThemeState/components/Interactive/BaseButton';
 import {
-    black,
-    green,
-    orange,
     SafeAreaFullScreen,
     StackNavigator,
     StackScreen,
@@ -14,32 +10,16 @@ import {
     TabBar,
     TabBarItem,
     TabNavigator,
-    TabScreen
+    TabScreen,
+    useHistory
 } from './src';
-import { FractalThemeSet } from './src/ThemeState/types/FractalThemeSet';
 import { BaseContainer } from './src/ThemeState/components/Containers/BaseContainer';
 import { BaseBackground } from './src/ThemeState/components/Containers/BaseBackground';
 import { Entypo } from '@expo/vector-icons';
 import { BaseText } from './src/ThemeState/components/Text/BaseText';
-import { useHistory } from './src';
 import { PlarformBarConfig } from './src/Navigation/components/StackNavigation/PlarformBarConfig';
 import { BaseTextButton } from './src/ThemeState/components/Interactive/BaseTextButton';
 import { PlatformBarRightView } from './src/Navigation/components/StackNavigation/PlatformBarViews';
-
-const newThemeSet: FractalThemeSet = {
-    default: {
-        ...defaultTheme,
-        mainInteractiveColor: green
-    },
-    dark: {
-        ...defaultTheme,
-        mainInteractiveColor: orange,
-        navigationBarColor: black,
-        textColor: black,
-        containerColor: black,
-        tabBarColor: black
-    }
-};
 
 function HomeContent(): JSX.Element {
     const history = useHistory();
@@ -75,7 +55,7 @@ function MainTabBar(): JSX.Element {
 
 function App(): JSX.Element {
     return (
-        <FractalAppRoot themeSet={newThemeSet}>
+        <FractalAppRoot>
             <TabNavigator defaultRoute='/home' tabBar={<MainTabBar />}>
                 <TabScreen path='/home'>
                     <StackNavigator path='/home'>

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useMemo } from 'react';
+import React, { useLayoutEffect, useMemo } from 'react';
 import { TabBarProps } from './types';
 import { useHideTabBarAnimation } from './hooks/useHideTabBarAnimation';
 import { getTabBarComponent } from './util/getTabBarComponent';
@@ -8,20 +8,20 @@ import { createTabBarInsetsDependingOnPosition } from './util/createTabBarInsets
 import { tabBarPositionAtom } from '../../../recoil/atoms/tabBarPositionAtom';
 
 export function TabBar(props: TabBarProps): JSX.Element {
-    const { style, tabBarHidden, tabBarVariant, tabBarPosition, ...others } = props;
+    const { style, tabBarVariant, tabBarPosition, ...others } = props;
+
     const TabBar = getTabBarComponent(tabBarVariant);
-    const [animatedValue, animateHiddenChange] = useHideTabBarAnimation();
+    const animatedValue = useHideTabBarAnimation();
     const setTabBarInsets = useSetRecoilState(tabBarInsetsAtom);
     const setTabBarPosition = useSetRecoilState(tabBarPositionAtom);
 
+    // Allow the tabBarPosition to be passed as a prop as the value is probably never going to change on run time.
+    // So, we use an useLayoutEffect hook to update the UI before the first render.
+    // This could be handled with Context, but is easier to keep all global state on atoms for consistency.
     useLayoutEffect(() => {
         setTabBarInsets(createTabBarInsetsDependingOnPosition(tabBarPosition));
         setTabBarPosition(tabBarPosition);
     }, [tabBarPosition, setTabBarInsets, setTabBarPosition]);
-
-    useEffect(() => {
-        animateHiddenChange(tabBarHidden ?? false);
-    }, [tabBarHidden, animateHiddenChange]);
 
     const animatedStyle = useMemo(() => {
         return [
@@ -36,13 +36,5 @@ export function TabBar(props: TabBarProps): JSX.Element {
         ];
     }, [style, animatedValue]);
 
-    return (
-        <TabBar
-            {...others}
-            tabBarHidden={tabBarHidden}
-            tabBarPosition={tabBarPosition}
-            tabBarVariant={tabBarVariant}
-            style={animatedStyle}
-        />
-    );
+    return <TabBar {...others} tabBarPosition={tabBarPosition} tabBarVariant={tabBarVariant} style={animatedStyle} />;
 }
