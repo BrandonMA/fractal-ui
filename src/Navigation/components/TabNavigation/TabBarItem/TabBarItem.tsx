@@ -49,7 +49,7 @@ export const TabBarItem = memo(
             >
                 {children(color, iconSize)}
                 <Spacer width={spacerSize.width} height={spacerSize.height} />
-                {variant === 'circular' ? null : <StyledText color={color}>{title}</StyledText>}
+                {variant === 'circular' && title != null ? null : <StyledText color={color}>{title}</StyledText>}
             </TabBarItemContainer>
         );
     }
