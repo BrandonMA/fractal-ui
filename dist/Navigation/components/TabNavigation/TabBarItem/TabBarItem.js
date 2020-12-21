@@ -55,7 +55,7 @@ export var TabBarItem = memo(function (props) {
     return (React.createElement(TabBarItemContainer, __assign({}, others, { onPress: goToTab, bg: tabBarItemColor.base, widthSizeGroup: widthSizeGroup, highlightColor: tabBarItemColor.base600 }),
         children(color, iconSize),
         React.createElement(Spacer, { width: spacerSize.width, height: spacerSize.height }),
-        variant === 'circular' ? null : React.createElement(StyledText, { color: color }, title)));
+        variant === 'circular' && title != null ? null : React.createElement(StyledText, { color: color }, title)));
 });
 var templateObject_1;
 //# sourceMappingURL=TabBarItem.js.map

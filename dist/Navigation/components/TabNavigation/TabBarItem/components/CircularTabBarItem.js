@@ -34,7 +34,7 @@ export var CircularTabBarItem = memo(function (props) {
             return __assign(__assign({}, sharedStyles), { backgroundColor: highlightColor });
         }
         return sharedStyles;
-    }, [highlightColor]);
+    }, [highlightColor, sharedStyles]);
     return React.createElement(Pressable, __assign({}, others, { style: handleHighlightPress }));
 });
 //# sourceMappingURL=CircularTabBarItem.js.map

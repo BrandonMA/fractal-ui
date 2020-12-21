@@ -8,7 +8,7 @@ export function useSizeValue(dimensionType) {
     var _a = useState(Dimensions.get('window')[dimensionType]), dimension = _a[0], setDimension = _a[1];
     var onChange = useCallback(function (dimensions) {
         setDimension(dimensions.window[dimensionType]);
-    }, []);
+    }, [dimensionType]);
     useEffect(function () {
         Dimensions.addEventListener('change', onChange);
         return function () {

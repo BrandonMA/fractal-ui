@@ -1,4 +1,4 @@
 export function isMatchExact(match) {
-    return match && match.isExact;
+    return match != null && match.isExact;
 }
 //# sourceMappingURL=isMatchExact.js.map

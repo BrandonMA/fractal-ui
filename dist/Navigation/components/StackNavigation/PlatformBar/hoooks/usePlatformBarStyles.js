@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Platform } from 'react-native';
 import { useThemeColor } from '../../../../../ThemeState';
 import { useMemo } from 'react';

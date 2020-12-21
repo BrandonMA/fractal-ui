@@ -22,7 +22,7 @@ export function useBaseButtonAnimations(props) {
         if (onPressOut != null) {
             onPressOut(event);
         }
-    }, [pressInAnimation, showShadowAnimation, onPressOut]);
+    }, [pressOutAnimation, showShadowAnimation, onPressOut]);
     var finalStyle = useMemo(function () {
         return [
             style,
@@ -35,7 +35,7 @@ export function useBaseButtonAnimations(props) {
                 ]
             }
         ];
-    }, [shadowValue, scaleValue, style]);
+    }, [shadowValue, scaleValue, style, removeShadow]);
     return useMemo(function () { return [handlePressIn, handlePressOut, finalStyle]; }, [handlePressIn, handlePressOut, finalStyle]);
 }
 //# sourceMappingURL=useBaseButtonAnimations.js.map

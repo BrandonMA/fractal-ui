@@ -27,7 +27,7 @@ export var BasicTabBarItem = memo(function (props) {
     }, [highlightColor]);
     var style = useMemo(function () {
         return __assign(__assign({}, sharedTabBarItemStyles), { flexGrow: 1, flexDirection: tabBarPosition !== 'bottom' ? 'column' : getValueForLargeSize(widthSizeGroup[0], 'row', 'column') });
-    }, [widthSizeGroup]);
+    }, [widthSizeGroup, tabBarPosition]);
     return React.createElement(Pressable, __assign({}, props, { style: style, android_ripple: ripple }));
 });
 //# sourceMappingURL=BasicTabBarItem.js.map

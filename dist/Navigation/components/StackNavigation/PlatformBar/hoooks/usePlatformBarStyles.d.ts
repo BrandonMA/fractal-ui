@@ -1,1 +1,1 @@
-export declare function usePlatformBarStyles(): {};
+export declare function usePlatformBarStyles(): any;
