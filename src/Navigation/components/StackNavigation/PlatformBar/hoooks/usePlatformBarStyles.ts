@@ -1,10 +1,11 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Platform } from 'react-native';
 import { useThemeColor } from '../../../../../ThemeState';
 import { useMemo } from 'react';
 
 const emptyConfig = {};
 
-export function usePlatformBarStyles() {
+export function usePlatformBarStyles(): any {
     if (Platform.OS === 'ios' || Platform.OS === 'android') {
         const navigationBarColor = useThemeColor('navigationBarColor');
         const mainInteractiveColor = useThemeColor('mainInteractiveColor');

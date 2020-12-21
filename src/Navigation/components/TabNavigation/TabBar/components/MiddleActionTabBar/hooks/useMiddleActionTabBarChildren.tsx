@@ -1,11 +1,13 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, ReactNode } from 'react';
 
-export function useMiddleActionTabBarChildren(children: JSX.Element | Array<JSX.Element> | undefined) {
+export function useMiddleActionTabBarChildren(
+    children: JSX.Element | Array<JSX.Element> | undefined
+): [Array<ReactNode>, ReactNode, Array<ReactNode>] {
     return useMemo(() => {
         const allChildren = React.Children.toArray(children);
-        const leftChildren = [];
-        const rightChildren = [];
-        let middleChild: React.ReactNode = null;
+        const leftChildren: Array<ReactNode> = [];
+        const rightChildren: Array<ReactNode> = [];
+        let middleChild: ReactNode = null;
 
         if (allChildren.length === 1) {
             middleChild = allChildren[0];

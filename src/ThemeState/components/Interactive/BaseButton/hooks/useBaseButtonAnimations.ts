@@ -3,7 +3,7 @@ import { Animated } from 'react-native';
 import { useSpringAnimation } from '../../../../../Animations';
 import { BaseButtonProps } from '../types/BaseButtonProps';
 
-export function useBaseButtonAnimations(props: BaseButtonProps) {
+export function useBaseButtonAnimations(props: BaseButtonProps): [(event: unknown) => void, (event: unknown) => void, unknown] {
     const { style, removeShadow, onPressIn, onPressOut } = props;
 
     const scaleValue = useRef(new Animated.Value(1)).current;
@@ -33,7 +33,7 @@ export function useBaseButtonAnimations(props: BaseButtonProps) {
                 onPressOut(event);
             }
         },
-        [pressInAnimation, showShadowAnimation, onPressOut]
+        [pressOutAnimation, showShadowAnimation, onPressOut]
     );
 
     const finalStyle = useMemo(() => {
@@ -48,7 +48,7 @@ export function useBaseButtonAnimations(props: BaseButtonProps) {
                 ]
             }
         ];
-    }, [shadowValue, scaleValue, style]);
+    }, [shadowValue, scaleValue, style, removeShadow]);
 
     return useMemo(() => [handlePressIn, handlePressOut, finalStyle], [handlePressIn, handlePressOut, finalStyle]);
 }

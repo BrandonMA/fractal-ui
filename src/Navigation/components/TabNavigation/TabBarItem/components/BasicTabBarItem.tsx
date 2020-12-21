@@ -31,7 +31,7 @@ export const BasicTabBarItem = memo(
                 flexGrow: 1,
                 flexDirection: tabBarPosition !== 'bottom' ? 'column' : getValueForLargeSize(widthSizeGroup[0], 'row', 'column')
             };
-        }, [widthSizeGroup]);
+        }, [widthSizeGroup, tabBarPosition]);
 
         return <Pressable {...props} style={style} android_ripple={ripple} />;
     }

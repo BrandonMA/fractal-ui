@@ -28,7 +28,7 @@ export const CircularTabBarItem = memo(
                 }
                 return sharedStyles;
             },
-            [highlightColor]
+            [highlightColor, sharedStyles]
         );
 
         return <Pressable {...others} style={handleHighlightPress} />;

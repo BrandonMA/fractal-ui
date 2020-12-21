@@ -11,7 +11,7 @@ interface FractalAppRootProps extends FractalThemeAppRootProps {
     children: ReactNode;
 }
 
-export function FractalAppRoot(props: FractalAppRootProps) {
+export function FractalAppRoot(props: FractalAppRootProps): JSX.Element {
     const { children, themeSet } = props;
 
     return (

@@ -1,7 +1,5 @@
 import React, { memo, useCallback, useMemo } from 'react';
 import { registerRootComponent } from 'expo';
-import { FractalAppRoot } from './src/FractalAppRoot';
-import { BaseButton } from './src/ThemeState/components/Interactive/BaseButton';
 import {
     SafeAreaFullScreen,
     StackNavigator,
@@ -11,15 +9,17 @@ import {
     TabBarItem,
     TabNavigator,
     TabScreen,
-    useHistory
+    useHistory,
+    BaseButton,
+    FractalAppRoot,
+    BaseContainer,
+    BaseBackground,
+    BaseText,
+    PlarformBarConfig,
+    BaseTextButton,
+    PlatformBarRightView
 } from './src';
-import { BaseContainer } from './src/ThemeState/components/Containers/BaseContainer';
-import { BaseBackground } from './src/ThemeState/components/Containers/BaseBackground';
 import { Entypo } from '@expo/vector-icons';
-import { BaseText } from './src/ThemeState/components/Text/BaseText';
-import { PlarformBarConfig } from './src/Navigation/components/StackNavigation/PlarformBarConfig';
-import { BaseTextButton } from './src/ThemeState/components/Interactive/BaseTextButton';
-import { PlatformBarRightView } from './src/Navigation/components/StackNavigation/PlatformBarViews';
 
 function HomeContent(): JSX.Element {
     const history = useHistory();
@@ -39,7 +39,7 @@ function MainTabBar(): JSX.Element {
         []
     );
     return (
-        <TabBar tabBarVariant='middle-action' tabBarPosition='bottom'>
+        <TabBar tabBarVariant='middle-action' tabBarPosition='left'>
             <TabBarItem title='Home' path='/home'>
                 {renderHomeItem}
             </TabBarItem>
