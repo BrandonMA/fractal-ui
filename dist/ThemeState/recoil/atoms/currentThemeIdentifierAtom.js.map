@@ -1,0 +1,1 @@
+{"version":3,"file":"currentThemeIdentifierAtom.js","sourceRoot":"","sources":["../../../../src/ThemeState/recoil/atoms/currentThemeIdentifierAtom.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,QAAQ,CAAC;AAI9B,MAAM,CAAC,IAAM,0BAA0B,GAAG,IAAI,CAAgC;IAC1E,GAAG,EAAE,4BAA4B;IACjC,SAAO,EAAE,SAAS;CACrB,CAAC,CAAC"}

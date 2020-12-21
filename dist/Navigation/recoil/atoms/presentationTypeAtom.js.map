@@ -1,0 +1,1 @@
+{"version":3,"file":"presentationTypeAtom.js","sourceRoot":"","sources":["../../../../src/Navigation/recoil/atoms/presentationTypeAtom.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,QAAQ,CAAC;AAG9B,MAAM,CAAC,IAAM,oBAAoB,GAAG,IAAI,CAAyB;IAC7D,GAAG,EAAE,sBAAsB;IAC3B,SAAO,EAAE,MAAM;CAClB,CAAC,CAAC"}

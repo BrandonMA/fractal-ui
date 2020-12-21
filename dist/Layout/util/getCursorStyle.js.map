@@ -1,0 +1,1 @@
+{"version":3,"file":"getCursorStyle.js","sourceRoot":"","sources":["../../../src/Layout/util/getCursorStyle.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,QAAQ,EAAE,MAAM,cAAc,CAAC;AAExC,MAAM,UAAU,cAAc;IAC1B,OAAO,QAAQ,CAAC,EAAE,KAAK,KAAK,CAAC,CAAC,CAAC,iBAAiB,CAAC,CAAC,CAAC,IAAI,CAAC;AAC5D,CAAC"}

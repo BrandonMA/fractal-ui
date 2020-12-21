@@ -1,0 +1,1 @@
+{"version":3,"file":"NavigationRoot.js","sourceRoot":"","sources":["../../../src/Navigation/components/NavigationRoot.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAoB,MAAM,OAAO,CAAC;AACzC,OAAO,EAAE,gBAAgB,EAAE,MAAM,mBAAmB,CAAC;AAMrD,MAAM,UAAU,cAAc,CAAC,KAAY;IACvC,OAAO,oBAAC,gBAAgB,QAAE,KAAK,CAAC,QAAQ,CAAoB,CAAC;AACjE,CAAC"}

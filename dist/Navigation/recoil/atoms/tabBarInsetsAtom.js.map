@@ -1,0 +1,1 @@
+{"version":3,"file":"tabBarInsetsAtom.js","sourceRoot":"","sources":["../../../../src/Navigation/recoil/atoms/tabBarInsetsAtom.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,QAAQ,CAAC;AAG9B,MAAM,CAAC,IAAM,gBAAgB,GAAG,IAAI,CAAa;IAC7C,GAAG,EAAE,kBAAkB;IACvB,SAAO,EAAE;QACL,GAAG,EAAE,CAAC;QACN,KAAK,EAAE,CAAC;QACR,MAAM,EAAE,CAAC;QACT,IAAI,EAAE,CAAC;KACV;CACJ,CAAC,CAAC"}

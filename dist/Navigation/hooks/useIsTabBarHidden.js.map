@@ -1,0 +1,1 @@
+{"version":3,"file":"useIsTabBarHidden.js","sourceRoot":"","sources":["../../../src/Navigation/hooks/useIsTabBarHidden.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,QAAQ,CAAC;AACxC,OAAO,EAAE,gBAAgB,EAAE,MAAM,WAAW,CAAC;AAE7C,MAAM,UAAU,iBAAiB;IAC7B,OAAO,cAAc,CAAC,gBAAgB,CAAC,CAAC;AAC5C,CAAC"}

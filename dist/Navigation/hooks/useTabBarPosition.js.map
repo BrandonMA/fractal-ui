@@ -1,0 +1,1 @@
+{"version":3,"file":"useTabBarPosition.js","sourceRoot":"","sources":["../../../src/Navigation/hooks/useTabBarPosition.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,cAAc,EAAE,MAAM,QAAQ,CAAC;AACxC,OAAO,EAAE,kBAAkB,EAAE,MAAM,oCAAoC,CAAC;AAExE,MAAM,UAAU,iBAAiB;IAC7B,OAAO,cAAc,CAAC,kBAAkB,CAAC,CAAC;AAC9C,CAAC"}
