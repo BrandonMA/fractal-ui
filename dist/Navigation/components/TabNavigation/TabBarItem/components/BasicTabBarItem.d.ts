@@ -1,5 +1,5 @@
 import React from 'react';
-import { SizeGroup } from '../../../../../SizeGroup/types';
+import { SizeGroup } from '@bma98/size-class';
 export interface BasicTabBarItemProps {
     widthSizeGroup: SizeGroup;
     highlightColor?: string;

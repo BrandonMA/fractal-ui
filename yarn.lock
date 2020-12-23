@@ -1035,6 +1035,13 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@bma98/size-class@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@bma98/size-class/-/size-class-2.0.1.tgz#c81b4a4b437325b98e141b266b2a55c40663d6e1"
+  integrity sha512-P6+ZUrVLPzGhL522i9i5EV5xCqoDN5INnssEQ1jRVR36TkDWH4K1jovZhZXOjPfsz8jxejahDbKwB+bQCsDLNg==
+  dependencies:
+    expo-device "~2.4.0"
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"
@@ -7400,11 +7407,6 @@ react-is@^17.0.1:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
-
-react-native-responsive-dimensions@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/react-native-responsive-dimensions/-/react-native-responsive-dimensions-3.1.1.tgz#c4daf977b30a909f21164de53a8ba4c9451efefc"
-  integrity sha512-Vo2OhWsphq0HgKsmeZOeyW+c+vsFn1ZaCFkGDgdeCEEiLriT76jGA1JlUjtrj27hvyo/xzeTlBZ+vBso1A84fw==
 
 react-native-safe-area-context@3.1.9:
   version "3.1.9"

@@ -2,10 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components/native';
 import { Animated, Pressable, StyleSheet } from 'react-native';
 import { useShowAnimation } from '../../../Animations/hooks';
-import { useWidthSizeGroup } from '../../../SizeGroup/hooks';
-import { Size } from '../../../SizeGroup/types';
+import { useWidthSizeGroup, Size, getValueForLargeSize } from '@bma98/size-class';
 import { useHistory } from '../../../ReactRouter';
-import { getValueForLargeSize } from '../../../SizeGroup/util';
 import { constants } from '../../constants';
 import { useThemeColor } from '../../../ThemeState';
 
@@ -33,7 +31,7 @@ interface SharedStylesProps {
 }
 
 const SharedStyles = styled.View`
-    box-shadow: ${(props: SharedStylesProps) => props.shadow}
+    box-shadow: ${(props: SharedStylesProps) => props.shadow};
     overflow: hidden;
     border-radius: 20px;
 `;
