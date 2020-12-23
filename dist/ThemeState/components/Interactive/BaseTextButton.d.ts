@@ -2,11 +2,7 @@ import { TextProps } from 'react-native';
 import { RequiredKeys } from 'utility-types';
 import { InteractiveColors } from '../../types';
 import { TextSize } from '../types/TextSize';
-interface StyledTextProps {
-    color: string;
-    textSize: TextSize;
-}
-export declare const StyledText: import("styled-components").StyledComponent<typeof import("react-native").Text, import("styled-components").DefaultTheme, StyledTextProps, never>;
+export declare const StyledText: any;
 interface BaseTextButtonProps extends TextProps {
     onPress?: () => void;
     colorStyle: RequiredKeys<InteractiveColors>;

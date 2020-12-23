@@ -1,7 +1,6 @@
 import React, { memo, useMemo } from 'react';
 import { sharedTabBarItemStyles } from './SharedTabBarItemStyles';
-import { SizeGroup } from '../../../../../SizeGroup/types';
-import { getValueForLargeSize } from '../../../../../SizeGroup/util';
+import { SizeGroup, getValueForLargeSize } from '@bma98/size-class';
 import { Dimensions, Pressable } from 'react-native';
 import { useRecoilValue } from 'recoil';
 import { tabBarPositionAtom } from '../../../../recoil/atoms/tabBarPositionAtom';

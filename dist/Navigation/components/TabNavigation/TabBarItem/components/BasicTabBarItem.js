@@ -11,7 +11,7 @@ var __assign = (this && this.__assign) || function () {
 };
 import React, { memo, useMemo } from 'react';
 import { sharedTabBarItemStyles } from './SharedTabBarItemStyles';
-import { getValueForLargeSize } from '../../../../../SizeGroup/util';
+import { getValueForLargeSize } from '@bma98/size-class';
 import { Dimensions, Pressable } from 'react-native';
 import { useRecoilValue } from 'recoil';
 import { tabBarPositionAtom } from '../../../../recoil/atoms/tabBarPositionAtom';
