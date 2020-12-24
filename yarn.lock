@@ -1035,12 +1035,12 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@bma98/size-class@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@bma98/size-class/-/size-class-2.0.1.tgz#c81b4a4b437325b98e141b266b2a55c40663d6e1"
-  integrity sha512-P6+ZUrVLPzGhL522i9i5EV5xCqoDN5INnssEQ1jRVR36TkDWH4K1jovZhZXOjPfsz8jxejahDbKwB+bQCsDLNg==
+"@bma98/size-class@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@bma98/size-class/-/size-class-2.0.2.tgz#848d762f19a53f1f6b258142f24a9018b0ee2468"
+  integrity sha512-0cIP8vIY7nEKZH5LPp8AeFuDgFSvi9aciwe/RiPs55NMEhTo4pAZK7iC8KRnsIwOIpHJUi7OHYLsAPNez0BG/Q==
   dependencies:
-    expo-device "~2.4.0"
+    expo-device "^3.0.0"
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
@@ -1523,11 +1523,6 @@
     strip-ansi "^5.2.0"
     sudo-prompt "^9.0.0"
     wcwidth "^1.0.1"
-
-"@react-native-picker/picker@1.9.2":
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/@react-native-picker/picker/-/picker-1.9.2.tgz#c5e35f97d7982d2971ee3d74b1ba8ecf4b716627"
-  integrity sha512-eNMf5uF67CsiJ9SDzofSWKu9Gh2PDyPbCSXuUJ09tkRgcOefDx6DyQnXCOPCd+8vxC1DzJKVAgLy+s425jUIeA==
 
 "@types/babel__core@^7.1.0":
   version "7.1.12"
@@ -3889,12 +3884,11 @@ expo-constants@~9.3.3:
     fbjs "1.0.0"
     uuid "^3.3.2"
 
-expo-device@~2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/expo-device/-/expo-device-2.4.0.tgz#277f830827c3b12710f1db5c0096d507e751689b"
-  integrity sha512-mxBiX6nvvtbKot3Kmmb2y8lo4Ki8jWGdUnpC2OX70Yiy75c8mOVbHUe2VMEnx3SysXycwvC5KzJSDy+PuDqovg==
+expo-device@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/expo-device/-/expo-device-3.0.0.tgz#41be12d292ce15bb29c12ae748a2faab11c0e057"
+  integrity sha512-E3JxIF40K5GMGoChi3Nv6SuXCe3Tt30FmlOW4qDeQlLkM+goAEE9zzwUmkzzGVmdD0wU2XEs7aLqFcSUJZzslw==
   dependencies:
-    fbjs "1.0.0"
     ua-parser-js "^0.7.19"
 
 expo-error-recovery@~1.4.0:
@@ -7232,7 +7226,7 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@^2.1.1:
+prettier@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.2.1.tgz#795a1a78dd52f073da0cd42b21f9c91381923ff5"
   integrity sha512-PqyhM2yCjg/oKkFPtTGUojv7gnZAoG80ttl45O6x2Ug/rMJw4wcc9k6aaf2hibP7BGVCCM33gZoGjyvt9mm16Q==
@@ -8754,10 +8748,10 @@ typescript@^3.7.2:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
   integrity sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==
 
-typescript@~4.0.0:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.5.tgz#ae9dddfd1069f1cb5beb3ef3b2170dd7c1332389"
-  integrity sha512-ywmr/VrTVCmNTJ6iV2LwIrfG1P+lv6luD8sUJs+2eI9NLGigaN+nUQc13iHqisq7bra9lnmUSYqbJvegraBOPQ==
+typescript@^4.1.3:
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.1.3.tgz#519d582bd94cba0cf8934c7d8e8467e473f53bb7"
+  integrity sha512-B3ZIOf1IKeH2ixgHhj6la6xdwR9QrLC5d1VKeCSY4tvkqhF2eqd9O7txNlS0PO3GrBAFIdr3L1ndNwteUbZLYg==
 
 ua-parser-js@^0.7.18, ua-parser-js@^0.7.19:
   version "0.7.23"
