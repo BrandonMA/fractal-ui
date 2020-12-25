@@ -31,13 +31,14 @@ import { getTabIconSize } from './util/getTabIconSize';
 import styled from 'styled-components/native';
 import { useWidthSizeGroup, getValueForLargeSize } from '@bma98/size-class';
 import { Spacer } from '../../../../Layout/components/Spacer';
-import { constants } from '../../../constants';
 import { useGoToTab } from './hooks/useGoToTab';
 import { useTabBarItemColor } from './hooks/useTabBarItemColor';
 import { useThemeColor } from '../../../../ThemeState';
 import { useRecoilValue } from 'recoil';
 import { tabBarPositionAtom } from '../../../recoil/atoms/tabBarPositionAtom';
 var StyledText = memo(styled.Text(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    color: ", ";\n    font-size: 11px;\n"], ["\n    color: ", ";\n    font-size: 11px;\n"])), function (props) { return props.color; }));
+var tabBarItemCompactSpacerSize = { width: 0, height: 0 };
+var tabBarItemLargeSpacerSize = { width: 8, height: 1 };
 export var TabBarItem = memo(function (props) {
     var path = props.path, variant = props.variant, title = props.title, children = props.children, others = __rest(props, ["path", "variant", "title", "children"]);
     var active = useMatch(path)[0];
@@ -47,13 +48,13 @@ export var TabBarItem = memo(function (props) {
     var widthSizeGroup = useWidthSizeGroup();
     var tabBarPosition = useRecoilValue(tabBarPositionAtom);
     var spacerSize = tabBarPosition !== 'bottom'
-        ? constants.tabBarItemCompactSpacerSize
-        : getValueForLargeSize(widthSizeGroup[0], constants.tabBarItemLargeSpacerSize, constants.tabBarItemCompactSpacerSize);
+        ? tabBarItemCompactSpacerSize
+        : getValueForLargeSize(widthSizeGroup[0], tabBarItemLargeSpacerSize, tabBarItemCompactSpacerSize);
     var goToTab = useGoToTab(path, active);
     var tabBarItemColor = useThemeColor('mainInteractiveColor');
     return (React.createElement(TabBarItemContainer, __assign({}, others, { onPress: goToTab, bg: tabBarItemColor.base, widthSizeGroup: widthSizeGroup, highlightColor: tabBarItemColor.base600 }),
         children(color, iconSize),
-        React.createElement(Spacer, { width: spacerSize.width, height: spacerSize.height }),
+        React.createElement(Spacer, __assign({}, spacerSize)),
         variant === 'circular' && title != null ? null : React.createElement(StyledText, { color: color }, title)));
 });
 var templateObject_1;

@@ -1,11 +1,10 @@
 import { Platform } from 'react-native';
-import { constants } from '../../../../constants';
 var sharedTabBarItemStyles = {
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
-    minHeight: constants.tabBarButtonSize,
-    minWidth: constants.tabBarButtonSize
+    minHeight: 48,
+    minWidth: 48
 };
 if (Platform.OS === 'web') {
     sharedTabBarItemStyles['cursor'] = 'pointer';

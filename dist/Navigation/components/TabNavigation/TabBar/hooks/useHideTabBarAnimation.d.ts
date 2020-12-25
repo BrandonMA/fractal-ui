@@ -1,2 +1,3 @@
-import { Animated } from 'react-native';
-export declare function useHideTabBarAnimation(): Animated.Value;
+import { ViewStyle } from 'react-native';
+import { TabBarPosition, TabBarVariant } from '../types';
+export declare function useHideTabBarAnimation(tabBarPosition: TabBarPosition, variant: TabBarVariant, style: unknown): ViewStyle;

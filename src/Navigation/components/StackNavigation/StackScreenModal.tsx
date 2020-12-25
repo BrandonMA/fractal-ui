@@ -4,7 +4,6 @@ import { Animated, Pressable, StyleSheet } from 'react-native';
 import { useShowAnimation } from '../../../Animations/hooks';
 import { useWidthSizeGroup, Size, getValueForLargeSize } from '@bma98/size-class';
 import { useHistory } from '../../../ReactRouter';
-import { constants } from '../../constants';
 import { useThemeColor } from '../../../ThemeState';
 
 interface ContainerProps {
@@ -46,7 +45,7 @@ const WhiteContentDesktop = styled(SharedStyles)`
 const WhiteContentPhone = styled(SharedStyles)`
     width: 90%;
     height: 85%;
-    margin-top: ${constants.basePaddingSize}px;
+    margin-top: 16px;
 ` as typeof SharedStyles;
 
 interface StackScreenModalProps {

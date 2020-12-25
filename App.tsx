@@ -9,7 +9,6 @@ import {
     TabBarItem,
     TabNavigator,
     TabScreen,
-    useHistory,
     BaseButton,
     FractalAppRoot,
     BaseContainer,
@@ -17,16 +16,18 @@ import {
     BaseText,
     PlarformBarConfig,
     BaseTextButton,
-    PlatformBarRightView
+    PlatformBarRightView,
+    tabBarHiddenAtom
 } from './src';
 import { Entypo } from '@expo/vector-icons';
+import { useSetRecoilState } from 'recoil';
 
 function HomeContent(): JSX.Element {
-    const history = useHistory();
+    const setTabBarHidden = useSetRecoilState(tabBarHiddenAtom);
 
     const callback = useCallback(() => {
-        history.push('/home/profile');
-    }, [history]);
+        setTabBarHidden((currentValue) => !currentValue);
+    }, [setTabBarHidden]);
 
     return <BaseButton colorStyle='mainInteractiveColor' onPress={callback} text='Prueba' removeShadow />;
 }
@@ -39,7 +40,7 @@ function MainTabBar(): JSX.Element {
         []
     );
     return (
-        <TabBar tabBarVariant='middle-action' tabBarPosition='left'>
+        <TabBar tabBarVariant='middle-action' tabBarPosition='right'>
             <TabBarItem title='Home' path='/home'>
                 {renderHomeItem}
             </TabBarItem>

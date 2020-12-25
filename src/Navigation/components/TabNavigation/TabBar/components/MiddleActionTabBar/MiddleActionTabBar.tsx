@@ -6,11 +6,11 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useMiddleActionTabBarChildren } from './hooks/useMiddleActionTabBarChildren';
 import { MiddleTabBarShape } from './MiddleTabBarShape';
 import { getTabBarSafeAreaPadding } from '../../util/getTabBarSafeAreaPadding';
-import { constants } from '../../../../../constants';
 import { useThemeColor } from '../../../../../../ThemeState';
 import { usePositionValues } from '../../hooks/usePositionValues';
 import { getValueForTabBarPosition } from '../../util/getValueForTabBarPosition';
 import { StyledTabBarProps } from '../../types/StyledTabBarProps';
+import { getBottomOffsetForCircularTabBarButton } from './util/getBottomOffsetForCircularTabBarButton';
 
 type ContainerProps = Omit<StyledTabBarProps, 'tabBarColor' | 'safeAreaInsets' | 'tabBarPosition'>;
 
@@ -76,16 +76,16 @@ export function MiddleActionTabBar(props: TabBarProps): JSX.Element {
     const tabBarColor = useThemeColor('tabBarColor');
     const safeAreaInsets = useSafeAreaInsets();
     const [leftChildren, middleChild, rightChildren] = useMiddleActionTabBarChildren(children);
-    const positionValues = usePositionValues(tabBarPosition, safeAreaInsets);
-    const constantSize = `${
-        tabBarPosition === 'bottom' ? constants.tabBarCircularButtonOffsetBottom : constants.tabBarCircularButtonOffset
-    }px`;
+    const positionValues = usePositionValues(tabBarPosition);
+
+    const constantSize = `${getBottomOffsetForCircularTabBarButton(tabBarPosition)}px`;
     const floatingPadding = getValueForTabBarPosition(
         tabBarPosition,
         `bottom: ${constantSize}`,
         `left: ${constantSize}`,
         `right: ${constantSize}`
     );
+
     const constantDimension = 'auto';
     const width = getValueForTabBarPosition(tabBarPosition, '100%', constantDimension, constantDimension);
     const height = getValueForTabBarPosition(tabBarPosition, constantDimension, '100%', '100%');

@@ -24,7 +24,7 @@ export function BasicTabBar(props: TabBarProps): JSX.Element {
     const { tabBarPosition } = props;
     const tabBarColor = useThemeColor('tabBarColor');
     const safeAreaInsets = useSafeAreaInsets();
-    const positionValues = usePositionValues(tabBarPosition, safeAreaInsets);
+    const positionValues = usePositionValues(tabBarPosition);
 
     return <Container {...props} safeAreaInsets={safeAreaInsets} tabBarColor={tabBarColor} {...positionValues} />;
 }

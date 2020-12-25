@@ -25,7 +25,7 @@ export function BasicTabBar(props) {
     var tabBarPosition = props.tabBarPosition;
     var tabBarColor = useThemeColor('tabBarColor');
     var safeAreaInsets = useSafeAreaInsets();
-    var positionValues = usePositionValues(tabBarPosition, safeAreaInsets);
+    var positionValues = usePositionValues(tabBarPosition);
     return React.createElement(Container, __assign({}, props, { safeAreaInsets: safeAreaInsets, tabBarColor: tabBarColor }, positionValues));
 }
 var templateObject_1;

@@ -5,7 +5,6 @@ import { getTabIconSize } from './util/getTabIconSize';
 import styled from 'styled-components/native';
 import { useWidthSizeGroup, getValueForLargeSize } from '@bma98/size-class';
 import { Spacer } from '../../../../Layout/components/Spacer';
-import { constants } from '../../../constants';
 import { useGoToTab } from './hooks/useGoToTab';
 import { TabBarItemProps } from './types/TabBarItemProps';
 import { useTabBarItemColor } from './hooks/useTabBarItemColor';
@@ -22,6 +21,9 @@ const StyledText = memo(styled.Text`
     font-size: 11px;
 `);
 
+const tabBarItemCompactSpacerSize = { width: 0, height: 0 };
+const tabBarItemLargeSpacerSize = { width: 8, height: 1 };
+
 export const TabBarItem = memo(
     (props: TabBarItemProps): JSX.Element => {
         const { path, variant, title, children, ...others } = props;
@@ -33,8 +35,8 @@ export const TabBarItem = memo(
         const tabBarPosition = useRecoilValue(tabBarPositionAtom);
         const spacerSize =
             tabBarPosition !== 'bottom'
-                ? constants.tabBarItemCompactSpacerSize
-                : getValueForLargeSize(widthSizeGroup[0], constants.tabBarItemLargeSpacerSize, constants.tabBarItemCompactSpacerSize);
+                ? tabBarItemCompactSpacerSize
+                : getValueForLargeSize(widthSizeGroup[0], tabBarItemLargeSpacerSize, tabBarItemCompactSpacerSize);
         const goToTab = useGoToTab(path, active);
         const tabBarItemColor = useThemeColor('mainInteractiveColor');
 
@@ -47,7 +49,7 @@ export const TabBarItem = memo(
                 highlightColor={tabBarItemColor.base600}
             >
                 {children(color, iconSize)}
-                <Spacer width={spacerSize.width} height={spacerSize.height} />
+                <Spacer {...spacerSize} />
                 {variant === 'circular' && title != null ? null : <StyledText color={color}>{title}</StyledText>}
             </TabBarItemContainer>
         );

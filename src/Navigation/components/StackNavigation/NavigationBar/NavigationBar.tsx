@@ -6,7 +6,6 @@ import { NavigationBarProps } from './types/NavigationBarProps';
 import { Feather } from '@expo/vector-icons';
 import { useNavigationBarChildren } from './hooks/useNavigationBarChildren';
 import { useMatch } from '../../../hooks/useMatch';
-import { constants } from '../../../constants';
 import { getCursorStyle } from '../../../../Layout/util/getCursorStyle';
 import { Color, useThemeColor } from '../../../../ThemeState';
 import { usePathIsActive } from '../../../hooks/usePathIsActive';
@@ -17,12 +16,12 @@ interface ContainerProps {
 
 const Container = styled(View)`
     flex-direction: row;
-    height: ${constants.navigationBarHeightForWeb}px;
+    height: ${50}px;
     background-color: ${(props: ContainerProps) => props.backgroundColor.base};
     box-shadow: ${(props: ContainerProps) => props.backgroundColor.shadow};
     width: 100%;
     z-index: 1000;
-    padding: 0 ${constants.basePaddingSize}px;
+    padding: 0 16px;
 `;
 
 interface TextProps {
@@ -32,13 +31,13 @@ interface TextProps {
 
 const StyledText = styled.Text`
     color: ${(props: TextProps) => props.color};
-    font-size: ${(props: TextProps) => props.fontSize ?? constants.fontSizeNormal}px;
+    font-size: ${(props: TextProps) => props.fontSize ?? 17}px;
 `;
 
 const StyledTitle = memo(styled.Text`
     color: ${(props: TextProps) => props.color};
     font-weight: 600;
-    font-size: ${(props: TextProps) => props.fontSize ?? constants.fontSizeTitle}px;
+    font-size: ${(props: TextProps) => props.fontSize ?? 17}px;
     text-align: center;
 `);
 
@@ -81,7 +80,7 @@ function BackButton(props: BackButtonProps): JSX.Element {
 
     return (
         <StyledBackButtonContainer onPress={goBack}>
-            <Feather name='chevron-left' size={constants.navigationBarBackButtonSize + 6} color={mainInteractiveColor.base} />
+            <Feather name='chevron-left' size={28} color={mainInteractiveColor.base} />
             <StyledText color={mainInteractiveColor.base} fontSize={backTitleFontSize}>
                 {backTitle}
             </StyledText>

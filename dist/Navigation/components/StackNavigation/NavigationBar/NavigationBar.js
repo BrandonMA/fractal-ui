@@ -9,13 +9,12 @@ import { useHistory } from '../../../../ReactRouter';
 import { Feather } from '@expo/vector-icons';
 import { useNavigationBarChildren } from './hooks/useNavigationBarChildren';
 import { useMatch } from '../../../hooks/useMatch';
-import { constants } from '../../../constants';
 import { getCursorStyle } from '../../../../Layout/util/getCursorStyle';
 import { useThemeColor } from '../../../../ThemeState';
 import { usePathIsActive } from '../../../hooks/usePathIsActive';
-var Container = styled(View)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    flex-direction: row;\n    height: ", "px;\n    background-color: ", ";\n    box-shadow: ", ";\n    width: 100%;\n    z-index: 1000;\n    padding: 0 ", "px;\n"], ["\n    flex-direction: row;\n    height: ", "px;\n    background-color: ", ";\n    box-shadow: ", ";\n    width: 100%;\n    z-index: 1000;\n    padding: 0 ", "px;\n"])), constants.navigationBarHeightForWeb, function (props) { return props.backgroundColor.base; }, function (props) { return props.backgroundColor.shadow; }, constants.basePaddingSize);
-var StyledText = styled.Text(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    color: ", ";\n    font-size: ", "px;\n"], ["\n    color: ", ";\n    font-size: ", "px;\n"])), function (props) { return props.color; }, function (props) { var _a; return (_a = props.fontSize) !== null && _a !== void 0 ? _a : constants.fontSizeNormal; });
-var StyledTitle = memo(styled.Text(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n    color: ", ";\n    font-weight: 600;\n    font-size: ", "px;\n    text-align: center;\n"], ["\n    color: ", ";\n    font-weight: 600;\n    font-size: ", "px;\n    text-align: center;\n"])), function (props) { return props.color; }, function (props) { var _a; return (_a = props.fontSize) !== null && _a !== void 0 ? _a : constants.fontSizeTitle; }));
+var Container = styled(View)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    flex-direction: row;\n    height: ", "px;\n    background-color: ", ";\n    box-shadow: ", ";\n    width: 100%;\n    z-index: 1000;\n    padding: 0 16px;\n"], ["\n    flex-direction: row;\n    height: ", "px;\n    background-color: ", ";\n    box-shadow: ", ";\n    width: 100%;\n    z-index: 1000;\n    padding: 0 16px;\n"])), 50, function (props) { return props.backgroundColor.base; }, function (props) { return props.backgroundColor.shadow; });
+var StyledText = styled.Text(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    color: ", ";\n    font-size: ", "px;\n"], ["\n    color: ", ";\n    font-size: ", "px;\n"])), function (props) { return props.color; }, function (props) { var _a; return (_a = props.fontSize) !== null && _a !== void 0 ? _a : 17; });
+var StyledTitle = memo(styled.Text(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n    color: ", ";\n    font-weight: 600;\n    font-size: ", "px;\n    text-align: center;\n"], ["\n    color: ", ";\n    font-weight: 600;\n    font-size: ", "px;\n    text-align: center;\n"])), function (props) { return props.color; }, function (props) { var _a; return (_a = props.fontSize) !== null && _a !== void 0 ? _a : 17; }));
 var SharedStylesSectionContainer = styled.View(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n    flex: 1;\n    flex-direction: row;\n    align-items: center;\n    flex-basis: 0;\n"], ["\n    flex: 1;\n    flex-direction: row;\n    align-items: center;\n    flex-basis: 0;\n"])));
 var LeftContainer = styled(SharedStylesSectionContainer)(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n    justify-content: flex-start;\n"], ["\n    justify-content: flex-start;\n"])));
 var MiddleContainer = styled(SharedStylesSectionContainer)(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n    justify-content: center;\n"], ["\n    justify-content: center;\n"])));
@@ -26,7 +25,7 @@ function BackButton(props) {
     var goBack = useHistory().goBack;
     var mainInteractiveColor = useThemeColor('mainInteractiveColor');
     return (React.createElement(StyledBackButtonContainer, { onPress: goBack },
-        React.createElement(Feather, { name: 'chevron-left', size: constants.navigationBarBackButtonSize + 6, color: mainInteractiveColor.base }),
+        React.createElement(Feather, { name: 'chevron-left', size: 28, color: mainInteractiveColor.base }),
         React.createElement(StyledText, { color: mainInteractiveColor.base, fontSize: backTitleFontSize }, backTitle)));
 }
 export function NavigationBar(props) {

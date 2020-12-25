@@ -23,11 +23,10 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { memo, useCallback, useMemo } from 'react';
 import { Pressable } from 'react-native';
 import { sharedTabBarItemStyles } from './SharedTabBarItemStyles';
-import { constants } from '../../../../constants';
 export var CircularTabBarItem = memo(function (props) {
     var highlightColor = props.highlightColor, bg = props.bg, others = __rest(props, ["highlightColor", "bg"]);
     var sharedStyles = useMemo(function () {
-        return __assign(__assign({}, sharedTabBarItemStyles), { backgroundColor: bg, borderRadius: constants.tabBarButtonSize / 2 });
+        return __assign(__assign({}, sharedTabBarItemStyles), { backgroundColor: bg, borderRadius: 24 });
     }, [bg]);
     var handleHighlightPress = useCallback(function (state) {
         if (state.pressed && highlightColor != null) {

@@ -1,22 +1,40 @@
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useLayoutEffect, useRef } from 'react';
-import { Animated } from 'react-native';
-import { constants } from '../../../../constants';
+import { useLayoutEffect, useMemo, useRef } from 'react';
+import { Animated, ViewStyle } from 'react-native';
 import { useIsTabBarHidden } from '../../../../hooks/useIsTabBarHidden';
 import { useSpringAnimation } from '../../../../../Animations';
+import { useTabBarSafeAreaForPosition } from './useTabBarSafeAreaForPosition';
+import { TabBarPosition, TabBarVariant } from '../types';
 
 // The TabBar should never be hidden by default.
 // Therefore, we do not allow this config property to be passed as props to TabBar itself.
 // So if you wanna hide the tab bar you must set the recoil value and this hook will update the animated value for the animation.
-export function useHideTabBarAnimation(): Animated.Value {
-    const insets = useSafeAreaInsets();
-    const animatedValue = useRef(new Animated.Value(insets.bottom + constants.tabBarHeight)).current;
+export function useHideTabBarAnimation(tabBarPosition: TabBarPosition, variant: TabBarVariant, style: unknown): ViewStyle {
+    const safeArea = useTabBarSafeAreaForPosition(tabBarPosition);
+    const finalSize = variant === 'basic' ? safeArea : safeArea + 30;
+    const animatedValue = useRef(new Animated.Value(safeArea)).current;
     const tabBarHidden = useIsTabBarHidden();
-    const animateHiddenChange = useSpringAnimation(animatedValue, tabBarHidden ? insets.bottom + constants.tabBarHeight : 0);
+    const animateHiddenChange = useSpringAnimation(animatedValue, tabBarHidden ? (tabBarPosition === 'left' ? -finalSize : finalSize) : 0);
 
     useLayoutEffect(() => {
         animateHiddenChange();
     }, [animateHiddenChange]);
 
-    return animatedValue;
+    const animatedStyle = useMemo(() => {
+        return [
+            style,
+            {
+                transform: [
+                    tabBarPosition === 'bottom'
+                        ? {
+                              translateY: animatedValue
+                          }
+                        : {
+                              translateX: animatedValue
+                          }
+                ]
+            }
+        ];
+    }, [style, animatedValue, tabBarPosition]);
+
+    return animatedStyle as ViewStyle;
 }

@@ -1,7 +1,6 @@
 import React, { memo, useCallback, useMemo } from 'react';
 import { Pressable, PressableStateCallbackType, StyleProp, ViewStyle } from 'react-native';
 import { sharedTabBarItemStyles } from './SharedTabBarItemStyles';
-import { constants } from '../../../../constants';
 
 export interface CircularTabBarItemProps {
     bg?: string;
@@ -17,7 +16,7 @@ export const CircularTabBarItem = memo(
             return {
                 ...sharedTabBarItemStyles,
                 backgroundColor: bg,
-                borderRadius: constants.tabBarButtonSize / 2
+                borderRadius: 24
             };
         }, [bg]);
 

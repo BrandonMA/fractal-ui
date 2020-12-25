@@ -1,8 +1,7 @@
 import { TabBarPosition } from '../types/TabBarPosition';
-import { constants } from '../../../../constants';
 import { getValueForTabBarPosition } from '../util/getValueForTabBarPosition';
 import { useMemo } from 'react';
-import { EdgeInsets } from 'react-native-safe-area-context';
+import { useTabBarSafeAreaForPosition } from './useTabBarSafeAreaForPosition';
 
 interface PositionValue {
     tabBarWidth: string;
@@ -11,18 +10,9 @@ interface PositionValue {
     side: string;
 }
 
-export function usePositionValues(tabBarPosition: TabBarPosition, safeAreaInsets: EdgeInsets): PositionValue {
-    const size = () => {
-        switch (tabBarPosition) {
-            case 'right':
-                return safeAreaInsets.right + constants.tabBarWidth;
-            case 'left':
-                return safeAreaInsets.left + constants.tabBarWidth;
-            case 'bottom':
-                return safeAreaInsets.bottom + constants.tabBarHeight;
-        }
-    };
-    const constantSize = `${size()}px`;
+export function usePositionValues(tabBarPosition: TabBarPosition): PositionValue {
+    const safeArea = useTabBarSafeAreaForPosition(tabBarPosition);
+    const constantSize = `${safeArea}px`;
     const width = getValueForTabBarPosition(tabBarPosition, '100%', constantSize, constantSize);
     const height = getValueForTabBarPosition(tabBarPosition, constantSize, '100%', '100%');
     const flexDirection = getValueForTabBarPosition(tabBarPosition, 'row', 'column', 'column');
