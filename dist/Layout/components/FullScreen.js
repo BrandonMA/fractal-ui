@@ -17,7 +17,7 @@ import React from 'react';
 import { Animated } from 'react-native';
 import styled from 'styled-components/native';
 import { getFullScreenStyle } from '../util/getFullScreenStyle';
-import { usePresentationType } from '../../Navigation';
+import { usePresentationType } from '../../Navigation/hooks/usePresentationType';
 var Container = styled(Animated.View)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    ", ";\n"], ["\n    ", ";\n"])), getFullScreenStyle);
 export function FullScreen(props) {
     var presentationType = usePresentationType();

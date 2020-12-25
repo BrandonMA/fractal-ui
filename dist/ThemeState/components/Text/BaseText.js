@@ -26,7 +26,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React from 'react';
 import styled from 'styled-components/native';
-import { useThemeColor } from '../../index';
+import { useThemeColor } from '../../hooks/useThemeColor';
 import { getFontSize } from '../util/getFontSize';
 var StyledText = styled.Text(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    font-size: ", ";\n    color: ", ";\n    font-weight: ", ";\n"], ["\n    font-size: ", ";\n    color: ", ";\n    font-weight: ", ";\n"])), function (props) { return getFontSize(props.textSize); }, function (props) { return props.color; }, function (props) { return (props.bold ? 'bold' : 'normal'); });
 export function BaseText(props) {

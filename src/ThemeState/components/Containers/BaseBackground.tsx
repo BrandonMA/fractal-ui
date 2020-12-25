@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { ViewProps } from 'react-native';
 import { useThemeColor } from '../../hooks/useThemeColor';
-import { FullScreen } from '../../../Layout';
+import { FullScreen } from '../../../Layout/components/FullScreen';
 
 interface StyledContainerProps {
     backgroundColor: string;

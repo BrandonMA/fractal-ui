@@ -8,7 +8,7 @@ import { Spacer } from '../../../../Layout/components/Spacer';
 import { useGoToTab } from './hooks/useGoToTab';
 import { TabBarItemProps } from './types/TabBarItemProps';
 import { useTabBarItemColor } from './hooks/useTabBarItemColor';
-import { useThemeColor } from '../../../../ThemeState';
+import { useThemeColor } from '../../../../ThemeState/hooks/useThemeColor';
 import { useRecoilValue } from 'recoil';
 import { tabBarPositionAtom } from '../../../recoil/atoms/tabBarPositionAtom';
 

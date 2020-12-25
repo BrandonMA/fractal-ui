@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { TextInput, TextInputProps } from 'react-native';
-import { useThemeColor } from '../../index';
+import { useThemeColor } from '../../hooks/useThemeColor';
 
 interface StyledTextInputProps {
     backgroundColor: string;

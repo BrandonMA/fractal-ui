@@ -33,7 +33,7 @@ import { useWidthSizeGroup, getValueForLargeSize } from '@bma98/size-class';
 import { Spacer } from '../../../../Layout/components/Spacer';
 import { useGoToTab } from './hooks/useGoToTab';
 import { useTabBarItemColor } from './hooks/useTabBarItemColor';
-import { useThemeColor } from '../../../../ThemeState';
+import { useThemeColor } from '../../../../ThemeState/hooks/useThemeColor';
 import { useRecoilValue } from 'recoil';
 import { tabBarPositionAtom } from '../../../recoil/atoms/tabBarPositionAtom';
 var StyledText = memo(styled.Text(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    color: ", ";\n    font-size: 11px;\n"], ["\n    color: ", ";\n    font-size: 11px;\n"])), function (props) { return props.color; }));

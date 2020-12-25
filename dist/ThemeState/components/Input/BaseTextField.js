@@ -16,7 +16,7 @@ var __assign = (this && this.__assign) || function () {
 import React from 'react';
 import styled from 'styled-components/native';
 import { TextInput } from 'react-native';
-import { useThemeColor } from '../../index';
+import { useThemeColor } from '../../hooks/useThemeColor';
 var StyledTextInput = styled(TextInput)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    background-color: ", ";\n    border-radius: 12px;\n    height: 44px;\n    padding: 12px;\n"], ["\n    background-color: ", ";\n    border-radius: 12px;\n    height: 44px;\n    padding: 12px;\n"])), function (props) { return props.backgroundColor; });
 export function BaseTextField(props) {
     var fieldColor = useThemeColor('fieldColor');

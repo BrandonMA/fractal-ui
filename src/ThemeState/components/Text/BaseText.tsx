@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { useThemeColor } from '../../index';
+import { useThemeColor } from '../../hooks/useThemeColor';
 import { TextProps } from 'react-native';
 import { TextSize } from '../types/TextSize';
 import { TextType } from '../types/TextType';

@@ -40,7 +40,7 @@ function MainTabBar(): JSX.Element {
         []
     );
     return (
-        <TabBar tabBarVariant='middle-action' tabBarPosition='right'>
+        <TabBar tabBarVariant='middle-action' tabBarPosition='bottom'>
             <TabBarItem title='Home' path='/home'>
                 {renderHomeItem}
             </TabBarItem>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Animated, ViewProps } from 'react-native';
 import styled from 'styled-components/native';
 import { getFullScreenStyle } from '../util/getFullScreenStyle';
-import { usePresentationType } from '../../Navigation';
+import { usePresentationType } from '../../Navigation/hooks/usePresentationType';
 
 const Container = styled(Animated.View)`
     ${getFullScreenStyle};

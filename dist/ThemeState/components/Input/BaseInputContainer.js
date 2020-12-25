@@ -15,7 +15,7 @@ var __assign = (this && this.__assign) || function () {
 };
 import React from 'react';
 import styled from 'styled-components/native';
-import { useThemeColor } from '../../index';
+import { useThemeColor } from '../../hooks/useThemeColor';
 var StyledInputContainer = styled.View(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    background-color: ", ";\n    border-radius: 12px;\n    padding: 12px;\n"], ["\n    background-color: ", ";\n    border-radius: 12px;\n    padding: 12px;\n"])), function (props) { return props.backgroundColor; });
 export function BaseInputContainer(props) {
     var fieldColor = useThemeColor('fieldColor');
