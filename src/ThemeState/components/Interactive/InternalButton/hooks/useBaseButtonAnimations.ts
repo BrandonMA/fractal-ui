@@ -41,6 +41,7 @@ export function useBaseButtonAnimations(props: InternalButtonProps): [(event: un
             style,
             {
                 shadowOpacity: removeShadow ? 0 : shadowValue,
+                elevation: removeShadow ? 0 : 1,
                 transform: [
                     {
                         scale: scaleValue

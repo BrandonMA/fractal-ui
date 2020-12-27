@@ -4,17 +4,26 @@ import { fractalThemeSetAtom } from './recoil/atoms/fractalThemeSetAtom';
 import { FractalThemeSet } from './types/FractalThemeSet';
 import { useUpdateThemeProperties } from './hooks/useUpdateThemeProperties';
 import { currentThemeIdentifierAtom } from './recoil';
-import { StatusBar } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 
 export interface FractalThemeAppRootProps {
     children: ReactNode;
     themeSet?: FractalThemeSet;
 }
 
+function useStatusBarStyle(): 'dark-content' | 'light-content' {
+    const currentThemeIdentifier = useRecoilValue(currentThemeIdentifierAtom);
+    if (Platform.OS === 'ios') {
+        return currentThemeIdentifier === 'default' ? 'dark-content' : 'light-content';
+    } else {
+        return 'light-content';
+    }
+}
+
 export function FractalThemeRoot(props: FractalThemeAppRootProps): JSX.Element {
     const { children, themeSet } = props;
     const setThemeSet = useSetRecoilState(fractalThemeSetAtom);
-    const currentThemeIdentifier = useRecoilValue(currentThemeIdentifierAtom);
+    const barStyle = useStatusBarStyle();
 
     useLayoutEffect(() => {
         if (themeSet != null) {
@@ -26,7 +35,7 @@ export function FractalThemeRoot(props: FractalThemeAppRootProps): JSX.Element {
 
     return (
         <>
-            <StatusBar barStyle={currentThemeIdentifier === 'default' ? 'dark-content' : 'light-content'} />
+            <StatusBar barStyle={barStyle} />
             {children}
         </>
     );

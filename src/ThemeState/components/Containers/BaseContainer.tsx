@@ -13,6 +13,7 @@ const StyledContainer = styled(View)`
     box-shadow: ${(props: StyledContainerProps) => props.backgroundShadow};
     padding: 16px;
     border-radius: 12px;
+    elevation: 1;
 `;
 
 export interface BaseContainerProps extends Omit<ViewProps, 'children'> {

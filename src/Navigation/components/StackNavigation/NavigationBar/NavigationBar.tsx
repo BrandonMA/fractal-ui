@@ -22,6 +22,7 @@ const Container = styled(View)`
     width: 100%;
     z-index: 1000;
     padding: 0 16px;
+    elevation: 1;
 `;
 
 interface TextProps {

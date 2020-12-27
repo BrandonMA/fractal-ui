@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { Picker } from '@react-native-picker/picker';
-import { Platform, View } from 'react-native';
+import { Platform, Pressable } from 'react-native';
 import { useThemeColor } from '../../../hooks/useThemeColor';
 import styled from 'styled-components/native';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
@@ -11,16 +11,26 @@ import { useBasePickerState } from './hooks/useBasePickerState';
 const Entypo = memo(BaseEntypo);
 
 interface StyledTextInputProps {
-    bg: string;
+    backgroundColor: string;
+}
+
+const StyledContainer = styled(Pressable)`
+    background-color: ${(props: StyledTextInputProps) => props.backgroundColor};
+    border-radius: 12px;
+    height: 44px;
+    padding: 12px;
+    justify-content: center;
+    ${getCursorStyle}
+`;
+
+interface StyledPickerProps {
+    color: string;
 }
 
 let StyledPicker = styled(Picker)`
-    background-color: ${(props: StyledTextInputProps) => props.bg};
-    border-radius: 12px;
-    height: 44px;
     border: none;
-    font-size: 14px;
-    padding: 12px;
+    background-color: rgba(0, 0, 0, 0);
+    color: ${(props: StyledPickerProps) => props.color};
     ${getCursorStyle}
 `;
 
@@ -47,20 +57,21 @@ export function BasePicker(props: BasePickerProps): JSX.Element {
     const fieldColor = useThemeColor('fieldColor');
 
     return (
-        <View>
+        <StyledContainer backgroundColor={fieldColor.base400}>
             <StyledPicker
+                color={fieldColor.base900}
                 selectedValue={currentValue}
-                bg={fieldColor.base400}
                 dropdownIconColor={fieldColor.base300}
                 onValueChange={handleValueChange}
+                mode='dropdown'
             >
                 {items.map((item) => (
-                    <Picker.Item label={item[1]} value={item[0]} key={item[0]} />
+                    <Picker.Item color={fieldColor.base600} label={item[1]} value={item[0]} key={item[0]} />
                 ))}
             </StyledPicker>
             <StyledIconContainer>
                 <Entypo name='chevron-down' size={21} color={fieldColor.base300} />
             </StyledIconContainer>
-        </View>
+        </StyledContainer>
     );
 }
