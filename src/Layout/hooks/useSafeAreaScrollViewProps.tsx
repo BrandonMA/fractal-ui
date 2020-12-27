@@ -7,6 +7,7 @@ export function useSafeAreaScrollViewProps(): Omit<Animated.AnimatedProps<Scroll
     return useMemo(() => {
         return {
             automaticallyAdjustContentInsets: false,
+            removeClippedSubviews: true,
             contentInsetAdjustmentBehavior: 'scrollableAxes',
             contentInset: { bottom: tabBarInsets.bottom },
             scrollIndicatorInsets: { bottom: tabBarInsets.bottom },

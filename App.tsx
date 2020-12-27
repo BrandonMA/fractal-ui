@@ -220,7 +220,7 @@ function App(): JSX.Element {
                                     <Settings />
                                     <BaseCell>
                                         <BasePicker
-                                            onChange={(value) => console.log(value)}
+                                            iosDoneText='Done'
                                             items={[
                                                 ['1', 'Hoy'],
                                                 ['2', 'Ayer'],

@@ -10,5 +10,5 @@ export interface NavigationBarButtonProps {
 export function NavigationBarButton(props: NavigationBarButtonProps): JSX.Element {
     const { children, onPress } = props;
     const color = useThemeColor('mainInteractiveColor');
-    return <TouchableOpacity onPress={onPress}>{children(color.base, 20)}</TouchableOpacity>;
+    return <TouchableOpacity onPress={onPress}>{children(color.base, 24)}</TouchableOpacity>;
 }
