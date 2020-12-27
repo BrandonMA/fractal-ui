@@ -10,7 +10,7 @@ import { useTabBarInsets } from '../../../hooks';
 
 const StyledScreenStack = styled(ScreenStack)`
     flex: 1;
-    ${getInsetsStyle}
+    ${getInsetsStyle};
 `;
 
 export interface StackNavigatorProps extends Omit<ScreenStackProps, 'children'> {

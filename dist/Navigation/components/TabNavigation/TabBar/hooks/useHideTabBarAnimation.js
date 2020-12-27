@@ -8,7 +8,7 @@ import { useTabBarSafeAreaForPosition } from './useTabBarSafeAreaForPosition';
 // So if you wanna hide the tab bar you must set the recoil value and this hook will update the animated value for the animation.
 export function useHideTabBarAnimation(tabBarPosition, variant, style) {
     var safeArea = useTabBarSafeAreaForPosition(tabBarPosition);
-    var finalSize = variant === 'basic' ? safeArea : safeArea + 30;
+    var finalSize = variant === 'basic' ? safeArea : safeArea + 24;
     var animatedValue = useRef(new Animated.Value(safeArea)).current;
     var tabBarHidden = useIsTabBarHidden();
     var animateHiddenChange = useSpringAnimation(animatedValue, tabBarHidden ? (tabBarPosition === 'left' ? -finalSize : finalSize) : 0);

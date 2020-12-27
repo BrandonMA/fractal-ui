@@ -1,7 +1,3 @@
-var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
-};
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -24,12 +20,10 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
-import styled from 'styled-components/native';
+import React, { memo } from 'react';
 import { useThemeColor } from '../../hooks/useThemeColor';
-import { getFontSize } from '../util/getFontSize';
-var StyledText = styled.Text(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    font-size: ", ";\n    color: ", ";\n    font-weight: ", ";\n"], ["\n    font-size: ", ";\n    color: ", ";\n    font-weight: ", ";\n"])), function (props) { return getFontSize(props.textSize); }, function (props) { return props.color; }, function (props) { return (props.bold ? 'bold' : 'normal'); });
-export function BaseText(props) {
+import { InternalText } from './InternalText';
+export var BaseText = memo(function (props) {
     var textType = props.textType, others = __rest(props, ["textType"]);
     var textColor = useThemeColor('textColor');
     var color = function () {
@@ -42,7 +36,6 @@ export function BaseText(props) {
                 return textColor.base900;
         }
     };
-    return React.createElement(StyledText, __assign({}, others, { color: color() }));
-}
-var templateObject_1;
+    return React.createElement(InternalText, __assign({ selectable: false }, others, { color: color() }));
+});
 //# sourceMappingURL=BaseText.js.map

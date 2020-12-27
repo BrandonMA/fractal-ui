@@ -8,6 +8,6 @@ interface SpacerProps {
 }
 
 export const Spacer = memo(styled(Animated.View)`
-    width: ${(props: SpacerProps) => props.width}px;
-    height: ${(props: SpacerProps) => props.height}px;
+    width: ${(props: SpacerProps) => `${props.width ?? 0}px`};
+    height: ${(props: SpacerProps) => `${props.height ?? 0}px`};
 `);

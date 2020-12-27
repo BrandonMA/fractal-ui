@@ -1,8 +1,9 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Screen, ScreenProps, StackPresentationTypes } from 'react-native-screens';
 import { Route } from '../../../ReactRouter';
 import { StyleSheet } from 'react-native';
 import { usePresentationState } from './hooks/usePresentationState';
+import { useThemeColor } from '../../../ThemeState/hooks/useThemeColor';
 
 export interface NavigationRouteProps extends Omit<ScreenProps, 'stackPresentation' | 'active'> {
     path?: string;
@@ -15,15 +16,11 @@ export function NavigationRoute(props: NavigationRouteProps): JSX.Element {
     const basepath = path ?? '/';
     const renderChildren = useCallback(() => children, [children]);
     const show = usePresentationState(basepath, stackPresentation);
+    const containerColor = useThemeColor('containerColor');
+    const styles = useMemo(() => [StyleSheet.absoluteFill, { backgroundColor: containerColor.base400 }, style], [style, containerColor]);
 
     return (
-        <Screen
-            {...others}
-            activityState={show}
-            active={show as never}
-            stackPresentation={stackPresentation ?? 'push'}
-            style={[StyleSheet.absoluteFill, style]}
-        >
+        <Screen {...others} activityState={show} active={show as never} stackPresentation={stackPresentation ?? 'push'} style={styles}>
             <Route path={basepath}>{renderChildren}</Route>
         </Screen>
     );

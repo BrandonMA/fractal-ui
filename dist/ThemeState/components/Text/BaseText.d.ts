@@ -1,11 +1,8 @@
-import { TextProps } from 'react-native';
-import { TextSize } from '../types/TextSize';
-import { TextType } from '../types/TextType';
-interface BaseTextProps extends TextProps {
-    textSize: TextSize;
-    bold?: boolean;
+import React from 'react';
+import { TextType } from '../types';
+import { InternalTextProps } from './InternalText';
+interface BaseTextProps extends Omit<InternalTextProps, 'color'> {
     textType?: TextType;
-    children: string;
 }
-export declare function BaseText(props: BaseTextProps): JSX.Element;
+export declare const BaseText: React.MemoExoticComponent<(props: BaseTextProps) => JSX.Element>;
 export {};

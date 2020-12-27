@@ -33,7 +33,7 @@ import { filterMatchingChildren } from './util/filterMatchingChildren';
 import { injectModalContainers } from './util/injectModalContainer';
 import { getInsetsStyle } from '../../../../Layout/util/getInsetsStyle';
 import { useTabBarInsets } from '../../../hooks';
-var StyledScreenStack = styled(ScreenStack)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    flex: 1;\n    ", "\n"], ["\n    flex: 1;\n    ", "\n"])), getInsetsStyle);
+var StyledScreenStack = styled(ScreenStack)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    flex: 1;\n    ", ";\n"], ["\n    flex: 1;\n    ", ";\n"])), getInsetsStyle);
 var insetsStyleConfig = { type: 'margin', removeVertical: true };
 export function StackNavigator(props) {
     var path = props.path, children = props.children, others = __rest(props, ["path", "children"]);

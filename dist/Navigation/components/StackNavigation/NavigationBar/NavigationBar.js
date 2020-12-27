@@ -26,7 +26,7 @@ function BackButton(props) {
     var mainInteractiveColor = useThemeColor('mainInteractiveColor');
     return (React.createElement(StyledBackButtonContainer, { onPress: goBack },
         React.createElement(Feather, { name: 'chevron-left', size: 28, color: mainInteractiveColor.base }),
-        React.createElement(StyledText, { color: mainInteractiveColor.base, fontSize: backTitleFontSize }, backTitle)));
+        React.createElement(StyledText, { selectable: false, color: mainInteractiveColor.base, fontSize: backTitleFontSize }, backTitle)));
 }
 export function NavigationBar(props) {
     var hidden = props.hidden, title = props.title, hideBackButton = props.hideBackButton, backTitle = props.backTitle, path = props.path, backTitleFontSize = props.backTitleFontSize, titleFontSize = props.titleFontSize, children = props.children;
@@ -39,7 +39,7 @@ export function NavigationBar(props) {
         React.createElement(LeftContainer, null,
             activeRoutes > 1 && isPathActive && !hideBackButton ? (React.createElement(BackButton, { backTitle: backTitle, backTitleFontSize: backTitleFontSize })) : null,
             leftChild),
-        React.createElement(MiddleContainer, null, centerChild !== null && centerChild !== void 0 ? centerChild : (React.createElement(StyledTitle, { color: textColor.base900, fontSize: titleFontSize }, title))),
+        React.createElement(MiddleContainer, null, centerChild !== null && centerChild !== void 0 ? centerChild : (React.createElement(StyledTitle, { color: textColor.base900, fontSize: titleFontSize, selectable: false }, title))),
         React.createElement(RightContainer, null, rightChild)));
 }
 var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8;

@@ -1,44 +1,28 @@
-import React from 'react';
-import styled from 'styled-components/native';
+import React, { memo } from 'react';
 import { useThemeColor } from '../../hooks/useThemeColor';
-import { TextProps } from 'react-native';
-import { TextSize } from '../types/TextSize';
-import { TextType } from '../types/TextType';
-import { getFontSize } from '../util/getFontSize';
+import { TextType } from '../types';
+import { InternalText, InternalTextProps } from './InternalText';
 
-interface StyledTextProps {
-    color: string;
-    textSize: TextSize;
-    bold?: boolean;
-}
-
-const StyledText = styled.Text`
-    font-size: ${(props: StyledTextProps) => getFontSize(props.textSize)};
-    color: ${(props: StyledTextProps) => props.color};
-    font-weight: ${(props: StyledTextProps) => (props.bold ? 'bold' : 'normal')};
-`;
-
-interface BaseTextProps extends TextProps {
-    textSize: TextSize;
-    bold?: boolean;
+interface BaseTextProps extends Omit<InternalTextProps, 'color'> {
     textType?: TextType;
-    children: string;
 }
 
-export function BaseText(props: BaseTextProps): JSX.Element {
-    const { textType, ...others } = props;
-    const textColor = useThemeColor('textColor');
+export const BaseText = memo(
+    (props: BaseTextProps): JSX.Element => {
+        const { textType, ...others } = props;
+        const textColor = useThemeColor('textColor');
 
-    const color = () => {
-        switch (textType) {
-            case 'placeholder':
-                return textColor.base300;
-            case 'label':
-                return textColor.base200;
-            default:
-                return textColor.base900;
-        }
-    };
+        const color = () => {
+            switch (textType) {
+                case 'placeholder':
+                    return textColor.base300;
+                case 'label':
+                    return textColor.base200;
+                default:
+                    return textColor.base900;
+            }
+        };
 
-    return <StyledText {...others} color={color()} />;
-}
+        return <InternalText selectable={false} {...others} color={color()} />;
+    }
+);

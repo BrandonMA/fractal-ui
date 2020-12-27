@@ -10,7 +10,7 @@ import { TabBarPosition, TabBarVariant } from '../types';
 // So if you wanna hide the tab bar you must set the recoil value and this hook will update the animated value for the animation.
 export function useHideTabBarAnimation(tabBarPosition: TabBarPosition, variant: TabBarVariant, style: unknown): ViewStyle {
     const safeArea = useTabBarSafeAreaForPosition(tabBarPosition);
-    const finalSize = variant === 'basic' ? safeArea : safeArea + 30;
+    const finalSize = variant === 'basic' ? safeArea : safeArea + 24;
     const animatedValue = useRef(new Animated.Value(safeArea)).current;
     const tabBarHidden = useIsTabBarHidden();
     const animateHiddenChange = useSpringAnimation(animatedValue, tabBarHidden ? (tabBarPosition === 'left' ? -finalSize : finalSize) : 0);

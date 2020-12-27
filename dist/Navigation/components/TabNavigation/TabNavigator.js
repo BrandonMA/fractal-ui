@@ -29,14 +29,12 @@ import { ScreenContainer } from 'react-native-screens';
 import styled from 'styled-components/native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Redirect } from '../../../ReactRouter';
-import { useThemeColor } from '../../../ThemeState';
-var Container = styled.View(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    flex: 1;\n    overflow: hidden;\n    background-color: ", ";\n"], ["\n    flex: 1;\n    overflow: hidden;\n    background-color: ", ";\n"])), function (props) { return props.backgroundColor; });
+var Container = styled.View(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    flex: 1;\n    overflow: hidden;\n"], ["\n    flex: 1;\n    overflow: hidden;\n"])));
 var StyledScreenContainer = styled(ScreenContainer)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    flex: 1;\n"], ["\n    flex: 1;\n"])));
 export function TabNavigator(props) {
     var defaultRoute = props.defaultRoute, tabBar = props.tabBar, children = props.children, others = __rest(props, ["defaultRoute", "tabBar", "children"]);
-    var containerColor = useThemeColor('containerColor');
     return (React.createElement(SafeAreaProvider, null,
-        React.createElement(Container, { backgroundColor: containerColor.base400 },
+        React.createElement(Container, null,
             React.createElement(StyledScreenContainer, __assign({}, others), children),
             React.createElement(Redirect, { exact: true, from: '/', to: defaultRoute }),
             tabBar)));

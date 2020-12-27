@@ -81,7 +81,7 @@ function BackButton(props: BackButtonProps): JSX.Element {
     return (
         <StyledBackButtonContainer onPress={goBack}>
             <Feather name='chevron-left' size={28} color={mainInteractiveColor.base} />
-            <StyledText color={mainInteractiveColor.base} fontSize={backTitleFontSize}>
+            <StyledText selectable={false} color={mainInteractiveColor.base} fontSize={backTitleFontSize}>
                 {backTitle}
             </StyledText>
         </StyledBackButtonContainer>
@@ -106,7 +106,7 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
             </LeftContainer>
             <MiddleContainer>
                 {centerChild ?? (
-                    <StyledTitle color={textColor.base900} fontSize={titleFontSize}>
+                    <StyledTitle color={textColor.base900} fontSize={titleFontSize} selectable={false}>
                         {title}
                     </StyledTitle>
                 )}

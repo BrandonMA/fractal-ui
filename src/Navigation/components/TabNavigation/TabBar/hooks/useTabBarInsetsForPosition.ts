@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo } from 'react';
+import { useLayoutEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { useTabBarPosition } from '../../../../hooks';
 import { useIsTabBarHidden } from '../../../../hooks/useIsTabBarHidden';
@@ -11,16 +11,12 @@ export function useTabBarInsetsForPosition(): void {
     const size = getTabBarSizeForPosition(tabBarPosition, tabBarHidden);
     const setTabBarInsets = useSetRecoilState(tabBarInsetsAtom);
 
-    const insets = useMemo(() => {
-        return {
+    useLayoutEffect(() => {
+        setTabBarInsets({
             top: 0,
             right: tabBarPosition === 'right' ? size : 0,
             bottom: tabBarPosition === 'bottom' ? size : 0,
             left: tabBarPosition === 'left' ? size : 0
-        };
-    }, [tabBarPosition, size]);
-
-    useLayoutEffect(() => {
-        setTabBarInsets(insets);
-    }, [tabBarPosition, setTabBarInsets, insets]);
+        });
+    }, [tabBarPosition, setTabBarInsets, size]);
 }

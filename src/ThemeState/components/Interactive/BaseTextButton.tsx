@@ -1,36 +1,17 @@
 import React from 'react';
-import styled from 'styled-components/native';
-import { TextProps, TouchableOpacity } from 'react-native';
-import { RequiredKeys } from 'utility-types';
-import { InteractiveColors } from '../../types';
-import { useThemeColor } from '../../hooks';
-import { TextSize } from '../types/TextSize';
-import { getFontSize } from '../util/getFontSize';
+import { TouchableOpacity } from 'react-native';
+import { BaseColorText, BaseColorTextProps } from '../Text/BaseColorText';
 
-interface StyledTextProps {
-    color: string;
-    textSize: TextSize;
-}
-
-export const StyledText = styled.Text`
-    font-size: ${(props: StyledTextProps) => getFontSize(props.textSize)};
-    color: ${(props: StyledTextProps) => props.color};
-`;
-
-interface BaseTextButtonProps extends TextProps {
+export interface BaseTextButtonProps extends BaseColorTextProps {
     onPress?: () => void;
-    colorStyle: RequiredKeys<InteractiveColors>;
-    textSize: TextSize;
-    children: string;
 }
 
 export function BaseTextButton(props: BaseTextButtonProps): JSX.Element {
-    const { onPress, colorStyle, ...others } = props;
-    const interactiveColor = useThemeColor(colorStyle);
+    const { onPress, ...others } = props;
 
     return (
         <TouchableOpacity onPress={onPress}>
-            <StyledText {...others} color={interactiveColor.base} />
+            <BaseColorText {...others} />
         </TouchableOpacity>
     );
 }

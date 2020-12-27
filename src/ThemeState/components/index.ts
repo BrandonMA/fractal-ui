@@ -4,3 +4,5 @@ export * from './Interactive';
 export * from './Text';
 export * from './types';
 export * from './util';
+export * from './BaseSeparator';
+export * from './Tables';

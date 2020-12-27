@@ -6,4 +6,5 @@ export * from './StackNavigator';
 export * from './PlarformBarConfig';
 export * from './StackScreen';
 export * from './StackScreenContent';
+export * from './NavigationBarButtons';
 //# sourceMappingURL=index.js.map

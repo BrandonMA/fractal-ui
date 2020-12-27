@@ -1,2 +1,2 @@
-export * from './BaseBackground';
 export * from './BaseContainer';
+export * from './BaseCell';

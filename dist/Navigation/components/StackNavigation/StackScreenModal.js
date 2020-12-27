@@ -11,7 +11,7 @@ import { useHistory } from '../../../ReactRouter';
 import { useThemeColor } from '../../../ThemeState';
 var StyledContainer = styled(Animated.View)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    justify-content: ", ";\n    align-items: center;\n"], ["\n    justify-content: ", ";\n    align-items: center;\n"])), function (props) { return getValueForLargeSize(props.size, 'center', 'flext-start'); });
 var Background = styled(Pressable)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    background-color: ", ";\n    opacity: 0.6;\n    margin: -100px;\n"], ["\n    background-color: ", ";\n    opacity: 0.6;\n    margin: -100px;\n"])), function (props) { return props.color; });
-var SharedStyles = styled.View(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n    box-shadow: ", ";\n    overflow: hidden;\n    border-radius: 20px;\n"], ["\n    box-shadow: ", ";\n    overflow: hidden;\n    border-radius: 20px;\n"])), function (props) { return props.shadow; });
+var SharedStyles = styled.View(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n    box-shadow: ", ";\n    overflow: hidden;\n    border-radius: 20px;\n    background-color: ", ";\n"], ["\n    box-shadow: ", ";\n    overflow: hidden;\n    border-radius: 20px;\n    background-color: ", ";\n"])), function (props) { return props.shadow; }, function (props) { return props.backgroundColor; });
 var WhiteContentDesktop = styled(SharedStyles)(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n    width: 60%;\n    height: 60%;\n    max-width: 550px;\n    max-height: 550px;\n"], ["\n    width: 60%;\n    height: 60%;\n    max-width: 550px;\n    max-height: 550px;\n"])));
 var WhiteContentPhone = styled(SharedStyles)(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n    width: 90%;\n    height: 85%;\n    margin-top: 16px;\n"], ["\n    width: 90%;\n    height: 85%;\n    margin-top: 16px;\n"])));
 export function StackScreenModal(props) {
@@ -26,7 +26,7 @@ export function StackScreenModal(props) {
     }, [show]);
     return (React.createElement(StyledContainer, { size: widthSize, style: [StyleSheet.absoluteFill, { opacity: opacityValue }] },
         React.createElement(Background, { color: containerColor.base600, onPress: goBack, style: [StyleSheet.absoluteFill] }),
-        React.createElement(Wrapper, { shadow: containerColor.shadow }, props.children)));
+        React.createElement(Wrapper, { backgroundColor: containerColor.base400, shadow: containerColor.shadow }, props.children)));
 }
 var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5;
 //# sourceMappingURL=StackScreenModal.js.map

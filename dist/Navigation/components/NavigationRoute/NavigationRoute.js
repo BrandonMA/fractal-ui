@@ -20,17 +20,20 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Screen } from 'react-native-screens';
 import { Route } from '../../../ReactRouter';
 import { StyleSheet } from 'react-native';
 import { usePresentationState } from './hooks/usePresentationState';
+import { useThemeColor } from '../../../ThemeState/hooks/useThemeColor';
 export function NavigationRoute(props) {
     var path = props.path, style = props.style, children = props.children, stackPresentation = props.stackPresentation, others = __rest(props, ["path", "style", "children", "stackPresentation"]);
     var basepath = path !== null && path !== void 0 ? path : '/';
     var renderChildren = useCallback(function () { return children; }, [children]);
     var show = usePresentationState(basepath, stackPresentation);
-    return (React.createElement(Screen, __assign({}, others, { activityState: show, active: show, stackPresentation: stackPresentation !== null && stackPresentation !== void 0 ? stackPresentation : 'push', style: [StyleSheet.absoluteFill, style] }),
+    var containerColor = useThemeColor('containerColor');
+    var styles = useMemo(function () { return [StyleSheet.absoluteFill, { backgroundColor: containerColor.base400 }, style]; }, [style, containerColor]);
+    return (React.createElement(Screen, __assign({}, others, { activityState: show, active: show, stackPresentation: stackPresentation !== null && stackPresentation !== void 0 ? stackPresentation : 'push', style: styles }),
         React.createElement(Route, { path: basepath }, renderChildren)));
 }
 //# sourceMappingURL=NavigationRoute.js.map
