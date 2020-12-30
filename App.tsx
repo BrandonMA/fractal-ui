@@ -115,7 +115,7 @@ const cellData: Array<[string, string, RequiredKeys<InteractiveColors>]> = [
     ['Title 3', 'Details 3', 'warningInteractiveColor']
 ];
 
-const listData: Array<typeof cellData> = [cellData, cellData, cellData, cellData];
+const listData = [cellData, cellData, cellData, cellData];
 
 function ListExample(): JSX.Element {
     const renderItem = useCallback(({ index, item }) => <BaseSummaryCell items={item} isLastItem={index === listData.length - 1} />, []);
