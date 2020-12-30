@@ -1,6 +1,6 @@
 import { useLayoutEffect, useMemo, useRef } from 'react';
 import { Animated, ViewStyle } from 'react-native';
-import { useIsTabBarHidden } from '../../../../hooks/useIsTabBarHidden';
+import { useTabBarIsHidden } from '../../../../hooks/useTabBarIsHidden';
 import { useSpringAnimation } from '../../../../../Animations';
 import { useTabBarSafeAreaForPosition } from './useTabBarSafeAreaForPosition';
 import { TabBarPosition, TabBarVariant } from '../types';
@@ -12,7 +12,7 @@ export function useHideTabBarAnimation(tabBarPosition: TabBarPosition, variant: 
     const safeArea = useTabBarSafeAreaForPosition(tabBarPosition);
     const finalSize = variant === 'basic' ? safeArea : safeArea + 24;
     const animatedValue = useRef(new Animated.Value(safeArea)).current;
-    const tabBarHidden = useIsTabBarHidden();
+    const tabBarHidden = useTabBarIsHidden();
     const animateHiddenChange = useSpringAnimation(animatedValue, tabBarHidden ? (tabBarPosition === 'left' ? -finalSize : finalSize) : 0);
 
     useLayoutEffect(() => {

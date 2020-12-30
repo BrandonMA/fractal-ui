@@ -1,13 +1,13 @@
 import { useLayoutEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { useTabBarPosition } from '../../../../hooks';
-import { useIsTabBarHidden } from '../../../../hooks/useIsTabBarHidden';
+import { useTabBarIsHidden } from '../../../../hooks/useTabBarIsHidden';
 import { tabBarInsetsAtom } from '../../../../recoil/atoms/tabBarInsetsAtom';
 import { getTabBarSizeForPosition } from '../util/getTabBarSizeForPosition';
 
 export function useTabBarInsetsForPosition(): void {
     const tabBarPosition = useTabBarPosition();
-    const tabBarHidden = useIsTabBarHidden();
+    const tabBarHidden = useTabBarIsHidden();
     const size = getTabBarSizeForPosition(tabBarPosition, tabBarHidden);
     const setTabBarInsets = useSetRecoilState(tabBarInsetsAtom);
 

@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil';
 import { tabBarHiddenAtom } from '../recoil';
 
-export function useIsTabBarHidden(): boolean {
+export function useTabBarIsHidden(): boolean {
     return useRecoilValue(tabBarHiddenAtom);
 }

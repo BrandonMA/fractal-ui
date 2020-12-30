@@ -7,7 +7,7 @@ import { FontAwesome } from '@expo/vector-icons';
 export function AppleButton(props: Omit<InternalButtonProps, 'textColor' | 'backgroundColor' | 'shadow' | 'children'>): JSX.Element {
     const { text } = props;
     return (
-        <InternalButton {...props} textColor={white.base} backgroundColor={black.base} shadow={black.shadow}>
+        <InternalButton {...props} textColor={white.base} backgroundColor={'#000'} shadow={black.shadow}>
             <FontAwesome name='apple' size={text != null ? 18 : 24} color='white' />
         </InternalButton>
     );

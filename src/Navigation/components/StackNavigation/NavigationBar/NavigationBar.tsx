@@ -5,10 +5,10 @@ import { useHistory } from '../../../../ReactRouter';
 import { NavigationBarProps } from './types/NavigationBarProps';
 import { Feather } from '@expo/vector-icons';
 import { useNavigationBarChildren } from './hooks/useNavigationBarChildren';
-import { useMatch } from '../../../hooks/useMatch';
+import { useActiveRouteSections } from '../../../hooks/useActiveRouteSections';
 import { getCursorStyle } from '../../../../Layout/util/getCursorStyle';
 import { Color, useThemeColor } from '../../../../ThemeState';
-import { usePathIsActive } from '../../../hooks/usePathIsActive';
+import { useIsRouteActive } from '../../../hooks/useIsRouteActive';
 
 interface ContainerProps {
     backgroundColor: Color;
@@ -93,14 +93,14 @@ export function NavigationBar(props: NavigationBarProps): JSX.Element | null {
     const { hidden, title, hideBackButton, backTitle, path, backTitleFontSize, titleFontSize, children } = props;
     const navigationBarColor = useThemeColor('navigationBarColor');
     const textColor = useThemeColor('textColor');
-    const isPathActive = usePathIsActive(path);
-    const [, activeRoutes] = useMatch('/');
+    const isRouteActiveAndExact = useIsRouteActive(path ?? '', true);
+    const activeRouteSections = useActiveRouteSections(path ?? '');
     const [leftChild, centerChild, rightChild] = useNavigationBarChildren(children);
 
     return hidden ? null : (
         <Container backgroundColor={navigationBarColor}>
             <LeftContainer>
-                {activeRoutes > 1 && isPathActive && !hideBackButton ? (
+                {activeRouteSections > 1 && isRouteActiveAndExact && !hideBackButton ? (
                     <BackButton backTitle={backTitle} backTitleFontSize={backTitleFontSize} />
                 ) : null}
                 {leftChild}

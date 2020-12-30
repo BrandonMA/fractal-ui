@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import { useMatch } from '../../../hooks/useMatch';
 import { getTabBarItemComponent } from './util/getTabBarItemComponent';
 import { getTabIconSize } from './util/getTabIconSize';
 import styled from 'styled-components/native';
@@ -11,6 +10,7 @@ import { useTabBarItemColor } from './hooks/useTabBarItemColor';
 import { useThemeColor } from '../../../../ThemeState/hooks/useThemeColor';
 import { useRecoilValue } from 'recoil';
 import { tabBarPositionAtom } from '../../../recoil/atoms/tabBarPositionAtom';
+import { useIsRouteActive } from '../../../hooks/useIsRouteActive';
 
 interface StyledTextProps {
     color: string;
@@ -27,8 +27,8 @@ const tabBarItemLargeSpacerSize = { width: 8, height: 1 };
 export const TabBarItem = memo(
     (props: TabBarItemProps): JSX.Element => {
         const { path, variant, title, children, ...others } = props;
-        const [active] = useMatch(path);
-        const color = useTabBarItemColor(active, props);
+        const isRouteActive = useIsRouteActive(path, false);
+        const color = useTabBarItemColor(isRouteActive, props);
         const TabBarItemContainer = getTabBarItemComponent(variant);
         const iconSize = getTabIconSize(variant);
         const widthSizeGroup = useWidthSizeGroup();
@@ -37,7 +37,7 @@ export const TabBarItem = memo(
             tabBarPosition !== 'bottom'
                 ? tabBarItemCompactSpacerSize
                 : getValueForLargeSize(widthSizeGroup[0], tabBarItemLargeSpacerSize, tabBarItemCompactSpacerSize);
-        const goToTab = useGoToTab(path, active);
+        const goToTab = useGoToTab(path, isRouteActive);
         const tabBarItemColor = useThemeColor('mainInteractiveColor');
 
         return (

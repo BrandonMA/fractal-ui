@@ -1,12 +1,12 @@
 import React, { Children, useEffect, useMemo, useRef } from 'react';
 import { useLocation } from '../../../../ReactRouter';
-import { useMatch } from '../../../hooks/useMatch';
 import styled from 'styled-components/native';
 import { ScreenStack, ScreenStackProps } from '../ScreenStack';
 import { filterMatchingChildren } from './util/filterMatchingChildren';
 import { injectModalContainers } from './util/injectModalContainer';
 import { getInsetsStyle, InsetsStyleConfig } from '../../../../Layout/util/getInsetsStyle';
 import { useTabBarInsets } from '../../../hooks';
+import { useIsRouteActive } from '../../../hooks/useIsRouteActive';
 
 const StyledScreenStack = styled(ScreenStack)`
     flex: 1;
@@ -23,7 +23,7 @@ const insetsStyleConfig: InsetsStyleConfig = { type: 'margin', removeVertical: t
 export function StackNavigator(props: StackNavigatorProps): JSX.Element {
     const { path, children, ...others } = props;
     const { pathname } = useLocation();
-    const [active] = useMatch(path ?? '/');
+    const isRouteActive = useIsRouteActive(path ?? '', false);
     const prevChildrenRef = useRef<Array<JSX.Element>>([]);
     const tabBarInsets = useTabBarInsets();
 
@@ -35,14 +35,14 @@ export function StackNavigator(props: StackNavigatorProps): JSX.Element {
     }, [children, pathname]);
 
     useEffect(() => {
-        if (active) {
+        if (isRouteActive) {
             prevChildrenRef.current = childrenToRender;
         }
-    }, [childrenToRender, active]);
+    }, [childrenToRender, isRouteActive]);
 
     return (
         <StyledScreenStack {...others} insets={tabBarInsets} insetsStyleConfig={insetsStyleConfig}>
-            {active ? childrenToRender : prevChildrenRef.current}
+            {isRouteActive ? childrenToRender : prevChildrenRef.current}
         </StyledScreenStack>
     );
 }
