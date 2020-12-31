@@ -24,7 +24,6 @@ export function FractalThemeUpdater(props: FractalThemeUpdaterProps): JSX.Elemen
         }
     }
 
-    console.log(lightFractalTheme.colors.background);
     return (
         <ThemeProvider theme={getTheme()}>
             {Platform.OS === 'web' ? <FractalWebBackground /> : null}
