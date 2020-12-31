@@ -1,0 +1,1 @@
+{"version":3,"file":"useCursorStyles.js","sourceRoot":"","sources":["../../../../src/components/baseComponents/hooks/useCursorStyles.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,kBAAkB,EAAE,MAAM,sBAAsB,CAAC;AAE1D,IAAM,SAAS,GAAG;IACd,MAAM,EAAE,SAAS;CACpB,CAAC;AAEF,MAAM,UAAU,eAAe,CAAI,KAAQ;IACvC,OAAO,kBAAkB,CAAC,SAAS,EAAE,KAAK,CAAM,CAAC;AACrD,CAAC"}

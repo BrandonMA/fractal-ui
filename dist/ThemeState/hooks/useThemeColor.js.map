@@ -1,1 +1,0 @@
-{"version":3,"file":"useThemeColor.js","sourceRoot":"","sources":["../../../src/ThemeState/hooks/useThemeColor.ts"],"names":[],"mappings":"AAGA,OAAO,EAAE,cAAc,EAAE,MAAM,QAAQ,CAAC;AACxC,OAAO,EAAE,4BAA4B,EAAE,MAAM,WAAW,CAAC;AAEzD,MAAM,UAAU,aAAa,CAAC,IAAgC;IAC1D,OAAO,cAAc,CAAC,4BAA4B,CAAC,IAAI,CAAC,CAAC,CAAC;AAC9D,CAAC"}

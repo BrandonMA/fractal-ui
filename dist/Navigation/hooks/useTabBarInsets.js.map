@@ -1,1 +1,0 @@
-{"version":3,"file":"useTabBarInsets.js","sourceRoot":"","sources":["../../../src/Navigation/hooks/useTabBarInsets.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,cAAc,EAAE,MAAM,QAAQ,CAAC;AACxC,OAAO,EAAE,gBAAgB,EAAE,MAAM,kCAAkC,CAAC;AAEpE,MAAM,UAAU,eAAe;IAC3B,OAAO,cAAc,CAAC,gBAAgB,CAAC,CAAC;AAC5C,CAAC"}
