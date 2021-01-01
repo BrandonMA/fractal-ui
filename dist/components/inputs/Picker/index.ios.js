@@ -51,7 +51,7 @@ export function Picker(props) {
         toggleModal();
     }, [setFinalIndex, index, toggleModal, onChange, items]);
     return (React.createElement(React.Fragment, null,
-        React.createElement(BasePressable, __assign({ flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 's', borderRadius: 'm', height: theme.interactiveItems.height, backgroundColor: 'background', onPress: toggleModal }, others),
+        React.createElement(BasePressable, __assign({ flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 's', borderRadius: 'textFieldRadius', height: theme.interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor', onPress: toggleModal }, others),
             React.createElement(BaseBox, { flexGrow: 1, justifyContent: 'center' },
                 React.createElement(Text, { fontSize: 14 }, items[finalIndex][1])),
             React.createElement(BaseBox, { position: 'absolute', top: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center', paddingRight: 's' },

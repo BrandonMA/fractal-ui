@@ -8,7 +8,9 @@ export var lightFractalTheme = createTheme({
         labelColor: white.base200,
         background: white.base400,
         foreground: white.base,
-        // Shadow Colors
+        separatorColor: white.base400,
+        cellColor: white.base,
+        textFieldColor: white.base400,
         shadowColor: 'black',
         // Base Colors
         transparent: 'transparent',
@@ -71,7 +73,9 @@ export var lightFractalTheme = createTheme({
         s: 12,
         m: 16,
         l: 24,
-        xl: 40
+        xl: 40,
+        cell: 16,
+        paddedContainer: 16
     },
     breakpoints: {},
     borderRadii: {
@@ -79,10 +83,14 @@ export var lightFractalTheme = createTheme({
         s: 8,
         m: 12,
         l: 16,
-        xl: 20
+        xl: 20,
+        cellRadius: 12,
+        buttonRadius: 12,
+        textFieldRadius: 12
     },
     interactiveItems: {
-        height: 44
+        buttonHeight: 44,
+        textFieldHeight: 44
     },
     textFields: {
         iconSize: 16

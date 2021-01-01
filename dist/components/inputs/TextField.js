@@ -14,6 +14,6 @@ import { useTheme } from '@shopify/restyle';
 import { BaseTextField } from '../baseComponents/BaseTextField';
 export function TextField(props) {
     var theme = useTheme();
-    return (React.createElement(BaseTextField, __assign({ borderRadius: 'm', color: 'textColor', backgroundColor: 'background', placeholderTextColor: theme.colors.placeholderColor, padding: 's', height: theme.interactiveItems.height }, props)));
+    return (React.createElement(BaseTextField, __assign({ borderRadius: 'textFieldRadius', color: 'textColor', backgroundColor: 'textFieldColor', placeholderTextColor: theme.colors.placeholderColor, padding: 's', height: theme.interactiveItems.textFieldHeight }, props)));
 }
 //# sourceMappingURL=TextField.js.map

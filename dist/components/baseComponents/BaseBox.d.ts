@@ -8,6 +8,9 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         labelColor: string;
         background: string;
         foreground: string;
+        separatorColor: string;
+        cellColor: string;
+        textFieldColor: string;
         shadowColor: string;
         transparent: string;
         black: string;
@@ -65,6 +68,8 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         m: number;
         l: number;
         xl: number;
+        cell: number;
+        paddedContainer: number;
     };
     breakpoints: {};
     borderRadii: {
@@ -73,9 +78,13 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         m: number;
         l: number;
         xl: number;
+        cellRadius: number;
+        buttonRadius: number;
+        textFieldRadius: number;
     };
     interactiveItems: {
-        height: number;
+        buttonHeight: number;
+        textFieldHeight: number;
     };
     textFields: {
         iconSize: number;
@@ -161,6 +170,9 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         labelColor: string;
         background: string;
         foreground: string;
+        separatorColor: string;
+        cellColor: string;
+        textFieldColor: string;
         shadowColor: string;
         transparent: string;
         black: string;
@@ -218,6 +230,8 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         m: number;
         l: number;
         xl: number;
+        cell: number;
+        paddedContainer: number;
     };
     breakpoints: {};
     borderRadii: {
@@ -226,9 +240,13 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         m: number;
         l: number;
         xl: number;
+        cellRadius: number;
+        buttonRadius: number;
+        textFieldRadius: number;
     };
     interactiveItems: {
-        height: number;
+        buttonHeight: number;
+        textFieldHeight: number;
     };
     textFields: {
         iconSize: number;
@@ -314,6 +332,9 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         labelColor: string;
         background: string;
         foreground: string;
+        separatorColor: string;
+        cellColor: string;
+        textFieldColor: string;
         shadowColor: string;
         transparent: string;
         black: string;
@@ -371,6 +392,8 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         m: number;
         l: number;
         xl: number;
+        cell: number;
+        paddedContainer: number;
     };
     breakpoints: {};
     borderRadii: {
@@ -379,9 +402,13 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         m: number;
         l: number;
         xl: number;
+        cellRadius: number;
+        buttonRadius: number;
+        textFieldRadius: number;
     };
     interactiveItems: {
-        height: number;
+        buttonHeight: number;
+        textFieldHeight: number;
     };
     textFields: {
         iconSize: number;
@@ -467,6 +494,9 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         labelColor: string;
         background: string;
         foreground: string;
+        separatorColor: string;
+        cellColor: string;
+        textFieldColor: string;
         shadowColor: string;
         transparent: string;
         black: string;
@@ -524,6 +554,8 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         m: number;
         l: number;
         xl: number;
+        cell: number;
+        paddedContainer: number;
     };
     breakpoints: {};
     borderRadii: {
@@ -532,9 +564,13 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         m: number;
         l: number;
         xl: number;
+        cellRadius: number;
+        buttonRadius: number;
+        textFieldRadius: number;
     };
     interactiveItems: {
-        height: number;
+        buttonHeight: number;
+        textFieldHeight: number;
     };
     textFields: {
         iconSize: number;
@@ -620,6 +656,9 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         labelColor: string;
         background: string;
         foreground: string;
+        separatorColor: string;
+        cellColor: string;
+        textFieldColor: string;
         shadowColor: string;
         transparent: string;
         black: string;
@@ -677,6 +716,8 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         m: number;
         l: number;
         xl: number;
+        cell: number;
+        paddedContainer: number;
     };
     breakpoints: {};
     borderRadii: {
@@ -685,9 +726,13 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         m: number;
         l: number;
         xl: number;
+        cellRadius: number;
+        buttonRadius: number;
+        textFieldRadius: number;
     };
     interactiveItems: {
-        height: number;
+        buttonHeight: number;
+        textFieldHeight: number;
     };
     textFields: {
         iconSize: number;
@@ -776,23 +821,23 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
     borderEndWidth?: string | number | {} | undefined;
     borderWidth?: number | {} | undefined;
 } & {
-    borderColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-    borderTopColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-    borderRightColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-    borderLeftColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-    borderBottomColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-    borderStartColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-    borderEndColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    borderColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    borderTopColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    borderRightColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    borderLeftColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    borderBottomColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    borderStartColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    borderEndColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
 } & {
-    borderRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
-    borderBottomLeftRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
-    borderBottomRightRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
-    borderTopLeftRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
-    borderTopRightRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
-    borderBottomStartRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
-    borderBottomEndRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
-    borderTopStartRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
-    borderTopEndRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
+    borderRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
+    borderBottomLeftRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
+    borderBottomRightRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
+    borderTopLeftRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
+    borderTopRightRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
+    borderBottomStartRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
+    borderBottomEndRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
+    borderTopStartRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
+    borderTopEndRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
 } & {
     shadowOpacity?: number | {} | undefined;
     shadowOffset?: {
@@ -802,7 +847,7 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
     shadowRadius?: number | {} | undefined;
     elevation?: number | {} | undefined;
 } & {
-    shadowColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    shadowColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
 } & {
     position?: "absolute" | "relative" | {} | undefined;
     top?: string | number | {} | undefined;
@@ -820,6 +865,9 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         labelColor: string;
         background: string;
         foreground: string;
+        separatorColor: string;
+        cellColor: string;
+        textFieldColor: string;
         shadowColor: string;
         transparent: string;
         black: string;
@@ -877,6 +925,8 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         m: number;
         l: number;
         xl: number;
+        cell: number;
+        paddedContainer: number;
     };
     breakpoints: {};
     borderRadii: {
@@ -885,9 +935,13 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         m: number;
         l: number;
         xl: number;
+        cellRadius: number;
+        buttonRadius: number;
+        textFieldRadius: number;
     };
     interactiveItems: {
-        height: number;
+        buttonHeight: number;
+        textFieldHeight: number;
     };
     textFields: {
         iconSize: number;
@@ -973,6 +1027,9 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         labelColor: string;
         background: string;
         foreground: string;
+        separatorColor: string;
+        cellColor: string;
+        textFieldColor: string;
         shadowColor: string;
         transparent: string;
         black: string;
@@ -1030,6 +1087,8 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         m: number;
         l: number;
         xl: number;
+        cell: number;
+        paddedContainer: number;
     };
     breakpoints: {};
     borderRadii: {
@@ -1038,9 +1097,13 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         m: number;
         l: number;
         xl: number;
+        cellRadius: number;
+        buttonRadius: number;
+        textFieldRadius: number;
     };
     interactiveItems: {
-        height: number;
+        buttonHeight: number;
+        textFieldHeight: number;
     };
     textFields: {
         iconSize: number;
@@ -1129,6 +1192,9 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             labelColor: string;
             background: string;
             foreground: string;
+            separatorColor: string;
+            cellColor: string;
+            textFieldColor: string;
             shadowColor: string;
             transparent: string;
             black: string;
@@ -1186,6 +1252,8 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             m: number;
             l: number;
             xl: number;
+            cell: number;
+            paddedContainer: number;
         };
         breakpoints: {};
         borderRadii: {
@@ -1194,9 +1262,13 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             m: number;
             l: number;
             xl: number;
+            cellRadius: number;
+            buttonRadius: number;
+            textFieldRadius: number;
         };
         interactiveItems: {
-            height: number;
+            buttonHeight: number;
+            textFieldHeight: number;
         };
         textFields: {
             iconSize: number;
@@ -1282,6 +1354,9 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             labelColor: string;
             background: string;
             foreground: string;
+            separatorColor: string;
+            cellColor: string;
+            textFieldColor: string;
             shadowColor: string;
             transparent: string;
             black: string;
@@ -1339,6 +1414,8 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             m: number;
             l: number;
             xl: number;
+            cell: number;
+            paddedContainer: number;
         };
         breakpoints: {};
         borderRadii: {
@@ -1347,9 +1424,13 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             m: number;
             l: number;
             xl: number;
+            cellRadius: number;
+            buttonRadius: number;
+            textFieldRadius: number;
         };
         interactiveItems: {
-            height: number;
+            buttonHeight: number;
+            textFieldHeight: number;
         };
         textFields: {
             iconSize: number;
@@ -1435,6 +1516,9 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             labelColor: string;
             background: string;
             foreground: string;
+            separatorColor: string;
+            cellColor: string;
+            textFieldColor: string;
             shadowColor: string;
             transparent: string;
             black: string;
@@ -1492,6 +1576,8 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             m: number;
             l: number;
             xl: number;
+            cell: number;
+            paddedContainer: number;
         };
         breakpoints: {};
         borderRadii: {
@@ -1500,9 +1586,13 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             m: number;
             l: number;
             xl: number;
+            cellRadius: number;
+            buttonRadius: number;
+            textFieldRadius: number;
         };
         interactiveItems: {
-            height: number;
+            buttonHeight: number;
+            textFieldHeight: number;
         };
         textFields: {
             iconSize: number;
@@ -1588,6 +1678,9 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             labelColor: string;
             background: string;
             foreground: string;
+            separatorColor: string;
+            cellColor: string;
+            textFieldColor: string;
             shadowColor: string;
             transparent: string;
             black: string;
@@ -1645,6 +1738,8 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             m: number;
             l: number;
             xl: number;
+            cell: number;
+            paddedContainer: number;
         };
         breakpoints: {};
         borderRadii: {
@@ -1653,9 +1748,13 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             m: number;
             l: number;
             xl: number;
+            cellRadius: number;
+            buttonRadius: number;
+            textFieldRadius: number;
         };
         interactiveItems: {
-            height: number;
+            buttonHeight: number;
+            textFieldHeight: number;
         };
         textFields: {
             iconSize: number;
@@ -1741,6 +1840,9 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             labelColor: string;
             background: string;
             foreground: string;
+            separatorColor: string;
+            cellColor: string;
+            textFieldColor: string;
             shadowColor: string;
             transparent: string;
             black: string;
@@ -1798,6 +1900,8 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             m: number;
             l: number;
             xl: number;
+            cell: number;
+            paddedContainer: number;
         };
         breakpoints: {};
         borderRadii: {
@@ -1806,9 +1910,13 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             m: number;
             l: number;
             xl: number;
+            cellRadius: number;
+            buttonRadius: number;
+            textFieldRadius: number;
         };
         interactiveItems: {
-            height: number;
+            buttonHeight: number;
+            textFieldHeight: number;
         };
         textFields: {
             iconSize: number;
@@ -1897,23 +2005,23 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         borderEndWidth?: string | number | {} | undefined;
         borderWidth?: number | {} | undefined;
     } & {
-        borderColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-        borderTopColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-        borderRightColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-        borderLeftColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-        borderBottomColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-        borderStartColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-        borderEndColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        borderColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        borderTopColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        borderRightColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        borderLeftColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        borderBottomColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        borderStartColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        borderEndColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
     } & {
-        borderRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
-        borderBottomLeftRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
-        borderBottomRightRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
-        borderTopLeftRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
-        borderTopRightRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
-        borderBottomStartRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
-        borderBottomEndRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
-        borderTopStartRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
-        borderTopEndRadius?: "s" | "m" | "xs" | "l" | "xl" | {} | undefined;
+        borderRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
+        borderBottomLeftRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
+        borderBottomRightRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
+        borderTopLeftRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
+        borderTopRightRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
+        borderBottomStartRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
+        borderBottomEndRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
+        borderTopStartRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
+        borderTopEndRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
     } & {
         shadowOpacity?: number | {} | undefined;
         shadowOffset?: {
@@ -1923,7 +2031,7 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
         shadowRadius?: number | {} | undefined;
         elevation?: number | {} | undefined;
     } & {
-        shadowColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        shadowColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
     } & {
         position?: "absolute" | "relative" | {} | undefined;
         top?: string | number | {} | undefined;
@@ -1941,6 +2049,9 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             labelColor: string;
             background: string;
             foreground: string;
+            separatorColor: string;
+            cellColor: string;
+            textFieldColor: string;
             shadowColor: string;
             transparent: string;
             black: string;
@@ -1998,6 +2109,8 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             m: number;
             l: number;
             xl: number;
+            cell: number;
+            paddedContainer: number;
         };
         breakpoints: {};
         borderRadii: {
@@ -2006,9 +2119,13 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             m: number;
             l: number;
             xl: number;
+            cellRadius: number;
+            buttonRadius: number;
+            textFieldRadius: number;
         };
         interactiveItems: {
-            height: number;
+            buttonHeight: number;
+            textFieldHeight: number;
         };
         textFields: {
             iconSize: number;
@@ -2094,6 +2211,9 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             labelColor: string;
             background: string;
             foreground: string;
+            separatorColor: string;
+            cellColor: string;
+            textFieldColor: string;
             shadowColor: string;
             transparent: string;
             black: string;
@@ -2151,6 +2271,8 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             m: number;
             l: number;
             xl: number;
+            cell: number;
+            paddedContainer: number;
         };
         breakpoints: {};
         borderRadii: {
@@ -2159,9 +2281,13 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             m: number;
             l: number;
             xl: number;
+            cellRadius: number;
+            buttonRadius: number;
+            textFieldRadius: number;
         };
         interactiveItems: {
-            height: number;
+            buttonHeight: number;
+            textFieldHeight: number;
         };
         textFields: {
             iconSize: number;

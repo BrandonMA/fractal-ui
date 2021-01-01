@@ -1,3 +1,3 @@
 import { FractalTheme } from './FractalTheme';
 import { DeepPartial } from 'utility-types';
-export declare function createFractalTheme(properties: DeepPartial<FractalTheme>): FractalTheme;
+export declare function createFractalTheme(properties: DeepPartial<FractalTheme>, baseTheme?: FractalTheme): FractalTheme;

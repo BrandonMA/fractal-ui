@@ -1,5 +1,5 @@
 export * from './lightFractalTheme';
 export * from './FractalTheme';
-export * from './createFractalTheme';
 export * from './darkFractalTheme';
+export * from './createFractalTheme';
 //# sourceMappingURL=index.js.map

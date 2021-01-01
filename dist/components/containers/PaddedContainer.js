@@ -12,6 +12,6 @@ var __assign = (this && this.__assign) || function () {
 import React from 'react';
 import { BaseBox } from '../baseComponents/BaseBox';
 export function PaddedContainer(props) {
-    return React.createElement(BaseBox, __assign({ paddingTop: 'm', paddingRight: 'm', paddingLeft: 'm' }, props));
+    return React.createElement(BaseBox, __assign({ paddingTop: 'paddedContainer', paddingRight: 'paddedContainer', paddingLeft: 'paddedContainer' }, props));
 }
 //# sourceMappingURL=PaddedContainer.js.map

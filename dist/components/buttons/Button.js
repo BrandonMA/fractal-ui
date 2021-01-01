@@ -31,11 +31,11 @@ export function Button(props) {
     var _a = useBaseButtonAnimations(props), handlePressIn = _a[0], handlePressOut = _a[1], style = _a[2];
     var ripple = useMemo(function () {
         return {
-            color: theme.colors[variant + "400"],
+            color: theme.colors.white,
             borderless: true
         };
-    }, [theme, variant]);
-    return (React.createElement(BasePressable, __assign({ flexDirection: 'row', backgroundColor: reduceColor ? variant + "100" : variant, borderRadius: 'm', android_ripple: ripple, justifyContent: 'center', alignItems: 'center', height: theme.interactiveItems.height, onPressIn: handlePressIn, onPressOut: handlePressOut, style: style, shadowColor: addShadow ? 'shadowColor' : undefined, shadowOffset: addShadow ? theme.shadowProperties.offset : undefined, shadowRadius: addShadow ? theme.shadowProperties.radius : undefined, shadowOpacity: addShadow ? theme.shadowProperties.opacity : undefined }, others),
+    }, [theme]);
+    return (React.createElement(BasePressable, __assign({ flexDirection: 'row', backgroundColor: reduceColor ? variant + "100" : variant, borderRadius: 'buttonRadius', android_ripple: ripple, justifyContent: 'center', alignItems: 'center', height: theme.interactiveItems.buttonHeight, onPressIn: handlePressIn, onPressOut: handlePressOut, style: style, shadowColor: addShadow ? 'shadowColor' : undefined, shadowOffset: addShadow ? theme.shadowProperties.offset : undefined, shadowRadius: addShadow ? theme.shadowProperties.radius : undefined, shadowOpacity: addShadow ? theme.shadowProperties.opacity : undefined }, others),
         children,
         text != null ? (React.createElement(BaseText, { selectable: false, paddingLeft: children != null ? 'xs' : undefined, fontWeight: '700', color: reduceColor ? variant : 'white' }, text)) : null));
 }

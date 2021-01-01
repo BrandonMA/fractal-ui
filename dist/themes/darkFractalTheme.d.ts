@@ -5,6 +5,9 @@ export declare const darkFractalTheme: {
         labelColor: string;
         background: string;
         foreground: string;
+        separatorColor: string;
+        cellColor: string;
+        textFieldColor: string;
         shadowColor: string;
         transparent: string;
         black: string;
@@ -62,6 +65,8 @@ export declare const darkFractalTheme: {
         m: number;
         l: number;
         xl: number;
+        cell: number;
+        paddedContainer: number;
     };
     breakpoints: {};
     borderRadii: {
@@ -70,9 +75,13 @@ export declare const darkFractalTheme: {
         m: number;
         l: number;
         xl: number;
+        cellRadius: number;
+        buttonRadius: number;
+        textFieldRadius: number;
     };
     interactiveItems: {
-        height: number;
+        buttonHeight: number;
+        textFieldHeight: number;
     };
     textFields: {
         iconSize: number;

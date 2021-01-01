@@ -12,6 +12,6 @@ var __assign = (this && this.__assign) || function () {
 import React from 'react';
 import { BaseBox } from './baseComponents/BaseBox';
 export function Separator(props) {
-    return React.createElement(BaseBox, __assign({ backgroundColor: 'background' }, props, { height: 1 }));
+    return React.createElement(BaseBox, __assign({ backgroundColor: 'separatorColor' }, props, { height: 1 }));
 }
 //# sourceMappingURL=Separator.js.map

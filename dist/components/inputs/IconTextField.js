@@ -28,7 +28,7 @@ import { useTheme } from '@shopify/restyle';
 export function IconTextField(props) {
     var leftImage = props.leftImage, value = props.value, placeholder = props.placeholder, onChangeText = props.onChangeText, textFieldProps = props.textFieldProps, others = __rest(props, ["leftImage", "value", "placeholder", "onChangeText", "textFieldProps"]);
     var theme = useTheme();
-    return (React.createElement(HorizontalView, __assign({ paddingHorizontal: 's', borderRadius: 'm', height: theme.interactiveItems.height, backgroundColor: 'background' }, others),
+    return (React.createElement(HorizontalView, __assign({ paddingHorizontal: 's', borderRadius: 'textFieldRadius', height: theme.interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor' }, others),
         React.createElement(BaseBox, { alignSelf: 'center', height: theme.textFields.iconSize, width: theme.textFields.iconSize }, leftImage(theme.colors.placeholderColor, theme.textFields.iconSize)),
         React.createElement(TextField, __assign({ paddingLeft: 'xs', flexGrow: 1, value: value, onChangeText: onChangeText, placeholder: placeholder }, textFieldProps))));
 }

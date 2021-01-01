@@ -21,7 +21,7 @@ function GoogleIcon(props) {
 }
 var MemoGoogleIcon = React.memo(GoogleIcon);
 export function GoogleButton(props) {
-    return (React.createElement(Button, __assign({ variant: 'mainInteractiveColor', addShadow: true }, props, { backgroundColor: 'foreground' }),
+    return (React.createElement(Button, __assign({ variant: 'mainInteractiveColor', addShadow: true }, props, { backgroundColor: 'white' }),
         React.createElement(MemoGoogleIcon, { width: 24, height: 24 })));
 }
 //# sourceMappingURL=GoogleButton.js.map
