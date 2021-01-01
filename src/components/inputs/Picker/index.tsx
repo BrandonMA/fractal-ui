@@ -44,7 +44,7 @@ export function Picker(props: PickerProps): JSX.Element {
                 style={Platform.OS === 'web' ? style : undefined}
             >
                 {items.map((item) => (
-                    <NativePicker.Item color={theme.colors.textColor} label={item[1]} value={item[0]} key={item[0]} />
+                    <NativePicker.Item color={theme.colors.black} label={item[1]} value={item[0]} key={item[0]} />
                 ))}
             </BasePicker>
             <BaseBox position='absolute' top={0} right={0} bottom={0} justifyContent='center' alignItems='center' paddingRight='s'>
