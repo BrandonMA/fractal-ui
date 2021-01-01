@@ -7,12 +7,12 @@ export function TextField(props: BaseTextFieldProps): JSX.Element {
     const theme = useTheme<FractalTheme>();
     return (
         <BaseTextField
-            borderRadius='m'
+            borderRadius='textFieldRadius'
             color='textColor'
-            backgroundColor='background'
+            backgroundColor='textFieldColor'
             placeholderTextColor={theme.colors.placeholderColor}
             padding='s'
-            height={theme.interactiveItems.height}
+            height={theme.interactiveItems.textFieldHeight}
             {...props}
         />
     );

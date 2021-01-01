@@ -42,9 +42,9 @@ export function Picker(props: PickerProps): JSX.Element {
                 flexDirection='row'
                 justifyContent='center'
                 paddingHorizontal='s'
-                borderRadius='m'
-                height={theme.interactiveItems.height}
-                backgroundColor='background'
+                borderRadius='textFieldRadius'
+                height={theme.interactiveItems.textFieldHeight}
+                backgroundColor='textFieldColor'
                 onPress={toggleModal}
                 {...others}
             >

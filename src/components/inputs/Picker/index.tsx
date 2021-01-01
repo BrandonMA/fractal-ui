@@ -26,9 +26,9 @@ export function Picker(props: PickerProps): JSX.Element {
         <HorizontalView
             justifyContent='center'
             paddingHorizontal='s'
-            borderRadius='m'
-            height={theme.interactiveItems.height}
-            backgroundColor='background'
+            borderRadius='textFieldRadius'
+            height={theme.interactiveItems.textFieldHeight}
+            backgroundColor='textFieldColor'
             {...others}
         >
             <BasePicker

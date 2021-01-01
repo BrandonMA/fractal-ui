@@ -21,9 +21,9 @@ export function IconTextField(props: IconTextFieldProps): JSX.Element {
     return (
         <HorizontalView
             paddingHorizontal='s'
-            borderRadius='m'
-            height={theme.interactiveItems.height}
-            backgroundColor='background'
+            borderRadius='textFieldRadius'
+            height={theme.interactiveItems.textFieldHeight}
+            backgroundColor='textFieldColor'
             {...others}
         >
             <BaseBox alignSelf='center' height={theme.textFields.iconSize} width={theme.textFields.iconSize}>

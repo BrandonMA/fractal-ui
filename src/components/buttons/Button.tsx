@@ -13,20 +13,20 @@ export function Button(props: ButtonProps): JSX.Element {
 
     const ripple = useMemo(() => {
         return {
-            color: theme.colors[`${variant}400`],
+            color: theme.colors.white,
             borderless: true
         };
-    }, [theme, variant]);
+    }, [theme]);
 
     return (
         <BasePressable
             flexDirection='row'
             backgroundColor={reduceColor ? `${variant}100` : variant}
-            borderRadius='m'
+            borderRadius='buttonRadius'
             android_ripple={ripple}
             justifyContent='center'
             alignItems='center'
-            height={theme.interactiveItems.height}
+            height={theme.interactiveItems.buttonHeight}
             onPressIn={handlePressIn}
             onPressOut={handlePressOut}
             style={style as any}

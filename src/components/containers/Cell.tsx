@@ -7,9 +7,9 @@ export function Cell(props: BaseBoxProps): JSX.Element {
     const theme = useTheme<FractalTheme>();
     return (
         <BaseBox
-            padding='m'
-            backgroundColor='foreground'
-            borderRadius='m'
+            padding='cell'
+            backgroundColor='cellColor'
+            borderRadius='cellRadius'
             elevation={1}
             shadowColor='shadowColor'
             shadowOffset={theme.shadowProperties.offset}

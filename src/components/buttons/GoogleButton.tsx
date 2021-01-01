@@ -30,7 +30,7 @@ const MemoGoogleIcon = React.memo(GoogleIcon);
 
 export function GoogleButton(props: Omit<ButtonProps, 'variant'>): JSX.Element {
     return (
-        <Button variant='mainInteractiveColor' addShadow {...props} backgroundColor='foreground'>
+        <Button variant='mainInteractiveColor' addShadow {...props} backgroundColor='white'>
             <MemoGoogleIcon width={24} height={24} />
         </Button>
     );

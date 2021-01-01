@@ -8,7 +8,6 @@ import {
     PaddedContainer,
     IconTextField,
     Text,
-    BaseBox,
     TextButton,
     Picker,
     Button,
@@ -52,7 +51,7 @@ function App(): JSX.Element {
     const renderChevronLeft = useMemo(() => (color: string): JSX.Element => <Entypo name='chevron-left' size={20} color={color} />, []);
 
     return (
-        <FractalAppRoot>
+        <FractalAppRoot handleThemeManually={true}>
             <Background>
                 <ScrollView>
                     <RenderCheck />
@@ -110,10 +109,8 @@ function App(): JSX.Element {
                             />
                             <Button variant='mainInteractiveColor' text='Button' reduceColor />
                         </Cell>
-                        <BaseBox height={16} />
-                        <Button variant='successInteractiveColor' text='Button' addShadow />
                     </PaddedContainer>
-                    <SocialMediaButtons marginBottom='m' />
+                    <SocialMediaButtons />
                 </ScrollView>
             </Background>
         </FractalAppRoot>
