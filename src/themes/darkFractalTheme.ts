@@ -7,9 +7,9 @@ export const darkFractalTheme = createFractalTheme({
         placeholderColor: black.base300,
         labelColor: black.base200,
         background: black.base,
-        foreground: black.base,
-        separatorColor: black.base400,
-        textFieldColor: black.base400,
+        foreground: black.base400,
+        separatorColor: black.base,
+        textFieldColor: black.base,
         cellColor: black.base400
     },
     shadowProperties: {

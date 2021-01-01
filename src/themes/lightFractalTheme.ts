@@ -10,7 +10,7 @@ export const lightFractalTheme = createTheme({
         background: white.base400,
         foreground: white.base,
         separatorColor: white.base400,
-        cellColor: white.base400,
+        cellColor: white.base,
         textFieldColor: white.base400,
         shadowColor: 'black',
         // Base Colors
