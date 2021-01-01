@@ -5,22 +5,26 @@ import { lightFractalTheme } from './themes/lightFractalTheme';
 import { useThemeIdentifier } from './context';
 import { Platform, useColorScheme } from 'react-native';
 import { FractalWebBackground } from './FractalWebBackground';
+import { FractalTheme } from './themes/FractalTheme';
 
 export interface FractalThemeUpdaterProps {
     children: ReactNode;
     handleThemeManually?: boolean;
+    lightTheme?: FractalTheme;
+    darkTheme?: FractalTheme;
 }
 
-export function FractalThemeUpdater(props: FractalThemeUpdaterProps): JSX.Element {
-    const { children, handleThemeManually } = props;
+export function FractalThemeUpdater({ children, handleThemeManually, lightTheme, darkTheme }: FractalThemeUpdaterProps): JSX.Element {
     const [themeIdentifier] = useThemeIdentifier();
     const systemColorScheme = useColorScheme();
+    const finalLightTheme = lightTheme ?? lightFractalTheme;
+    const finalDarkTheme = darkTheme ?? darkFractalTheme;
 
     function getTheme() {
         if (handleThemeManually || systemColorScheme == null) {
-            return themeIdentifier === 'light' ? lightFractalTheme : darkFractalTheme;
+            return themeIdentifier === 'light' ? finalLightTheme : finalDarkTheme;
         } else {
-            return systemColorScheme === 'light' ? lightFractalTheme : darkFractalTheme;
+            return systemColorScheme === 'light' ? finalLightTheme : finalDarkTheme;
         }
     }
 
