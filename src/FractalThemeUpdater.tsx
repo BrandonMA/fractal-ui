@@ -3,9 +3,10 @@ import { ThemeProvider } from '@shopify/restyle';
 import { darkFractalTheme } from './themes/darkFractalTheme';
 import { lightFractalTheme } from './themes/lightFractalTheme';
 import { useThemeIdentifier } from './context';
-import { Platform, useColorScheme } from 'react-native';
+import { Platform } from 'react-native';
 import { FractalWebBackground } from './FractalWebBackground';
 import { FractalTheme } from './themes/FractalTheme';
+import { FractalStatusBar } from './FractalStatusBar';
 
 export interface FractalThemeUpdaterProps {
     children: ReactNode;
@@ -14,23 +15,16 @@ export interface FractalThemeUpdaterProps {
     darkTheme?: FractalTheme;
 }
 
-export function FractalThemeUpdater({ children, handleThemeManually, lightTheme, darkTheme }: FractalThemeUpdaterProps): JSX.Element {
+export function FractalThemeUpdater({ children, lightTheme, darkTheme }: FractalThemeUpdaterProps): JSX.Element {
     const [themeIdentifier] = useThemeIdentifier();
-    const systemColorScheme = useColorScheme();
     const finalLightTheme = lightTheme ?? lightFractalTheme;
     const finalDarkTheme = darkTheme ?? darkFractalTheme;
-
-    function getTheme() {
-        if (handleThemeManually || systemColorScheme == null) {
-            return themeIdentifier === 'light' ? finalLightTheme : finalDarkTheme;
-        } else {
-            return systemColorScheme === 'light' ? finalLightTheme : finalDarkTheme;
-        }
-    }
+    const theme = themeIdentifier === 'light' ? finalLightTheme : finalDarkTheme;
 
     return (
-        <ThemeProvider theme={getTheme()}>
+        <ThemeProvider theme={theme}>
             {Platform.OS === 'web' ? <FractalWebBackground /> : null}
+            <FractalStatusBar />
             {children}
         </ThemeProvider>
     );

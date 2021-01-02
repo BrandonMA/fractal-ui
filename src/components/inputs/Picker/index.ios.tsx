@@ -12,7 +12,7 @@ import { BasePressable } from '../../baseComponents/BasePressable';
 import { Cell } from '../../containers/Cell';
 import { BasePicker } from '../../baseComponents/BasePicker';
 import { Picker as NativePicker } from '@react-native-picker/picker';
-import { BaseTouchableOpacity } from '../../baseComponents';
+import { BaseTouchableOpacity } from '../../baseComponents/BaseTouchableOpacity';
 import { PaddedContainer } from '../../containers';
 import { Button } from '../../buttons/Button';
 
@@ -38,7 +38,7 @@ export function Picker(props: PickerProps): JSX.Element {
 
     return (
         <>
-            <BasePressable
+            <BaseTouchableOpacity
                 flexDirection='row'
                 justifyContent='center'
                 paddingHorizontal='s'
@@ -54,7 +54,7 @@ export function Picker(props: PickerProps): JSX.Element {
                 <BaseBox position='absolute' top={0} right={0} bottom={0} justifyContent='center' alignItems='center' paddingRight='s'>
                     <Entypo name='chevron-down' size={21} color={theme.colors.placeholderColor} />
                 </BaseBox>
-            </BasePressable>
+            </BaseTouchableOpacity>
             <Modal visible={modalActive} animationType='fade' transparent>
                 <BaseSafeAreaView flex={1} justifyContent='flex-end'>
                     <BasePressable
@@ -68,7 +68,7 @@ export function Picker(props: PickerProps): JSX.Element {
                         opacity={0.6}
                     />
                     <PaddedContainer>
-                        <Cell>
+                        <Cell maxWidth={540}>
                             <BaseTouchableOpacity
                                 justifyContent='center'
                                 alignItems='center'
@@ -81,7 +81,7 @@ export function Picker(props: PickerProps): JSX.Element {
                             >
                                 <Entypo name='cross' size={21} color={theme.colors.placeholderColor} />
                             </BaseTouchableOpacity>
-                            <BasePicker itemStyle={{ height: 160 }} selectedValue={currentValue} onValueChange={handleValueChange}>
+                            <BasePicker selectedValue={currentValue} onValueChange={handleValueChange}>
                                 {items.map((item) => (
                                     <NativePicker.Item color={theme.colors.textColor} label={item[1]} value={item[0]} key={item[0]} />
                                 ))}
