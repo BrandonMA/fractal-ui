@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { registerRootComponent } from 'expo';
 import {
     FractalAppRoot,
@@ -15,7 +15,9 @@ import {
     DetailsRow,
     DetailsList,
     useThemeIdentifier,
-    Separator
+    Separator,
+    Message,
+    ErrorMessage
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
@@ -32,6 +34,22 @@ function ThemeSwapper(): JSX.Element {
     return <Button onPress={handlePress} variant='alternativeInteractiveColor' text='Swap Theme' marginBottom='m' />;
 }
 
+function BuggyComponent(): JSX.Element {
+    const [showError, setShowError] = useState(false);
+
+    const triggerError = useCallback(() => {
+        setShowError(true);
+    }, []);
+
+    useEffect(() => {
+        if (showError) {
+            throw Error('This should be catched, sent by BuggyComponent');
+        }
+    }, [showError]);
+
+    return <Button variant={'dangerInteractiveColor'} text='Trigger Error' onPress={triggerError} />;
+}
+
 function App(): JSX.Element {
     const [text, setText] = useState('');
 
@@ -42,6 +60,8 @@ function App(): JSX.Element {
 
     const renderChevronLeft = useMemo(() => (color: string): JSX.Element => <Entypo name='chevron-left' size={20} color={color} />, []);
 
+    const renderWarning = useMemo(() => (color: string): JSX.Element => <Entypo name={'warning'} size={20} color={color} />, []);
+
     return (
         <FractalAppRoot handleThemeManually={true}>
             <Background>
@@ -50,7 +70,7 @@ function App(): JSX.Element {
                         <PaddedContainer>
                             <DetailsList
                                 title='Title'
-                                titleVariant='warningInteractiveColorTitle'
+                                titleVariant='warningInteractiveTitle'
                                 details={detailsCardContent}
                                 marginBottom='m'
                             />
@@ -99,7 +119,17 @@ function App(): JSX.Element {
                                     ]}
                                     marginBottom='m'
                                 />
-                                <Button variant='mainInteractiveColor' text='Button' reduceColor />
+                                <Button variant='mainInteractiveColor' text='Button' reduceColor marginBottom={'m'} />
+                                <Message
+                                    title='Title'
+                                    messageType={'warning'}
+                                    description={'This is the description of my error with icon and title'}
+                                    icon={renderWarning}
+                                    marginBottom={'m'}
+                                />
+                                <ErrorMessage>
+                                    <BuggyComponent />
+                                </ErrorMessage>
                             </Cell>
                         </PaddedContainer>
                         <SocialMediaButtons />
