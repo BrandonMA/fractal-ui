@@ -32,6 +32,6 @@ export function ColorPicker(props) {
             onColorChange(color);
         }
     }, [onColorChange]);
-    return (React.createElement(HorizontalView, __assign({ justifyContent: 'space-around' }, others), colors.map(function (color) { return (React.createElement(ColorToggle, { backgroundColor: color, key: color, onActiveChange: handleColorChange, active: activeColor === color })); })));
+    return (React.createElement(HorizontalView, __assign({ justifyContent: 'space-around', flexWrap: 'wrap' }, others), colors.map(function (color) { return (React.createElement(ColorToggle, { backgroundColor: color, key: color, onActiveChange: handleColorChange, active: activeColor === color, margin: 'xs' })); })));
 }
 //# sourceMappingURL=ColorPicker.js.map

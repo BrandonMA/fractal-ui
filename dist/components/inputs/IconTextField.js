@@ -28,9 +28,11 @@ import { useTheme } from '@shopify/restyle';
 export function IconTextField(props) {
     var leftImage = props.leftImage, rightImage = props.rightImage, value = props.value, placeholder = props.placeholder, onChangeText = props.onChangeText, textFieldProps = props.textFieldProps, others = __rest(props, ["leftImage", "rightImage", "value", "placeholder", "onChangeText", "textFieldProps"]);
     var theme = useTheme();
-    return (React.createElement(HorizontalView, __assign({ paddingHorizontal: 's', borderRadius: 'textFieldRadius', height: theme.interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor' }, others),
-        leftImage != null ? (React.createElement(BaseBox, { alignSelf: 'center', height: theme.textFields.iconSize, width: theme.textFields.iconSize }, leftImage(theme.colors.placeholderColor, theme.textFields.iconSize))) : null,
-        React.createElement(TextField, __assign({ paddingLeft: leftImage != null ? 'xs' : undefined, paddingRight: rightImage != null ? 'xs' : undefined, flexGrow: 1, value: value, onChangeText: onChangeText, placeholder: placeholder }, textFieldProps)),
-        rightImage != null ? (React.createElement(BaseBox, { alignSelf: 'center', height: theme.textFields.iconSize, width: theme.textFields.iconSize }, rightImage(theme.colors.placeholderColor, theme.textFields.iconSize))) : null));
+    var paddingLeft = leftImage != null ? 'xs' : undefined;
+    var paddingRight = rightImage != null ? 'xs' : undefined;
+    return (React.createElement(HorizontalView, __assign({ paddingLeft: paddingLeft, paddingRight: paddingRight, borderRadius: 'textFieldRadius', height: theme.interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor', justifyContent: 'space-evenly', alignItems: 'center' }, others),
+        leftImage != null ? (React.createElement(BaseBox, { flexShrink: 0, height: theme.textFields.iconSize, width: theme.textFields.iconSize }, leftImage(theme.colors.placeholderColor, theme.textFields.iconSize))) : null,
+        React.createElement(TextField, __assign({ paddingLeft: paddingLeft, paddingRight: paddingRight, numberOfLines: 1, flex: 1, value: value, onChangeText: onChangeText, placeholder: placeholder }, textFieldProps)),
+        rightImage != null ? (React.createElement(BaseBox, { flexShrink: 0, height: theme.textFields.iconSize, width: theme.textFields.iconSize }, rightImage(theme.colors.placeholderColor, theme.textFields.iconSize))) : null));
 }
 //# sourceMappingURL=IconTextField.js.map

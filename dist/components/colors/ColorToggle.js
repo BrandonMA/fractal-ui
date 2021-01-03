@@ -30,7 +30,7 @@ var Entypo = Animated.createAnimatedComponent(BaseEntypo);
 export function ColorToggle(props) {
     var onActiveChange = props.onActiveChange, backgroundColor = props.backgroundColor, active = props.active, others = __rest(props, ["onActiveChange", "backgroundColor", "active"]);
     var _a = useState(false), internalActive = _a[0], setActive = _a[1];
-    var animatedValue = useRef(new Animated.Value(0)).current;
+    var animatedValue = useRef(new Animated.Value(active || internalActive ? 1 : 0)).current;
     var showAnimation = useShowAnimation(animatedValue);
     var hideAnimation = useHideAnimation(animatedValue);
     var iconStyle = useMemo(function () {

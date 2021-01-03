@@ -14,7 +14,7 @@ import { IconTextField } from './IconTextField';
 import { Ionicons as BaseIonicons } from '@expo/vector-icons';
 var Ionicons = memo(BaseIonicons);
 export function SearchBar(props) {
-    var renderSearchIcon = useCallback(function (color, size) { return React.createElement(Ionicons, { name: 'search', size: size, color: color }); }, []);
+    var renderSearchIcon = useCallback(function (color, size) { return React.createElement(Ionicons, { selectable: false, name: 'search', size: size, color: color }); }, []);
     return React.createElement(IconTextField, __assign({}, props, { leftImage: renderSearchIcon }));
 }
 //# sourceMappingURL=SearchBar.js.map

@@ -35,17 +35,17 @@ var style = {
     cursor: 'pointer'
 };
 export function Picker(props) {
-    var items = props.items, onChange = props.onChange, others = __rest(props, ["items", "onChange"]);
-    var _a = usePickerState(items, onChange), currentValue = _a[0], handleValueChange = _a[1];
+    var items = props.items, onChange = props.onChange, initialValue = props.initialValue, disabled = props.disabled, others = __rest(props, ["items", "onChange", "initialValue", "disabled"]);
+    var _a = usePickerState(initialValue, items, onChange), currentValue = _a[0], handleValueChange = _a[1];
     var theme = useTheme();
     var renderItem = useCallback(function (item) {
         var value = item[0];
         var label = item[1];
         return React.createElement(NativePicker.Item, { color: theme.colors.black, label: label, value: value, key: value });
     }, [theme.colors.black]);
-    return (React.createElement(HorizontalView, __assign({ justifyContent: 'center', paddingHorizontal: 's', borderRadius: 'textFieldRadius', height: theme.interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor' }, others),
+    return (React.createElement(HorizontalView, __assign({ justifyContent: 'center', paddingHorizontal: 's', borderRadius: 'textFieldRadius', height: theme.interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor', pointerEvents: disabled ? 'none' : 'auto' }, others),
         React.createElement(BasePicker, { borderWidth: '0', backgroundColor: 'transparent', color: 'textColor', selectedValue: currentValue, dropdownIconColor: theme.colors.placeholderColor, onValueChange: handleValueChange, mode: 'dropdown', fontSize: 14, flexGrow: 1, style: Platform.OS === 'web' ? style : undefined }, items.map(renderItem)),
         React.createElement(BaseBox, { alignSelf: 'center' },
-            React.createElement(Entypo, { name: 'chevron-down', size: 21, color: theme.colors.placeholderColor }))));
+            React.createElement(Entypo, { selectable: false, name: 'chevron-down', size: 21, color: theme.colors.placeholderColor }))));
 }
 //# sourceMappingURL=index.js.map
