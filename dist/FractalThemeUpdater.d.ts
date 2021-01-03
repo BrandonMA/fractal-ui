@@ -6,4 +6,4 @@ export interface FractalThemeUpdaterProps {
     lightTheme?: FractalTheme;
     darkTheme?: FractalTheme;
 }
-export declare function FractalThemeUpdater({ children, handleThemeManually, lightTheme, darkTheme }: FractalThemeUpdaterProps): JSX.Element;
+export declare function FractalThemeUpdater({ children, lightTheme, darkTheme }: FractalThemeUpdaterProps): JSX.Element;

@@ -4,6 +4,7 @@ export declare type ThemeIdentifierContextType = [ThemeIdentifierType, Dispatch<
 export declare const FractalThemeIdentifierContext: React.Context<ThemeIdentifierContextType>;
 interface FractalThemeIdentifierProviderProps {
     children: ReactNode;
+    handleThemeManually: boolean;
 }
-export declare function FractalThemeIdentifierProvider(props: FractalThemeIdentifierProviderProps): JSX.Element;
+export declare function FractalThemeIdentifierProvider({ children, handleThemeManually }: FractalThemeIdentifierProviderProps): JSX.Element;
 export {};

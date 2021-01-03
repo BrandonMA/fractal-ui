@@ -9,13 +9,12 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import React, { Fragment } from 'react';
+import React from 'react';
 import { FractalThemeIdentifierProvider } from './context/FractalThemeIdentifierProvider';
 import { FractalThemeUpdater } from './FractalThemeUpdater';
 export function FractalAppRoot(props) {
     var handleThemeManually = props.handleThemeManually;
-    var Wrapper = handleThemeManually ? FractalThemeIdentifierProvider : Fragment;
-    return (React.createElement(Wrapper, null,
+    return (React.createElement(FractalThemeIdentifierProvider, { handleThemeManually: handleThemeManually !== null && handleThemeManually !== void 0 ? handleThemeManually : false },
         React.createElement(FractalThemeUpdater, __assign({}, props))));
 }
 //# sourceMappingURL=FractalAppRoot.js.map

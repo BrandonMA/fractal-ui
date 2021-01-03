@@ -1,3 +1,3 @@
 /// <reference types="react" />
-import { BaseBoxProps } from './../baseComponents/BaseBox';
-export declare function BaseSafeAreaView(props: BaseBoxProps): JSX.Element;
+import { BoxProps } from './BaseBox';
+export declare function BaseSafeAreaView(props: BoxProps): JSX.Element;

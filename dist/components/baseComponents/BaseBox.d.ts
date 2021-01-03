@@ -1,7 +1,8 @@
-import { BoxProps } from '@shopify/restyle';
-import { ReactNode } from 'react';
+import { BoxProps as NativeBoxProps } from '@shopify/restyle';
+import { ComponentProps, ReactNode } from 'react';
 import { FractalTheme } from '../../themes/FractalTheme';
-export declare const BaseBox: import("react").ForwardRefExoticComponent<import("@shopify/restyle").BackgroundColorProps<{
+import { Animated } from 'react-native';
+export declare const BaseBox: Animated.AnimatedComponent<import("react").ForwardRefExoticComponent<import("@shopify/restyle").BackgroundColorProps<{
     colors: {
         textColor: string;
         placeholderColor: string;
@@ -147,17 +148,17 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             fontSize: number;
             fontWeight: string;
         };
-        successInteractiveColorTitle: {
+        successInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        warningInteractiveColorTitle: {
+        warningInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        dangerInteractiveColorTitle: {
+        dangerInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
@@ -309,17 +310,17 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             fontSize: number;
             fontWeight: string;
         };
-        successInteractiveColorTitle: {
+        successInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        warningInteractiveColorTitle: {
+        warningInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        dangerInteractiveColorTitle: {
+        dangerInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
@@ -471,17 +472,17 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             fontSize: number;
             fontWeight: string;
         };
-        successInteractiveColorTitle: {
+        successInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        warningInteractiveColorTitle: {
+        warningInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        dangerInteractiveColorTitle: {
+        dangerInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
@@ -633,17 +634,17 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             fontSize: number;
             fontWeight: string;
         };
-        successInteractiveColorTitle: {
+        successInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        warningInteractiveColorTitle: {
+        warningInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        dangerInteractiveColorTitle: {
+        dangerInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
@@ -795,17 +796,17 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             fontSize: number;
             fontWeight: string;
         };
-        successInteractiveColorTitle: {
+        successInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        warningInteractiveColorTitle: {
+        warningInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        dangerInteractiveColorTitle: {
+        dangerInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
@@ -1004,17 +1005,17 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             fontSize: number;
             fontWeight: string;
         };
-        successInteractiveColorTitle: {
+        successInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        warningInteractiveColorTitle: {
+        warningInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        dangerInteractiveColorTitle: {
+        dangerInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
@@ -1166,17 +1167,17 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
             fontSize: number;
             fontWeight: string;
         };
-        successInteractiveColorTitle: {
+        successInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        warningInteractiveColorTitle: {
+        warningInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        dangerInteractiveColorTitle: {
+        dangerInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
@@ -1331,17 +1332,17 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
                 fontSize: number;
                 fontWeight: string;
             };
-            successInteractiveColorTitle: {
+            successInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            warningInteractiveColorTitle: {
+            warningInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            dangerInteractiveColorTitle: {
+            dangerInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
@@ -1493,17 +1494,17 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
                 fontSize: number;
                 fontWeight: string;
             };
-            successInteractiveColorTitle: {
+            successInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            warningInteractiveColorTitle: {
+            warningInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            dangerInteractiveColorTitle: {
+            dangerInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
@@ -1655,17 +1656,17 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
                 fontSize: number;
                 fontWeight: string;
             };
-            successInteractiveColorTitle: {
+            successInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            warningInteractiveColorTitle: {
+            warningInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            dangerInteractiveColorTitle: {
+            dangerInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
@@ -1817,17 +1818,17 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
                 fontSize: number;
                 fontWeight: string;
             };
-            successInteractiveColorTitle: {
+            successInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            warningInteractiveColorTitle: {
+            warningInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            dangerInteractiveColorTitle: {
+            dangerInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
@@ -1979,17 +1980,17 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
                 fontSize: number;
                 fontWeight: string;
             };
-            successInteractiveColorTitle: {
+            successInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            warningInteractiveColorTitle: {
+            warningInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            dangerInteractiveColorTitle: {
+            dangerInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
@@ -2188,17 +2189,17 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
                 fontSize: number;
                 fontWeight: string;
             };
-            successInteractiveColorTitle: {
+            successInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            warningInteractiveColorTitle: {
+            warningInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            dangerInteractiveColorTitle: {
+            dangerInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
@@ -2350,17 +2351,17 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
                 fontSize: number;
                 fontWeight: string;
             };
-            successInteractiveColorTitle: {
+            successInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            warningInteractiveColorTitle: {
+            warningInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            dangerInteractiveColorTitle: {
+            dangerInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
@@ -2369,7 +2370,10 @@ export declare const BaseBox: import("react").ForwardRefExoticComponent<import("
     }> & Pick<import("react-native").ViewProps & {
         children?: ReactNode;
     }, "children" | "style" | "testID" | "hitSlop" | "onLayout" | "pointerEvents" | "removeClippedSubviews" | "nativeID" | "collapsable" | "needsOffscreenAlphaCompositing" | "renderToHardwareTextureAndroid" | "focusable" | "shouldRasterizeIOS" | "isTVSelectable" | "hasTVPreferredFocus" | "tvParallaxProperties" | "tvParallaxShiftDistanceX" | "tvParallaxShiftDistanceY" | "tvParallaxTiltAngle" | "tvParallaxMagnification" | "onStartShouldSetResponder" | "onMoveShouldSetResponder" | "onResponderEnd" | "onResponderGrant" | "onResponderReject" | "onResponderMove" | "onResponderRelease" | "onResponderStart" | "onResponderTerminationRequest" | "onResponderTerminate" | "onStartShouldSetResponderCapture" | "onMoveShouldSetResponderCapture" | "onTouchStart" | "onTouchMove" | "onTouchEnd" | "onTouchCancel" | "onTouchEndCapture" | "accessible" | "accessibilityActions" | "accessibilityLabel" | "accessibilityRole" | "accessibilityState" | "accessibilityHint" | "accessibilityValue" | "onAccessibilityAction" | "accessibilityLiveRegion" | "importantForAccessibility" | "accessibilityElementsHidden" | "accessibilityViewIsModal" | "onAccessibilityEscape" | "onAccessibilityTap" | "onMagicTap" | "accessibilityIgnoresInvertColors"> & import("react").RefAttributes<unknown>> | undefined;
-};
-export interface BaseBoxProps extends BoxProps<FractalTheme> {
+}>;
+export interface BoxProps extends Omit<NativeBoxProps<FractalTheme>, 'children'> {
+    children: ReactNode;
+}
+export interface BaseBoxProps extends ComponentProps<typeof BaseBox> {
     children: ReactNode;
 }

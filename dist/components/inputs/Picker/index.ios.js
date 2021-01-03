@@ -26,14 +26,10 @@ import { usePickerState } from './hooks/usePickerState';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { Text } from '../../Text';
 import { BaseBox } from '../../baseComponents/BaseBox';
-import { Modal } from 'react-native';
-import { BaseSafeAreaView } from '../../baseComponents/BaseSafeAreaView';
-import { BasePressable } from '../../baseComponents/BasePressable';
-import { Cell } from '../../containers/Cell';
+import { ModalCell } from '../../ModalCell';
 import { BasePicker } from '../../baseComponents/BasePicker';
 import { Picker as NativePicker } from '@react-native-picker/picker';
-import { BaseTouchableOpacity } from '../../baseComponents';
-import { PaddedContainer } from '../../containers';
+import { BaseTouchableOpacity } from '../../baseComponents/BaseTouchableOpacity';
 import { Button } from '../../buttons/Button';
 var Entypo = memo(BaseEntypo);
 export function Picker(props) {
@@ -51,19 +47,13 @@ export function Picker(props) {
         toggleModal();
     }, [setFinalIndex, index, toggleModal, onChange, items]);
     return (React.createElement(React.Fragment, null,
-        React.createElement(BasePressable, __assign({ flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 's', borderRadius: 'textFieldRadius', height: theme.interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor', onPress: toggleModal }, others),
+        React.createElement(BaseTouchableOpacity, __assign({ flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 's', borderRadius: 'textFieldRadius', height: theme.interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor', onPress: toggleModal }, others),
             React.createElement(BaseBox, { flexGrow: 1, justifyContent: 'center' },
                 React.createElement(Text, { fontSize: 14 }, items[finalIndex][1])),
             React.createElement(BaseBox, { position: 'absolute', top: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center', paddingRight: 's' },
                 React.createElement(Entypo, { name: 'chevron-down', size: 21, color: theme.colors.placeholderColor }))),
-        React.createElement(Modal, { visible: modalActive, animationType: 'fade', transparent: true },
-            React.createElement(BaseSafeAreaView, { flex: 1, justifyContent: 'flex-end' },
-                React.createElement(BasePressable, { onPress: toggleModal, position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: 'black', opacity: 0.6 }),
-                React.createElement(PaddedContainer, null,
-                    React.createElement(Cell, null,
-                        React.createElement(BaseTouchableOpacity, { justifyContent: 'center', alignItems: 'center', backgroundColor: 'background', alignSelf: 'flex-end', width: 32, height: 32, borderRadius: 'l', onPress: toggleModal },
-                            React.createElement(Entypo, { name: 'cross', size: 21, color: theme.colors.placeholderColor })),
-                        React.createElement(BasePicker, { itemStyle: { height: 160 }, selectedValue: currentValue, onValueChange: handleValueChange }, items.map(function (item) { return (React.createElement(NativePicker.Item, { color: theme.colors.textColor, label: item[1], value: item[0], key: item[0] })); })),
-                        React.createElement(Button, { variant: 'mainInteractiveColor', onPress: pickFinalValue, text: iosDoneText })))))));
+        React.createElement(ModalCell, { visible: modalActive, animationType: 'fade', transparent: true, onDismiss: toggleModal, justifyContent: 'flex-end' },
+            React.createElement(BasePicker, { selectedValue: currentValue, onValueChange: handleValueChange }, items.map(function (item) { return (React.createElement(NativePicker.Item, { color: theme.colors.textColor, label: item[1], value: item[0], key: item[0] })); })),
+            React.createElement(Button, { variant: 'mainInteractiveColor', onPress: pickFinalValue, text: iosDoneText }))));
 }
 //# sourceMappingURL=index.ios.js.map

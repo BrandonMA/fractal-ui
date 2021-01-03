@@ -145,17 +145,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontSize: number;
             fontWeight: string;
         };
-        successInteractiveColorTitle: {
+        successInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        warningInteractiveColorTitle: {
+        warningInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        dangerInteractiveColorTitle: {
+        dangerInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
@@ -307,17 +307,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontSize: number;
             fontWeight: string;
         };
-        successInteractiveColorTitle: {
+        successInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        warningInteractiveColorTitle: {
+        warningInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        dangerInteractiveColorTitle: {
+        dangerInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
@@ -469,17 +469,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontSize: number;
             fontWeight: string;
         };
-        successInteractiveColorTitle: {
+        successInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        warningInteractiveColorTitle: {
+        warningInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        dangerInteractiveColorTitle: {
+        dangerInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
@@ -631,17 +631,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontSize: number;
             fontWeight: string;
         };
-        successInteractiveColorTitle: {
+        successInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        warningInteractiveColorTitle: {
+        warningInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        dangerInteractiveColorTitle: {
+        dangerInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
@@ -793,17 +793,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontSize: number;
             fontWeight: string;
         };
-        successInteractiveColorTitle: {
+        successInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        warningInteractiveColorTitle: {
+        warningInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        dangerInteractiveColorTitle: {
+        dangerInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
@@ -963,17 +963,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontSize: number;
             fontWeight: string;
         };
-        successInteractiveColorTitle: {
+        successInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        warningInteractiveColorTitle: {
+        warningInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        dangerInteractiveColorTitle: {
+        dangerInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
@@ -1125,17 +1125,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontSize: number;
             fontWeight: string;
         };
-        successInteractiveColorTitle: {
+        successInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        warningInteractiveColorTitle: {
+        warningInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        dangerInteractiveColorTitle: {
+        dangerInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
@@ -1290,17 +1290,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontSize: number;
                 fontWeight: string;
             };
-            successInteractiveColorTitle: {
+            successInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            warningInteractiveColorTitle: {
+            warningInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            dangerInteractiveColorTitle: {
+            dangerInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
@@ -1452,17 +1452,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontSize: number;
                 fontWeight: string;
             };
-            successInteractiveColorTitle: {
+            successInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            warningInteractiveColorTitle: {
+            warningInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            dangerInteractiveColorTitle: {
+            dangerInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
@@ -1614,17 +1614,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontSize: number;
                 fontWeight: string;
             };
-            successInteractiveColorTitle: {
+            successInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            warningInteractiveColorTitle: {
+            warningInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            dangerInteractiveColorTitle: {
+            dangerInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
@@ -1776,17 +1776,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontSize: number;
                 fontWeight: string;
             };
-            successInteractiveColorTitle: {
+            successInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            warningInteractiveColorTitle: {
+            warningInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            dangerInteractiveColorTitle: {
+            dangerInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
@@ -1938,17 +1938,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontSize: number;
                 fontWeight: string;
             };
-            successInteractiveColorTitle: {
+            successInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            warningInteractiveColorTitle: {
+            warningInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            dangerInteractiveColorTitle: {
+            dangerInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
@@ -2108,17 +2108,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontSize: number;
                 fontWeight: string;
             };
-            successInteractiveColorTitle: {
+            successInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            warningInteractiveColorTitle: {
+            warningInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            dangerInteractiveColorTitle: {
+            dangerInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
@@ -2270,17 +2270,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontSize: number;
                 fontWeight: string;
             };
-            successInteractiveColorTitle: {
+            successInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            warningInteractiveColorTitle: {
+            warningInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;
             };
-            dangerInteractiveColorTitle: {
+            dangerInteractiveTitle: {
                 color: string;
                 fontSize: number;
                 fontWeight: string;

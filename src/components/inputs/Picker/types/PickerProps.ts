@@ -1,6 +1,6 @@
-import { BaseBoxProps } from '../../../baseComponents/BaseBox';
+import { BoxProps } from '../../../baseComponents/BaseBox';
 
-export interface PickerProps extends Omit<BaseBoxProps, 'children'> {
+export interface PickerProps extends Omit<BoxProps, 'children'> {
     items: Array<[string, string]>;
     onChange?: (pair: [string, string]) => void;
     iosDoneText: string;

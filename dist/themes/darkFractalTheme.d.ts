@@ -144,17 +144,17 @@ export declare const darkFractalTheme: {
             fontSize: number;
             fontWeight: string;
         };
-        successInteractiveColorTitle: {
+        successInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        warningInteractiveColorTitle: {
+        warningInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;
         };
-        dangerInteractiveColorTitle: {
+        dangerInteractiveTitle: {
             color: string;
             fontSize: number;
             fontWeight: string;

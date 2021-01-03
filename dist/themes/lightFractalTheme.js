@@ -152,17 +152,17 @@ export var lightFractalTheme = createTheme({
             fontSize: 27,
             fontWeight: '700'
         },
-        successInteractiveColorTitle: {
+        successInteractiveTitle: {
             color: 'successInteractiveColor',
             fontSize: 27,
             fontWeight: '700'
         },
-        warningInteractiveColorTitle: {
+        warningInteractiveTitle: {
             color: 'warningInteractiveColor',
             fontSize: 27,
             fontWeight: '700'
         },
-        dangerInteractiveColorTitle: {
+        dangerInteractiveTitle: {
             color: 'dangerInteractiveColor',
             fontSize: 27,
             fontWeight: '700'

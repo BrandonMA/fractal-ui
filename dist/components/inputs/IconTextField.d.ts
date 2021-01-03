@@ -1,12 +1,11 @@
 /// <reference types="react" />
 import { BaseBoxProps } from '../baseComponents/BaseBox';
 import { BaseTextFieldProps } from '../baseComponents/BaseTextField';
-interface IconTextFieldProps extends Omit<BaseBoxProps, 'children'> {
+export interface IconTextFieldProps extends Omit<BaseBoxProps, 'children'> {
     leftImage: (color: string, size: number) => JSX.Element;
-    value: string;
+    value?: string;
     onChangeText?: (text: string) => void;
     placeholder: string;
     textFieldProps?: BaseTextFieldProps;
 }
 export declare function IconTextField(props: IconTextFieldProps): JSX.Element;
-export {};

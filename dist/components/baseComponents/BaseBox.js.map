@@ -1,1 +1,1 @@
-{"version":3,"file":"BaseBox.js","sourceRoot":"","sources":["../../../src/components/baseComponents/BaseBox.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAY,MAAM,kBAAkB,CAAC;AAIvD,MAAM,CAAC,IAAM,OAAO,GAAG,SAAS,EAAgB,CAAC"}
+{"version":3,"file":"BaseBox.js","sourceRoot":"","sources":["../../../src/components/baseComponents/BaseBox.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAA8B,MAAM,kBAAkB,CAAC;AAGzE,OAAO,EAAE,QAAQ,EAAE,MAAM,cAAc,CAAC;AAExC,MAAM,CAAC,IAAM,OAAO,GAAG,QAAQ,CAAC,uBAAuB,CAAC,SAAS,EAAgB,CAAC,CAAC"}

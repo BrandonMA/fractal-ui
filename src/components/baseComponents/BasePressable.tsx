@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 import { Animated, Pressable, PressableProps } from 'react-native';
-import { BaseBoxProps } from './../baseComponents/BaseBox';
 import { useCursorStyles } from './hooks/useCursorStyles';
+import { BoxProps } from './BaseBox';
 
-export interface BasePressableProps extends Omit<BaseBoxProps, 'children'>, PressableProps {
+export interface BasePressableProps extends Omit<BoxProps, 'children'>, PressableProps {
     children?: ReactNode;
 }
 

@@ -5,4 +5,6 @@ export * from './Text';
 export * from './buttons';
 export * from './Separator';
 export * from './tables';
+export * from './ModalCell';
+export * from './messages';
 //# sourceMappingURL=index.js.map

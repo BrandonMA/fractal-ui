@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react';
 import { useRestyle } from '@shopify/restyle';
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
-import { BaseBoxProps } from './../baseComponents/BaseBox';
 import { restyleFunctions } from './restyleFunctions';
+import { BoxProps } from './BaseBox';
 
-export interface BaseTouchableOpacityProps extends Omit<BaseBoxProps, 'children'>, TouchableOpacityProps {
+export interface BaseTouchableOpacityProps extends Omit<BoxProps, 'children'>, TouchableOpacityProps {
     children: ReactNode;
 }
 
