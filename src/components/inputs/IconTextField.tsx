@@ -7,7 +7,8 @@ import { useTheme } from '@shopify/restyle';
 import { BaseTextFieldProps } from '../baseComponents/BaseTextField';
 
 export interface IconTextFieldProps extends Omit<BaseBoxProps, 'children'> {
-    leftImage: (color: string, size: number) => JSX.Element;
+    leftImage?: (color: string, size: number) => JSX.Element;
+    rightImage?: (color: string, size: number) => JSX.Element;
     value?: string;
     onChangeText?: (text: string) => void;
     placeholder: string;
@@ -15,7 +16,7 @@ export interface IconTextFieldProps extends Omit<BaseBoxProps, 'children'> {
 }
 
 export function IconTextField(props: IconTextFieldProps): JSX.Element {
-    const { leftImage, value, placeholder, onChangeText, textFieldProps, ...others } = props;
+    const { leftImage, rightImage, value, placeholder, onChangeText, textFieldProps, ...others } = props;
     const theme = useTheme<FractalTheme>();
 
     return (
@@ -26,17 +27,25 @@ export function IconTextField(props: IconTextFieldProps): JSX.Element {
             backgroundColor='textFieldColor'
             {...others}
         >
-            <BaseBox alignSelf='center' height={theme.textFields.iconSize} width={theme.textFields.iconSize}>
-                {leftImage(theme.colors.placeholderColor, theme.textFields.iconSize)}
-            </BaseBox>
+            {leftImage != null ? (
+                <BaseBox alignSelf='center' height={theme.textFields.iconSize} width={theme.textFields.iconSize}>
+                    {leftImage(theme.colors.placeholderColor, theme.textFields.iconSize)}
+                </BaseBox>
+            ) : null}
             <TextField
-                paddingLeft='xs'
+                paddingLeft={leftImage != null ? 'xs' : undefined}
+                paddingRight={rightImage != null ? 'xs' : undefined}
                 flexGrow={1}
                 value={value}
                 onChangeText={onChangeText}
                 placeholder={placeholder}
                 {...textFieldProps}
             />
+            {rightImage != null ? (
+                <BaseBox alignSelf='center' height={theme.textFields.iconSize} width={theme.textFields.iconSize}>
+                    {rightImage(theme.colors.placeholderColor, theme.textFields.iconSize)}
+                </BaseBox>
+            ) : null}
         </HorizontalView>
     );
 }
