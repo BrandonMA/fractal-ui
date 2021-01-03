@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
 import { BasePressableProps } from '../../baseComponents/BasePressable';
-import { ButtonVariant } from './ButtonVariant';
+import { BasicColors } from '../../types/BasicColors';
 
 export interface ButtonProps extends Omit<BasePressableProps, 'children'> {
     children?: ReactNode;
     text?: string;
     addShadow?: boolean;
-    variant: ButtonVariant;
+    variant: BasicColors;
     reduceColor?: boolean;
 }

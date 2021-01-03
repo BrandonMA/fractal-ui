@@ -1,4 +1,4 @@
 export * from './ButtonProps';
-export * from './ButtonVariant';
+export * from '../../types/BasicColors';
 export * from './TitleButtonVariant';
 //# sourceMappingURL=index.js.map

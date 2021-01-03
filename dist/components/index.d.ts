@@ -7,3 +7,5 @@ export * from './Separator';
 export * from './tables';
 export * from './ModalCell';
 export * from './messages';
+export * from './colors';
+export * from './types';

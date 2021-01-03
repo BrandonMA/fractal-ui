@@ -18,10 +18,14 @@ import {
     Separator,
     Message,
     ErrorMessage,
-    SearchBar
+    SearchBar,
+    ColorToggle,
+    ColorPicker
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
+import { useTheme } from '@shopify/restyle';
+import { brinkPink, FractalTheme, purple } from './dist';
 
 const Entypo = memo(BaseEntypo);
 const detailsCardContent: Array<[string, string]> = [
@@ -49,6 +53,25 @@ function BuggyComponent(): JSX.Element {
     }, [showError]);
 
     return <Button variant={'dangerInteractiveColor'} text='Trigger Error' onPress={triggerError} />;
+}
+
+function FinalColorPicker(): JSX.Element {
+    const theme = useTheme<FractalTheme>();
+
+    return (
+        <ColorPicker
+            onColorChange={(color) => console.log(color)}
+            colors={[
+                theme.colors.mainInteractiveColor,
+                theme.colors.alternativeInteractiveColor,
+                theme.colors.successInteractiveColor,
+                theme.colors.dangerInteractiveColor,
+                theme.colors.warningInteractiveColor,
+                purple.base,
+                brinkPink.base
+            ]}
+        />
+    );
 }
 
 function App(): JSX.Element {
@@ -131,7 +154,9 @@ function App(): JSX.Element {
                                 <ErrorMessage marginBottom={'m'}>
                                     <BuggyComponent />
                                 </ErrorMessage>
-                                <SearchBar placeholder={'Search...'} />
+                                <SearchBar placeholder={'Search...'} marginBottom={'m'} />
+                                <ColorToggle backgroundColor={brinkPink.base} marginBottom={'m'} />
+                                <FinalColorPicker />
                             </Cell>
                         </PaddedContainer>
                         <SocialMediaButtons />
