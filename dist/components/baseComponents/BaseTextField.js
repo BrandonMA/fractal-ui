@@ -13,9 +13,9 @@ import React from 'react';
 import { TextInput } from 'react-native';
 import { useCustomWebStyles } from './hooks/useCustomWebStyles';
 export function BaseTextField(props) {
-    var restyleProps = useCustomWebStyles({
+    var customProps = useCustomWebStyles({
         outline: 'none'
     }, props);
-    return React.createElement(TextInput, __assign({}, restyleProps));
+    return React.createElement(TextInput, __assign({}, customProps));
 }
 //# sourceMappingURL=BaseTextField.js.map

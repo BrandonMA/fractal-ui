@@ -46,14 +46,19 @@ export function Picker(props) {
         }
         toggleModal();
     }, [setFinalIndex, index, toggleModal, onChange, items]);
+    var renderItem = useCallback(function (item) {
+        var value = item[0];
+        var label = item[1];
+        return React.createElement(NativePicker.Item, { color: theme.colors.black, label: label, value: value, key: value });
+    }, [theme.colors.black]);
     return (React.createElement(React.Fragment, null,
         React.createElement(BaseTouchableOpacity, __assign({ flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 's', borderRadius: 'textFieldRadius', height: theme.interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor', onPress: toggleModal }, others),
             React.createElement(BaseBox, { flexGrow: 1, justifyContent: 'center' },
                 React.createElement(Text, { fontSize: 14 }, items[finalIndex][1])),
-            React.createElement(BaseBox, { position: 'absolute', top: 0, right: 0, bottom: 0, justifyContent: 'center', alignItems: 'center', paddingRight: 's' },
+            React.createElement(BaseBox, { alignSelf: 'center' },
                 React.createElement(Entypo, { name: 'chevron-down', size: 21, color: theme.colors.placeholderColor }))),
         React.createElement(ModalCell, { visible: modalActive, animationType: 'fade', transparent: true, onDismiss: toggleModal, justifyContent: 'flex-end' },
-            React.createElement(BasePicker, { selectedValue: currentValue, onValueChange: handleValueChange }, items.map(function (item) { return (React.createElement(NativePicker.Item, { color: theme.colors.textColor, label: item[1], value: item[0], key: item[0] })); })),
+            React.createElement(BasePicker, { selectedValue: currentValue, onValueChange: handleValueChange }, items.map(renderItem)),
             React.createElement(Button, { variant: 'mainInteractiveColor', onPress: pickFinalValue, text: iosDoneText }))));
 }
 //# sourceMappingURL=index.ios.js.map

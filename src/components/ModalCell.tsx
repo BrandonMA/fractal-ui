@@ -19,18 +19,19 @@ export function ModalCell(props: ModalProps): JSX.Element {
     const { children, justifyContent, onDismiss, visible, ...others } = props;
     const theme = useTheme<FractalTheme>();
 
-    const yValue = useRef(new Animated.Value(Dimensions.get('screen').height)).current;
-    const showAnimation = useSpringAnimation(yValue, 0);
+    const screenHeight = Dimensions.get('screen').height;
+    const yOffset = useRef(new Animated.Value(screenHeight)).current;
+    const showAnimation = useSpringAnimation(yOffset, 0);
+
+    const style = useMemo(() => {
+        return { transform: [{ translateY: yOffset }] };
+    }, [yOffset]);
 
     useEffect(() => {
         if (visible) {
             showAnimation();
         }
     }, [showAnimation, visible]);
-
-    const styles = useMemo(() => {
-        return { transform: [{ translateY: yValue }] };
-    }, [yValue]);
 
     return (
         <NativeModal visible={visible} {...others}>
@@ -45,7 +46,7 @@ export function ModalCell(props: ModalProps): JSX.Element {
                     backgroundColor='black'
                     opacity={0.6}
                 />
-                <PaddedContainer style={styles}>
+                <PaddedContainer style={style}>
                     <Cell maxWidth={540}>
                         <BaseTouchableOpacity
                             justifyContent='center'

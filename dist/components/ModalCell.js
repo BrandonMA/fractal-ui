@@ -32,20 +32,21 @@ var Entypo = memo(BaseEntypo);
 export function ModalCell(props) {
     var children = props.children, justifyContent = props.justifyContent, onDismiss = props.onDismiss, visible = props.visible, others = __rest(props, ["children", "justifyContent", "onDismiss", "visible"]);
     var theme = useTheme();
-    var yValue = useRef(new Animated.Value(Dimensions.get('screen').height)).current;
-    var showAnimation = useSpringAnimation(yValue, 0);
+    var screenHeight = Dimensions.get('screen').height;
+    var yOffset = useRef(new Animated.Value(screenHeight)).current;
+    var showAnimation = useSpringAnimation(yOffset, 0);
+    var style = useMemo(function () {
+        return { transform: [{ translateY: yOffset }] };
+    }, [yOffset]);
     useEffect(function () {
         if (visible) {
             showAnimation();
         }
     }, [showAnimation, visible]);
-    var styles = useMemo(function () {
-        return { transform: [{ translateY: yValue }] };
-    }, [yValue]);
     return (React.createElement(NativeModal, __assign({ visible: visible }, others),
         React.createElement(BaseSafeAreaView, { flex: 1, justifyContent: justifyContent },
             React.createElement(BasePressable, { onPress: onDismiss, position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: 'black', opacity: 0.6 }),
-            React.createElement(PaddedContainer, { style: styles },
+            React.createElement(PaddedContainer, { style: style },
                 React.createElement(Cell, { maxWidth: 540 },
                     React.createElement(BaseTouchableOpacity, { justifyContent: 'center', alignItems: 'center', backgroundColor: 'background', alignSelf: 'flex-end', width: 32, height: 32, borderRadius: 'l', onPress: onDismiss },
                         React.createElement(Entypo, { name: 'cross', size: 21, color: theme.colors.placeholderColor })),

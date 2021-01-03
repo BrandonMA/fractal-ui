@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { usePickerState } from './hooks/usePickerState';
 import { PickerProps } from './types/PickerProps';
@@ -22,6 +22,15 @@ export function Picker(props: PickerProps): JSX.Element {
     const [currentValue, handleValueChange] = usePickerState(items, onChange);
     const theme = useTheme<FractalTheme>();
 
+    const renderItem = useCallback(
+        (item) => {
+            const value = item[0];
+            const label = item[1];
+            return <NativePicker.Item color={theme.colors.black} label={label} value={value} key={value} />;
+        },
+        [theme.colors.black]
+    );
+
     return (
         <HorizontalView
             justifyContent='center'
@@ -43,11 +52,9 @@ export function Picker(props: PickerProps): JSX.Element {
                 flexGrow={1}
                 style={Platform.OS === 'web' ? style : undefined}
             >
-                {items.map((item) => (
-                    <NativePicker.Item color={theme.colors.black} label={item[1]} value={item[0]} key={item[0]} />
-                ))}
+                {items.map(renderItem)}
             </BasePicker>
-            <BaseBox position='absolute' top={0} right={0} bottom={0} justifyContent='center' alignItems='center' paddingRight='s'>
+            <BaseBox alignSelf='center'>
                 <Entypo name='chevron-down' size={21} color={theme.colors.placeholderColor} />
             </BaseBox>
         </HorizontalView>

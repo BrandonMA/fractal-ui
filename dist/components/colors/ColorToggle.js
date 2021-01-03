@@ -33,21 +33,30 @@ export function ColorToggle(props) {
     var animatedValue = useRef(new Animated.Value(0)).current;
     var showAnimation = useShowAnimation(animatedValue);
     var hideAnimation = useHideAnimation(animatedValue);
+    var iconStyle = useMemo(function () {
+        return { opacity: animatedValue, transform: [{ scale: animatedValue }] };
+    }, [animatedValue]);
+    var handleControlledActiveToggle = useCallback(function () {
+        if (onActiveChange) {
+            onActiveChange(!active, backgroundColor);
+        }
+    }, [onActiveChange, active, backgroundColor]);
+    var handleUncontrolledActiveToggle = useCallback(function () {
+        setActive(function (currentValue) {
+            if (onActiveChange != null) {
+                onActiveChange(!currentValue, backgroundColor);
+            }
+            return !currentValue;
+        });
+    }, [setActive, onActiveChange, backgroundColor]);
     var handlePress = useCallback(function () {
         if (active != null) {
-            if (onActiveChange) {
-                onActiveChange(!active, backgroundColor);
-            }
+            handleControlledActiveToggle();
         }
         else {
-            setActive(function (currentValue) {
-                if (onActiveChange != null) {
-                    onActiveChange(!currentValue, backgroundColor);
-                }
-                return !currentValue;
-            });
+            handleUncontrolledActiveToggle();
         }
-    }, [onActiveChange, setActive, backgroundColor, active]);
+    }, [active, handleUncontrolledActiveToggle, handleControlledActiveToggle]);
     useEffect(function () {
         if (internalActive || active) {
             showAnimation();
@@ -56,10 +65,7 @@ export function ColorToggle(props) {
             hideAnimation();
         }
     }, [internalActive, showAnimation, hideAnimation, active]);
-    var styles = useMemo(function () {
-        return { opacity: animatedValue, transform: [{ scale: animatedValue }] };
-    }, [animatedValue]);
     return (React.createElement(BasePressable, __assign({ onPress: handlePress, width: 40, height: 40, borderRadius: 'xl', justifyContent: 'center', alignItems: 'center', style: { backgroundColor: backgroundColor } }, others),
-        React.createElement(Entypo, { selectable: false, name: 'check', size: 24, color: 'white', style: styles })));
+        React.createElement(Entypo, { selectable: false, name: 'check', size: 24, color: 'white', style: iconStyle })));
 }
 //# sourceMappingURL=ColorToggle.js.map

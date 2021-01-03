@@ -107,6 +107,13 @@ function App(): JSX.Element {
                                     placeholder='Placeholder...'
                                     marginBottom='m'
                                 />
+                                <IconTextField
+                                    rightImage={renderEmailIcon}
+                                    value={text}
+                                    onChangeText={setText}
+                                    placeholder='Placeholder...'
+                                    marginBottom='m'
+                                />
                                 <ThemeSwapper />
                                 <Text variant='title' marginBottom='m'>
                                     Title

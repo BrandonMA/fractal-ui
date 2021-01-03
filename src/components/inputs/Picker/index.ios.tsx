@@ -19,7 +19,6 @@ export function Picker(props: PickerProps): JSX.Element {
     const [currentValue, handleValueChange, index] = usePickerState(items);
     const theme = useTheme<FractalTheme>();
     const [finalIndex, setFinalIndex] = useState(0);
-
     const [modalActive, setModalActive] = useState(false);
 
     const toggleModal = useCallback(() => setModalActive((current) => !current), [setModalActive]);
@@ -31,6 +30,15 @@ export function Picker(props: PickerProps): JSX.Element {
         }
         toggleModal();
     }, [setFinalIndex, index, toggleModal, onChange, items]);
+
+    const renderItem = useCallback(
+        (item) => {
+            const value = item[0];
+            const label = item[1];
+            return <NativePicker.Item color={theme.colors.black} label={label} value={value} key={value} />;
+        },
+        [theme.colors.black]
+    );
 
     return (
         <>
@@ -47,15 +55,13 @@ export function Picker(props: PickerProps): JSX.Element {
                 <BaseBox flexGrow={1} justifyContent='center'>
                     <Text fontSize={14}>{items[finalIndex][1]}</Text>
                 </BaseBox>
-                <BaseBox position='absolute' top={0} right={0} bottom={0} justifyContent='center' alignItems='center' paddingRight='s'>
+                <BaseBox alignSelf='center'>
                     <Entypo name='chevron-down' size={21} color={theme.colors.placeholderColor} />
                 </BaseBox>
             </BaseTouchableOpacity>
             <ModalCell visible={modalActive} animationType='fade' transparent onDismiss={toggleModal} justifyContent='flex-end'>
                 <BasePicker selectedValue={currentValue} onValueChange={handleValueChange}>
-                    {items.map((item) => (
-                        <NativePicker.Item color={theme.colors.textColor} label={item[1]} value={item[0]} key={item[0]} />
-                    ))}
+                    {items.map(renderItem)}
                 </BasePicker>
                 <Button variant='mainInteractiveColor' onPress={pickFinalValue} text={iosDoneText} />
             </ModalCell>

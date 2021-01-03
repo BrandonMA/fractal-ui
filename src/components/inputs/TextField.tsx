@@ -5,6 +5,7 @@ import { BaseTextField, BaseTextFieldProps } from '../baseComponents/BaseTextFie
 
 export function TextField(props: BaseTextFieldProps): JSX.Element {
     const theme = useTheme<FractalTheme>();
+
     return (
         <BaseTextField
             borderRadius='textFieldRadius'

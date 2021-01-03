@@ -8,11 +8,11 @@ import { BoxProps } from './BaseBox';
 export interface BaseTextFieldProps extends Omit<BoxProps, 'children'>, ColorProps<FractalTheme>, TextInputProps {}
 
 export function BaseTextField(props: BaseTextFieldProps): JSX.Element {
-    const restyleProps = useCustomWebStyles(
+    const customProps = useCustomWebStyles(
         {
             outline: 'none'
         },
         props
     ) as BaseTextFieldProps;
-    return <TextInput {...restyleProps} />;
+    return <TextInput {...customProps} />;
 }

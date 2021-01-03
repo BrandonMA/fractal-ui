@@ -10,6 +10,7 @@ interface DetailsRowProps extends Omit<BaseBoxProps, 'children'> {
 
 export function DetailsRow(props: DetailsRowProps): JSX.Element {
     const { title, details, ...others } = props;
+
     return (
         <HorizontalView alignItems='center' {...others}>
             <BaseBox flexGrow={1}>

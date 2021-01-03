@@ -21,20 +21,32 @@ export function ColorToggle(props: ColorToggleProps): JSX.Element {
     const showAnimation = useShowAnimation(animatedValue);
     const hideAnimation = useHideAnimation(animatedValue);
 
+    const iconStyle = useMemo(() => {
+        return { opacity: animatedValue, transform: [{ scale: animatedValue }] };
+    }, [animatedValue]);
+
+    const handleControlledActiveToggle = useCallback(() => {
+        if (onActiveChange) {
+            onActiveChange(!active, backgroundColor);
+        }
+    }, [onActiveChange, active, backgroundColor]);
+
+    const handleUncontrolledActiveToggle = useCallback(() => {
+        setActive((currentValue) => {
+            if (onActiveChange != null) {
+                onActiveChange(!currentValue, backgroundColor);
+            }
+            return !currentValue;
+        });
+    }, [setActive, onActiveChange, backgroundColor]);
+
     const handlePress = useCallback(() => {
         if (active != null) {
-            if (onActiveChange) {
-                onActiveChange(!active, backgroundColor);
-            }
+            handleControlledActiveToggle();
         } else {
-            setActive((currentValue) => {
-                if (onActiveChange != null) {
-                    onActiveChange(!currentValue, backgroundColor);
-                }
-                return !currentValue;
-            });
+            handleUncontrolledActiveToggle();
         }
-    }, [onActiveChange, setActive, backgroundColor, active]);
+    }, [active, handleUncontrolledActiveToggle, handleControlledActiveToggle]);
 
     useEffect(() => {
         if (internalActive || active) {
@@ -43,10 +55,6 @@ export function ColorToggle(props: ColorToggleProps): JSX.Element {
             hideAnimation();
         }
     }, [internalActive, showAnimation, hideAnimation, active]);
-
-    const styles = useMemo(() => {
-        return { opacity: animatedValue, transform: [{ scale: animatedValue }] };
-    }, [animatedValue]);
 
     return (
         <BasePressable
@@ -59,7 +67,7 @@ export function ColorToggle(props: ColorToggleProps): JSX.Element {
             style={{ backgroundColor }}
             {...others}
         >
-            <Entypo selectable={false} name='check' size={24} color='white' style={styles} />
+            <Entypo selectable={false} name='check' size={24} color='white' style={iconStyle} />
         </BasePressable>
     );
 }

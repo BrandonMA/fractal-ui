@@ -9,6 +9,6 @@ export interface BaseTouchableOpacityProps extends Omit<BoxProps, 'children'>, T
 }
 
 export function BaseTouchableOpacity(props: BaseTouchableOpacityProps): JSX.Element {
-    const restyleProps = useRestyle(restyleFunctions, props) as BaseTouchableOpacityProps;
+    const restyleProps = useRestyle(restyleFunctions, props);
     return <TouchableOpacity {...restyleProps} />;
 }

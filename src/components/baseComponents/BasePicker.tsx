@@ -14,6 +14,6 @@ export interface BasePickerProps
 }
 
 export function BasePicker(props: BasePickerProps): JSX.Element {
-    const restyleProps = useRestyle(restyleFunctions, props) as BasePickerProps;
+    const restyleProps = useRestyle(restyleFunctions, props);
     return <Picker {...restyleProps} />;
 }
