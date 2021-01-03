@@ -2,8 +2,9 @@ import React, { ReactNode, Component } from 'react';
 import { Message } from './Message';
 import { Entypo } from '@expo/vector-icons';
 import { LayoutAnimation } from 'react-native';
+import { BaseBox, BaseBoxProps } from '../baseComponents/BaseBox';
 
-interface Props {
+interface Props extends BaseBoxProps {
     children: ReactNode;
 }
 
@@ -36,10 +37,11 @@ export class ErrorMessage extends Component<Props, State> {
                     title={this.state.errorTitle}
                     description={this.state.errorMessage}
                     icon={this.renderErrorIcon}
+                    {...this.props}
                 />
             );
         }
 
-        return this.props.children;
+        return <BaseBox {...this.props}>{this.props.children}</BaseBox>;
     }
 }

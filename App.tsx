@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { registerRootComponent } from 'expo';
 import {
     FractalAppRoot,
@@ -17,7 +17,8 @@ import {
     useThemeIdentifier,
     Separator,
     Message,
-    ErrorMessage
+    ErrorMessage,
+    SearchBar
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
@@ -53,14 +54,14 @@ function BuggyComponent(): JSX.Element {
 function App(): JSX.Element {
     const [text, setText] = useState('');
 
-    const renderEmailIcon = useMemo(
-        () => (color: string, size: number): JSX.Element => <Entypo name='email' size={size} color={color} />,
+    const renderEmailIcon = useCallback(
+        (color: string, size: number): JSX.Element => <Entypo name='email' size={size} color={color} />,
         []
     );
 
-    const renderChevronLeft = useMemo(() => (color: string): JSX.Element => <Entypo name='chevron-left' size={20} color={color} />, []);
+    const renderChevronLeft = useCallback((color: string): JSX.Element => <Entypo name='chevron-left' size={20} color={color} />, []);
 
-    const renderWarning = useMemo(() => (color: string): JSX.Element => <Entypo name={'warning'} size={20} color={color} />, []);
+    const renderWarning = useCallback((color: string): JSX.Element => <Entypo name={'warning'} size={20} color={color} />, []);
 
     return (
         <FractalAppRoot handleThemeManually={true}>
@@ -127,9 +128,10 @@ function App(): JSX.Element {
                                     icon={renderWarning}
                                     marginBottom={'m'}
                                 />
-                                <ErrorMessage>
+                                <ErrorMessage marginBottom={'m'}>
                                     <BuggyComponent />
                                 </ErrorMessage>
+                                <SearchBar placeholder={'Search...'} />
                             </Cell>
                         </PaddedContainer>
                         <SocialMediaButtons />
