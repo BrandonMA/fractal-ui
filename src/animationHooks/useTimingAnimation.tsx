@@ -1,19 +1,17 @@
 import { useCallback } from 'react';
 import { Animated, Platform } from 'react-native';
 
-export function useSpringAnimation(
+export function useTimingAnimation(
     animatedValue: Animated.Value,
     toValue: number | Animated.Value,
-    speed?: number,
-    bounciness?: number,
+    duration?: number,
     callback?: () => void
 ): () => void {
     return useCallback(() => {
-        Animated.spring(animatedValue, {
+        Animated.timing(animatedValue, {
             toValue,
             useNativeDriver: Platform.OS !== 'web',
-            speed,
-            bounciness
+            duration
         }).start(callback);
-    }, [animatedValue, toValue, speed, bounciness, callback]);
+    }, [animatedValue, toValue, callback, duration]);
 }

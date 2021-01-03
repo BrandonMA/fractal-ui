@@ -18,7 +18,7 @@ const style: any = {
 };
 
 export function Picker(props: PickerProps): JSX.Element {
-    const { items, onChange, ...others } = props;
+    const { items, onChange, disabled, ...others } = props;
     const [currentValue, handleValueChange] = usePickerState(items, onChange);
     const theme = useTheme<FractalTheme>();
 
@@ -38,6 +38,7 @@ export function Picker(props: PickerProps): JSX.Element {
             borderRadius='textFieldRadius'
             height={theme.interactiveItems.textFieldHeight}
             backgroundColor='textFieldColor'
+            pointerEvents={disabled ? 'none' : 'auto'}
             {...others}
         >
             <BasePicker
@@ -55,7 +56,7 @@ export function Picker(props: PickerProps): JSX.Element {
                 {items.map(renderItem)}
             </BasePicker>
             <BaseBox alignSelf='center'>
-                <Entypo name='chevron-down' size={21} color={theme.colors.placeholderColor} />
+                <Entypo selectable={false} name='chevron-down' size={21} color={theme.colors.placeholderColor} />
             </BaseBox>
         </HorizontalView>
     );

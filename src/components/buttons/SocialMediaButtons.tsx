@@ -3,9 +3,9 @@ import { AppleButton } from './AppleButton';
 import { GoogleButton } from './GoogleButton';
 import { FacebookButton } from './FacebookButton';
 import { HorizontalView } from '../containers/HorizontalView';
-import { BaseBox } from '../baseComponents/BaseBox';
+import { BaseBox, BaseBoxProps } from '../baseComponents/BaseBox';
 
-interface SocialMediaButtonsProps {
+interface SocialMediaButtonsProps extends Omit<BaseBoxProps, 'children'> {
     onGooglePress?: () => void;
     onFacebookPress?: () => void;
     onApplePress?: () => void;
@@ -13,9 +13,9 @@ interface SocialMediaButtonsProps {
 }
 
 export function SocialMediaButtons(props: SocialMediaButtonsProps): JSX.Element {
-    const { onGooglePress, onFacebookPress, onApplePress, appleText } = props;
+    const { onGooglePress, onFacebookPress, onApplePress, appleText, ...others } = props;
     return (
-        <BaseBox padding='cell'>
+        <BaseBox padding='cell' {...others}>
             <HorizontalView marginBottom='m'>
                 <GoogleButton flexGrow={1} onPress={onGooglePress} />
                 <BaseBox width={16} />

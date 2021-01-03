@@ -17,7 +17,7 @@ export function ColorToggle(props: ColorToggleProps): JSX.Element {
     const { onActiveChange, backgroundColor, active, ...others } = props;
     const [internalActive, setActive] = useState(false);
 
-    const animatedValue = useRef(new Animated.Value(0)).current;
+    const animatedValue = useRef(new Animated.Value(active || internalActive ? 1 : 0)).current;
     const showAnimation = useShowAnimation(animatedValue);
     const hideAnimation = useHideAnimation(animatedValue);
 

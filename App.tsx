@@ -20,7 +20,8 @@ import {
     ErrorMessage,
     SearchBar,
     ColorToggle,
-    ColorPicker
+    ColorPicker,
+    DatePicker
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
@@ -36,6 +37,7 @@ const detailsCardContent: Array<[string, string]> = [
 function ThemeSwapper(): JSX.Element {
     const [, setThemeIdentifier] = useThemeIdentifier();
     const handlePress = useCallback(() => setThemeIdentifier((current) => (current === 'light' ? 'dark' : 'light')), [setThemeIdentifier]);
+
     return <Button onPress={handlePress} variant='alternativeInteractiveColor' text='Swap Theme' marginBottom='m' />;
 }
 
@@ -76,6 +78,8 @@ function FinalColorPicker(): JSX.Element {
 
 function App(): JSX.Element {
     const [text, setText] = useState('');
+    // const [showPopover, setShowPopover] = useState(false);
+    // const togglePopover = useCallback(() => setShowPopover((current) => !current), [setShowPopover]);
 
     const renderEmailIcon = useCallback(
         (color: string, size: number): JSX.Element => <Entypo name='email' size={size} color={color} />,
@@ -91,7 +95,7 @@ function App(): JSX.Element {
             <Background>
                 <SafeAreaView>
                     <ScrollView>
-                        <PaddedContainer>
+                        <PaddedContainer zIndex={2000}>
                             <DetailsList
                                 title='Title'
                                 titleVariant='warningInteractiveTitle'
@@ -140,7 +144,7 @@ function App(): JSX.Element {
                                 <TextButton alignSelf='baseline' variant='dangerInteractiveColor' text='Button' marginBottom='m' />
                                 <DetailsRow title='Title' details='Details' marginBottom='m' />
                                 <Picker
-                                    iosDoneText='Done'
+                                    iosDoneText='Select'
                                     items={[
                                         ['1', 'Hoy'],
                                         ['2', 'Ayer'],
@@ -150,7 +154,11 @@ function App(): JSX.Element {
                                     ]}
                                     marginBottom='m'
                                 />
-                                <Button variant='mainInteractiveColor' text='Button' reduceColor marginBottom={'m'} />
+                                <DatePicker
+                                    iosDoneText='Select'
+                                    marginBottom='m'
+                                    onChange={(date) => console.log(date.toLocaleDateString())}
+                                />
                                 <Message
                                     title='Title'
                                     messageType={'warning'}
