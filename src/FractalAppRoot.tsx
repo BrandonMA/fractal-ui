@@ -1,26 +1,15 @@
-import React, { ReactNode } from 'react';
-import { RecoilRoot } from 'recoil';
-import { enableScreens } from 'react-native-screens';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { FractalThemeRoot, FractalThemeAppRootProps } from './ThemeState/FractalThemeRoot';
-import { NavigationRoot } from './Navigation';
+import React from 'react';
+import { FractalThemeIdentifierProvider } from './context/FractalThemeIdentifierProvider';
+import { FractalThemeUpdater, FractalThemeUpdaterProps } from './FractalThemeUpdater';
 
-enableScreens();
-
-interface FractalAppRootProps extends FractalThemeAppRootProps {
-    children: ReactNode;
-}
+export type FractalAppRootProps = FractalThemeUpdaterProps;
 
 export function FractalAppRoot(props: FractalAppRootProps): JSX.Element {
-    const { children, themeSet } = props;
+    const { handleThemeManually } = props;
 
     return (
-        <RecoilRoot>
-            <FractalThemeRoot themeSet={themeSet}>
-                <NavigationRoot>
-                    <SafeAreaProvider>{children}</SafeAreaProvider>
-                </NavigationRoot>
-            </FractalThemeRoot>
-        </RecoilRoot>
+        <FractalThemeIdentifierProvider handleThemeManually={handleThemeManually ?? false}>
+            <FractalThemeUpdater {...props} />
+        </FractalThemeIdentifierProvider>
     );
 }
