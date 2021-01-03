@@ -5,4 +5,5 @@ export interface PickerProps extends Omit<BoxProps, 'children'> {
     onChange?: (pair: [string, string]) => void;
     iosDoneText?: string;
     disabled?: boolean;
+    initialValue?: string;
 }

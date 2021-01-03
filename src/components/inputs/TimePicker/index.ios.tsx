@@ -3,13 +3,17 @@ import { ModalCell } from '../../ModalCell';
 import { Button } from '../../buttons/Button';
 import { PickerButton } from '../PickerButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { DatePickerProps } from './types/DatePickerProps';
+import { TimePickerProps } from './types/TimePickerProps';
 
-export function DatePicker(props: DatePickerProps): JSX.Element {
-    const { initialDate, minDate, maxDate, onChange, iosDoneText, ...others } = props;
+export function TimePicker(props: TimePickerProps): JSX.Element {
+    const { onChange, iosDoneText, ...others } = props;
+
+    const initialValue = new Date();
+    initialValue.setSeconds(0);
+
+    const [date, setDate] = useState(initialValue);
+    const [finalDate, setFinalDate] = useState(initialValue);
     const [modalActive, setModalActive] = useState(false);
-    const [date, setDate] = useState(initialDate ?? new Date());
-    const [finalDate, setFinalDate] = useState(initialDate ?? new Date());
 
     const toggleModal = useCallback(() => setModalActive((current) => !current), [setModalActive]);
 
@@ -31,17 +35,10 @@ export function DatePicker(props: DatePickerProps): JSX.Element {
     return (
         <>
             <PickerButton onPress={toggleModal} {...others}>
-                {finalDate.toLocaleDateString()}
+                {finalDate.toLocaleTimeString()}
             </PickerButton>
             <ModalCell visible={modalActive} animationType='fade' transparent onDismiss={toggleModal} justifyContent='flex-end'>
-                <DateTimePicker
-                    value={date}
-                    mode={'date'}
-                    display='spinner'
-                    minimumDate={minDate}
-                    maximumDate={maxDate}
-                    onChange={handleChange}
-                />
+                <DateTimePicker value={date} mode={'time'} is24Hour={true} display='spinner' onChange={handleChange} />
                 <Button variant='mainInteractiveColor' text={iosDoneText} onPress={pickFinalValue} />
             </ModalCell>
         </>

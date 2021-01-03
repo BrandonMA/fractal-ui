@@ -19,14 +19,14 @@ import {
     Message,
     ErrorMessage,
     SearchBar,
-    ColorToggle,
     ColorPicker,
-    DatePicker
+    DatePicker,
+    TimePicker
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { useTheme } from '@shopify/restyle';
-import { brinkPink, FractalTheme, purple } from './dist';
+import { black, brinkPink, FractalTheme, lime, pink, purple } from './dist';
 
 const Entypo = memo(BaseEntypo);
 const detailsCardContent: Array<[string, string]> = [
@@ -61,18 +61,34 @@ function FinalColorPicker(): JSX.Element {
     const theme = useTheme<FractalTheme>();
 
     return (
-        <ColorPicker
-            onColorChange={(color) => console.log(color)}
-            colors={[
-                theme.colors.mainInteractiveColor,
-                theme.colors.alternativeInteractiveColor,
-                theme.colors.successInteractiveColor,
-                theme.colors.dangerInteractiveColor,
-                theme.colors.warningInteractiveColor,
-                purple.base,
-                brinkPink.base
-            ]}
-        />
+        <>
+            <ColorPicker
+                onColorChange={(color) => console.log(color)}
+                marginBottom={'m'}
+                colors={[
+                    theme.colors.mainInteractiveColor,
+                    theme.colors.alternativeInteractiveColor,
+                    theme.colors.successInteractiveColor,
+                    theme.colors.dangerInteractiveColor,
+                    theme.colors.warningInteractiveColor
+                ]}
+            />
+            <ColorPicker
+                onColorChange={(color) => console.log(color)}
+                colors={[
+                    theme.colors.mainInteractiveColor,
+                    theme.colors.alternativeInteractiveColor,
+                    theme.colors.successInteractiveColor,
+                    theme.colors.dangerInteractiveColor,
+                    theme.colors.warningInteractiveColor,
+                    purple.base,
+                    brinkPink.base,
+                    lime.base,
+                    pink.base,
+                    black.base
+                ]}
+            />
+        </>
     );
 }
 
@@ -153,11 +169,17 @@ function App(): JSX.Element {
                                         ['5', 'Cinco']
                                     ]}
                                     marginBottom='m'
+                                    initialValue={'5'}
                                 />
                                 <DatePicker
                                     iosDoneText='Select'
                                     marginBottom='m'
                                     onChange={(date) => console.log(date.toLocaleDateString())}
+                                />
+                                <TimePicker
+                                    iosDoneText='Select'
+                                    marginBottom='m'
+                                    onChange={(date) => console.log(date.toLocaleTimeString())}
                                 />
                                 <Message
                                     title='Title'
@@ -170,7 +192,6 @@ function App(): JSX.Element {
                                     <BuggyComponent />
                                 </ErrorMessage>
                                 <SearchBar placeholder={'Search...'} marginBottom={'m'} />
-                                <ColorToggle backgroundColor={brinkPink.base} marginBottom={'m'} />
                                 <FinalColorPicker />
                             </Cell>
                         </PaddedContainer>

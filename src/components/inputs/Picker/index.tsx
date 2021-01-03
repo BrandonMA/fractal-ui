@@ -18,8 +18,8 @@ const style: any = {
 };
 
 export function Picker(props: PickerProps): JSX.Element {
-    const { items, onChange, disabled, ...others } = props;
-    const [currentValue, handleValueChange] = usePickerState(items, onChange);
+    const { items, onChange, initialValue, disabled, ...others } = props;
+    const [currentValue, handleValueChange] = usePickerState(initialValue, items, onChange);
     const theme = useTheme<FractalTheme>();
 
     const renderItem = useCallback(

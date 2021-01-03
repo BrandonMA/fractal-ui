@@ -2,16 +2,18 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { HorizontalView } from '../../containers';
 import { Picker } from '../Picker';
 import { DatePickerProps } from './types/DatePickerProps';
-import { numberToArray } from './util/numberToArray';
+import { numberToArray } from '../util/numberToArray';
 import { getDaysInMonth } from './util/getDaysInMonth';
 import { getArrayWithYearsBetweenDates } from './util/getArrayWithYearsBetweenDates';
 import { localeMonthNames } from './util/localeMonthNames';
+import { getMonthName } from './util/getMonthName';
 
 export function DatePicker(props: DatePickerProps): JSX.Element {
-    const { minDate, initialDate, onChange, ...others } = props;
+    const { minDate, maxDate, initialDate, onChange, ...others } = props;
     const finalMinDate = useMemo(() => minDate ?? new Date('Jan 1, 1920'), [minDate]);
     const [date, setDate] = useState(initialDate ?? new Date());
-    const years = useMemo(() => getArrayWithYearsBetweenDates(date, finalMinDate), [date, finalMinDate]);
+
+    const years = useMemo(() => getArrayWithYearsBetweenDates(maxDate ?? date, finalMinDate), [maxDate, date, finalMinDate]);
     const days = useMemo(() => {
         const amountOfDays = getDaysInMonth(2021, date.getMonth());
         return numberToArray(amountOfDays);
@@ -67,9 +69,9 @@ export function DatePicker(props: DatePickerProps): JSX.Element {
 
     return (
         <HorizontalView {...others}>
-            <Picker items={years} flex={1} onChange={onYearChange} />
-            <Picker items={localeMonthNames} flex={1} marginHorizontal={'xs'} onChange={onMonthChange} />
-            <Picker items={days} flex={1} onChange={onDayChange} />
+            <Picker initialValue={date.getFullYear().toString()} items={years} flex={1} onChange={onYearChange} />
+            <Picker initialValue={getMonthName(date)} items={localeMonthNames} flex={1} marginHorizontal={'xs'} onChange={onMonthChange} />
+            <Picker initialValue={date.getDate().toString()} items={days} flex={1} onChange={onDayChange} />
         </HorizontalView>
     );
 }

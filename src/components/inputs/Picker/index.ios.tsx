@@ -10,8 +10,8 @@ import { Button } from '../../buttons/Button';
 import { PickerButton } from '../PickerButton';
 
 export function Picker(props: PickerProps): JSX.Element {
-    const { items, onChange, iosDoneText, ...others } = props;
-    const [currentValue, handleValueChange, index] = usePickerState(items);
+    const { items, onChange, initialValue, iosDoneText, ...others } = props;
+    const [currentValue, handleValueChange, index] = usePickerState(initialValue, items);
     const theme = useTheme<FractalTheme>();
     const [finalIndex, setFinalIndex] = useState(0);
     const [modalActive, setModalActive] = useState(false);

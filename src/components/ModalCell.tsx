@@ -21,7 +21,7 @@ export function ModalCell(props: ModalProps): JSX.Element {
 
     const screenHeight = Dimensions.get('screen').height;
     const yOffset = useRef(new Animated.Value(screenHeight)).current;
-    const showAnimation = useSpringAnimation(yOffset, 0, 8, 4);
+    const showAnimation = useSpringAnimation(yOffset, 0, 10, 4);
 
     const style = useMemo(() => {
         return { transform: [{ translateY: yOffset }] };

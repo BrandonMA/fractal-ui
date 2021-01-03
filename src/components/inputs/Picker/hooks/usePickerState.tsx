@@ -1,10 +1,11 @@
 import { useState, useCallback, useMemo } from 'react';
 
 export function usePickerState(
+    initialValue: string | undefined,
     items: Array<[string, string]>,
     onChange?: (pair: [string, string]) => void
 ): [string, (value: string, index: number) => void, number] {
-    const [currentValue, setCurrentValue] = useState(items[0][0]);
+    const [currentValue, setCurrentValue] = useState(initialValue ?? items[0][0]);
     const [index, setIndex] = useState(0);
 
     const handleValueChange = useCallback(

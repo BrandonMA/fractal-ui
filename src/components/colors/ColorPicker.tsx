@@ -23,9 +23,15 @@ export function ColorPicker(props: ColorPickerProps): JSX.Element {
     );
 
     return (
-        <HorizontalView justifyContent={'space-around'} {...others}>
+        <HorizontalView justifyContent={'space-around'} flexWrap={'wrap'} {...others}>
             {colors.map((color) => (
-                <ColorToggle backgroundColor={color} key={color} onActiveChange={handleColorChange} active={activeColor === color} />
+                <ColorToggle
+                    backgroundColor={color}
+                    key={color}
+                    onActiveChange={handleColorChange}
+                    active={activeColor === color}
+                    margin={'xs'}
+                />
             ))}
         </HorizontalView>
     );

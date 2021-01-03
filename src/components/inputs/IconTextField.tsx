@@ -18,31 +18,37 @@ export interface IconTextFieldProps extends Omit<BaseBoxProps, 'children'> {
 export function IconTextField(props: IconTextFieldProps): JSX.Element {
     const { leftImage, rightImage, value, placeholder, onChangeText, textFieldProps, ...others } = props;
     const theme = useTheme<FractalTheme>();
+    const paddingLeft = leftImage != null ? 'xs' : undefined;
+    const paddingRight = rightImage != null ? 'xs' : undefined;
 
     return (
         <HorizontalView
-            paddingHorizontal='s'
+            paddingLeft={paddingLeft}
+            paddingRight={paddingRight}
             borderRadius='textFieldRadius'
             height={theme.interactiveItems.textFieldHeight}
             backgroundColor='textFieldColor'
+            justifyContent={'space-evenly'}
+            alignItems={'center'}
             {...others}
         >
             {leftImage != null ? (
-                <BaseBox alignSelf='center' height={theme.textFields.iconSize} width={theme.textFields.iconSize}>
+                <BaseBox flexShrink={0} height={theme.textFields.iconSize} width={theme.textFields.iconSize}>
                     {leftImage(theme.colors.placeholderColor, theme.textFields.iconSize)}
                 </BaseBox>
             ) : null}
             <TextField
-                paddingLeft={leftImage != null ? 'xs' : undefined}
-                paddingRight={rightImage != null ? 'xs' : undefined}
-                flexGrow={1}
+                paddingLeft={paddingLeft}
+                paddingRight={paddingRight}
+                numberOfLines={1}
+                flex={1}
                 value={value}
                 onChangeText={onChangeText}
                 placeholder={placeholder}
                 {...textFieldProps}
             />
             {rightImage != null ? (
-                <BaseBox alignSelf='center' height={theme.textFields.iconSize} width={theme.textFields.iconSize}>
+                <BaseBox flexShrink={0} height={theme.textFields.iconSize} width={theme.textFields.iconSize}>
                     {rightImage(theme.colors.placeholderColor, theme.textFields.iconSize)}
                 </BaseBox>
             ) : null}
