@@ -3,7 +3,7 @@ import { BaseBox, BaseBoxProps } from '../baseComponents/BaseBox';
 import { HorizontalView } from '../containers/HorizontalView';
 import { Text } from '../Text';
 
-interface DetailsRowProps extends Omit<BaseBoxProps, 'children'> {
+export interface DetailsRowProps extends Partial<Omit<BaseBoxProps, 'children'>> {
     title: string;
     details: string;
 }

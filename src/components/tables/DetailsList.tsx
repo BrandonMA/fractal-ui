@@ -6,7 +6,7 @@ import { Separator } from '../Separator';
 import { Text } from '../Text';
 import { DetailsRow } from './DetailsRow';
 
-interface DetailsListProps extends Omit<BaseBoxProps, 'children'> {
+export interface DetailsListProps extends Partial<Omit<BaseBoxProps, 'children'>> {
     title: string;
     details: Array<[string, string]>;
     titleVariant: TitleButtonVariant | 'subtitle';

@@ -5,7 +5,7 @@ import { HorizontalView } from '../containers';
 import { useTheme } from '@shopify/restyle';
 import { FractalTheme } from '../../themes/FractalTheme';
 
-interface MessageProps extends Omit<BaseBoxProps, 'children'> {
+export interface MessageProps extends Partial<Omit<BaseBoxProps, 'children'>> {
     messageType: 'main' | 'alternative' | 'success' | 'warning' | 'danger';
     title: string;
     icon?: (color: string) => JSX.Element;

@@ -4,4 +4,4 @@ import { FractalTheme } from '../../themes/FractalTheme';
 
 export const BaseText = createText<FractalTheme>();
 
-export type BaseTextProps = ComponentProps<typeof BaseText>;
+export type BaseTextProps = Partial<ComponentProps<typeof BaseText>>;

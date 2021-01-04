@@ -2371,9 +2371,9 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         children?: ReactNode;
     }, "children" | "style" | "testID" | "hitSlop" | "onLayout" | "pointerEvents" | "removeClippedSubviews" | "nativeID" | "collapsable" | "needsOffscreenAlphaCompositing" | "renderToHardwareTextureAndroid" | "focusable" | "shouldRasterizeIOS" | "isTVSelectable" | "hasTVPreferredFocus" | "tvParallaxProperties" | "tvParallaxShiftDistanceX" | "tvParallaxShiftDistanceY" | "tvParallaxTiltAngle" | "tvParallaxMagnification" | "onStartShouldSetResponder" | "onMoveShouldSetResponder" | "onResponderEnd" | "onResponderGrant" | "onResponderReject" | "onResponderMove" | "onResponderRelease" | "onResponderStart" | "onResponderTerminationRequest" | "onResponderTerminate" | "onStartShouldSetResponderCapture" | "onMoveShouldSetResponderCapture" | "onTouchStart" | "onTouchMove" | "onTouchEnd" | "onTouchCancel" | "onTouchEndCapture" | "accessible" | "accessibilityActions" | "accessibilityLabel" | "accessibilityRole" | "accessibilityState" | "accessibilityHint" | "accessibilityValue" | "onAccessibilityAction" | "accessibilityLiveRegion" | "importantForAccessibility" | "accessibilityElementsHidden" | "accessibilityViewIsModal" | "onAccessibilityEscape" | "onAccessibilityTap" | "onMagicTap" | "accessibilityIgnoresInvertColors"> & import("react").RefAttributes<unknown>> | undefined;
 }>;
-export interface BoxProps extends Omit<NativeBoxProps<FractalTheme>, 'children'> {
+export interface BoxProps extends Omit<Partial<NativeBoxProps<FractalTheme>>, 'children'> {
     children: ReactNode;
 }
-export interface BaseBoxProps extends ComponentProps<typeof BaseBox> {
+export interface BaseBoxProps extends Partial<ComponentProps<typeof BaseBox>> {
     children: ReactNode;
 }

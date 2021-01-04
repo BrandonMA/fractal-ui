@@ -2290,4 +2290,4 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         children?: import("react").ReactNode;
     }, "children" | "style" | "testID" | "onLayout" | "nativeID" | "accessible" | "accessibilityActions" | "accessibilityLabel" | "accessibilityRole" | "accessibilityState" | "accessibilityHint" | "accessibilityValue" | "onAccessibilityAction" | "accessibilityLiveRegion" | "importantForAccessibility" | "accessibilityElementsHidden" | "accessibilityViewIsModal" | "onAccessibilityEscape" | "onAccessibilityTap" | "onMagicTap" | "accessibilityIgnoresInvertColors" | "allowFontScaling" | "ellipsizeMode" | "lineBreakMode" | "numberOfLines" | "onTextLayout" | "onPress" | "onLongPress" | "maxFontSizeMultiplier" | "adjustsFontSizeToFit" | "minimumFontScale" | "suppressHighlighting" | "selectable" | "selectionColor" | "textBreakStrategy" | "dataDetectorType"> & import("react").RefAttributes<unknown>> | undefined;
 };
-export declare type BaseTextProps = ComponentProps<typeof BaseText>;
+export declare type BaseTextProps = Partial<ComponentProps<typeof BaseText>>;

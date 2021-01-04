@@ -1,3 +1,4 @@
 /// <reference types="react" />
 import { ButtonProps } from './types/ButtonProps';
-export declare function GoogleButton(props: Omit<ButtonProps, 'variant'>): JSX.Element;
+export declare type GoogleButtonProps = Partial<Omit<ButtonProps, 'variant'>>;
+export declare function GoogleButton(props: GoogleButtonProps): JSX.Element;

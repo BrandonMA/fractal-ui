@@ -4,7 +4,7 @@ import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import { restyleFunctions } from './restyleFunctions';
 import { BoxProps } from './BaseBox';
 
-export interface BaseTouchableOpacityProps extends Omit<BoxProps, 'children'>, TouchableOpacityProps {
+export interface BaseTouchableOpacityProps extends Partial<Omit<BoxProps, 'children'>>, TouchableOpacityProps {
     children: ReactNode;
 }
 

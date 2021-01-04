@@ -4,7 +4,9 @@ import { SafeAreaView } from 'react-native';
 import { restyleFunctions } from './restyleFunctions';
 import { BoxProps } from './BaseBox';
 
-export function BaseSafeAreaView(props: BoxProps): JSX.Element {
+export type BaseSafeAreaViewProps = Partial<BoxProps>;
+
+export function BaseSafeAreaView(props: BaseSafeAreaViewProps): JSX.Element {
     const restyleProps = useRestyle(restyleFunctions, props);
     return <SafeAreaView {...restyleProps} />;
 }

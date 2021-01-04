@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { BaseBoxProps } from '../baseComponents/BaseBox';
-interface SocialMediaButtonsProps extends Omit<BaseBoxProps, 'children'> {
+interface SocialMediaButtonsProps extends Partial<Omit<BaseBoxProps, 'children'>> {
     onGooglePress?: () => void;
     onFacebookPress?: () => void;
     onApplePress?: () => void;

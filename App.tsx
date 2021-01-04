@@ -21,12 +21,17 @@ import {
     SearchBar,
     ColorPicker,
     DatePicker,
-    TimePicker
+    TimePicker,
+    black,
+    brinkPink,
+    FractalTheme,
+    lime,
+    pink,
+    purple
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { useTheme } from '@shopify/restyle';
-import { black, brinkPink, FractalTheme, lime, pink, purple } from './dist';
 
 const Entypo = memo(BaseEntypo);
 const detailsCardContent: Array<[string, string]> = [
