@@ -110,7 +110,6 @@ export var lightFractalTheme = createTheme({
             fontWeight: '700'
         },
         subtitle: {
-            fontSize: 21,
             fontWeight: '600'
         },
         regular: {},

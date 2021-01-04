@@ -108,7 +108,6 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             fontWeight: string;
         };
         subtitle: {
-            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -270,7 +269,6 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             fontWeight: string;
         };
         subtitle: {
-            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -432,7 +430,6 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             fontWeight: string;
         };
         subtitle: {
-            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -594,7 +591,6 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             fontWeight: string;
         };
         subtitle: {
-            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -756,7 +752,6 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             fontWeight: string;
         };
         subtitle: {
-            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -965,7 +960,6 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             fontWeight: string;
         };
         subtitle: {
-            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -1127,7 +1121,6 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             fontWeight: string;
         };
         subtitle: {
-            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -1292,7 +1285,6 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
                 fontWeight: string;
             };
             subtitle: {
-                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -1454,7 +1446,6 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
                 fontWeight: string;
             };
             subtitle: {
-                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -1616,7 +1607,6 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
                 fontWeight: string;
             };
             subtitle: {
-                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -1778,7 +1768,6 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
                 fontWeight: string;
             };
             subtitle: {
-                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -1940,7 +1929,6 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
                 fontWeight: string;
             };
             subtitle: {
-                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -2149,7 +2137,6 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
                 fontWeight: string;
             };
             subtitle: {
-                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -2311,7 +2298,6 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
                 fontWeight: string;
             };
             subtitle: {
-                fontSize: number;
                 fontWeight: string;
             };
             regular: {};

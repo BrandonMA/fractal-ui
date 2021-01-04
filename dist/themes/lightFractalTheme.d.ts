@@ -104,7 +104,6 @@ export declare const lightFractalTheme: {
             fontWeight: string;
         };
         subtitle: {
-            fontSize: number;
             fontWeight: string;
         };
         regular: {};

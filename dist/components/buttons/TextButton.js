@@ -29,6 +29,6 @@ export function TextButton(props) {
     var theme = useTheme();
     return (React.createElement(BaseTouchableOpacity, __assign({ flexDirection: 'row', alignItems: 'center' }, others),
         children ? children(theme.colors[variant]) : null,
-        React.createElement(BaseText, __assign({ variant: variant }, textProps), text)));
+        text != null ? (React.createElement(BaseText, __assign({ variant: variant }, textProps), text)) : null));
 }
 //# sourceMappingURL=TextButton.js.map

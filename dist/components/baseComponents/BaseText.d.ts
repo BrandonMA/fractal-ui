@@ -105,7 +105,6 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontWeight: string;
         };
         subtitle: {
-            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -267,7 +266,6 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontWeight: string;
         };
         subtitle: {
-            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -429,7 +427,6 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontWeight: string;
         };
         subtitle: {
-            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -591,7 +588,6 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontWeight: string;
         };
         subtitle: {
-            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -753,7 +749,6 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontWeight: string;
         };
         subtitle: {
-            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -923,7 +918,6 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontWeight: string;
         };
         subtitle: {
-            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -1085,7 +1079,6 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontWeight: string;
         };
         subtitle: {
-            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -1250,7 +1243,6 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontWeight: string;
             };
             subtitle: {
-                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -1412,7 +1404,6 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontWeight: string;
             };
             subtitle: {
-                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -1574,7 +1565,6 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontWeight: string;
             };
             subtitle: {
-                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -1736,7 +1726,6 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontWeight: string;
             };
             subtitle: {
-                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -1898,7 +1887,6 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontWeight: string;
             };
             subtitle: {
-                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -2068,7 +2056,6 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontWeight: string;
             };
             subtitle: {
-                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -2230,7 +2217,6 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontWeight: string;
             };
             subtitle: {
-                fontSize: number;
                 fontWeight: string;
             };
             regular: {};

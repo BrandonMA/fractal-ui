@@ -104,7 +104,6 @@ export declare const darkFractalTheme: {
             fontWeight: string;
         };
         subtitle: {
-            fontSize: number;
             fontWeight: string;
         };
         regular: {};

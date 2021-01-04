@@ -9,7 +9,7 @@ import { TitleButtonVariant } from './types/TitleButtonVariant';
 export interface TextButtonProps extends Partial<Omit<BaseTouchableOpacityProps, 'children'>> {
     children?: (color: string) => JSX.Element;
     textProps?: Omit<BaseTextProps, 'children'>;
-    text: string;
+    text?: string;
     variant: BasicColors | TitleButtonVariant;
 }
 
@@ -20,9 +20,11 @@ export function TextButton(props: TextButtonProps): JSX.Element {
     return (
         <BaseTouchableOpacity flexDirection='row' alignItems='center' {...others}>
             {children ? children(theme.colors[variant]) : null}
-            <BaseText variant={variant} {...textProps}>
-                {text}
-            </BaseText>
+            {text != null ? (
+                <BaseText variant={variant} {...textProps}>
+                    {text}
+                </BaseText>
+            ) : null}
         </BaseTouchableOpacity>
     );
 }
