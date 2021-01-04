@@ -1,3 +1,4 @@
 /// <reference types="react" />
 import { BaseBoxProps } from './baseComponents/BaseBox';
-export declare function Separator(props: Omit<BaseBoxProps, 'children'>): JSX.Element;
+export declare type SeparatorProps = Partial<Omit<BaseBoxProps, 'children'>>;
+export declare function Separator(props: SeparatorProps): JSX.Element;

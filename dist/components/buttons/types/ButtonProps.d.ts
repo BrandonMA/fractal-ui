@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { BasePressableProps } from '../../baseComponents/BasePressable';
 import { BasicColors } from '../../types/BasicColors';
-export interface ButtonProps extends Omit<BasePressableProps, 'children'> {
+export interface ButtonProps extends Partial<Omit<BasePressableProps, 'children'>> {
     children?: ReactNode;
     text?: string;
     addShadow?: boolean;

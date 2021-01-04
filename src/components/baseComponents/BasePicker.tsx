@@ -6,7 +6,7 @@ import { FractalTheme } from '../../themes/FractalTheme';
 import { BoxProps } from './BaseBox';
 
 export interface BasePickerProps
-    extends Omit<BoxProps, 'children'>,
+    extends Partial<Omit<BoxProps, 'children'>>,
         TypographyProps<FractalTheme>,
         ColorProps<FractalTheme>,
         ComponentProps<typeof Picker> {

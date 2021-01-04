@@ -7,7 +7,7 @@ import { useHideAnimation } from '../../animationHooks/useHideAnimation';
 
 const Entypo = Animated.createAnimatedComponent(BaseEntypo);
 
-export interface ColorToggleProps extends Omit<BasePressableProps, 'backgroundColor'> {
+export interface ColorToggleProps extends Partial<Omit<BasePressableProps, 'backgroundColor'>> {
     onActiveChange?: (active: boolean, color: string) => void;
     backgroundColor: string;
     active?: boolean;

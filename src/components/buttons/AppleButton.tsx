@@ -3,7 +3,9 @@ import { ButtonProps } from './types/ButtonProps';
 import { Button } from './Button';
 import { FontAwesome } from '@expo/vector-icons';
 
-export function AppleButton(props: Omit<ButtonProps, 'variant'>): JSX.Element {
+export type AppleButtonProps = Partial<Omit<ButtonProps, 'variant'>>;
+
+export function AppleButton(props: AppleButtonProps): JSX.Element {
     const { text } = props;
 
     return (

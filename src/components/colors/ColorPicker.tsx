@@ -3,7 +3,7 @@ import { BoxProps } from '../baseComponents/BaseBox';
 import { HorizontalView } from '../containers';
 import { ColorToggle } from './ColorToggle';
 
-export interface ColorPickerProps extends Omit<BoxProps, 'children'> {
+export interface ColorPickerProps extends Partial<Omit<BoxProps, 'children'>> {
     colors: Array<string>;
     onColorChange: (color: string) => void;
 }

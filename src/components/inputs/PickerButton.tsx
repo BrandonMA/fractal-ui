@@ -8,7 +8,7 @@ import { BaseTouchableOpacity, BaseTouchableOpacityProps } from '../baseComponen
 
 const Entypo = memo(BaseEntypo);
 
-export interface PickerButtonProps extends Omit<BaseTouchableOpacityProps, 'children'> {
+export interface PickerButtonProps extends Partial<Omit<BaseTouchableOpacityProps, 'children'>> {
     children: string;
 }
 

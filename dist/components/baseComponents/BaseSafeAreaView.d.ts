@@ -1,3 +1,4 @@
 /// <reference types="react" />
 import { BoxProps } from './BaseBox';
-export declare function BaseSafeAreaView(props: BoxProps): JSX.Element;
+export declare type BaseSafeAreaViewProps = Partial<BoxProps>;
+export declare function BaseSafeAreaView(props: BaseSafeAreaViewProps): JSX.Element;

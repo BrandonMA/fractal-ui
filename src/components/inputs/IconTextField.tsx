@@ -6,7 +6,7 @@ import { TextField } from './TextField';
 import { useTheme } from '@shopify/restyle';
 import { BaseTextFieldProps } from '../baseComponents/BaseTextField';
 
-export interface IconTextFieldProps extends Omit<BaseBoxProps, 'children'> {
+export interface IconTextFieldProps extends Partial<Omit<BaseBoxProps, 'children'>> {
     leftImage?: (color: string, size: number) => JSX.Element;
     rightImage?: (color: string, size: number) => JSX.Element;
     value?: string;

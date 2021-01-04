@@ -5,10 +5,10 @@ import { Animated } from 'react-native';
 
 export const BaseBox = Animated.createAnimatedComponent(createBox<FractalTheme>());
 
-export interface BoxProps extends Omit<NativeBoxProps<FractalTheme>, 'children'> {
+export interface BoxProps extends Omit<Partial<NativeBoxProps<FractalTheme>>, 'children'> {
     children: ReactNode;
 }
 
-export interface BaseBoxProps extends ComponentProps<typeof BaseBox> {
+export interface BaseBoxProps extends Partial<ComponentProps<typeof BaseBox>> {
     children: ReactNode;
 }

@@ -3,7 +3,7 @@ import { Animated, Pressable, PressableProps } from 'react-native';
 import { useCursorStyles } from './hooks/useCursorStyles';
 import { BoxProps } from './BaseBox';
 
-export interface BasePressableProps extends Omit<BoxProps, 'children'>, PressableProps {
+export interface BasePressableProps extends Partial<Omit<BoxProps, 'children'>>, PressableProps {
     children?: ReactNode;
 }
 

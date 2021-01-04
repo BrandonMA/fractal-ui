@@ -1,3 +1,4 @@
 /// <reference types="react" />
 import { ButtonProps } from './types/ButtonProps';
-export declare function AppleButton(props: Omit<ButtonProps, 'variant'>): JSX.Element;
+export declare type AppleButtonProps = Partial<Omit<ButtonProps, 'variant'>>;
+export declare function AppleButton(props: AppleButtonProps): JSX.Element;

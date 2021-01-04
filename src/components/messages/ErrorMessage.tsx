@@ -4,18 +4,14 @@ import { Entypo } from '@expo/vector-icons';
 import { LayoutAnimation } from 'react-native';
 import { BaseBox, BaseBoxProps } from '../baseComponents/BaseBox';
 
-interface Props extends BaseBoxProps {
-    children: ReactNode;
-}
-
 interface State {
     hasError: boolean;
     errorMessage: string;
     errorTitle: string;
 }
 
-export class ErrorMessage extends Component<Props, State> {
-    constructor(props: Props) {
+export class ErrorMessage extends Component<BaseBoxProps, State> {
+    constructor(props: BaseBoxProps) {
         super(props);
         this.state = { hasError: false, errorMessage: '', errorTitle: '' };
     }
