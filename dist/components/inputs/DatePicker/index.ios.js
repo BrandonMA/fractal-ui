@@ -25,11 +25,13 @@ import { ModalCell } from '../../ModalCell';
 import { Button } from '../../buttons/Button';
 import { PickerButton } from '../PickerButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useTheme } from '@shopify/restyle';
 export function DatePicker(props) {
     var initialDate = props.initialDate, minDate = props.minDate, maxDate = props.maxDate, onChange = props.onChange, iosDoneText = props.iosDoneText, others = __rest(props, ["initialDate", "minDate", "maxDate", "onChange", "iosDoneText"]);
     var _a = useState(false), modalActive = _a[0], setModalActive = _a[1];
     var _b = useState(initialDate !== null && initialDate !== void 0 ? initialDate : new Date()), date = _b[0], setDate = _b[1];
     var _c = useState(initialDate !== null && initialDate !== void 0 ? initialDate : new Date()), finalDate = _c[0], setFinalDate = _c[1];
+    var theme = useTheme();
     var toggleModal = useCallback(function () { return setModalActive(function (current) { return !current; }); }, [setModalActive]);
     var handleChange = useCallback(function (_, selectedDate) {
         setDate(function (currentDate) { return selectedDate !== null && selectedDate !== void 0 ? selectedDate : currentDate; });
@@ -43,8 +45,8 @@ export function DatePicker(props) {
     };
     return (React.createElement(React.Fragment, null,
         React.createElement(PickerButton, __assign({ onPress: toggleModal }, others), finalDate.toLocaleDateString()),
-        React.createElement(ModalCell, { visible: modalActive, animationType: 'fade', transparent: true, onDismiss: toggleModal, justifyContent: 'flex-end' },
-            React.createElement(DateTimePicker, { value: date, mode: 'date', display: 'spinner', minimumDate: minDate, maximumDate: maxDate, onChange: handleChange }),
+        React.createElement(ModalCell, { visible: modalActive, alignItems: 'center', animationType: 'fade', transparent: true, onDismiss: toggleModal, justifyContent: 'flex-end' },
+            React.createElement(DateTimePicker, { value: date, mode: 'date', display: 'spinner', minimumDate: minDate, maximumDate: maxDate, onChange: handleChange, textColor: theme.colors.textColor }),
             React.createElement(Button, { variant: 'mainInteractiveColor', text: iosDoneText, onPress: pickFinalValue }))));
 }
 //# sourceMappingURL=index.ios.js.map

@@ -8,6 +8,7 @@ import { BasePicker } from '../../baseComponents/BasePicker';
 import { Picker as NativePicker } from '@react-native-picker/picker';
 import { Button } from '../../buttons/Button';
 import { PickerButton } from '../PickerButton';
+import { BaseBox } from '../../baseComponents';
 
 export function Picker(props: PickerProps): JSX.Element {
     const { items, onChange, initialValue, iosDoneText, ...others } = props;
@@ -30,9 +31,9 @@ export function Picker(props: PickerProps): JSX.Element {
         (item) => {
             const value = item[0];
             const label = item[1];
-            return <NativePicker.Item color={theme.colors.black} label={label} value={value} key={value} />;
+            return <NativePicker.Item color={theme.colors.textColor} label={label} value={value} key={value} />;
         },
-        [theme.colors.black]
+        [theme.colors.textColor]
     );
 
     return (
@@ -40,11 +41,20 @@ export function Picker(props: PickerProps): JSX.Element {
             <PickerButton onPress={toggleModal} {...others}>
                 {items[finalIndex][1]}
             </PickerButton>
-            <ModalCell visible={modalActive} animationType='fade' transparent onDismiss={toggleModal} justifyContent='flex-end'>
-                <BasePicker selectedValue={currentValue} onValueChange={handleValueChange}>
-                    {items.map(renderItem)}
-                </BasePicker>
-                <Button variant='mainInteractiveColor' onPress={pickFinalValue} text={iosDoneText} />
+            <ModalCell
+                visible={modalActive}
+                alignItems={'center'}
+                animationType='fade'
+                transparent
+                onDismiss={toggleModal}
+                justifyContent='flex-end'
+            >
+                <BaseBox>
+                    <BasePicker selectedValue={currentValue} onValueChange={handleValueChange}>
+                        {items.map(renderItem)}
+                    </BasePicker>
+                    <Button variant='mainInteractiveColor' onPress={pickFinalValue} text={iosDoneText} />
+                </BaseBox>
             </ModalCell>
         </>
     );

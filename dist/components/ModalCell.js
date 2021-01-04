@@ -30,7 +30,7 @@ import { useTheme } from '@shopify/restyle';
 import { useSpringAnimation } from '../animationHooks/useSpringAnimation';
 var Entypo = memo(BaseEntypo);
 export function ModalCell(props) {
-    var children = props.children, justifyContent = props.justifyContent, onDismiss = props.onDismiss, visible = props.visible, others = __rest(props, ["children", "justifyContent", "onDismiss", "visible"]);
+    var children = props.children, justifyContent = props.justifyContent, alignItems = props.alignItems, onDismiss = props.onDismiss, visible = props.visible, others = __rest(props, ["children", "justifyContent", "alignItems", "onDismiss", "visible"]);
     var theme = useTheme();
     var screenHeight = Dimensions.get('screen').height;
     var yOffset = useRef(new Animated.Value(screenHeight)).current;
@@ -46,8 +46,8 @@ export function ModalCell(props) {
     return (React.createElement(NativeModal, __assign({ visible: visible }, others),
         React.createElement(BaseSafeAreaView, { flex: 1, justifyContent: justifyContent },
             React.createElement(BasePressable, { onPress: onDismiss, position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: 'black', opacity: 0.6 }),
-            React.createElement(PaddedContainer, { style: style },
-                React.createElement(Cell, { maxWidth: 540 },
+            React.createElement(PaddedContainer, { style: style, width: '100%', alignItems: alignItems },
+                React.createElement(Cell, { maxWidth: 540, width: '100%' },
                     React.createElement(BaseTouchableOpacity, { justifyContent: 'center', alignItems: 'center', backgroundColor: 'background', alignSelf: 'flex-end', width: 32, height: 32, borderRadius: 'l', onPress: onDismiss },
                         React.createElement(Entypo, { name: 'cross', size: 21, color: theme.colors.placeholderColor })),
                     children)))));

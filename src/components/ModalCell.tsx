@@ -13,10 +13,11 @@ export interface ModalProps extends NativeModalProps {
     onDismiss?: () => void;
     children?: ReactNode;
     justifyContent?: 'flex-start' | 'center' | 'flex-end';
+    alignItems?: 'flex-start' | 'center' | 'flex-end';
 }
 
 export function ModalCell(props: ModalProps): JSX.Element {
-    const { children, justifyContent, onDismiss, visible, ...others } = props;
+    const { children, justifyContent, alignItems, onDismiss, visible, ...others } = props;
     const theme = useTheme<FractalTheme>();
 
     const screenHeight = Dimensions.get('screen').height;
@@ -46,8 +47,8 @@ export function ModalCell(props: ModalProps): JSX.Element {
                     backgroundColor='black'
                     opacity={0.6}
                 />
-                <PaddedContainer style={style}>
-                    <Cell maxWidth={540}>
+                <PaddedContainer style={style} width={'100%'} alignItems={alignItems}>
+                    <Cell maxWidth={540} width={'100%'}>
                         <BaseTouchableOpacity
                             justifyContent='center'
                             alignItems='center'

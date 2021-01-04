@@ -25,8 +25,10 @@ import { ModalCell } from '../../ModalCell';
 import { Button } from '../../buttons/Button';
 import { PickerButton } from '../PickerButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useTheme } from '@shopify/restyle';
 export function TimePicker(props) {
     var onChange = props.onChange, iosDoneText = props.iosDoneText, others = __rest(props, ["onChange", "iosDoneText"]);
+    var theme = useTheme();
     var initialValue = new Date();
     initialValue.setSeconds(0);
     var _a = useState(initialValue), date = _a[0], setDate = _a[1];
@@ -45,8 +47,8 @@ export function TimePicker(props) {
     };
     return (React.createElement(React.Fragment, null,
         React.createElement(PickerButton, __assign({ onPress: toggleModal }, others), finalDate.toLocaleTimeString()),
-        React.createElement(ModalCell, { visible: modalActive, animationType: 'fade', transparent: true, onDismiss: toggleModal, justifyContent: 'flex-end' },
-            React.createElement(DateTimePicker, { value: date, mode: 'time', is24Hour: true, display: 'spinner', onChange: handleChange }),
+        React.createElement(ModalCell, { visible: modalActive, alignItems: 'center', animationType: 'fade', transparent: true, onDismiss: toggleModal, justifyContent: 'flex-end' },
+            React.createElement(DateTimePicker, { value: date, mode: 'time', is24Hour: true, display: 'spinner', onChange: handleChange, textColor: theme.colors.textColor }),
             React.createElement(Button, { variant: 'mainInteractiveColor', text: iosDoneText, onPress: pickFinalValue }))));
 }
 //# sourceMappingURL=index.ios.js.map
