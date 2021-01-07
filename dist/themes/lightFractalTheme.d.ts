@@ -9,6 +9,9 @@ export declare const lightFractalTheme: {
         cellColor: string;
         textFieldColor: string;
         shadowColor: string;
+        navigationBarButtonColor: string;
+        navigationBarBackground: string;
+        navigationBarTitleColor: string;
         transparent: string;
         black: string;
         white: string;
@@ -104,6 +107,7 @@ export declare const lightFractalTheme: {
             fontWeight: string;
         };
         subtitle: {
+            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -158,5 +162,16 @@ export declare const lightFractalTheme: {
             fontSize: number;
             fontWeight: string;
         };
+        navigationBarButtonColor: {
+            color: string;
+        };
+        navigationBarTitle: {
+            fontSize: number;
+            fontWeight: string;
+            color: string;
+        };
+    };
+    navigationBar: {
+        navigationBarHeight: number;
     };
 };

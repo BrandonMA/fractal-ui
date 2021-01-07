@@ -13,6 +13,10 @@ export const lightFractalTheme = createTheme({
         cellColor: white.base,
         textFieldColor: white.base400,
         shadowColor: 'black',
+        // Navigation
+        navigationBarButtonColor: blue.base,
+        navigationBarBackground: white.base,
+        navigationBarTitleColor: white.base900,
         // Base Colors
         transparent: 'transparent',
         black: 'black',
@@ -111,6 +115,7 @@ export const lightFractalTheme = createTheme({
             fontWeight: '700'
         },
         subtitle: {
+            fontSize: 21,
             fontWeight: '600'
         },
         regular: {},
@@ -166,6 +171,18 @@ export const lightFractalTheme = createTheme({
             color: 'dangerInteractiveColor',
             fontSize: 27,
             fontWeight: '700'
+        },
+        // Navigation
+        navigationBarButtonColor: {
+            color: 'navigationBarButtonColor'
+        },
+        navigationBarTitle: {
+            fontSize: 17,
+            fontWeight: '600',
+            color: 'navigationBarTitleColor'
         }
+    },
+    navigationBar: {
+        navigationBarHeight: 50 // Only works for the custom nav bar, not native.
     }
 });

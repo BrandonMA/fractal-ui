@@ -3,7 +3,7 @@ import { useTheme } from '@shopify/restyle';
 import { usePickerState } from './hooks/usePickerState';
 import { PickerProps } from './types/PickerProps';
 import { FractalTheme } from '../../../themes/FractalTheme';
-import { ModalCell } from '../../ModalCell';
+import { BottomCellModal } from '../../modals/BottomCellModal';
 import { BasePicker } from '../../baseComponents/BasePicker';
 import { Picker as NativePicker } from '@react-native-picker/picker';
 import { Button } from '../../buttons/Button';
@@ -41,21 +41,14 @@ export function Picker(props: PickerProps): JSX.Element {
             <PickerButton onPress={toggleModal} {...others}>
                 {items[finalIndex][1]}
             </PickerButton>
-            <ModalCell
-                visible={modalActive}
-                alignItems={'center'}
-                animationType='fade'
-                transparent
-                onDismiss={toggleModal}
-                justifyContent='flex-end'
-            >
+            <BottomCellModal visible={modalActive} onDismiss={toggleModal}>
                 <BaseBox>
                     <BasePicker selectedValue={currentValue} onValueChange={handleValueChange}>
                         {items.map(renderItem)}
                     </BasePicker>
                     <Button variant='mainInteractiveColor' onPress={pickFinalValue} text={iosDoneText} />
                 </BaseBox>
-            </ModalCell>
+            </BottomCellModal>
         </>
     );
 }

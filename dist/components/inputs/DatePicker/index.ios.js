@@ -21,7 +21,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React, { useCallback, useState } from 'react';
-import { ModalCell } from '../../ModalCell';
+import { BottomCellModal } from '../../modals/BottomCellModal';
 import { Button } from '../../buttons/Button';
 import { PickerButton } from '../PickerButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -45,7 +45,7 @@ export function DatePicker(props) {
     };
     return (React.createElement(React.Fragment, null,
         React.createElement(PickerButton, __assign({ onPress: toggleModal }, others), finalDate.toLocaleDateString()),
-        React.createElement(ModalCell, { visible: modalActive, alignItems: 'center', animationType: 'fade', transparent: true, onDismiss: toggleModal, justifyContent: 'flex-end' },
+        React.createElement(BottomCellModal, { visible: modalActive, onDismiss: toggleModal },
             React.createElement(DateTimePicker, { value: date, mode: 'date', display: 'spinner', minimumDate: minDate, maximumDate: maxDate, onChange: handleChange, textColor: theme.colors.textColor }),
             React.createElement(Button, { variant: 'mainInteractiveColor', text: iosDoneText, onPress: pickFinalValue }))));
 }

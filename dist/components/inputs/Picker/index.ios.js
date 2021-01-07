@@ -23,7 +23,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { useCallback, useState } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { usePickerState } from './hooks/usePickerState';
-import { ModalCell } from '../../ModalCell';
+import { BottomCellModal } from '../../modals/BottomCellModal';
 import { BasePicker } from '../../baseComponents/BasePicker';
 import { Picker as NativePicker } from '@react-native-picker/picker';
 import { Button } from '../../buttons/Button';
@@ -50,7 +50,7 @@ export function Picker(props) {
     }, [theme.colors.textColor]);
     return (React.createElement(React.Fragment, null,
         React.createElement(PickerButton, __assign({ onPress: toggleModal }, others), items[finalIndex][1]),
-        React.createElement(ModalCell, { visible: modalActive, alignItems: 'center', animationType: 'fade', transparent: true, onDismiss: toggleModal, justifyContent: 'flex-end' },
+        React.createElement(BottomCellModal, { visible: modalActive, onDismiss: toggleModal },
             React.createElement(BaseBox, null,
                 React.createElement(BasePicker, { selectedValue: currentValue, onValueChange: handleValueChange }, items.map(renderItem)),
                 React.createElement(Button, { variant: 'mainInteractiveColor', onPress: pickFinalValue, text: iosDoneText })))));

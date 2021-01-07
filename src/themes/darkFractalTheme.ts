@@ -3,6 +3,7 @@ import { black } from '../palette';
 
 export const darkFractalTheme = createFractalTheme({
     colors: {
+        // Basic Colors
         textColor: black.base900,
         placeholderColor: black.base300,
         labelColor: black.base200,
@@ -10,7 +11,10 @@ export const darkFractalTheme = createFractalTheme({
         foreground: black.base,
         separatorColor: black.base400,
         textFieldColor: black.base400,
-        cellColor: black.base
+        cellColor: black.base,
+        // Navigation
+        navigationBarBackground: black.base,
+        navigationBarTitleColor: black.base900
     },
     shadowProperties: {
         opacity: 0.3

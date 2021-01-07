@@ -10,6 +10,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         cellColor: string;
         textFieldColor: string;
         shadowColor: string;
+        navigationBarButtonColor: string;
+        navigationBarBackground: string;
+        navigationBarTitleColor: string;
         transparent: string;
         black: string;
         white: string;
@@ -105,6 +108,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontWeight: string;
         };
         subtitle: {
+            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -159,6 +163,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontSize: number;
             fontWeight: string;
         };
+        navigationBarButtonColor: {
+            color: string;
+        };
+        navigationBarTitle: {
+            fontSize: number;
+            fontWeight: string;
+            color: string;
+        };
+    };
+    navigationBar: {
+        navigationBarHeight: number;
     };
 }> & import("@shopify/restyle").OpacityProps<{
     colors: {
@@ -171,6 +186,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         cellColor: string;
         textFieldColor: string;
         shadowColor: string;
+        navigationBarButtonColor: string;
+        navigationBarBackground: string;
+        navigationBarTitleColor: string;
         transparent: string;
         black: string;
         white: string;
@@ -266,6 +284,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontWeight: string;
         };
         subtitle: {
+            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -320,6 +339,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontSize: number;
             fontWeight: string;
         };
+        navigationBarButtonColor: {
+            color: string;
+        };
+        navigationBarTitle: {
+            fontSize: number;
+            fontWeight: string;
+            color: string;
+        };
+    };
+    navigationBar: {
+        navigationBarHeight: number;
     };
 }> & import("@shopify/restyle").VisibleProps<{
     colors: {
@@ -332,6 +362,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         cellColor: string;
         textFieldColor: string;
         shadowColor: string;
+        navigationBarButtonColor: string;
+        navigationBarBackground: string;
+        navigationBarTitleColor: string;
         transparent: string;
         black: string;
         white: string;
@@ -427,6 +460,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontWeight: string;
         };
         subtitle: {
+            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -481,6 +515,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontSize: number;
             fontWeight: string;
         };
+        navigationBarButtonColor: {
+            color: string;
+        };
+        navigationBarTitle: {
+            fontSize: number;
+            fontWeight: string;
+            color: string;
+        };
+    };
+    navigationBar: {
+        navigationBarHeight: number;
     };
 }> & import("@shopify/restyle").TypographyProps<{
     colors: {
@@ -493,6 +538,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         cellColor: string;
         textFieldColor: string;
         shadowColor: string;
+        navigationBarButtonColor: string;
+        navigationBarBackground: string;
+        navigationBarTitleColor: string;
         transparent: string;
         black: string;
         white: string;
@@ -588,6 +636,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontWeight: string;
         };
         subtitle: {
+            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -642,6 +691,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontSize: number;
             fontWeight: string;
         };
+        navigationBarButtonColor: {
+            color: string;
+        };
+        navigationBarTitle: {
+            fontSize: number;
+            fontWeight: string;
+            color: string;
+        };
+    };
+    navigationBar: {
+        navigationBarHeight: number;
     };
 }> & import("@shopify/restyle").SpacingProps<{
     colors: {
@@ -654,6 +714,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         cellColor: string;
         textFieldColor: string;
         shadowColor: string;
+        navigationBarButtonColor: string;
+        navigationBarBackground: string;
+        navigationBarTitleColor: string;
         transparent: string;
         black: string;
         white: string;
@@ -749,6 +812,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontWeight: string;
         };
         subtitle: {
+            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -803,6 +867,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontSize: number;
             fontWeight: string;
         };
+        navigationBarButtonColor: {
+            color: string;
+        };
+        navigationBarTitle: {
+            fontSize: number;
+            fontWeight: string;
+            color: string;
+        };
+    };
+    navigationBar: {
+        navigationBarHeight: number;
     };
 }> & {
     textShadowOffset?: {
@@ -811,7 +886,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
     } | {} | undefined;
     textShadowRadius?: number | {} | undefined;
 } & {
-    textShadowColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    textShadowColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
 } & import("@shopify/restyle").VariantProps<{
     colors: {
         textColor: string;
@@ -823,6 +898,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         cellColor: string;
         textFieldColor: string;
         shadowColor: string;
+        navigationBarButtonColor: string;
+        navigationBarBackground: string;
+        navigationBarTitleColor: string;
         transparent: string;
         black: string;
         white: string;
@@ -918,6 +996,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontWeight: string;
         };
         subtitle: {
+            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -972,6 +1051,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontSize: number;
             fontWeight: string;
         };
+        navigationBarButtonColor: {
+            color: string;
+        };
+        navigationBarTitle: {
+            fontSize: number;
+            fontWeight: string;
+            color: string;
+        };
+    };
+    navigationBar: {
+        navigationBarHeight: number;
     };
 }, "textVariants", "variant"> & import("@shopify/restyle").SpacingShorthandProps<{
     colors: {
@@ -984,6 +1074,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         cellColor: string;
         textFieldColor: string;
         shadowColor: string;
+        navigationBarButtonColor: string;
+        navigationBarBackground: string;
+        navigationBarTitleColor: string;
         transparent: string;
         black: string;
         white: string;
@@ -1079,6 +1172,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontWeight: string;
         };
         subtitle: {
+            fontSize: number;
             fontWeight: string;
         };
         regular: {};
@@ -1133,6 +1227,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontSize: number;
             fontWeight: string;
         };
+        navigationBarButtonColor: {
+            color: string;
+        };
+        navigationBarTitle: {
+            fontSize: number;
+            fontWeight: string;
+            color: string;
+        };
+    };
+    navigationBar: {
+        navigationBarHeight: number;
     };
 }> & Pick<import("react-native").TextProps & {
     children?: import("react").ReactNode;
@@ -1148,6 +1253,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             cellColor: string;
             textFieldColor: string;
             shadowColor: string;
+            navigationBarButtonColor: string;
+            navigationBarBackground: string;
+            navigationBarTitleColor: string;
             transparent: string;
             black: string;
             white: string;
@@ -1243,6 +1351,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontWeight: string;
             };
             subtitle: {
+                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -1297,6 +1406,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontSize: number;
                 fontWeight: string;
             };
+            navigationBarButtonColor: {
+                color: string;
+            };
+            navigationBarTitle: {
+                fontSize: number;
+                fontWeight: string;
+                color: string;
+            };
+        };
+        navigationBar: {
+            navigationBarHeight: number;
         };
     }> & import("@shopify/restyle").OpacityProps<{
         colors: {
@@ -1309,6 +1429,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             cellColor: string;
             textFieldColor: string;
             shadowColor: string;
+            navigationBarButtonColor: string;
+            navigationBarBackground: string;
+            navigationBarTitleColor: string;
             transparent: string;
             black: string;
             white: string;
@@ -1404,6 +1527,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontWeight: string;
             };
             subtitle: {
+                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -1458,6 +1582,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontSize: number;
                 fontWeight: string;
             };
+            navigationBarButtonColor: {
+                color: string;
+            };
+            navigationBarTitle: {
+                fontSize: number;
+                fontWeight: string;
+                color: string;
+            };
+        };
+        navigationBar: {
+            navigationBarHeight: number;
         };
     }> & import("@shopify/restyle").VisibleProps<{
         colors: {
@@ -1470,6 +1605,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             cellColor: string;
             textFieldColor: string;
             shadowColor: string;
+            navigationBarButtonColor: string;
+            navigationBarBackground: string;
+            navigationBarTitleColor: string;
             transparent: string;
             black: string;
             white: string;
@@ -1565,6 +1703,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontWeight: string;
             };
             subtitle: {
+                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -1619,6 +1758,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontSize: number;
                 fontWeight: string;
             };
+            navigationBarButtonColor: {
+                color: string;
+            };
+            navigationBarTitle: {
+                fontSize: number;
+                fontWeight: string;
+                color: string;
+            };
+        };
+        navigationBar: {
+            navigationBarHeight: number;
         };
     }> & import("@shopify/restyle").TypographyProps<{
         colors: {
@@ -1631,6 +1781,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             cellColor: string;
             textFieldColor: string;
             shadowColor: string;
+            navigationBarButtonColor: string;
+            navigationBarBackground: string;
+            navigationBarTitleColor: string;
             transparent: string;
             black: string;
             white: string;
@@ -1726,6 +1879,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontWeight: string;
             };
             subtitle: {
+                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -1780,6 +1934,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontSize: number;
                 fontWeight: string;
             };
+            navigationBarButtonColor: {
+                color: string;
+            };
+            navigationBarTitle: {
+                fontSize: number;
+                fontWeight: string;
+                color: string;
+            };
+        };
+        navigationBar: {
+            navigationBarHeight: number;
         };
     }> & import("@shopify/restyle").SpacingProps<{
         colors: {
@@ -1792,6 +1957,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             cellColor: string;
             textFieldColor: string;
             shadowColor: string;
+            navigationBarButtonColor: string;
+            navigationBarBackground: string;
+            navigationBarTitleColor: string;
             transparent: string;
             black: string;
             white: string;
@@ -1887,6 +2055,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontWeight: string;
             };
             subtitle: {
+                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -1941,6 +2110,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontSize: number;
                 fontWeight: string;
             };
+            navigationBarButtonColor: {
+                color: string;
+            };
+            navigationBarTitle: {
+                fontSize: number;
+                fontWeight: string;
+                color: string;
+            };
+        };
+        navigationBar: {
+            navigationBarHeight: number;
         };
     }> & {
         textShadowOffset?: {
@@ -1949,7 +2129,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         } | {} | undefined;
         textShadowRadius?: number | {} | undefined;
     } & {
-        textShadowColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        textShadowColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
     } & import("@shopify/restyle").VariantProps<{
         colors: {
             textColor: string;
@@ -1961,6 +2141,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             cellColor: string;
             textFieldColor: string;
             shadowColor: string;
+            navigationBarButtonColor: string;
+            navigationBarBackground: string;
+            navigationBarTitleColor: string;
             transparent: string;
             black: string;
             white: string;
@@ -2056,6 +2239,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontWeight: string;
             };
             subtitle: {
+                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -2110,6 +2294,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontSize: number;
                 fontWeight: string;
             };
+            navigationBarButtonColor: {
+                color: string;
+            };
+            navigationBarTitle: {
+                fontSize: number;
+                fontWeight: string;
+                color: string;
+            };
+        };
+        navigationBar: {
+            navigationBarHeight: number;
         };
     }, "textVariants", "variant"> & import("@shopify/restyle").SpacingShorthandProps<{
         colors: {
@@ -2122,6 +2317,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             cellColor: string;
             textFieldColor: string;
             shadowColor: string;
+            navigationBarButtonColor: string;
+            navigationBarBackground: string;
+            navigationBarTitleColor: string;
             transparent: string;
             black: string;
             white: string;
@@ -2217,6 +2415,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontWeight: string;
             };
             subtitle: {
+                fontSize: number;
                 fontWeight: string;
             };
             regular: {};
@@ -2271,6 +2470,17 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontSize: number;
                 fontWeight: string;
             };
+            navigationBarButtonColor: {
+                color: string;
+            };
+            navigationBarTitle: {
+                fontSize: number;
+                fontWeight: string;
+                color: string;
+            };
+        };
+        navigationBar: {
+            navigationBarHeight: number;
         };
     }> & Pick<import("react-native").TextProps & {
         children?: import("react").ReactNode;
