@@ -24,7 +24,7 @@ export function FractalThemeUpdater({ children, lightTheme, darkTheme }: Fractal
     return (
         <ThemeProvider theme={theme}>
             {Platform.OS === 'web' ? <FractalWebBackground /> : null}
-            <FractalStatusBar />
+            {Platform.OS !== 'web' ? <FractalStatusBar /> : null}
             {children}
         </ThemeProvider>
     );
