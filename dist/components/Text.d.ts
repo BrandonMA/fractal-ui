@@ -1,3 +1,3 @@
-/// <reference types="react" />
+import React from 'react';
 import { BaseTextProps } from './baseComponents/BaseText';
-export declare function Text(props: BaseTextProps): JSX.Element;
+export declare const Text: React.MemoExoticComponent<(props: BaseTextProps) => JSX.Element>;

@@ -9,9 +9,9 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import React from 'react';
+import React, { memo } from 'react';
 import { BaseText } from './baseComponents/BaseText';
-export function Text(props) {
+export var Text = memo(function (props) {
     return React.createElement(BaseText, __assign({ selectable: false }, props));
-}
+});
 //# sourceMappingURL=Text.js.map

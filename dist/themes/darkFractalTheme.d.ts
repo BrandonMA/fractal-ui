@@ -12,6 +12,9 @@ export declare const darkFractalTheme: {
         navigationBarButtonColor: string;
         navigationBarBackground: string;
         navigationBarTitleColor: string;
+        tabBarBackground: string;
+        tabBarItemActive: string;
+        tabBarItemInactive: string;
         transparent: string;
         black: string;
         white: string;
@@ -168,6 +171,14 @@ export declare const darkFractalTheme: {
         navigationBarTitle: {
             fontSize: number;
             fontWeight: string;
+            color: string;
+        };
+        tabBarItemActive: {
+            fontSize: number;
+            color: string;
+        };
+        tabBarItemInactive: {
+            fontSize: number;
             color: string;
         };
     };

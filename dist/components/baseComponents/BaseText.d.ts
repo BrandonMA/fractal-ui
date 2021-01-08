@@ -13,6 +13,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         navigationBarButtonColor: string;
         navigationBarBackground: string;
         navigationBarTitleColor: string;
+        tabBarBackground: string;
+        tabBarItemActive: string;
+        tabBarItemInactive: string;
         transparent: string;
         black: string;
         white: string;
@@ -169,6 +172,14 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         navigationBarTitle: {
             fontSize: number;
             fontWeight: string;
+            color: string;
+        };
+        tabBarItemActive: {
+            fontSize: number;
+            color: string;
+        };
+        tabBarItemInactive: {
+            fontSize: number;
             color: string;
         };
     };
@@ -189,6 +200,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         navigationBarButtonColor: string;
         navigationBarBackground: string;
         navigationBarTitleColor: string;
+        tabBarBackground: string;
+        tabBarItemActive: string;
+        tabBarItemInactive: string;
         transparent: string;
         black: string;
         white: string;
@@ -345,6 +359,14 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         navigationBarTitle: {
             fontSize: number;
             fontWeight: string;
+            color: string;
+        };
+        tabBarItemActive: {
+            fontSize: number;
+            color: string;
+        };
+        tabBarItemInactive: {
+            fontSize: number;
             color: string;
         };
     };
@@ -365,6 +387,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         navigationBarButtonColor: string;
         navigationBarBackground: string;
         navigationBarTitleColor: string;
+        tabBarBackground: string;
+        tabBarItemActive: string;
+        tabBarItemInactive: string;
         transparent: string;
         black: string;
         white: string;
@@ -521,6 +546,14 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         navigationBarTitle: {
             fontSize: number;
             fontWeight: string;
+            color: string;
+        };
+        tabBarItemActive: {
+            fontSize: number;
+            color: string;
+        };
+        tabBarItemInactive: {
+            fontSize: number;
             color: string;
         };
     };
@@ -541,6 +574,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         navigationBarButtonColor: string;
         navigationBarBackground: string;
         navigationBarTitleColor: string;
+        tabBarBackground: string;
+        tabBarItemActive: string;
+        tabBarItemInactive: string;
         transparent: string;
         black: string;
         white: string;
@@ -697,6 +733,14 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         navigationBarTitle: {
             fontSize: number;
             fontWeight: string;
+            color: string;
+        };
+        tabBarItemActive: {
+            fontSize: number;
+            color: string;
+        };
+        tabBarItemInactive: {
+            fontSize: number;
             color: string;
         };
     };
@@ -717,6 +761,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         navigationBarButtonColor: string;
         navigationBarBackground: string;
         navigationBarTitleColor: string;
+        tabBarBackground: string;
+        tabBarItemActive: string;
+        tabBarItemInactive: string;
         transparent: string;
         black: string;
         white: string;
@@ -875,6 +922,14 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             fontWeight: string;
             color: string;
         };
+        tabBarItemActive: {
+            fontSize: number;
+            color: string;
+        };
+        tabBarItemInactive: {
+            fontSize: number;
+            color: string;
+        };
     };
     navigationBar: {
         navigationBarHeight: number;
@@ -886,7 +941,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
     } | {} | undefined;
     textShadowRadius?: number | {} | undefined;
 } & {
-    textShadowColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    textShadowColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
 } & import("@shopify/restyle").VariantProps<{
     colors: {
         textColor: string;
@@ -901,6 +956,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         navigationBarButtonColor: string;
         navigationBarBackground: string;
         navigationBarTitleColor: string;
+        tabBarBackground: string;
+        tabBarItemActive: string;
+        tabBarItemInactive: string;
         transparent: string;
         black: string;
         white: string;
@@ -1057,6 +1115,14 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         navigationBarTitle: {
             fontSize: number;
             fontWeight: string;
+            color: string;
+        };
+        tabBarItemActive: {
+            fontSize: number;
+            color: string;
+        };
+        tabBarItemInactive: {
+            fontSize: number;
             color: string;
         };
     };
@@ -1077,6 +1143,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         navigationBarButtonColor: string;
         navigationBarBackground: string;
         navigationBarTitleColor: string;
+        tabBarBackground: string;
+        tabBarItemActive: string;
+        tabBarItemInactive: string;
         transparent: string;
         black: string;
         white: string;
@@ -1233,6 +1302,14 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         navigationBarTitle: {
             fontSize: number;
             fontWeight: string;
+            color: string;
+        };
+        tabBarItemActive: {
+            fontSize: number;
+            color: string;
+        };
+        tabBarItemInactive: {
+            fontSize: number;
             color: string;
         };
     };
@@ -1256,6 +1333,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             navigationBarButtonColor: string;
             navigationBarBackground: string;
             navigationBarTitleColor: string;
+            tabBarBackground: string;
+            tabBarItemActive: string;
+            tabBarItemInactive: string;
             transparent: string;
             black: string;
             white: string;
@@ -1412,6 +1492,14 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             navigationBarTitle: {
                 fontSize: number;
                 fontWeight: string;
+                color: string;
+            };
+            tabBarItemActive: {
+                fontSize: number;
+                color: string;
+            };
+            tabBarItemInactive: {
+                fontSize: number;
                 color: string;
             };
         };
@@ -1432,6 +1520,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             navigationBarButtonColor: string;
             navigationBarBackground: string;
             navigationBarTitleColor: string;
+            tabBarBackground: string;
+            tabBarItemActive: string;
+            tabBarItemInactive: string;
             transparent: string;
             black: string;
             white: string;
@@ -1588,6 +1679,14 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             navigationBarTitle: {
                 fontSize: number;
                 fontWeight: string;
+                color: string;
+            };
+            tabBarItemActive: {
+                fontSize: number;
+                color: string;
+            };
+            tabBarItemInactive: {
+                fontSize: number;
                 color: string;
             };
         };
@@ -1608,6 +1707,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             navigationBarButtonColor: string;
             navigationBarBackground: string;
             navigationBarTitleColor: string;
+            tabBarBackground: string;
+            tabBarItemActive: string;
+            tabBarItemInactive: string;
             transparent: string;
             black: string;
             white: string;
@@ -1764,6 +1866,14 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             navigationBarTitle: {
                 fontSize: number;
                 fontWeight: string;
+                color: string;
+            };
+            tabBarItemActive: {
+                fontSize: number;
+                color: string;
+            };
+            tabBarItemInactive: {
+                fontSize: number;
                 color: string;
             };
         };
@@ -1784,6 +1894,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             navigationBarButtonColor: string;
             navigationBarBackground: string;
             navigationBarTitleColor: string;
+            tabBarBackground: string;
+            tabBarItemActive: string;
+            tabBarItemInactive: string;
             transparent: string;
             black: string;
             white: string;
@@ -1940,6 +2053,14 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             navigationBarTitle: {
                 fontSize: number;
                 fontWeight: string;
+                color: string;
+            };
+            tabBarItemActive: {
+                fontSize: number;
+                color: string;
+            };
+            tabBarItemInactive: {
+                fontSize: number;
                 color: string;
             };
         };
@@ -1960,6 +2081,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             navigationBarButtonColor: string;
             navigationBarBackground: string;
             navigationBarTitleColor: string;
+            tabBarBackground: string;
+            tabBarItemActive: string;
+            tabBarItemInactive: string;
             transparent: string;
             black: string;
             white: string;
@@ -2118,6 +2242,14 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 fontWeight: string;
                 color: string;
             };
+            tabBarItemActive: {
+                fontSize: number;
+                color: string;
+            };
+            tabBarItemInactive: {
+                fontSize: number;
+                color: string;
+            };
         };
         navigationBar: {
             navigationBarHeight: number;
@@ -2129,7 +2261,7 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         } | {} | undefined;
         textShadowRadius?: number | {} | undefined;
     } & {
-        textShadowColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        textShadowColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
     } & import("@shopify/restyle").VariantProps<{
         colors: {
             textColor: string;
@@ -2144,6 +2276,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             navigationBarButtonColor: string;
             navigationBarBackground: string;
             navigationBarTitleColor: string;
+            tabBarBackground: string;
+            tabBarItemActive: string;
+            tabBarItemInactive: string;
             transparent: string;
             black: string;
             white: string;
@@ -2300,6 +2435,14 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             navigationBarTitle: {
                 fontSize: number;
                 fontWeight: string;
+                color: string;
+            };
+            tabBarItemActive: {
+                fontSize: number;
+                color: string;
+            };
+            tabBarItemInactive: {
+                fontSize: number;
                 color: string;
             };
         };
@@ -2320,6 +2463,9 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             navigationBarButtonColor: string;
             navigationBarBackground: string;
             navigationBarTitleColor: string;
+            tabBarBackground: string;
+            tabBarItemActive: string;
+            tabBarItemInactive: string;
             transparent: string;
             black: string;
             white: string;
@@ -2476,6 +2622,14 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             navigationBarTitle: {
                 fontSize: number;
                 fontWeight: string;
+                color: string;
+            };
+            tabBarItemActive: {
+                fontSize: number;
+                color: string;
+            };
+            tabBarItemInactive: {
+                fontSize: number;
                 color: string;
             };
         };

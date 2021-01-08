@@ -17,6 +17,9 @@ export const lightFractalTheme = createTheme({
         navigationBarButtonColor: blue.base,
         navigationBarBackground: white.base,
         navigationBarTitleColor: white.base900,
+        tabBarBackground: white.base,
+        tabBarItemActive: blue.base,
+        tabBarItemInactive: white.base200,
         // Base Colors
         transparent: 'transparent',
         black: 'black',
@@ -180,6 +183,14 @@ export const lightFractalTheme = createTheme({
             fontSize: 17,
             fontWeight: '600',
             color: 'navigationBarTitleColor'
+        },
+        tabBarItemActive: {
+            fontSize: 11,
+            color: 'tabBarItemActive'
+        },
+        tabBarItemInactive: {
+            fontSize: 11,
+            color: 'tabBarItemInactive'
         }
     },
     navigationBar: {

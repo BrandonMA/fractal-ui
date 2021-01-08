@@ -16,6 +16,9 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         navigationBarButtonColor: string;
         navigationBarBackground: string;
         navigationBarTitleColor: string;
+        tabBarBackground: string;
+        tabBarItemActive: string;
+        tabBarItemInactive: string;
         transparent: string;
         black: string;
         white: string;
@@ -172,6 +175,14 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         navigationBarTitle: {
             fontSize: number;
             fontWeight: string;
+            color: string;
+        };
+        tabBarItemActive: {
+            fontSize: number;
+            color: string;
+        };
+        tabBarItemInactive: {
+            fontSize: number;
             color: string;
         };
     };
@@ -192,6 +203,9 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         navigationBarButtonColor: string;
         navigationBarBackground: string;
         navigationBarTitleColor: string;
+        tabBarBackground: string;
+        tabBarItemActive: string;
+        tabBarItemInactive: string;
         transparent: string;
         black: string;
         white: string;
@@ -348,6 +362,14 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         navigationBarTitle: {
             fontSize: number;
             fontWeight: string;
+            color: string;
+        };
+        tabBarItemActive: {
+            fontSize: number;
+            color: string;
+        };
+        tabBarItemInactive: {
+            fontSize: number;
             color: string;
         };
     };
@@ -368,6 +390,9 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         navigationBarButtonColor: string;
         navigationBarBackground: string;
         navigationBarTitleColor: string;
+        tabBarBackground: string;
+        tabBarItemActive: string;
+        tabBarItemInactive: string;
         transparent: string;
         black: string;
         white: string;
@@ -524,6 +549,14 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         navigationBarTitle: {
             fontSize: number;
             fontWeight: string;
+            color: string;
+        };
+        tabBarItemActive: {
+            fontSize: number;
+            color: string;
+        };
+        tabBarItemInactive: {
+            fontSize: number;
             color: string;
         };
     };
@@ -544,6 +577,9 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         navigationBarButtonColor: string;
         navigationBarBackground: string;
         navigationBarTitleColor: string;
+        tabBarBackground: string;
+        tabBarItemActive: string;
+        tabBarItemInactive: string;
         transparent: string;
         black: string;
         white: string;
@@ -700,6 +736,14 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         navigationBarTitle: {
             fontSize: number;
             fontWeight: string;
+            color: string;
+        };
+        tabBarItemActive: {
+            fontSize: number;
+            color: string;
+        };
+        tabBarItemInactive: {
+            fontSize: number;
             color: string;
         };
     };
@@ -720,6 +764,9 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         navigationBarButtonColor: string;
         navigationBarBackground: string;
         navigationBarTitleColor: string;
+        tabBarBackground: string;
+        tabBarItemActive: string;
+        tabBarItemInactive: string;
         transparent: string;
         black: string;
         white: string;
@@ -878,6 +925,14 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             fontWeight: string;
             color: string;
         };
+        tabBarItemActive: {
+            fontSize: number;
+            color: string;
+        };
+        tabBarItemInactive: {
+            fontSize: number;
+            color: string;
+        };
     };
     navigationBar: {
         navigationBarHeight: number;
@@ -892,13 +947,13 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
     borderEndWidth?: string | number | {} | undefined;
     borderWidth?: number | {} | undefined;
 } & {
-    borderColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-    borderTopColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-    borderRightColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-    borderLeftColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-    borderBottomColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-    borderStartColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-    borderEndColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    borderColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    borderTopColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    borderRightColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    borderLeftColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    borderBottomColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    borderStartColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    borderEndColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
 } & {
     borderRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
     borderBottomLeftRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
@@ -918,7 +973,7 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
     shadowRadius?: number | {} | undefined;
     elevation?: number | {} | undefined;
 } & {
-    shadowColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+    shadowColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
 } & {
     position?: "absolute" | "relative" | {} | undefined;
     top?: string | number | {} | undefined;
@@ -943,6 +998,9 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         navigationBarButtonColor: string;
         navigationBarBackground: string;
         navigationBarTitleColor: string;
+        tabBarBackground: string;
+        tabBarItemActive: string;
+        tabBarItemInactive: string;
         transparent: string;
         black: string;
         white: string;
@@ -1099,6 +1157,14 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         navigationBarTitle: {
             fontSize: number;
             fontWeight: string;
+            color: string;
+        };
+        tabBarItemActive: {
+            fontSize: number;
+            color: string;
+        };
+        tabBarItemInactive: {
+            fontSize: number;
             color: string;
         };
     };
@@ -1119,6 +1185,9 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         navigationBarButtonColor: string;
         navigationBarBackground: string;
         navigationBarTitleColor: string;
+        tabBarBackground: string;
+        tabBarItemActive: string;
+        tabBarItemInactive: string;
         transparent: string;
         black: string;
         white: string;
@@ -1275,6 +1344,14 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         navigationBarTitle: {
             fontSize: number;
             fontWeight: string;
+            color: string;
+        };
+        tabBarItemActive: {
+            fontSize: number;
+            color: string;
+        };
+        tabBarItemInactive: {
+            fontSize: number;
             color: string;
         };
     };
@@ -1298,6 +1375,9 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             navigationBarButtonColor: string;
             navigationBarBackground: string;
             navigationBarTitleColor: string;
+            tabBarBackground: string;
+            tabBarItemActive: string;
+            tabBarItemInactive: string;
             transparent: string;
             black: string;
             white: string;
@@ -1454,6 +1534,14 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             navigationBarTitle: {
                 fontSize: number;
                 fontWeight: string;
+                color: string;
+            };
+            tabBarItemActive: {
+                fontSize: number;
+                color: string;
+            };
+            tabBarItemInactive: {
+                fontSize: number;
                 color: string;
             };
         };
@@ -1474,6 +1562,9 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             navigationBarButtonColor: string;
             navigationBarBackground: string;
             navigationBarTitleColor: string;
+            tabBarBackground: string;
+            tabBarItemActive: string;
+            tabBarItemInactive: string;
             transparent: string;
             black: string;
             white: string;
@@ -1630,6 +1721,14 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             navigationBarTitle: {
                 fontSize: number;
                 fontWeight: string;
+                color: string;
+            };
+            tabBarItemActive: {
+                fontSize: number;
+                color: string;
+            };
+            tabBarItemInactive: {
+                fontSize: number;
                 color: string;
             };
         };
@@ -1650,6 +1749,9 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             navigationBarButtonColor: string;
             navigationBarBackground: string;
             navigationBarTitleColor: string;
+            tabBarBackground: string;
+            tabBarItemActive: string;
+            tabBarItemInactive: string;
             transparent: string;
             black: string;
             white: string;
@@ -1806,6 +1908,14 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             navigationBarTitle: {
                 fontSize: number;
                 fontWeight: string;
+                color: string;
+            };
+            tabBarItemActive: {
+                fontSize: number;
+                color: string;
+            };
+            tabBarItemInactive: {
+                fontSize: number;
                 color: string;
             };
         };
@@ -1826,6 +1936,9 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             navigationBarButtonColor: string;
             navigationBarBackground: string;
             navigationBarTitleColor: string;
+            tabBarBackground: string;
+            tabBarItemActive: string;
+            tabBarItemInactive: string;
             transparent: string;
             black: string;
             white: string;
@@ -1982,6 +2095,14 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             navigationBarTitle: {
                 fontSize: number;
                 fontWeight: string;
+                color: string;
+            };
+            tabBarItemActive: {
+                fontSize: number;
+                color: string;
+            };
+            tabBarItemInactive: {
+                fontSize: number;
                 color: string;
             };
         };
@@ -2002,6 +2123,9 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             navigationBarButtonColor: string;
             navigationBarBackground: string;
             navigationBarTitleColor: string;
+            tabBarBackground: string;
+            tabBarItemActive: string;
+            tabBarItemInactive: string;
             transparent: string;
             black: string;
             white: string;
@@ -2160,6 +2284,14 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
                 fontWeight: string;
                 color: string;
             };
+            tabBarItemActive: {
+                fontSize: number;
+                color: string;
+            };
+            tabBarItemInactive: {
+                fontSize: number;
+                color: string;
+            };
         };
         navigationBar: {
             navigationBarHeight: number;
@@ -2174,13 +2306,13 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         borderEndWidth?: string | number | {} | undefined;
         borderWidth?: number | {} | undefined;
     } & {
-        borderColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-        borderTopColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-        borderRightColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-        borderLeftColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-        borderBottomColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-        borderStartColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
-        borderEndColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        borderColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        borderTopColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        borderRightColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        borderLeftColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        borderBottomColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        borderStartColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        borderEndColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
     } & {
         borderRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
         borderBottomLeftRadius?: "s" | "m" | "xs" | "l" | "xl" | "cellRadius" | "buttonRadius" | "textFieldRadius" | {} | undefined;
@@ -2200,7 +2332,7 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         shadowRadius?: number | {} | undefined;
         elevation?: number | {} | undefined;
     } & {
-        shadowColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
+        shadowColor?: "black" | "transparent" | "white" | "textColor" | "labelColor" | "placeholderColor" | "mainInteractiveColor" | "alternativeInteractiveColor" | "successInteractiveColor" | "warningInteractiveColor" | "dangerInteractiveColor" | "navigationBarButtonColor" | "navigationBarTitleColor" | "tabBarItemActive" | "tabBarItemInactive" | "background" | "foreground" | "separatorColor" | "cellColor" | "textFieldColor" | "shadowColor" | "navigationBarBackground" | "tabBarBackground" | "facebook" | "mainInteractiveColor100" | "mainInteractiveColor200" | "mainInteractiveColor300" | "mainInteractiveColor400" | "mainInteractiveColor600" | "mainInteractiveColor700" | "mainInteractiveColor800" | "mainInteractiveColor900" | "alternativeInteractiveColor100" | "alternativeInteractiveColor200" | "alternativeInteractiveColor300" | "alternativeInteractiveColor400" | "alternativeInteractiveColor600" | "alternativeInteractiveColor700" | "alternativeInteractiveColor800" | "alternativeInteractiveColor900" | "successInteractiveColor100" | "successInteractiveColor200" | "successInteractiveColor300" | "successInteractiveColor400" | "successInteractiveColor600" | "successInteractiveColor700" | "successInteractiveColor800" | "successInteractiveColor900" | "warningInteractiveColor100" | "warningInteractiveColor200" | "warningInteractiveColor300" | "warningInteractiveColor400" | "warningInteractiveColor600" | "warningInteractiveColor700" | "warningInteractiveColor800" | "warningInteractiveColor900" | "dangerInteractiveColor100" | "dangerInteractiveColor200" | "dangerInteractiveColor300" | "dangerInteractiveColor400" | "dangerInteractiveColor600" | "dangerInteractiveColor700" | "dangerInteractiveColor800" | "dangerInteractiveColor900" | {} | undefined;
     } & {
         position?: "absolute" | "relative" | {} | undefined;
         top?: string | number | {} | undefined;
@@ -2225,6 +2357,9 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             navigationBarButtonColor: string;
             navigationBarBackground: string;
             navigationBarTitleColor: string;
+            tabBarBackground: string;
+            tabBarItemActive: string;
+            tabBarItemInactive: string;
             transparent: string;
             black: string;
             white: string;
@@ -2381,6 +2516,14 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             navigationBarTitle: {
                 fontSize: number;
                 fontWeight: string;
+                color: string;
+            };
+            tabBarItemActive: {
+                fontSize: number;
+                color: string;
+            };
+            tabBarItemInactive: {
+                fontSize: number;
                 color: string;
             };
         };
@@ -2401,6 +2544,9 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             navigationBarButtonColor: string;
             navigationBarBackground: string;
             navigationBarTitleColor: string;
+            tabBarBackground: string;
+            tabBarItemActive: string;
+            tabBarItemInactive: string;
             transparent: string;
             black: string;
             white: string;
@@ -2557,6 +2703,14 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             navigationBarTitle: {
                 fontSize: number;
                 fontWeight: string;
+                color: string;
+            };
+            tabBarItemActive: {
+                fontSize: number;
+                color: string;
+            };
+            tabBarItemInactive: {
+                fontSize: number;
                 color: string;
             };
         };

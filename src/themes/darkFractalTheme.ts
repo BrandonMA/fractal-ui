@@ -14,7 +14,9 @@ export const darkFractalTheme = createFractalTheme({
         cellColor: black.base,
         // Navigation
         navigationBarBackground: black.base,
-        navigationBarTitleColor: black.base900
+        navigationBarTitleColor: black.base900,
+        tabBarBackground: black.base,
+        tabBarItemInactive: black.base200
     },
     shadowProperties: {
         opacity: 0.3

@@ -14,7 +14,7 @@ export function FractalThemeUpdater(_a) {
     var theme = themeIdentifier === 'light' ? finalLightTheme : finalDarkTheme;
     return (React.createElement(ThemeProvider, { theme: theme },
         Platform.OS === 'web' ? React.createElement(FractalWebBackground, null) : null,
-        React.createElement(FractalStatusBar, null),
+        Platform.OS !== 'web' ? React.createElement(FractalStatusBar, null) : null,
         children));
 }
 //# sourceMappingURL=FractalThemeUpdater.js.map

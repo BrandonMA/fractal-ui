@@ -7,6 +7,6 @@ export interface TextButtonProps extends Partial<Omit<BaseTouchableOpacityProps,
     children?: (color: string) => JSX.Element;
     textProps?: Omit<BaseTextProps, 'children'>;
     text?: string;
-    variant: BasicColors | TitleButtonVariant | string;
+    variant: BasicColors | TitleButtonVariant | 'navigationBarButtonColor';
 }
 export declare function TextButton(props: TextButtonProps): JSX.Element;
