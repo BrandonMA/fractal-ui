@@ -12,9 +12,8 @@ export interface MessageProps extends Partial<Omit<BaseBoxProps, 'children'>> {
     description: string;
 }
 
-export function Message(props: MessageProps): JSX.Element {
-    const { messageType, title, icon, description, ...others } = props;
-    const theme = useTheme<FractalTheme>();
+export function Message({ messageType, title, icon, description, ...others }: MessageProps): JSX.Element {
+    const { colors } = useTheme<FractalTheme>();
     const backgroundColor = `${messageType}InteractiveColor100`;
     const titleVariant = `${messageType}InteractiveTitle`;
     const textVariant = `${messageType}InteractiveColor`;
@@ -22,7 +21,7 @@ export function Message(props: MessageProps): JSX.Element {
     return (
         <BaseBox padding='cell' borderRadius={'cellRadius'} backgroundColor={backgroundColor} {...others}>
             <HorizontalView alignItems='center' marginBottom='xs'>
-                {icon != null ? icon(theme.colors[textVariant]) : null}
+                {icon != null ? icon(colors[textVariant]) : null}
                 <Text marginLeft={icon != null ? 's' : undefined} variant={titleVariant}>
                     {title}
                 </Text>

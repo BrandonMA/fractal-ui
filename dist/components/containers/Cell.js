@@ -13,7 +13,7 @@ import React from 'react';
 import { useTheme } from '@shopify/restyle';
 import { BaseBox } from '../baseComponents/BaseBox';
 export function Cell(props) {
-    var theme = useTheme();
-    return (React.createElement(BaseBox, __assign({ padding: 'cell', backgroundColor: 'cellColor', borderRadius: 'cellRadius', elevation: 1, shadowColor: 'shadowColor', shadowOffset: theme.shadowProperties.offset, shadowRadius: theme.shadowProperties.radius, shadowOpacity: theme.shadowProperties.opacity }, props)));
+    var shadowProperties = useTheme().shadowProperties;
+    return (React.createElement(BaseBox, __assign({ padding: 'cell', backgroundColor: 'cellColor', borderRadius: 'cellRadius', elevation: 1, shadowColor: 'shadowColor', shadowOffset: shadowProperties.offset, shadowRadius: shadowProperties.radius, shadowOpacity: shadowProperties.opacity }, props)));
 }
 //# sourceMappingURL=Cell.js.map

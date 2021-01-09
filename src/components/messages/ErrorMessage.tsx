@@ -26,7 +26,6 @@ export class ErrorMessage extends Component<BaseBoxProps, State> {
 
     render(): ReactNode {
         if (this.state.hasError) {
-            // Puedes renderizar cualquier interfaz de repuesto
             return (
                 <Message
                     messageType={'danger'}

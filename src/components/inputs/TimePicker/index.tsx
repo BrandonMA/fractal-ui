@@ -5,8 +5,7 @@ import { TimePickerProps } from './types/TimePickerProps';
 import { numberToArray } from '../util/numberToArray';
 import { normalizeHourValues } from './util/normalizeHourValues';
 
-export function TimePicker(props: TimePickerProps): JSX.Element {
-    const { onChange, ...others } = props;
+export function TimePicker({ onChange, ...others }: TimePickerProps): JSX.Element {
     const [date, setDate] = useState(new Date());
 
     const hours = normalizeHourValues(numberToArray(24));

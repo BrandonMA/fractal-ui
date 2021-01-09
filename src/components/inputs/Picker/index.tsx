@@ -17,18 +17,17 @@ const style: any = {
     cursor: 'pointer'
 };
 
-export function Picker(props: PickerProps): JSX.Element {
-    const { items, onChange, initialValue, disabled, ...others } = props;
+export function Picker({ items, onChange, initialValue, disabled, ...others }: PickerProps): JSX.Element {
     const [currentValue, handleValueChange] = usePickerState(initialValue, items, onChange);
-    const theme = useTheme<FractalTheme>();
+    const { colors, interactiveItems } = useTheme<FractalTheme>();
 
     const renderItem = useCallback(
         (item) => {
             const value = item[0];
             const label = item[1];
-            return <NativePicker.Item color={theme.colors.black} label={label} value={value} key={value} />;
+            return <NativePicker.Item color={colors.black} label={label} value={value} key={value} />;
         },
-        [theme.colors.black]
+        [colors.black]
     );
 
     return (
@@ -36,7 +35,7 @@ export function Picker(props: PickerProps): JSX.Element {
             justifyContent='center'
             paddingHorizontal='s'
             borderRadius='textFieldRadius'
-            height={theme.interactiveItems.textFieldHeight}
+            height={interactiveItems.textFieldHeight}
             backgroundColor='textFieldColor'
             pointerEvents={disabled ? 'none' : 'auto'}
             {...others}
@@ -46,7 +45,7 @@ export function Picker(props: PickerProps): JSX.Element {
                 backgroundColor='transparent'
                 color='textColor'
                 selectedValue={currentValue}
-                dropdownIconColor={theme.colors.placeholderColor}
+                dropdownIconColor={colors.placeholderColor}
                 onValueChange={handleValueChange}
                 mode='dropdown'
                 fontSize={14}
@@ -56,7 +55,7 @@ export function Picker(props: PickerProps): JSX.Element {
                 {items.map(renderItem)}
             </BasePicker>
             <BaseBox alignSelf='center'>
-                <Entypo selectable={false} name='chevron-down' size={21} color={theme.colors.placeholderColor} />
+                <Entypo selectable={false} name='chevron-down' size={21} color={colors.placeholderColor} />
             </BaseBox>
         </HorizontalView>
     );

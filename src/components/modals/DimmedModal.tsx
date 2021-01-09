@@ -10,8 +10,7 @@ export interface DimmedModalProps extends NativeModalProps {
     alignItems?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
 }
 
-export function DimmedModal(props: DimmedModalProps): JSX.Element {
-    const { children, onDismiss, visible, justifyContent, alignItems, ...others } = props;
+export function DimmedModal({ children, onDismiss, visible, justifyContent, alignItems, ...others }: DimmedModalProps): JSX.Element {
     return (
         <NativeModal visible={visible} transparent animationType='fade' {...others}>
             <BaseSafeAreaView flex={1} justifyContent={justifyContent} alignItems={alignItems}>

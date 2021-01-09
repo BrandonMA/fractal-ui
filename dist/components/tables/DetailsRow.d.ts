@@ -4,4 +4,4 @@ export interface DetailsRowProps extends Partial<Omit<BaseBoxProps, 'children'>>
     title: string;
     details: string;
 }
-export declare function DetailsRow(props: DetailsRowProps): JSX.Element;
+export declare function DetailsRow({ title, details, ...others }: DetailsRowProps): JSX.Element;

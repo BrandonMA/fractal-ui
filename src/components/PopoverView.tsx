@@ -10,6 +10,7 @@ interface PopoverViewProps extends BaseBoxProps {
     popoverContainerProps?: Omit<BaseBoxProps, 'children'>;
 }
 
+// Not ready, implementation is not final
 export function PopoverView(props: PopoverViewProps): JSX.Element {
     const { active, popoverChildren, popoverContainerProps, ...others } = props;
     const [mainViewLayout, setMainViewLayout] = useState<LayoutRectangle>({ x: 0, y: 0, height: 0, width: 0 });

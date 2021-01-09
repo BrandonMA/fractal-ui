@@ -1,4 +1,4 @@
-export function getArrayWithYearsBetweenDates(maxDate, minDate) {
+export function getYearsInRange(maxDate, minDate) {
     var minValue = minDate.getFullYear();
     var difference = maxDate.getFullYear() - minValue;
     var arrayOfValues = Array();
@@ -10,4 +10,4 @@ export function getArrayWithYearsBetweenDates(maxDate, minDate) {
     arrayOfValues.push([minValue.toString(), minValue.toString()]);
     return arrayOfValues;
 }
-//# sourceMappingURL=getArrayWithYearsBetweenDates.js.map
+//# sourceMappingURL=getYearsInRange.js.map

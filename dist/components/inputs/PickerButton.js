@@ -27,14 +27,14 @@ import { Text } from '../Text';
 import { BaseBox } from '../baseComponents/BaseBox';
 import { BaseTouchableOpacity } from '../baseComponents/BaseTouchableOpacity';
 var Entypo = memo(BaseEntypo);
-export function PickerButton(props) {
-    var children = props.children, others = __rest(props, ["children"]);
-    var theme = useTheme();
+export function PickerButton(_a) {
+    var children = _a.children, others = __rest(_a, ["children"]);
+    var _b = useTheme(), interactiveItems = _b.interactiveItems, colors = _b.colors;
     return (React.createElement(React.Fragment, null,
-        React.createElement(BaseTouchableOpacity, __assign({ flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 's', borderRadius: 'textFieldRadius', height: theme.interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor' }, others),
+        React.createElement(BaseTouchableOpacity, __assign({ flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 's', borderRadius: 'textFieldRadius', height: interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor' }, others),
             React.createElement(BaseBox, { flexGrow: 1, justifyContent: 'center' },
                 React.createElement(Text, { fontSize: 14 }, children)),
             React.createElement(BaseBox, { alignSelf: 'center' },
-                React.createElement(Entypo, { name: 'chevron-down', size: 21, color: theme.colors.placeholderColor })))));
+                React.createElement(Entypo, { name: 'chevron-down', size: 21, color: colors.placeholderColor })))));
 }
 //# sourceMappingURL=PickerButton.js.map

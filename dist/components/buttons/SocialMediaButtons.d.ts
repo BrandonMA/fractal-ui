@@ -5,6 +5,7 @@ interface SocialMediaButtonsProps extends Partial<Omit<BaseBoxProps, 'children'>
     onFacebookPress?: () => void;
     onApplePress?: () => void;
     appleText?: string;
+    removeAppleButton?: boolean;
 }
-export declare function SocialMediaButtons(props: SocialMediaButtonsProps): JSX.Element;
+export declare function SocialMediaButtons({ onGooglePress, onFacebookPress, onApplePress, appleText, removeAppleButton, ...others }: SocialMediaButtonsProps): JSX.Element;
 export {};

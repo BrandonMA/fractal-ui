@@ -10,10 +10,17 @@ interface SocialMediaButtonsProps extends Partial<Omit<BaseBoxProps, 'children'>
     onFacebookPress?: () => void;
     onApplePress?: () => void;
     appleText?: string;
+    removeAppleButton?: boolean;
 }
 
-export function SocialMediaButtons(props: SocialMediaButtonsProps): JSX.Element {
-    const { onGooglePress, onFacebookPress, onApplePress, appleText, ...others } = props;
+export function SocialMediaButtons({
+    onGooglePress,
+    onFacebookPress,
+    onApplePress,
+    appleText,
+    removeAppleButton,
+    ...others
+}: SocialMediaButtonsProps): JSX.Element {
     return (
         <BaseBox padding='cell' {...others}>
             <HorizontalView marginBottom='m'>
@@ -21,7 +28,7 @@ export function SocialMediaButtons(props: SocialMediaButtonsProps): JSX.Element 
                 <BaseBox width={16} />
                 <FacebookButton flexGrow={1} onPress={onFacebookPress} />
             </HorizontalView>
-            <AppleButton onPress={onApplePress} text={appleText} />
+            {removeAppleButton ? null : <AppleButton onPress={onApplePress} text={appleText} />}
         </BaseBox>
     );
 }

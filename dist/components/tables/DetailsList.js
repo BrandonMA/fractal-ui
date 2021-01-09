@@ -20,20 +20,21 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { Fragment, memo } from 'react';
+import React, { Fragment, memo, useCallback } from 'react';
 import { Cell } from '../containers/Cell';
 import { Separator } from '../Separator';
 import { Text } from '../Text';
 import { DetailsRow } from './DetailsRow';
-export var DetailsList = memo(function (props) {
-    var title = props.title, details = props.details, titleVariant = props.titleVariant, others = __rest(props, ["title", "details", "titleVariant"]);
+export var DetailsList = memo(function (_a) {
+    var title = _a.title, details = _a.details, titleVariant = _a.titleVariant, others = __rest(_a, ["title", "details", "titleVariant"]);
+    var renderItem = useCallback(function (item, index) {
+        var isLastItem = index === details.length - 1;
+        return (React.createElement(Fragment, { key: item[0] },
+            React.createElement(DetailsRow, { title: item[0], details: item[1], marginBottom: isLastItem ? undefined : 's' }),
+            isLastItem ? null : React.createElement(Separator, { marginBottom: 's' })));
+    }, [details.length]);
     return (React.createElement(Cell, __assign({}, others),
         React.createElement(Text, { variant: titleVariant, marginBottom: 'm' }, title),
-        details.map(function (item, index) {
-            var isLastItem = index === details.length - 1;
-            return (React.createElement(Fragment, { key: item[0] },
-                React.createElement(DetailsRow, { title: item[0], details: item[1], marginBottom: isLastItem ? undefined : 's' }),
-                isLastItem ? null : React.createElement(Separator, { marginBottom: 's' })));
-        })));
+        details.map(renderItem)));
 });
 //# sourceMappingURL=DetailsList.js.map

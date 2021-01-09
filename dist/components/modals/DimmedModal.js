@@ -24,8 +24,8 @@ import React from 'react';
 import { Modal as NativeModal } from 'react-native';
 import { BasePressable } from '../baseComponents/BasePressable';
 import { BaseSafeAreaView } from '../baseComponents';
-export function DimmedModal(props) {
-    var children = props.children, onDismiss = props.onDismiss, visible = props.visible, justifyContent = props.justifyContent, alignItems = props.alignItems, others = __rest(props, ["children", "onDismiss", "visible", "justifyContent", "alignItems"]);
+export function DimmedModal(_a) {
+    var children = _a.children, onDismiss = _a.onDismiss, visible = _a.visible, justifyContent = _a.justifyContent, alignItems = _a.alignItems, others = __rest(_a, ["children", "onDismiss", "visible", "justifyContent", "alignItems"]);
     return (React.createElement(NativeModal, __assign({ visible: visible, transparent: true, animationType: 'fade' }, others),
         React.createElement(BaseSafeAreaView, { flex: 1, justifyContent: justifyContent, alignItems: alignItems },
             React.createElement(BasePressable, { onPress: onDismiss, position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: 'black', opacity: 0.6 }),

@@ -24,8 +24,8 @@ import React from 'react';
 import { BaseBox } from '../baseComponents/BaseBox';
 import { HorizontalView } from '../containers/HorizontalView';
 import { Text } from '../Text';
-export function DetailsRow(props) {
-    var title = props.title, details = props.details, others = __rest(props, ["title", "details"]);
+export function DetailsRow(_a) {
+    var title = _a.title, details = _a.details, others = __rest(_a, ["title", "details"]);
     return (React.createElement(HorizontalView, __assign({ alignItems: 'center' }, others),
         React.createElement(BaseBox, { flexGrow: 1 },
             React.createElement(Text, { variant: 'smallText' }, title)),

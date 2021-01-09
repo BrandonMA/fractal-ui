@@ -8,8 +8,7 @@ export interface ColorPickerProps extends Partial<Omit<BoxProps, 'children'>> {
     onColorChange: (color: string) => void;
 }
 
-export function ColorPicker(props: ColorPickerProps): JSX.Element {
-    const { colors, onColorChange, ...others } = props;
+export function ColorPicker({ colors, onColorChange, ...others }: ColorPickerProps): JSX.Element {
     const [activeColor, setActiveColor] = useState(colors[0]);
 
     const handleColorChange = useCallback(
@@ -22,17 +21,13 @@ export function ColorPicker(props: ColorPickerProps): JSX.Element {
         [onColorChange]
     );
 
+    const renderItem = (color: string) => (
+        <ColorToggle backgroundColor={color} key={color} onActiveChange={handleColorChange} active={activeColor === color} margin={'xs'} />
+    );
+
     return (
         <HorizontalView justifyContent={'space-around'} flexWrap={'wrap'} {...others}>
-            {colors.map((color) => (
-                <ColorToggle
-                    backgroundColor={color}
-                    key={color}
-                    onActiveChange={handleColorChange}
-                    active={activeColor === color}
-                    margin={'xs'}
-                />
-            ))}
+            {colors.map(renderItem)}
         </HorizontalView>
     );
 }

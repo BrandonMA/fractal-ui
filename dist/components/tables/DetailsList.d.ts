@@ -6,4 +6,4 @@ export interface DetailsListProps extends Partial<Omit<BaseBoxProps, 'children'>
     details: Array<[string, string]>;
     titleVariant: TitleButtonVariant | 'subtitle';
 }
-export declare const DetailsList: React.MemoExoticComponent<(props: DetailsListProps) => JSX.Element>;
+export declare const DetailsList: React.MemoExoticComponent<({ title, details, titleVariant, ...others }: DetailsListProps) => JSX.Element>;

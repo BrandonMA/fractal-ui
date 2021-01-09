@@ -25,17 +25,17 @@ import { HorizontalView } from '../../containers';
 import { Picker } from '../Picker';
 import { numberToArray } from '../util/numberToArray';
 import { getDaysInMonth } from './util/getDaysInMonth';
-import { getArrayWithYearsBetweenDates } from './util/getArrayWithYearsBetweenDates';
+import { getYearsInRange } from './util/getYearsInRange';
 import { localeMonthNames } from './util/localeMonthNames';
 import { getMonthName } from './util/getMonthName';
-export function DatePicker(props) {
-    var minDate = props.minDate, maxDate = props.maxDate, initialDate = props.initialDate, onChange = props.onChange, others = __rest(props, ["minDate", "maxDate", "initialDate", "onChange"]);
+export function DatePicker(_a) {
+    var minDate = _a.minDate, maxDate = _a.maxDate, initialDate = _a.initialDate, onChange = _a.onChange, others = __rest(_a, ["minDate", "maxDate", "initialDate", "onChange"]);
     var finalMinDate = useMemo(function () { return minDate !== null && minDate !== void 0 ? minDate : new Date('Jan 1, 1920'); }, [minDate]);
-    var _a = useState(initialDate !== null && initialDate !== void 0 ? initialDate : new Date()), date = _a[0], setDate = _a[1];
-    var years = useMemo(function () { return getArrayWithYearsBetweenDates(maxDate !== null && maxDate !== void 0 ? maxDate : date, finalMinDate); }, [maxDate, date, finalMinDate]);
+    var _b = useState(initialDate !== null && initialDate !== void 0 ? initialDate : new Date()), date = _b[0], setDate = _b[1];
+    var years = useMemo(function () { return getYearsInRange(maxDate !== null && maxDate !== void 0 ? maxDate : date, finalMinDate); }, [maxDate, date, finalMinDate]);
     var days = useMemo(function () {
-        var amountOfDays = getDaysInMonth(2021, date.getMonth());
-        return numberToArray(amountOfDays);
+        var amountOfDaysInMonth = getDaysInMonth(2021, date.getMonth());
+        return numberToArray(amountOfDaysInMonth);
     }, [date]);
     var handleOnChange = useCallback(function (date) {
         if (onChange != null) {

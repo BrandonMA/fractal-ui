@@ -1,4 +1,4 @@
-import React, { Fragment, memo } from 'react';
+import React, { Fragment, memo, useCallback } from 'react';
 import { BaseBoxProps } from '../baseComponents/BaseBox';
 import { TitleButtonVariant } from '../buttons/types/TitleButtonVariant';
 import { Cell } from '../containers/Cell';
@@ -13,23 +13,26 @@ export interface DetailsListProps extends Partial<Omit<BaseBoxProps, 'children'>
 }
 
 export const DetailsList = memo(
-    (props: DetailsListProps): JSX.Element => {
-        const { title, details, titleVariant, ...others } = props;
+    ({ title, details, titleVariant, ...others }: DetailsListProps): JSX.Element => {
+        const renderItem = useCallback(
+            (item: [string, string], index: number) => {
+                const isLastItem = index === details.length - 1;
+                return (
+                    <Fragment key={item[0]}>
+                        <DetailsRow title={item[0]} details={item[1]} marginBottom={isLastItem ? undefined : 's'} />
+                        {isLastItem ? null : <Separator marginBottom='s' />}
+                    </Fragment>
+                );
+            },
+            [details.length]
+        );
 
         return (
             <Cell {...others}>
                 <Text variant={titleVariant} marginBottom='m'>
                     {title}
                 </Text>
-                {details.map((item, index) => {
-                    const isLastItem = index === details.length - 1;
-                    return (
-                        <Fragment key={item[0]}>
-                            <DetailsRow title={item[0]} details={item[1]} marginBottom={isLastItem ? undefined : 's'} />
-                            {isLastItem ? null : <Separator marginBottom='s' />}
-                        </Fragment>
-                    );
-                })}
+                {details.map(renderItem)}
             </Cell>
         );
     }

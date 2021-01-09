@@ -8,9 +8,7 @@ export interface DetailsRowProps extends Partial<Omit<BaseBoxProps, 'children'>>
     details: string;
 }
 
-export function DetailsRow(props: DetailsRowProps): JSX.Element {
-    const { title, details, ...others } = props;
-
+export function DetailsRow({ title, details, ...others }: DetailsRowProps): JSX.Element {
     return (
         <HorizontalView alignItems='center' {...others}>
             <BaseBox flexGrow={1}>

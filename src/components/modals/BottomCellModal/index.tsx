@@ -1,12 +1,12 @@
-import React, { memo, ReactNode, useEffect, useMemo, useRef } from 'react';
-import { Animated, Dimensions } from 'react-native';
-import { BaseTouchableOpacity } from '../baseComponents';
-import { Cell, PaddedContainer } from '../containers';
+import React, { memo, ReactNode, useEffect } from 'react';
+import { BaseTouchableOpacity } from '../../baseComponents';
+import { Cell, PaddedContainer } from '../../containers';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { useTheme } from '@shopify/restyle';
-import { FractalTheme } from '../../themes';
-import { useSpringAnimation } from '../../animationHooks/useSpringAnimation';
-import { DimmedModal, DimmedModalProps } from './DimmedModal';
+import { FractalTheme } from '../../../themes';
+import { DimmedModal, DimmedModalProps } from '../DimmedModal';
+import { useBottomCellModalAnimation } from './hooks/useBottomCellModalAnimation';
+
 const Entypo = memo(BaseEntypo);
 
 export interface BottomCellModalProps extends DimmedModalProps {
@@ -14,17 +14,9 @@ export interface BottomCellModalProps extends DimmedModalProps {
     children?: ReactNode;
 }
 
-export function BottomCellModal(props: BottomCellModalProps): JSX.Element {
-    const { children, onDismiss, visible, ...others } = props;
-    const theme = useTheme<FractalTheme>();
-
-    const screenHeight = Dimensions.get('screen').height;
-    const yOffset = useRef(new Animated.Value(screenHeight)).current;
-    const showAnimation = useSpringAnimation(yOffset, 0, 10, 4);
-
-    const style = useMemo(() => {
-        return { transform: [{ translateY: yOffset }] };
-    }, [yOffset]);
+export function Index({ children, onDismiss, visible, ...others }: BottomCellModalProps): JSX.Element {
+    const { colors } = useTheme<FractalTheme>();
+    const [animatedStyle, showAnimation] = useBottomCellModalAnimation();
 
     useEffect(() => {
         if (visible) {
@@ -34,7 +26,7 @@ export function BottomCellModal(props: BottomCellModalProps): JSX.Element {
 
     return (
         <DimmedModal onDismiss={onDismiss} visible={visible} {...others} justifyContent='flex-end'>
-            <PaddedContainer style={style} width={'100%'} alignItems='center'>
+            <PaddedContainer style={animatedStyle} width={'100%'} alignItems='center'>
                 <Cell maxWidth={540} width={'100%'}>
                     <BaseTouchableOpacity
                         justifyContent='center'
@@ -46,7 +38,7 @@ export function BottomCellModal(props: BottomCellModalProps): JSX.Element {
                         borderRadius='l'
                         onPress={onDismiss}
                     >
-                        <Entypo name='cross' size={21} color={theme.colors.placeholderColor} />
+                        <Entypo name='cross' size={21} color={colors.placeholderColor} />
                     </BaseTouchableOpacity>
                     {children}
                 </Cell>

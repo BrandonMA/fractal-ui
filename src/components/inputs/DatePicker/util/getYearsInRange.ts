@@ -1,4 +1,4 @@
-export function getArrayWithYearsBetweenDates(maxDate: Date, minDate: Date): Array<[string, string]> {
+export function getYearsInRange(maxDate: Date, minDate: Date): Array<[string, string]> {
     const minValue = minDate.getFullYear();
     let difference = maxDate.getFullYear() - minValue;
     const arrayOfValues = Array<[string, string]>();

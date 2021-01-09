@@ -4,19 +4,18 @@ import { Picker } from '../Picker';
 import { DatePickerProps } from './types/DatePickerProps';
 import { numberToArray } from '../util/numberToArray';
 import { getDaysInMonth } from './util/getDaysInMonth';
-import { getArrayWithYearsBetweenDates } from './util/getArrayWithYearsBetweenDates';
+import { getYearsInRange } from './util/getYearsInRange';
 import { localeMonthNames } from './util/localeMonthNames';
 import { getMonthName } from './util/getMonthName';
 
-export function DatePicker(props: DatePickerProps): JSX.Element {
-    const { minDate, maxDate, initialDate, onChange, ...others } = props;
+export function DatePicker({ minDate, maxDate, initialDate, onChange, ...others }: DatePickerProps): JSX.Element {
     const finalMinDate = useMemo(() => minDate ?? new Date('Jan 1, 1920'), [minDate]);
     const [date, setDate] = useState(initialDate ?? new Date());
 
-    const years = useMemo(() => getArrayWithYearsBetweenDates(maxDate ?? date, finalMinDate), [maxDate, date, finalMinDate]);
+    const years = useMemo(() => getYearsInRange(maxDate ?? date, finalMinDate), [maxDate, date, finalMinDate]);
     const days = useMemo(() => {
-        const amountOfDays = getDaysInMonth(2021, date.getMonth());
-        return numberToArray(amountOfDays);
+        const amountOfDaysInMonth = getDaysInMonth(2021, date.getMonth());
+        return numberToArray(amountOfDaysInMonth);
     }, [date]);
 
     const handleOnChange = useCallback(

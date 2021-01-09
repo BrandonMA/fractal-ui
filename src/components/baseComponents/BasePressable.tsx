@@ -11,6 +11,5 @@ const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
 export function BasePressable(props: BasePressableProps): JSX.Element {
     const restyleProps = useCursorStyles(props);
-
     return <AnimatedPressable {...restyleProps} />;
 }

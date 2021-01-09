@@ -25,6 +25,7 @@ import { BaseBox } from './baseComponents/BaseBox';
 import { Animated } from 'react-native';
 import { useShowAnimation } from '../animationHooks/useShowAnimation';
 import { useHideAnimation } from '../animationHooks/useHideAnimation';
+// Not ready, implementation is not final
 export function PopoverView(props) {
     var active = props.active, popoverChildren = props.popoverChildren, popoverContainerProps = props.popoverContainerProps, others = __rest(props, ["active", "popoverChildren", "popoverContainerProps"]);
     var _a = useState({ x: 0, y: 0, height: 0, width: 0 }), mainViewLayout = _a[0], setMainViewLayout = _a[1];

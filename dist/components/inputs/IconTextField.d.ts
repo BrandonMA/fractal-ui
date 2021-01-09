@@ -9,4 +9,4 @@ export interface IconTextFieldProps extends Partial<Omit<BaseBoxProps, 'children
     placeholder: string;
     textFieldProps?: BaseTextFieldProps;
 }
-export declare function IconTextField(props: IconTextFieldProps): JSX.Element;
+export declare function IconTextField({ leftImage, rightImage, value, placeholder, onChangeText, textFieldProps, ...others }: IconTextFieldProps): JSX.Element;

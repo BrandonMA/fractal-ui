@@ -26,13 +26,13 @@ import { GoogleButton } from './GoogleButton';
 import { FacebookButton } from './FacebookButton';
 import { HorizontalView } from '../containers/HorizontalView';
 import { BaseBox } from '../baseComponents/BaseBox';
-export function SocialMediaButtons(props) {
-    var onGooglePress = props.onGooglePress, onFacebookPress = props.onFacebookPress, onApplePress = props.onApplePress, appleText = props.appleText, others = __rest(props, ["onGooglePress", "onFacebookPress", "onApplePress", "appleText"]);
+export function SocialMediaButtons(_a) {
+    var onGooglePress = _a.onGooglePress, onFacebookPress = _a.onFacebookPress, onApplePress = _a.onApplePress, appleText = _a.appleText, removeAppleButton = _a.removeAppleButton, others = __rest(_a, ["onGooglePress", "onFacebookPress", "onApplePress", "appleText", "removeAppleButton"]);
     return (React.createElement(BaseBox, __assign({ padding: 'cell' }, others),
         React.createElement(HorizontalView, { marginBottom: 'm' },
             React.createElement(GoogleButton, { flexGrow: 1, onPress: onGooglePress }),
             React.createElement(BaseBox, { width: 16 }),
             React.createElement(FacebookButton, { flexGrow: 1, onPress: onFacebookPress })),
-        React.createElement(AppleButton, { onPress: onApplePress, text: appleText })));
+        removeAppleButton ? null : React.createElement(AppleButton, { onPress: onApplePress, text: appleText })));
 }
 //# sourceMappingURL=SocialMediaButtons.js.map

@@ -25,14 +25,14 @@ import { BaseBox } from '../baseComponents/BaseBox';
 import { HorizontalView } from '../containers/HorizontalView';
 import { TextField } from './TextField';
 import { useTheme } from '@shopify/restyle';
-export function IconTextField(props) {
-    var leftImage = props.leftImage, rightImage = props.rightImage, value = props.value, placeholder = props.placeholder, onChangeText = props.onChangeText, textFieldProps = props.textFieldProps, others = __rest(props, ["leftImage", "rightImage", "value", "placeholder", "onChangeText", "textFieldProps"]);
-    var theme = useTheme();
+export function IconTextField(_a) {
+    var leftImage = _a.leftImage, rightImage = _a.rightImage, value = _a.value, placeholder = _a.placeholder, onChangeText = _a.onChangeText, textFieldProps = _a.textFieldProps, others = __rest(_a, ["leftImage", "rightImage", "value", "placeholder", "onChangeText", "textFieldProps"]);
+    var _b = useTheme(), interactiveItems = _b.interactiveItems, textFields = _b.textFields, colors = _b.colors;
     var paddingLeft = leftImage != null ? 'xs' : undefined;
     var paddingRight = rightImage != null ? 'xs' : undefined;
-    return (React.createElement(HorizontalView, __assign({ paddingLeft: paddingLeft, paddingRight: paddingRight, borderRadius: 'textFieldRadius', height: theme.interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor', justifyContent: 'space-evenly', alignItems: 'center' }, others),
-        leftImage != null ? (React.createElement(BaseBox, { flexShrink: 0, height: theme.textFields.iconSize, width: theme.textFields.iconSize }, leftImage(theme.colors.placeholderColor, theme.textFields.iconSize))) : null,
+    return (React.createElement(HorizontalView, __assign({ paddingLeft: paddingLeft, paddingRight: paddingRight, borderRadius: 'textFieldRadius', height: interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor', justifyContent: 'space-evenly', alignItems: 'center' }, others),
+        leftImage != null ? (React.createElement(BaseBox, { flexShrink: 0, height: textFields.iconSize, width: textFields.iconSize }, leftImage(colors.placeholderColor, textFields.iconSize))) : null,
         React.createElement(TextField, __assign({ paddingLeft: paddingLeft, paddingRight: paddingRight, numberOfLines: 1, flex: 1, value: value, onChangeText: onChangeText, placeholder: placeholder }, textFieldProps)),
-        rightImage != null ? (React.createElement(BaseBox, { flexShrink: 0, height: theme.textFields.iconSize, width: theme.textFields.iconSize }, rightImage(theme.colors.placeholderColor, theme.textFields.iconSize))) : null));
+        rightImage != null ? (React.createElement(BaseBox, { flexShrink: 0, height: textFields.iconSize, width: textFields.iconSize }, rightImage(colors.placeholderColor, textFields.iconSize))) : null));
 }
 //# sourceMappingURL=IconTextField.js.map

@@ -4,4 +4,4 @@ export interface ColorPickerProps extends Partial<Omit<BoxProps, 'children'>> {
     colors: Array<string>;
     onColorChange: (color: string) => void;
 }
-export declare function ColorPicker(props: ColorPickerProps): JSX.Element;
+export declare function ColorPicker({ colors, onColorChange, ...others }: ColorPickerProps): JSX.Element;

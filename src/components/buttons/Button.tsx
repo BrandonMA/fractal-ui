@@ -8,15 +8,15 @@ import { ButtonProps } from './types/ButtonProps';
 
 export function Button(props: ButtonProps): JSX.Element {
     const { variant, children, addShadow, reduceColor, text, ...others } = props;
-    const theme = useTheme<FractalTheme>();
+    const { interactiveItems, shadowProperties, colors } = useTheme<FractalTheme>();
     const [handlePressIn, handlePressOut, style] = useBaseButtonAnimations(props);
 
     const ripple = useMemo(() => {
         return {
-            color: theme.colors.white,
+            color: colors.white,
             borderless: true
         };
-    }, [theme]);
+    }, [colors.white]);
 
     return (
         <BasePressable
@@ -26,14 +26,14 @@ export function Button(props: ButtonProps): JSX.Element {
             android_ripple={ripple}
             justifyContent='center'
             alignItems='center'
-            height={theme.interactiveItems.buttonHeight}
+            height={interactiveItems.buttonHeight}
             onPressIn={handlePressIn}
             onPressOut={handlePressOut}
             style={style as any}
             shadowColor={addShadow ? 'shadowColor' : undefined}
-            shadowOffset={addShadow ? theme.shadowProperties.offset : undefined}
-            shadowRadius={addShadow ? theme.shadowProperties.radius : undefined}
-            shadowOpacity={addShadow ? theme.shadowProperties.opacity : undefined}
+            shadowOffset={addShadow ? shadowProperties.offset : undefined}
+            shadowRadius={addShadow ? shadowProperties.radius : undefined}
+            shadowOpacity={addShadow ? shadowProperties.opacity : undefined}
             {...others}
         >
             {children}

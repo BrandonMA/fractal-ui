@@ -13,7 +13,7 @@ import React from 'react';
 import { useTheme } from '@shopify/restyle';
 import { BaseTextField } from '../baseComponents/BaseTextField';
 export function TextField(props) {
-    var theme = useTheme();
-    return (React.createElement(BaseTextField, __assign({ borderRadius: 'textFieldRadius', color: 'textColor', backgroundColor: 'textFieldColor', placeholderTextColor: theme.colors.placeholderColor, padding: 's', height: theme.interactiveItems.textFieldHeight }, props)));
+    var _a = useTheme(), colors = _a.colors, interactiveItems = _a.interactiveItems;
+    return (React.createElement(BaseTextField, __assign({ borderRadius: 'textFieldRadius', color: 'textColor', backgroundColor: 'textFieldColor', placeholderTextColor: colors.placeholderColor, padding: 's', height: interactiveItems.textFieldHeight }, props)));
 }
 //# sourceMappingURL=TextField.js.map

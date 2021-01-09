@@ -12,9 +12,8 @@ export interface PickerButtonProps extends Partial<Omit<BaseTouchableOpacityProp
     children: string;
 }
 
-export function PickerButton(props: PickerButtonProps): JSX.Element {
-    const { children, ...others } = props;
-    const theme = useTheme<FractalTheme>();
+export function PickerButton({ children, ...others }: PickerButtonProps): JSX.Element {
+    const { interactiveItems, colors } = useTheme<FractalTheme>();
 
     return (
         <>
@@ -23,7 +22,7 @@ export function PickerButton(props: PickerButtonProps): JSX.Element {
                 justifyContent='center'
                 paddingHorizontal='s'
                 borderRadius='textFieldRadius'
-                height={theme.interactiveItems.textFieldHeight}
+                height={interactiveItems.textFieldHeight}
                 backgroundColor='textFieldColor'
                 {...others}
             >
@@ -31,7 +30,7 @@ export function PickerButton(props: PickerButtonProps): JSX.Element {
                     <Text fontSize={14}>{children}</Text>
                 </BaseBox>
                 <BaseBox alignSelf='center'>
-                    <Entypo name='chevron-down' size={21} color={theme.colors.placeholderColor} />
+                    <Entypo name='chevron-down' size={21} color={colors.placeholderColor} />
                 </BaseBox>
             </BaseTouchableOpacity>
         </>

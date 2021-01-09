@@ -24,11 +24,11 @@ import { useTheme } from '@shopify/restyle';
 import React from 'react';
 import { BaseText } from '../baseComponents/BaseText';
 import { BaseTouchableOpacity } from '../baseComponents/BaseTouchableOpacity';
-export function TextButton(props) {
-    var text = props.text, children = props.children, textProps = props.textProps, variant = props.variant, others = __rest(props, ["text", "children", "textProps", "variant"]);
-    var theme = useTheme();
+export function TextButton(_a) {
+    var text = _a.text, children = _a.children, textProps = _a.textProps, variant = _a.variant, others = __rest(_a, ["text", "children", "textProps", "variant"]);
+    var colors = useTheme().colors;
     return (React.createElement(BaseTouchableOpacity, __assign({ flexDirection: 'row', alignItems: 'center' }, others),
-        children ? children(theme.colors[variant]) : null,
+        children ? children(colors[variant]) : null,
         text != null ? (React.createElement(BaseText, __assign({ variant: variant }, textProps), text)) : null));
 }
 //# sourceMappingURL=TextButton.js.map

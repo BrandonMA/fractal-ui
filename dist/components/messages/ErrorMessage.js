@@ -42,7 +42,6 @@ var ErrorMessage = /** @class */ (function (_super) {
     };
     ErrorMessage.prototype.render = function () {
         if (this.state.hasError) {
-            // Puedes renderizar cualquier interfaz de repuesto
             return (React.createElement(Message, __assign({ messageType: 'danger', title: this.state.errorTitle, description: this.state.errorMessage, icon: this.renderErrorIcon }, this.props)));
         }
         return React.createElement(BaseBox, __assign({}, this.props), this.props.children);

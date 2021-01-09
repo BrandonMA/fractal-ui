@@ -4,7 +4,7 @@ import { FractalTheme } from '../../themes/FractalTheme';
 import { BaseBox, BaseBoxProps } from '../baseComponents/BaseBox';
 
 export function Cell(props: BaseBoxProps): JSX.Element {
-    const theme = useTheme<FractalTheme>();
+    const { shadowProperties } = useTheme<FractalTheme>();
     return (
         <BaseBox
             padding='cell'
@@ -12,9 +12,9 @@ export function Cell(props: BaseBoxProps): JSX.Element {
             borderRadius='cellRadius'
             elevation={1}
             shadowColor='shadowColor'
-            shadowOffset={theme.shadowProperties.offset}
-            shadowRadius={theme.shadowProperties.radius}
-            shadowOpacity={theme.shadowProperties.opacity}
+            shadowOffset={shadowProperties.offset}
+            shadowRadius={shadowProperties.radius}
+            shadowOpacity={shadowProperties.opacity}
             {...props}
         />
     );

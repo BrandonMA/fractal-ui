@@ -20,33 +20,26 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback } from 'react';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
-import { BasePressable } from '../baseComponents/BasePressable';
-import { useShowAnimation } from '../../animationHooks/useShowAnimation';
+import { BasePressable } from '../../baseComponents/BasePressable';
 import { Animated } from 'react-native';
-import { useHideAnimation } from '../../animationHooks/useHideAnimation';
+import { useColorToggleAnimation } from './hooks/useColorToggleAnimation';
 var Entypo = Animated.createAnimatedComponent(BaseEntypo);
-export function ColorToggle(props) {
-    var onActiveChange = props.onActiveChange, backgroundColor = props.backgroundColor, active = props.active, others = __rest(props, ["onActiveChange", "backgroundColor", "active"]);
-    var _a = useState(false), internalActive = _a[0], setActive = _a[1];
-    var animatedValue = useRef(new Animated.Value(active || internalActive ? 1 : 0)).current;
-    var showAnimation = useShowAnimation(animatedValue);
-    var hideAnimation = useHideAnimation(animatedValue);
-    var iconStyle = useMemo(function () {
-        return { opacity: animatedValue, transform: [{ scale: animatedValue }] };
-    }, [animatedValue]);
+export function ColorToggle(_a) {
+    var onActiveChange = _a.onActiveChange, backgroundColor = _a.backgroundColor, active = _a.active, others = __rest(_a, ["onActiveChange", "backgroundColor", "active"]);
+    var _b = useColorToggleAnimation(active), setActive = _b[1], iconStyle = _b[2];
     var handleControlledActiveToggle = useCallback(function () {
         if (onActiveChange) {
             onActiveChange(!active, backgroundColor);
         }
     }, [onActiveChange, active, backgroundColor]);
     var handleUncontrolledActiveToggle = useCallback(function () {
-        setActive(function (currentValue) {
+        setActive(function (internalActive) {
             if (onActiveChange != null) {
-                onActiveChange(!currentValue, backgroundColor);
+                onActiveChange(!internalActive, backgroundColor);
             }
-            return !currentValue;
+            return !internalActive;
         });
     }, [setActive, onActiveChange, backgroundColor]);
     var handlePress = useCallback(function () {
@@ -57,15 +50,7 @@ export function ColorToggle(props) {
             handleUncontrolledActiveToggle();
         }
     }, [active, handleUncontrolledActiveToggle, handleControlledActiveToggle]);
-    useEffect(function () {
-        if (internalActive || active) {
-            showAnimation();
-        }
-        else {
-            hideAnimation();
-        }
-    }, [internalActive, showAnimation, hideAnimation, active]);
     return (React.createElement(BasePressable, __assign({ onPress: handlePress, width: 40, height: 40, borderRadius: 'xl', justifyContent: 'center', alignItems: 'center', style: { backgroundColor: backgroundColor } }, others),
         React.createElement(Entypo, { selectable: false, name: 'check', size: 24, color: 'white', style: iconStyle })));
 }
-//# sourceMappingURL=ColorToggle.js.map
+//# sourceMappingURL=index.js.map

@@ -23,18 +23,18 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { useCallback, useState } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { usePickerState } from './hooks/usePickerState';
-import { BottomCellModal } from '../../modals/BottomCellModal';
+import { Index } from '../../modals/BottomCellModal';
 import { BasePicker } from '../../baseComponents/BasePicker';
 import { Picker as NativePicker } from '@react-native-picker/picker';
 import { Button } from '../../buttons/Button';
 import { PickerButton } from '../PickerButton';
 import { BaseBox } from '../../baseComponents';
-export function Picker(props) {
-    var items = props.items, onChange = props.onChange, initialValue = props.initialValue, iosDoneText = props.iosDoneText, others = __rest(props, ["items", "onChange", "initialValue", "iosDoneText"]);
-    var _a = usePickerState(initialValue, items), currentValue = _a[0], handleValueChange = _a[1], index = _a[2];
-    var theme = useTheme();
-    var _b = useState(0), finalIndex = _b[0], setFinalIndex = _b[1];
-    var _c = useState(false), modalActive = _c[0], setModalActive = _c[1];
+export function Picker(_a) {
+    var items = _a.items, onChange = _a.onChange, initialValue = _a.initialValue, iosDoneText = _a.iosDoneText, others = __rest(_a, ["items", "onChange", "initialValue", "iosDoneText"]);
+    var _b = usePickerState(initialValue, items), currentValue = _b[0], handleValueChange = _b[1], index = _b[2];
+    var colors = useTheme().colors;
+    var _c = useState(0), finalIndex = _c[0], setFinalIndex = _c[1];
+    var _d = useState(false), modalActive = _d[0], setModalActive = _d[1];
     var toggleModal = useCallback(function () { return setModalActive(function (current) { return !current; }); }, [setModalActive]);
     var pickFinalValue = function () {
         setFinalIndex(index);
@@ -46,11 +46,11 @@ export function Picker(props) {
     var renderItem = useCallback(function (item) {
         var value = item[0];
         var label = item[1];
-        return React.createElement(NativePicker.Item, { color: theme.colors.textColor, label: label, value: value, key: value });
-    }, [theme.colors.textColor]);
+        return React.createElement(NativePicker.Item, { color: colors.textColor, label: label, value: value, key: value });
+    }, [colors.textColor]);
     return (React.createElement(React.Fragment, null,
         React.createElement(PickerButton, __assign({ onPress: toggleModal }, others), items[finalIndex][1]),
-        React.createElement(BottomCellModal, { visible: modalActive, onDismiss: toggleModal },
+        React.createElement(Index, { visible: modalActive, onDismiss: toggleModal },
             React.createElement(BaseBox, null,
                 React.createElement(BasePicker, { selectedValue: currentValue, onValueChange: handleValueChange }, items.map(renderItem)),
                 React.createElement(Button, { variant: 'mainInteractiveColor', onPress: pickFinalValue, text: iosDoneText })))));

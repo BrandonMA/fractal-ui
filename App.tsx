@@ -22,7 +22,6 @@ import {
     ColorPicker,
     DatePicker,
     TimePicker,
-    black,
     brinkPink,
     FractalTheme,
     lime,
@@ -89,8 +88,7 @@ function FinalColorPicker(): JSX.Element {
                     purple.base,
                     brinkPink.base,
                     lime.base,
-                    pink.base,
-                    black.base
+                    pink.base
                 ]}
             />
         </>
@@ -99,17 +97,21 @@ function FinalColorPicker(): JSX.Element {
 
 function App(): JSX.Element {
     const [text, setText] = useState('');
-    // const [showPopover, setShowPopover] = useState(false);
-    // const togglePopover = useCallback(() => setShowPopover((current) => !current), [setShowPopover]);
 
     const renderEmailIcon = useCallback(
-        (color: string, size: number): JSX.Element => <Entypo name='email' size={size} color={color} />,
+        (color: string, size: number): JSX.Element => <Entypo selectable={false} name='email' size={size} color={color} />,
         []
     );
 
-    const renderChevronLeft = useCallback((color: string): JSX.Element => <Entypo name='chevron-left' size={20} color={color} />, []);
+    const renderChevronLeft = useCallback(
+        (color: string): JSX.Element => <Entypo selectable={false} name='chevron-left' size={20} color={color} />,
+        []
+    );
 
-    const renderWarning = useCallback((color: string): JSX.Element => <Entypo name={'warning'} size={20} color={color} />, []);
+    const renderWarning = useCallback(
+        (color: string): JSX.Element => <Entypo selectable={false} name={'warning'} size={20} color={color} />,
+        []
+    );
 
     return (
         <FractalAppRoot handleThemeManually={true}>

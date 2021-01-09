@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { BottomCellModal } from '../../modals/BottomCellModal';
+import { Index } from '../../modals/BottomCellModal';
 import { Button } from '../../buttons/Button';
 import { PickerButton } from '../PickerButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -7,12 +7,11 @@ import { DatePickerProps } from './types/DatePickerProps';
 import { useTheme } from '@shopify/restyle';
 import { FractalTheme } from '../../../themes/FractalTheme';
 
-export function DatePicker(props: DatePickerProps): JSX.Element {
-    const { initialDate, minDate, maxDate, onChange, iosDoneText, ...others } = props;
+export function DatePicker({ initialDate, minDate, maxDate, onChange, iosDoneText, ...others }: DatePickerProps): JSX.Element {
     const [modalActive, setModalActive] = useState(false);
     const [date, setDate] = useState(initialDate ?? new Date());
     const [finalDate, setFinalDate] = useState(initialDate ?? new Date());
-    const theme = useTheme<FractalTheme>();
+    const { colors } = useTheme<FractalTheme>();
 
     const toggleModal = useCallback(() => setModalActive((current) => !current), [setModalActive]);
 
@@ -36,7 +35,7 @@ export function DatePicker(props: DatePickerProps): JSX.Element {
             <PickerButton onPress={toggleModal} {...others}>
                 {finalDate.toLocaleDateString()}
             </PickerButton>
-            <BottomCellModal visible={modalActive} onDismiss={toggleModal}>
+            <Index visible={modalActive} onDismiss={toggleModal}>
                 <DateTimePicker
                     value={date}
                     mode={'date'}
@@ -44,10 +43,10 @@ export function DatePicker(props: DatePickerProps): JSX.Element {
                     minimumDate={minDate}
                     maximumDate={maxDate}
                     onChange={handleChange}
-                    textColor={theme.colors.textColor}
+                    textColor={colors.textColor}
                 />
                 <Button variant='mainInteractiveColor' text={iosDoneText} onPress={pickFinalValue} />
-            </BottomCellModal>
+            </Index>
         </>
     );
 }

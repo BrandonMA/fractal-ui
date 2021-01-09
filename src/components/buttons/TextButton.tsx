@@ -13,13 +13,12 @@ export interface TextButtonProps extends Partial<Omit<BaseTouchableOpacityProps,
     variant: BasicColors | TitleButtonVariant | 'navigationBarButtonColor';
 }
 
-export function TextButton(props: TextButtonProps): JSX.Element {
-    const { text, children, textProps, variant, ...others } = props;
-    const theme = useTheme<FractalTheme>();
+export function TextButton({ text, children, textProps, variant, ...others }: TextButtonProps): JSX.Element {
+    const { colors } = useTheme<FractalTheme>();
 
     return (
         <BaseTouchableOpacity flexDirection='row' alignItems='center' {...others}>
-            {children ? children(theme.colors[variant]) : null}
+            {children ? children(colors[variant]) : null}
             {text != null ? (
                 <BaseText variant={variant} {...textProps}>
                     {text}

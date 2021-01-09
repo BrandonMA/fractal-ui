@@ -25,9 +25,9 @@ import { HorizontalView } from '../../containers';
 import { Picker } from '../Picker';
 import { numberToArray } from '../util/numberToArray';
 import { normalizeHourValues } from './util/normalizeHourValues';
-export function TimePicker(props) {
-    var onChange = props.onChange, others = __rest(props, ["onChange"]);
-    var _a = useState(new Date()), date = _a[0], setDate = _a[1];
+export function TimePicker(_a) {
+    var onChange = _a.onChange, others = __rest(_a, ["onChange"]);
+    var _b = useState(new Date()), date = _b[0], setDate = _b[1];
     var hours = normalizeHourValues(numberToArray(24));
     var minutes = normalizeHourValues(numberToArray(59, true));
     var handleOnChange = useCallback(function (date) {

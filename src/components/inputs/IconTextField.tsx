@@ -15,9 +15,16 @@ export interface IconTextFieldProps extends Partial<Omit<BaseBoxProps, 'children
     textFieldProps?: BaseTextFieldProps;
 }
 
-export function IconTextField(props: IconTextFieldProps): JSX.Element {
-    const { leftImage, rightImage, value, placeholder, onChangeText, textFieldProps, ...others } = props;
-    const theme = useTheme<FractalTheme>();
+export function IconTextField({
+    leftImage,
+    rightImage,
+    value,
+    placeholder,
+    onChangeText,
+    textFieldProps,
+    ...others
+}: IconTextFieldProps): JSX.Element {
+    const { interactiveItems, textFields, colors } = useTheme<FractalTheme>();
     const paddingLeft = leftImage != null ? 'xs' : undefined;
     const paddingRight = rightImage != null ? 'xs' : undefined;
 
@@ -26,15 +33,15 @@ export function IconTextField(props: IconTextFieldProps): JSX.Element {
             paddingLeft={paddingLeft}
             paddingRight={paddingRight}
             borderRadius='textFieldRadius'
-            height={theme.interactiveItems.textFieldHeight}
+            height={interactiveItems.textFieldHeight}
             backgroundColor='textFieldColor'
             justifyContent={'space-evenly'}
             alignItems={'center'}
             {...others}
         >
             {leftImage != null ? (
-                <BaseBox flexShrink={0} height={theme.textFields.iconSize} width={theme.textFields.iconSize}>
-                    {leftImage(theme.colors.placeholderColor, theme.textFields.iconSize)}
+                <BaseBox flexShrink={0} height={textFields.iconSize} width={textFields.iconSize}>
+                    {leftImage(colors.placeholderColor, textFields.iconSize)}
                 </BaseBox>
             ) : null}
             <TextField
@@ -48,8 +55,8 @@ export function IconTextField(props: IconTextFieldProps): JSX.Element {
                 {...textFieldProps}
             />
             {rightImage != null ? (
-                <BaseBox flexShrink={0} height={theme.textFields.iconSize} width={theme.textFields.iconSize}>
-                    {rightImage(theme.colors.placeholderColor, theme.textFields.iconSize)}
+                <BaseBox flexShrink={0} height={textFields.iconSize} width={textFields.iconSize}>
+                    {rightImage(colors.placeholderColor, textFields.iconSize)}
                 </BaseBox>
             ) : null}
         </HorizontalView>

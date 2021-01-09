@@ -9,5 +9,6 @@ export function SearchBar(props: IconTextFieldProps): JSX.Element {
         (color: string, size: number) => <Ionicons selectable={false} name='search' size={size} color={color} />,
         []
     );
+
     return <IconTextField {...props} leftImage={renderSearchIcon} />;
 }

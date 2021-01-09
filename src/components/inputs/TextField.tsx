@@ -4,16 +4,16 @@ import { FractalTheme } from '../../themes/FractalTheme';
 import { BaseTextField, BaseTextFieldProps } from '../baseComponents/BaseTextField';
 
 export function TextField(props: BaseTextFieldProps): JSX.Element {
-    const theme = useTheme<FractalTheme>();
+    const { colors, interactiveItems } = useTheme<FractalTheme>();
 
     return (
         <BaseTextField
             borderRadius='textFieldRadius'
             color='textColor'
             backgroundColor='textFieldColor'
-            placeholderTextColor={theme.colors.placeholderColor}
+            placeholderTextColor={colors.placeholderColor}
             padding='s'
-            height={theme.interactiveItems.textFieldHeight}
+            height={interactiveItems.textFieldHeight}
             {...props}
         />
     );
