@@ -19,6 +19,6 @@ export const darkFractalTheme = createFractalTheme({
         tabBarItemInactive: black.base200
     },
     shadowProperties: {
-        opacity: 0.3
+        opacity: 0.2
     }
 });

@@ -18,7 +18,7 @@ export var darkFractalTheme = createFractalTheme({
         tabBarItemInactive: black.base200
     },
     shadowProperties: {
-        opacity: 0.3
+        opacity: 0.2
     }
 });
 //# sourceMappingURL=darkFractalTheme.js.map
