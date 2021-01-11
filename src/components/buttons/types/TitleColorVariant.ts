@@ -1,4 +1,4 @@
-export type TitleButtonVariant =
+export type TitleColorVariant =
     | 'mainInteractiveTitle'
     | 'alternativeInteractiveTitle'
     | 'successInteractiveTitle'

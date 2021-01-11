@@ -33,7 +33,7 @@ export function Picker(_a) {
     var items = _a.items, onChange = _a.onChange, initialValue = _a.initialValue, iosDoneText = _a.iosDoneText, others = __rest(_a, ["items", "onChange", "initialValue", "iosDoneText"]);
     var _b = usePickerState(initialValue, items), currentValue = _b[0], handleValueChange = _b[1], index = _b[2];
     var colors = useTheme().colors;
-    var _c = useState(0), finalIndex = _c[0], setFinalIndex = _c[1];
+    var _c = useState(index), finalIndex = _c[0], setFinalIndex = _c[1];
     var _d = useState(false), modalActive = _d[0], setModalActive = _d[1];
     var toggleModal = useCallback(function () { return setModalActive(function (current) { return !current; }); }, [setModalActive]);
     var pickFinalValue = function () {

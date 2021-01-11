@@ -5,11 +5,15 @@ import { BaseText } from '../baseComponents/BaseText';
 import { BasePressable } from '../baseComponents/BasePressable';
 import { useBaseButtonAnimations } from './hooks/useBaseButtonAnimations';
 import { ButtonProps } from './types/ButtonProps';
+import { ActivityIndicator } from '../ActivityIndicator';
 
 export function Button(props: ButtonProps): JSX.Element {
-    const { variant, children, addShadow, reduceColor, text, ...others } = props;
+    const { variant, children, addShadow, loading, reduceColor, text, ...others } = props;
     const { interactiveItems, shadowProperties, colors } = useTheme<FractalTheme>();
     const [handlePressIn, handlePressOut, style] = useBaseButtonAnimations(props);
+    const loadingColor = `${variant}300`;
+    const normalBackgroundColor = reduceColor ? `${variant}100` : variant;
+    const finalBackgroundColor = loading ? loadingColor : normalBackgroundColor;
 
     const ripple = useMemo(() => {
         return {
@@ -21,7 +25,7 @@ export function Button(props: ButtonProps): JSX.Element {
     return (
         <BasePressable
             flexDirection='row'
-            backgroundColor={reduceColor ? `${variant}100` : variant}
+            backgroundColor={finalBackgroundColor}
             borderRadius='buttonRadius'
             android_ripple={ripple}
             justifyContent='center'
@@ -34,10 +38,11 @@ export function Button(props: ButtonProps): JSX.Element {
             shadowOffset={addShadow ? shadowProperties.offset : undefined}
             shadowRadius={addShadow ? shadowProperties.radius : undefined}
             shadowOpacity={addShadow ? shadowProperties.opacity : undefined}
+            pointerEvents={loading ? 'none' : 'auto'}
             {...others}
         >
-            {children}
-            {text != null ? (
+            {loading ? <ActivityIndicator color={'white'} /> : children}
+            {text && !loading ? (
                 <BaseText
                     selectable={false}
                     paddingLeft={children != null ? 'xs' : undefined}

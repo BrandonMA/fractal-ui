@@ -1,7 +1,8 @@
 import { useState, useCallback, useMemo } from 'react';
 export function usePickerState(initialValue, items, onChange) {
+    var initialIndex = items.findIndex(function (pair) { return pair[0] === initialValue; });
     var _a = useState(initialValue !== null && initialValue !== void 0 ? initialValue : items[0][0]), currentValue = _a[0], setCurrentValue = _a[1];
-    var _b = useState(0), index = _b[0], setIndex = _b[1];
+    var _b = useState(initialIndex), index = _b[0], setIndex = _b[1];
     var handleValueChange = useCallback(function (itemValue, index) {
         setCurrentValue(itemValue.toString());
         setIndex(index);

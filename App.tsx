@@ -26,11 +26,13 @@ import {
     FractalTheme,
     lime,
     pink,
-    purple
+    purple,
+    ActivityIndicator
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { useTheme } from '@shopify/restyle';
+import { BaseBox } from './dist';
 
 const Entypo = memo(BaseEntypo);
 const detailsCardContent: Array<[string, string]> = [
@@ -97,6 +99,8 @@ function FinalColorPicker(): JSX.Element {
 
 function App(): JSX.Element {
     const [text, setText] = useState('');
+    const [loading, setLoading] = useState(false);
+    const toggleLoading = useCallback(() => setLoading((loading) => !loading), [setLoading]);
 
     const renderEmailIcon = useCallback(
         (color: string, size: number): JSX.Element => <Entypo selectable={false} name='email' size={size} color={color} />,
@@ -119,6 +123,9 @@ function App(): JSX.Element {
                 <SafeAreaView>
                     <ScrollView>
                         <PaddedContainer zIndex={2000}>
+                            <BaseBox marginBottom={'m'}>
+                                <ActivityIndicator color={'textColor'} />
+                            </BaseBox>
                             <DetailsList
                                 title='Title'
                                 titleVariant='warningInteractiveTitle'
@@ -126,6 +133,13 @@ function App(): JSX.Element {
                                 marginBottom='m'
                             />
                             <Cell>
+                                <Button
+                                    variant={'mainInteractiveColor'}
+                                    loading={loading}
+                                    onPress={toggleLoading}
+                                    text={'Hihi'}
+                                    marginBottom={'m'}
+                                />
                                 <TextField value={text} onChangeText={setText} placeholder='Placeholder...' marginBottom='m' />
                                 <IconTextField
                                     leftImage={renderEmailIcon}

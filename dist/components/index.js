@@ -8,5 +8,5 @@ export * from './tables';
 export * from './modals';
 export * from './messages';
 export * from './colors';
-export * from './types';
+export * from './ActivityIndicator';
 //# sourceMappingURL=index.js.map

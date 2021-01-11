@@ -13,7 +13,7 @@ import { BaseBox } from '../../baseComponents';
 export function Picker({ items, onChange, initialValue, iosDoneText, ...others }: PickerProps): JSX.Element {
     const [currentValue, handleValueChange, index] = usePickerState(initialValue, items);
     const { colors } = useTheme<FractalTheme>();
-    const [finalIndex, setFinalIndex] = useState(0);
+    const [finalIndex, setFinalIndex] = useState(index);
     const [modalActive, setModalActive] = useState(false);
 
     const toggleModal = useCallback(() => setModalActive((current) => !current), [setModalActive]);

@@ -1,4 +1,4 @@
-export type BasicColors =
+export type ButtonColorVariant =
     | 'mainInteractiveColor'
     | 'alternativeInteractiveColor'
     | 'successInteractiveColor'

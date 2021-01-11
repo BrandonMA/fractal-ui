@@ -1,3 +1,3 @@
 export * from './ButtonProps';
-export * from '../../types/BasicColors';
-export * from './TitleButtonVariant';
+export * from './ButtonColorVariant';
+export * from './TitleColorVariant';

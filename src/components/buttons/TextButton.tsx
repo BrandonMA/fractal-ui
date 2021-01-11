@@ -3,14 +3,14 @@ import React from 'react';
 import { FractalTheme } from '../../themes/FractalTheme';
 import { BaseText, BaseTextProps } from '../baseComponents/BaseText';
 import { BaseTouchableOpacity, BaseTouchableOpacityProps } from '../baseComponents/BaseTouchableOpacity';
-import { BasicColors } from '../types/BasicColors';
-import { TitleButtonVariant } from './types/TitleButtonVariant';
+import { ButtonColorVariant } from './types/ButtonColorVariant';
+import { TitleColorVariant } from './types/TitleColorVariant';
 
 export interface TextButtonProps extends Partial<Omit<BaseTouchableOpacityProps, 'children'>> {
     children?: (color: string) => JSX.Element;
     textProps?: Omit<BaseTextProps, 'children'>;
     text?: string;
-    variant: BasicColors | TitleButtonVariant | 'navigationBarButtonColor';
+    variant: ButtonColorVariant | TitleColorVariant | 'navigationBarButtonColor';
 }
 
 export function TextButton({ text, children, textProps, variant, ...others }: TextButtonProps): JSX.Element {

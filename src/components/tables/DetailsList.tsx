@@ -1,6 +1,6 @@
 import React, { Fragment, memo, useCallback } from 'react';
 import { BaseBoxProps } from '../baseComponents/BaseBox';
-import { TitleButtonVariant } from '../buttons/types/TitleButtonVariant';
+import { TitleColorVariant } from '../buttons/types/TitleColorVariant';
 import { Cell } from '../containers/Cell';
 import { Separator } from '../Separator';
 import { Text } from '../Text';
@@ -9,7 +9,7 @@ import { DetailsRow } from './DetailsRow';
 export interface DetailsListProps extends Partial<Omit<BaseBoxProps, 'children'>> {
     title: string;
     details: Array<[string, string]>;
-    titleVariant: TitleButtonVariant | 'subtitle';
+    titleVariant: TitleColorVariant | 'subtitle';
 }
 
 export const DetailsList = memo(
