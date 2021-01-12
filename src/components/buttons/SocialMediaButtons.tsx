@@ -5,7 +5,7 @@ import { FacebookButton } from './FacebookButton';
 import { HorizontalView } from '../containers/HorizontalView';
 import { BaseBox, BaseBoxProps } from '../baseComponents/BaseBox';
 
-interface SocialMediaButtonsProps extends Partial<Omit<BaseBoxProps, 'children'>> {
+export interface SocialMediaButtonsProps extends Partial<Omit<BaseBoxProps, 'children'>> {
     onGooglePress?: () => void;
     onFacebookPress?: () => void;
     onApplePress?: () => void;

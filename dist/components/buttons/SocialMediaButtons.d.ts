@@ -1,6 +1,6 @@
 /// <reference types="react" />
 import { BaseBoxProps } from '../baseComponents/BaseBox';
-interface SocialMediaButtonsProps extends Partial<Omit<BaseBoxProps, 'children'>> {
+export interface SocialMediaButtonsProps extends Partial<Omit<BaseBoxProps, 'children'>> {
     onGooglePress?: () => void;
     onFacebookPress?: () => void;
     onApplePress?: () => void;
@@ -8,4 +8,3 @@ interface SocialMediaButtonsProps extends Partial<Omit<BaseBoxProps, 'children'>
     removeAppleButton?: boolean;
 }
 export declare function SocialMediaButtons({ onGooglePress, onFacebookPress, onApplePress, appleText, removeAppleButton, ...others }: SocialMediaButtonsProps): JSX.Element;
-export {};
