@@ -10,10 +10,10 @@ export interface TextButtonProps extends Partial<Omit<BaseTouchableOpacityProps,
     children?: (color: string) => JSX.Element;
     textProps?: Omit<BaseTextProps, 'children'>;
     text?: string;
-    variant: ButtonColorVariant | TitleColorVariant | 'navigationBarButtonColor';
+    variant?: ButtonColorVariant | TitleColorVariant | 'navigationBarButtonColor';
 }
 
-export function TextButton({ text, children, textProps, variant, ...others }: TextButtonProps): JSX.Element {
+export function TextButton({ text, children, textProps, variant = 'mainInteractiveColor', ...others }: TextButtonProps): JSX.Element {
     const { colors } = useTheme<FractalTheme>();
 
     return (

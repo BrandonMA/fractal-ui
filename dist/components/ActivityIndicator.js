@@ -24,7 +24,7 @@ import React from 'react';
 import { ActivityIndicator as BaseActivityIndicator } from 'react-native';
 import { useTheme } from '@shopify/restyle';
 export function ActivityIndicator(_a) {
-    var color = _a.color, others = __rest(_a, ["color"]);
+    var _b = _a.color, color = _b === void 0 ? 'textColor' : _b, others = __rest(_a, ["color"]);
     var colors = useTheme().colors;
     return React.createElement(BaseActivityIndicator, __assign({}, others, { color: colors[color] }));
 }

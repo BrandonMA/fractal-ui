@@ -25,7 +25,7 @@ import React from 'react';
 import { BaseText } from '../baseComponents/BaseText';
 import { BaseTouchableOpacity } from '../baseComponents/BaseTouchableOpacity';
 export function TextButton(_a) {
-    var text = _a.text, children = _a.children, textProps = _a.textProps, variant = _a.variant, others = __rest(_a, ["text", "children", "textProps", "variant"]);
+    var text = _a.text, children = _a.children, textProps = _a.textProps, _b = _a.variant, variant = _b === void 0 ? 'mainInteractiveColor' : _b, others = __rest(_a, ["text", "children", "textProps", "variant"]);
     var colors = useTheme().colors;
     return (React.createElement(BaseTouchableOpacity, __assign({ flexDirection: 'row', alignItems: 'center' }, others),
         children ? children(colors[variant]) : null,

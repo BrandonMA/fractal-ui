@@ -8,7 +8,7 @@ import { ButtonProps } from './types/ButtonProps';
 import { ActivityIndicator } from '../ActivityIndicator';
 
 export function Button(props: ButtonProps): JSX.Element {
-    const { variant, children, addShadow, loading, reduceColor, text, ...others } = props;
+    const { variant = 'mainInteractiveColor', children, addShadow, loading, reduceColor, text, ...others } = props;
     const { interactiveItems, shadowProperties, colors } = useTheme<FractalTheme>();
     const [handlePressIn, handlePressOut, style] = useBaseButtonAnimations(props);
     const loadingColor = `${variant}300`;

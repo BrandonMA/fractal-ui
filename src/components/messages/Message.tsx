@@ -6,13 +6,13 @@ import { useTheme } from '@shopify/restyle';
 import { FractalTheme } from '../../themes/FractalTheme';
 
 export interface MessageProps extends Partial<Omit<BaseBoxProps, 'children'>> {
-    messageType: 'main' | 'alternative' | 'success' | 'warning' | 'danger';
     title: string;
+    messageType?: 'main' | 'alternative' | 'success' | 'warning' | 'danger';
     icon?: (color: string) => JSX.Element;
     description: string;
 }
 
-export function Message({ messageType, title, icon, description, ...others }: MessageProps): JSX.Element {
+export function Message({ messageType = 'main', title, icon, description, ...others }: MessageProps): JSX.Element {
     const { colors } = useTheme<FractalTheme>();
     const backgroundColor = `${messageType}InteractiveColor100`;
     const titleVariant = `${messageType}InteractiveTitle`;

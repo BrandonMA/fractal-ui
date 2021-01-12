@@ -6,7 +6,7 @@ export interface IconTextFieldProps extends Partial<Omit<BaseBoxProps, 'children
     rightImage?: (color: string, size: number) => JSX.Element;
     value?: string;
     onChangeText?: (text: string) => void;
-    placeholder: string;
+    placeholder?: string;
     textFieldProps?: BaseTextFieldProps;
 }
 export declare function IconTextField({ leftImage, rightImage, value, placeholder, onChangeText, textFieldProps, ...others }: IconTextFieldProps): JSX.Element;

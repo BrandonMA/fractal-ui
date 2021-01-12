@@ -26,7 +26,7 @@ import { Text } from '../Text';
 import { HorizontalView } from '../containers';
 import { useTheme } from '@shopify/restyle';
 export function Message(_a) {
-    var messageType = _a.messageType, title = _a.title, icon = _a.icon, description = _a.description, others = __rest(_a, ["messageType", "title", "icon", "description"]);
+    var _b = _a.messageType, messageType = _b === void 0 ? 'main' : _b, title = _a.title, icon = _a.icon, description = _a.description, others = __rest(_a, ["messageType", "title", "icon", "description"]);
     var colors = useTheme().colors;
     var backgroundColor = messageType + "InteractiveColor100";
     var titleVariant = messageType + "InteractiveTitle";

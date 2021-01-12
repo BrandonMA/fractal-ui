@@ -30,11 +30,11 @@ import { Button } from '../../buttons/Button';
 import { PickerButton } from '../PickerButton';
 import { BaseBox } from '../../baseComponents';
 export function Picker(_a) {
-    var items = _a.items, onChange = _a.onChange, initialValue = _a.initialValue, iosDoneText = _a.iosDoneText, others = __rest(_a, ["items", "onChange", "initialValue", "iosDoneText"]);
-    var _b = usePickerState(initialValue, items), currentValue = _b[0], handleValueChange = _b[1], index = _b[2];
+    var items = _a.items, onChange = _a.onChange, initialValue = _a.initialValue, _b = _a.iosDoneText, iosDoneText = _b === void 0 ? 'OK' : _b, others = __rest(_a, ["items", "onChange", "initialValue", "iosDoneText"]);
+    var _c = usePickerState(initialValue, items), currentValue = _c[0], handleValueChange = _c[1], index = _c[2];
     var colors = useTheme().colors;
-    var _c = useState(index), finalIndex = _c[0], setFinalIndex = _c[1];
-    var _d = useState(false), modalActive = _d[0], setModalActive = _d[1];
+    var _d = useState(index), finalIndex = _d[0], setFinalIndex = _d[1];
+    var _e = useState(false), modalActive = _e[0], setModalActive = _e[1];
     var toggleModal = useCallback(function () { return setModalActive(function (current) { return !current; }); }, [setModalActive]);
     var pickFinalValue = function () {
         setFinalIndex(index);

@@ -6,7 +6,7 @@ export interface ButtonProps extends Partial<Omit<BasePressableProps, 'children'
     children?: ReactNode;
     text?: string;
     addShadow?: boolean;
-    variant: ButtonColorVariant;
+    variant?: ButtonColorVariant;
     reduceColor?: boolean;
     loading?: boolean;
 }

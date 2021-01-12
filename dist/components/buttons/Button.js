@@ -27,9 +27,9 @@ import { BasePressable } from '../baseComponents/BasePressable';
 import { useBaseButtonAnimations } from './hooks/useBaseButtonAnimations';
 import { ActivityIndicator } from '../ActivityIndicator';
 export function Button(props) {
-    var variant = props.variant, children = props.children, addShadow = props.addShadow, loading = props.loading, reduceColor = props.reduceColor, text = props.text, others = __rest(props, ["variant", "children", "addShadow", "loading", "reduceColor", "text"]);
-    var _a = useTheme(), interactiveItems = _a.interactiveItems, shadowProperties = _a.shadowProperties, colors = _a.colors;
-    var _b = useBaseButtonAnimations(props), handlePressIn = _b[0], handlePressOut = _b[1], style = _b[2];
+    var _a = props.variant, variant = _a === void 0 ? 'mainInteractiveColor' : _a, children = props.children, addShadow = props.addShadow, loading = props.loading, reduceColor = props.reduceColor, text = props.text, others = __rest(props, ["variant", "children", "addShadow", "loading", "reduceColor", "text"]);
+    var _b = useTheme(), interactiveItems = _b.interactiveItems, shadowProperties = _b.shadowProperties, colors = _b.colors;
+    var _c = useBaseButtonAnimations(props), handlePressIn = _c[0], handlePressOut = _c[1], style = _c[2];
     var loadingColor = variant + "300";
     var normalBackgroundColor = reduceColor ? variant + "100" : variant;
     var finalBackgroundColor = loading ? loadingColor : normalBackgroundColor;

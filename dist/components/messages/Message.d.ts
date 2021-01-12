@@ -1,8 +1,8 @@
 /// <reference types="react" />
 import { BaseBoxProps } from '../baseComponents/BaseBox';
 export interface MessageProps extends Partial<Omit<BaseBoxProps, 'children'>> {
-    messageType: 'main' | 'alternative' | 'success' | 'warning' | 'danger';
     title: string;
+    messageType?: 'main' | 'alternative' | 'success' | 'warning' | 'danger';
     icon?: (color: string) => JSX.Element;
     description: string;
 }
