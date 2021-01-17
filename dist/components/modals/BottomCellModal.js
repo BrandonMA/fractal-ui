@@ -35,7 +35,7 @@ export function BottomCellModal(_a) {
     var _b = useModalAnimation(onDismiss, 300), cellIsVisible = _b[0], hideAnimated = _b[1];
     return (React.createElement(DimmedModal, __assign({ onDismiss: hideAnimated, visible: visible }, others, { justifyContent: 'flex-end' }),
         React.createElement(AnimatedPresence, null, cellIsVisible ? (React.createElement(SlideVerticallyAnimation, null,
-            React.createElement(PaddedContainer, { width: '100%', alignItems: 'center' },
+            React.createElement(PaddedContainer, { width: '100%', alignItems: 'center', paddingBottom: 'm' },
                 React.createElement(Cell, { maxWidth: 540, width: '100%' },
                     React.createElement(BaseTouchableOpacity, { justifyContent: 'center', alignItems: 'center', backgroundColor: 'background', alignSelf: 'flex-end', width: 32, height: 32, borderRadius: 'l', onPress: hideAnimated },
                         React.createElement(Entypo, { name: 'cross', size: 21, color: colors.placeholderColor })),
