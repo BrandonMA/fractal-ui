@@ -1,11 +1,11 @@
 import React, { memo, ReactNode } from 'react';
 import { BaseTouchableOpacity } from '../baseComponents';
-import { Cell, PaddedContainer } from '../containers';
+import { Cell } from '../containers';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { useTheme } from '@shopify/restyle';
 import { FractalTheme } from '../../themes';
 import { DimmedModal, DimmedModalProps } from './DimmedModal';
-import { AnimatedPresence, SlideVerticallyAnimation } from '../animations';
+import { AnimatedPresence, BottomSlideAnimation } from '../animations';
 import { useModalAnimation } from './hooks/useModalAnimation';
 
 const Entypo = memo(BaseEntypo);
@@ -23,25 +23,23 @@ export function BottomCellModal({ children, onDismiss, visible, ...others }: Bot
         <DimmedModal onDismiss={hideAnimated} visible={visible} {...others} justifyContent='flex-end'>
             <AnimatedPresence>
                 {cellIsVisible ? (
-                    <SlideVerticallyAnimation>
-                        <PaddedContainer width={'100%'} alignItems='center' paddingBottom='m'>
-                            <Cell maxWidth={540} width={'100%'}>
-                                <BaseTouchableOpacity
-                                    justifyContent='center'
-                                    alignItems='center'
-                                    backgroundColor='background'
-                                    alignSelf='flex-end'
-                                    width={32}
-                                    height={32}
-                                    borderRadius='l'
-                                    onPress={hideAnimated}
-                                >
-                                    <Entypo name='cross' size={21} color={colors.placeholderColor} />
-                                </BaseTouchableOpacity>
-                                {children}
-                            </Cell>
-                        </PaddedContainer>
-                    </SlideVerticallyAnimation>
+                    <BottomSlideAnimation padding='m' alignSelf='center' maxWidth={540} width={'100%'}>
+                        <Cell>
+                            <BaseTouchableOpacity
+                                justifyContent='center'
+                                alignItems='center'
+                                backgroundColor='background'
+                                alignSelf='flex-end'
+                                width={32}
+                                height={32}
+                                borderRadius='l'
+                                onPress={hideAnimated}
+                            >
+                                <Entypo name='cross' size={21} color={colors.placeholderColor} />
+                            </BaseTouchableOpacity>
+                            {children}
+                        </Cell>
+                    </BottomSlideAnimation>
                 ) : null}
             </AnimatedPresence>
         </DimmedModal>

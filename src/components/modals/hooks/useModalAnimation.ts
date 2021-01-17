@@ -1,17 +1,17 @@
 import { useCallback, useMemo, useState } from 'react';
 
 export function useModalAnimation(onDismiss: (() => void) | undefined, animationDelay: number): [boolean, () => void] {
-    const [cellIsVisible, setCellIsVisible] = useState(true);
+    const [visible, setVisible] = useState(true);
 
     const hideAnimated = useCallback(() => {
-        setCellIsVisible(false);
+        setVisible(false);
         setTimeout(() => {
             if (onDismiss) {
                 onDismiss();
-                setCellIsVisible(true);
+                setVisible(true);
             }
         }, animationDelay);
-    }, [setCellIsVisible, onDismiss, animationDelay]);
+    }, [setVisible, onDismiss, animationDelay]);
 
-    return useMemo(() => [cellIsVisible, hideAnimated], [cellIsVisible, hideAnimated]);
+    return useMemo(() => [visible, hideAnimated], [visible, hideAnimated]);
 }

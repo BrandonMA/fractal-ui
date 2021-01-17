@@ -1,15 +1,15 @@
 import { useCallback, useMemo, useState } from 'react';
 export function useModalAnimation(onDismiss, animationDelay) {
-    var _a = useState(true), cellIsVisible = _a[0], setCellIsVisible = _a[1];
+    var _a = useState(true), visible = _a[0], setVisible = _a[1];
     var hideAnimated = useCallback(function () {
-        setCellIsVisible(false);
+        setVisible(false);
         setTimeout(function () {
             if (onDismiss) {
                 onDismiss();
-                setCellIsVisible(true);
+                setVisible(true);
             }
         }, animationDelay);
-    }, [setCellIsVisible, onDismiss, animationDelay]);
-    return useMemo(function () { return [cellIsVisible, hideAnimated]; }, [cellIsVisible, hideAnimated]);
+    }, [setVisible, onDismiss, animationDelay]);
+    return useMemo(function () { return [visible, hideAnimated]; }, [visible, hideAnimated]);
 }
 //# sourceMappingURL=useModalAnimation.js.map

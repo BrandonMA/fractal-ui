@@ -22,11 +22,11 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { memo } from 'react';
 import { BaseTouchableOpacity } from '../baseComponents';
-import { Cell, PaddedContainer } from '../containers';
+import { Cell } from '../containers';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { useTheme } from '@shopify/restyle';
 import { DimmedModal } from './DimmedModal';
-import { AnimatedPresence, SlideVerticallyAnimation } from '../animations';
+import { AnimatedPresence, BottomSlideAnimation } from '../animations';
 import { useModalAnimation } from './hooks/useModalAnimation';
 var Entypo = memo(BaseEntypo);
 export function BottomCellModal(_a) {
@@ -34,11 +34,10 @@ export function BottomCellModal(_a) {
     var colors = useTheme().colors;
     var _b = useModalAnimation(onDismiss, 300), cellIsVisible = _b[0], hideAnimated = _b[1];
     return (React.createElement(DimmedModal, __assign({ onDismiss: hideAnimated, visible: visible }, others, { justifyContent: 'flex-end' }),
-        React.createElement(AnimatedPresence, null, cellIsVisible ? (React.createElement(SlideVerticallyAnimation, null,
-            React.createElement(PaddedContainer, { width: '100%', alignItems: 'center', paddingBottom: 'm' },
-                React.createElement(Cell, { maxWidth: 540, width: '100%' },
-                    React.createElement(BaseTouchableOpacity, { justifyContent: 'center', alignItems: 'center', backgroundColor: 'background', alignSelf: 'flex-end', width: 32, height: 32, borderRadius: 'l', onPress: hideAnimated },
-                        React.createElement(Entypo, { name: 'cross', size: 21, color: colors.placeholderColor })),
-                    children)))) : null)));
+        React.createElement(AnimatedPresence, null, cellIsVisible ? (React.createElement(BottomSlideAnimation, { padding: 'm', alignSelf: 'center', maxWidth: 540, width: '100%' },
+            React.createElement(Cell, null,
+                React.createElement(BaseTouchableOpacity, { justifyContent: 'center', alignItems: 'center', backgroundColor: 'background', alignSelf: 'flex-end', width: 32, height: 32, borderRadius: 'l', onPress: hideAnimated },
+                    React.createElement(Entypo, { name: 'cross', size: 21, color: colors.placeholderColor })),
+                children))) : null)));
 }
 //# sourceMappingURL=BottomCellModal.js.map

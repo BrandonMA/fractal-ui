@@ -5,11 +5,15 @@ import { BaseBox, BaseBoxProps } from '../baseComponents';
 import { AnimatedPresenceContext } from './AnimatedPresence';
 import { useAnimationLifecycle } from './hooks/useAnimationLifecycle';
 
-export function FadeAnimation(props: BaseBoxProps): JSX.Element {
+export interface FadeAnimationProps extends Partial<BaseBoxProps> {
+    activeOpacity?: number;
+}
+
+export function FadeAnimation({ activeOpacity = 1, ...others }: FadeAnimationProps): JSX.Element {
     const [visible, setIsSafeToRemove] = useContext(AnimatedPresenceContext);
 
     const opacity = useRef(new Animated.Value(0)).current;
-    const showAnimation = useTimingAnimation(opacity, 1, 600);
+    const showAnimation = useTimingAnimation(opacity, activeOpacity, 600);
     const hideAnimation = useTimingAnimation(opacity, 0, 200, setIsSafeToRemove);
 
     const animatedStyle = useMemo(() => {
@@ -20,5 +24,5 @@ export function FadeAnimation(props: BaseBoxProps): JSX.Element {
 
     useAnimationLifecycle(visible, showAnimation, hideAnimation);
 
-    return <BaseBox {...props} style={animatedStyle} />;
+    return <BaseBox {...others} style={animatedStyle} />;
 }

@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { DimmedModal, DimmedModalProps } from './DimmedModal';
 import { getValueForLargeSize, useWidthSizeGroup } from '@bma98/size-class';
-import { AnimatedPresence, SlideVerticallyAnimation } from '../animations';
+import { AnimatedPresence, BottomSlideAnimation } from '../animations';
 import { useModalAnimation } from './hooks/useModalAnimation';
 
 export interface MiddleCellModalProps extends DimmedModalProps {
@@ -15,7 +15,7 @@ interface MiddleCellProps {
 
 function MiddleCellDesktop({ children }: MiddleCellProps): JSX.Element {
     return (
-        <SlideVerticallyAnimation
+        <BottomSlideAnimation
             overflow={'hidden'}
             borderRadius={'m'}
             maxWidth={550}
@@ -25,13 +25,13 @@ function MiddleCellDesktop({ children }: MiddleCellProps): JSX.Element {
             backgroundColor='foreground'
         >
             {children}
-        </SlideVerticallyAnimation>
+        </BottomSlideAnimation>
     );
 }
 
 function MiddleCellPhone({ children }: MiddleCellProps): JSX.Element {
     return (
-        <SlideVerticallyAnimation
+        <BottomSlideAnimation
             overflow={'hidden'}
             borderRadius={'m'}
             marginTop={'m'}
@@ -40,7 +40,7 @@ function MiddleCellPhone({ children }: MiddleCellProps): JSX.Element {
             backgroundColor='foreground'
         >
             {children}
-        </SlideVerticallyAnimation>
+        </BottomSlideAnimation>
     );
 }
 
@@ -48,7 +48,7 @@ export function MiddleCellModal({ children, onDismiss, visible, ...others }: Mid
     const [widthSize] = useWidthSizeGroup();
     const Wrapper = getValueForLargeSize(widthSize, MiddleCellDesktop, MiddleCellPhone);
     const justifyContent = getValueForLargeSize(widthSize, 'center', 'flex-start');
-    const [cellIsVisible, hideAnimation] = useModalAnimation(onDismiss, 400);
+    const [cellIsVisible, hideAnimation] = useModalAnimation(onDismiss, 300);
 
     return (
         <DimmedModal onDismiss={hideAnimation} visible={visible} justifyContent={justifyContent} alignItems={'center'} {...others}>

@@ -1,3 +1,6 @@
 /// <reference types="react" />
 import { BaseBoxProps } from '../baseComponents';
-export declare function FadeAnimation(props: BaseBoxProps): JSX.Element;
+export interface FadeAnimationProps extends Partial<BaseBoxProps> {
+    activeOpacity?: number;
+}
+export declare function FadeAnimation({ activeOpacity, ...others }: FadeAnimationProps): JSX.Element;

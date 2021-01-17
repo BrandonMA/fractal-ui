@@ -23,22 +23,22 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React from 'react';
 import { DimmedModal } from './DimmedModal';
 import { getValueForLargeSize, useWidthSizeGroup } from '@bma98/size-class';
-import { AnimatedPresence, SlideVerticallyAnimation } from '../animations';
+import { AnimatedPresence, BottomSlideAnimation } from '../animations';
 import { useModalAnimation } from './hooks/useModalAnimation';
 function MiddleCellDesktop(_a) {
     var children = _a.children;
-    return (React.createElement(SlideVerticallyAnimation, { overflow: 'hidden', borderRadius: 'm', maxWidth: 550, maxHeight: 550, width: '60%', height: '60%', backgroundColor: 'foreground' }, children));
+    return (React.createElement(BottomSlideAnimation, { overflow: 'hidden', borderRadius: 'm', maxWidth: 550, maxHeight: 550, width: '60%', height: '60%', backgroundColor: 'foreground' }, children));
 }
 function MiddleCellPhone(_a) {
     var children = _a.children;
-    return (React.createElement(SlideVerticallyAnimation, { overflow: 'hidden', borderRadius: 'm', marginTop: 'm', width: '90%', height: '95%', backgroundColor: 'foreground' }, children));
+    return (React.createElement(BottomSlideAnimation, { overflow: 'hidden', borderRadius: 'm', marginTop: 'm', width: '90%', height: '95%', backgroundColor: 'foreground' }, children));
 }
 export function MiddleCellModal(_a) {
     var children = _a.children, onDismiss = _a.onDismiss, visible = _a.visible, others = __rest(_a, ["children", "onDismiss", "visible"]);
     var widthSize = useWidthSizeGroup()[0];
     var Wrapper = getValueForLargeSize(widthSize, MiddleCellDesktop, MiddleCellPhone);
     var justifyContent = getValueForLargeSize(widthSize, 'center', 'flex-start');
-    var _b = useModalAnimation(onDismiss, 400), cellIsVisible = _b[0], hideAnimation = _b[1];
+    var _b = useModalAnimation(onDismiss, 300), cellIsVisible = _b[0], hideAnimation = _b[1];
     return (React.createElement(DimmedModal, __assign({ onDismiss: hideAnimation, visible: visible, justifyContent: justifyContent, alignItems: 'center' }, others),
         React.createElement(AnimatedPresence, null, cellIsVisible ? React.createElement(Wrapper, null, children) : null)));
 }

@@ -29,7 +29,7 @@ import {
     purple,
     ActivityIndicator,
     AnimatedPresence,
-    FadeAnimation
+    RightSlideAnimation
 } from './src';
 import { LayoutAnimation, SafeAreaView, ScrollView } from 'react-native';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
@@ -148,9 +148,9 @@ function App(): JSX.Element {
                                 />
                                 <AnimatedPresence>
                                     {visible ? (
-                                        <FadeAnimation width='100%' alignItems='center' marginBottom='m'>
+                                        <RightSlideAnimation width='100%' alignItems='center' marginBottom='m'>
                                             <BaseBox height={100} width={100} borderRadius={'m'} backgroundColor='facebook' />
-                                        </FadeAnimation>
+                                        </RightSlideAnimation>
                                     ) : null}
                                 </AnimatedPresence>
                                 <Button
