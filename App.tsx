@@ -27,9 +27,11 @@ import {
     lime,
     pink,
     purple,
-    ActivityIndicator
+    ActivityIndicator,
+    AnimatedPresence,
+    FadeAnimation
 } from './src';
-import { SafeAreaView, ScrollView } from 'react-native';
+import { LayoutAnimation, SafeAreaView, ScrollView } from 'react-native';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { useTheme } from '@shopify/restyle';
 import { BaseBox } from './dist';
@@ -101,6 +103,11 @@ function App(): JSX.Element {
     const [text, setText] = useState('');
     const [loading, setLoading] = useState(false);
     const toggleLoading = useCallback(() => setLoading((loading) => !loading), [setLoading]);
+    const [visible, setVisible] = useState(true);
+    const toggleVisible = useCallback(() => {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+        setVisible((currentValue) => !currentValue);
+    }, [setVisible]);
 
     const renderEmailIcon = useCallback(
         (color: string, size: number): JSX.Element => <Entypo selectable={false} name='email' size={size} color={color} />,
@@ -133,6 +140,19 @@ function App(): JSX.Element {
                                 marginBottom='m'
                             />
                             <Cell>
+                                <Button
+                                    variant={'mainInteractiveColor'}
+                                    onPress={toggleVisible}
+                                    text={'Toggle Hidden Component'}
+                                    marginBottom={'m'}
+                                />
+                                <AnimatedPresence>
+                                    {visible ? (
+                                        <FadeAnimation width='100%' alignItems='center' marginBottom='m'>
+                                            <BaseBox height={100} width={100} borderRadius={'m'} backgroundColor='facebook' />
+                                        </FadeAnimation>
+                                    ) : null}
+                                </AnimatedPresence>
                                 <Button
                                     variant={'mainInteractiveColor'}
                                     loading={loading}

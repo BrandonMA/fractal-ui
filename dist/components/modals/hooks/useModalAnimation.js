@@ -1,20 +1,15 @@
-import { Animated, Dimensions } from 'react-native';
-import { useCallback, useMemo, useRef } from 'react';
-import { useSpringAnimation } from '../../../animationHooks';
-export function useModalAnimation(onDismiss) {
-    var screenHeight = Dimensions.get('screen').height;
-    var yOffset = useRef(new Animated.Value(screenHeight)).current;
-    var showAnimation = useSpringAnimation(yOffset, 0);
-    var hideAnimation = useSpringAnimation(yOffset, screenHeight);
-    var animatedStyle = useMemo(function () {
-        return { transform: [{ translateY: yOffset }] };
-    }, [yOffset]);
-    var animatedDismiss = useCallback(function () {
-        hideAnimation();
-        if (onDismiss) {
-            setTimeout(onDismiss, 130);
-        }
-    }, [hideAnimation, onDismiss]);
-    return useMemo(function () { return [animatedStyle, showAnimation, animatedDismiss]; }, [animatedStyle, showAnimation, animatedDismiss]);
+import { useCallback, useMemo, useState } from 'react';
+export function useModalAnimation(onDismiss, animationDelay) {
+    var _a = useState(true), cellIsVisible = _a[0], setCellIsVisible = _a[1];
+    var hideAnimated = useCallback(function () {
+        setCellIsVisible(false);
+        setTimeout(function () {
+            if (onDismiss) {
+                onDismiss();
+                setCellIsVisible(true);
+            }
+        }, animationDelay);
+    }, [setCellIsVisible, onDismiss, animationDelay]);
+    return useMemo(function () { return [cellIsVisible, hideAnimated]; }, [cellIsVisible, hideAnimated]);
 }
 //# sourceMappingURL=useModalAnimation.js.map

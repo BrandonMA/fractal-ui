@@ -20,28 +20,25 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 import { BaseTouchableOpacity } from '../baseComponents';
 import { Cell, PaddedContainer } from '../containers';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { useTheme } from '@shopify/restyle';
 import { DimmedModal } from './DimmedModal';
+import { AnimatedPresence, SlideVerticallyAnimation } from '../animations';
 import { useModalAnimation } from './hooks/useModalAnimation';
 var Entypo = memo(BaseEntypo);
 export function BottomCellModal(_a) {
     var children = _a.children, onDismiss = _a.onDismiss, visible = _a.visible, others = __rest(_a, ["children", "onDismiss", "visible"]);
     var colors = useTheme().colors;
-    var _b = useModalAnimation(onDismiss), animatedStyle = _b[0], showAnimation = _b[1], hideAnimation = _b[2];
-    useEffect(function () {
-        if (visible) {
-            showAnimation();
-        }
-    }, [showAnimation, visible]);
-    return (React.createElement(DimmedModal, __assign({ onDismiss: hideAnimation, visible: visible }, others, { justifyContent: 'flex-end' }),
-        React.createElement(PaddedContainer, { style: animatedStyle, width: '100%', alignItems: 'center' },
-            React.createElement(Cell, { maxWidth: 540, width: '100%' },
-                React.createElement(BaseTouchableOpacity, { justifyContent: 'center', alignItems: 'center', backgroundColor: 'background', alignSelf: 'flex-end', width: 32, height: 32, borderRadius: 'l', onPress: hideAnimation },
-                    React.createElement(Entypo, { name: 'cross', size: 21, color: colors.placeholderColor })),
-                children))));
+    var _b = useModalAnimation(onDismiss, 300), cellIsVisible = _b[0], hideAnimated = _b[1];
+    return (React.createElement(DimmedModal, __assign({ onDismiss: hideAnimated, visible: visible }, others, { justifyContent: 'flex-end' }),
+        React.createElement(AnimatedPresence, null, cellIsVisible ? (React.createElement(SlideVerticallyAnimation, null,
+            React.createElement(PaddedContainer, { width: '100%', alignItems: 'center' },
+                React.createElement(Cell, { maxWidth: 540, width: '100%' },
+                    React.createElement(BaseTouchableOpacity, { justifyContent: 'center', alignItems: 'center', backgroundColor: 'background', alignSelf: 'flex-end', width: 32, height: 32, borderRadius: 'l', onPress: hideAnimated },
+                        React.createElement(Entypo, { name: 'cross', size: 21, color: colors.placeholderColor })),
+                    children)))) : null)));
 }
 //# sourceMappingURL=BottomCellModal.js.map

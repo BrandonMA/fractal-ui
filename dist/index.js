@@ -6,4 +6,5 @@ export * from './themes';
 export * from './FractalAppRoot';
 export * from './FractalThemeUpdater';
 export * from './FractalWebBackground';
+export * from './hooks';
 //# sourceMappingURL=index.js.map

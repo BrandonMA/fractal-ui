@@ -9,4 +9,5 @@ export * from './modals';
 export * from './messages';
 export * from './colors';
 export * from './ActivityIndicator';
+export * from './animations';
 //# sourceMappingURL=index.js.map
