@@ -24,7 +24,7 @@ export function BottomCellModal({ children, onDismiss, visible, ...others }: Bot
             <AnimatedPresence>
                 {cellIsVisible ? (
                     <SlideVerticallyAnimation>
-                        <PaddedContainer width={'100%'} alignItems='center'>
+                        <PaddedContainer width={'100%'} alignItems='center' paddingBottom='m'>
                             <Cell maxWidth={540} width={'100%'}>
                                 <BaseTouchableOpacity
                                     justifyContent='center'
