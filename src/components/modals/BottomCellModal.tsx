@@ -1,11 +1,11 @@
 import React, { memo, ReactNode, useEffect } from 'react';
-import { BaseTouchableOpacity } from '../../baseComponents';
-import { Cell, PaddedContainer } from '../../containers';
+import { BaseTouchableOpacity } from '../baseComponents';
+import { Cell, PaddedContainer } from '../containers';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { useTheme } from '@shopify/restyle';
-import { FractalTheme } from '../../../themes';
-import { DimmedModal, DimmedModalProps } from '../DimmedModal';
-import { useBottomCellModalAnimation } from './hooks/useBottomCellModalAnimation';
+import { FractalTheme } from '../../themes';
+import { DimmedModal, DimmedModalProps } from './DimmedModal';
+import { useModalAnimation } from './hooks/useModalAnimation';
 
 const Entypo = memo(BaseEntypo);
 
@@ -14,9 +14,9 @@ export interface BottomCellModalProps extends DimmedModalProps {
     children?: ReactNode;
 }
 
-export function Index({ children, onDismiss, visible, ...others }: BottomCellModalProps): JSX.Element {
+export function BottomCellModal({ children, onDismiss, visible, ...others }: BottomCellModalProps): JSX.Element {
     const { colors } = useTheme<FractalTheme>();
-    const [animatedStyle, showAnimation] = useBottomCellModalAnimation();
+    const [animatedStyle, showAnimation, hideAnimation] = useModalAnimation(onDismiss);
 
     useEffect(() => {
         if (visible) {
@@ -25,7 +25,7 @@ export function Index({ children, onDismiss, visible, ...others }: BottomCellMod
     }, [showAnimation, visible]);
 
     return (
-        <DimmedModal onDismiss={onDismiss} visible={visible} {...others} justifyContent='flex-end'>
+        <DimmedModal onDismiss={hideAnimation} visible={visible} {...others} justifyContent='flex-end'>
             <PaddedContainer style={animatedStyle} width={'100%'} alignItems='center'>
                 <Cell maxWidth={540} width={'100%'}>
                     <BaseTouchableOpacity
@@ -36,7 +36,7 @@ export function Index({ children, onDismiss, visible, ...others }: BottomCellMod
                         width={32}
                         height={32}
                         borderRadius='l'
-                        onPress={onDismiss}
+                        onPress={hideAnimation}
                     >
                         <Entypo name='cross' size={21} color={colors.placeholderColor} />
                     </BaseTouchableOpacity>

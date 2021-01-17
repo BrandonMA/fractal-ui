@@ -125,6 +125,10 @@ export declare const lightFractalTheme: {
             color: string;
             fontSize: number;
         };
+        button: {
+            color: string;
+            fontWeight: string;
+        };
         mainInteractiveColor: {
             color: string;
         };

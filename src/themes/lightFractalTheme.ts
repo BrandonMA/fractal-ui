@@ -133,6 +133,10 @@ export const lightFractalTheme = createTheme({
             color: 'placeholderColor',
             fontSize: 15
         },
+        button: {
+            color: 'white',
+            fontWeight: '700'
+        },
         // Interactive Text or Text with Color
         mainInteractiveColor: {
             color: 'mainInteractiveColor'
@@ -180,7 +184,7 @@ export const lightFractalTheme = createTheme({
             color: 'navigationBarButtonColor'
         },
         navigationBarTitle: {
-            fontSize: 17,
+            fontSize: 16,
             fontWeight: '600',
             color: 'navigationBarTitleColor'
         },

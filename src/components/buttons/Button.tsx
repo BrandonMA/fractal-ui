@@ -46,7 +46,7 @@ export function Button(props: ButtonProps): JSX.Element {
                 <BaseText
                     selectable={false}
                     paddingLeft={children != null ? 'xs' : undefined}
-                    fontWeight='700'
+                    variant='button'
                     color={reduceColor ? variant : 'white'}
                 >
                     {text}

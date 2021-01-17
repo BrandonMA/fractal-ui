@@ -129,6 +129,10 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             color: string;
             fontSize: number;
         };
+        button: {
+            color: string;
+            fontWeight: string;
+        };
         mainInteractiveColor: {
             color: string;
         };
@@ -315,6 +319,10 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         placeholder: {
             color: string;
             fontSize: number;
+        };
+        button: {
+            color: string;
+            fontWeight: string;
         };
         mainInteractiveColor: {
             color: string;
@@ -503,6 +511,10 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             color: string;
             fontSize: number;
         };
+        button: {
+            color: string;
+            fontWeight: string;
+        };
         mainInteractiveColor: {
             color: string;
         };
@@ -690,6 +702,10 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             color: string;
             fontSize: number;
         };
+        button: {
+            color: string;
+            fontWeight: string;
+        };
         mainInteractiveColor: {
             color: string;
         };
@@ -876,6 +892,10 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         placeholder: {
             color: string;
             fontSize: number;
+        };
+        button: {
+            color: string;
+            fontWeight: string;
         };
         mainInteractiveColor: {
             color: string;
@@ -1111,6 +1131,10 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             color: string;
             fontSize: number;
         };
+        button: {
+            color: string;
+            fontWeight: string;
+        };
         mainInteractiveColor: {
             color: string;
         };
@@ -1297,6 +1321,10 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         placeholder: {
             color: string;
             fontSize: number;
+        };
+        button: {
+            color: string;
+            fontWeight: string;
         };
         mainInteractiveColor: {
             color: string;
@@ -1488,6 +1516,10 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
                 color: string;
                 fontSize: number;
             };
+            button: {
+                color: string;
+                fontWeight: string;
+            };
             mainInteractiveColor: {
                 color: string;
             };
@@ -1674,6 +1706,10 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             placeholder: {
                 color: string;
                 fontSize: number;
+            };
+            button: {
+                color: string;
+                fontWeight: string;
             };
             mainInteractiveColor: {
                 color: string;
@@ -1862,6 +1898,10 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
                 color: string;
                 fontSize: number;
             };
+            button: {
+                color: string;
+                fontWeight: string;
+            };
             mainInteractiveColor: {
                 color: string;
             };
@@ -2049,6 +2089,10 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
                 color: string;
                 fontSize: number;
             };
+            button: {
+                color: string;
+                fontWeight: string;
+            };
             mainInteractiveColor: {
                 color: string;
             };
@@ -2235,6 +2279,10 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             placeholder: {
                 color: string;
                 fontSize: number;
+            };
+            button: {
+                color: string;
+                fontWeight: string;
             };
             mainInteractiveColor: {
                 color: string;
@@ -2470,6 +2518,10 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
                 color: string;
                 fontSize: number;
             };
+            button: {
+                color: string;
+                fontWeight: string;
+            };
             mainInteractiveColor: {
                 color: string;
             };
@@ -2656,6 +2708,10 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             placeholder: {
                 color: string;
                 fontSize: number;
+            };
+            button: {
+                color: string;
+                fontWeight: string;
             };
             mainInteractiveColor: {
                 color: string;

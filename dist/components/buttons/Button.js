@@ -41,6 +41,6 @@ export function Button(props) {
     }, [colors.white]);
     return (React.createElement(BasePressable, __assign({ flexDirection: 'row', backgroundColor: finalBackgroundColor, borderRadius: 'buttonRadius', android_ripple: ripple, justifyContent: 'center', alignItems: 'center', height: interactiveItems.buttonHeight, onPressIn: handlePressIn, onPressOut: handlePressOut, style: style, shadowColor: addShadow ? 'shadowColor' : undefined, shadowOffset: addShadow ? shadowProperties.offset : undefined, shadowRadius: addShadow ? shadowProperties.radius : undefined, shadowOpacity: addShadow ? shadowProperties.opacity : undefined, pointerEvents: loading ? 'none' : 'auto' }, others),
         loading ? React.createElement(ActivityIndicator, { color: 'white' }) : children,
-        text && !loading ? (React.createElement(BaseText, { selectable: false, paddingLeft: children != null ? 'xs' : undefined, fontWeight: '700', color: reduceColor ? variant : 'white' }, text)) : null));
+        text && !loading ? (React.createElement(BaseText, { selectable: false, paddingLeft: children != null ? 'xs' : undefined, variant: 'button', color: reduceColor ? variant : 'white' }, text)) : null));
 }
 //# sourceMappingURL=Button.js.map

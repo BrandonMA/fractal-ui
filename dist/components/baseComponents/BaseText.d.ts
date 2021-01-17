@@ -126,6 +126,10 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             color: string;
             fontSize: number;
         };
+        button: {
+            color: string;
+            fontWeight: string;
+        };
         mainInteractiveColor: {
             color: string;
         };
@@ -312,6 +316,10 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         placeholder: {
             color: string;
             fontSize: number;
+        };
+        button: {
+            color: string;
+            fontWeight: string;
         };
         mainInteractiveColor: {
             color: string;
@@ -500,6 +508,10 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             color: string;
             fontSize: number;
         };
+        button: {
+            color: string;
+            fontWeight: string;
+        };
         mainInteractiveColor: {
             color: string;
         };
@@ -687,6 +699,10 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             color: string;
             fontSize: number;
         };
+        button: {
+            color: string;
+            fontWeight: string;
+        };
         mainInteractiveColor: {
             color: string;
         };
@@ -873,6 +889,10 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         placeholder: {
             color: string;
             fontSize: number;
+        };
+        button: {
+            color: string;
+            fontWeight: string;
         };
         mainInteractiveColor: {
             color: string;
@@ -1069,6 +1089,10 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             color: string;
             fontSize: number;
         };
+        button: {
+            color: string;
+            fontWeight: string;
+        };
         mainInteractiveColor: {
             color: string;
         };
@@ -1255,6 +1279,10 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         placeholder: {
             color: string;
             fontSize: number;
+        };
+        button: {
+            color: string;
+            fontWeight: string;
         };
         mainInteractiveColor: {
             color: string;
@@ -1446,6 +1474,10 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 color: string;
                 fontSize: number;
             };
+            button: {
+                color: string;
+                fontWeight: string;
+            };
             mainInteractiveColor: {
                 color: string;
             };
@@ -1632,6 +1664,10 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             placeholder: {
                 color: string;
                 fontSize: number;
+            };
+            button: {
+                color: string;
+                fontWeight: string;
             };
             mainInteractiveColor: {
                 color: string;
@@ -1820,6 +1856,10 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 color: string;
                 fontSize: number;
             };
+            button: {
+                color: string;
+                fontWeight: string;
+            };
             mainInteractiveColor: {
                 color: string;
             };
@@ -2007,6 +2047,10 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 color: string;
                 fontSize: number;
             };
+            button: {
+                color: string;
+                fontWeight: string;
+            };
             mainInteractiveColor: {
                 color: string;
             };
@@ -2193,6 +2237,10 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             placeholder: {
                 color: string;
                 fontSize: number;
+            };
+            button: {
+                color: string;
+                fontWeight: string;
             };
             mainInteractiveColor: {
                 color: string;
@@ -2389,6 +2437,10 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
                 color: string;
                 fontSize: number;
             };
+            button: {
+                color: string;
+                fontWeight: string;
+            };
             mainInteractiveColor: {
                 color: string;
             };
@@ -2575,6 +2627,10 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             placeholder: {
                 color: string;
                 fontSize: number;
+            };
+            button: {
+                color: string;
+                fontWeight: string;
             };
             mainInteractiveColor: {
                 color: string;

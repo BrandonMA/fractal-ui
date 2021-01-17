@@ -118,7 +118,7 @@ function App(): JSX.Element {
     );
 
     return (
-        <FractalAppRoot handleThemeManually={true}>
+        <FractalAppRoot>
             <Background>
                 <SafeAreaView>
                     <ScrollView>

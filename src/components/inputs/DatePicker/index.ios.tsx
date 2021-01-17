@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Index } from '../../modals/BottomCellModal';
+import { BottomCellModal } from '../../modals/BottomCellModal';
 import { Button } from '../../buttons/Button';
 import { PickerButton } from '../PickerButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -35,7 +35,7 @@ export function DatePicker({ initialDate, minDate, maxDate, onChange, iosDoneTex
             <PickerButton onPress={toggleModal} {...others}>
                 {finalDate.toLocaleDateString()}
             </PickerButton>
-            <Index visible={modalActive} onDismiss={toggleModal}>
+            <BottomCellModal visible={modalActive} onDismiss={toggleModal}>
                 <DateTimePicker
                     value={date}
                     mode={'date'}
@@ -46,7 +46,7 @@ export function DatePicker({ initialDate, minDate, maxDate, onChange, iosDoneTex
                     textColor={colors.textColor}
                 />
                 <Button variant='mainInteractiveColor' text={iosDoneText} onPress={pickFinalValue} />
-            </Index>
+            </BottomCellModal>
         </>
     );
 }
