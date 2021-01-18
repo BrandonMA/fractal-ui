@@ -10,11 +10,24 @@ export interface DimmedModalProps extends NativeModalProps {
     children?: ReactNode;
     justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
     alignItems?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
+    disableStateResetOnDismiss?: boolean;
 }
 
-export function DimmedModal({ children, onDismiss, visible, justifyContent, alignItems, ...others }: DimmedModalProps): JSX.Element {
+export function DimmedModal({
+    children,
+    onDismiss,
+    visible,
+    justifyContent,
+    alignItems,
+    disableStateResetOnDismiss,
+    ...others
+}: DimmedModalProps): JSX.Element {
     const [backgroundVisible, setBackgroundVisible] = useState(true);
-    const setBackgroundVisibleToTrue = useCallback(() => setBackgroundVisible(true), [setBackgroundVisible]);
+    const setBackgroundVisibleToTrue = useCallback(() => {
+        if (!disableStateResetOnDismiss) {
+            setBackgroundVisible(true);
+        }
+    }, [setBackgroundVisible, disableStateResetOnDismiss]);
 
     const hideAnimated = useCallback(() => {
         setBackgroundVisible(false);

@@ -27,9 +27,13 @@ import { BaseSafeAreaView } from '../baseComponents';
 import { AnimatedPresence, FadeAnimation } from '../animations';
 import { DimmedModalContextProvider } from './context/DimmedModalContextProvider';
 export function DimmedModal(_a) {
-    var children = _a.children, onDismiss = _a.onDismiss, visible = _a.visible, justifyContent = _a.justifyContent, alignItems = _a.alignItems, others = __rest(_a, ["children", "onDismiss", "visible", "justifyContent", "alignItems"]);
+    var children = _a.children, onDismiss = _a.onDismiss, visible = _a.visible, justifyContent = _a.justifyContent, alignItems = _a.alignItems, disableStateResetOnDismiss = _a.disableStateResetOnDismiss, others = __rest(_a, ["children", "onDismiss", "visible", "justifyContent", "alignItems", "disableStateResetOnDismiss"]);
     var _b = useState(true), backgroundVisible = _b[0], setBackgroundVisible = _b[1];
-    var setBackgroundVisibleToTrue = useCallback(function () { return setBackgroundVisible(true); }, [setBackgroundVisible]);
+    var setBackgroundVisibleToTrue = useCallback(function () {
+        if (!disableStateResetOnDismiss) {
+            setBackgroundVisible(true);
+        }
+    }, [setBackgroundVisible, disableStateResetOnDismiss]);
     var hideAnimated = useCallback(function () {
         setBackgroundVisible(false);
         if (onDismiss) {

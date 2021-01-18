@@ -27,7 +27,7 @@ export function FadeAnimation({ activeOpacity = 1, onHide, style, ...others }: F
                 opacity
             }
         ];
-    }, [opacity]);
+    }, [opacity, style]);
 
     useAnimationLifecycle(visible, showAnimation, hideAnimation);
 

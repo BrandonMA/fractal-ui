@@ -41,7 +41,7 @@ export function FadeAnimation(_a) {
                 opacity: opacity
             }
         ];
-    }, [opacity]);
+    }, [opacity, style]);
     useAnimationLifecycle(visible, showAnimation, hideAnimation);
     return React.createElement(BaseBox, __assign({}, others, { style: animatedStyle }));
 }
