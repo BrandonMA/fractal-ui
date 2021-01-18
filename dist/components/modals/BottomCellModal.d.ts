@@ -4,4 +4,4 @@ export interface BottomCellModalProps extends DimmedModalProps {
     onDismiss?: () => void;
     children?: ReactNode;
 }
-export declare function BottomCellModal({ children, onDismiss, visible, ...others }: BottomCellModalProps): JSX.Element;
+export declare function BottomCellModal({ children, disableStateResetOnDismiss, onDismiss, visible, ...others }: BottomCellModalProps): JSX.Element;

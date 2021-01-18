@@ -47,14 +47,27 @@ function MiddleCellPhone({ children, onHide }: MiddleCellProps): JSX.Element {
     );
 }
 
-export function MiddleCellModal({ children, onDismiss, visible, ...others }: MiddleCellModalProps): JSX.Element {
+export function MiddleCellModal({
+    children,
+    onDismiss,
+    disableStateResetOnDismiss = false,
+    visible,
+    ...others
+}: MiddleCellModalProps): JSX.Element {
     const [widthSize] = useWidthSizeGroup();
     const Wrapper = getValueForLargeSize(widthSize, MiddleCellDesktop, MiddleCellPhone);
     const justifyContent = getValueForLargeSize(widthSize, 'center', 'flex-start');
-    const [cellIsVisible, hideAnimation, setVisibleToTrue] = useModalAnimation(onDismiss, 350);
+    const [cellIsVisible, hideAnimation, setVisibleToTrue] = useModalAnimation(onDismiss, 350, disableStateResetOnDismiss);
 
     return (
-        <DimmedModal onDismiss={hideAnimation} visible={visible} justifyContent={justifyContent} alignItems={'center'} {...others}>
+        <DimmedModal
+            disableStateResetOnDismiss={disableStateResetOnDismiss}
+            onDismiss={hideAnimation}
+            visible={visible}
+            justifyContent={justifyContent}
+            alignItems={'center'}
+            {...others}
+        >
             <AnimatedPresence>{cellIsVisible ? <Wrapper onHide={setVisibleToTrue}>{children}</Wrapper> : null}</AnimatedPresence>
         </DimmedModal>
     );
