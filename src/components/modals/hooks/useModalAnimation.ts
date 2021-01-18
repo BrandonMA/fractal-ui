@@ -1,8 +1,9 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 export function useModalAnimation(onDismiss: (() => void) | undefined, animationDelay: number): [boolean, () => void, () => void] {
     const [visible, setVisible] = useState(true);
     const setVisibleToTrue = useCallback(() => setVisible(true), [setVisible]);
+    const timeoutRef = useRef<NodeJS.Timeout | undefined>();
 
     const hideAnimated = useCallback(() => {
         setVisible(false);
@@ -12,6 +13,12 @@ export function useModalAnimation(onDismiss: (() => void) | undefined, animation
             }
         }, animationDelay);
     }, [setVisible, onDismiss, animationDelay]);
+
+    useEffect(() => {
+        if (timeoutRef.current != null) {
+            clearTimeout(timeoutRef.current);
+        }
+    }, [timeoutRef]);
 
     return useMemo(() => [visible, hideAnimated, setVisibleToTrue], [visible, hideAnimated, setVisibleToTrue]);
 }

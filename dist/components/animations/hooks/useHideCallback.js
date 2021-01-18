@@ -1,10 +1,19 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 export function useHideCallback(setIsSafeToRemove, onHide) {
-    return useCallback(function () {
+    var timeoutRef = useRef();
+    var callback = useCallback(function () {
         setIsSafeToRemove();
         if (onHide) {
-            setTimeout(onHide, 300);
+            timeoutRef.current = setTimeout(onHide, 300);
         }
-    }, [setIsSafeToRemove, onHide]);
+    }, [setIsSafeToRemove, onHide, timeoutRef]);
+    useEffect(function () {
+        return function () {
+            if (timeoutRef.current != null) {
+                clearTimeout(timeoutRef.current);
+            }
+        };
+    }, [timeoutRef]);
+    return callback;
 }
 //# sourceMappingURL=useHideCallback.js.map
