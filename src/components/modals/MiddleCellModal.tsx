@@ -11,9 +11,10 @@ export interface MiddleCellModalProps extends DimmedModalProps {
 
 interface MiddleCellProps {
     children: ReactNode;
+    onHide?: () => void;
 }
 
-function MiddleCellDesktop({ children }: MiddleCellProps): JSX.Element {
+function MiddleCellDesktop({ children, onHide }: MiddleCellProps): JSX.Element {
     return (
         <BottomSlideAnimation
             overflow={'hidden'}
@@ -23,13 +24,14 @@ function MiddleCellDesktop({ children }: MiddleCellProps): JSX.Element {
             width={'60%'}
             height={'60%'}
             backgroundColor='foreground'
+            onHide={onHide}
         >
             {children}
         </BottomSlideAnimation>
     );
 }
 
-function MiddleCellPhone({ children }: MiddleCellProps): JSX.Element {
+function MiddleCellPhone({ children, onHide }: MiddleCellProps): JSX.Element {
     return (
         <BottomSlideAnimation
             overflow={'hidden'}
@@ -38,6 +40,7 @@ function MiddleCellPhone({ children }: MiddleCellProps): JSX.Element {
             width={'90%'}
             height={'95%'}
             backgroundColor='foreground'
+            onHide={onHide}
         >
             {children}
         </BottomSlideAnimation>
@@ -48,11 +51,11 @@ export function MiddleCellModal({ children, onDismiss, visible, ...others }: Mid
     const [widthSize] = useWidthSizeGroup();
     const Wrapper = getValueForLargeSize(widthSize, MiddleCellDesktop, MiddleCellPhone);
     const justifyContent = getValueForLargeSize(widthSize, 'center', 'flex-start');
-    const [cellIsVisible, hideAnimation] = useModalAnimation(onDismiss, 300);
+    const [cellIsVisible, hideAnimation, setVisibleToTrue] = useModalAnimation(onDismiss, 350);
 
     return (
         <DimmedModal onDismiss={hideAnimation} visible={visible} justifyContent={justifyContent} alignItems={'center'} {...others}>
-            <AnimatedPresence>{cellIsVisible ? <Wrapper>{children}</Wrapper> : null}</AnimatedPresence>
+            <AnimatedPresence>{cellIsVisible ? <Wrapper onHide={setVisibleToTrue}>{children}</Wrapper> : null}</AnimatedPresence>
         </DimmedModal>
     );
 }

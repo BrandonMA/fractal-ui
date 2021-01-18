@@ -1,34 +1,22 @@
 import React, { useCallback, useState } from 'react';
 import { BottomCellModal } from '../../modals/BottomCellModal';
-import { Button } from '../../buttons/Button';
 import { PickerButton } from '../PickerButton';
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { DatePickerProps } from './types/DatePickerProps';
-import { useTheme } from '@shopify/restyle';
-import { FractalTheme } from '../../../themes/FractalTheme';
+import { DatePickerModalContent } from './components/DatePickerModalContent';
 
 export function DatePicker({ initialDate, minDate, maxDate, onChange, iosDoneText, ...others }: DatePickerProps): JSX.Element {
     const [modalActive, setModalActive] = useState(false);
     const [date, setDate] = useState(initialDate ?? new Date());
     const [finalDate, setFinalDate] = useState(initialDate ?? new Date());
-    const { colors } = useTheme<FractalTheme>();
 
     const toggleModal = useCallback(() => setModalActive((current) => !current), [setModalActive]);
 
-    const handleChange = useCallback(
+    const onPickerValueChange = useCallback(
         (_, selectedDate) => {
             setDate((currentDate) => selectedDate ?? currentDate);
         },
         [setDate]
     );
-
-    const pickFinalValue = () => {
-        setFinalDate(date);
-        if (onChange != null) {
-            onChange(date);
-        }
-        toggleModal();
-    };
 
     return (
         <>
@@ -36,16 +24,15 @@ export function DatePicker({ initialDate, minDate, maxDate, onChange, iosDoneTex
                 {finalDate.toLocaleDateString()}
             </PickerButton>
             <BottomCellModal visible={modalActive} onDismiss={toggleModal}>
-                <DateTimePicker
-                    value={date}
-                    mode={'date'}
-                    display='spinner'
-                    minimumDate={minDate}
-                    maximumDate={maxDate}
-                    onChange={handleChange}
-                    textColor={colors.textColor}
+                <DatePickerModalContent
+                    date={date}
+                    minDate={minDate}
+                    maxDate={maxDate}
+                    onPickerValueChange={onPickerValueChange}
+                    iosDoneText={iosDoneText}
+                    onFinalValueChange={setFinalDate}
+                    onChange={onChange}
                 />
-                <Button variant='mainInteractiveColor' text={iosDoneText} onPress={pickFinalValue} />
             </BottomCellModal>
         </>
     );

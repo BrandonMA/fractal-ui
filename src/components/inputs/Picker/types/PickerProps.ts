@@ -1,9 +1,6 @@
 import { BoxProps } from '../../../baseComponents/BaseBox';
+import { PickerModalContentProps } from './PickerModalContentProps';
 
-export interface PickerProps extends Partial<Omit<BoxProps, 'children'>> {
-    items: Array<[string, string]>;
-    onChange?: (pair: [string, string]) => void;
-    iosDoneText?: string;
+export interface PickerProps extends Partial<Omit<BoxProps, 'children'>>, Omit<PickerModalContentProps, 'onFinalIndexChange'> {
     disabled?: boolean;
-    initialValue?: string;
 }

@@ -20,15 +20,27 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { Modal as NativeModal } from 'react-native';
 import { BasePressable } from '../baseComponents/BasePressable';
 import { BaseSafeAreaView } from '../baseComponents';
+import { AnimatedPresence, FadeAnimation } from '../animations';
+import { DimmedModalContextProvider } from './context/DimmedModalContextProvider';
 export function DimmedModal(_a) {
     var children = _a.children, onDismiss = _a.onDismiss, visible = _a.visible, justifyContent = _a.justifyContent, alignItems = _a.alignItems, others = __rest(_a, ["children", "onDismiss", "visible", "justifyContent", "alignItems"]);
-    return (React.createElement(NativeModal, __assign({ visible: visible, transparent: true, animationType: 'fade' }, others),
-        React.createElement(BaseSafeAreaView, { flex: 1, justifyContent: justifyContent, alignItems: alignItems },
-            React.createElement(BasePressable, { onPress: onDismiss, position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: 'black', opacity: 0.6 }),
-            children)));
+    var _b = useState(true), backgroundVisible = _b[0], setBackgroundVisible = _b[1];
+    var setBackgroundVisibleToTrue = useCallback(function () { return setBackgroundVisible(true); }, [setBackgroundVisible]);
+    var hideAnimated = useCallback(function () {
+        setBackgroundVisible(false);
+        if (onDismiss) {
+            onDismiss();
+        }
+    }, [onDismiss, setBackgroundVisible]);
+    return (React.createElement(DimmedModalContextProvider, { hideAnimated: hideAnimated },
+        React.createElement(NativeModal, __assign({ visible: visible, transparent: true, animationType: 'fade' }, others),
+            React.createElement(BaseSafeAreaView, { flex: 1, justifyContent: justifyContent, alignItems: alignItems },
+                React.createElement(AnimatedPresence, null, backgroundVisible ? (React.createElement(FadeAnimation, { position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: 'black', activeOpacity: 0.6, onHide: setBackgroundVisibleToTrue },
+                    React.createElement(BasePressable, { width: '100%', height: '100%', onPress: hideAnimated, opacity: 0.6 }))) : null),
+                children))));
 }
 //# sourceMappingURL=DimmedModal.js.map

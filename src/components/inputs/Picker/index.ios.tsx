@@ -1,39 +1,17 @@
 import React, { useCallback, useState } from 'react';
-import { useTheme } from '@shopify/restyle';
-import { usePickerState } from './hooks/usePickerState';
 import { PickerProps } from './types/PickerProps';
-import { FractalTheme } from '../../../themes/FractalTheme';
 import { BottomCellModal } from '../../modals/BottomCellModal';
-import { BasePicker } from '../../baseComponents/BasePicker';
-import { Picker as NativePicker } from '@react-native-picker/picker';
-import { Button } from '../../buttons/Button';
 import { PickerButton } from '../PickerButton';
-import { BaseBox } from '../../baseComponents';
+import { PickerModalContent } from './components/PickerModalContent';
+import { getInitialPickerIndex } from './util/getInitialPickerIndex';
 
-export function Picker({ items, onChange, initialValue, iosDoneText = 'OK', ...others }: PickerProps): JSX.Element {
-    const [currentValue, handleValueChange, index] = usePickerState(initialValue, items);
-    const { colors } = useTheme<FractalTheme>();
-    const [finalIndex, setFinalIndex] = useState(index);
+export function Picker({ items, initialValue, onChange, iosDoneText, ...others }: PickerProps): JSX.Element {
+    const initialIndex = getInitialPickerIndex(initialValue, items);
+    const [finalIndex, setFinalIndex] = useState(initialIndex);
     const [modalActive, setModalActive] = useState(false);
+    const initialValueForContent = items[finalIndex][0]; // Content is unmounted when is not visible.
 
     const toggleModal = useCallback(() => setModalActive((current) => !current), [setModalActive]);
-
-    const pickFinalValue = () => {
-        setFinalIndex(index);
-        if (onChange != null) {
-            onChange(items[index]);
-        }
-        toggleModal();
-    };
-
-    const renderItem = useCallback(
-        (item) => {
-            const value = item[0];
-            const label = item[1];
-            return <NativePicker.Item color={colors.textColor} label={label} value={value} key={value} />;
-        },
-        [colors.textColor]
-    );
 
     return (
         <>
@@ -41,12 +19,13 @@ export function Picker({ items, onChange, initialValue, iosDoneText = 'OK', ...o
                 {items[finalIndex][1]}
             </PickerButton>
             <BottomCellModal visible={modalActive} onDismiss={toggleModal}>
-                <BaseBox>
-                    <BasePicker selectedValue={currentValue} onValueChange={handleValueChange}>
-                        {items.map(renderItem)}
-                    </BasePicker>
-                    <Button variant='mainInteractiveColor' onPress={pickFinalValue} text={iosDoneText} />
-                </BaseBox>
+                <PickerModalContent
+                    onChange={onChange}
+                    iosDoneText={iosDoneText}
+                    items={items}
+                    initialValue={initialValueForContent}
+                    onFinalIndexChange={setFinalIndex}
+                />
             </BottomCellModal>
         </>
     );

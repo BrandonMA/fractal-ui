@@ -1,3 +1,6 @@
 /// <reference types="react" />
 import { BaseBoxProps } from '../baseComponents';
-export declare function TopSlideAnimation(props: BaseBoxProps): JSX.Element;
+export interface TopSlideAnimationProps extends Partial<BaseBoxProps> {
+    onHide?: () => void;
+}
+export declare function TopSlideAnimation({ onHide, style, ...others }: TopSlideAnimationProps): JSX.Element;

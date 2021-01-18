@@ -22,33 +22,22 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { useCallback, useState } from 'react';
 import { BottomCellModal } from '../../modals/BottomCellModal';
-import { Button } from '../../buttons/Button';
 import { PickerButton } from '../PickerButton';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { useTheme } from '@shopify/restyle';
+import { TimePickerModalContent } from './components/TimePickerModalContent';
 export function TimePicker(_a) {
     var onChange = _a.onChange, iosDoneText = _a.iosDoneText, others = __rest(_a, ["onChange", "iosDoneText"]);
-    var colors = useTheme().colors;
     var initialValue = new Date();
     initialValue.setSeconds(0);
     var _b = useState(initialValue), date = _b[0], setDate = _b[1];
     var _c = useState(initialValue), finalDate = _c[0], setFinalDate = _c[1];
     var _d = useState(false), modalActive = _d[0], setModalActive = _d[1];
     var toggleModal = useCallback(function () { return setModalActive(function (current) { return !current; }); }, [setModalActive]);
-    var handleChange = useCallback(function (_, selectedDate) {
+    var onPickerValueChange = useCallback(function (_, selectedDate) {
         setDate(function (currentDate) { return selectedDate !== null && selectedDate !== void 0 ? selectedDate : currentDate; });
     }, [setDate]);
-    var pickFinalValue = function () {
-        setFinalDate(date);
-        if (onChange != null) {
-            onChange(date);
-        }
-        toggleModal();
-    };
     return (React.createElement(React.Fragment, null,
         React.createElement(PickerButton, __assign({ onPress: toggleModal }, others), finalDate.toLocaleTimeString()),
         React.createElement(BottomCellModal, { visible: modalActive, onDismiss: toggleModal },
-            React.createElement(DateTimePicker, { value: date, mode: 'time', is24Hour: true, display: 'spinner', onChange: handleChange, textColor: colors.textColor }),
-            React.createElement(Button, { variant: 'mainInteractiveColor', text: iosDoneText, onPress: pickFinalValue }))));
+            React.createElement(TimePickerModalContent, { date: date, onPickerValueChange: onPickerValueChange, iosDoneText: iosDoneText, onFinalValueChange: setFinalDate, onChange: onChange }))));
 }
 //# sourceMappingURL=index.ios.js.map

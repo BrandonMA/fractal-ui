@@ -17,13 +17,13 @@ export interface BottomCellModalProps extends DimmedModalProps {
 
 export function BottomCellModal({ children, onDismiss, visible, ...others }: BottomCellModalProps): JSX.Element {
     const { colors } = useTheme<FractalTheme>();
-    const [cellIsVisible, hideAnimated] = useModalAnimation(onDismiss, 300);
+    const [cellIsVisible, hideAnimated, setVisibleToTrue] = useModalAnimation(onDismiss, 350);
 
     return (
         <DimmedModal onDismiss={hideAnimated} visible={visible} {...others} justifyContent='flex-end'>
             <AnimatedPresence>
                 {cellIsVisible ? (
-                    <BottomSlideAnimation padding='m' alignSelf='center' maxWidth={540} width={'100%'}>
+                    <BottomSlideAnimation padding='m' alignSelf='center' maxWidth={540} width={'100%'} onHide={setVisibleToTrue}>
                         <Cell>
                             <BaseTouchableOpacity
                                 justifyContent='center'

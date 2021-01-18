@@ -32,9 +32,9 @@ var Entypo = memo(BaseEntypo);
 export function BottomCellModal(_a) {
     var children = _a.children, onDismiss = _a.onDismiss, visible = _a.visible, others = __rest(_a, ["children", "onDismiss", "visible"]);
     var colors = useTheme().colors;
-    var _b = useModalAnimation(onDismiss, 300), cellIsVisible = _b[0], hideAnimated = _b[1];
+    var _b = useModalAnimation(onDismiss, 350), cellIsVisible = _b[0], hideAnimated = _b[1], setVisibleToTrue = _b[2];
     return (React.createElement(DimmedModal, __assign({ onDismiss: hideAnimated, visible: visible }, others, { justifyContent: 'flex-end' }),
-        React.createElement(AnimatedPresence, null, cellIsVisible ? (React.createElement(BottomSlideAnimation, { padding: 'm', alignSelf: 'center', maxWidth: 540, width: '100%' },
+        React.createElement(AnimatedPresence, null, cellIsVisible ? (React.createElement(BottomSlideAnimation, { padding: 'm', alignSelf: 'center', maxWidth: 540, width: '100%', onHide: setVisibleToTrue },
             React.createElement(Cell, null,
                 React.createElement(BaseTouchableOpacity, { justifyContent: 'center', alignItems: 'center', backgroundColor: 'background', alignSelf: 'flex-end', width: 32, height: 32, borderRadius: 'l', onPress: hideAnimated },
                     React.createElement(Entypo, { name: 'cross', size: 21, color: colors.placeholderColor })),

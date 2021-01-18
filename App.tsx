@@ -29,12 +29,13 @@ import {
     purple,
     ActivityIndicator,
     AnimatedPresence,
-    RightSlideAnimation
+    RightSlideAnimation,
+    MiddleCellModal,
+    BaseBox
 } from './src';
 import { LayoutAnimation, SafeAreaView, ScrollView } from 'react-native';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { useTheme } from '@shopify/restyle';
-import { BaseBox } from './dist';
 
 const Entypo = memo(BaseEntypo);
 const detailsCardContent: Array<[string, string]> = [
@@ -103,7 +104,7 @@ function App(): JSX.Element {
     const [text, setText] = useState('');
     const [loading, setLoading] = useState(false);
     const toggleLoading = useCallback(() => setLoading((loading) => !loading), [setLoading]);
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
     const toggleVisible = useCallback(() => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
         setVisible((currentValue) => !currentValue);
@@ -239,6 +240,7 @@ function App(): JSX.Element {
                         <SocialMediaButtons />
                     </ScrollView>
                 </SafeAreaView>
+                <MiddleCellModal visible={visible} onDismiss={toggleVisible} />
             </Background>
         </FractalAppRoot>
     );

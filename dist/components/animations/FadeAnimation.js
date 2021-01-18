@@ -26,16 +26,21 @@ import { useTimingAnimation } from '../../animationHooks';
 import { BaseBox } from '../baseComponents';
 import { AnimatedPresenceContext } from './AnimatedPresence';
 import { useAnimationLifecycle } from './hooks/useAnimationLifecycle';
+import { useHideCallback } from './hooks/useHideCallback';
 export function FadeAnimation(_a) {
-    var _b = _a.activeOpacity, activeOpacity = _b === void 0 ? 1 : _b, others = __rest(_a, ["activeOpacity"]);
+    var _b = _a.activeOpacity, activeOpacity = _b === void 0 ? 1 : _b, onHide = _a.onHide, style = _a.style, others = __rest(_a, ["activeOpacity", "onHide", "style"]);
     var _c = useContext(AnimatedPresenceContext), visible = _c[0], setIsSafeToRemove = _c[1];
+    var handleHide = useHideCallback(setIsSafeToRemove, onHide);
     var opacity = useRef(new Animated.Value(0)).current;
     var showAnimation = useTimingAnimation(opacity, activeOpacity, 600);
-    var hideAnimation = useTimingAnimation(opacity, 0, 200, setIsSafeToRemove);
+    var hideAnimation = useTimingAnimation(opacity, 0, 200, handleHide);
     var animatedStyle = useMemo(function () {
-        return {
-            opacity: opacity
-        };
+        return [
+            style,
+            {
+                opacity: opacity
+            }
+        ];
     }, [opacity]);
     useAnimationLifecycle(visible, showAnimation, hideAnimation);
     return React.createElement(BaseBox, __assign({}, others, { style: animatedStyle }));

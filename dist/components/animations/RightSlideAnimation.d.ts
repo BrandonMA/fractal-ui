@@ -1,3 +1,6 @@
 /// <reference types="react" />
 import { BaseBoxProps } from '../baseComponents';
-export declare function RightSlideAnimation(props: BaseBoxProps): JSX.Element;
+export interface RightSlideAnimationProps extends Partial<BaseBoxProps> {
+    onHide?: () => void;
+}
+export declare function RightSlideAnimation({ onHide, style, ...others }: RightSlideAnimationProps): JSX.Element;
