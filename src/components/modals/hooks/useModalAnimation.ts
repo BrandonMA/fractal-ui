@@ -6,12 +6,13 @@ export function useModalAnimation(
     disableStateResetOnDismiss: boolean
 ): [boolean, () => void, () => void] {
     const [visible, setVisible] = useState(true);
-    const setVisibleToTrue = useCallback(() => {
+    const timeoutRef = useRef<NodeJS.Timeout | undefined>();
+
+    const resetVisibility = useCallback(() => {
         if (!disableStateResetOnDismiss) {
             setVisible(true);
         }
-    }, [setVisible]);
-    const timeoutRef = useRef<NodeJS.Timeout | undefined>();
+    }, [setVisible, disableStateResetOnDismiss]);
 
     const hideAnimated = useCallback(() => {
         setVisible(false);
@@ -28,5 +29,5 @@ export function useModalAnimation(
         }
     }, [timeoutRef]);
 
-    return useMemo(() => [visible, hideAnimated, setVisibleToTrue], [visible, hideAnimated, setVisibleToTrue]);
+    return useMemo(() => [visible, hideAnimated, resetVisibility], [visible, hideAnimated, resetVisibility]);
 }

@@ -20,30 +20,20 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import { Modal as NativeModal } from 'react-native';
 import { BasePressable } from '../baseComponents/BasePressable';
 import { BaseSafeAreaView } from '../baseComponents';
 import { AnimatedPresence, FadeAnimation } from '../animations';
-import { DimmedModalContextProvider } from './context/DimmedModalContextProvider';
+import { HideDimmedModalProvider } from './context/HideDimmedModalProvider';
+import { useModalAnimation } from './hooks/useModalAnimation';
 export function DimmedModal(_a) {
-    var children = _a.children, onDismiss = _a.onDismiss, visible = _a.visible, justifyContent = _a.justifyContent, alignItems = _a.alignItems, disableStateResetOnDismiss = _a.disableStateResetOnDismiss, others = __rest(_a, ["children", "onDismiss", "visible", "justifyContent", "alignItems", "disableStateResetOnDismiss"]);
-    var _b = useState(true), backgroundVisible = _b[0], setBackgroundVisible = _b[1];
-    var setBackgroundVisibleToTrue = useCallback(function () {
-        if (!disableStateResetOnDismiss) {
-            setBackgroundVisible(true);
-        }
-    }, [setBackgroundVisible, disableStateResetOnDismiss]);
-    var hideAnimated = useCallback(function () {
-        setBackgroundVisible(false);
-        if (onDismiss) {
-            onDismiss();
-        }
-    }, [onDismiss, setBackgroundVisible]);
-    return (React.createElement(DimmedModalContextProvider, { hideAnimated: hideAnimated },
+    var children = _a.children, onDismiss = _a.onDismiss, visible = _a.visible, justifyContent = _a.justifyContent, alignItems = _a.alignItems, _b = _a.disableStateResetOnDismiss, disableStateResetOnDismiss = _b === void 0 ? false : _b, others = __rest(_a, ["children", "onDismiss", "visible", "justifyContent", "alignItems", "disableStateResetOnDismiss"]);
+    var _c = useModalAnimation(onDismiss, 0, disableStateResetOnDismiss), backgroundVisible = _c[0], hideAnimated = _c[1], resetVisibility = _c[2];
+    return (React.createElement(HideDimmedModalProvider, { hideAnimated: hideAnimated },
         React.createElement(NativeModal, __assign({ visible: visible, transparent: true, animationType: 'fade' }, others),
             React.createElement(BaseSafeAreaView, { flex: 1, justifyContent: justifyContent, alignItems: alignItems },
-                React.createElement(AnimatedPresence, null, backgroundVisible ? (React.createElement(FadeAnimation, { position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: 'black', activeOpacity: 0.6, onHide: setBackgroundVisibleToTrue },
+                React.createElement(AnimatedPresence, null, backgroundVisible ? (React.createElement(FadeAnimation, { position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: 'black', activeOpacity: 0.6, onHide: resetVisibility },
                     React.createElement(BasePressable, { width: '100%', height: '100%', onPress: hideAnimated, opacity: 0.6 }))) : null),
                 children))));
 }

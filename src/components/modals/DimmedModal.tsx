@@ -1,9 +1,10 @@
-import React, { ReactNode, useCallback, useState } from 'react';
+import React, { ReactNode } from 'react';
 import { Modal as NativeModal, ModalProps as NativeModalProps } from 'react-native';
 import { BasePressable } from '../baseComponents/BasePressable';
 import { BaseSafeAreaView } from '../baseComponents';
 import { AnimatedPresence, FadeAnimation } from '../animations';
-import { DimmedModalContextProvider } from './context/DimmedModalContextProvider';
+import { HideDimmedModalProvider } from './context/HideDimmedModalProvider';
+import { useModalAnimation } from './hooks/useModalAnimation';
 
 export interface DimmedModalProps extends NativeModalProps {
     onDismiss?: () => void;
@@ -19,25 +20,13 @@ export function DimmedModal({
     visible,
     justifyContent,
     alignItems,
-    disableStateResetOnDismiss,
+    disableStateResetOnDismiss = false,
     ...others
 }: DimmedModalProps): JSX.Element {
-    const [backgroundVisible, setBackgroundVisible] = useState(true);
-    const setBackgroundVisibleToTrue = useCallback(() => {
-        if (!disableStateResetOnDismiss) {
-            setBackgroundVisible(true);
-        }
-    }, [setBackgroundVisible, disableStateResetOnDismiss]);
-
-    const hideAnimated = useCallback(() => {
-        setBackgroundVisible(false);
-        if (onDismiss) {
-            onDismiss();
-        }
-    }, [onDismiss, setBackgroundVisible]);
+    const [backgroundVisible, hideAnimated, resetVisibility] = useModalAnimation(onDismiss, 0, disableStateResetOnDismiss);
 
     return (
-        <DimmedModalContextProvider hideAnimated={hideAnimated}>
+        <HideDimmedModalProvider hideAnimated={hideAnimated}>
             <NativeModal visible={visible} transparent animationType='fade' {...others}>
                 <BaseSafeAreaView flex={1} justifyContent={justifyContent} alignItems={alignItems}>
                     <AnimatedPresence>
@@ -50,7 +39,7 @@ export function DimmedModal({
                                 left={0}
                                 backgroundColor='black'
                                 activeOpacity={0.6}
-                                onHide={setBackgroundVisibleToTrue}
+                                onHide={resetVisibility}
                             >
                                 <BasePressable width={'100%'} height={'100%'} onPress={hideAnimated} opacity={0.6} />
                             </FadeAnimation>
@@ -59,6 +48,6 @@ export function DimmedModal({
                     {children}
                 </BaseSafeAreaView>
             </NativeModal>
-        </DimmedModalContextProvider>
+        </HideDimmedModalProvider>
     );
 }

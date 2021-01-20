@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { DimmedModalContext } from '../context/DimmedModalContextProvider';
+import { HideDimmedModalContext } from '../context/HideDimmedModalProvider';
 
 export function useHideModalAnimated(): () => void {
-    return useContext(DimmedModalContext);
+    return useContext(HideDimmedModalContext);
 }

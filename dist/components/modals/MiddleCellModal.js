@@ -38,8 +38,8 @@ export function MiddleCellModal(_a) {
     var widthSize = useWidthSizeGroup()[0];
     var Wrapper = getValueForLargeSize(widthSize, MiddleCellDesktop, MiddleCellPhone);
     var justifyContent = getValueForLargeSize(widthSize, 'center', 'flex-start');
-    var _c = useModalAnimation(onDismiss, 350, disableStateResetOnDismiss), cellIsVisible = _c[0], hideAnimation = _c[1], setVisibleToTrue = _c[2];
+    var _c = useModalAnimation(onDismiss, 350, disableStateResetOnDismiss), cellIsVisible = _c[0], hideAnimation = _c[1], resetVisibility = _c[2];
     return (React.createElement(DimmedModal, __assign({ disableStateResetOnDismiss: disableStateResetOnDismiss, onDismiss: hideAnimation, visible: visible, justifyContent: justifyContent, alignItems: 'center' }, others),
-        React.createElement(AnimatedPresence, null, cellIsVisible ? React.createElement(Wrapper, { onHide: setVisibleToTrue }, children) : null)));
+        React.createElement(AnimatedPresence, null, cellIsVisible ? React.createElement(Wrapper, { onHide: resetVisibility }, children) : null)));
 }
 //# sourceMappingURL=MiddleCellModal.js.map

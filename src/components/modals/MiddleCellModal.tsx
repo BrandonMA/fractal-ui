@@ -57,7 +57,7 @@ export function MiddleCellModal({
     const [widthSize] = useWidthSizeGroup();
     const Wrapper = getValueForLargeSize(widthSize, MiddleCellDesktop, MiddleCellPhone);
     const justifyContent = getValueForLargeSize(widthSize, 'center', 'flex-start');
-    const [cellIsVisible, hideAnimation, setVisibleToTrue] = useModalAnimation(onDismiss, 350, disableStateResetOnDismiss);
+    const [cellIsVisible, hideAnimation, resetVisibility] = useModalAnimation(onDismiss, 350, disableStateResetOnDismiss);
 
     return (
         <DimmedModal
@@ -68,7 +68,7 @@ export function MiddleCellModal({
             alignItems={'center'}
             {...others}
         >
-            <AnimatedPresence>{cellIsVisible ? <Wrapper onHide={setVisibleToTrue}>{children}</Wrapper> : null}</AnimatedPresence>
+            <AnimatedPresence>{cellIsVisible ? <Wrapper onHide={resetVisibility}>{children}</Wrapper> : null}</AnimatedPresence>
         </DimmedModal>
     );
 }

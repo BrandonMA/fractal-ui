@@ -23,7 +23,7 @@ export function BottomCellModal({
     ...others
 }: BottomCellModalProps): JSX.Element {
     const { colors } = useTheme<FractalTheme>();
-    const [cellIsVisible, hideAnimated, setVisibleToTrue] = useModalAnimation(onDismiss, 350, disableStateResetOnDismiss);
+    const [cellIsVisible, hideAnimated, resetVisibility] = useModalAnimation(onDismiss, 350, disableStateResetOnDismiss);
 
     return (
         <DimmedModal
@@ -35,7 +35,7 @@ export function BottomCellModal({
         >
             <AnimatedPresence>
                 {cellIsVisible ? (
-                    <BottomSlideAnimation padding='m' alignSelf='center' maxWidth={540} width={'100%'} onHide={setVisibleToTrue}>
+                    <BottomSlideAnimation padding='m' alignSelf='center' maxWidth={540} width={'100%'} onHide={resetVisibility}>
                         <Cell>
                             <BaseTouchableOpacity
                                 justifyContent='center'
