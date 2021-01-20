@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-export function useModalAnimation(onDismiss, animationDelay, disableStateResetOnDismiss) {
+export function useAnimatedPresenceState(onDismiss, animationDelay, disableStateResetOnDismiss) {
     var _a = useState(true), visible = _a[0], setVisible = _a[1];
     var timeoutRef = useRef();
     var resetVisibility = useCallback(function () {
@@ -22,4 +22,4 @@ export function useModalAnimation(onDismiss, animationDelay, disableStateResetOn
     }, [timeoutRef]);
     return useMemo(function () { return [visible, hideAnimated, resetVisibility]; }, [visible, hideAnimated, resetVisibility]);
 }
-//# sourceMappingURL=useModalAnimation.js.map
+//# sourceMappingURL=useAnimatedPresenceState.js.map

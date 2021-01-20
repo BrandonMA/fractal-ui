@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-export function useModalAnimation(
+export function useAnimatedPresenceState(
     onDismiss: (() => void) | undefined,
     animationDelay: number,
     disableStateResetOnDismiss: boolean

@@ -6,7 +6,7 @@ import { useTheme } from '@shopify/restyle';
 import { FractalTheme } from '../../themes';
 import { DimmedModal, DimmedModalProps } from './DimmedModal';
 import { AnimatedPresence, BottomSlideAnimation } from '../animations';
-import { useModalAnimation } from './hooks/useModalAnimation';
+import { useAnimatedPresenceState } from '../animations/hooks/useAnimatedPresenceState';
 
 const Entypo = memo(BaseEntypo);
 
@@ -23,7 +23,7 @@ export function BottomCellModal({
     ...others
 }: BottomCellModalProps): JSX.Element {
     const { colors } = useTheme<FractalTheme>();
-    const [cellIsVisible, hideAnimated, resetVisibility] = useModalAnimation(onDismiss, 350, disableStateResetOnDismiss);
+    const [cellIsVisible, hideAnimated, resetVisibility] = useAnimatedPresenceState(onDismiss, 350, disableStateResetOnDismiss);
 
     return (
         <DimmedModal

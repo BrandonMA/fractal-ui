@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { DimmedModal, DimmedModalProps } from './DimmedModal';
 import { getValueForLargeSize, useWidthSizeGroup } from '@bma98/size-class';
 import { AnimatedPresence, BottomSlideAnimation } from '../animations';
-import { useModalAnimation } from './hooks/useModalAnimation';
+import { useAnimatedPresenceState } from '../animations/hooks/useAnimatedPresenceState';
 
 export interface MiddleCellModalProps extends DimmedModalProps {
     onDismiss?: () => void;
@@ -57,7 +57,7 @@ export function MiddleCellModal({
     const [widthSize] = useWidthSizeGroup();
     const Wrapper = getValueForLargeSize(widthSize, MiddleCellDesktop, MiddleCellPhone);
     const justifyContent = getValueForLargeSize(widthSize, 'center', 'flex-start');
-    const [cellIsVisible, hideAnimation, resetVisibility] = useModalAnimation(onDismiss, 350, disableStateResetOnDismiss);
+    const [cellIsVisible, hideAnimation, resetVisibility] = useAnimatedPresenceState(onDismiss, 350, disableStateResetOnDismiss);
 
     return (
         <DimmedModal
