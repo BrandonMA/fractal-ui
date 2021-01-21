@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { InteractionManager } from 'react-native';
 
-export function useAnimatedPresenceState(
+export function useModalAnimatedState(
     onDismiss: (() => void) | undefined,
     animationDelay: number,
     disableStateResetOnDismiss: boolean
@@ -9,18 +10,22 @@ export function useAnimatedPresenceState(
     const timeoutRef = useRef<NodeJS.Timeout | undefined>();
 
     const resetVisibility = useCallback(() => {
-        if (!disableStateResetOnDismiss) {
-            setVisible(true);
-        }
+        InteractionManager.runAfterInteractions(() => {
+            if (!disableStateResetOnDismiss) {
+                setVisible(true);
+            }
+        });
     }, [setVisible, disableStateResetOnDismiss]);
 
     const hideAnimated = useCallback(() => {
-        setVisible(false);
-        setTimeout(() => {
-            if (onDismiss) {
-                onDismiss();
-            }
-        }, animationDelay);
+        InteractionManager.runAfterInteractions(() => {
+            setVisible(false);
+            setTimeout(() => {
+                if (onDismiss) {
+                    onDismiss();
+                }
+            }, animationDelay);
+        });
     }, [setVisible, onDismiss, animationDelay]);
 
     useEffect(() => {

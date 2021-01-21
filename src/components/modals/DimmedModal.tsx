@@ -4,7 +4,7 @@ import { BasePressable } from '../baseComponents/BasePressable';
 import { BaseSafeAreaView } from '../baseComponents';
 import { AnimatedPresence, FadeAnimation } from '../animations';
 import { HideDimmedModalProvider } from './context/HideDimmedModalProvider';
-import { useAnimatedPresenceState } from '../animations/hooks/useAnimatedPresenceState';
+import { useModalAnimatedState } from './hooks/useModalAnimatedState';
 
 export interface DimmedModalProps extends NativeModalProps {
     onDismiss?: () => void;
@@ -23,7 +23,7 @@ export function DimmedModal({
     disableStateResetOnDismiss = false,
     ...others
 }: DimmedModalProps): JSX.Element {
-    const [backgroundVisible, hideAnimated, resetVisibility] = useAnimatedPresenceState(onDismiss, 0, disableStateResetOnDismiss);
+    const [backgroundVisible, hideAnimated, resetVisibility] = useModalAnimatedState(onDismiss, 0, disableStateResetOnDismiss);
 
     return (
         <HideDimmedModalProvider hideAnimated={hideAnimated}>

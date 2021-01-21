@@ -5,6 +5,7 @@ import { BaseBox, BaseBoxProps } from '../baseComponents';
 import { AnimatedPresenceContext } from './AnimatedPresence';
 import { useAnimationLifecycle } from './hooks/useAnimationLifecycle';
 import { useHideCallback } from './hooks/useHideCallback';
+import { hideAnimationTiming } from './util/hideAnimationTiming';
 
 export interface TopSlideAnimationProps extends Partial<BaseBoxProps> {
     onHide?: () => void;
@@ -13,12 +14,12 @@ export interface TopSlideAnimationProps extends Partial<BaseBoxProps> {
 export function TopSlideAnimation({ onHide, style, ...others }: TopSlideAnimationProps): JSX.Element {
     const [visible, setIsSafeToRemove] = useContext(AnimatedPresenceContext);
 
-    const handleHide = useHideCallback(setIsSafeToRemove, onHide);
+    const handleHide = useHideCallback(setIsSafeToRemove, hideAnimationTiming, onHide);
 
     const screenHeight = Dimensions.get('screen').height;
     const offsetY = useRef(new Animated.Value(-screenHeight)).current;
     const showAnimation = useSpringAnimation(offsetY, 0);
-    const hideAnimation = useTimingAnimation(offsetY, -screenHeight, 300, handleHide);
+    const hideAnimation = useTimingAnimation(offsetY, -screenHeight, hideAnimationTiming, handleHide);
 
     const animatedStyle = useMemo(() => {
         return [
@@ -31,7 +32,7 @@ export function TopSlideAnimation({ onHide, style, ...others }: TopSlideAnimatio
                 ]
             }
         ];
-    }, [offsetY]);
+    }, [offsetY, style]);
 
     useAnimationLifecycle(visible, showAnimation, hideAnimation);
 

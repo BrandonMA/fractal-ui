@@ -5,6 +5,7 @@ import { BaseBox, BaseBoxProps } from '../baseComponents';
 import { AnimatedPresenceContext } from './AnimatedPresence';
 import { useAnimationLifecycle } from './hooks/useAnimationLifecycle';
 import { useHideCallback } from './hooks/useHideCallback';
+import { hideAnimationTiming } from './util/hideAnimationTiming';
 
 export interface LeftSlideAnimationProps extends Partial<BaseBoxProps> {
     onHide?: () => void;
@@ -13,12 +14,12 @@ export interface LeftSlideAnimationProps extends Partial<BaseBoxProps> {
 export function LeftSlideAnimation({ style, onHide, ...others }: LeftSlideAnimationProps): JSX.Element {
     const [visible, setIsSafeToRemove] = useContext(AnimatedPresenceContext);
 
-    const handleHide = useHideCallback(setIsSafeToRemove, onHide);
+    const handleHide = useHideCallback(setIsSafeToRemove, hideAnimationTiming, onHide);
 
     const screenWidth = Dimensions.get('screen').width;
     const offsetX = useRef(new Animated.Value(-screenWidth)).current;
     const showAnimation = useSpringAnimation(offsetX, 0);
-    const hideAnimation = useTimingAnimation(offsetX, -screenWidth, 300, handleHide);
+    const hideAnimation = useTimingAnimation(offsetX, -screenWidth, hideAnimationTiming, handleHide);
 
     const animatedStyle = useMemo(() => {
         return [

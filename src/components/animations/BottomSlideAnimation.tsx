@@ -5,6 +5,7 @@ import { BaseBox, BaseBoxProps } from '../baseComponents';
 import { AnimatedPresenceContext } from './AnimatedPresence';
 import { useAnimationLifecycle } from './hooks/useAnimationLifecycle';
 import { useHideCallback } from './hooks/useHideCallback';
+import { hideAnimationTiming } from './util/hideAnimationTiming';
 
 export interface BottomSlideAnimationProps extends Partial<BaseBoxProps> {
     onHide?: () => void;
@@ -13,12 +14,12 @@ export interface BottomSlideAnimationProps extends Partial<BaseBoxProps> {
 export function BottomSlideAnimation({ onHide, style, ...others }: BottomSlideAnimationProps): JSX.Element {
     const [visible, setIsSafeToRemove] = useContext(AnimatedPresenceContext);
 
-    const handleHide = useHideCallback(setIsSafeToRemove, onHide);
+    const handleHide = useHideCallback(setIsSafeToRemove, hideAnimationTiming, onHide);
 
     const screenHeight = Dimensions.get('screen').height;
     const offsetY = useRef(new Animated.Value(screenHeight)).current;
     const showAnimation = useSpringAnimation(offsetY, 0);
-    const hideAnimation = useTimingAnimation(offsetY, screenHeight, 300, handleHide);
+    const hideAnimation = useTimingAnimation(offsetY, screenHeight, hideAnimationTiming, handleHide);
 
     const animatedStyle = useMemo(() => {
         return [

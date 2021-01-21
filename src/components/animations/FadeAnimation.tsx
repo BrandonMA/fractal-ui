@@ -11,14 +11,16 @@ export interface FadeAnimationProps extends Partial<BaseBoxProps> {
     onHide?: () => void;
 }
 
+const hideAnimationTiming = 200;
+
 export function FadeAnimation({ activeOpacity = 1, onHide, style, ...others }: FadeAnimationProps): JSX.Element {
     const [visible, setIsSafeToRemove] = useContext(AnimatedPresenceContext);
 
-    const handleHide = useHideCallback(setIsSafeToRemove, onHide);
+    const handleHide = useHideCallback(setIsSafeToRemove, hideAnimationTiming, onHide);
 
     const opacity = useRef(new Animated.Value(0)).current;
     const showAnimation = useTimingAnimation(opacity, activeOpacity, 600);
-    const hideAnimation = useTimingAnimation(opacity, 0, 200, handleHide);
+    const hideAnimation = useTimingAnimation(opacity, 0, hideAnimationTiming, handleHide);
 
     const animatedStyle = useMemo(() => {
         return [
