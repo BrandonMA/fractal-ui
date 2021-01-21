@@ -25,10 +25,11 @@ import React from 'react';
 import { BaseText } from '../baseComponents/BaseText';
 import { BaseTouchableOpacity } from '../baseComponents/BaseTouchableOpacity';
 export function TextButton(_a) {
-    var text = _a.text, children = _a.children, textProps = _a.textProps, _b = _a.variant, variant = _b === void 0 ? 'mainInteractiveColor' : _b, others = __rest(_a, ["text", "children", "textProps", "variant"]);
+    var leftIcon = _a.leftIcon, rightIcon = _a.rightIcon, children = _a.children, textProps = _a.textProps, _b = _a.variant, variant = _b === void 0 ? 'mainInteractiveColor' : _b, others = __rest(_a, ["leftIcon", "rightIcon", "children", "textProps", "variant"]);
     var colors = useTheme().colors;
     return (React.createElement(BaseTouchableOpacity, __assign({ flexDirection: 'row', alignItems: 'center' }, others),
-        children ? children(colors[variant]) : null,
-        text != null ? (React.createElement(BaseText, __assign({ variant: variant }, textProps), text)) : null));
+        leftIcon ? leftIcon(colors[variant]) : null,
+        children != null ? (React.createElement(BaseText, __assign({ variant: variant }, textProps), children)) : null,
+        rightIcon ? rightIcon(colors[variant]) : null));
 }
 //# sourceMappingURL=TextButton.js.map

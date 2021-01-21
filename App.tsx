@@ -33,7 +33,7 @@ import {
     MiddleCellModal,
     BaseBox
 } from './src';
-import { LayoutAnimation, SafeAreaView, ScrollView } from 'react-native';
+import { InteractionManager, LayoutAnimation, SafeAreaView, ScrollView } from 'react-native';
 import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { useTheme } from '@shopify/restyle';
 
@@ -103,12 +103,18 @@ function FinalColorPicker(): JSX.Element {
 function App(): JSX.Element {
     const [text, setText] = useState('');
     const [loading, setLoading] = useState(false);
-    const toggleLoading = useCallback(() => setLoading((loading) => !loading), [setLoading]);
     const [visible, setVisible] = useState(false);
+
     const toggleVisible = useCallback(() => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
         setVisible((currentValue) => !currentValue);
     }, [setVisible]);
+
+    const toggleLoading = useCallback(() => {
+        InteractionManager.runAfterInteractions(() => {
+            setLoading((loading) => !loading);
+        });
+    }, [setLoading]);
 
     const renderEmailIcon = useCallback(
         (color: string, size: number): JSX.Element => <Entypo selectable={false} name='email' size={size} color={color} />,
@@ -117,6 +123,11 @@ function App(): JSX.Element {
 
     const renderChevronLeft = useCallback(
         (color: string): JSX.Element => <Entypo selectable={false} name='chevron-left' size={20} color={color} />,
+        []
+    );
+
+    const renderChevronRight = useCallback(
+        (color: string): JSX.Element => <Entypo selectable={false} name='chevron-right' size={20} color={color} />,
         []
     );
 
@@ -192,14 +203,32 @@ function App(): JSX.Element {
                                 <Text variant='placeholder' marginBottom='m'>
                                     Placeholder
                                 </Text>
-                                <TextButton variant='mainInteractiveTitle' text='Button' marginBottom='m' />
-                                <TextButton alignSelf='flex-start' variant='alternativeInteractiveColor' text='Button' marginBottom='m' />
-                                <TextButton alignSelf='center' variant='successInteractiveColor' text='Button' marginBottom='m'>
-                                    {renderChevronLeft}
+                                <TextButton variant='mainInteractiveTitle' marginBottom='m'>
+                                    Main Interactive Title
                                 </TextButton>
-                                <TextButton alignSelf='flex-end' variant='warningInteractiveColor' text='Button' marginBottom='m' />
+                                <TextButton alignSelf='flex-start' variant='alternativeInteractiveColor' marginBottom='m'>
+                                    Alternative Interactive Color
+                                </TextButton>
+                                <TextButton
+                                    alignSelf='center'
+                                    variant='successInteractiveColor'
+                                    leftIcon={renderChevronLeft}
+                                    marginBottom='m'
+                                >
+                                    Success Interactive Color with left icon
+                                </TextButton>
+                                <TextButton
+                                    alignSelf='flex-end'
+                                    variant='warningInteractiveColor'
+                                    rightIcon={renderChevronRight}
+                                    marginBottom='m'
+                                >
+                                    Warning Interactive Color
+                                </TextButton>
                                 <Separator marginBottom='m' />
-                                <TextButton alignSelf='baseline' variant='dangerInteractiveColor' text='Button' marginBottom='m' />
+                                <TextButton alignSelf='baseline' variant='dangerInteractiveColor' marginBottom='m'>
+                                    Danger Interactive Color
+                                </TextButton>
                                 <DetailsRow title='Title' details='Details' marginBottom='m' />
                                 <Picker
                                     iosDoneText='Select'

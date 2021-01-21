@@ -4,9 +4,10 @@ import { BaseTouchableOpacityProps } from '../baseComponents/BaseTouchableOpacit
 import { ButtonColorVariant } from './types/ButtonColorVariant';
 import { TitleColorVariant } from './types/TitleColorVariant';
 export interface TextButtonProps extends Partial<Omit<BaseTouchableOpacityProps, 'children'>> {
-    children?: (color: string) => JSX.Element;
+    children?: string;
     textProps?: Omit<BaseTextProps, 'children'>;
-    text?: string;
+    leftIcon?: (color: string) => JSX.Element;
+    rightIcon?: (color: string) => JSX.Element;
     variant?: ButtonColorVariant | TitleColorVariant | 'navigationBarButtonColor';
 }
-export declare function TextButton({ text, children, textProps, variant, ...others }: TextButtonProps): JSX.Element;
+export declare function TextButton({ leftIcon, rightIcon, children, textProps, variant, ...others }: TextButtonProps): JSX.Element;
