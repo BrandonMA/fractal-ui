@@ -1,1 +1,1 @@
-export * from './useAnimatedPresenceState';
+export * from './useAnimationLifecycle';

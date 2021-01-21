@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef } from 'react';
-export function useHideCallback(setIsSafeToRemove, onHide) {
+export function useHideCallback(setIsSafeToRemove, delay, onHide) {
     var timeoutRef = useRef();
     var callback = useCallback(function () {
         setIsSafeToRemove();
         if (onHide) {
-            timeoutRef.current = setTimeout(onHide, 300);
+            timeoutRef.current = setTimeout(onHide, delay);
         }
-    }, [setIsSafeToRemove, onHide, timeoutRef]);
+    }, [setIsSafeToRemove, onHide, timeoutRef, delay]);
     useEffect(function () {
         return function () {
             if (timeoutRef.current != null) {

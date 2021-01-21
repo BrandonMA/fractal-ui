@@ -1,2 +1,2 @@
-export * from './useAnimatedPresenceState';
+export * from './useAnimationLifecycle';
 //# sourceMappingURL=index.js.map

@@ -26,10 +26,10 @@ import { BasePressable } from '../baseComponents/BasePressable';
 import { BaseSafeAreaView } from '../baseComponents';
 import { AnimatedPresence, FadeAnimation } from '../animations';
 import { HideDimmedModalProvider } from './context/HideDimmedModalProvider';
-import { useAnimatedPresenceState } from '../animations/hooks/useAnimatedPresenceState';
+import { useModalAnimatedState } from './hooks/useModalAnimatedState';
 export function DimmedModal(_a) {
     var children = _a.children, onDismiss = _a.onDismiss, visible = _a.visible, justifyContent = _a.justifyContent, alignItems = _a.alignItems, _b = _a.disableStateResetOnDismiss, disableStateResetOnDismiss = _b === void 0 ? false : _b, others = __rest(_a, ["children", "onDismiss", "visible", "justifyContent", "alignItems", "disableStateResetOnDismiss"]);
-    var _c = useAnimatedPresenceState(onDismiss, 0, disableStateResetOnDismiss), backgroundVisible = _c[0], hideAnimated = _c[1], resetVisibility = _c[2];
+    var _c = useModalAnimatedState(onDismiss, 0, disableStateResetOnDismiss), backgroundVisible = _c[0], hideAnimated = _c[1], resetVisibility = _c[2];
     return (React.createElement(HideDimmedModalProvider, { hideAnimated: hideAnimated },
         React.createElement(NativeModal, __assign({ visible: visible, transparent: true, animationType: 'fade' }, others),
             React.createElement(BaseSafeAreaView, { flex: 1, justifyContent: justifyContent, alignItems: alignItems },

@@ -27,12 +27,12 @@ import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { useTheme } from '@shopify/restyle';
 import { DimmedModal } from './DimmedModal';
 import { AnimatedPresence, BottomSlideAnimation } from '../animations';
-import { useAnimatedPresenceState } from '../animations/hooks/useAnimatedPresenceState';
+import { useModalAnimatedState } from './hooks/useModalAnimatedState';
 var Entypo = memo(BaseEntypo);
 export function BottomCellModal(_a) {
     var children = _a.children, _b = _a.disableStateResetOnDismiss, disableStateResetOnDismiss = _b === void 0 ? false : _b, onDismiss = _a.onDismiss, visible = _a.visible, others = __rest(_a, ["children", "disableStateResetOnDismiss", "onDismiss", "visible"]);
     var colors = useTheme().colors;
-    var _c = useAnimatedPresenceState(onDismiss, 350, disableStateResetOnDismiss), cellIsVisible = _c[0], hideAnimated = _c[1], resetVisibility = _c[2];
+    var _c = useModalAnimatedState(onDismiss, 350, disableStateResetOnDismiss), cellIsVisible = _c[0], hideAnimated = _c[1], resetVisibility = _c[2];
     return (React.createElement(DimmedModal, __assign({ disableStateResetOnDismiss: disableStateResetOnDismiss, onDismiss: hideAnimated, visible: visible }, others, { justifyContent: 'flex-end' }),
         React.createElement(AnimatedPresence, null, cellIsVisible ? (React.createElement(BottomSlideAnimation, { padding: 'm', alignSelf: 'center', maxWidth: 540, width: '100%', onHide: resetVisibility },
             React.createElement(Cell, null,

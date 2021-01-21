@@ -1,1 +1,1 @@
-export declare function useHideCallback(setIsSafeToRemove: () => void, onHide?: () => void): () => void;
+export declare function useHideCallback(setIsSafeToRemove: () => void, delay: number, onHide?: () => void): () => void;

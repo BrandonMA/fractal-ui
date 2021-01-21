@@ -24,7 +24,7 @@ import React from 'react';
 import { DimmedModal } from './DimmedModal';
 import { getValueForLargeSize, useWidthSizeGroup } from '@bma98/size-class';
 import { AnimatedPresence, BottomSlideAnimation } from '../animations';
-import { useAnimatedPresenceState } from '../animations/hooks/useAnimatedPresenceState';
+import { useModalAnimatedState } from './hooks/useModalAnimatedState';
 function MiddleCellDesktop(_a) {
     var children = _a.children, onHide = _a.onHide;
     return (React.createElement(BottomSlideAnimation, { overflow: 'hidden', borderRadius: 'm', maxWidth: 550, maxHeight: 550, width: '60%', height: '60%', backgroundColor: 'foreground', onHide: onHide }, children));
@@ -38,7 +38,7 @@ export function MiddleCellModal(_a) {
     var widthSize = useWidthSizeGroup()[0];
     var Wrapper = getValueForLargeSize(widthSize, MiddleCellDesktop, MiddleCellPhone);
     var justifyContent = getValueForLargeSize(widthSize, 'center', 'flex-start');
-    var _c = useAnimatedPresenceState(onDismiss, 350, disableStateResetOnDismiss), cellIsVisible = _c[0], hideAnimation = _c[1], resetVisibility = _c[2];
+    var _c = useModalAnimatedState(onDismiss, 350, disableStateResetOnDismiss), cellIsVisible = _c[0], hideAnimation = _c[1], resetVisibility = _c[2];
     return (React.createElement(DimmedModal, __assign({ disableStateResetOnDismiss: disableStateResetOnDismiss, onDismiss: hideAnimation, visible: visible, justifyContent: justifyContent, alignItems: 'center' }, others),
         React.createElement(AnimatedPresence, null, cellIsVisible ? React.createElement(Wrapper, { onHide: resetVisibility }, children) : null)));
 }

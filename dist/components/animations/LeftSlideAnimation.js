@@ -27,14 +27,15 @@ import { BaseBox } from '../baseComponents';
 import { AnimatedPresenceContext } from './AnimatedPresence';
 import { useAnimationLifecycle } from './hooks/useAnimationLifecycle';
 import { useHideCallback } from './hooks/useHideCallback';
+import { hideAnimationTiming } from './util/hideAnimationTiming';
 export function LeftSlideAnimation(_a) {
     var style = _a.style, onHide = _a.onHide, others = __rest(_a, ["style", "onHide"]);
     var _b = useContext(AnimatedPresenceContext), visible = _b[0], setIsSafeToRemove = _b[1];
-    var handleHide = useHideCallback(setIsSafeToRemove, onHide);
+    var handleHide = useHideCallback(setIsSafeToRemove, hideAnimationTiming, onHide);
     var screenWidth = Dimensions.get('screen').width;
     var offsetX = useRef(new Animated.Value(-screenWidth)).current;
     var showAnimation = useSpringAnimation(offsetX, 0);
-    var hideAnimation = useTimingAnimation(offsetX, -screenWidth, 300, handleHide);
+    var hideAnimation = useTimingAnimation(offsetX, -screenWidth, hideAnimationTiming, handleHide);
     var animatedStyle = useMemo(function () {
         return [
             style,
