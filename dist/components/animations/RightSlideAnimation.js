@@ -32,7 +32,7 @@ export function RightSlideAnimation(_a) {
     var onHide = _a.onHide, style = _a.style, others = __rest(_a, ["onHide", "style"]);
     var _b = useContext(AnimatedPresenceContext), visible = _b[0], setIsSafeToRemove = _b[1];
     var handleHide = useHideCallback(setIsSafeToRemove, hideAnimationTiming, onHide);
-    var screenWidth = Dimensions.get('screen').width;
+    var screenWidth = Dimensions.get('window').width;
     var offsetX = useRef(new Animated.Value(screenWidth)).current;
     var showAnimation = useSpringAnimation(offsetX, 0);
     var hideAnimation = useTimingAnimation(offsetX, screenWidth, hideAnimationTiming, handleHide);

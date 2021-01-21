@@ -32,7 +32,7 @@ export function BottomSlideAnimation(_a) {
     var onHide = _a.onHide, style = _a.style, others = __rest(_a, ["onHide", "style"]);
     var _b = useContext(AnimatedPresenceContext), visible = _b[0], setIsSafeToRemove = _b[1];
     var handleHide = useHideCallback(setIsSafeToRemove, hideAnimationTiming, onHide);
-    var screenHeight = Dimensions.get('screen').height;
+    var screenHeight = Dimensions.get('window').height;
     var offsetY = useRef(new Animated.Value(screenHeight)).current;
     var showAnimation = useSpringAnimation(offsetY, 0);
     var hideAnimation = useTimingAnimation(offsetY, screenHeight, hideAnimationTiming, handleHide);

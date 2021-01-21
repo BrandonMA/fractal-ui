@@ -16,7 +16,7 @@ export function RightSlideAnimation({ onHide, style, ...others }: RightSlideAnim
 
     const handleHide = useHideCallback(setIsSafeToRemove, hideAnimationTiming, onHide);
 
-    const screenWidth = Dimensions.get('screen').width;
+    const screenWidth = Dimensions.get('window').width;
     const offsetX = useRef(new Animated.Value(screenWidth)).current;
     const showAnimation = useSpringAnimation(offsetX, 0);
     const hideAnimation = useTimingAnimation(offsetX, screenWidth, hideAnimationTiming, handleHide);

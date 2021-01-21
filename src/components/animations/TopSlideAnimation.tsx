@@ -16,7 +16,7 @@ export function TopSlideAnimation({ onHide, style, ...others }: TopSlideAnimatio
 
     const handleHide = useHideCallback(setIsSafeToRemove, hideAnimationTiming, onHide);
 
-    const screenHeight = Dimensions.get('screen').height;
+    const screenHeight = Dimensions.get('window').height;
     const offsetY = useRef(new Animated.Value(-screenHeight)).current;
     const showAnimation = useSpringAnimation(offsetY, 0);
     const hideAnimation = useTimingAnimation(offsetY, -screenHeight, hideAnimationTiming, handleHide);
