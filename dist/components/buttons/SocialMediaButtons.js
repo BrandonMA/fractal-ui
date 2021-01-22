@@ -30,9 +30,9 @@ export function SocialMediaButtons(_a) {
     var onGooglePress = _a.onGooglePress, onFacebookPress = _a.onFacebookPress, onApplePress = _a.onApplePress, appleText = _a.appleText, removeAppleButton = _a.removeAppleButton, others = __rest(_a, ["onGooglePress", "onFacebookPress", "onApplePress", "appleText", "removeAppleButton"]);
     return (React.createElement(BaseBox, __assign({ padding: 'cell' }, others),
         React.createElement(HorizontalView, { marginBottom: 'm' },
-            React.createElement(GoogleButton, { flexGrow: 1, onPress: onGooglePress }),
+            React.createElement(GoogleButton, { flex: 1, onPress: onGooglePress }),
             React.createElement(BaseBox, { width: 16 }),
-            React.createElement(FacebookButton, { flexGrow: 1, onPress: onFacebookPress })),
+            React.createElement(FacebookButton, { flex: 1, onPress: onFacebookPress })),
         removeAppleButton ? null : React.createElement(AppleButton, { onPress: onApplePress, text: appleText })));
 }
 //# sourceMappingURL=SocialMediaButtons.js.map

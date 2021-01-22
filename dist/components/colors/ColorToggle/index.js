@@ -21,11 +21,10 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React, { useCallback } from 'react';
-import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { BasePressable } from '../../baseComponents/BasePressable';
-import { Animated } from 'react-native';
 import { useColorToggleAnimation } from './hooks/useColorToggleAnimation';
-var Entypo = Animated.createAnimatedComponent(BaseEntypo);
+import { CheckIcon } from '../../assets/CheckIcon';
+import { BaseBox } from '../../baseComponents';
 export function ColorToggle(_a) {
     var onActiveChange = _a.onActiveChange, backgroundColor = _a.backgroundColor, active = _a.active, others = __rest(_a, ["onActiveChange", "backgroundColor", "active"]);
     var _b = useColorToggleAnimation(active), setActive = _b[1], iconStyle = _b[2];
@@ -51,6 +50,7 @@ export function ColorToggle(_a) {
         }
     }, [active, handleUncontrolledActiveToggle, handleControlledActiveToggle]);
     return (React.createElement(BasePressable, __assign({ onPress: handlePress, width: 40, height: 40, borderRadius: 'xl', justifyContent: 'center', alignItems: 'center', style: { backgroundColor: backgroundColor } }, others),
-        React.createElement(Entypo, { selectable: false, name: 'check', size: 24, color: 'white', style: iconStyle })));
+        React.createElement(BaseBox, { style: iconStyle },
+            React.createElement(CheckIcon, { height: 24, width: 24, fill: 'white' }))));
 }
 //# sourceMappingURL=index.js.map

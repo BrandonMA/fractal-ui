@@ -11,10 +11,10 @@ var __assign = (this && this.__assign) || function () {
 };
 import React from 'react';
 import { Button } from './Button';
-import { FontAwesome } from '@expo/vector-icons';
+import { AppleIcon } from '../assets/AppleIcon';
 export function AppleButton(props) {
     var text = props.text;
     return (React.createElement(Button, __assign({ variant: 'mainInteractiveColor', addShadow: true }, props, { backgroundColor: 'black' }),
-        React.createElement(FontAwesome, { name: 'apple', size: text != null ? 18 : 24, color: 'white' })));
+        React.createElement(AppleIcon, { height: text != null ? 18 : 24, fill: 'white' })));
 }
 //# sourceMappingURL=AppleButton.js.map

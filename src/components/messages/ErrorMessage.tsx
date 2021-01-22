@@ -1,8 +1,8 @@
 import React, { ReactNode, Component } from 'react';
 import { Message } from './Message';
-import { Entypo } from '@expo/vector-icons';
 import { LayoutAnimation } from 'react-native';
 import { BaseBox, BaseBoxProps } from '../baseComponents/BaseBox';
+import { BugIcon } from '../assets/BugIcon';
 
 interface State {
     hasError: boolean;
@@ -22,7 +22,7 @@ export class ErrorMessage extends Component<BaseBoxProps, State> {
         return { hasError: true, errorMessage: error.message, errorTitle: error.name };
     }
 
-    renderErrorIcon = (color: string): JSX.Element => <Entypo name={'bug'} size={20} color={color} />;
+    renderErrorIcon = (color: string): JSX.Element => <BugIcon width={20} fill={color} />;
 
     render(): ReactNode {
         if (this.state.hasError) {

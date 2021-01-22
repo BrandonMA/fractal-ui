@@ -20,16 +20,15 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { memo, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { usePickerState } from './hooks/usePickerState';
 import { HorizontalView } from '../../containers/HorizontalView';
-import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { BasePicker } from '../../baseComponents/BasePicker';
 import { BaseBox } from '../../baseComponents/BaseBox';
 import { Picker as NativePicker } from '@react-native-picker/picker';
 import { Platform } from 'react-native';
-var Entypo = memo(BaseEntypo);
+import { ChevronDown } from '../../assets/ChevronDown';
 var style = {
     appearance: 'none',
     cursor: 'pointer'
@@ -46,6 +45,6 @@ export function Picker(_a) {
     return (React.createElement(HorizontalView, __assign({ justifyContent: 'center', paddingHorizontal: 's', borderRadius: 'textFieldRadius', height: interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor', pointerEvents: disabled ? 'none' : 'auto' }, others),
         React.createElement(BasePicker, { borderWidth: '0', backgroundColor: 'transparent', color: 'textColor', selectedValue: currentValue, dropdownIconColor: colors.placeholderColor, onValueChange: handleValueChange, mode: 'dropdown', fontSize: 14, flexGrow: 1, style: Platform.OS === 'web' ? style : undefined }, items.map(renderItem)),
         React.createElement(BaseBox, { alignSelf: 'center' },
-            React.createElement(Entypo, { selectable: false, name: 'chevron-down', size: 21, color: colors.placeholderColor }))));
+            React.createElement(ChevronDown, { width: 21, fill: colors.placeholderColor }))));
 }
 //# sourceMappingURL=index.js.map

@@ -1,12 +1,10 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { useTheme } from '@shopify/restyle';
 import { FractalTheme } from '../../themes/FractalTheme';
-import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { Text } from '../Text';
 import { BaseBox } from '../baseComponents/BaseBox';
 import { BaseTouchableOpacity, BaseTouchableOpacityProps } from '../baseComponents/BaseTouchableOpacity';
-
-const Entypo = memo(BaseEntypo);
+import { ChevronDown } from '../assets/ChevronDown';
 
 export interface PickerButtonProps extends Partial<Omit<BaseTouchableOpacityProps, 'children'>> {
     children: string;
@@ -30,7 +28,7 @@ export function PickerButton({ children, ...others }: PickerButtonProps): JSX.El
                     <Text fontSize={14}>{children}</Text>
                 </BaseBox>
                 <BaseBox alignSelf='center'>
-                    <Entypo name='chevron-down' size={21} color={colors.placeholderColor} />
+                    <ChevronDown width={21} fill={colors.placeholderColor} />
                 </BaseBox>
             </BaseTouchableOpacity>
         </>

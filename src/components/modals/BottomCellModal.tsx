@@ -1,14 +1,12 @@
-import React, { memo, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { BaseTouchableOpacity } from '../baseComponents';
 import { Cell } from '../containers';
-import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { useTheme } from '@shopify/restyle';
 import { FractalTheme } from '../../themes';
 import { DimmedModal, DimmedModalProps } from './DimmedModal';
 import { AnimatedPresence, BottomSlideAnimation } from '../animations';
 import { useModalAnimatedState } from './hooks/useModalAnimatedState';
-
-const Entypo = memo(BaseEntypo);
+import { XIcon } from '../assets/XIcon';
 
 export interface BottomCellModalProps extends DimmedModalProps {
     onDismiss?: () => void;
@@ -47,7 +45,7 @@ export function BottomCellModal({
                                 borderRadius='l'
                                 onPress={hideAnimated}
                             >
-                                <Entypo name='cross' size={21} color={colors.placeholderColor} />
+                                <XIcon height={19} fill={colors.placeholderColor} />
                             </BaseTouchableOpacity>
                             {children}
                         </Cell>

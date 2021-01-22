@@ -20,15 +20,14 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { memo } from 'react';
+import React from 'react';
 import { BaseTouchableOpacity } from '../baseComponents';
 import { Cell } from '../containers';
-import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { useTheme } from '@shopify/restyle';
 import { DimmedModal } from './DimmedModal';
 import { AnimatedPresence, BottomSlideAnimation } from '../animations';
 import { useModalAnimatedState } from './hooks/useModalAnimatedState';
-var Entypo = memo(BaseEntypo);
+import { XIcon } from '../assets/XIcon';
 export function BottomCellModal(_a) {
     var children = _a.children, _b = _a.disableStateResetOnDismiss, disableStateResetOnDismiss = _b === void 0 ? false : _b, onDismiss = _a.onDismiss, visible = _a.visible, others = __rest(_a, ["children", "disableStateResetOnDismiss", "onDismiss", "visible"]);
     var colors = useTheme().colors;
@@ -37,7 +36,7 @@ export function BottomCellModal(_a) {
         React.createElement(AnimatedPresence, null, cellIsVisible ? (React.createElement(BottomSlideAnimation, { padding: 'm', alignSelf: 'center', maxWidth: 540, width: '100%', onHide: resetVisibility },
             React.createElement(Cell, null,
                 React.createElement(BaseTouchableOpacity, { justifyContent: 'center', alignItems: 'center', backgroundColor: 'background', alignSelf: 'flex-end', width: 32, height: 32, borderRadius: 'l', onPress: hideAnimated },
-                    React.createElement(Entypo, { name: 'cross', size: 21, color: colors.placeholderColor })),
+                    React.createElement(XIcon, { height: 19, fill: colors.placeholderColor })),
                 children))) : null)));
 }
 //# sourceMappingURL=BottomCellModal.js.map

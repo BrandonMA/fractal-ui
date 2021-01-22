@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { registerRootComponent } from 'expo';
 import {
     FractalAppRoot,
@@ -16,7 +16,6 @@ import {
     DetailsList,
     useThemeIdentifier,
     Separator,
-    Message,
     ErrorMessage,
     SearchBar,
     ColorPicker,
@@ -34,10 +33,8 @@ import {
     BaseBox
 } from './src';
 import { InteractionManager, LayoutAnimation, SafeAreaView, ScrollView } from 'react-native';
-import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { useTheme } from '@shopify/restyle';
 
-const Entypo = memo(BaseEntypo);
 const detailsCardContent: Array<[string, string]> = [
     ['Title 1', 'Details 1'],
     ['Title 2', 'Details 2']
@@ -116,26 +113,6 @@ function App(): JSX.Element {
         });
     }, [setLoading]);
 
-    const renderEmailIcon = useCallback(
-        (color: string, size: number): JSX.Element => <Entypo selectable={false} name='email' size={size} color={color} />,
-        []
-    );
-
-    const renderChevronLeft = useCallback(
-        (color: string): JSX.Element => <Entypo selectable={false} name='chevron-left' size={20} color={color} />,
-        []
-    );
-
-    const renderChevronRight = useCallback(
-        (color: string): JSX.Element => <Entypo selectable={false} name='chevron-right' size={20} color={color} />,
-        []
-    );
-
-    const renderWarning = useCallback(
-        (color: string): JSX.Element => <Entypo selectable={false} name={'warning'} size={20} color={color} />,
-        []
-    );
-
     return (
         <FractalAppRoot>
             <Background>
@@ -173,20 +150,8 @@ function App(): JSX.Element {
                                     marginBottom={'m'}
                                 />
                                 <TextField value={text} onChangeText={setText} placeholder='Placeholder...' marginBottom='m' />
-                                <IconTextField
-                                    leftImage={renderEmailIcon}
-                                    value={text}
-                                    onChangeText={setText}
-                                    placeholder='Placeholder...'
-                                    marginBottom='m'
-                                />
-                                <IconTextField
-                                    rightImage={renderEmailIcon}
-                                    value={text}
-                                    onChangeText={setText}
-                                    placeholder='Placeholder...'
-                                    marginBottom='m'
-                                />
+                                <IconTextField value={text} onChangeText={setText} placeholder='Placeholder...' marginBottom='m' />
+                                <IconTextField value={text} onChangeText={setText} placeholder='Placeholder...' marginBottom='m' />
                                 <ThemeSwapper />
                                 <Text variant='title' marginBottom='m'>
                                     Title
@@ -209,20 +174,10 @@ function App(): JSX.Element {
                                 <TextButton alignSelf='flex-start' variant='alternativeInteractiveColor' marginBottom='m'>
                                     Alternative Interactive Color
                                 </TextButton>
-                                <TextButton
-                                    alignSelf='center'
-                                    variant='successInteractiveColor'
-                                    leftIcon={renderChevronLeft}
-                                    marginBottom='m'
-                                >
+                                <TextButton alignSelf='center' variant='successInteractiveColor' marginBottom='m'>
                                     Success Interactive Color with left icon
                                 </TextButton>
-                                <TextButton
-                                    alignSelf='flex-end'
-                                    variant='warningInteractiveColor'
-                                    rightIcon={renderChevronRight}
-                                    marginBottom='m'
-                                >
+                                <TextButton alignSelf='flex-end' variant='warningInteractiveColor' marginBottom='m'>
                                     Warning Interactive Color
                                 </TextButton>
                                 <Separator marginBottom='m' />
@@ -251,13 +206,6 @@ function App(): JSX.Element {
                                     iosDoneText='Select'
                                     marginBottom='m'
                                     onChange={(date) => console.log(date.toLocaleTimeString())}
-                                />
-                                <Message
-                                    title='Title'
-                                    messageType={'warning'}
-                                    description={'This is the description of my error with icon and title'}
-                                    icon={renderWarning}
-                                    marginBottom={'m'}
                                 />
                                 <ErrorMessage marginBottom={'m'}>
                                     <BuggyComponent />

@@ -1,16 +1,14 @@
-import React, { memo, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { usePickerState } from './hooks/usePickerState';
 import { PickerProps } from './types/PickerProps';
 import { FractalTheme } from '../../../themes/FractalTheme';
 import { HorizontalView } from '../../containers/HorizontalView';
-import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { BasePicker } from '../../baseComponents/BasePicker';
 import { BaseBox } from '../../baseComponents/BaseBox';
 import { Picker as NativePicker } from '@react-native-picker/picker';
 import { Platform } from 'react-native';
-
-const Entypo = memo(BaseEntypo);
+import { ChevronDown } from '../../assets/ChevronDown';
 
 const style: any = {
     appearance: 'none',
@@ -55,7 +53,7 @@ export function Picker({ items, onChange, initialValue, disabled, ...others }: P
                 {items.map(renderItem)}
             </BasePicker>
             <BaseBox alignSelf='center'>
-                <Entypo selectable={false} name='chevron-down' size={21} color={colors.placeholderColor} />
+                <ChevronDown width={21} fill={colors.placeholderColor} />
             </BaseBox>
         </HorizontalView>
     );

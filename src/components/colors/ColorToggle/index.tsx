@@ -1,10 +1,8 @@
 import React, { useCallback } from 'react';
-import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { BasePressable, BasePressableProps } from '../../baseComponents/BasePressable';
-import { Animated } from 'react-native';
 import { useColorToggleAnimation } from './hooks/useColorToggleAnimation';
-
-const Entypo = Animated.createAnimatedComponent(BaseEntypo);
+import { CheckIcon } from '../../assets/CheckIcon';
+import { BaseBox } from '../../baseComponents';
 
 export interface ColorToggleProps extends Partial<Omit<BasePressableProps, 'backgroundColor'>> {
     onActiveChange?: (active: boolean, color: string) => void;
@@ -49,7 +47,9 @@ export function ColorToggle({ onActiveChange, backgroundColor, active, ...others
             style={{ backgroundColor }}
             {...others}
         >
-            <Entypo selectable={false} name='check' size={24} color='white' style={iconStyle} />
+            <BaseBox style={iconStyle}>
+                <CheckIcon height={24} width={24} fill={'white'} />
+            </BaseBox>
         </BasePressable>
     );
 }

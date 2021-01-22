@@ -11,9 +11,9 @@ var __assign = (this && this.__assign) || function () {
 };
 import React from 'react';
 import { Button } from './Button';
-import { FontAwesome } from '@expo/vector-icons';
+import { FacebookIcon } from '../assets/FacebookIcon';
 export function FacebookButton(props) {
     return (React.createElement(Button, __assign({ variant: 'mainInteractiveColor', addShadow: true }, props, { backgroundColor: 'facebook' }),
-        React.createElement(FontAwesome, { name: 'facebook', size: 24, color: 'white' })));
+        React.createElement(FacebookIcon, { height: 24, fill: 'white' })));
 }
 //# sourceMappingURL=FacebookButton.js.map

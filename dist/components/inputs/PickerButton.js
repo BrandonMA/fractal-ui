@@ -20,13 +20,12 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { memo } from 'react';
+import React from 'react';
 import { useTheme } from '@shopify/restyle';
-import { Entypo as BaseEntypo } from '@expo/vector-icons';
 import { Text } from '../Text';
 import { BaseBox } from '../baseComponents/BaseBox';
 import { BaseTouchableOpacity } from '../baseComponents/BaseTouchableOpacity';
-var Entypo = memo(BaseEntypo);
+import { ChevronDown } from '../assets/ChevronDown';
 export function PickerButton(_a) {
     var children = _a.children, others = __rest(_a, ["children"]);
     var _b = useTheme(), interactiveItems = _b.interactiveItems, colors = _b.colors;
@@ -35,6 +34,6 @@ export function PickerButton(_a) {
             React.createElement(BaseBox, { flexGrow: 1, justifyContent: 'center' },
                 React.createElement(Text, { fontSize: 14 }, children)),
             React.createElement(BaseBox, { alignSelf: 'center' },
-                React.createElement(Entypo, { name: 'chevron-down', size: 21, color: colors.placeholderColor })))));
+                React.createElement(ChevronDown, { width: 21, fill: colors.placeholderColor })))));
 }
 //# sourceMappingURL=PickerButton.js.map

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ButtonProps } from './types/ButtonProps';
 import { Button } from './Button';
-import { FontAwesome } from '@expo/vector-icons';
+import { AppleIcon } from '../assets/AppleIcon';
 
 export type AppleButtonProps = Partial<Omit<ButtonProps, 'variant'>>;
 
@@ -10,7 +10,7 @@ export function AppleButton(props: AppleButtonProps): JSX.Element {
 
     return (
         <Button variant='mainInteractiveColor' addShadow {...props} backgroundColor='black'>
-            <FontAwesome name='apple' size={text != null ? 18 : 24} color='white' />
+            <AppleIcon height={text != null ? 18 : 24} fill='white' />
         </Button>
     );
 }

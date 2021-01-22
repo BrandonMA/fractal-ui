@@ -24,14 +24,14 @@ var __assign = (this && this.__assign) || function () {
 };
 import React, { Component } from 'react';
 import { Message } from './Message';
-import { Entypo } from '@expo/vector-icons';
 import { LayoutAnimation } from 'react-native';
 import { BaseBox } from '../baseComponents/BaseBox';
+import { BugIcon } from '../assets/BugIcon';
 var ErrorMessage = /** @class */ (function (_super) {
     __extends(ErrorMessage, _super);
     function ErrorMessage(props) {
         var _this = _super.call(this, props) || this;
-        _this.renderErrorIcon = function (color) { return React.createElement(Entypo, { name: 'bug', size: 20, color: color }); };
+        _this.renderErrorIcon = function (color) { return React.createElement(BugIcon, { width: 20, fill: color }); };
         _this.state = { hasError: false, errorMessage: '', errorTitle: '' };
         return _this;
     }

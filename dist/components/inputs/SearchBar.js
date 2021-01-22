@@ -9,12 +9,11 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import React, { memo, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { IconTextField } from './IconTextField';
-import { Ionicons as BaseIonicons } from '@expo/vector-icons';
-var Ionicons = memo(BaseIonicons);
+import { SearchIcon } from '../assets/SearchIcon';
 export function SearchBar(props) {
-    var renderSearchIcon = useCallback(function (color, size) { return React.createElement(Ionicons, { selectable: false, name: 'search', size: size, color: color }); }, []);
+    var renderSearchIcon = useCallback(function (color, size) { return React.createElement(SearchIcon, { height: size, width: size, fill: color }); }, []);
     return React.createElement(IconTextField, __assign({}, props, { leftImage: renderSearchIcon }));
 }
 //# sourceMappingURL=SearchBar.js.map

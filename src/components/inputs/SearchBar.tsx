@@ -1,14 +1,9 @@
-import React, { memo, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { IconTextField, IconTextFieldProps } from './IconTextField';
-import { Ionicons as BaseIonicons } from '@expo/vector-icons';
-
-const Ionicons = memo(BaseIonicons);
+import { SearchIcon } from '../assets/SearchIcon';
 
 export function SearchBar(props: IconTextFieldProps): JSX.Element {
-    const renderSearchIcon = useCallback(
-        (color: string, size: number) => <Ionicons selectable={false} name='search' size={size} color={color} />,
-        []
-    );
+    const renderSearchIcon = useCallback((color: string, size: number) => <SearchIcon height={size} width={size} fill={color} />, []);
 
     return <IconTextField {...props} leftImage={renderSearchIcon} />;
 }
