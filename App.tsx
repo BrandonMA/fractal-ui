@@ -35,7 +35,7 @@ const detailsCardContent: Array<[string, string]> = [
     ['Title 2', 'Details 2']
 ];
 
-function App(): JSX.Element {
+export function App(): JSX.Element {
     const [text, setText] = useState('');
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
