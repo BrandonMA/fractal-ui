@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { registerRootComponent } from 'expo';
 import {
     FractalAppRoot,
@@ -14,18 +14,11 @@ import {
     SocialMediaButtons,
     DetailsRow,
     DetailsList,
-    useThemeIdentifier,
     Separator,
     ErrorMessage,
     SearchBar,
-    ColorPicker,
     DatePicker,
     TimePicker,
-    brinkPink,
-    FractalTheme,
-    lime,
-    pink,
-    purple,
     ActivityIndicator,
     AnimatedPresence,
     RightSlideAnimation,
@@ -33,69 +26,14 @@ import {
     BaseBox
 } from './src';
 import { InteractionManager, LayoutAnimation, SafeAreaView, ScrollView } from 'react-native';
-import { useTheme } from '@shopify/restyle';
+import { FinalColorPicker } from './examples/FinalColorPicker';
+import { BuggyComponent } from './examples/BuggyComponent';
+import { ThemeSwapper } from './examples/ThemeSwapper';
 
 const detailsCardContent: Array<[string, string]> = [
     ['Title 1', 'Details 1'],
     ['Title 2', 'Details 2']
 ];
-
-function ThemeSwapper(): JSX.Element {
-    const [, setThemeIdentifier] = useThemeIdentifier();
-    const handlePress = useCallback(() => setThemeIdentifier((current) => (current === 'light' ? 'dark' : 'light')), [setThemeIdentifier]);
-
-    return <Button onPress={handlePress} variant='alternativeInteractiveColor' text='Swap Theme' marginBottom='m' />;
-}
-
-function BuggyComponent(): JSX.Element {
-    const [showError, setShowError] = useState(false);
-
-    const triggerError = useCallback(() => {
-        setShowError(true);
-    }, []);
-
-    useEffect(() => {
-        if (showError) {
-            throw Error('This should be catched, sent by BuggyComponent');
-        }
-    }, [showError]);
-
-    return <Button variant={'dangerInteractiveColor'} text='Trigger Error' onPress={triggerError} />;
-}
-
-function FinalColorPicker(): JSX.Element {
-    const theme = useTheme<FractalTheme>();
-
-    return (
-        <>
-            <ColorPicker
-                onColorChange={(color) => console.log(color)}
-                marginBottom={'m'}
-                colors={[
-                    theme.colors.mainInteractiveColor,
-                    theme.colors.alternativeInteractiveColor,
-                    theme.colors.successInteractiveColor,
-                    theme.colors.dangerInteractiveColor,
-                    theme.colors.warningInteractiveColor
-                ]}
-            />
-            <ColorPicker
-                onColorChange={(color) => console.log(color)}
-                colors={[
-                    theme.colors.mainInteractiveColor,
-                    theme.colors.alternativeInteractiveColor,
-                    theme.colors.successInteractiveColor,
-                    theme.colors.dangerInteractiveColor,
-                    theme.colors.warningInteractiveColor,
-                    purple.base,
-                    brinkPink.base,
-                    lime.base,
-                    pink.base
-                ]}
-            />
-        </>
-    );
-}
 
 function App(): JSX.Element {
     const [text, setText] = useState('');
