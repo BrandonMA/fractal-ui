@@ -103,6 +103,12 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         };
         radius: number;
         opacity: number;
+        navigationBarOffset: {
+            height: number;
+            width: number;
+        };
+        navigationBarRadius: number;
+        navigationBarOpacity: number;
     };
     textVariants: {
         defaults: {
@@ -294,6 +300,12 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         };
         radius: number;
         opacity: number;
+        navigationBarOffset: {
+            height: number;
+            width: number;
+        };
+        navigationBarRadius: number;
+        navigationBarOpacity: number;
     };
     textVariants: {
         defaults: {
@@ -485,6 +497,12 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         };
         radius: number;
         opacity: number;
+        navigationBarOffset: {
+            height: number;
+            width: number;
+        };
+        navigationBarRadius: number;
+        navigationBarOpacity: number;
     };
     textVariants: {
         defaults: {
@@ -676,6 +694,12 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         };
         radius: number;
         opacity: number;
+        navigationBarOffset: {
+            height: number;
+            width: number;
+        };
+        navigationBarRadius: number;
+        navigationBarOpacity: number;
     };
     textVariants: {
         defaults: {
@@ -867,6 +891,12 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         };
         radius: number;
         opacity: number;
+        navigationBarOffset: {
+            height: number;
+            width: number;
+        };
+        navigationBarRadius: number;
+        navigationBarOpacity: number;
     };
     textVariants: {
         defaults: {
@@ -1105,6 +1135,12 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         };
         radius: number;
         opacity: number;
+        navigationBarOffset: {
+            height: number;
+            width: number;
+        };
+        navigationBarRadius: number;
+        navigationBarOpacity: number;
     };
     textVariants: {
         defaults: {
@@ -1296,6 +1332,12 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
         };
         radius: number;
         opacity: number;
+        navigationBarOffset: {
+            height: number;
+            width: number;
+        };
+        navigationBarRadius: number;
+        navigationBarOpacity: number;
     };
     textVariants: {
         defaults: {
@@ -1490,6 +1532,12 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             };
             radius: number;
             opacity: number;
+            navigationBarOffset: {
+                height: number;
+                width: number;
+            };
+            navigationBarRadius: number;
+            navigationBarOpacity: number;
         };
         textVariants: {
             defaults: {
@@ -1681,6 +1729,12 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             };
             radius: number;
             opacity: number;
+            navigationBarOffset: {
+                height: number;
+                width: number;
+            };
+            navigationBarRadius: number;
+            navigationBarOpacity: number;
         };
         textVariants: {
             defaults: {
@@ -1872,6 +1926,12 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             };
             radius: number;
             opacity: number;
+            navigationBarOffset: {
+                height: number;
+                width: number;
+            };
+            navigationBarRadius: number;
+            navigationBarOpacity: number;
         };
         textVariants: {
             defaults: {
@@ -2063,6 +2123,12 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             };
             radius: number;
             opacity: number;
+            navigationBarOffset: {
+                height: number;
+                width: number;
+            };
+            navigationBarRadius: number;
+            navigationBarOpacity: number;
         };
         textVariants: {
             defaults: {
@@ -2254,6 +2320,12 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             };
             radius: number;
             opacity: number;
+            navigationBarOffset: {
+                height: number;
+                width: number;
+            };
+            navigationBarRadius: number;
+            navigationBarOpacity: number;
         };
         textVariants: {
             defaults: {
@@ -2492,6 +2564,12 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             };
             radius: number;
             opacity: number;
+            navigationBarOffset: {
+                height: number;
+                width: number;
+            };
+            navigationBarRadius: number;
+            navigationBarOpacity: number;
         };
         textVariants: {
             defaults: {
@@ -2683,6 +2761,12 @@ export declare const BaseBox: Animated.AnimatedComponent<import("react").Forward
             };
             radius: number;
             opacity: number;
+            navigationBarOffset: {
+                height: number;
+                width: number;
+            };
+            navigationBarRadius: number;
+            navigationBarOpacity: number;
         };
         textVariants: {
             defaults: {

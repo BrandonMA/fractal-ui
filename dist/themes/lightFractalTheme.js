@@ -105,7 +105,10 @@ export var lightFractalTheme = createTheme({
     shadowProperties: {
         offset: { height: 2, width: 2 },
         radius: 8,
-        opacity: 0.08
+        opacity: 0.08,
+        navigationBarOffset: { height: 2, width: 2 },
+        navigationBarRadius: 8,
+        navigationBarOpacity: 0.08
     },
     textVariants: {
         defaults: {

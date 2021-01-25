@@ -100,6 +100,12 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         };
         radius: number;
         opacity: number;
+        navigationBarOffset: {
+            height: number;
+            width: number;
+        };
+        navigationBarRadius: number;
+        navigationBarOpacity: number;
     };
     textVariants: {
         defaults: {
@@ -291,6 +297,12 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         };
         radius: number;
         opacity: number;
+        navigationBarOffset: {
+            height: number;
+            width: number;
+        };
+        navigationBarRadius: number;
+        navigationBarOpacity: number;
     };
     textVariants: {
         defaults: {
@@ -482,6 +494,12 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         };
         radius: number;
         opacity: number;
+        navigationBarOffset: {
+            height: number;
+            width: number;
+        };
+        navigationBarRadius: number;
+        navigationBarOpacity: number;
     };
     textVariants: {
         defaults: {
@@ -673,6 +691,12 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         };
         radius: number;
         opacity: number;
+        navigationBarOffset: {
+            height: number;
+            width: number;
+        };
+        navigationBarRadius: number;
+        navigationBarOpacity: number;
     };
     textVariants: {
         defaults: {
@@ -864,6 +888,12 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         };
         radius: number;
         opacity: number;
+        navigationBarOffset: {
+            height: number;
+            width: number;
+        };
+        navigationBarRadius: number;
+        navigationBarOpacity: number;
     };
     textVariants: {
         defaults: {
@@ -1063,6 +1093,12 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         };
         radius: number;
         opacity: number;
+        navigationBarOffset: {
+            height: number;
+            width: number;
+        };
+        navigationBarRadius: number;
+        navigationBarOpacity: number;
     };
     textVariants: {
         defaults: {
@@ -1254,6 +1290,12 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
         };
         radius: number;
         opacity: number;
+        navigationBarOffset: {
+            height: number;
+            width: number;
+        };
+        navigationBarRadius: number;
+        navigationBarOpacity: number;
     };
     textVariants: {
         defaults: {
@@ -1448,6 +1490,12 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             };
             radius: number;
             opacity: number;
+            navigationBarOffset: {
+                height: number;
+                width: number;
+            };
+            navigationBarRadius: number;
+            navigationBarOpacity: number;
         };
         textVariants: {
             defaults: {
@@ -1639,6 +1687,12 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             };
             radius: number;
             opacity: number;
+            navigationBarOffset: {
+                height: number;
+                width: number;
+            };
+            navigationBarRadius: number;
+            navigationBarOpacity: number;
         };
         textVariants: {
             defaults: {
@@ -1830,6 +1884,12 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             };
             radius: number;
             opacity: number;
+            navigationBarOffset: {
+                height: number;
+                width: number;
+            };
+            navigationBarRadius: number;
+            navigationBarOpacity: number;
         };
         textVariants: {
             defaults: {
@@ -2021,6 +2081,12 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             };
             radius: number;
             opacity: number;
+            navigationBarOffset: {
+                height: number;
+                width: number;
+            };
+            navigationBarRadius: number;
+            navigationBarOpacity: number;
         };
         textVariants: {
             defaults: {
@@ -2212,6 +2278,12 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             };
             radius: number;
             opacity: number;
+            navigationBarOffset: {
+                height: number;
+                width: number;
+            };
+            navigationBarRadius: number;
+            navigationBarOpacity: number;
         };
         textVariants: {
             defaults: {
@@ -2411,6 +2483,12 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             };
             radius: number;
             opacity: number;
+            navigationBarOffset: {
+                height: number;
+                width: number;
+            };
+            navigationBarRadius: number;
+            navigationBarOpacity: number;
         };
         textVariants: {
             defaults: {
@@ -2602,6 +2680,12 @@ export declare const BaseText: import("react").ForwardRefExoticComponent<import(
             };
             radius: number;
             opacity: number;
+            navigationBarOffset: {
+                height: number;
+                width: number;
+            };
+            navigationBarRadius: number;
+            navigationBarOpacity: number;
         };
         textVariants: {
             defaults: {

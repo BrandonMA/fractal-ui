@@ -99,6 +99,12 @@ export declare const lightFractalTheme: {
         };
         radius: number;
         opacity: number;
+        navigationBarOffset: {
+            height: number;
+            width: number;
+        };
+        navigationBarRadius: number;
+        navigationBarOpacity: number;
     };
     textVariants: {
         defaults: {
