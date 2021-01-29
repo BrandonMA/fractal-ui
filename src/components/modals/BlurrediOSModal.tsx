@@ -5,6 +5,8 @@ import { BlurView } from 'expo-blur';
 import { useThemeIdentifier } from '../../context/hooks/useThemeIdentifier';
 import { TextButton } from '../buttons/TextButton';
 
+const textProps = { fontWeight: '600' };
+
 export interface BlurrediOSModalProps extends NativeModalProps {
     onDismiss?: () => void;
     children?: ReactNode;
@@ -30,7 +32,6 @@ export function BlurrediOSModal({ children, onDismiss, dismissText, visible, ...
                 />
                 <BaseBox
                     borderTopColor='placeholderColor'
-                    borderBottomColor='placeholderColor'
                     justifyContent='center'
                     alignItems='flex-end'
                     borderTopWidth={0.5}
@@ -38,7 +39,9 @@ export function BlurrediOSModal({ children, onDismiss, dismissText, visible, ...
                     height={48}
                     paddingRight='m'
                 >
-                    <TextButton onPress={onDismiss}>{dismissText}</TextButton>
+                    <TextButton textProps={textProps} onPress={onDismiss}>
+                        {dismissText}
+                    </TextButton>
                 </BaseBox>
                 <BaseSafeAreaView>{children}</BaseSafeAreaView>
             </BlurView>

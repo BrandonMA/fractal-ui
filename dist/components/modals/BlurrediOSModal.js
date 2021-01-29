@@ -26,6 +26,7 @@ import { BaseBox, BasePressable, BaseSafeAreaView } from '../baseComponents';
 import { BlurView } from 'expo-blur';
 import { useThemeIdentifier } from '../../context/hooks/useThemeIdentifier';
 import { TextButton } from '../buttons/TextButton';
+var textProps = { fontWeight: '600' };
 export function BlurrediOSModal(_a) {
     var children = _a.children, onDismiss = _a.onDismiss, dismissText = _a.dismissText, visible = _a.visible, others = __rest(_a, ["children", "onDismiss", "dismissText", "visible"]);
     var themeIdentifier = useThemeIdentifier()[0];
@@ -33,8 +34,8 @@ export function BlurrediOSModal(_a) {
         React.createElement(BasePressable, { flex: 1, onPress: onDismiss }),
         React.createElement(BlurView, { intensity: 100, tint: themeIdentifier },
             React.createElement(BaseBox, { backgroundColor: themeIdentifier === 'light' ? 'black' : 'white', opacity: 0.1, position: 'absolute', top: 0, bottom: 0, right: 0, left: 0 }),
-            React.createElement(BaseBox, { borderTopColor: 'placeholderColor', borderBottomColor: 'placeholderColor', justifyContent: 'center', alignItems: 'flex-end', borderTopWidth: 0.5, backgroundColor: 'background', height: 48, paddingRight: 'm' },
-                React.createElement(TextButton, { onPress: onDismiss }, dismissText)),
+            React.createElement(BaseBox, { borderTopColor: 'placeholderColor', justifyContent: 'center', alignItems: 'flex-end', borderTopWidth: 0.5, backgroundColor: 'background', height: 48, paddingRight: 'm' },
+                React.createElement(TextButton, { textProps: textProps, onPress: onDismiss }, dismissText)),
             React.createElement(BaseSafeAreaView, null, children))));
 }
 //# sourceMappingURL=BlurrediOSModal.js.map
