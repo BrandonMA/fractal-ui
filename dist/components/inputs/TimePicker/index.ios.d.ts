@@ -1,3 +1,3 @@
 /// <reference types="react" />
-import { TimePickerProps } from './types/TimePickerProps';
-export declare function TimePicker({ onChange, iosDoneText, ...others }: TimePickerProps): JSX.Element;
+import { DatePickerProps } from '../DatePicker/types/DatePickerProps';
+export declare function TimePicker(props: Omit<DatePickerProps, 'mode'>): JSX.Element;

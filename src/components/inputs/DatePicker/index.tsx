@@ -7,6 +7,7 @@ import { getDaysInMonth } from './util/getDaysInMonth';
 import { getYearsInRange } from './util/getYearsInRange';
 import { localeMonthNames } from './util/localeMonthNames';
 import { getMonthName } from './util/getMonthName';
+import { BaseBox } from '../../baseComponents';
 
 export function DatePicker({ minDate, maxDate, initialDate, onChange, ...others }: DatePickerProps): JSX.Element {
     const finalMinDate = useMemo(() => minDate ?? new Date('Jan 1, 1920'), [minDate]);
@@ -67,10 +68,13 @@ export function DatePicker({ minDate, maxDate, initialDate, onChange, ...others 
     );
 
     return (
-        <HorizontalView {...others}>
-            <Picker initialValue={date.getFullYear().toString()} items={years} flex={1} onChange={onYearChange} />
-            <Picker initialValue={getMonthName(date)} items={localeMonthNames} flex={1} marginHorizontal={'xs'} onChange={onMonthChange} />
-            <Picker initialValue={date.getDate().toString()} items={days} flex={1} onChange={onDayChange} />
-        </HorizontalView>
+        <BaseBox {...others}>
+            <HorizontalView marginBottom='m'>
+                <Picker initialValue={date.getFullYear().toString()} items={years} flex={1} onChange={onYearChange} />
+                <BaseBox marginRight='m' />
+                <Picker initialValue={getMonthName(date)} items={localeMonthNames} flex={1} onChange={onMonthChange} />
+            </HorizontalView>
+            <Picker initialValue={date.getDate().toString()} items={days} onChange={onDayChange} />
+        </BaseBox>
     );
 }

@@ -42,9 +42,9 @@ export function Picker(_a) {
         var label = item[1];
         return React.createElement(NativePicker.Item, { color: colors.black, label: label, value: value, key: value });
     }, [colors.black]);
-    return (React.createElement(HorizontalView, __assign({ justifyContent: 'center', paddingHorizontal: 's', borderRadius: 'textFieldRadius', height: interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor', pointerEvents: disabled ? 'none' : 'auto' }, others),
-        React.createElement(BasePicker, { borderWidth: '0', backgroundColor: 'transparent', color: 'textColor', selectedValue: currentValue, dropdownIconColor: colors.placeholderColor, onValueChange: handleValueChange, mode: 'dropdown', fontSize: 14, flexGrow: 1, style: Platform.OS === 'web' ? style : undefined }, items.map(renderItem)),
-        React.createElement(BaseBox, { alignSelf: 'center' },
+    return (React.createElement(HorizontalView, __assign({ justifyContent: 'space-between', borderRadius: 'textFieldRadius', height: interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor', pointerEvents: disabled ? 'none' : 'auto', paddingHorizontal: 's' }, others),
+        React.createElement(BasePicker, { borderWidth: '0', backgroundColor: 'transparent', color: 'textColor', selectedValue: currentValue, dropdownIconColor: colors.placeholderColor, onValueChange: handleValueChange, mode: 'dropdown', fontSize: 14, flex: 1, style: Platform.OS === 'web' ? style : undefined }, items.map(renderItem)),
+        React.createElement(BaseBox, { alignSelf: 'center', position: 'absolute', right: 0, marginRight: 's' },
             React.createElement(ChevronDown, { width: 21, fill: colors.placeholderColor }))));
 }
 //# sourceMappingURL=index.js.map

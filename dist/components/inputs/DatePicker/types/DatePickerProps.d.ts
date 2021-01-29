@@ -4,5 +4,6 @@ export interface DatePickerProps extends Partial<Omit<BoxProps, 'children'>> {
     minDate?: Date;
     maxDate?: Date;
     iosDoneText: string;
+    mode?: 'time' | 'date';
     onChange?: (date: Date) => void;
 }

@@ -28,6 +28,7 @@
         "@react-native-community/datetimepicker": "3.0.4",
         "@react-native-picker/picker": "1.9.2",
         "@shopify/restyle": "^1.4.0",
+        "expo-blur": "~8.2.2",
         "react-native-svg": "12.1.0"
     },
     "devDependencies": {

@@ -5,8 +5,11 @@ import { TimePickerProps } from './types/TimePickerProps';
 import { numberToArray } from '../util/numberToArray';
 import { normalizeHourValues } from './util/normalizeHourValues';
 
-export function TimePicker({ onChange, ...others }: TimePickerProps): JSX.Element {
-    const [date, setDate] = useState(new Date());
+export function TimePicker({ onChange, initialDate, ...others }: TimePickerProps): JSX.Element {
+    const defaultDate = new Date();
+    defaultDate.setSeconds(0);
+
+    const [date, setDate] = useState(initialDate ?? defaultDate);
 
     const hours = normalizeHourValues(numberToArray(24));
     const minutes: Array<[string, string]> = normalizeHourValues(numberToArray(59, true));

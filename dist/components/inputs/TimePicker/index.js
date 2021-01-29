@@ -26,8 +26,10 @@ import { Picker } from '../Picker';
 import { numberToArray } from '../util/numberToArray';
 import { normalizeHourValues } from './util/normalizeHourValues';
 export function TimePicker(_a) {
-    var onChange = _a.onChange, others = __rest(_a, ["onChange"]);
-    var _b = useState(new Date()), date = _b[0], setDate = _b[1];
+    var onChange = _a.onChange, initialDate = _a.initialDate, others = __rest(_a, ["onChange", "initialDate"]);
+    var defaultDate = new Date();
+    defaultDate.setSeconds(0);
+    var _b = useState(initialDate !== null && initialDate !== void 0 ? initialDate : defaultDate), date = _b[0], setDate = _b[1];
     var hours = normalizeHourValues(numberToArray(24));
     var minutes = normalizeHourValues(numberToArray(59, true));
     var handleOnChange = useCallback(function (date) {

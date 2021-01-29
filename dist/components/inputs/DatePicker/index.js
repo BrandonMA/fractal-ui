@@ -28,6 +28,7 @@ import { getDaysInMonth } from './util/getDaysInMonth';
 import { getYearsInRange } from './util/getYearsInRange';
 import { localeMonthNames } from './util/localeMonthNames';
 import { getMonthName } from './util/getMonthName';
+import { BaseBox } from '../../baseComponents';
 export function DatePicker(_a) {
     var minDate = _a.minDate, maxDate = _a.maxDate, initialDate = _a.initialDate, onChange = _a.onChange, others = __rest(_a, ["minDate", "maxDate", "initialDate", "onChange"]);
     var finalMinDate = useMemo(function () { return minDate !== null && minDate !== void 0 ? minDate : new Date('Jan 1, 1920'); }, [minDate]);
@@ -69,9 +70,11 @@ export function DatePicker(_a) {
             return newDate;
         });
     }, [handleOnChange]);
-    return (React.createElement(HorizontalView, __assign({}, others),
-        React.createElement(Picker, { initialValue: date.getFullYear().toString(), items: years, flex: 1, onChange: onYearChange }),
-        React.createElement(Picker, { initialValue: getMonthName(date), items: localeMonthNames, flex: 1, marginHorizontal: 'xs', onChange: onMonthChange }),
-        React.createElement(Picker, { initialValue: date.getDate().toString(), items: days, flex: 1, onChange: onDayChange })));
+    return (React.createElement(BaseBox, __assign({}, others),
+        React.createElement(HorizontalView, { marginBottom: 'm' },
+            React.createElement(Picker, { initialValue: date.getFullYear().toString(), items: years, flex: 1, onChange: onYearChange }),
+            React.createElement(BaseBox, { marginRight: 'm' }),
+            React.createElement(Picker, { initialValue: getMonthName(date), items: localeMonthNames, flex: 1, onChange: onMonthChange })),
+        React.createElement(Picker, { initialValue: date.getDate().toString(), items: days, onChange: onDayChange })));
 }
 //# sourceMappingURL=index.js.map
