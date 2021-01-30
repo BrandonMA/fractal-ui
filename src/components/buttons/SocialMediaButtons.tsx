@@ -9,6 +9,9 @@ export interface SocialMediaButtonsEventsProps {
     onGooglePress?: () => void;
     onFacebookPress?: () => void;
     onApplePress?: () => void;
+    googleLoading?: boolean;
+    facebookLoading?: boolean;
+    appleLoading?: boolean;
     appleText?: string;
     removeAppleButton?: boolean;
 }
@@ -19,6 +22,9 @@ export function SocialMediaButtons({
     onGooglePress,
     onFacebookPress,
     onApplePress,
+    googleLoading,
+    facebookLoading,
+    appleLoading,
     appleText,
     removeAppleButton,
     ...others
@@ -26,11 +32,11 @@ export function SocialMediaButtons({
     return (
         <BaseBox padding='cell' {...others}>
             <HorizontalView marginBottom='m'>
-                <GoogleButton flex={1} onPress={onGooglePress} />
+                <GoogleButton loading={googleLoading} activityIndicatorColor='black' flex={1} onPress={onGooglePress} />
                 <BaseBox width={16} />
-                <FacebookButton flex={1} onPress={onFacebookPress} />
+                <FacebookButton loading={facebookLoading} flex={1} onPress={onFacebookPress} />
             </HorizontalView>
-            {removeAppleButton ? null : <AppleButton onPress={onApplePress} text={appleText} />}
+            {removeAppleButton ? null : <AppleButton loading={appleLoading} onPress={onApplePress} text={appleText} />}
         </BaseBox>
     );
 }
