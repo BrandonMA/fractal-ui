@@ -27,12 +27,12 @@ import { FacebookButton } from './FacebookButton';
 import { HorizontalView } from '../containers/HorizontalView';
 import { BaseBox } from '../baseComponents/BaseBox';
 export function SocialMediaButtons(_a) {
-    var onGooglePress = _a.onGooglePress, onFacebookPress = _a.onFacebookPress, onApplePress = _a.onApplePress, appleText = _a.appleText, removeAppleButton = _a.removeAppleButton, others = __rest(_a, ["onGooglePress", "onFacebookPress", "onApplePress", "appleText", "removeAppleButton"]);
+    var onGooglePress = _a.onGooglePress, onFacebookPress = _a.onFacebookPress, onApplePress = _a.onApplePress, googleLoading = _a.googleLoading, facebookLoading = _a.facebookLoading, appleLoading = _a.appleLoading, appleText = _a.appleText, removeAppleButton = _a.removeAppleButton, others = __rest(_a, ["onGooglePress", "onFacebookPress", "onApplePress", "googleLoading", "facebookLoading", "appleLoading", "appleText", "removeAppleButton"]);
     return (React.createElement(BaseBox, __assign({ padding: 'cell' }, others),
         React.createElement(HorizontalView, { marginBottom: 'm' },
-            React.createElement(GoogleButton, { flex: 1, onPress: onGooglePress }),
+            React.createElement(GoogleButton, { loading: googleLoading, activityIndicatorColor: 'black', flex: 1, onPress: onGooglePress }),
             React.createElement(BaseBox, { width: 16 }),
-            React.createElement(FacebookButton, { flex: 1, onPress: onFacebookPress })),
-        removeAppleButton ? null : React.createElement(AppleButton, { onPress: onApplePress, text: appleText })));
+            React.createElement(FacebookButton, { loading: facebookLoading, flex: 1, onPress: onFacebookPress })),
+        removeAppleButton ? null : React.createElement(AppleButton, { loading: appleLoading, onPress: onApplePress, text: appleText })));
 }
 //# sourceMappingURL=SocialMediaButtons.js.map

@@ -29,11 +29,10 @@ import { ChevronDown } from '../assets/ChevronDown';
 export function PickerButton(_a) {
     var children = _a.children, others = __rest(_a, ["children"]);
     var _b = useTheme(), interactiveItems = _b.interactiveItems, colors = _b.colors;
-    return (React.createElement(React.Fragment, null,
-        React.createElement(BaseTouchableOpacity, __assign({ flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 's', borderRadius: 'textFieldRadius', height: interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor' }, others),
-            React.createElement(BaseBox, { flexGrow: 1, justifyContent: 'center' },
-                React.createElement(Text, { fontSize: 14 }, children)),
-            React.createElement(BaseBox, { alignSelf: 'center' },
-                React.createElement(ChevronDown, { width: 21, fill: colors.placeholderColor })))));
+    return (React.createElement(BaseTouchableOpacity, __assign({ flexDirection: 'row', justifyContent: 'center', paddingHorizontal: 's', borderRadius: 'textFieldRadius', height: interactiveItems.textFieldHeight, backgroundColor: 'textFieldColor' }, others),
+        React.createElement(BaseBox, { flexGrow: 1, justifyContent: 'center' },
+            React.createElement(Text, { fontSize: 14 }, children)),
+        React.createElement(BaseBox, { alignSelf: 'center' },
+            React.createElement(ChevronDown, { width: 21, fill: colors.placeholderColor }))));
 }
 //# sourceMappingURL=PickerButton.js.map

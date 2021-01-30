@@ -21,26 +21,20 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import { useTheme } from '@shopify/restyle';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { BaseText } from '../baseComponents/BaseText';
 import { BasePressable } from '../baseComponents/BasePressable';
 import { useBaseButtonAnimations } from './hooks/useBaseButtonAnimations';
 import { ActivityIndicator } from '../ActivityIndicator';
 export function Button(props) {
-    var _a = props.variant, variant = _a === void 0 ? 'mainInteractiveColor' : _a, children = props.children, addShadow = props.addShadow, loading = props.loading, reduceColor = props.reduceColor, text = props.text, others = __rest(props, ["variant", "children", "addShadow", "loading", "reduceColor", "text"]);
-    var _b = useTheme(), interactiveItems = _b.interactiveItems, shadowProperties = _b.shadowProperties, colors = _b.colors;
-    var _c = useBaseButtonAnimations(props), handlePressIn = _c[0], handlePressOut = _c[1], style = _c[2];
+    var _a = props.variant, variant = _a === void 0 ? 'mainInteractiveColor' : _a, children = props.children, addShadow = props.addShadow, loading = props.loading, reduceColor = props.reduceColor, text = props.text, _b = props.activityIndicatorColor, activityIndicatorColor = _b === void 0 ? 'white' : _b, others = __rest(props, ["variant", "children", "addShadow", "loading", "reduceColor", "text", "activityIndicatorColor"]);
+    var _c = useTheme(), interactiveItems = _c.interactiveItems, shadowProperties = _c.shadowProperties;
+    var _d = useBaseButtonAnimations(props), handlePressIn = _d[0], handlePressOut = _d[1], style = _d[2];
     var loadingColor = variant + "300";
     var normalBackgroundColor = reduceColor ? variant + "100" : variant;
     var finalBackgroundColor = loading ? loadingColor : normalBackgroundColor;
-    var ripple = useMemo(function () {
-        return {
-            color: colors.white,
-            borderless: true
-        };
-    }, [colors.white]);
-    return (React.createElement(BasePressable, __assign({ flexDirection: 'row', backgroundColor: finalBackgroundColor, borderRadius: 'buttonRadius', android_ripple: ripple, justifyContent: 'center', alignItems: 'center', height: interactiveItems.buttonHeight, onPressIn: handlePressIn, onPressOut: handlePressOut, style: style, shadowColor: addShadow ? 'shadowColor' : undefined, shadowOffset: addShadow ? shadowProperties.offset : undefined, shadowRadius: addShadow ? shadowProperties.radius : undefined, shadowOpacity: addShadow ? shadowProperties.opacity : undefined, pointerEvents: loading ? 'none' : 'auto' }, others),
-        loading ? React.createElement(ActivityIndicator, { color: 'white' }) : children,
+    return (React.createElement(BasePressable, __assign({ flexDirection: 'row', backgroundColor: finalBackgroundColor, borderRadius: 'buttonRadius', justifyContent: 'center', alignItems: 'center', height: interactiveItems.buttonHeight, onPressIn: handlePressIn, onPressOut: handlePressOut, style: style, shadowColor: addShadow ? 'shadowColor' : undefined, shadowOffset: addShadow ? shadowProperties.offset : undefined, shadowRadius: addShadow ? shadowProperties.radius : undefined, shadowOpacity: addShadow ? shadowProperties.opacity : undefined, pointerEvents: loading ? 'none' : 'auto' }, others),
+        loading ? React.createElement(ActivityIndicator, { color: activityIndicatorColor }) : children,
         text && !loading ? (React.createElement(BaseText, { selectable: false, paddingLeft: children != null ? 'xs' : undefined, variant: 'button', color: reduceColor ? variant : 'white' }, text)) : null));
 }
 //# sourceMappingURL=Button.js.map
