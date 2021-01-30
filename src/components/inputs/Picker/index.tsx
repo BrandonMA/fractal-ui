@@ -31,6 +31,7 @@ export function Picker({ items, onChange, initialValue, disabled, ...others }: P
     return (
         <HorizontalView
             justifyContent='space-between'
+            alignItems={'center'}
             borderRadius='textFieldRadius'
             height={interactiveItems.textFieldHeight}
             backgroundColor='textFieldColor'
@@ -39,7 +40,7 @@ export function Picker({ items, onChange, initialValue, disabled, ...others }: P
             {...others}
         >
             <BasePicker
-                borderWidth='0'
+                borderWidth={Platform.OS === 'web' ? 0 : undefined}
                 backgroundColor='transparent'
                 color='textColor'
                 selectedValue={currentValue}

@@ -14,23 +14,21 @@ export function PickerButton({ children, ...others }: PickerButtonProps): JSX.El
     const { interactiveItems, colors } = useTheme<FractalTheme>();
 
     return (
-        <>
-            <BaseTouchableOpacity
-                flexDirection='row'
-                justifyContent='center'
-                paddingHorizontal='s'
-                borderRadius='textFieldRadius'
-                height={interactiveItems.textFieldHeight}
-                backgroundColor='textFieldColor'
-                {...others}
-            >
-                <BaseBox flexGrow={1} justifyContent='center'>
-                    <Text fontSize={14}>{children}</Text>
-                </BaseBox>
-                <BaseBox alignSelf='center'>
-                    <ChevronDown width={21} fill={colors.placeholderColor} />
-                </BaseBox>
-            </BaseTouchableOpacity>
-        </>
+        <BaseTouchableOpacity
+            flexDirection='row'
+            justifyContent='center'
+            paddingHorizontal='s'
+            borderRadius='textFieldRadius'
+            height={interactiveItems.textFieldHeight}
+            backgroundColor='textFieldColor'
+            {...others}
+        >
+            <BaseBox flexGrow={1} justifyContent='center'>
+                <Text fontSize={14}>{children}</Text>
+            </BaseBox>
+            <BaseBox alignSelf='center'>
+                <ChevronDown width={21} fill={colors.placeholderColor} />
+            </BaseBox>
+        </BaseTouchableOpacity>
     );
 }
