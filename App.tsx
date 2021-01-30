@@ -35,6 +35,10 @@ const detailsCardContent: Array<[string, string]> = [
     ['Title 2', 'Details 2']
 ];
 
+const fixedDate = new Date();
+fixedDate.setFullYear(1998, 7, 26);
+fixedDate.setHours(12, 30, 0);
+
 export function App(): JSX.Element {
     const [text, setText] = useState('');
     const [loading, setLoading] = useState(false);
@@ -124,7 +128,8 @@ export function App(): JSX.Element {
                                 </TextButton>
                                 <DetailsRow title='Title' details='Details' marginBottom='m' />
                                 <Picker
-                                    iosDoneText='Select'
+                                    onChange={(value) => console.log(value)}
+                                    iosDoneText='Done'
                                     items={[
                                         ['1', 'Hoy'],
                                         ['2', 'Ayer'],
@@ -133,16 +138,18 @@ export function App(): JSX.Element {
                                         ['5', 'Cinco']
                                     ]}
                                     marginBottom='m'
-                                    initialValue={'5'}
+                                    initialValue={'3'}
                                 />
                                 <DatePicker
-                                    iosDoneText='Select'
+                                    iosDoneText='Done'
                                     marginBottom='m'
+                                    initialDate={fixedDate}
                                     onChange={(date) => console.log(date.toLocaleDateString())}
                                 />
                                 <TimePicker
-                                    iosDoneText='Select'
+                                    iosDoneText='Done'
                                     marginBottom='m'
+                                    initialDate={fixedDate}
                                     onChange={(date) => console.log(date.toLocaleTimeString())}
                                 />
                                 <ErrorMessage marginBottom={'m'}>

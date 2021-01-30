@@ -30,16 +30,17 @@ export function Picker({ items, onChange, initialValue, disabled, ...others }: P
 
     return (
         <HorizontalView
-            justifyContent='center'
-            paddingHorizontal='s'
+            justifyContent='space-between'
+            alignItems={'center'}
             borderRadius='textFieldRadius'
             height={interactiveItems.textFieldHeight}
             backgroundColor='textFieldColor'
             pointerEvents={disabled ? 'none' : 'auto'}
+            paddingHorizontal='s'
             {...others}
         >
             <BasePicker
-                borderWidth='0'
+                borderWidth={Platform.OS === 'web' ? 0 : undefined}
                 backgroundColor='transparent'
                 color='textColor'
                 selectedValue={currentValue}
@@ -47,12 +48,12 @@ export function Picker({ items, onChange, initialValue, disabled, ...others }: P
                 onValueChange={handleValueChange}
                 mode='dropdown'
                 fontSize={14}
-                flexGrow={1}
+                flex={1}
                 style={Platform.OS === 'web' ? style : undefined}
             >
                 {items.map(renderItem)}
             </BasePicker>
-            <BaseBox alignSelf='center'>
+            <BaseBox alignSelf='center' position='absolute' right={0} marginRight='s'>
                 <ChevronDown width={21} fill={colors.placeholderColor} />
             </BaseBox>
         </HorizontalView>

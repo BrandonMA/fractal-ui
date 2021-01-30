@@ -1,32 +1,39 @@
 import React, { useCallback, useState } from 'react';
 import { PickerProps } from './types/PickerProps';
-import { BottomCellModal } from '../../modals/BottomCellModal';
 import { PickerButton } from '../PickerButton';
-import { PickerModalContent } from './components/PickerModalContent';
-import { getInitialPickerIndex } from './util/getInitialPickerIndex';
+import { BlurrediOSModal } from '../../modals/BlurrediOSModal';
+import { usePickerState } from './hooks/usePickerState';
+import { FractalTheme } from '../../../themes/FractalTheme';
+import { useTheme } from '@shopify/restyle';
+import { Picker as NativePicker } from '@react-native-picker/picker';
+import { BasePicker } from '../../baseComponents/BasePicker';
 
-export function Picker({ items, initialValue, onChange, iosDoneText, ...others }: PickerProps): JSX.Element {
-    const initialIndex = getInitialPickerIndex(initialValue, items);
-    const [finalIndex, setFinalIndex] = useState(initialIndex);
+export function Picker({ items, initialValue, onChange, iosDoneText = 'Done', ...others }: PickerProps): JSX.Element {
+    const [currentValue, handleValueChange, index] = usePickerState(initialValue, items, onChange);
     const [modalActive, setModalActive] = useState(false);
-    const initialValueForContent = items[finalIndex][0]; // Content is unmounted when is not visible.
+    const { colors } = useTheme<FractalTheme>();
 
     const toggleModal = useCallback(() => setModalActive((current) => !current), [setModalActive]);
+
+    const renderItem = useCallback(
+        (item) => {
+            const value = item[0];
+            const label = item[1];
+            return <NativePicker.Item color={colors.textColor} label={label} value={value} key={value} />;
+        },
+        [colors.textColor]
+    );
 
     return (
         <>
             <PickerButton onPress={toggleModal} {...others}>
-                {items[finalIndex][1]}
+                {items[index][1]}
             </PickerButton>
-            <BottomCellModal visible={modalActive} onDismiss={toggleModal}>
-                <PickerModalContent
-                    onChange={onChange}
-                    iosDoneText={iosDoneText}
-                    items={items}
-                    initialValue={initialValueForContent}
-                    onFinalIndexChange={setFinalIndex}
-                />
-            </BottomCellModal>
+            <BlurrediOSModal dismissText={iosDoneText} visible={modalActive} onDismiss={toggleModal}>
+                <BasePicker selectedValue={currentValue} onValueChange={handleValueChange}>
+                    {items.map(renderItem)}
+                </BasePicker>
+            </BlurrediOSModal>
         </>
     );
 }

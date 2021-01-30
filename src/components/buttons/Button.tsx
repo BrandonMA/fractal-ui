@@ -1,5 +1,5 @@
 import { useTheme } from '@shopify/restyle';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { FractalTheme } from '../../themes/FractalTheme';
 import { BaseText } from '../baseComponents/BaseText';
 import { BasePressable } from '../baseComponents/BasePressable';
@@ -8,26 +8,27 @@ import { ButtonProps } from './types/ButtonProps';
 import { ActivityIndicator } from '../ActivityIndicator';
 
 export function Button(props: ButtonProps): JSX.Element {
-    const { variant = 'mainInteractiveColor', children, addShadow, loading, reduceColor, text, ...others } = props;
-    const { interactiveItems, shadowProperties, colors } = useTheme<FractalTheme>();
+    const {
+        variant = 'mainInteractiveColor',
+        children,
+        addShadow,
+        loading,
+        reduceColor,
+        text,
+        activityIndicatorColor = 'white',
+        ...others
+    } = props;
+    const { interactiveItems, shadowProperties } = useTheme<FractalTheme>();
     const [handlePressIn, handlePressOut, style] = useBaseButtonAnimations(props);
     const loadingColor = `${variant}300`;
     const normalBackgroundColor = reduceColor ? `${variant}100` : variant;
     const finalBackgroundColor = loading ? loadingColor : normalBackgroundColor;
-
-    const ripple = useMemo(() => {
-        return {
-            color: colors.white,
-            borderless: true
-        };
-    }, [colors.white]);
 
     return (
         <BasePressable
             flexDirection='row'
             backgroundColor={finalBackgroundColor}
             borderRadius='buttonRadius'
-            android_ripple={ripple}
             justifyContent='center'
             alignItems='center'
             height={interactiveItems.buttonHeight}
@@ -41,7 +42,7 @@ export function Button(props: ButtonProps): JSX.Element {
             pointerEvents={loading ? 'none' : 'auto'}
             {...others}
         >
-            {loading ? <ActivityIndicator color={'white'} /> : children}
+            {loading ? <ActivityIndicator color={activityIndicatorColor} /> : children}
             {text && !loading ? (
                 <BaseText
                     selectable={false}
