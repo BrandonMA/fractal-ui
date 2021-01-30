@@ -31,6 +31,7 @@ export function Button(props: ButtonProps): JSX.Element {
             borderRadius='buttonRadius'
             justifyContent='center'
             alignItems='center'
+            android_ripple={null}
             height={interactiveItems.buttonHeight}
             onPressIn={handlePressIn}
             onPressOut={handlePressOut}
