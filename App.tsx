@@ -23,12 +23,17 @@ import {
     AnimatedPresence,
     RightSlideAnimation,
     MiddleCellModal,
-    BaseBox
+    BaseBox,
+    PopoverView,
+    BaseBoxProps,
+    FractalTheme
 } from './src';
 import { InteractionManager, LayoutAnimation, SafeAreaView, ScrollView } from 'react-native';
 import { FinalColorPicker } from './examples/FinalColorPicker';
 import { BuggyComponent } from './examples/BuggyComponent';
 import { ThemeSwapper } from './examples/ThemeSwapper';
+import { AntDesign } from '@expo/vector-icons';
+import { useTheme } from '@shopify/restyle';
 
 const detailsCardContent: Array<[string, string]> = [
     ['Title 1', 'Details 1'],
@@ -39,15 +44,32 @@ const fixedDate = new Date();
 fixedDate.setFullYear(1998, 7, 26);
 fixedDate.setHours(12, 30, 0);
 
+function PopoverContainer(): JSX.Element {
+    const { colors } = useTheme<FractalTheme>();
+
+    return (
+        <Cell width={'50%'} alignSelf='center'>
+            <Button justifyContent='flex-start' variant='alternativeInteractiveColor' reduceColor text='Pasion'>
+                <AntDesign name='star' size={24} color={colors.alternativeInteractiveColor} />
+            </Button>
+        </Cell>
+    );
+}
+
 export function App(): JSX.Element {
     const [text, setText] = useState('');
     const [loading, setLoading] = useState(false);
     const [visible, setVisible] = useState(false);
+    const [popoverVisible, setPopoverVisible] = useState(false);
 
     const toggleVisible = useCallback(() => {
         LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
         setVisible((currentValue) => !currentValue);
     }, [setVisible]);
+
+    const togglePopover = useCallback(() => {
+        setPopoverVisible((currentValue) => !currentValue);
+    }, [setPopoverVisible]);
 
     const toggleLoading = useCallback(() => {
         InteractionManager.runAfterInteractions(() => {
@@ -95,6 +117,14 @@ export function App(): JSX.Element {
                                 <IconTextField value={text} onChangeText={setText} placeholder='Placeholder...' marginBottom='m' />
                                 <IconTextField value={text} onChangeText={setText} placeholder='Placeholder...' marginBottom='m' />
                                 <ThemeSwapper />
+                                <PopoverView
+                                    active={popoverVisible}
+                                    popoverChildren={() => {
+                                        return <PopoverContainer />;
+                                    }}
+                                >
+                                    <Button variant={'mainInteractiveColor'} onPress={togglePopover} text={'Popover'} marginBottom={'m'} />
+                                </PopoverView>
                                 <Text variant='title' marginBottom='m'>
                                     Title
                                 </Text>

@@ -20,12 +20,11 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { BaseBox } from './baseComponents/BaseBox';
 import { Animated } from 'react-native';
 import { useShowAnimation } from '../animationHooks/useShowAnimation';
 import { useHideAnimation } from '../animationHooks/useHideAnimation';
-// Not ready, implementation is not final
 export function PopoverView(props) {
     var active = props.active, popoverChildren = props.popoverChildren, popoverContainerProps = props.popoverContainerProps, others = __rest(props, ["active", "popoverChildren", "popoverContainerProps"]);
     var _a = useState({ x: 0, y: 0, height: 0, width: 0 }), mainViewLayout = _a[0], setMainViewLayout = _a[1];
@@ -33,6 +32,19 @@ export function PopoverView(props) {
     var animatedValue = useRef(new Animated.Value(0)).current;
     var showAnimation = useShowAnimation(animatedValue);
     var hideAnimation = useHideAnimation(animatedValue);
+    var styles = useMemo(function () {
+        return {
+            opacity: animatedValue,
+            transform: [{ scale: animatedValue }],
+            left: mainViewLayout.x,
+            top: yValueWithOffset,
+            width: mainViewLayout.width,
+            zIndex: 2000
+        };
+    }, [animatedValue, yValueWithOffset, mainViewLayout]);
+    var onLayout = useCallback(function (nativeElement) {
+        setMainViewLayout(nativeElement.nativeEvent.layout);
+    }, [setMainViewLayout]);
     useEffect(function () {
         if (active) {
             showAnimation();
@@ -42,15 +54,7 @@ export function PopoverView(props) {
         }
     }, [active, showAnimation, hideAnimation]);
     return (React.createElement(React.Fragment, null,
-        React.createElement(BaseBox, __assign({}, others, { onLayout: function (nativeElement) {
-                setMainViewLayout(nativeElement.nativeEvent.layout);
-            } })),
-        React.createElement(BaseBox, __assign({ position: 'absolute', style: {
-                opacity: animatedValue,
-                transform: [{ scale: animatedValue }],
-                left: mainViewLayout.x,
-                top: yValueWithOffset,
-                zIndex: 2000
-            } }, popoverContainerProps), popoverChildren(mainViewLayout))));
+        React.createElement(BaseBox, __assign({}, others, { onLayout: onLayout })),
+        React.createElement(BaseBox, __assign({ position: 'absolute', style: styles }, popoverContainerProps), popoverChildren(mainViewLayout))));
 }
 //# sourceMappingURL=PopoverView.js.map

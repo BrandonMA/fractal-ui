@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { BaseBox, BaseBoxProps } from './baseComponents/BaseBox';
 import { Animated, LayoutRectangle } from 'react-native';
 import { useShowAnimation } from '../animationHooks/useShowAnimation';
@@ -10,7 +10,6 @@ interface PopoverViewProps extends BaseBoxProps {
     popoverContainerProps?: Omit<BaseBoxProps, 'children'>;
 }
 
-// Not ready, implementation is not final
 export function PopoverView(props: PopoverViewProps): JSX.Element {
     const { active, popoverChildren, popoverContainerProps, ...others } = props;
     const [mainViewLayout, setMainViewLayout] = useState<LayoutRectangle>({ x: 0, y: 0, height: 0, width: 0 });
@@ -18,6 +17,24 @@ export function PopoverView(props: PopoverViewProps): JSX.Element {
     const animatedValue = useRef(new Animated.Value(0)).current;
     const showAnimation = useShowAnimation(animatedValue);
     const hideAnimation = useHideAnimation(animatedValue);
+
+    const styles = useMemo(() => {
+        return {
+            opacity: animatedValue,
+            transform: [{ scale: animatedValue }],
+            left: mainViewLayout.x,
+            top: yValueWithOffset,
+            width: mainViewLayout.width,
+            zIndex: 2000
+        };
+    }, [animatedValue, yValueWithOffset, mainViewLayout]);
+
+    const onLayout = useCallback(
+        (nativeElement) => {
+            setMainViewLayout(nativeElement.nativeEvent.layout);
+        },
+        [setMainViewLayout]
+    );
 
     useEffect(() => {
         if (active) {
@@ -29,23 +46,8 @@ export function PopoverView(props: PopoverViewProps): JSX.Element {
 
     return (
         <>
-            <BaseBox
-                {...others}
-                onLayout={(nativeElement) => {
-                    setMainViewLayout(nativeElement.nativeEvent.layout);
-                }}
-            />
-            <BaseBox
-                position={'absolute'}
-                style={{
-                    opacity: animatedValue,
-                    transform: [{ scale: animatedValue }],
-                    left: mainViewLayout.x,
-                    top: yValueWithOffset,
-                    zIndex: 2000
-                }}
-                {...popoverContainerProps}
-            >
+            <BaseBox {...others} onLayout={onLayout} />
+            <BaseBox position={'absolute'} style={styles} {...popoverContainerProps}>
                 {popoverChildren(mainViewLayout)}
             </BaseBox>
         </>

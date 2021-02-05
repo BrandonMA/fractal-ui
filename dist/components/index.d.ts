@@ -10,4 +10,4 @@ export * from './messages';
 export * from './colors';
 export * from './ActivityIndicator';
 export * from './animations';
-export { GoogleIcon } from './assets/GoogleIcon';
+export * from './PopoverView';

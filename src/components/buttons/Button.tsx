@@ -30,6 +30,7 @@ export function Button(props: ButtonProps): JSX.Element {
             backgroundColor={finalBackgroundColor}
             borderRadius='buttonRadius'
             justifyContent='center'
+            paddingHorizontal='m'
             alignItems='center'
             android_ripple={null}
             height={interactiveItems.buttonHeight}
