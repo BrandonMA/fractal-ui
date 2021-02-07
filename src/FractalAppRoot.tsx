@@ -1,15 +1,15 @@
 import React from 'react';
-import { FractalThemeIdentifierProvider } from './context/FractalThemeIdentifierProvider';
-import { FractalThemeUpdater, FractalThemeUpdaterProps } from './FractalThemeUpdater';
+import { ThemeContextProvider } from './context/ThemeContext';
+import { startFractalApp } from './startFractalApp';
+import { FractalTheme } from './themes/FractalTheme';
+import { lightFractalTheme } from './themes/lightFractalTheme';
 
-export type FractalAppRootProps = FractalThemeUpdaterProps;
+startFractalApp();
+export interface FractalAppRootProps {
+    theme?: FractalTheme;
+    children: JSX.Element | Array<JSX.Element>;
+}
 
-export function FractalAppRoot(props: FractalAppRootProps): JSX.Element {
-    const { handleThemeManually } = props;
-
-    return (
-        <FractalThemeIdentifierProvider handleThemeManually={handleThemeManually ?? false}>
-            <FractalThemeUpdater {...props} />
-        </FractalThemeIdentifierProvider>
-    );
+export function FractalAppRoot({ theme = lightFractalTheme, children }: FractalAppRootProps): JSX.Element {
+    return <ThemeContextProvider theme={theme}>{children}</ThemeContextProvider>;
 }

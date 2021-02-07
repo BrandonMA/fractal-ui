@@ -1,7 +1,9 @@
 import React from 'react';
-import { FullScreen } from './FullScreen';
-import { BaseBoxProps } from '../baseComponents/BaseBox';
+import { useFractalTheme } from '../../hooks/useFractalTheme';
+import { Box } from './Box';
+import { BoxProps } from './Box/types';
 
-export function Background(props: BaseBoxProps): JSX.Element {
-    return <FullScreen backgroundColor='background' {...props} />;
+export function Background(props: BoxProps): JSX.Element {
+    const { colors } = useFractalTheme();
+    return <Box {...props} backgroundColor={colors.background} />;
 }

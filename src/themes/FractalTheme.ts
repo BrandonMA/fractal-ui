@@ -1,3 +1,9 @@
-import { lightFractalTheme } from './lightFractalTheme';
-
-export type FractalTheme = typeof lightFractalTheme;
+export interface FractalTheme {
+    colors: {
+        background: string;
+        foreground: string;
+    };
+    borderRadius: {
+        m: number;
+    };
+}
