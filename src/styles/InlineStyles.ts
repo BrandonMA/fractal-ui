@@ -1,8 +1,6 @@
-export interface InlineStyles {
-    backgroundColor?: string;
-    display?: 'flow' | 'table' | 'flex' | 'grid' | 'ruby' | 'subgrid' | 'block' | 'inline';
-    flex?: 'none' | 'auto' | number;
-    width?: string;
-    height?: string;
-    borderRadius?: number;
-}
+import { BackgroundStyles } from './BackgroundStyles';
+import { BorderStyles } from './BorderStyles';
+import { DimensionStyles } from './DimensionStyles';
+import { DisplayStyles } from './DisplayStyles';
+
+export interface InlineStyles extends BackgroundStyles, DimensionStyles, DisplayStyles, BorderStyles {}

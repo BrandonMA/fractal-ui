@@ -1,19 +1,27 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components/native';
-import { extractLayoutStyles } from '../../../styles/extractLayoutStyles';
-import { extractBackgroundColor } from '../../../styles/extractBackgroundColor';
 import { BoxProps } from './types';
 import Reanimated, { useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated';
+import { extractBackgroundColor } from '../../../styles/BackgroundStyles';
+import { extractBorderStyles } from '../../../styles/BorderStyles';
+import { extractDimensionStyles } from '../../../styles/DimensionStyles';
+import { extractDisplayStyles } from '../../../styles/DisplayStyles';
+import { useAnimationContent } from '../../../hooks/useAnimationContent';
 
 const StyledBox = styled(Reanimated.View)`
     ${extractBackgroundColor};
-    ${extractLayoutStyles};
-`;
+    ${extractDimensionStyles};
+    ${extractDisplayStyles};
+    ${extractBorderStyles};
+` as typeof Reanimated.View;
 
-export function Box({ initial, animate, ...others }: BoxProps): JSX.Element {
-    const opacityAnimatedValue = useSharedValue(initial?.opacity ?? 1);
-    const widthAnimatedValue = useSharedValue(initial?.width ?? undefined);
-    const heightAnimatedValue = useSharedValue(initial?.height ?? undefined);
+export function Box({ initial, animate, variants, ...others }: BoxProps): JSX.Element {
+    const initialAnimationContent = useAnimationContent(initial, variants);
+    const animateAnimationContent = useAnimationContent(animate, variants);
+
+    const opacityAnimatedValue = useSharedValue(initialAnimationContent.opacity);
+    const widthAnimatedValue = useSharedValue(initialAnimationContent.width);
+    const heightAnimatedValue = useSharedValue(initialAnimationContent.height);
 
     const animatedStyles = useAnimatedStyle(() => {
         return {
@@ -24,16 +32,18 @@ export function Box({ initial, animate, ...others }: BoxProps): JSX.Element {
     });
 
     useEffect(() => {
-        opacityAnimatedValue.value = withSpring(animate?.opacity ?? 1);
-
-        if (animate?.width) {
-            widthAnimatedValue.value = withSpring(animate.width);
+        if (animateAnimationContent.opacity) {
+            opacityAnimatedValue.value = withSpring(animateAnimationContent.opacity);
         }
 
-        if (animate?.height) {
-            heightAnimatedValue.value = withSpring(animate.height);
+        if (animateAnimationContent.width) {
+            widthAnimatedValue.value = withSpring(animateAnimationContent.width);
         }
-    }, [opacityAnimatedValue, widthAnimatedValue, heightAnimatedValue, animate]);
+
+        if (animateAnimationContent.height) {
+            heightAnimatedValue.value = withSpring(animateAnimationContent.height);
+        }
+    }, [opacityAnimatedValue, widthAnimatedValue, heightAnimatedValue, animateAnimationContent]);
 
     return <StyledBox {...others} style={animatedStyles} />;
 }

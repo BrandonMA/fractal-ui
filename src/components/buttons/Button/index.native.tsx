@@ -1,19 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BoxProps } from './types';
-import { motion } from 'framer-motion';
+import { ButtonProps } from './types';
 import { extractBackgroundColor } from '../../../styles/BackgroundStyles';
 import { extractBorderStyles } from '../../../styles/BorderStyles';
 import { extractDimensionStyles } from '../../../styles/DimensionStyles';
 import { extractDisplayStyles } from '../../../styles/DisplayStyles';
+import { useFractalTheme } from '../../../hooks/useFractalTheme';
+import { Pressable } from 'react-native';
 
-const StyledBox = styled(motion.div as any)`
+const StyledButton = styled(Pressable as any)`
     ${extractBackgroundColor};
     ${extractDimensionStyles};
     ${extractDisplayStyles};
     ${extractBorderStyles};
-` as typeof motion.div;
+`;
 
-export function Box(props: BoxProps): JSX.Element {
-    return <StyledBox {...props} />;
+export function Button({ variant, ...others }: ButtonProps): JSX.Element {
+    const { colors } = useFractalTheme();
+    const colorName = `${variant}InteractiveColor`;
+
+    return <StyledButton backgroundColor={colors[colorName]} {...others} />;
 }
