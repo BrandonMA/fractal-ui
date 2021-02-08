@@ -9,4 +9,9 @@ export interface ButtonProps extends InlineStyles, AnimationProps {
     onPress?: () => void;
     variant: ButtonVariant;
     text?: string;
+    addShadow?: boolean;
+}
+
+export interface BaseButtonProps extends ButtonProps {
+    pressedBackgroundColor?: string;
 }

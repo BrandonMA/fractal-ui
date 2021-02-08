@@ -1,5 +1,6 @@
 import { blue, orange, green, yellow, red, white } from '../colors';
 import { FractalTheme } from './FractalTheme';
+import { systemFont } from './systemFont';
 
 export const lightFractalTheme: FractalTheme = {
     colors: {
@@ -75,13 +76,15 @@ export const lightFractalTheme: FractalTheme = {
     textStyles: {
         normal: {
             fontSize: 17,
-            fontWeight: 500,
-            color: white.base
+            fontWeight: 400,
+            color: white.base900,
+            fontFamily: systemFont
         },
         button: {
             fontSize: 17,
             fontWeight: 'bold',
-            color: white.base
+            color: white.base,
+            fontFamily: systemFont
         }
     }
 };

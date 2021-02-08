@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import { ButtonProps } from './types';
+import { BaseButtonProps } from './types';
 import { motion } from 'framer-motion';
 import { extractBackgroundColor } from '../../../styles/BackgroundStyles';
 import { extractBorderStyles } from '../../../styles/BorderStyles';
@@ -21,16 +21,21 @@ const StyledButton = styled(motion.button as any)`
     ${extractShadowStyles};
 `;
 
-const hoverStyles = {
-    scale: 1.05
-};
-
-const tapStyles = {
-    scale: 0.95
-};
-
 const transition = { type: 'spring' };
 
-export function BaseButton({ onPress, ...others }: ButtonProps): JSX.Element {
+export function BaseButton({ onPress, pressedBackgroundColor, ...others }: BaseButtonProps): JSX.Element {
+    const hoverStyles = useMemo(() => {
+        return {
+            scale: 1.05
+        };
+    }, []);
+
+    const tapStyles = useMemo(() => {
+        return {
+            scale: 0.95,
+            backgroundColor: pressedBackgroundColor
+        };
+    }, [pressedBackgroundColor]);
+
     return <StyledButton {...others} onClick={onPress} transition={transition} whileHover={hoverStyles} whileTap={tapStyles} />;
 }

@@ -15,8 +15,6 @@ const StyledBox = styled(Reanimated.View)`
     ${extractDisplayStyles};
     ${extractBorderStyles};
     ${extractShadowStyles};
-    font-size: 17;
-    font-weight: bold;
 ` as typeof Reanimated.View;
 
 export function Box({ initial, animate, style, variants, ...others }: BoxProps): JSX.Element {

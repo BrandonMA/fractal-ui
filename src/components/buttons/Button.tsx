@@ -5,25 +5,27 @@ import { BaseButton } from './BaseButton';
 import { ButtonProps } from './BaseButton/types';
 
 export function Button(props: ButtonProps): JSX.Element {
-    const { variant, children, text } = props;
-    const { borderRadius, colors, sizes, shadowProperties, textStyles } = useFractalTheme();
+    const { variant, children, text, addShadow } = props;
+    const { borderRadius, colors, sizes, shadowProperties } = useFractalTheme();
     const colorName = `${variant}InteractiveColor`;
+    const pressedColorName = `${variant}InteractiveColor600`;
+    const color = colors[colorName];
+    const pressedColor = colors[pressedColorName];
 
     return (
         <BaseButton
             height={sizes.buttonHeight}
             width={'100%'}
-            backgroundColor={colors[colorName]}
+            backgroundColor={color}
+            pressedBackgroundColor={pressedColor}
             borderRadius={borderRadius.m}
-            boxShadow={shadowProperties.boxShadow}
+            boxShadow={addShadow ? shadowProperties.boxShadow : undefined}
+            justifyContent='center'
+            alignItems='center'
             {...props}
         >
             {children}
-            {text != null ? (
-                <Text color={textStyles.button.color} fontWeight={textStyles.button.fontWeight} fontSize={textStyles.button.fontSize}>
-                    {text}
-                </Text>
-            ) : null}
+            {text != null ? <Text variant='button'>{text}</Text> : null}
         </BaseButton>
     );
 }

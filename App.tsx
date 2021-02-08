@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { registerRootComponent } from 'expo';
-import { Background, Cell, Button, FractalAppRoot, PaddingContainer } from './src';
+import { Background, Cell, Button, FractalAppRoot, PaddingContainer, Text } from './src';
 import { SafeAreaView } from 'react-native';
 
 const styleVariants = {
@@ -29,9 +29,28 @@ export function App(): JSX.Element {
                     <Button text='Hide' marginBottom={12} onPress={toggleVariant} width={200} variant='main' />
                     <Cell marginBottom={12} initial={styleVariants.initial} animate={styleVariants.visible} />
                     <Cell marginBottom={12} initial={'initial'} animate={'visible'} variants={styleVariants} />
-                    <Cell marginBottom={12} height={100} width={100} animate={animatedVariant} variants={styleVariants} />
-                    <Button text={'Change Size'} marginBottom={12} onPress={toggleSpringVariant} width={200} variant='alternative' />
-                    <Cell marginBottom={12} initial='initial' animate={springVariant} variants={styleVariants} />
+                    <Cell
+                        marginBottom={12}
+                        height={100}
+                        width={300}
+                        justifyContent='center'
+                        alignItems='center'
+                        animate={animatedVariant}
+                        variants={styleVariants}
+                        padding={16}
+                    >
+                        <Button text={'Change Size'} onPress={toggleSpringVariant} variant='alternative' />
+                    </Cell>
+                    <Cell
+                        alignItems='center'
+                        justifyContent='center'
+                        marginBottom={12}
+                        initial='initial'
+                        animate={springVariant}
+                        variants={styleVariants}
+                    >
+                        <Text variant='normal'>Hola</Text>
+                    </Cell>
                 </PaddingContainer>
             </Background>
         </FractalAppRoot>
