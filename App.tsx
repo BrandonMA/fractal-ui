@@ -1,33 +1,38 @@
 import React, { useCallback, useState } from 'react';
 import { registerRootComponent } from 'expo';
-import { Background, Cell, Button, FractalAppRoot, Box } from './src';
-import { ScrollView } from 'react-native';
+import { Background, Cell, Button, FractalAppRoot, PaddingContainer } from './src';
+import { SafeAreaView } from 'react-native';
 
 const styleVariants = {
-    initial: { width: 20, height: 50, opacity: 0 },
-    small: { width: 50, height: 50, opacity: 1 },
-    visible: { width: 200, height: 200, opacity: 1 }
+    small: { scale: 0.5, opacity: 0 },
+    big: { scale: 1, opacity: 1 },
+    initial: { height: 15, width: 15, opacity: 0 },
+    visible: { height: 100, width: 100, opacity: 1 }
 };
 
 export function App(): JSX.Element {
-    const [animatedVariant, setAnimatedVariant] = useState('visible');
+    const [animatedVariant, setAnimatedVariant] = useState('big');
     const toggleVariant = useCallback(() => {
-        setAnimatedVariant((currentValue) => (currentValue === 'visible' ? 'small' : 'visible'));
+        setAnimatedVariant((currentValue) => (currentValue === 'big' ? 'small' : 'big'));
+    }, []);
+
+    const [springVariant, setSpringVariant] = useState('visible');
+    const toggleSpringVariant = useCallback(() => {
+        setSpringVariant((currentValue) => (currentValue === 'visible' ? 'initial' : 'visible'));
     }, []);
 
     return (
         <FractalAppRoot>
-            <Background flex={1} justifyContent='center' alignItems='center' flexDirection='column'>
-                <ScrollView>
-                    <Box flex={1}>
-                        <Button onPress={toggleVariant} height={200} variant='main' />
-                    </Box>
-                    <Box width='100%' flex={1} justifyContent='space-around'>
-                        <Cell initial={styleVariants.initial} animate={styleVariants.visible} backgroundColor='white' />
-                        <Cell initial={'initial'} animate={'visible'} variants={styleVariants} backgroundColor='white' />
-                        <Cell logRender initial={'initial'} animate={animatedVariant} variants={styleVariants} backgroundColor='white' />
-                    </Box>
-                </ScrollView>
+            <Background>
+                <PaddingContainer>
+                    <SafeAreaView />
+                    <Button text='Hide' marginBottom={12} onPress={toggleVariant} width={200} variant='main' />
+                    <Cell marginBottom={12} initial={styleVariants.initial} animate={styleVariants.visible} />
+                    <Cell marginBottom={12} initial={'initial'} animate={'visible'} variants={styleVariants} />
+                    <Cell marginBottom={12} height={100} width={100} animate={animatedVariant} variants={styleVariants} />
+                    <Button text={'Change Size'} marginBottom={12} onPress={toggleSpringVariant} width={200} variant='alternative' />
+                    <Cell marginBottom={12} initial='initial' animate={springVariant} variants={styleVariants} />
+                </PaddingContainer>
             </Background>
         </FractalAppRoot>
     );

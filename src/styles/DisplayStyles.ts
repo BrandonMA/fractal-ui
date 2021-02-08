@@ -8,8 +8,8 @@ export interface DisplayStyles {
 
 export function extractDisplayStyles({ flex, display, justifyContent, alignItems, flexDirection }: DisplayStyles): string {
     return `
-        display: ${display ?? 'flex'};
-        flex: ${flex ?? 'none'};
+        ${display ? `display: ${display}` : undefined};
+        ${flex ? `flex: ${flex}` : undefined};
         ${justifyContent ? `justify-content: ${justifyContent}` : undefined};
         ${alignItems ? `align-items: ${alignItems}` : undefined};
         ${flexDirection ? `flex-direction: ${flexDirection}` : undefined};

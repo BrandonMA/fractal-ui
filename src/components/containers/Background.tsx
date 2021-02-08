@@ -5,5 +5,5 @@ import { BoxProps } from './Box/types';
 
 export function Background(props: BoxProps): JSX.Element {
     const { colors } = useFractalTheme();
-    return <Box {...props} backgroundColor={colors.background} />;
+    return <Box backgroundColor={colors.background} flex={1} {...props} />;
 }

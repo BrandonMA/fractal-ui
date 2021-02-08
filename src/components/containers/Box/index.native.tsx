@@ -7,43 +7,66 @@ import { extractBorderStyles } from '../../../styles/BorderStyles';
 import { extractDimensionStyles } from '../../../styles/DimensionStyles';
 import { extractDisplayStyles } from '../../../styles/DisplayStyles';
 import { useAnimationContent } from '../../../hooks/useAnimationContent';
+import { extractShadowStyles } from '../../../styles/ShadowStyles';
 
 const StyledBox = styled(Reanimated.View)`
     ${extractBackgroundColor};
     ${extractDimensionStyles};
     ${extractDisplayStyles};
     ${extractBorderStyles};
+    ${extractShadowStyles};
+    font-size: 17;
+    font-weight: bold;
 ` as typeof Reanimated.View;
 
-export function Box({ initial, animate, variants, ...others }: BoxProps): JSX.Element {
+export function Box({ initial, animate, style, variants, ...others }: BoxProps): JSX.Element {
     const initialAnimationContent = useAnimationContent(initial, variants);
     const animateAnimationContent = useAnimationContent(animate, variants);
 
     const opacityAnimatedValue = useSharedValue(initialAnimationContent.opacity);
     const widthAnimatedValue = useSharedValue(initialAnimationContent.width);
     const heightAnimatedValue = useSharedValue(initialAnimationContent.height);
+    const scaleAnimatedValue = useSharedValue(initialAnimationContent.scale);
 
     const animatedStyles = useAnimatedStyle(() => {
-        return {
-            opacity: opacityAnimatedValue.value,
-            width: widthAnimatedValue.value,
-            height: heightAnimatedValue.value
-        };
+        const styles: { [key: string]: any } = {};
+
+        if (opacityAnimatedValue.value != null) {
+            styles.opacity = opacityAnimatedValue.value;
+        }
+
+        if (widthAnimatedValue.value != null) {
+            styles.width = widthAnimatedValue.value;
+        }
+
+        if (heightAnimatedValue.value != null) {
+            styles.height = heightAnimatedValue.value;
+        }
+
+        if (scaleAnimatedValue.value != null) {
+            styles.transform = [{ scale: scaleAnimatedValue.value }];
+        }
+
+        return styles;
     });
 
     useEffect(() => {
-        if (animateAnimationContent.opacity) {
+        if (animateAnimationContent.opacity != null) {
             opacityAnimatedValue.value = withSpring(animateAnimationContent.opacity);
         }
 
-        if (animateAnimationContent.width) {
+        if (animateAnimationContent.width != null) {
             widthAnimatedValue.value = withSpring(animateAnimationContent.width);
         }
 
-        if (animateAnimationContent.height) {
+        if (animateAnimationContent.height != null) {
             heightAnimatedValue.value = withSpring(animateAnimationContent.height);
         }
-    }, [opacityAnimatedValue, widthAnimatedValue, heightAnimatedValue, animateAnimationContent]);
 
-    return <StyledBox {...others} style={animatedStyles} />;
+        if (animateAnimationContent.scale != null) {
+            scaleAnimatedValue.value = withSpring(animateAnimationContent.scale);
+        }
+    }, [opacityAnimatedValue, widthAnimatedValue, scaleAnimatedValue, heightAnimatedValue, animateAnimationContent]);
+
+    return <StyledBox {...others} style={[style, animatedStyles]} />;
 }

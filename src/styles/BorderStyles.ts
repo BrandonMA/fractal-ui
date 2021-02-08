@@ -4,6 +4,6 @@ export interface BorderStyles {
 
 export function extractBorderStyles({ borderRadius }: BorderStyles): string {
     return `
-        ${borderRadius ? `border-radius: ${borderRadius}px` : undefined}
+        ${borderRadius ? `border-radius: ${borderRadius}px` : undefined};
     `;
 }

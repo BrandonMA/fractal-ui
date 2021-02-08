@@ -6,22 +6,31 @@ import { extractBackgroundColor } from '../../../styles/BackgroundStyles';
 import { extractBorderStyles } from '../../../styles/BorderStyles';
 import { extractDimensionStyles } from '../../../styles/DimensionStyles';
 import { extractDisplayStyles } from '../../../styles/DisplayStyles';
-import { useFractalTheme } from '../../../hooks/useFractalTheme';
+import { extractShadowStyles } from '../../../styles/ShadowStyles';
 
 const StyledButton = styled(motion.button as any)`
     -moz-appearance: none;
     -webkit-appearance: none;
     outline: none;
     border: none;
+    cursor: pointer;
     ${extractBackgroundColor};
     ${extractDimensionStyles};
     ${extractDisplayStyles};
     ${extractBorderStyles};
+    ${extractShadowStyles};
 `;
 
-export function Button({ onPress, variant, ...others }: ButtonProps): JSX.Element {
-    const { colors } = useFractalTheme();
-    const colorName = `${variant}InteractiveColor`;
+const hoverStyles = {
+    scale: 1.05
+};
 
-    return <StyledButton backgroundColor={colors[colorName]} {...others} onClick={onPress} />;
+const tapStyles = {
+    scale: 0.95
+};
+
+const transition = { type: 'spring' };
+
+export function BaseButton({ onPress, ...others }: ButtonProps): JSX.Element {
+    return <StyledButton {...others} onClick={onPress} transition={transition} whileHover={hoverStyles} whileTap={tapStyles} />;
 }

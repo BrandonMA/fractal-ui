@@ -2,6 +2,7 @@ export interface AnimationContent {
     opacity?: number;
     width?: number;
     height?: number;
+    scale?: number;
 }
 
 export function isAnimationContent(value: unknown): value is AnimationContent {
@@ -12,7 +13,8 @@ export function isAnimationContent(value: unknown): value is AnimationContent {
 export const emptyAnimationContent: AnimationContent = {
     opacity: 1,
     width: undefined,
-    height: undefined
+    height: undefined,
+    scale: 1
 };
 
 export type Variants = { [key: string]: AnimationContent };
