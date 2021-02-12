@@ -25,9 +25,12 @@ export function Box({ initial, animate, style, variants, ...others }: BoxProps):
     const widthAnimatedValue = useSharedValue(initialAnimationContent.width);
     const heightAnimatedValue = useSharedValue(initialAnimationContent.height);
     const scaleAnimatedValue = useSharedValue(initialAnimationContent.scale);
+    const rotationAnimatedValue = useSharedValue(initialAnimationContent.rotate);
 
     const animatedStyles = useAnimatedStyle(() => {
-        const styles: { [key: string]: any } = {};
+        const styles: { [key: string]: any } = {
+            transform: [{}]
+        };
 
         if (opacityAnimatedValue.value != null) {
             styles.opacity = opacityAnimatedValue.value;
@@ -42,7 +45,11 @@ export function Box({ initial, animate, style, variants, ...others }: BoxProps):
         }
 
         if (scaleAnimatedValue.value != null) {
-            styles.transform = [{ scale: scaleAnimatedValue.value }];
+            styles.transform[0].scale = scaleAnimatedValue.value;
+        }
+
+        if (rotationAnimatedValue.value != null) {
+            styles.transform[0].rotate = rotationAnimatedValue.value;
         }
 
         return styles;
@@ -64,7 +71,11 @@ export function Box({ initial, animate, style, variants, ...others }: BoxProps):
         if (animateAnimationContent.scale != null) {
             scaleAnimatedValue.value = withSpring(animateAnimationContent.scale);
         }
-    }, [opacityAnimatedValue, widthAnimatedValue, scaleAnimatedValue, heightAnimatedValue, animateAnimationContent]);
+
+        if (animateAnimationContent.rotate != null) {
+            rotationAnimatedValue.value = withSpring(animateAnimationContent.rotate);
+        }
+    }, [opacityAnimatedValue, widthAnimatedValue, scaleAnimatedValue, heightAnimatedValue, animateAnimationContent, rotationAnimatedValue]);
 
     return <StyledBox {...others} style={[style, animatedStyles]} />;
 }

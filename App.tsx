@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { registerRootComponent } from 'expo';
-import { Background, Cell, Button, FractalAppRoot, PaddingContainer, Text } from './src';
+import { Background, Cell, Button, FractalAppRoot, PaddingContainer, Text, ActivityIndicator, Box } from './src';
 import { SafeAreaView } from 'react-native';
 
 const styleVariants = {
@@ -51,6 +51,7 @@ export function App(): JSX.Element {
                     >
                         <Text variant='normal'>Hola</Text>
                     </Cell>
+                    <ActivityIndicator color='blue' width={48} height={48} />
                 </PaddingContainer>
             </Background>
         </FractalAppRoot>

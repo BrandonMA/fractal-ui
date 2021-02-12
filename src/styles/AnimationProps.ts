@@ -3,6 +3,7 @@ export interface AnimationContent {
     width?: number;
     height?: number;
     scale?: number;
+    rotate?: number;
 }
 
 export function isAnimationContent(value: unknown): value is AnimationContent {
@@ -14,7 +15,8 @@ export const emptyAnimationContent: AnimationContent = {
     opacity: 1,
     width: undefined,
     height: undefined,
-    scale: 1
+    scale: 1,
+    rotate: undefined
 };
 
 export type Variants = { [key: string]: AnimationContent };
