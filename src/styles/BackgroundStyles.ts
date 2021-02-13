@@ -1,7 +1,11 @@
 export interface BackgroundStyles {
     backgroundColor?: string;
+    bg?: string;
 }
 
-export function extractBackgroundColor({ backgroundColor }: BackgroundStyles): string {
-    return `background-color: ${backgroundColor ?? 'transparent'};`;
+export function extractBackgroundColor({ backgroundColor, bg }: BackgroundStyles): string {
+    return `
+        background-color: ${bg ?? 'transparent'};
+        background-color: ${backgroundColor ?? 'transparent'};
+    `;
 }
