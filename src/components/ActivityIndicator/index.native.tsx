@@ -1,13 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { extractDimensionStyles } from '../../styles/DimensionStyles';
 import { ActivityIndicatorProps } from './types';
-import { Box } from '../containers';
+import { Layer } from '../containers';
 import { ActivityIndicator as RNActivityIndicator } from 'react-native';
-
-const Container = styled(Box)`
-    ${extractDimensionStyles}
-`;
 
 const StyledRNActivityIndicator = styled(RNActivityIndicator)`
     width: 100%;
@@ -16,8 +11,8 @@ const StyledRNActivityIndicator = styled(RNActivityIndicator)`
 
 export function ActivityIndicator({ color, ...others }: ActivityIndicatorProps): JSX.Element {
     return (
-        <Container {...others}>
+        <Layer {...others}>
             <StyledRNActivityIndicator color={color} size='large' />
-        </Container>
+        </Layer>
     );
 }

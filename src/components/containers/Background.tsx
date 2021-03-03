@@ -1,9 +1,9 @@
 import React from 'react';
-import { useFractalTheme } from '../../hooks/useFractalTheme';
-import { Box } from './Box';
-import { BoxProps } from './Box/types';
+import { useTheme } from '../../hooks/useTheme';
+import { Layer } from './Layer';
+import { LayerProps } from './Layer/types';
 
-export function Background(props: BoxProps): JSX.Element {
-    const { colors } = useFractalTheme();
-    return <Box backgroundColor={colors.background} flex={1} {...props} />;
+export function Background(props: LayerProps): JSX.Element {
+    const { colors } = useTheme();
+    return <Layer backgroundColor={colors.background} flex={1} {...props} />;
 }

@@ -1,58 +1,172 @@
 import React, { useCallback, useState } from 'react';
 import { registerRootComponent } from 'expo';
-import { Background, Cell, Button, FractalAppRoot, PaddingContainer, Text, ActivityIndicator, Box } from './src';
-import { SafeAreaView } from 'react-native';
+import {
+    Background,
+    Button,
+    DimmedModal,
+    FractalAppRoot,
+    Text,
+    Box,
+    PaddingLayer,
+    Separator,
+    Layer,
+    ColorPicker,
+    MiddleCellModal,
+    BottomCellModal
+} from './src';
+import { useTheme } from './src/hooks/useTheme';
+import { blue } from './src/colors/presets/blue';
+import { SafeAreaView, ScrollView } from 'react-native';
+import { TextButton } from './src/components/buttons/TextButton';
+import { ColorBug } from './RedExample';
 
 const styleVariants = {
-    small: { scale: 0.5, opacity: 0 },
-    big: { scale: 1, opacity: 1 },
+    layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
+    layerVisible: { scale: 1, opacity: 1, backgroundColor: blue.base },
     initial: { height: 15, width: 15, opacity: 0 },
     visible: { height: 100, width: 100, opacity: 1 }
 };
 
+function Content(): JSX.Element {
+    const { spacings, colors } = useTheme();
+
+    const [layerVariant, setLayerVariant] = useState('layerVisible');
+    const toggleVariant = useCallback(
+        () => setLayerVariant((currentValue) => (currentValue === 'layerVisible' ? 'layerInitial' : 'layerVisible')),
+        []
+    );
+
+    const [visible, setVisible] = useState(false);
+    const toggleVisible = useCallback(() => setVisible((currentValue) => !currentValue), []);
+
+    const [middleCellVisible, setMiddleCellVisible] = useState(false);
+    const toggleMiddleCell = useCallback(() => setMiddleCellVisible((currentValue) => !currentValue), []);
+
+    const [bottomCellVisible, setBottomCellVisible] = useState(false);
+    const toggleBottomCell = useCallback(() => setBottomCellVisible((currentValue) => !currentValue), []);
+
+    return (
+        <PaddingLayer>
+            <ColorBug />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Layer Animated Example:
+            </Text>
+            <Layer
+                height={100}
+                width={100}
+                initial={'layerInitial'}
+                animate={layerVariant}
+                variants={styleVariants}
+                backgroundColor={'#FFF'}
+                marginBottom={spacings.m}
+            />
+            <Button
+                variant={'main'}
+                alignSelf={'center'}
+                width={268}
+                marginBottom={spacings.m}
+                text={'Toggle animation'}
+                onPress={toggleVariant}
+            />
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Box Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <Text variant={'normal'} marginBottom={spacings.m}>
+                    Use it to separate your components into blocks.
+                </Text>
+                <Separator marginBottom={spacings.m} />
+                <Text variant={'normal'}>Like this.</Text>
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Box Animated Example:
+            </Text>
+            <Box height={100} width={100} initial={'initial'} animate={'visible'} variants={styleVariants} marginBottom={spacings.m} />
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Text Button Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <TextButton marginBottom={spacings.m} variant={'main'}>
+                    Main
+                </TextButton>
+                <TextButton marginBottom={spacings.m} variant={'alternative'}>
+                    Alternative
+                </TextButton>
+                <TextButton marginBottom={spacings.m} variant={'success'}>
+                    Success
+                </TextButton>
+                <TextButton marginBottom={spacings.m} variant={'warning'}>
+                    Warning
+                </TextButton>
+                <TextButton variant={'danger'}>Danger</TextButton>
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Color Picker Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <ColorPicker
+                    onColorChange={(color) => console.log(color)}
+                    colors={[
+                        colors.mainInteractiveColor,
+                        colors.alternativeInteractiveColor,
+                        colors.successInteractiveColor,
+                        colors.dangerInteractiveColor,
+                        colors.warningInteractiveColor
+                    ]}
+                />
+            </Box>
+            {/*<Separator isAtBackgroundLevel marginBottom={spacings.m} />*/}
+            {/*<Text marginBottom={spacings.m} variant={'title'}>*/}
+            {/*    Dimmed Modal Example:*/}
+            {/*</Text>*/}
+            {/*<Box marginBottom={spacings.m}>*/}
+            {/*    <Button variant='main' text='Show Modal' onPress={toggleVisible} />*/}
+            {/*    <DimmedModal visible={visible} onDismiss={toggleVisible}>*/}
+            {/*        <Box>*/}
+            {/*            <Button variant='warning' text='Dismiss Modal' onPress={toggleVisible} />*/}
+            {/*        </Box>*/}
+            {/*    </DimmedModal>*/}
+            {/*</Box>*/}
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Middle Cell Modal Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <Button variant='main' text='Show Middle Cell Modal' onPress={toggleMiddleCell} />
+                <MiddleCellModal visible={middleCellVisible} onDismiss={toggleMiddleCell}>
+                    <Box>
+                        <Button variant='warning' text='Dismiss Cell Modal' onPress={toggleMiddleCell} />
+                    </Box>
+                </MiddleCellModal>
+            </Box>
+            {/*<Separator isAtBackgroundLevel marginBottom={spacings.m} />*/}
+            {/*<Text marginBottom={spacings.m} variant={'title'}>*/}
+            {/*    Bottom Cell Modal Example:*/}
+            {/*</Text>*/}
+            {/*<Box marginBottom={spacings.m}>*/}
+            {/*    <Button variant='main' text='Show Bottom Cell Modal' onPress={toggleBottomCell} />*/}
+            {/*    <BottomCellModal visible={bottomCellVisible} onDismiss={toggleBottomCell}>*/}
+            {/*        <Box>*/}
+            {/*            <Button variant='warning' text='Dismiss Cell Modal' onPress={toggleBottomCell} />*/}
+            {/*        </Box>*/}
+            {/*    </BottomCellModal>*/}
+            {/*</Box>*/}
+        </PaddingLayer>
+    );
+}
+
 export function App(): JSX.Element {
-    const [animatedVariant, setAnimatedVariant] = useState('big');
-    const toggleVariant = useCallback(() => {
-        setAnimatedVariant((currentValue) => (currentValue === 'big' ? 'small' : 'big'));
-    }, []);
-
-    const [springVariant, setSpringVariant] = useState('visible');
-    const toggleSpringVariant = useCallback(() => {
-        setSpringVariant((currentValue) => (currentValue === 'visible' ? 'initial' : 'visible'));
-    }, []);
-
     return (
         <FractalAppRoot>
             <Background>
-                <PaddingContainer>
-                    <SafeAreaView />
-                    <Button text='Hide' marginBottom={12} onPress={toggleVariant} width={200} variant='main' />
-                    <Cell marginBottom={12} initial={styleVariants.initial} animate={styleVariants.visible} />
-                    <Cell marginBottom={12} initial={'initial'} animate={'visible'} variants={styleVariants} />
-                    <Cell
-                        marginBottom={12}
-                        height={100}
-                        width={300}
-                        justifyContent='center'
-                        alignItems='center'
-                        animate={animatedVariant}
-                        variants={styleVariants}
-                        padding={16}
-                    >
-                        <Button text={'Change Size'} onPress={toggleSpringVariant} variant='alternative' />
-                    </Cell>
-                    <Cell
-                        alignItems='center'
-                        justifyContent='center'
-                        marginBottom={12}
-                        initial='initial'
-                        animate={springVariant}
-                        variants={styleVariants}
-                    >
-                        <Text variant='normal'>Hola</Text>
-                    </Cell>
-                    <ActivityIndicator color='blue' width={48} height={48} />
-                </PaddingContainer>
+                <SafeAreaView />
+                <ScrollView>
+                    <Content />
+                </ScrollView>
             </Background>
         </FractalAppRoot>
     );

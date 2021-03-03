@@ -1,1 +1,0 @@
-{"version":3,"file":"useHideAnimation.js","sourceRoot":"","sources":["../../src/animationHooks/useHideAnimation.tsx"],"names":[],"mappings":"AACA,OAAO,EAAE,kBAAkB,EAAE,MAAM,sBAAsB,CAAC;AAE1D,MAAM,UAAU,gBAAgB,CAAC,aAA6B,EAAE,QAAqB;IACjF,OAAO,kBAAkB,CAAC,aAAa,EAAE,CAAC,EAAE,SAAS,EAAE,SAAS,EAAE,QAAQ,CAAC,CAAC;AAChF,CAAC"}

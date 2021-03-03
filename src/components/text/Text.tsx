@@ -1,13 +1,14 @@
-import React, { memo } from 'react';
-import { useFractalTheme } from '../../hooks/useFractalTheme';
+import React from 'react';
+import { useTheme } from '../../hooks/useTheme';
 import { BaseText } from './BaseText';
 import { TextProps } from './BaseText/types';
 
-export const Text = memo(
-    ({ variant, ...others }: TextProps): JSX.Element => {
-        const { textStyles } = useFractalTheme();
-        const { fontSize, fontWeight, color, fontFamily } = textStyles[variant];
+export function Text({ variant, ...others }: TextProps): JSX.Element {
+    const { textVariants, colors } = useTheme();
+    const { fontSize, fontWeight, color, fontFamily } = textVariants[variant];
+    const finalColor = colors[color];
 
-        return <BaseText fontFamily={fontFamily} fontSize={fontSize} fontWeight={fontWeight} color={color} {...others} />;
-    }
-);
+    return (
+        <BaseText selectable={false} fontFamily={fontFamily} fontSize={fontSize} fontWeight={fontWeight} color={finalColor} {...others} />
+    );
+}

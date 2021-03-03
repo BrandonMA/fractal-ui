@@ -1,12 +1,12 @@
 import { TextProps as DefaultTexProps } from 'react-native';
+import { AnimationProps } from '../../../sharedProps/AnimationProps';
+import { FractalSharedProps } from '../../../sharedProps/FractalSharedProps';
+import { TextProps as FractalTextProps } from '../../../sharedProps/TextProps';
+import { FractalThemeTextVariants } from '../../../themes/FractalTheme';
 import { RequiredKeys } from 'utility-types';
-import { AnimationProps } from '../../../styles/AnimationProps';
-import { InlineStyles } from '../../../styles/InlineStyles';
-import { TextStyles } from '../../../styles/TextStyles';
-import { lightFractalTheme } from '../../../themes/lightFractalTheme';
 
-export interface TextProps extends InlineStyles, AnimationProps, DefaultTexProps, TextStyles {
+export interface TextProps extends FractalSharedProps, AnimationProps, DefaultTexProps, FractalTextProps {
     children?: string;
     style?: any;
-    variant: RequiredKeys<typeof lightFractalTheme.textStyles>;
+    variant: RequiredKeys<FractalThemeTextVariants>;
 }
