@@ -1,6 +1,7 @@
 export * from './containers';
 export * from './buttons';
 export * from './text';
+export * from './textinputs';
 export * from './ActivityIndicator';
 export * from './Separator';
 export * from './ColorToggle';

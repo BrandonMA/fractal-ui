@@ -12,13 +12,16 @@ import {
     Layer,
     ColorPicker,
     MiddleCellModal,
-    BottomCellModal
+    BottomCellModal,
+    TextField,
+    SearchBar
 } from './src';
 import { useTheme } from './src/hooks/useTheme';
 import { blue } from './src/colors/presets/blue';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { TextButton } from './src/components/buttons/TextButton';
 import { ColorBug } from './RedExample';
+import { CheckIcon } from './src/assets/CheckIcon';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -26,6 +29,10 @@ const styleVariants = {
     initial: { height: 15, width: 15, opacity: 0 },
     visible: { height: 100, width: 100, opacity: 1 }
 };
+
+function renderCheckIcon(color: string, size: number): JSX.Element {
+    return <CheckIcon width={size} height={size} fill={color} />;
+}
 
 function Content(): JSX.Element {
     const { spacings, colors } = useTheme();
@@ -155,6 +162,20 @@ function Content(): JSX.Element {
             {/*        </Box>*/}
             {/*    </BottomCellModal>*/}
             {/*</Box>*/}
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Text Field Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <TextField placeholder='Escribe aquí' />
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Icon Text Field Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <SearchBar placeholder='Escribe aquí' />
+            </Box>
         </PaddingLayer>
     );
 }
