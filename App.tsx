@@ -14,7 +14,9 @@ import {
     MiddleCellModal,
     BottomCellModal,
     TextField,
-    SearchBar
+    SearchBar,
+    Picker,
+    DatePicker
 } from './src';
 import { useTheme } from './src/hooks/useTheme';
 import { blue } from './src/colors/presets/blue';
@@ -175,6 +177,31 @@ function Content(): JSX.Element {
             </Text>
             <Box marginBottom={spacings.m}>
                 <SearchBar placeholder='Escribe aquí' />
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Picker Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <Picker
+                    onChange={(value) => console.log(value)}
+                    iosDoneText='Done'
+                    items={[
+                        ['1', 'Hoy'],
+                        ['2', 'Ayer'],
+                        ['3', 'Prueba'],
+                        ['4', 'Cuatro'],
+                        ['5', 'Cinco']
+                    ]}
+                    initialValue={'3'}
+                />
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Date Picker Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <DatePicker iosDoneText='Done' onChange={(date) => console.log(date.toLocaleDateString())} />
             </Box>
         </PaddingLayer>
     );
