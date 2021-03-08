@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { Picker } from '../Picker';
 import { DatePickerProps } from './types/DatePickerProps';
-import { numberToArray } from './util/numberToArray';
+import { numberToArray } from '../util/numberToArray';
 import { getDaysInMonth } from './util/getDaysInMonth';
 import { getYearsInRange } from './util/getYearsInRange';
 import { localeMonthNames } from './util/localeMonthNames';

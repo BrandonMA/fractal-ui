@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { extractTextProps } from '../../../../sharedProps/TextProps';
@@ -19,7 +19,7 @@ const StyledSelect = styled(motion.select as any)`
 ` as typeof motion.select;
 
 export function BasePicker({ onValueChange, enabled, selectedValue, ...others }: BasePickerProps): JSX.Element {
-    const handleChange = React.useCallback<any>(
+    const handleChange = useCallback<any>(
         (e: { target: { selectedIndex: any; value: any } }) => {
             const { selectedIndex, value } = e.target;
             if (onValueChange) {

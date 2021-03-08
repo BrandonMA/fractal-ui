@@ -16,7 +16,8 @@ import {
     TextField,
     SearchBar,
     Picker,
-    DatePicker
+    DatePicker,
+    TimePicker
 } from './src';
 import { useTheme } from './src/hooks/useTheme';
 import { blue } from './src/colors/presets/blue';
@@ -197,6 +198,12 @@ function Content(): JSX.Element {
             </Text>
             <Box marginBottom={spacings.m}>
                 <DatePicker iosDoneText='Done' onChange={(date) => console.log(date.toLocaleDateString())} />
+            </Box>
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Time Picker Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <TimePicker iosDoneText='Done' onChange={(date) => console.log(date.toLocaleDateString())} />
             </Box>
         </PaddingLayer>
     );
