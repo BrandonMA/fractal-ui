@@ -2,8 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { PickerButton } from '../PickerButton';
 import { DatePickerProps } from './types/DatePickerProps';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { BottomCellModal } from '../../modals/BottomCellModal';
 import { useTheme } from '../../../hooks/useTheme';
+import { BlurrediOSModal } from '../../modals/BlurrediOSModal';
 
 export function DatePicker({
     initialDate,
@@ -11,7 +11,7 @@ export function DatePicker({
     minDate,
     maxDate,
     onChange,
-    /*iosDoneText = 'Done',*/
+    iosDoneText = 'Done',
     ...others
 }: DatePickerProps): JSX.Element {
     const defaultDate = new Date();
@@ -54,7 +54,7 @@ export function DatePicker({
             <PickerButton onPress={toggleModal} {...others}>
                 {mode === 'date' ? date.toLocaleDateString() : date.toLocaleTimeString()}
             </PickerButton>
-            <BottomCellModal /*dismissText={iosDoneText}*/ visible={modalActive} onDismiss={toggleModal}>
+            <BlurrediOSModal dismissText={iosDoneText} visible={modalActive} onDismiss={toggleModal}>
                 <DateTimePicker
                     value={date}
                     mode={mode}
@@ -65,7 +65,7 @@ export function DatePicker({
                     onChange={onPickerValueChange}
                     textColor={textColor}
                 />
-            </BottomCellModal>
+            </BlurrediOSModal>
         </>
     );
 }
