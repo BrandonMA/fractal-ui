@@ -13,6 +13,7 @@ export function TextField(props: TextFieldProps): JSX.Element {
             color={colors.text}
             backgroundColor={colors.textField}
             placeholderTextColor={colors.placeholder}
+            fontSize={14}
             paddingRight={spacings.s}
             paddingLeft={spacings.s}
             height={sizes.textFieldHeight}

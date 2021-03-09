@@ -17,13 +17,17 @@ import {
     SearchBar,
     Picker,
     DatePicker,
-    TimePicker
+    TimePicker,
+    Message
 } from './src';
 import { useTheme } from './src/hooks/useTheme';
 import { blue } from './src/colors/presets/blue';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { TextButton } from './src/components/buttons/TextButton';
 import { ColorBug } from './RedExample';
+import { BugIcon } from './src/assets/BugIcon';
+
+const renderErrorIcon = (color: string): JSX.Element => <BugIcon width={20} fill={color} />;
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -199,11 +203,19 @@ function Content(): JSX.Element {
             <Box marginBottom={spacings.m}>
                 <DatePicker iosDoneText='Done' onChange={(date) => console.log(date.toLocaleDateString())} />
             </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
             <Text marginBottom={spacings.m} variant={'title'}>
                 Time Picker Example:
             </Text>
             <Box marginBottom={spacings.m}>
                 <TimePicker iosDoneText='Done' onChange={(date) => console.log(date.toLocaleDateString())} />
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Message Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <Message messageType={'danger'} title={'Message Title'} description={'Message description'} icon={renderErrorIcon} />
             </Box>
         </PaddingLayer>
     );

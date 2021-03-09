@@ -9,11 +9,6 @@ import { ChevronDown } from '../../../assets/ChevronDown';
 import { PickerItem } from './PickerItem';
 import { PickerProps } from './types/PickerProps';
 
-const style: any = {
-    appearance: 'none',
-    cursor: 'pointer'
-};
-
 export function Picker({ items, onChange, initialValue, disabled, ...others }: PickerProps): JSX.Element {
     const [currentValue, handleValueChange] = usePickerState(initialValue, items, onChange);
     const { colors, sizes, borderRadius, spacings } = useTheme();
@@ -50,7 +45,6 @@ export function Picker({ items, onChange, initialValue, disabled, ...others }: P
                 mode='dropdown'
                 fontSize={14}
                 flex={1}
-                style={Platform.OS === 'web' ? style : undefined}
             >
                 {items.map(renderItem)}
             </BasePicker>

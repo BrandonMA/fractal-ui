@@ -1,10 +1,10 @@
 import React from 'react';
-import { TextField } from './TextField';
 import { TextFieldProps } from './BaseTextField/types';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { LayerProps } from '../containers/Layer/types';
 import { useTheme } from '../../hooks/useTheme';
 import { Layer } from '../containers/Layer';
+import { BaseTextField } from './BaseTextField';
 
 export interface IconTextFieldProps extends Partial<Omit<LayerProps, 'children'>> {
     leftImage?: (color: string, size: number) => JSX.Element;
@@ -44,11 +44,14 @@ export function IconTextField({
                     {leftImage(colors.placeholder, sizes.textFieldIconSize)}
                 </Layer>
             ) : null}
-            <TextField
+            <BaseTextField
                 paddingLeft={paddingLeft}
                 paddingRight={paddingRight}
                 flex={1}
                 value={value}
+                color={colors.text}
+                placeholderTextColor={colors.placeholder}
+                fontSize={14}
                 onChangeText={onChangeText}
                 placeholder={placeholder}
                 {...textFieldProps}

@@ -1,4 +1,5 @@
 export * from './containers';
+export * from './messages';
 export * from './buttons';
 export * from './text';
 export * from './textinputs';

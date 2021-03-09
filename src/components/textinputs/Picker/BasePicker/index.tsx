@@ -10,6 +10,8 @@ import { extractWebProps } from '../../../../sharedProps/WebProps';
 import { BasePickerProps } from './types';
 
 const StyledSelect = styled(motion.select as any)`
+    appearance: none;
+    cursor: pointer;
     ${extractBackgroundProps};
     ${extractDimensionProps};
     ${extractDisplayProps};
