@@ -25,7 +25,7 @@ export function isAnimationContent(value: unknown): value is AnimationContent {
 }
 
 export const emptyAnimationContent: AnimationContent = {
-    opacity: 1,
+    opacity: undefined,
     width: undefined,
     height: undefined,
     scale: 1,

@@ -3,7 +3,6 @@ import { registerRootComponent } from 'expo';
 import {
     Background,
     Button,
-    DimmedModal,
     FractalAppRoot,
     Text,
     Box,
@@ -12,7 +11,6 @@ import {
     Layer,
     ColorPicker,
     MiddleCellModal,
-    BottomCellModal,
     TextField,
     SearchBar,
     Picker,
@@ -45,14 +43,14 @@ function Content(): JSX.Element {
         []
     );
 
-    const [visible, setVisible] = useState(false);
-    const toggleVisible = useCallback(() => setVisible((currentValue) => !currentValue), []);
+    // const [visible, setVisible] = useState(false);
+    // const toggleVisible = useCallback(() => setVisible((currentValue) => !currentValue), []);
 
     const [middleCellVisible, setMiddleCellVisible] = useState(false);
     const toggleMiddleCell = useCallback(() => setMiddleCellVisible((currentValue) => !currentValue), []);
 
-    const [bottomCellVisible, setBottomCellVisible] = useState(false);
-    const toggleBottomCell = useCallback(() => setBottomCellVisible((currentValue) => !currentValue), []);
+    // const [bottomCellVisible, setBottomCellVisible] = useState(false);
+    // const toggleBottomCell = useCallback(() => setBottomCellVisible((currentValue) => !currentValue), []);
 
     return (
         <PaddingLayer>

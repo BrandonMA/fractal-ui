@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
+import { useTheme } from '../../hooks/useTheme';
+import { HorizontalLayer } from '../containers/HorizontalLayer';
+import { LayerProps } from '../containers/Layer/types';
 import { ColorToggle } from './ColorToggle';
-import { LayerProps } from './containers/Layer/types';
-import { HorizontalLayer } from './containers/HorizontalLayer';
-import { useTheme } from '../hooks/useTheme';
 
 export interface ColorPickerProps extends Partial<Omit<LayerProps, 'children'>> {
     colors: Array<string>;

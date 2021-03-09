@@ -9,7 +9,7 @@ export interface BorderProps {
     borderBottomWidth?: number;
     borderLeftWidth?: number;
     borderRightWidth?: number;
-    borderColor?: number;
+    borderColor?: string;
 }
 
 export function extractBorderProps({
@@ -36,6 +36,6 @@ export function extractBorderProps({
         ${borderBottomWidth != null ? `border-bottom-width: ${borderBottomWidth}px` : ''};
         ${borderLeftWidth != null ? `border-left-width: ${borderLeftWidth}px` : ''};
         ${borderRightWidth != null ? `border-right-width: ${borderRightWidth}px` : ''};
-        ${borderColor != null ? `border-color: ${borderColor}px` : ''};
+        ${borderColor != null ? `border-color: ${borderColor}` : ''};
     `;
 }

@@ -9,7 +9,7 @@ export function BaseButton({ pressedBackgroundColor, whileHover, whileTap, ...ot
     };
 
     const tapStyles = {
-        scale: 0.9,
+        scale: 0.95,
         backgroundColor: pressedBackgroundColor,
         ...whileTap
     };
