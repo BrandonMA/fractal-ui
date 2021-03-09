@@ -7,7 +7,7 @@ const normalColors = ['#1281FF', '#0D63DB'];
 
 const colors = normalColors;
 
-export function ColorBug() {
+export function ColorBug(): JSX.Element {
     const color = useSharedValue(colors[0]);
 
     const toggleColor = () => {

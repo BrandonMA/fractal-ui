@@ -16,16 +16,14 @@ import {
     Picker,
     DatePicker,
     TimePicker,
-    Message
+    ErrorMessage
 } from './src';
 import { useTheme } from './src/hooks/useTheme';
 import { blue } from './src/colors/presets/blue';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { TextButton } from './src/components/buttons/TextButton';
-import { ColorBug } from './RedExample';
-import { BugIcon } from './src/assets/BugIcon';
-
-const renderErrorIcon = (color: string): JSX.Element => <BugIcon width={20} fill={color} />;
+import { ColorBug } from './examples/RedExample';
+import { BuggyComponent } from './examples/BuggyComponent';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -33,6 +31,10 @@ const styleVariants = {
     initial: { height: 15, width: 15, opacity: 0 },
     visible: { height: 100, width: 100, opacity: 1 }
 };
+
+function logErrorToService(error: Error, componentStack: string) {
+    console.log('Log Error To Service: ', { error, componentStack });
+}
 
 function Content(): JSX.Element {
     const { spacings, colors } = useTheme();
@@ -210,10 +212,12 @@ function Content(): JSX.Element {
             </Box>
             <Separator isAtBackgroundLevel marginBottom={spacings.m} />
             <Text marginBottom={spacings.m} variant={'title'}>
-                Message Example:
+                Error Message Example:
             </Text>
             <Box marginBottom={spacings.m}>
-                <Message messageType={'danger'} title={'Message Title'} description={'Message description'} icon={renderErrorIcon} />
+                <ErrorMessage onError={logErrorToService}>
+                    <BuggyComponent />
+                </ErrorMessage>
             </Box>
         </PaddingLayer>
     );
