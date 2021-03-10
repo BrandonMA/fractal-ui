@@ -17,7 +17,12 @@ import {
     DatePicker,
     TimePicker,
     ErrorMessage,
-    DetailsList
+    DetailsList,
+    Popover,
+    Grid,
+    GridList,
+    GridColumn,
+    GridRow
 } from './src';
 import { useTheme } from './src/hooks/useTheme';
 import { blue } from './src/colors/presets/blue';
@@ -25,7 +30,6 @@ import { SafeAreaView, ScrollView } from 'react-native';
 import { TextButton } from './src/components/buttons/TextButton';
 import { ColorBug } from './examples/RedExample';
 import { BuggyComponent } from './examples/BuggyComponent';
-import { Popover } from './src/components/Popover';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -257,6 +261,29 @@ function Content(): JSX.Element {
                 Details List Example:
             </Text>
             <DetailsList title='Title' titleColorVariant='warning' details={detailsCardContent} marginBottom={spacings.m} />
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Grid List Example:
+            </Text>
+            <GridList
+                backgroundColor={colors.warningInteractiveColor}
+                data={['One', 'Two', 'Three', 'Four']}
+                renderItem={() => <Box margin={4} height={60} minWidth={30} />}
+                numColumns={2}
+            />
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Grid Example:
+            </Text>
+            <Box height={300}>
+                <Grid>
+                    <GridColumn backgroundColor={colors.dangerInteractiveColor300} />
+                    <GridColumn>
+                        <GridRow backgroundColor={colors.warningInteractiveColor300} />
+                        <GridRow backgroundColor={colors.mainInteractiveColor300} />
+                    </GridColumn>
+                </Grid>
+            </Box>
         </PaddingLayer>
     );
 }
