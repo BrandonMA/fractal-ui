@@ -16,7 +16,8 @@ import {
     Picker,
     DatePicker,
     TimePicker,
-    ErrorMessage
+    ErrorMessage,
+    DetailsList
 } from './src';
 import { useTheme } from './src/hooks/useTheme';
 import { blue } from './src/colors/presets/blue';
@@ -24,6 +25,7 @@ import { SafeAreaView, ScrollView } from 'react-native';
 import { TextButton } from './src/components/buttons/TextButton';
 import { ColorBug } from './examples/RedExample';
 import { BuggyComponent } from './examples/BuggyComponent';
+import { Popover } from './src/components/Popover';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -32,18 +34,37 @@ const styleVariants = {
     visible: { height: 100, width: 100, opacity: 1 }
 };
 
+const detailsCardContent: Array<[string, string]> = [
+    ['Title 1', 'Details 1'],
+    ['Title 2', 'Details 2']
+];
+
 function logErrorToService(error: Error, componentStack: string) {
     console.log('Log Error To Service: ', { error, componentStack });
+}
+
+function PopoverContainer(): JSX.Element {
+    return (
+        <Box width={'50%'} alignSelf='center'>
+            <Button variant='alternative' text='Pasion' />
+        </Box>
+    );
 }
 
 function Content(): JSX.Element {
     const { spacings, colors } = useTheme();
 
     const [layerVariant, setLayerVariant] = useState('layerVisible');
+    const [popoverVisible, setPopoverVisible] = useState(false);
+
     const toggleVariant = useCallback(
         () => setLayerVariant((currentValue) => (currentValue === 'layerVisible' ? 'layerInitial' : 'layerVisible')),
         []
     );
+
+    const togglePopover = useCallback(() => {
+        setPopoverVisible((currentValue) => !currentValue);
+    }, [setPopoverVisible]);
 
     // const [visible, setVisible] = useState(false);
     // const toggleVisible = useCallback(() => setVisible((currentValue) => !currentValue), []);
@@ -219,6 +240,23 @@ function Content(): JSX.Element {
                     <BuggyComponent />
                 </ErrorMessage>
             </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                PopoverView Example:
+            </Text>
+            <Popover
+                active={popoverVisible}
+                popoverChildren={() => {
+                    return <PopoverContainer />;
+                }}
+            >
+                <Button variant={'main'} onPress={togglePopover} text={'Popover'} marginBottom={spacings.m} />
+            </Popover>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Details List Example:
+            </Text>
+            <DetailsList title='Title' titleColorVariant='warning' details={detailsCardContent} marginBottom={spacings.m} />
         </PaddingLayer>
     );
 }

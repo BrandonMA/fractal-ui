@@ -1,6 +1,7 @@
 export * from './containers';
 export * from './messages';
 export * from './buttons';
+export * from './tables';
 export * from './text';
 export * from './textInputs';
 export * from './ActivityIndicator';
