@@ -22,7 +22,8 @@ import {
     Grid,
     GridList,
     GridColumn,
-    GridRow
+    GridRow,
+    Switch
 } from './src';
 import { useTheme } from './src/hooks/useTheme';
 import { blue } from './src/colors/presets/blue';
@@ -60,6 +61,7 @@ function Content(): JSX.Element {
 
     const [layerVariant, setLayerVariant] = useState('layerVisible');
     const [popoverVisible, setPopoverVisible] = useState(false);
+    const [isEnabled, setIsEnabled] = useState(false);
 
     const toggleVariant = useCallback(
         () => setLayerVariant((currentValue) => (currentValue === 'layerVisible' ? 'layerInitial' : 'layerVisible')),
@@ -82,6 +84,12 @@ function Content(): JSX.Element {
     return (
         <PaddingLayer>
             <ColorBug />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Switch Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <Switch value={isEnabled} onValueChange={(value) => setIsEnabled(value)} />
+            </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Layer Animated Example:
             </Text>
@@ -270,12 +278,13 @@ function Content(): JSX.Element {
                 data={['One', 'Two', 'Three', 'Four']}
                 renderItem={() => <Box margin={4} height={60} minWidth={30} />}
                 numColumns={2}
+                marginBottom={spacings.m}
             />
             <Separator isAtBackgroundLevel marginBottom={spacings.m} />
             <Text marginBottom={spacings.m} variant={'title'}>
                 Grid Example:
             </Text>
-            <Box height={300}>
+            <Box height={300} marginBottom={spacings.m}>
                 <Grid>
                     <GridColumn backgroundColor={colors.dangerInteractiveColor300} />
                     <GridColumn>

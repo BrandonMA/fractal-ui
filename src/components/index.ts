@@ -3,6 +3,7 @@ export * from './grids';
 export * from './messages';
 export * from './buttons';
 export * from './Popover';
+export * from './Switch';
 export * from './tables';
 export * from './text';
 export * from './textInputs';
