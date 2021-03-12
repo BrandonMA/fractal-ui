@@ -23,7 +23,11 @@ import {
     GridList,
     GridColumn,
     GridRow,
-    Switch
+    Switch,
+    RadioGroup,
+    RadioItem,
+    CheckBox,
+    SocialMediaButtons
 } from './src';
 import { useTheme } from './src/hooks/useTheme';
 import { blue } from './src/colors/presets/blue';
@@ -31,8 +35,6 @@ import { SafeAreaView, ScrollView } from 'react-native';
 import { TextButton } from './src/components/buttons/TextButton';
 import { ColorBug } from './examples/RedExample';
 import { BuggyComponent } from './examples/BuggyComponent';
-import { RadioGroup, RadioItem } from './src/components/radio';
-import { CheckBox } from './src/components/CheckBox';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -111,7 +113,7 @@ function Content(): JSX.Element {
                 Check Box Example:
             </Text>
             <Box marginBottom={spacings.m}>
-                <CheckBox value={isChecked} onValueChange={(value) => setIsChecked(value)} />
+                <CheckBox value={isChecked} onValueChange={(value) => setIsChecked(value)} label={'Selectable'} />
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Layer Animated Example:
@@ -316,6 +318,11 @@ function Content(): JSX.Element {
                     </GridColumn>
                 </Grid>
             </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Social Media Buttons:
+            </Text>
+            <SocialMediaButtons />
         </PaddingLayer>
     );
 }
