@@ -31,6 +31,8 @@ import { SafeAreaView, ScrollView } from 'react-native';
 import { TextButton } from './src/components/buttons/TextButton';
 import { ColorBug } from './examples/RedExample';
 import { BuggyComponent } from './examples/BuggyComponent';
+import { RadioGroup, RadioItem } from './src/components/radio';
+import { CheckBox } from './src/components/CheckBox';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -62,6 +64,7 @@ function Content(): JSX.Element {
     const [layerVariant, setLayerVariant] = useState('layerVisible');
     const [popoverVisible, setPopoverVisible] = useState(false);
     const [isEnabled, setIsEnabled] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);
 
     const toggleVariant = useCallback(
         () => setLayerVariant((currentValue) => (currentValue === 'layerVisible' ? 'layerInitial' : 'layerVisible')),
@@ -89,6 +92,26 @@ function Content(): JSX.Element {
             </Text>
             <Box marginBottom={spacings.m}>
                 <Switch value={isEnabled} onValueChange={(value) => setIsEnabled(value)} />
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Radio Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <RadioGroup
+                    radioButtons={[
+                        { id: '1', label: 'Option One' },
+                        { id: '2', label: 'Option Two' }
+                    ]}
+                    onChange={(item: RadioItem) => console.log(item)}
+                />
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Check Box Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <CheckBox value={isChecked} onValueChange={(value) => setIsChecked(value)} />
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Layer Animated Example:

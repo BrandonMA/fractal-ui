@@ -6,7 +6,7 @@ import { SwitchProps } from './types';
 
 const styleVariants = {
     start: { translateX: 0, translateY: 0 },
-    end: { translateX: 20, translateY: 0 }
+    end: { translateX: 16, translateY: 0 }
 };
 
 export function Switch({ value, onValueChange }: SwitchProps): JSX.Element {
@@ -21,9 +21,9 @@ export function Switch({ value, onValueChange }: SwitchProps): JSX.Element {
     return (
         <Pressable
             flexDirection={'row'}
-            height={30}
-            width={50}
-            borderRadius={15.5}
+            height={24}
+            width={40}
+            borderRadius={12}
             paddingLeft={2}
             paddingRight={2}
             onPress={onPress}
@@ -34,9 +34,9 @@ export function Switch({ value, onValueChange }: SwitchProps): JSX.Element {
                 initial={'start'}
                 animate={value ? 'end' : 'start'}
                 variants={styleVariants}
-                height={26}
-                width={26}
-                borderRadius={13}
+                height={20}
+                width={20}
+                borderRadius={10}
                 backgroundColor={colors.white}
                 boxShadow={shadows.mainShadow}
             />
