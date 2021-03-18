@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { TextFieldProps } from './BaseTextField/types';
 import { LayerProps } from '../containers/Layer/types';
 export interface IconTextFieldProps extends Partial<Omit<LayerProps, 'children'>> {

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ButtonVariant } from './buttons/ButtonVariant';
 interface BadgeProps {
     children?: string;

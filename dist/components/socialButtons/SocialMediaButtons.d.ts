@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { LayerProps } from '../containers/Layer/types';
 export interface SocialMediaButtonsEventsProps {
     onGooglePress?: () => void;

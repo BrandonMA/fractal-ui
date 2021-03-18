@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { AnimationProps, FractalSharedProps } from '../sharedProps';
 interface CloseButtonProps extends FractalSharedProps, AnimationProps {
     onPress?: () => void;

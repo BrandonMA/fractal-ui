@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { LayerProps } from '../containers/Layer/types';
 export interface ColorToggleProps extends LayerProps {
     onActiveChange?: (active: boolean, color: string) => void;

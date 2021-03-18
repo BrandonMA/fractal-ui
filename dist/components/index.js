@@ -5,6 +5,7 @@ export * from './messages';
 export * from './buttons';
 export * from './Popover';
 export * from './radio';
+export * from './Slider';
 export * from './socialButtons';
 export * from './Switch';
 export * from './tables';

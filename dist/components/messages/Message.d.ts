@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { LayerProps } from '../containers/Layer/types';
 export interface MessageProps extends Partial<Omit<LayerProps, 'children'>> {
     title: string;

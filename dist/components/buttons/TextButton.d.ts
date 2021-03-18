@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { TextProps } from '../text/BaseText/types';
 import { ButtonVariant } from './ButtonVariant';

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { LayerProps } from './containers/Layer/types';
 interface CheckBoxProps extends Omit<LayerProps, 'children'> {
     value: boolean;

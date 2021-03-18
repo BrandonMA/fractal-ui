@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ButtonProps } from '../buttons/Button';
 export declare type AppleButtonProps = Partial<Omit<ButtonProps, 'variant'>> & {
     loading?: boolean;
