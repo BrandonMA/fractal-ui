@@ -27,12 +27,13 @@ import {
     RadioGroup,
     RadioItem,
     CheckBox,
-    SocialMediaButtons
+    SocialMediaButtons,
+    TextButton,
+    Slider,
+    useTheme
 } from './src';
-import { useTheme } from './src/hooks/useTheme';
 import { blue } from './src/colors/presets/blue';
 import { SafeAreaView, ScrollView } from 'react-native';
-import { TextButton } from './src/components/buttons/TextButton';
 import { ColorBug } from './examples/RedExample';
 import { BuggyComponent } from './examples/BuggyComponent';
 
@@ -67,6 +68,7 @@ function Content(): JSX.Element {
     const [popoverVisible, setPopoverVisible] = useState(false);
     const [isEnabled, setIsEnabled] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
+    const [sliderValue, setSliderValue] = useState(0);
 
     const toggleVariant = useCallback(
         () => setLayerVariant((currentValue) => (currentValue === 'layerVisible' ? 'layerInitial' : 'layerVisible')),
@@ -85,10 +87,28 @@ function Content(): JSX.Element {
 
     // const [bottomCellVisible, setBottomCellVisible] = useState(false);
     // const toggleBottomCell = useCallback(() => setBottomCellVisible((currentValue) => !currentValue), []);
+    const ValueText = `Value: ${sliderValue}`;
 
     return (
         <PaddingLayer>
             <ColorBug />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Slider Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <Layer flex={1} alignItems='stretch' justifyContent='center'>
+                    <Slider
+                        minimumValue={0}
+                        maximumValue={100}
+                        onSlidingComplete={(value: number) => {
+                            setSliderValue(value);
+                        }}
+                    />
+                    <Text marginTop={spacings.m} variant='normal'>
+                        {ValueText}
+                    </Text>
+                </Layer>
+            </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Switch Example:
             </Text>
