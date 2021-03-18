@@ -96,18 +96,16 @@ function Content(): JSX.Element {
                 Slider Example:
             </Text>
             <Box marginBottom={spacings.m}>
-                <Layer flex={1} alignItems='stretch' justifyContent='center'>
-                    <Slider
-                        minimumValue={0}
-                        maximumValue={100}
-                        onSlidingComplete={(value: number) => {
-                            setSliderValue(value);
-                        }}
-                    />
-                    <Text marginTop={spacings.m} variant='normal'>
-                        {ValueText}
-                    </Text>
-                </Layer>
+                <Slider
+                    minimumValue={0}
+                    maximumValue={100}
+                    onSlidingComplete={(value: number) => {
+                        setSliderValue(value);
+                    }}
+                />
+                <Text marginTop={spacings.m} variant='normal'>
+                    {ValueText}
+                </Text>
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Switch Example:
