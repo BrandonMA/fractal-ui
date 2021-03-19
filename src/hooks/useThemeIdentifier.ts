@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { ThemeIdentifierContext } from '../context/ThemeIdentifierContext';
+import { ThemeIdentifierContext, ThemeIdentifierType } from '../context/ThemeIdentifierContext';
 
-export function useThemeIdentifier(): 'light' | 'dark' {
+export function useThemeIdentifier(): ThemeIdentifierType {
     const [identifier] = useContext(ThemeIdentifierContext);
     return identifier;
 }

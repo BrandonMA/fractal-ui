@@ -16,7 +16,8 @@
         "assetBundlePatterns": ["**/*"],
         "ios": {
             "supportsTablet": true,
-            "bundleIdentifier": "fractal.fractalui"
+            "bundleIdentifier": "fractal.fractalui",
+            "userInterfaceStyle": "automatic"
         },
         "web": {
             "favicon": "./assets/favicon.png"

@@ -30,12 +30,14 @@ import {
     SocialMediaButtons,
     TextButton,
     Slider,
-    useTheme
+    useTheme,
+    useSetThemeIdentifier,
+    blue
 } from './src';
-import { blue } from './src/colors/presets/blue';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { ColorBug } from './examples/RedExample';
 import { BuggyComponent } from './examples/BuggyComponent';
+import { ThemeSwapper } from './examples/ThemeSwapper';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -63,6 +65,7 @@ function PopoverContainer(): JSX.Element {
 
 function Content(): JSX.Element {
     const { spacings, colors } = useTheme();
+    const setThemeIdentifier = useSetThemeIdentifier();
 
     const [layerVariant, setLayerVariant] = useState('layerVisible');
     const [popoverVisible, setPopoverVisible] = useState(false);
@@ -92,6 +95,12 @@ function Content(): JSX.Element {
     return (
         <PaddingLayer>
             <ColorBug />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Swap Theme
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <ThemeSwapper />
+            </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Slider Example:
             </Text>
@@ -347,7 +356,7 @@ function Content(): JSX.Element {
 
 export function App(): JSX.Element {
     return (
-        <FractalAppRoot>
+        <FractalAppRoot handleThemeManually>
             <Background>
                 <SafeAreaView />
                 <ScrollView>
