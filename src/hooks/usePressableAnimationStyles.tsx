@@ -2,7 +2,7 @@ import { PressableProps } from '../components/buttons/Pressable/types';
 import { ViewStyle } from 'react-native';
 import { useReanimatedValueCallback } from './useReanimatedValueCallback';
 import { useAnimatedStyle } from 'react-native-reanimated';
-import { insertReanimatedValue } from '../util/insertReanimatedValue';
+import { insertSharedValueToStyles } from '../util/insertSharedValueToStyles';
 
 export function usePressableAnimationStyles({
     opacity,
@@ -54,12 +54,12 @@ export function usePressableAnimationStyles({
             transform: []
         };
 
-        insertReanimatedValue('opacity', styles, opacityAnimatedValue.value);
-        insertReanimatedValue('width', styles, widthAnimatedValue.value);
-        insertReanimatedValue('height', styles, heightAnimatedValue.value);
-        insertReanimatedValue('backgroundColor', styles, backgroundColorAnimatedValue.value);
-        insertReanimatedValue('scale', styles, scaleAnimatedValue.value, true);
-        insertReanimatedValue('rotate', styles, rotationAnimatedValue.value, true);
+        insertSharedValueToStyles('opacity', styles, opacityAnimatedValue.value);
+        insertSharedValueToStyles('width', styles, widthAnimatedValue.value);
+        insertSharedValueToStyles('height', styles, heightAnimatedValue.value);
+        insertSharedValueToStyles('backgroundColor', styles, backgroundColorAnimatedValue.value);
+        insertSharedValueToStyles('scale', styles, scaleAnimatedValue.value, true);
+        insertSharedValueToStyles('rotate', styles, rotationAnimatedValue.value, true);
 
         return styles;
     });

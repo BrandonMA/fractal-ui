@@ -1,7 +1,7 @@
 import Reanimated, { useSharedValue } from 'react-native-reanimated';
 import { useEffect } from 'react';
 
-export function useReanimatedValueEffect(
+export function useSharedValueEffect(
     initialValue?: number | string,
     finalValue?: number | string,
     exitValue?: number | string,

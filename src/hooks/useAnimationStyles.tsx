@@ -1,17 +1,24 @@
 import { AnimationProps } from '../sharedProps';
-import { useReanimatedValueEffect } from './useReanimatedValueEffect';
 import { useAnimatedStyle } from 'react-native-reanimated';
 import { ViewStyle } from 'react-native';
-import { insertReanimatedValue } from '../util/insertReanimatedValue';
-import { useAnimationContent } from './useAnimationContent';
+import { insertSharedValueToStyles } from '../util/insertSharedValueToStyles';
 import { usePresence } from 'framer-motion';
 import { useCallback } from 'react';
+import { insertSharedTransformValueToStyles } from '../util/insertSharedTransformValueToStyles';
+import { useSupportedSharedValues } from '../util/useSupportedSharedValues';
 
-export function useAnimationStyles({ initial, variants, animate, exit }: AnimationProps): ViewStyle {
-    const initialAnimationContent = useAnimationContent(initial, variants);
-    const animateAnimationContent = useAnimationContent(animate, variants);
-    const exitAnimationContent = useAnimationContent(exit, variants);
+export function useAnimationStyles({ initial, animate, exit, variants }: AnimationProps): ViewStyle {
     const [isPresent, setIsSafeToRemove] = usePresence();
+
+    const [
+        opacitySharedValue,
+        widthSharedValue,
+        heightSharedValue,
+        backgroundColorSharedValue,
+        scaleSharedValue,
+        rotationSharedValue,
+        translateYSharedValue
+    ] = useSupportedSharedValues(initial, animate, exit, variants, isPresent);
 
     const removeIfNeeded = useCallback(
         (finished: boolean) => {
@@ -22,68 +29,19 @@ export function useAnimationStyles({ initial, variants, animate, exit }: Animati
         [isPresent, setIsSafeToRemove]
     );
 
-    const opacityAnimatedValue = useReanimatedValueEffect(
-        initialAnimationContent.opacity,
-        animateAnimationContent.opacity,
-        exitAnimationContent.opacity,
-        isPresent
-    );
-
-    const widthAnimatedValue = useReanimatedValueEffect(
-        initialAnimationContent.width,
-        animateAnimationContent.width,
-        exitAnimationContent.width,
-        isPresent
-    );
-
-    const heightAnimatedValue = useReanimatedValueEffect(
-        initialAnimationContent.height,
-        animateAnimationContent.height,
-        exitAnimationContent.height,
-        isPresent
-    );
-
-    const scaleAnimatedValue = useReanimatedValueEffect(
-        initialAnimationContent.scale,
-        animateAnimationContent.scale,
-        exitAnimationContent.scale,
-        isPresent
-    );
-
-    const rotationAnimatedValue = useReanimatedValueEffect(
-        initialAnimationContent.rotate,
-        animateAnimationContent.rotate,
-        exitAnimationContent.rotate,
-        isPresent
-    );
-
-    const translateYAnimatedValue = useReanimatedValueEffect(
-        initialAnimationContent.translateY,
-        animateAnimationContent.translateY,
-        exitAnimationContent.translateY,
-        isPresent
-    );
-
-    const backgroundColorAnimatedValue = useReanimatedValueEffect(
-        initialAnimationContent.backgroundColor,
-        animateAnimationContent.backgroundColor,
-        exitAnimationContent.backgroundColor,
-        isPresent
-    );
-
     return useAnimatedStyle(() => {
         const styles: ViewStyle = {
             transform: []
         };
 
-        insertReanimatedValue('opacity', styles, opacityAnimatedValue.value, false, removeIfNeeded);
-        insertReanimatedValue('width', styles, widthAnimatedValue.value, false, removeIfNeeded);
-        insertReanimatedValue('height', styles, heightAnimatedValue.value, false, removeIfNeeded);
-        insertReanimatedValue('backgroundColor', styles, backgroundColorAnimatedValue.value, false, removeIfNeeded);
+        insertSharedValueToStyles('opacity', styles, opacitySharedValue.value, removeIfNeeded);
+        insertSharedValueToStyles('width', styles, widthSharedValue.value, removeIfNeeded);
+        insertSharedValueToStyles('height', styles, heightSharedValue.value, removeIfNeeded);
+        insertSharedValueToStyles('backgroundColor', styles, backgroundColorSharedValue.value, removeIfNeeded);
 
-        insertReanimatedValue('scale', styles, scaleAnimatedValue.value, true, removeIfNeeded);
-        insertReanimatedValue('rotate', styles, rotationAnimatedValue.value, true, removeIfNeeded);
-        insertReanimatedValue('translateY', styles, translateYAnimatedValue.value, true, removeIfNeeded);
+        insertSharedTransformValueToStyles('scale', styles, scaleSharedValue.value, removeIfNeeded);
+        insertSharedTransformValueToStyles('rotate', styles, rotationSharedValue.value, removeIfNeeded);
+        insertSharedTransformValueToStyles('translateY', styles, translateYSharedValue.value, removeIfNeeded);
 
         return styles;
     });
