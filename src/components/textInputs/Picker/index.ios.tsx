@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { PickerProps } from './types/PickerProps';
 import { PickerButton } from '../PickerButton';
 import { usePickerState } from './hooks/usePickerState';
-import { useTheme } from '../../../hooks/useTheme';
+import { useTheme } from '../../../core/context/hooks/useTheme';
 import { PickerItem } from './PickerItem';
 import { BasePicker } from './BasePicker';
 import { BlurrediOSModal } from '../../modals/BlurrediOSModal';

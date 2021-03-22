@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { SliderProps } from './types';
-import { useTheme } from '../../hooks';
+import { useTheme } from '../../core';
 
 interface SliderInputProps {
     backgroundColor: string;
@@ -25,7 +25,7 @@ const SliderInput = styled(motion.input as any)`
         border-radius: 10px;
         background: ${(props: SliderInputProps) => props.thumbColor};
         cursor: pointer;
-        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     }
 `;
 

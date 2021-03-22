@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from '../text';
 import { LayerProps } from '../containers/Layer/types';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { Layer } from '../containers/Layer/index.native';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 

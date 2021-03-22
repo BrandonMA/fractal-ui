@@ -1,5 +1,5 @@
 import React, { Fragment, memo, useCallback } from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { ButtonVariant } from '../buttons';
 import { Box } from '../containers';
 import { LayerProps } from '../containers/Layer/types';

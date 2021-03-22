@@ -34,7 +34,6 @@ import {
     blue
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
-import { ColorBug } from './examples/RedExample';
 import { BuggyComponent } from './examples/BuggyComponent';
 import { ThemeSwapper } from './examples/ThemeSwapper';
 
@@ -88,11 +87,10 @@ function Content(): JSX.Element {
 
     // const [bottomCellVisible, setBottomCellVisible] = useState(false);
     // const toggleBottomCell = useCallback(() => setBottomCellVisible((currentValue) => !currentValue), []);
-    const ValueText = `Value: ${sliderValue}`;
+    const valueText = `Value: ${sliderValue}`;
 
     return (
         <PaddingLayer>
-            <ColorBug />
             <Text marginBottom={spacings.m} variant={'title'}>
                 Swap Theme
             </Text>
@@ -111,7 +109,7 @@ function Content(): JSX.Element {
                     }}
                 />
                 <Text marginTop={spacings.m} variant='normal'>
-                    {ValueText}
+                    {valueText}
                 </Text>
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>

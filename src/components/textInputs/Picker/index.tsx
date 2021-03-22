@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { usePickerState } from './hooks/usePickerState';
 import { Platform } from 'react-native';
-import { useTheme } from '../../../hooks/useTheme';
+import { useTheme } from '../../../core/context/hooks/useTheme';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
 import { BasePicker } from './BasePicker';
 import { Layer } from '../../containers/Layer';

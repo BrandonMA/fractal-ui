@@ -7,7 +7,7 @@ import { extractDimensionProps } from '../../../sharedProps/DimensionProps';
 import { extractDisplayProps } from '../../../sharedProps/DisplayProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
 import { TouchableOpacity as RNTouchableOpacity } from 'react-native';
-import { useAnimationStyles } from '../../../hooks/useAnimationStyles';
+import { useAnimationStyles } from '../../../animations/native/hooks/useAnimationStyles';
 import { TouchableOpacityProps } from './types';
 
 const StyledTouchableOpacity = styled(Reanimated.createAnimatedComponent(RNTouchableOpacity as any))`

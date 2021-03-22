@@ -4,7 +4,7 @@ import { Box } from '../containers';
 import { getValueForLargeSize, useWidthSizeGroup } from '@bma98/size-class';
 import { DimmedModal } from './DimmedModal';
 import { LayerProps } from '../containers/Layer/types';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
 
 function MiddleCellDesktop(props: LayerProps): JSX.Element {
     const { borderRadius, colors } = useTheme();

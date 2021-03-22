@@ -8,7 +8,7 @@ import { extractDimensionProps } from '../../../sharedProps/DimensionProps';
 import { extractDisplayProps } from '../../../sharedProps/DisplayProps';
 import { extractTextProps } from '../../../sharedProps/TextProps';
 import { TextInput } from 'react-native';
-import { useAnimationStyles } from '../../../hooks/useAnimationStyles';
+import { useAnimationStyles } from '../../../animations/native/hooks/useAnimationStyles';
 
 const StyledTextInput = styled(Reanimated.createAnimatedComponent(TextInput))`
     ${extractBackgroundProps};

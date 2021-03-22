@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from '../text';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { TouchableOpacity } from '../buttons/TouchableOpacity';
 import { TouchableOpacityProps } from '../buttons/TouchableOpacity/types';
 import { Layer } from '../containers';

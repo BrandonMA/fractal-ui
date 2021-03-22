@@ -7,9 +7,9 @@ import { extractDimensionProps } from '../../../sharedProps/DimensionProps';
 import { extractDisplayProps } from '../../../sharedProps/DisplayProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
 import { Pressable as RNPressable } from 'react-native';
-import { useAnimationStyles } from '../../../hooks/useAnimationStyles';
+import { useAnimationStyles } from '../../../animations/native/hooks/useAnimationStyles';
 import { PressableProps } from './types';
-import { usePressableAnimationStyles } from '../../../hooks/usePressableAnimationStyles';
+import { usePressableAnimationStyles } from '../../../animations/native/hooks/usePressableAnimationStyles';
 
 const StyledPressable = styled(Reanimated.createAnimatedComponent(RNPressable as any))`
     ${extractBackgroundProps};

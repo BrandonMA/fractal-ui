@@ -8,7 +8,7 @@ import { localeMonthNames } from './util/localeMonthNames';
 import { getMonthName } from './util/getMonthName';
 import { Layer } from '../../containers';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
-import { useTheme } from '../../../hooks/useTheme';
+import { useTheme } from '../../../core/context/hooks/useTheme';
 
 export function DatePicker({ minDate, maxDate, initialDate, onChange, ...others }: DatePickerProps): JSX.Element {
     const { spacings } = useTheme();

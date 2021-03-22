@@ -7,10 +7,9 @@ import { extractBorderProps } from '../../../sharedProps/BorderProps';
 import { extractDimensionProps } from '../../../sharedProps/DimensionProps';
 import { extractDisplayProps } from '../../../sharedProps/DisplayProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
-import { View } from 'react-native';
-import { useAnimationStyles } from '../../../hooks/useAnimationStyles';
+import { useAnimationStyles } from '../../../animations/native/hooks/useAnimationStyles';
 
-const StyledLayer = styled(Reanimated.createAnimatedComponent(View))`
+const StyledLayer = styled(Reanimated.View)`
     ${extractBackgroundProps};
     ${extractDimensionProps};
     ${extractDisplayProps};

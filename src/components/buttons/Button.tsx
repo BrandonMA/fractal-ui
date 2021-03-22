@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Text } from '../text';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { BaseButton } from './BaseButton';
 import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { ButtonVariant } from './ButtonVariant';

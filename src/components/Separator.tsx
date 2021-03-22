@@ -1,7 +1,7 @@
 import React from 'react';
 import { LayerProps } from './containers/Layer/types';
 import { Layer } from './containers';
-import { useTheme } from '../hooks/useTheme';
+import { useTheme } from '../core/context/hooks/useTheme';
 
 export interface SeparatorProps extends Omit<LayerProps, 'children'> {
     isAtBackgroundLevel?: boolean;

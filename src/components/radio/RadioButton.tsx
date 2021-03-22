@@ -1,7 +1,7 @@
 import React from 'react';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { Text } from '../text';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { Radio } from './Radio';
 import { TouchableOpacity } from '../buttons/TouchableOpacity';
 import { RadioButtonProps } from './types';

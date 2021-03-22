@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Platform } from 'react-native';
-import { useTheme } from '../hooks/useTheme';
+import { useTheme } from '../core/context/hooks/useTheme';
 
 export function WebBackground(): null {
     const { colors } = useTheme();

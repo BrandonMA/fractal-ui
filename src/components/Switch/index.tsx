@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { Pressable } from '../buttons';
 import { Layer } from '../containers';
 import { SwitchProps } from './types';

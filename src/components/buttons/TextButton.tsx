@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from '../text';
 import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { TextProps } from '../text/BaseText/types';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { ButtonVariant } from './ButtonVariant';
 import { TouchableOpacity } from './TouchableOpacity';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckIcon } from '../assets/CheckIcon';
-import { Square } from '../assets/Square/index.native';
-import { useTheme } from '../hooks/useTheme';
+import { SquareIcon } from '../assets/SquareIcon/index.native';
+import { useTheme } from '../core/context/hooks/useTheme';
 import { TouchableOpacity } from './buttons/TouchableOpacity';
 import { HorizontalLayer } from './containers/HorizontalLayer';
 import { LayerProps } from './containers/Layer/types';
@@ -33,7 +33,7 @@ export function CheckBox({ value, onValueChange, label, ...others }: CheckBoxPro
                 {value ? (
                     <CheckIcon width={16} height={16} fill={colors.white} />
                 ) : (
-                    <Square width={16} height={16} fill={colors.placeholder} />
+                    <SquareIcon width={16} height={16} fill={colors.placeholder} />
                 )}
             </TouchableOpacity>
             <Text marginLeft={spacings.xs} variant='normal'>

@@ -4,7 +4,7 @@ import { GoogleButton } from './GoogleButton';
 import { FacebookButton } from './FacebookButton';
 import { LayerProps } from '../containers/Layer/types';
 import { Layer } from '../containers';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 
 export interface SocialMediaButtonsEventsProps {

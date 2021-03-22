@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, StatusBar as RNStatusBar } from 'react-native';
-import { useThemeIdentifier } from '../hooks/useThemeIdentifier';
+import { useThemeIdentifier } from '../core/context/hooks/useThemeIdentifier';
 
 export function StatusBar(): JSX.Element {
     const currentThemeIdentifier = useThemeIdentifier();

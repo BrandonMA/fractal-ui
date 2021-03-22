@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { LayerProps } from './Layer/types';
 import { PaddingLayer } from './PaddingLayer';
 

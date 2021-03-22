@@ -1,6 +1,6 @@
 import React from 'react';
-import { useTheme } from '../../hooks/useTheme';
-import { sizes } from '../../themes/lightFractalTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
+import { sizes } from '../../themes/templates/lightFractalTheme';
 import { BaseTextField } from './BaseTextField';
 import { TextFieldProps } from './BaseTextField/types';
 

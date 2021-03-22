@@ -2,7 +2,7 @@ import React from 'react';
 import { Platform } from 'react-native';
 import NativeSlider from '@react-native-community/slider';
 import { SliderProps } from './types';
-import { useTheme } from '../../hooks';
+import { useTheme } from '../../core';
 
 export function Slider(props: SliderProps): JSX.Element {
     const { colors } = useTheme();

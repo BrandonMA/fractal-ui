@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { PickerButton } from '../PickerButton';
 import { DatePickerProps } from './types/DatePickerProps';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { useTheme } from '../../../hooks/useTheme';
+import { useTheme } from '../../../core/context/hooks/useTheme';
 import { BlurrediOSModal } from '../../modals/BlurrediOSModal';
 
 export function DatePicker({

@@ -7,7 +7,7 @@ import { extractDimensionProps } from '../../../sharedProps/DimensionProps';
 import { extractDisplayProps } from '../../../sharedProps/DisplayProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
 import { SafeAreaView } from 'react-native';
-import { useAnimationStyles } from '../../../hooks/useAnimationStyles';
+import { useAnimationStyles } from '../../../animations/native/hooks/useAnimationStyles';
 import { LayerProps } from '../Layer/types';
 
 const StyledLayer = styled(Reanimated.createAnimatedComponent(SafeAreaView))`

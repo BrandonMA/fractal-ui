@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { LayerProps } from '../containers/Layer/types';
 import { ColorToggle } from './ColorToggle';

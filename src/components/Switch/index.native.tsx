@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch as NativeSwitch, Platform } from 'react-native';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { SwitchProps } from './types';
 
 export function Switch({ value, onValueChange }: SwitchProps): JSX.Element {
