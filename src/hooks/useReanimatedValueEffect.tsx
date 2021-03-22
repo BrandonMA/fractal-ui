@@ -3,15 +3,19 @@ import { useEffect } from 'react';
 
 export function useReanimatedValueEffect(
     initialValue?: number | string,
-    finalValue?: number | string
+    finalValue?: number | string,
+    exitValue?: number | string,
+    isPresent = true
 ): Reanimated.SharedValue<number | string | undefined> {
     const animatedValue = useSharedValue(initialValue);
 
     useEffect(() => {
-        if (finalValue != null) {
+        if (finalValue != null && isPresent) {
             animatedValue.value = finalValue;
+        } else if (exitValue != null && !isPresent) {
+            animatedValue.value = exitValue;
         }
-    }, [finalValue, animatedValue]);
+    }, [finalValue, animatedValue, isPresent, exitValue]);
 
     return animatedValue;
 }

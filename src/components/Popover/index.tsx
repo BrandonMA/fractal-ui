@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { Layer } from '../containers';
 import { styleVariants } from './styleVariants';
 import { PopoverProps } from './types';
-
-const PopoverWrapper = styled(Layer)`
-    position: relative;
-    display: inline-block;
-`;
 
 const styles = {
     width: '100%',
@@ -28,7 +22,7 @@ export function Popover(props: PopoverProps): JSX.Element {
     }, [active]);
 
     return (
-        <PopoverWrapper>
+        <Layer position='relative' display='inline-block'>
             <Layer {...others} />
             <Layer
                 initial={'initial'}
@@ -40,6 +34,6 @@ export function Popover(props: PopoverProps): JSX.Element {
             >
                 {popoverChildren(mainViewLayout)}
             </Layer>
-        </PopoverWrapper>
+        </Layer>
     );
 }

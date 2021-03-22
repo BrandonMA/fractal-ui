@@ -1,6 +1,6 @@
 export interface DisplayProps {
     flex?: 'none' | 'auto' | number;
-    display?: 'flow' | 'table' | 'flex' | 'grid' | 'ruby' | 'subgrid' | 'block' | 'inline' | 'none';
+    display?: 'flow' | 'table' | 'flex' | 'grid' | 'ruby' | 'subgrid' | 'block' | 'inline' | 'none' | 'inline-block';
     flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
     justifyContent?: 'center' | 'flex-start' | 'flex-end' | 'space-between' | 'space-around' | 'space-evenly';
     alignItems?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';

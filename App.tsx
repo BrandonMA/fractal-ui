@@ -31,7 +31,6 @@ import {
     TextButton,
     Slider,
     useTheme,
-    useSetThemeIdentifier,
     blue
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
@@ -65,7 +64,6 @@ function PopoverContainer(): JSX.Element {
 
 function Content(): JSX.Element {
     const { spacings, colors } = useTheme();
-    const setThemeIdentifier = useSetThemeIdentifier();
 
     const [layerVariant, setLayerVariant] = useState('layerVisible');
     const [popoverVisible, setPopoverVisible] = useState(false);
