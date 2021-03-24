@@ -87,6 +87,7 @@ export interface FractalThemeSizes {
 
 export interface FractalThemeShadows {
     mainShadow: string;
+    thumbShadow: string;
 }
 
 export interface FractalThemeTextVariants {

@@ -5,5 +5,5 @@ export interface SliderProps {
     onSlidingStart?: (value: number) => void;
     onValueChange?: (value: number) => void;
     step?: number;
-    value?: number;
+    initialValue?: number;
 }
