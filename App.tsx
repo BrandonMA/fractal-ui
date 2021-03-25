@@ -104,6 +104,7 @@ function Content(): JSX.Element {
                 <Slider
                     minimumValue={0}
                     maximumValue={100}
+                    initialValue={50}
                     onSlidingComplete={(value: number) => {
                         setSliderValue(value);
                     }}
@@ -125,8 +126,8 @@ function Content(): JSX.Element {
             <Box marginBottom={spacings.m}>
                 <RadioGroup
                     radioButtons={[
-                        { id: '1', label: 'Option One' },
-                        { id: '2', label: 'Option Two' }
+                        { value: '1', label: 'Option One' },
+                        { value: '2', label: 'Option Two' }
                     ]}
                     onChange={(item: RadioItem) => console.log(item)}
                 />

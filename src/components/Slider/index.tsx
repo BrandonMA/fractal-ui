@@ -1,8 +1,17 @@
-import React, { useCallback, useState, useLayoutEffect, useEffect } from 'react';
+import React, { useCallback, useState, useLayoutEffect, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
-import { SliderProps } from './types';
+import { EventSource, SliderProps } from './types';
 import { useEventCallback } from './utils/useEventCallback';
-import { getWidth, getPercentage, getLeft, getValue, roundValueToStep, getThumbProps } from './utils/slider';
+import {
+    getWidth,
+    getPercentage,
+    getLeft,
+    roundValueToStep,
+    getThumbProps,
+    clampValue,
+    percentToValue,
+    valueToPercent
+} from './utils/slider';
 import { useTheme } from '../../core';
 import { extractBackgroundProps } from '../../sharedProps/BackgroundProps';
 import { extractShadowProps } from '../../sharedProps/ShadowProps';
@@ -21,8 +30,12 @@ const StyledThumb = styled.div`
     position: relative;
     top: -8px;
     background: white;
-    ${extractShadowProps}
     cursor: pointer;
+    ${extractShadowProps}
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.6);
+    }
 `;
 
 const StyledRangeProgress = styled.div`
@@ -39,10 +52,12 @@ export function Slider({
     onValueChange,
     onSlidingStart,
     onSlidingComplete,
-    step = 1
+    step = 1,
+    name
 }: SliderProps): JSX.Element {
     const [value, setValue] = useState(initialValue);
     const [isDragging, setDragging] = useState(true);
+    const [eventSource, setEventSource] = useState<EventSource>();
     const { colors, shadows } = useTheme();
 
     const sliderRef = React.useRef<any>(null);
@@ -57,43 +72,112 @@ export function Slider({
         rangeProgressRef.current.style.width = getWidth(percentage);
     }, []);
 
-    const getPercentageFromPointer = useCallback((event): number => {
-        const { clientX } = event.touches?.[0] ?? event;
-        let newX = clientX - diffRef.current - sliderRef.current.getBoundingClientRect().left;
-        const end = sliderRef.current.offsetWidth - thumbRef.current.offsetWidth;
+    const getValueFromPointer = useCallback(
+        (event): number => {
+            const { clientX } = event.touches?.[0] ?? event;
+            let newX = clientX - diffRef.current - sliderRef.current.getBoundingClientRect().left;
+            const end = sliderRef.current.offsetWidth - thumbRef.current.offsetWidth;
 
-        const start = 0;
+            const start = 0;
 
-        if (newX < start) {
-            newX = 0;
-        }
+            if (newX < start) {
+                newX = 0;
+            }
 
-        if (newX > end) {
-            newX = end;
-        }
-        const newPercentage = getPercentage(newX, start, end);
-        return newPercentage;
-    }, []);
+            if (newX > end) {
+                newX = end;
+            }
+            const percent = getPercentage(newX, start, end);
+            let nextValue = percentToValue(percent, minimumValue, maximumValue);
+            nextValue = parseFloat(roundValueToStep(nextValue, minimumValue, step) as string);
+            nextValue = clampValue(nextValue, minimumValue, maximumValue);
+            return nextValue;
+        },
+        [maximumValue, minimumValue, step]
+    );
+
+    const tenSteps = (maximumValue - minimumValue) / 10;
+    const oneStep = step;
+
+    const constrain = useCallback(
+        (value: number) => {
+            value = parseFloat(roundValueToStep(value, minimumValue, oneStep) as string);
+            value = clampValue(value, minimumValue, maximumValue);
+            onValueChange?.(value);
+            setValue(value);
+        },
+        [minimumValue, oneStep, maximumValue, onValueChange]
+    );
+
+    const actions = useMemo(
+        () => ({
+            stepUp: (step = oneStep) => {
+                const next = value + step;
+                constrain(next);
+            },
+            stepDown: (step = oneStep) => {
+                const next = value - step;
+                constrain(next);
+            },
+            reset: () => constrain(initialValue)
+        }),
+        [constrain, value, oneStep, initialValue]
+    );
 
     const handleSlidingStart = useEventCallback(() => {
         onSlidingStart?.(value);
     }, [value]);
 
+    const onKeyDown = useCallback(
+        (event: React.KeyboardEvent) => {
+            const { key } = event;
+            const keyMap = {
+                ArrowRight: () => actions.stepUp(),
+                ArrowUp: () => actions.stepUp(),
+                ArrowLeft: () => actions.stepDown(),
+                ArrowDown: () => actions.stepDown(),
+                PageUp: () => actions.stepUp(tenSteps),
+                PageDown: () => actions.stepDown(tenSteps),
+                Home: () => constrain(minimumValue),
+                End: () => constrain(maximumValue)
+            };
+
+            const action = keyMap[key];
+
+            if (action) {
+                event.preventDefault();
+                event.stopPropagation();
+                setEventSource('keyboard');
+                handleSlidingStart();
+                action(event);
+            }
+        },
+        [actions, constrain, handleSlidingStart, maximumValue, minimumValue, tenSteps]
+    );
+
+    const handleMoveStart = useCallback(
+        (event) => {
+            const { clientX } = event.touches?.[0] ?? event;
+            diffRef.current = clientX - thumbRef.current.getBoundingClientRect().left;
+
+            setDragging(true);
+            handleSlidingStart();
+        },
+        [handleSlidingStart]
+    );
+
     const handleMove = useCallback(
         (event) => {
-            const newPercentage = getPercentageFromPointer(event);
-            const newValue = parseFloat(
-                roundValueToStep(getValue(newPercentage, minimumValue, maximumValue), minimumValue, step) as string
-            );
-            handleUpdate(newPercentage);
+            const newValue = getValueFromPointer(event);
             onValueChange?.(newValue);
             setValue(newValue);
         },
-        [getPercentageFromPointer, handleUpdate, maximumValue, minimumValue, onValueChange, step]
+        [getValueFromPointer, onValueChange]
     );
 
     const handleMouseMove = useCallback(
         (event) => {
+            setEventSource('mouse');
             handleMove(event);
         },
         [handleMove]
@@ -107,19 +191,16 @@ export function Slider({
 
     const handleMouseDown = useCallback(
         (event: MouseEvent) => {
-            diffRef.current = event.clientX - thumbRef.current.getBoundingClientRect().left;
-
-            setDragging(true);
-            handleSlidingStart();
-
+            handleMoveStart(event);
             document.addEventListener('mousemove', handleMouseMove);
             document.addEventListener('mouseup', handleCleanMouseUp);
         },
-        [handleSlidingStart, handleMouseMove, handleCleanMouseUp]
+        [handleMoveStart, handleMouseMove, handleCleanMouseUp]
     );
 
     const handleTouchMove = useCallback(
         (event: TouchEvent) => {
+            setEventSource('touch');
             handleMove(event);
         },
         [handleMove]
@@ -128,10 +209,7 @@ export function Slider({
     const handleTouchStart = useCallback(
         (event: TouchEvent) => {
             event.preventDefault();
-            const { clientX } = event.touches?.[0];
-            diffRef.current = clientX - thumbRef.current?.getBoundingClientRect().left;
-            setDragging(true);
-            handleSlidingStart();
+            handleMoveStart(event);
 
             const handleCleanTouchStart = () => {
                 sliderRef.current.removeEventListener('touchmove', handleTouchMove);
@@ -142,7 +220,7 @@ export function Slider({
             sliderRef.current.addEventListener('touchend', handleCleanTouchStart);
             sliderRef.current.addEventListener('touchcancel', handleCleanTouchStart);
         },
-        [handleSlidingStart, handleTouchMove]
+        [handleMoveStart, handleTouchMove]
     );
 
     useLayoutEffect(() => {
@@ -152,13 +230,21 @@ export function Slider({
         return () => {
             env.removeEventListener('touchstart', handleTouchStart, { passive: false });
         };
-    }, [handleTouchStart, handleUpdate, initialPercentage]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
-        if (!isDragging) {
+        const trackPercent = valueToPercent(value, minimumValue, maximumValue);
+        handleUpdate(trackPercent);
+        const shouldUpdate = !isDragging && eventSource !== 'keyboard';
+
+        if (shouldUpdate) {
             onSlidingComplete?.(value);
         }
-    }, [isDragging, onSlidingComplete, value]);
+        if (eventSource === 'keyboard') {
+            onSlidingComplete?.(value);
+        }
+    }, [eventSource, handleUpdate, isDragging, maximumValue, minimumValue, onSlidingComplete, value]);
 
     return (
         <StyledRange ref={sliderRef} backgroundColor={colors.placeholder}>
@@ -166,10 +252,11 @@ export function Slider({
             <StyledThumb
                 ref={thumbRef}
                 onMouseDown={(e) => handleMouseDown(e.nativeEvent)}
+                onKeyDown={onKeyDown}
                 boxShadow={shadows.thumbShadow}
                 {...getThumbProps(value, isDragging, minimumValue, maximumValue)}
             />
-            <input type='hidden' value={value} />
+            <input name={name} type='hidden' value={value} />
         </StyledRange>
     );
 }

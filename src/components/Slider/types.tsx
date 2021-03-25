@@ -1,3 +1,5 @@
+export type EventSource = 'mouse' | 'touch' | 'keyboard';
+
 export interface SliderProps {
     maximumValue?: number;
     minimumValue?: number;
@@ -6,4 +8,5 @@ export interface SliderProps {
     onValueChange?: (value: number) => void;
     step?: number;
     initialValue?: number;
+    name?: string;
 }

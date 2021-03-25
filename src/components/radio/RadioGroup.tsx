@@ -6,10 +6,10 @@ import { RadioGroupProps, RadioItem } from './types';
 
 export function RadioGroup({ radioButtons, onChange, ...others }: RadioGroupProps): JSX.Element {
     const { spacings } = useTheme();
-    const [activeID, setActiveID] = useState('');
+    const [activeValue, setActiveValue] = useState('');
 
     const handleChange = (id: string, index: number): void => {
-        setActiveID(id);
+        setActiveValue(id);
         onChange(radioButtons[index]);
     };
 
@@ -21,10 +21,11 @@ export function RadioGroup({ radioButtons, onChange, ...others }: RadioGroupProp
             <RadioButton
                 marginBottom={flexDirection != 'row' && isLastItem ? 0 : spacings.s}
                 marginRight={flexDirection == 'row' && isLastItem ? 0 : spacings.s}
-                key={item.id}
-                active={item.id == activeID}
+                key={item.value}
+                active={item.value == activeValue}
                 label={item.label}
-                onPress={() => handleChange(item.id, index)}
+                value={item.value}
+                onPress={() => handleChange(item.value, index)}
             />
         );
     };
