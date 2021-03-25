@@ -18,6 +18,11 @@ export function Switch({ value, onValueChange }: SwitchProps): JSX.Element {
         }
     }, [onValueChange, value]);
 
+    const backgroundVariants = {
+        active: { backgroundColor: colors.mainInteractiveColor },
+        inactive: { backgroundColor: colors.placeholder }
+    };
+
     return (
         <Pressable
             flexDirection={'row'}
@@ -28,7 +33,9 @@ export function Switch({ value, onValueChange }: SwitchProps): JSX.Element {
             paddingRight={2}
             onPress={onPress}
             alignItems='center'
-            backgroundColor={colors.mainInteractiveColor}
+            initial={'active'}
+            animate={value ? 'active' : 'inactive'}
+            variants={backgroundVariants}
         >
             <Layer
                 initial={'start'}
