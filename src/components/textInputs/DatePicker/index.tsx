@@ -5,7 +5,6 @@ import { numberToArray } from '../util/numberToArray';
 import { getDaysInMonth } from './util/getDaysInMonth';
 import { getYearsInRange } from './util/getYearsInRange';
 import { localeMonthNames } from './util/localeMonthNames';
-import { getMonthName } from './util/getMonthName';
 import { Layer } from '../../containers';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
 import { useTheme } from '../../../core/context/hooks/useTheme';
@@ -74,7 +73,7 @@ export function DatePicker({ minDate, maxDate, initialDate, onChange, ...others 
             <HorizontalLayer marginBottom={spacings.m}>
                 <Picker initialValue={date.getFullYear().toString()} items={years} flex={1} onChange={onYearChange} />
                 <Layer marginRight={spacings.m} />
-                <Picker initialValue={getMonthName(date)} items={localeMonthNames} flex={1} onChange={onMonthChange} />
+                <Picker initialValue={date.getMonth().toString()} items={localeMonthNames} flex={1} onChange={onMonthChange} />
             </HorizontalLayer>
             <Picker initialValue={date.getDate().toString()} items={days} onChange={onDayChange} />
         </Layer>
