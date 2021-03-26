@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useLayoutEffect, useEffect, useMemo } from 'react';
+import React, { useCallback, useState, useLayoutEffect, useEffect, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { EventSource, SliderProps } from './types';
 import { useEventCallback } from './utils/useEventCallback';
@@ -60,14 +60,14 @@ export function Slider({
     const [eventSource, setEventSource] = useState<EventSource>();
     const { colors, shadows } = useTheme();
 
-    const sliderRef = React.useRef<any>(null);
-    const rangeProgressRef = React.useRef<any>(null);
-    const thumbRef = React.useRef<any>(null);
-    const diffRef = React.useRef<any>(null);
+    const sliderRef = useRef<any>(null);
+    const rangeProgressRef = useRef<any>(null);
+    const thumbRef = useRef<any>(null);
+    const diffRef = useRef<any>(null);
 
     const initialPercentage = getPercentage(value, minimumValue, maximumValue);
 
-    const handleUpdate = React.useCallback((percentage) => {
+    const handleUpdate = useCallback((percentage) => {
         thumbRef.current.style.left = getLeft(percentage);
         rangeProgressRef.current.style.width = getWidth(percentage);
     }, []);
@@ -206,21 +206,21 @@ export function Slider({
         [handleMove]
     );
 
+    const handleCleanTouchStart = useCallback(() => {
+        sliderRef.current.removeEventListener('touchmove', handleTouchMove);
+        setDragging(false);
+    }, [handleTouchMove]);
+
     const handleTouchStart = useCallback(
         (event: TouchEvent) => {
             event.preventDefault();
             handleMoveStart(event);
 
-            const handleCleanTouchStart = () => {
-                sliderRef.current.removeEventListener('touchmove', handleTouchMove);
-                setDragging(false);
-            };
-
             sliderRef.current.addEventListener('touchmove', handleTouchMove);
             sliderRef.current.addEventListener('touchend', handleCleanTouchStart);
             sliderRef.current.addEventListener('touchcancel', handleCleanTouchStart);
         },
-        [handleMoveStart, handleTouchMove]
+        [handleCleanTouchStart, handleMoveStart, handleTouchMove]
     );
 
     useLayoutEffect(() => {
@@ -229,6 +229,8 @@ export function Slider({
         env.addEventListener('touchstart', handleTouchStart, { passive: false });
         return () => {
             env.removeEventListener('touchstart', handleTouchStart, { passive: false });
+            env.removeEventListener('touchend', handleCleanTouchStart);
+            env.removeEventListener('touchcancel', handleCleanTouchStart);
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
