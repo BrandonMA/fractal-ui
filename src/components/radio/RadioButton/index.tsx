@@ -12,6 +12,7 @@ const Wrapper = styled(motion.label)`
     -webkit-box-align: center;
     align-items: center;
     vertical-align: top;
+    cursor: pointer;
     ${extractDimensionProps};
 `;
 

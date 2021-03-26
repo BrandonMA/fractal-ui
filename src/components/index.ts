@@ -1,5 +1,5 @@
 export * from './containers';
-export * from './CheckBox';
+export * from './checkbox';
 export * from './grids';
 export * from './messages';
 export * from './buttons';
