@@ -31,7 +31,9 @@ import {
     TextButton,
     Slider,
     useTheme,
-    blue
+    blue,
+    ButtonGroup,
+    Avatar
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { BuggyComponent } from './examples/BuggyComponent';
@@ -69,6 +71,7 @@ function Content(): JSX.Element {
     const [isEnabled, setIsEnabled] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
     const [sliderValue, setSliderValue] = useState(0);
+    const [selectedIndex, setSelectedIndex] = useState(0);
 
     const toggleVariant = useCallback(
         () => setLayerVariant((currentValue) => (currentValue === 'layerVisible' ? 'layerInitial' : 'layerVisible')),
@@ -97,6 +100,22 @@ function Content(): JSX.Element {
             <Box marginBottom={spacings.m}>
                 <ThemeSwapper />
             </Box>
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Avatar Example
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <Avatar source={'https://picsum.photos/id/370/200'} />
+            </Box>
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Button Group Example
+            </Text>
+            <ButtonGroup
+                variant='main'
+                buttons={['Pendientes', 'Cumplidos']}
+                selectedIndex={selectedIndex}
+                onPress={setSelectedIndex}
+                marginBottom={spacings.m}
+            />
             <Text marginBottom={spacings.m} variant={'title'}>
                 Slider Example:
             </Text>

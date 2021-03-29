@@ -1,3 +1,4 @@
+export * from './avatar';
 export * from './containers';
 export * from './checkbox';
 export * from './grids';
