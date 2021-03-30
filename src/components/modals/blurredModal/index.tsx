@@ -1,51 +1,46 @@
 import React from 'react';
-import { TextButton } from '../../buttons/TextButton';
 import { useTheme } from '../../../core/context/hooks/useTheme';
-import { Layer } from '../../containers/Layer/index.native';
 import { Pressable } from '../../buttons/Pressable';
-import { SafeAreaLayer } from '../../containers/SafeAreaLayer';
 import { Modal } from '../Modal';
 import styled from 'styled-components';
 import { BlurredModalProps } from './types';
+import { Box } from '../../containers/Box';
 
-const StyledBlurView = styled.div`
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    background-color: rgba(0, 0, 0, 0.1);
-    height: 100%;
+const BlurPressable = styled(Pressable)`
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    background-color: rgba(0, 0, 0, 0.4);
 `;
 
-export function BlurredModal({ children, onDismiss, dismissText, visible, ...others }: BlurredModalProps): JSX.Element {
-    const { colors, spacings } = useTheme();
+export function BlurredModal({ onDismiss, visible, ...others }: BlurredModalProps): JSX.Element {
+    const { colors, borderRadius } = useTheme();
 
     return (
-        <Modal visible={visible} onDismiss={onDismiss} justifyContent={'flex-end'} {...others}>
-            <Pressable zIndex={999} onPress={onDismiss} position='absolute' width='100%' height='100%' />
-            <Layer
+        <Modal
+            visible={visible}
+            onDismiss={onDismiss}
+            justifyContent={'center'}
+            alignItems={'center'}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+        >
+            <BlurPressable zIndex={999} onPress={onDismiss} position='absolute' width='100%' height='100%' />
+            <Box
                 zIndex={1000}
-                height={'35%'}
+                pointerEvents={'auto'}
+                overflow={'hidden'}
+                borderRadius={borderRadius.m}
+                maxWidth={550}
+                maxHeight={550}
+                width={'60%'}
+                height={'60%'}
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0 }}
                 backgroundColor={colors.background}
-                initial={{ translateY: 400 }}
-                animate={{ translateY: 0 }}
-                exit={{ translateY: 400 }}
-            >
-                <StyledBlurView>
-                    <Layer
-                        justifyContent='center'
-                        alignItems='flex-end'
-                        borderTopWidth={0.5}
-                        borderColor={colors.placeholder}
-                        backgroundColor={colors.background}
-                        height={48}
-                        paddingRight={spacings.m}
-                    >
-                        <TextButton variant={'main'} textProps={{ variant: 'label', fontWeight: 600 }} onPress={onDismiss}>
-                            {dismissText}
-                        </TextButton>
-                    </Layer>
-                    <SafeAreaLayer justifyContent='center'>{children}</SafeAreaLayer>
-                </StyledBlurView>
-            </Layer>
+                {...others}
+            />
         </Modal>
     );
 }
