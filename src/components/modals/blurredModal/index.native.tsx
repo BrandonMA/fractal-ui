@@ -1,27 +1,20 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { BlurView } from 'expo-blur';
-import { TextButton } from '../buttons/TextButton';
-import { useTheme } from '../../core/context/hooks/useTheme';
-import { Layer } from '../containers/Layer/index.native';
-import { Pressable } from '../buttons/Pressable';
-import { SafeAreaLayer } from '../containers/SafeAreaLayer';
-import { useThemeIdentifier } from '../../core/context/hooks/useThemeIdentifier';
-import { Modal } from './Modal';
-import { ModalProps } from './Modal/types';
+import { TextButton } from '../../buttons/TextButton';
+import { useTheme } from '../../../core/context/hooks/useTheme';
+import { Layer } from '../../containers/Layer/index.native';
+import { Pressable } from '../../buttons/Pressable';
+import { SafeAreaLayer } from '../../containers/SafeAreaLayer';
+import { useThemeIdentifier } from '../../../core/context/hooks/useThemeIdentifier';
+import { Modal } from '../Modal';
 import styled from 'styled-components/native';
+import { BlurredModalProps } from './types';
 
 const StyledBlurView = styled(BlurView)`
     height: 100%;
 `;
 
-export interface BlurrediOSModalProps extends ModalProps {
-    onDismiss?: () => void;
-    children?: ReactNode;
-    disableStateResetOnDismiss?: boolean;
-    dismissText: string;
-}
-
-export function BlurrediOSModal({ children, onDismiss, dismissText, visible, ...others }: BlurrediOSModalProps): JSX.Element {
+export function BlurredModal({ children, onDismiss, dismissText, visible, ...others }: BlurredModalProps): JSX.Element {
     const { colors, spacings } = useTheme();
     const themeIdentifier = useThemeIdentifier();
 

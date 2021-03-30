@@ -5,7 +5,7 @@ import { usePickerState } from './hooks/usePickerState';
 import { useTheme } from '../../../core/context/hooks/useTheme';
 import { PickerItem } from './PickerItem';
 import { BasePicker } from './BasePicker';
-import { BlurrediOSModal } from '../../modals/BlurrediOSModal';
+import { BlurredModal } from '../../modals';
 
 export function Picker({ items, initialValue, onChange, iosDoneText = 'Done', ...others }: PickerProps): JSX.Element {
     const [currentValue, handleValueChange, index] = usePickerState(initialValue, items, onChange);
@@ -28,11 +28,11 @@ export function Picker({ items, initialValue, onChange, iosDoneText = 'Done', ..
             <PickerButton onPress={toggleModal} {...others}>
                 {items[index][1]}
             </PickerButton>
-            <BlurrediOSModal dismissText={iosDoneText} visible={modalActive} onDismiss={toggleModal}>
+            <BlurredModal dismissText={iosDoneText} visible={modalActive} onDismiss={toggleModal}>
                 <BasePicker selectedValue={currentValue} onValueChange={handleValueChange}>
                     {items.map(renderItem)}
                 </BasePicker>
-            </BlurrediOSModal>
+            </BlurredModal>
         </>
     );
 }

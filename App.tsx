@@ -33,7 +33,8 @@ import {
     useTheme,
     blue,
     ButtonGroup,
-    Avatar
+    Avatar,
+    BlurredModal
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { BuggyComponent } from './examples/BuggyComponent';
@@ -72,6 +73,9 @@ function Content(): JSX.Element {
     const [isChecked, setIsChecked] = useState(false);
     const [sliderValue, setSliderValue] = useState(0);
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const [blurredModalVisible, setBlurredModalVisible] = useState(false);
+
+    const toggleBlurredModal = useCallback(() => setBlurredModalVisible((currentValue) => !currentValue), []);
 
     const toggleVariant = useCallback(
         () => setLayerVariant((currentValue) => (currentValue === 'layerVisible' ? 'layerInitial' : 'layerVisible')),
@@ -105,6 +109,17 @@ function Content(): JSX.Element {
             </Text>
             <Box marginBottom={spacings.m}>
                 <Avatar source={'https://picsum.photos/id/370/200'} />
+            </Box>
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Blurred Modal Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <Button variant='main' text='Show Blurred Modal' onPress={toggleBlurredModal} />
+                <BlurredModal visible={blurredModalVisible} dismissText={'Done'} onDismiss={toggleBlurredModal}>
+                    <Box margin={spacings.m}>
+                        <Button variant='warning' text='Dismiss Modal' onPress={toggleBlurredModal} />
+                    </Box>
+                </BlurredModal>
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Button Group Example
