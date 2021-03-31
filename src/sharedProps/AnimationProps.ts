@@ -8,6 +8,8 @@ export interface AnimationContent {
     rotate?: number;
     backgroundColor?: string;
     translateY?: number;
+    backdropFilter?: string;
+    '-webkit-backdrop-filter'?: string;
 }
 
 export function isAnimationContent(value: unknown): value is AnimationContent {
@@ -20,19 +22,10 @@ export function isAnimationContent(value: unknown): value is AnimationContent {
             casted.scale != null ||
             casted.rotate != null ||
             casted.backgroundColor != null ||
-            casted.translateY != null)
+            casted.translateY != null ||
+            casted.backdropFilter != null)
     );
 }
-
-export const emptyAnimationContent: AnimationContent = {
-    opacity: undefined,
-    width: undefined,
-    height: undefined,
-    scale: 1,
-    rotate: undefined,
-    backgroundColor: undefined,
-    translateY: undefined
-};
 
 export type Variants = { [key: string]: AnimationContent };
 

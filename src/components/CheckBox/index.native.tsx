@@ -8,7 +8,7 @@ import { Check } from './Check';
 import { CheckBoxProps } from './types';
 
 export function CheckBox({ value, onValueChange, label, ...others }: CheckBoxProps): JSX.Element {
-    const { colors, spacings } = useTheme();
+    const { colors, spacings, borderRadius, sizes } = useTheme();
 
     const handleValueChange = (): void => {
         onValueChange(!value);
@@ -18,13 +18,14 @@ export function CheckBox({ value, onValueChange, label, ...others }: CheckBoxPro
         <TouchableOpacity onPress={handleValueChange}>
             <HorizontalLayer alignItems='center' {...others}>
                 <Layer
-                    width={20}
-                    height={20}
-                    borderRadius={4}
+                    width={sizes.checkBoxSize}
+                    height={sizes.checkBoxSize}
+                    borderRadius={borderRadius.xs}
                     borderWidth={2}
                     borderColor={value ? colors.mainInteractiveColor : colors.placeholder}
                     alignItems={'center'}
                     justifyContent={'center'}
+                    overflow={'hidden'}
                 >
                     <Check value={value} />
                 </Layer>

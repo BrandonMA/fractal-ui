@@ -1,8 +1,8 @@
 import React from 'react';
-import { CloseIcon } from '../assets/CloseIcon';
-import { useTheme } from '../core/context/hooks/useTheme';
-import { AnimationProps, FractalSharedProps } from '../sharedProps';
-import { BaseButton } from './buttons/BaseButton';
+import { CloseIcon } from '../../assets/CloseIcon';
+import { useTheme } from '../../core/context/hooks/useTheme';
+import { AnimationProps, FractalSharedProps } from '../../sharedProps';
+import { BaseButton } from './BaseButton';
 
 interface CloseButtonProps extends FractalSharedProps, AnimationProps {
     onPress?: () => void;

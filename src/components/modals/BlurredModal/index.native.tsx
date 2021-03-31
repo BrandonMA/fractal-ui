@@ -9,14 +9,16 @@ import { useThemeIdentifier } from '../../../core/context/hooks/useThemeIdentifi
 import { Modal } from '../Modal';
 import styled from 'styled-components/native';
 import { BlurredModalProps } from './types';
+import { Dimensions } from 'react-native';
 
 const StyledBlurView = styled(BlurView)`
     height: 100%;
-`;
+` as typeof BlurView;
 
 export function BlurredModal({ children, onDismiss, dismissText, visible, ...others }: BlurredModalProps): JSX.Element {
     const { colors, spacings } = useTheme();
     const themeIdentifier = useThemeIdentifier();
+    const window = Dimensions.get('window');
 
     return (
         <Modal
@@ -29,7 +31,7 @@ export function BlurredModal({ children, onDismiss, dismissText, visible, ...oth
             {...others}
         >
             <Pressable flex={1} onPress={onDismiss} />
-            <Layer height={'35%'} initial={{ translateY: 400 }} animate={{ translateY: 0 }} exit={{ translateY: 400 }}>
+            <Layer height={'35%'} initial={{ translateY: window.height }} animate={{ translateY: 0 }} exit={{ translateY: window.height }}>
                 <StyledBlurView intensity={100} tint={themeIdentifier}>
                     <Layer
                         top={0}

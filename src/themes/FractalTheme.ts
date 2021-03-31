@@ -83,6 +83,7 @@ export interface FractalThemeSizes {
     interactiveItemHeight: number;
     textFieldIconSize: number;
     textFieldHeight: number;
+    checkBoxSize: number;
 }
 
 export interface FractalThemeShadows {

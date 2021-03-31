@@ -1,6 +1,6 @@
-export * from './avatar';
+export * from './Avatar';
 export * from './containers';
-export * from './checkbox';
+export * from './CheckBox';
 export * from './grids';
 export * from './messages';
 export * from './buttons';
@@ -14,7 +14,6 @@ export * from './text';
 export * from './textInputs';
 export * from './ActivityIndicator';
 export * from './Badge';
-export * from './CloseButton';
 export * from './Separator';
 export * from './colors';
 export * from './modals';

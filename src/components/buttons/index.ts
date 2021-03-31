@@ -1,5 +1,6 @@
 export * from './Pressable';
 export * from './Button';
-export * from './buttonGroup';
-export { ButtonVariant } from './ButtonVariant';
+export * from './ButtonGroup';
+export * from './ButtonVariant';
 export * from './TextButton';
+export * from './CloseButton';

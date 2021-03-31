@@ -5,9 +5,12 @@ import { getValueForLargeSize, useWidthSizeGroup } from '@bma98/size-class';
 import { DimmedModal } from './DimmedModal';
 import { LayerProps } from '../containers/Layer/types';
 import { useTheme } from '../../core/context/hooks/useTheme';
+import { Dimensions } from 'react-native';
 
 function BottomCellDesktop(props: LayerProps): JSX.Element {
     const { borderRadius, colors } = useTheme();
+    const window = Dimensions.get('window');
+
     return (
         <Box
             pointerEvents={'auto'}
@@ -16,9 +19,9 @@ function BottomCellDesktop(props: LayerProps): JSX.Element {
             width={500}
             minHeight={300}
             maxHeight={'50%'}
-            initial={{ translateY: 550 }}
+            initial={{ translateY: window.height }}
             animate={{ translateY: 0 }}
-            exit={{ translateY: 550 }}
+            exit={{ translateY: window.height }}
             backgroundColor={colors.background}
             {...props}
         />
@@ -27,6 +30,8 @@ function BottomCellDesktop(props: LayerProps): JSX.Element {
 
 function BottomCellPhone(props: LayerProps): JSX.Element {
     const { borderRadius, spacings, colors } = useTheme();
+    const window = Dimensions.get('window');
+
     return (
         <Box
             pointerEvents={'auto'}
@@ -36,9 +41,9 @@ function BottomCellPhone(props: LayerProps): JSX.Element {
             minHeight={300}
             maxHeight={'50%'}
             margin={spacings.m}
-            initial={{ translateY: 400 }}
+            initial={{ translateY: window.height }}
             animate={{ translateY: 0 }}
-            exit={{ translateY: 400 }}
+            exit={{ translateY: window.height }}
             backgroundColor={colors.background}
             {...props}
         />

@@ -92,12 +92,13 @@ export const borderRadius: FractalThemeBorderRadius = {
 export const sizes: FractalThemeSizes = {
     interactiveItemHeight: 44,
     textFieldIconSize: 16,
-    textFieldHeight: 44
+    textFieldHeight: 44,
+    checkBoxSize: 20
 };
 
 export const shadows: FractalThemeShadows = {
     mainShadow: '0px 1px 2px rgba(0, 0, 0, 0.05)',
-    thumbShadow: '0px 1px 2px rgba(0, 0, 0, 0.8)'
+    thumbShadow: '0px 1px 2px rgba(0, 0, 0, 0.25)'
 };
 
 export const textVariants: FractalThemeTextVariants = {

@@ -19,12 +19,12 @@ const Wrapper = styled(motion.label)`
 `;
 
 const CheckBoxInput = styled(motion.input)`
-    border: 0px;
+    border: 0;
     clip: rect(0px, 0px, 0px, 0px);
     height: 1px;
     width: 1px;
     margin: -1px;
-    padding: 0px;
+    padding: 0;
     overflow: hidden;
     white-space: nowrap;
     position: absolute;
@@ -35,7 +35,7 @@ const StyledLayer = styled(Layer)`
 `;
 
 export function CheckBox({ value, onValueChange, label, ...others }: CheckBoxProps): JSX.Element {
-    const { colors, spacings } = useTheme();
+    const { colors, spacings, sizes, borderRadius } = useTheme();
 
     const handleValueChange = (): void => {
         onValueChange(!value);
@@ -45,11 +45,12 @@ export function CheckBox({ value, onValueChange, label, ...others }: CheckBoxPro
         <Wrapper {...others}>
             <CheckBoxInput type='checkbox' checked={value} onChange={handleValueChange} />
             <StyledLayer
-                width={16}
-                height={16}
+                width={sizes.checkBoxSize}
+                height={sizes.checkBoxSize}
                 borderWidth={2}
-                borderRadius={4}
+                borderRadius={borderRadius.xs}
                 borderColor={value ? colors.mainInteractiveColor : colors.placeholder}
+                overflow={'hidden'}
             >
                 <Check value={value} />
             </StyledLayer>

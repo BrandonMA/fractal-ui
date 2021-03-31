@@ -1,13 +1,14 @@
 import { PressableProps } from '../../../components/buttons/Pressable/types';
 import { ViewStyle } from 'react-native';
 import { useSharedValueCallbacks } from './useSharedValueCallbacks';
-import { useAnimatedStyle } from 'react-native-reanimated';
+import { interpolateColor, useAnimatedStyle } from 'react-native-reanimated';
 import { insertSharedValueToStyles } from '../worklets/insertSharedValueToStyles';
 import { insertSharedTransformValueToStyles } from '../worklets/insertSharedTransformValueToStyles';
+import { useColorAnimationCallbacks } from './useColorAnimationCallbacks';
 
 export function usePressableAnimationStyles({
-    opacity,
     whileTap,
+    opacity,
     width,
     height,
     backgroundColor,
@@ -19,8 +20,8 @@ export function usePressableAnimationStyles({
     const [heightAnimatedValue, animateHeight, resetHeight] = useSharedValueCallbacks(height ?? 0, whileTap?.height);
     const [scaleAnimatedValue, animateScale, resetScale] = useSharedValueCallbacks(1, whileTap?.scale);
     const [rotationAnimatedValue, animateRotation, resetRotation] = useSharedValueCallbacks('0deg', whileTap?.rotate);
-    const [backgroundColorAnimatedValue, animateBackgroundColor, resetBackgroundColor] = useSharedValueCallbacks(
-        backgroundColor ?? 'transparent',
+    const [backgroundColorAnimatedValue, backgroundColors, animateBackgroundColor, resetBackgroundColor] = useColorAnimationCallbacks(
+        backgroundColor,
         whileTap?.backgroundColor
     );
 
@@ -51,14 +52,17 @@ export function usePressableAnimationStyles({
     };
 
     const tapStyles = useAnimatedStyle(() => {
-        const styles: ViewStyle = {
+        const styles = {
             transform: []
         };
 
         insertSharedValueToStyles('opacity', styles, opacityAnimatedValue.value);
         insertSharedValueToStyles('width', styles, widthAnimatedValue.value);
         insertSharedValueToStyles('height', styles, heightAnimatedValue.value);
-        insertSharedValueToStyles('backgroundColor', styles, backgroundColorAnimatedValue.value);
+
+        if (backgroundColors.length === 2) {
+            styles['backgroundColor'] = interpolateColor(backgroundColorAnimatedValue.value, [0, 1], backgroundColors);
+        }
 
         insertSharedTransformValueToStyles('scale', styles, scaleAnimatedValue.value);
         insertSharedTransformValueToStyles('rotate', styles, rotationAnimatedValue.value);
