@@ -1,24 +1,47 @@
 import React from 'react';
-import { Text } from '../../text';
 import { useTheme } from '../../../core/context/hooks/useTheme';
-import { BaseButton } from '../BaseButton';
-import { AnimationProps, FractalSharedProps } from '../../../sharedProps';
+import { Layer } from '../../containers/Layer';
+import { ButtonVariant } from '../ButtonVariant';
+import { Pressable } from '../Pressable';
+import { Text } from '../../text';
 
-export interface ItemButtonProps extends FractalSharedProps, AnimationProps {
+interface ItemButtonProps {
+    width: string | number;
+    isSelected: boolean;
+    onPress: () => void;
+    variant?: ButtonVariant;
     text: string;
-    textColor: string;
-    pressedBackgroundColor: string;
-    onPress?: () => void;
 }
 
-export function ItemButton({ text, textColor, ...others }: ItemButtonProps): JSX.Element {
-    const { sizes } = useTheme();
+export function ItemButton({ width, isSelected, onPress, variant, text }: ItemButtonProps): JSX.Element {
+    const { borderRadius, colors, shadows, sizes } = useTheme();
+    const colorName = variant ? `${variant}InteractiveColor` : 'foreground';
+    const color = colors[colorName];
 
     return (
-        <BaseButton height={sizes.interactiveItemHeight} justifyContent='center' alignItems='center' {...others}>
-            <Text variant='normal' color={textColor}>
-                {text}
-            </Text>
-        </BaseButton>
+        <Pressable width={width} position={'relative'} height={sizes.interactiveItemHeight} padding={0} onPress={onPress}>
+            <Layer
+                position={'absolute'}
+                borderRadius={borderRadius.m}
+                boxShadow={isSelected ? shadows.mainShadow : undefined}
+                backgroundColor={color}
+                height={'100%'}
+                width={'100%'}
+                justifyContent={'center'}
+                alignItems={'center'}
+                initial={'inactive'}
+                animate={isSelected ? 'active' : 'inactive'}
+                variants={{
+                    active: {
+                        backgroundColor: color
+                    },
+                    inactive: {
+                        backgroundColor: colors.background
+                    }
+                }}
+            >
+                <Text variant='normal'>{text}</Text>
+            </Layer>
+        </Pressable>
     );
 }
