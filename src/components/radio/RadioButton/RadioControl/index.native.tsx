@@ -4,15 +4,15 @@ import { Layer } from '../../../containers/Layer';
 import { RadioControlProps } from './RadioControlProps';
 
 export function RadioControl({ active, children }: RadioControlProps): JSX.Element {
-    const { colors } = useTheme();
+    const { colors, sizes } = useTheme();
 
     return (
         <Layer
-            width={20}
-            height={20}
+            width={sizes.radioButtonSize}
+            height={sizes.radioButtonSize}
             display={'flex'}
             flexShrink={0}
-            borderRadius={10}
+            borderRadius={sizes.radioButtonSize / 2}
             borderWidth={2}
             alignItems={'center'}
             justifyContent={'center'}

@@ -10,6 +10,7 @@ export interface BorderProps {
     borderLeftWidth?: number;
     borderRightWidth?: number;
     borderColor?: string;
+    borderStyle?: 'solid' | 'dotted' | 'dashed';
 }
 
 export function extractBorderProps({
@@ -23,7 +24,8 @@ export function extractBorderProps({
     borderBottomWidth,
     borderLeftWidth,
     borderRightWidth,
-    borderColor
+    borderColor,
+    borderStyle
 }: BorderProps): string {
     return `
         ${borderRadius != null ? `border-radius: ${borderRadius}px` : ''};
@@ -37,5 +39,6 @@ export function extractBorderProps({
         ${borderLeftWidth != null ? `border-left-width: ${borderLeftWidth}px` : ''};
         ${borderRightWidth != null ? `border-right-width: ${borderRightWidth}px` : ''};
         ${borderColor != null ? `border-color: ${borderColor}` : ''};
+        ${borderStyle != null ? `border-style: ${borderStyle}` : ''};
     `;
 }

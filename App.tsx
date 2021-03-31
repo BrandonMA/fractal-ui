@@ -39,6 +39,7 @@ import {
 import { SafeAreaView, ScrollView } from 'react-native';
 import { BuggyComponent } from './examples/BuggyComponent';
 import { ThemeSwapper } from './examples/ThemeSwapper';
+import { ImageBackground } from './src/components/containers/ImageBackground';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -124,13 +125,14 @@ function Content(): JSX.Element {
             <Text marginBottom={spacings.m} variant={'title'}>
                 Button Group Example
             </Text>
-            <ButtonGroup
-                variant='main'
-                buttons={['Pendientes', 'Cumplidos']}
-                selectedIndex={selectedIndex}
-                onPress={setSelectedIndex}
-                marginBottom={spacings.m}
-            />
+            <Box marginBottom={spacings.m}>
+                <ButtonGroup
+                    buttons={['Pendientes', 'Cumplidos']}
+                    selectedIndex={selectedIndex}
+                    onPress={setSelectedIndex}
+                    marginBottom={spacings.m}
+                />
+            </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Slider Example:
             </Text>
@@ -138,7 +140,7 @@ function Content(): JSX.Element {
                 <Slider
                     minimumValue={0}
                     maximumValue={100}
-                    initialValue={50}
+                    initialValue={0}
                     onSlidingComplete={(value: number) => {
                         setSliderValue(value);
                     }}
@@ -317,7 +319,7 @@ function Content(): JSX.Element {
                 Date Picker Example:
             </Text>
             <Box marginBottom={spacings.m}>
-                <DatePicker iosDoneText='Done' onChange={(date) => console.log(date.toLocaleDateString())} />
+                <DatePicker iosDoneText='Done' onChange={(date) => console.log('Local Date: ', date.toLocaleDateString())} />
             </Box>
             <Separator isAtBackgroundLevel marginBottom={spacings.m} />
             <Text marginBottom={spacings.m} variant={'title'}>

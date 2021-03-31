@@ -1,7 +1,9 @@
-import { DimensionProps } from '../../sharedProps/DimensionProps';
+import { LayerProps } from '../containers/Layer/types';
 
-export interface CheckBoxProps extends DimensionProps {
+export interface BaseCheckBoxProps {
     value: boolean;
     onValueChange: (value: boolean) => void;
-    label: string;
+    label?: string;
 }
+
+export interface CheckBoxProps extends BaseCheckBoxProps, Omit<LayerProps, 'children'> {}

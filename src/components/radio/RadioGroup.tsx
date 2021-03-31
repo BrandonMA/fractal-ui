@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTheme } from '../../core/context/hooks/useTheme';
-import { Layer } from '../containers/Layer/index.native';
+import { Layer } from '../containers/Layer';
 import { RadioButton } from './RadioButton';
 import { RadioGroupProps, RadioItem } from './types';
 

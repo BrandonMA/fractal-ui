@@ -24,7 +24,6 @@ export function ItemButton({ width, isSelected, onPress, variant, text }: ItemBu
                 position={'absolute'}
                 borderRadius={borderRadius.m}
                 boxShadow={isSelected ? shadows.mainShadow : undefined}
-                backgroundColor={color}
                 height={'100%'}
                 width={'100%'}
                 justifyContent={'center'}

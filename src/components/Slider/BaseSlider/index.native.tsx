@@ -1,13 +1,13 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import NativeSlider from '@react-native-community/slider';
-import { SliderProps } from './types';
-import { useTheme } from '../../core';
+import Slider from '@react-native-community/slider';
+import { BaseSliderProps } from '../types';
+import { useTheme } from '../../../core/context/hooks/useTheme';
 
-export function Slider({ step = 1, ...others }: SliderProps): JSX.Element {
+export function BaseSlider({ step = 1, ...others }: BaseSliderProps): JSX.Element {
     const { colors } = useTheme();
     return (
-        <NativeSlider
+        <Slider
             minimumTrackTintColor={colors.mainInteractiveColor}
             maximumTrackTintColor={Platform.OS == 'android' ? colors.label : colors.placeholder}
             thumbTintColor={Platform.OS == 'android' ? colors.mainInteractiveColor : colors.white}
