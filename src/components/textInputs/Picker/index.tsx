@@ -9,8 +9,8 @@ import { ChevronDown } from '../../../assets/ChevronDown';
 import { PickerItem } from './PickerItem';
 import { PickerProps } from './types/PickerProps';
 
-export function Picker({ items, onChange, initialValue, disabled, ...others }: PickerProps): JSX.Element {
-    const [currentValue, handleValueChange] = usePickerState(initialValue, items, onChange);
+export function Picker({ items, onChange, initialValue, disabled, isReadOnly, ...others }: PickerProps): JSX.Element {
+    const [currentValue, handleValueChange] = usePickerState(initialValue, items, onChange, isReadOnly);
     const { colors, sizes, borderRadius, spacings } = useTheme();
 
     const renderItem = useCallback(
