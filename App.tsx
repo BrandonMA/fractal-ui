@@ -39,6 +39,7 @@ import {
 import { SafeAreaView, ScrollView } from 'react-native';
 import { BuggyComponent } from './examples/BuggyComponent';
 import { ThemeSwapper } from './examples/ThemeSwapper';
+import { Bubble } from './src/components/Bubble';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -166,6 +167,28 @@ function Content(): JSX.Element {
                     ]}
                     onChange={(item: RadioItem) => console.log(item)}
                 />
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Bubble Example:
+            </Text>
+            <Box>
+                <Layer backgroundColor={colors.background} paddingTop={10} paddingBottom={10}>
+                    <Bubble
+                        arrowPosition={'left'}
+                        color={colors.foreground}
+                        onLongPress={() => console.log('On Long Press')}
+                        onPress={() => console.log('on Press')}
+                    >
+                        <Text variant='normal'>Este es un mensaje dentro de una burbuja </Text>
+                    </Bubble>
+                    <Layer marginBottom={spacings.m} />
+                    <Bubble arrowPosition={'right'} color={colors.mainInteractiveColor}>
+                        <Text variant='normal' color={'white'}>
+                            Este es un mensaje dentro de una burbuja
+                        </Text>
+                    </Bubble>
+                </Layer>
             </Box>
             <Separator isAtBackgroundLevel marginBottom={spacings.m} />
             <Text marginBottom={spacings.m} variant={'title'}>
