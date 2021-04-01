@@ -5,6 +5,7 @@ export interface TouchableOpacityProps extends FractalSharedProps, AnimationProp
     children?: ReactNode | Array<ReactNode>;
     style?: any;
     onPress?: () => void;
+    onLongPress?: () => void;
     whileHover?: AnimationContent;
     whileTap?: AnimationContent;
     onPressIn?: () => void;
