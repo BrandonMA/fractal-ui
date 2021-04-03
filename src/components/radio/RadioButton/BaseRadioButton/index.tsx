@@ -5,6 +5,7 @@ import { useTheme } from '../../../../core/context/hooks/useTheme';
 import { BaseRadioButtonProps } from '../../types';
 import styled from 'styled-components';
 import { Radio } from '../Radio';
+import { getRadioButtonAccessibilityProps } from '../../accessibility/getRadioButtonAccessibilityProps';
 
 const Wrapper = styled(motion.label)`
     display: inline-flex;
@@ -31,7 +32,7 @@ export function BaseRadioButton({ label, onPress, active, value }: BaseRadioButt
 
     return (
         <Wrapper>
-            <RadioInput value={value} type='radio' checked={active} onChange={() => onPress()} />
+            <RadioInput value={value} type='radio' checked={active} onChange={() => onPress()} {...getRadioButtonAccessibilityProps(active)} />
             <Radio active={active} />
             {label && (
                 <Text marginLeft={spacings.xs} variant='normal'>

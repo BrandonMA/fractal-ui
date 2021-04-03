@@ -3,6 +3,7 @@ import { useTheme } from '../../core/context/hooks/useTheme';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { LayerProps } from '../containers/Layer/types';
 import { ColorToggle } from './ColorToggle';
+import { getColorAccessibilityProps } from './accessibility/getColorAccessibilityProps';
 
 export interface ColorPickerProps extends Partial<Omit<LayerProps, 'children'>> {
     colors: Array<string>;
@@ -30,6 +31,7 @@ export function ColorPicker({ colors, onColorChange, ...others }: ColorPickerPro
             onActiveChange={handleColorChange}
             active={activeColor === color}
             margin={spacings.xs}
+            {...getColorAccessibilityProps(activeColor === color, activeColor)}
         />
     );
 

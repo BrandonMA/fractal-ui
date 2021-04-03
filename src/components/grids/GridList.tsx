@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Layer } from '../containers/Layer';
 import { GridListProps } from './types';
+import { getGridListAccessibilityProps } from './accessibility/getGridListAccessibilityProps';
 
 const StyledGrid = styled(Layer)`
     flex-wrap: wrap;
@@ -19,5 +20,5 @@ export function GridList<T>(props: GridListProps<T>): JSX.Element {
         );
     };
 
-    return <StyledGrid {...props}>{data.map(renderWrapper)}</StyledGrid>;
+    return <StyledGrid {...props} {...getGridListAccessibilityProps()} >{data.map(renderWrapper)}</StyledGrid>;
 }

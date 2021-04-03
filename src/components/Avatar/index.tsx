@@ -10,6 +10,7 @@ import {
     extractWebProps
 } from '../../sharedProps';
 import { AvatarProps } from './types';
+import { getAvatarAccessibilityProps } from './accessibility/getAvatarAccessibilityProps';
 
 const StyledImage = styled(motion.img as any)`
     ${extractBackgroundProps};
@@ -20,6 +21,6 @@ const StyledImage = styled(motion.img as any)`
     ${extractWebProps};
 `;
 
-export function Avatar({ source, size = 64 }: AvatarProps): JSX.Element {
-    return <StyledImage src={source} width={size} height={size} borderRadius={size / 2} />;
+export function Avatar({ source, label, size = 64 }: AvatarProps): JSX.Element {
+    return <StyledImage src={source} width={size} height={size} borderRadius={size / 2} {...getAvatarAccessibilityProps(label)} />;
 }

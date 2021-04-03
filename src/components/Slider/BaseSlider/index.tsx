@@ -7,7 +7,6 @@ import {
     getPercentage,
     getLeft,
     roundValueToStep,
-    getThumbProps,
     clampValue,
     percentToValue,
     valueToPercent
@@ -15,6 +14,7 @@ import {
 import { useTheme } from '../../../core/context/hooks/useTheme';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
+import { getSliderAccessibilityProps } from '../accessibility/getSliderAccessibilityProps';
 
 const StyledRange = styled.div`
     position: relative;
@@ -256,7 +256,7 @@ export function BaseSlider({
                 onMouseDown={(e) => handleMouseDown(e.nativeEvent)}
                 onKeyDown={onKeyDown}
                 boxShadow={shadows.thumbShadow}
-                {...getThumbProps(value, isDragging, minimumValue, maximumValue)}
+                {...getSliderAccessibilityProps(value, isDragging, minimumValue, maximumValue)}
             />
             <input name={name} type='hidden' value={value} />
         </StyledRange>

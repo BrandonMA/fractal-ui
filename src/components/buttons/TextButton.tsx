@@ -5,6 +5,7 @@ import { TextProps } from '../text/BaseText/types';
 import { useTheme } from '../../core/context/hooks/useTheme';
 import { ButtonVariant } from './ButtonVariant';
 import { TouchableOpacity } from './TouchableOpacity';
+import { getTextButtonAccessibilityProps } from './accessibility/getTextButtonAccessibilityProps';
 
 export interface TextButtonProps extends FractalSharedProps, AnimationProps {
     variant: ButtonVariant;
@@ -22,7 +23,7 @@ export function TextButton({ variant, children, leftIcon, rightIcon, textProps, 
     const color = colors[colorName];
 
     return (
-        <TouchableOpacity {...others}>
+        <TouchableOpacity {...others} {...getTextButtonAccessibilityProps()}>
             {leftIcon && leftIcon(color)}
             {children && (
                 <Text variant={'textButton'} color={color} {...textProps}>

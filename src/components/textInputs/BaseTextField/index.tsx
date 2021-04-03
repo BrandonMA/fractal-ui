@@ -9,6 +9,7 @@ import { extractDisplayProps } from '../../../sharedProps/DisplayProps';
 import { extractTextProps } from '../../../sharedProps/TextProps';
 import { extractWebProps } from '../../../sharedProps/WebProps';
 import { extractPlaceholder } from '../../../sharedProps/PlaceholderProps';
+import { getTextFieldAccessibilityProps } from '../accessibility/getTextInputccessibilityProps';
 
 const StyledTextInput = styled(motion.input as any)`
     outline: none;
@@ -32,5 +33,5 @@ export function BaseTextField(props: TextFieldProps): JSX.Element {
         [onChangeText]
     );
 
-    return <StyledTextInput placeholder={placeholder} selectable onChange={handleChange} {...others} />;
+    return <StyledTextInput placeholder={placeholder} selectable onChange={handleChange} {...others} {...getTextFieldAccessibilityProps(placeholder)} />;
 }

@@ -48,16 +48,3 @@ export function clampValue(value: number, min: number, max: number): number {
     if (max < min) return value;
     return Math.min(Math.max(value, min), max);
 }
-
-export function getThumbProps(value: number, isDragging: boolean, min: number, max: number): Record<string, any> {
-    return {
-        role: 'slider',
-        tabIndex: 0,
-        'data-active': isDragging,
-        'aria-valuetext': `${value}`,
-        'aria-valuemin': min,
-        'aria-valuemax': max,
-        'aria-valuenow': value,
-        'aria-orientation': 'horizontal'
-    };
-}

@@ -109,7 +109,7 @@ function Content(): JSX.Element {
                 Avatar Example
             </Text>
             <Box marginBottom={spacings.m}>
-                <Avatar source={'https://picsum.photos/id/370/200'} />
+                <Avatar source={'https://picsum.photos/id/370/200'} label='Avatar'/>
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Blurred Modal Example:

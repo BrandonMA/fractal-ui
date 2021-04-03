@@ -3,6 +3,7 @@ import { useTheme } from '../../../core/context/hooks/useTheme';
 import { Pressable } from '../../buttons/Pressable';
 import { Layer } from '../../containers/Layer';
 import { BaseSwitchProps } from '../types';
+import { getSwitchAccessibilityProps } from '../accessibility/getSwitchAccessibilityProps';
 
 const styleVariants = {
     start: { translateX: 0, translateY: 0 },
@@ -36,6 +37,7 @@ export function BaseSwitch({ value, onValueChange }: BaseSwitchProps): JSX.Eleme
             initial={'inactive'}
             animate={value ? 'active' : 'inactive'}
             variants={backgroundVariants}
+            {...getSwitchAccessibilityProps(value)}
         >
             <Layer
                 initial={'start'}

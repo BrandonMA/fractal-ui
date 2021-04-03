@@ -4,6 +4,7 @@ import { HorizontalLayer } from '../../containers/HorizontalLayer';
 import { LayerProps } from '../../containers/Layer/types';
 import { ButtonVariant } from '../ButtonVariant';
 import { ItemButton } from './ItemButton';
+import { getButtonGroupAccessibilityProps } from '../accessibility/getButtonGroupAccessibilityProps';
 
 interface ButtonGroupProps extends LayerProps {
     variant?: ButtonVariant;
@@ -37,7 +38,7 @@ export function ButtonGroup({ variant, buttons, selectedIndex, onPress, ...layer
     };
 
     return (
-        <HorizontalLayer backgroundColor={colors.background} width={'100%'} borderRadius={borderRadius.m} padding={2} {...layerProps}>
+        <HorizontalLayer backgroundColor={colors.background} width={'100%'} borderRadius={borderRadius.m} padding={2} {...layerProps} {...getButtonGroupAccessibilityProps()}>
             {buttons.map(renderItemButton)}
         </HorizontalLayer>
     );

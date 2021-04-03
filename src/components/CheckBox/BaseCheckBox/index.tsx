@@ -6,6 +6,7 @@ import { Layer } from '../../containers';
 import { Text } from '../../text';
 import { Check } from '../Check';
 import { BaseCheckBoxProps } from '../types';
+import { getCheckBoxAccessibilityProps } from '../accessibility/getCheckBoxAccessibilityProps';
 
 const Wrapper = styled(motion.label)`
     cursor: pointer;
@@ -41,7 +42,7 @@ export function BaseCheckBox({ value, onValueChange, label }: BaseCheckBoxProps)
 
     return (
         <Wrapper>
-            <CheckBoxInput type='checkbox' checked={value} onChange={handleValueChange} />
+            <CheckBoxInput type='checkbox' checked={value} onChange={handleValueChange} {...getCheckBoxAccessibilityProps(value)} />
             <StyledLayer
                 width={sizes.checkBoxSize}
                 height={sizes.checkBoxSize}

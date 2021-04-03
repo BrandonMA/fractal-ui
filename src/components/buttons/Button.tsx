@@ -1,9 +1,10 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { Text } from '../text';
 import { useTheme } from '../../core/context/hooks/useTheme';
 import { BaseButton } from './BaseButton';
 import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { ButtonVariant } from './ButtonVariant';
+import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
 
 export interface ButtonProps extends FractalSharedProps, AnimationProps {
     variant: ButtonVariant;
@@ -15,14 +16,21 @@ export interface ButtonProps extends FractalSharedProps, AnimationProps {
 }
 
 export function Button(props: ButtonProps): JSX.Element {
-    const { variant, children, text, addShadow } = props;
+    const { variant, children, text, addShadow, onPress, ...others } = props;
     const { borderRadius, colors, sizes, shadows } = useTheme();
+
+    const [ pressed, setPressed ] = useState(false);
 
     const colorName = `${variant}InteractiveColor`;
     const color = colors[colorName];
 
     const pressedColorName = `${variant}InteractiveColor600`;
     const pressedColor = colors[pressedColorName];
+
+    const handlePressButton = (): void => {
+        setPressed(true);
+        onPress?.();
+    }
 
     return (
         <BaseButton
@@ -34,7 +42,9 @@ export function Button(props: ButtonProps): JSX.Element {
             boxShadow={addShadow ? shadows.mainShadow : undefined}
             justifyContent='center'
             alignItems='center'
-            {...props}
+            onPress={handlePressButton}
+            {...others}
+            {...getButtonAccessibilityProps(pressed)}
         >
             {children}
             {text != null ? <Text variant='button'>{text}</Text> : null}

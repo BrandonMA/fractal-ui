@@ -4,4 +4,5 @@ import { FractalSharedProps } from '../../sharedProps/FractalSharedProps';
 export interface AvatarProps extends FractalSharedProps, AnimationProps {
     source: string;
     size?: number;
+    label?: string;
 }

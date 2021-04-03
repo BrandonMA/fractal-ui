@@ -3,6 +3,7 @@ import { useTheme } from '../../core/context/hooks/useTheme';
 import { Layer } from '../containers/Layer';
 import { RadioButton } from './RadioButton';
 import { RadioGroupProps, RadioItem } from './types';
+import { getRadioGroupAccessibilityProps } from './accessibility/getRadioGroupAccessibilityProps';
 
 export function RadioGroup({ radioButtons, onChange, ...others }: RadioGroupProps): JSX.Element {
     const { spacings } = useTheme();
@@ -30,5 +31,5 @@ export function RadioGroup({ radioButtons, onChange, ...others }: RadioGroupProp
         );
     };
 
-    return <Layer {...others}>{radioButtons.map(renderRadioButton)}</Layer>;
+    return <Layer {...others} {...getRadioGroupAccessibilityProps()}>{radioButtons.map(renderRadioButton)}</Layer>;
 }
