@@ -85,6 +85,7 @@ export interface FractalThemeSizes {
     textFieldHeight: number;
     checkBoxSize: number;
     radioButtonSize: number;
+    segmentedControlSize: number;
 }
 
 export interface FractalThemeShadows {

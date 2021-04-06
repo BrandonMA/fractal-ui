@@ -94,7 +94,8 @@ export const sizes: FractalThemeSizes = {
     textFieldIconSize: 16,
     textFieldHeight: 44,
     checkBoxSize: 20,
-    radioButtonSize: 20
+    radioButtonSize: 20,
+    segmentedControlSize: 32
 };
 
 export const shadows: FractalThemeShadows = {

@@ -32,14 +32,14 @@ import {
     Slider,
     useTheme,
     blue,
-    ButtonGroup,
+    SegmentedControl,
     Avatar,
-    BlurredModal
+    BlurredModal,
+    Bubble
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { BuggyComponent } from './examples/BuggyComponent';
 import { ThemeSwapper } from './examples/ThemeSwapper';
-import { Bubble } from './src/components/Bubble';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -109,7 +109,7 @@ function Content(): JSX.Element {
                 Avatar Example
             </Text>
             <Box marginBottom={spacings.m}>
-                <Avatar source={'https://picsum.photos/id/370/200'} label='Avatar'/>
+                <Avatar source={'https://picsum.photos/id/370/200'} label='Avatar' />
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Blurred Modal Example:
@@ -126,11 +126,17 @@ function Content(): JSX.Element {
                 Button Group Example
             </Text>
             <Box marginBottom={spacings.m}>
-                <ButtonGroup
-                    buttons={['Pendientes', 'Cumplidos']}
+                <SegmentedControl
+                    backgroundColor={'lightblue'}
                     selectedIndex={selectedIndex}
-                    onPress={setSelectedIndex}
-                    marginBottom={spacings.m}
+                    values={['One', 'Two', 'Three', 'Four']}
+                    onChange={(value, index) => {
+                        console.log('On Change: ', { value, index });
+                        setSelectedIndex(index);
+                    }}
+                    onValueChange={(value) => {
+                        console.log('On Value Change: ', value);
+                    }}
                 />
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>

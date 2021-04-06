@@ -14,6 +14,7 @@ export * from './text';
 export * from './textInputs';
 export * from './ActivityIndicator';
 export * from './Badge';
+export * from './Bubble';
 export * from './Separator';
 export * from './colors';
 export * from './modals';
