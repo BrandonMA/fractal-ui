@@ -18,3 +18,4 @@ export * from './Bubble';
 export * from './Separator';
 export * from './colors';
 export * from './modals';
+export * from './Image';

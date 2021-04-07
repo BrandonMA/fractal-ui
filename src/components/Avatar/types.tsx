@@ -1,8 +1,5 @@
-import { AnimationProps } from '../../sharedProps/AnimationProps';
-import { FractalSharedProps } from '../../sharedProps/FractalSharedProps';
+import { ImageProps } from '../Image/types';
 
-export interface AvatarProps extends FractalSharedProps, AnimationProps {
-    source: string;
+export interface AvatarProps extends ImageProps {
     size?: number;
-    label?: string;
 }

@@ -8,7 +8,8 @@ import {
     extractShadowProps
 } from '../../sharedProps';
 import Reanimated from 'react-native-reanimated';
-import { AvatarProps } from './types';
+import { ImageProps } from './types';
+import { useAnimationStyles } from '../../animations/native/hooks/useAnimationStyles';
 
 const StyledImage = styled(Reanimated.Image)`
     ${extractBackgroundProps};
@@ -18,6 +19,9 @@ const StyledImage = styled(Reanimated.Image)`
     ${extractShadowProps};
 ` as typeof Reanimated.Image;
 
-export function Avatar({ source, size = 64 }: AvatarProps): JSX.Element {
-    return <StyledImage source={{ uri: source }} width={size} height={size} borderRadius={size / 2} />;
+export function Image({ source, resizeMode, style, ...others }: ImageProps): JSX.Element {
+    const animationStyles = useAnimationStyles(others);
+    const finalSource = typeof source == 'string' ? { uri: source } : source;
+
+    return <StyledImage source={finalSource} resizeMode={resizeMode} style={[animationStyles, style]} />;
 }
