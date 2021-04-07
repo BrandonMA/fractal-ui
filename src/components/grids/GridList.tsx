@@ -20,5 +20,9 @@ export function GridList<T>(props: GridListProps<T>): JSX.Element {
         );
     };
 
-    return <StyledGrid {...props} {...getGridListAccessibilityProps()} >{data.map(renderWrapper)}</StyledGrid>;
+    return (
+        <StyledGrid {...props} {...getGridListAccessibilityProps()}>
+            {data.map(renderWrapper)}
+        </StyledGrid>
+    );
 }

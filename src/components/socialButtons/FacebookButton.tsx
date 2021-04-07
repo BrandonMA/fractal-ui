@@ -10,7 +10,7 @@ export type FacebookButtonProps = Partial<Omit<ButtonProps, 'variant'>> & {
 
 export function FacebookButton(props: FacebookButtonProps): JSX.Element {
     return (
-        <BaseMediaButton backgroundColor='#3975EA' pressedBackgroundColor={'#295AC9'} {...props} {...getFacebookButtonAccessibilityProps()} >
+        <BaseMediaButton backgroundColor='#3975EA' pressedBackgroundColor={'#295AC9'} {...props} {...getFacebookButtonAccessibilityProps()}>
             <FacebookIcon height={24} fill='white' />
         </BaseMediaButton>
     );

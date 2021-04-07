@@ -31,5 +31,9 @@ export function RadioGroup({ radioButtons, onChange, ...others }: RadioGroupProp
         );
     };
 
-    return <Layer {...others} {...getRadioGroupAccessibilityProps()}>{radioButtons.map(renderRadioButton)}</Layer>;
+    return (
+        <Layer {...others} {...getRadioGroupAccessibilityProps()}>
+            {radioButtons.map(renderRadioButton)}
+        </Layer>
+    );
 }

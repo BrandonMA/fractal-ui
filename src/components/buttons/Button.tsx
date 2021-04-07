@@ -19,7 +19,7 @@ export function Button(props: ButtonProps): JSX.Element {
     const { variant, children, text, addShadow, onPress, ...others } = props;
     const { borderRadius, colors, sizes, shadows } = useTheme();
 
-    const [ pressed, setPressed ] = useState(false);
+    const [pressed, setPressed] = useState(false);
 
     const colorName = `${variant}InteractiveColor`;
     const color = colors[colorName];
@@ -30,7 +30,7 @@ export function Button(props: ButtonProps): JSX.Element {
     const handlePressButton = (): void => {
         setPressed(true);
         onPress?.();
-    }
+    };
 
     return (
         <BaseButton

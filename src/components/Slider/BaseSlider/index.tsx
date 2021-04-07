@@ -2,19 +2,12 @@ import React, { useCallback, useState, useLayoutEffect, useEffect, useMemo, useR
 import styled from 'styled-components';
 import { BaseSliderProps, EventSource } from '../types';
 import { useEventCallback } from '../utils/useEventCallback';
-import {
-    getWidth,
-    getPercentage,
-    getLeft,
-    roundValueToStep,
-    clampValue,
-    percentToValue,
-    valueToPercent
-} from '../utils/slider';
+import { getWidth, getPercentage, getLeft, roundValueToStep, clampValue, percentToValue, valueToPercent } from '../utils/slider';
 import { useTheme } from '../../../core/context/hooks/useTheme';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
 import { getSliderAccessibilityProps } from '../accessibility/getSliderAccessibilityProps';
+import { getSliderInputAccessibilityProps } from '../accessibility/getSliderInputAccessibilityProps';
 
 const StyledRange = styled.div`
     position: relative;
@@ -256,9 +249,14 @@ export function BaseSlider({
                 onMouseDown={(e) => handleMouseDown(e.nativeEvent)}
                 onKeyDown={onKeyDown}
                 boxShadow={shadows.thumbShadow}
-                {...getSliderAccessibilityProps(value, isDragging, minimumValue, maximumValue)}
+                {...getSliderAccessibilityProps()}
             />
-            <input name={name} type='hidden' value={value} />
+            <input
+                name={name}
+                type='hidden'
+                value={value}
+                {...getSliderInputAccessibilityProps(value, isDragging, minimumValue, maximumValue)}
+            />
         </StyledRange>
     );
 }

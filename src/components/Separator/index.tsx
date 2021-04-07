@@ -11,5 +11,13 @@ export interface SeparatorProps extends Omit<LayerProps, 'children'> {
 export function Separator({ isAtBackgroundLevel, ...others }: SeparatorProps): JSX.Element {
     const { colors } = useTheme();
 
-    return <Layer height={1} width={'100%'} backgroundColor={isAtBackgroundLevel ? colors.placeholder : colors.background} {...others} {...getSeparatorAccessibilityProps()} />;
+    return (
+        <Layer
+            height={1}
+            width={'100%'}
+            backgroundColor={isAtBackgroundLevel ? colors.placeholder : colors.background}
+            {...others}
+            {...getSeparatorAccessibilityProps()}
+        />
+    );
 }

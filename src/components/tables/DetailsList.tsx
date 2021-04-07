@@ -26,7 +26,12 @@ export const DetailsList = memo(
                 const isLastItem = index === details.length - 1;
                 return (
                     <Fragment key={item[0]}>
-                        <DetailsRow title={item[0]} details={item[1]} marginBottom={isLastItem ? undefined : spacings.s} {...getListItemAccessibilityProps()} />
+                        <DetailsRow
+                            title={item[0]}
+                            details={item[1]}
+                            marginBottom={isLastItem ? undefined : spacings.s}
+                            {...getListItemAccessibilityProps()}
+                        />
                         {isLastItem ? null : <Separator marginBottom={spacings.s} />}
                     </Fragment>
                 );

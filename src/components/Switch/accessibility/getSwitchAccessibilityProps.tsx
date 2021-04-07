@@ -2,6 +2,7 @@ export function getSwitchAccessibilityProps(checked?: boolean, disabled?: boolea
     return {
         tabIndex: 0,
         role: 'switch',
+        'aria-label': 'Switch',
         'aria-checked': checked,
         'aria-disabled': disabled
     };

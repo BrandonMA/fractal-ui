@@ -6,5 +6,13 @@ import { getBoxAccessibilityProps } from './accessibility/getBoxAccessibilityPro
 
 export function Box(props: LayerProps): JSX.Element {
     const { colors, borderRadius, shadows } = useTheme();
-    return <PaddingLayer backgroundColor={colors.foreground} borderRadius={borderRadius.m} boxShadow={shadows.mainShadow} {...props} {...getBoxAccessibilityProps()} />;
+    return (
+        <PaddingLayer
+            backgroundColor={colors.foreground}
+            borderRadius={borderRadius.m}
+            boxShadow={shadows.mainShadow}
+            {...props}
+            {...getBoxAccessibilityProps()}
+        />
+    );
 }

@@ -12,7 +12,7 @@ export function AppleButton(props: AppleButtonProps): JSX.Element {
     const { text } = props;
 
     return (
-        <BaseMediaButton backgroundColor='black' pressedBackgroundColor={'#111111'} {...props} {...getAppleButtonAccessibilityProps()} >
+        <BaseMediaButton backgroundColor='black' pressedBackgroundColor={'#111111'} {...props} {...getAppleButtonAccessibilityProps()}>
             <AppleIcon height={text != null ? 18 : 24} fill='white' />
         </BaseMediaButton>
     );

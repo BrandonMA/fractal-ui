@@ -33,5 +33,13 @@ export function BaseTextField(props: TextFieldProps): JSX.Element {
         [onChangeText]
     );
 
-    return <StyledTextInput placeholder={placeholder} selectable onChange={handleChange} {...others} {...getTextFieldAccessibilityProps(placeholder)} />;
+    return (
+        <StyledTextInput
+            placeholder={placeholder}
+            selectable
+            onChange={handleChange}
+            {...others}
+            {...getTextFieldAccessibilityProps(placeholder)}
+        />
+    );
 }

@@ -2,7 +2,7 @@ export function getColorAccessibilityProps(checked: boolean, color: string, disa
     return {
         tabIndex: 0,
         role: 'button',
-        'aria-checked': checked,
+        'aria-pressed': checked,
         'aria-disabled': disabled,
         'aria-label': 'Color Picker ' + color
     };
