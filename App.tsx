@@ -31,11 +31,13 @@ import {
     TextButton,
     Slider,
     useTheme,
+    ImageBackground,
     blue,
     SegmentedControl,
     Avatar,
     BlurredModal,
-    Bubble
+    Bubble,
+    Image
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { BuggyComponent } from './examples/BuggyComponent';
@@ -106,10 +108,25 @@ function Content(): JSX.Element {
                 <ThemeSwapper />
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
-                Avatar Example
+                Avatar y Image Example
+            </Text>
+            <Box marginBottom={spacings.m} flexDirection={'row'}>
+                <Avatar source={'https://picsum.photos/id/370/200'} label='Avatar' />
+                <Image source={'https://picsum.photos/id/378/200'} label='Asset' marginLeft={20} width={64} height={64} borderRadius={16} />
+            </Box>
+            <Text marginBottom={spacings.m} variant={'title'}>
+                ImageBackground Example
             </Text>
             <Box marginBottom={spacings.m}>
-                <Avatar source={'https://picsum.photos/id/370/200'} label='Avatar' />
+                <ImageBackground
+                    source={'https://picsum.photos/id/870/200/300'}
+                    width={200}
+                    height={200}
+                    borderRadius={16}
+                    justifyContent={'center'}
+                >
+                    <Text variant='button'>Lorem Ipsum is simply dummy text.</Text>
+                </ImageBackground>
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Blurred Modal Example:

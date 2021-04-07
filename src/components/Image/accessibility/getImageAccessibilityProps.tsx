@@ -1,4 +1,4 @@
-export function getAvatarAccessibilityProps(label?: string): Record<string, any> {
+export function getImageAccessibilityProps(label?: string): Record<string, any> {
     return {
         tabIndex: 0,
         role: 'img',
