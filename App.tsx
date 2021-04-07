@@ -127,7 +127,6 @@ function Content(): JSX.Element {
             </Text>
             <Box marginBottom={spacings.m}>
                 <SegmentedControl
-                    backgroundColor={'lightblue'}
                     selectedIndex={selectedIndex}
                     values={['One', 'Two', 'Three', 'Four']}
                     onChange={(value, index) => {
