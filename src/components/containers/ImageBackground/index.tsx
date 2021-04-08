@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ImageBackgroundProps } from './types';
 import { Layer } from '../Layer';
+import { getImgAccessibilityProps } from './accessibility/getImgAccessibilityProps';
 
 interface BackgroundImageProps {
     imagePath: string | number;
@@ -14,5 +15,5 @@ const StyledImageBackground = styled(Layer)`
 `;
 
 export function ImageBackground({ source, ...others }: ImageBackgroundProps): JSX.Element {
-    return <StyledImageBackground imagePath={source} {...others} />;
+    return <StyledImageBackground imagePath={source} {...others} {...getImgAccessibilityProps()} />;
 }
