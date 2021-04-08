@@ -17,11 +17,17 @@ const StyledImage = styled(Reanimated.Image)`
     ${extractDisplayProps};
     ${extractBorderProps};
     ${extractShadowProps};
-` as typeof Reanimated.Image;
+`;
 
 export function Image({ source, resizeMode, style, ...others }: ImageProps): JSX.Element {
     const animationStyles = useAnimationStyles(others);
-    const finalSource = typeof source == 'string' ? { uri: source } : source;
 
-    return <StyledImage source={finalSource} resizeMode={resizeMode} style={[animationStyles, style]} />;
+    return (
+        <StyledImage
+            source={typeof source == 'string' ? { uri: source } : source}
+            resizeMode={resizeMode}
+            {...others}
+            style={[animationStyles, style]}
+        />
+    );
 }

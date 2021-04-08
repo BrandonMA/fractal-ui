@@ -1,28 +1,32 @@
 import React from 'react';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import {
-    extractBackgroundProps,
-    extractBorderProps,
-    extractDimensionProps,
-    extractDisplayProps,
-    extractShadowProps,
-    extractWebProps
-} from '../../sharedProps';
 import { ImageProps } from './types';
 import { getImageAccessibilityProps } from './accessibility/getImageAccessibilityProps';
+import { ResizableImage } from './ResizableImage';
+import { Layer } from '../containers/Layer';
 
-const StyledImage = styled(motion.img as any)`
-    ${extractBackgroundProps};
-    ${extractDimensionProps};
-    ${extractDisplayProps};
-    ${extractBorderProps};
-    ${extractShadowProps};
-    ${extractWebProps};
-`;
+export function Image({ label, source, resizeMode, width, height, ...others }: ImageProps): JSX.Element {
+    const getBackgroundSize = (): string | undefined => {
+        if ((resizeMode == 'center' || resizeMode == 'repeat') && width != null && height != null) {
+            if (typeof width == 'string') {
+                return `${width} ${height}`;
+            }
+            return width < height ? `${width}px` : `${height}px`;
+        }
+        return undefined;
+    };
 
-const transition = { type: 'spring' };
-
-export function Image({ source, label, ...others }: ImageProps): JSX.Element {
-    return <StyledImage transition={transition} src={source} {...others} {...getImageAccessibilityProps(label)} />;
+    return (
+        <Layer
+            flexBasis={'auto'}
+            overflow={'hidden'}
+            zIndex={0}
+            display={'flex'}
+            width={width}
+            height={height}
+            {...others}
+            {...getImageAccessibilityProps(label)}
+        >
+            <ResizableImage source={source} resizeMode={resizeMode} backgroundSize={getBackgroundSize()} />
+        </Layer>
+    );
 }

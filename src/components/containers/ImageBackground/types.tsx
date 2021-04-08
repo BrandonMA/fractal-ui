@@ -1,11 +1,4 @@
-import { ReactNode } from 'react';
-import { FractalSharedProps } from '../../../sharedProps/FractalSharedProps';
+import { ResizeModeProps } from '../../Image/types';
+import { LayerProps } from '../Layer/types';
 
-type ImageRequireSource = number;
-
-type ImageSourcePropType = ImageRequireSource | string;
-
-export interface ImageBackgroundProps extends FractalSharedProps {
-    children?: ReactNode | Array<ReactNode>;
-    source: ImageSourcePropType;
-}
+export interface ImageBackgroundProps extends LayerProps, Omit<ResizeModeProps, 'backgroundSize'> {}

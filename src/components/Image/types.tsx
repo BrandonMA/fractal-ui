@@ -1,9 +1,15 @@
-import { AnimationProps } from '../../sharedProps/AnimationProps';
-import { FractalSharedProps } from '../../sharedProps/FractalSharedProps';
+import { LayerProps } from '../containers/Layer/types';
 
-export interface ImageProps extends FractalSharedProps, AnimationProps {
-    source: string | number;
-    style?: any;
-    label?: string;
+type ImageRequireSource = number;
+
+type ImageSourcePropType = ImageRequireSource | string;
+
+export interface ResizeModeProps {
+    source: ImageSourcePropType;
     resizeMode?: 'cover' | 'contain' | 'stretch' | 'repeat' | 'center';
+    backgroundSize?: string;
+}
+
+export interface ImageProps extends Omit<LayerProps, 'children'>, Omit<ResizeModeProps, 'backgroundSize'> {
+    label?: string;
 }

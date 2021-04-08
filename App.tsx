@@ -112,7 +112,14 @@ function Content(): JSX.Element {
             </Text>
             <Box marginBottom={spacings.m} flexDirection={'row'}>
                 <Avatar source={'https://picsum.photos/id/370/200'} label='Avatar' />
-                <Image source={'https://picsum.photos/id/378/200'} label='Asset' marginLeft={20} width={64} height={64} borderRadius={16} />
+                <Image
+                    source={'https://picsum.photos/id/870/200/300'}
+                    label='Asset'
+                    marginLeft={spacings.m}
+                    width={100}
+                    height={64}
+                    borderRadius={16}
+                />
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 ImageBackground Example

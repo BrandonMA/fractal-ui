@@ -1,19 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
 import { ImageBackgroundProps } from './types';
 import { Layer } from '../Layer';
+import { Image } from '../../Image';
 import { getImgAccessibilityProps } from './accessibility/getImgAccessibilityProps';
 
-interface BackgroundImageProps {
-    imagePath: string | number;
-}
-
-const StyledImageBackground = styled(Layer)`
-    background-image: url(${(props: BackgroundImageProps) => props.imagePath});
-    background-repeat: no-repeat;
-    background-size: cover;
-`;
-
-export function ImageBackground({ source, ...others }: ImageBackgroundProps): JSX.Element {
-    return <StyledImageBackground imagePath={source} {...others} {...getImgAccessibilityProps()} />;
+export function ImageBackground({ children, resizeMode, source, width, height, ...others }: ImageBackgroundProps): JSX.Element {
+    return (
+        <Layer position={'relative'} overflow={'hidden'} width={width} height={height} {...others} {...getImgAccessibilityProps()}>
+            <Image width={width} height={height} resizeMode={resizeMode} source={source} position={'absolute'} />
+            <Layer zIndex={1}>{children}</Layer>
+        </Layer>
+    );
 }
