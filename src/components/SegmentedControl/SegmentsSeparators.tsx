@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useTheme } from '../../../core';
-import { Layer } from '../../containers/Layer';
+import { useTheme } from '../../core';
+import { Layer } from '../containers/Layer';
 
 interface Props {
     values: number;

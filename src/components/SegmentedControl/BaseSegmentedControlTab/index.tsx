@@ -1,13 +1,13 @@
 import React from 'react';
-import { Text } from '../../../text';
+import { Text } from '../../text';
 import { BaseSegmentedControlTabProps } from '../types';
-import { useTheme } from '../../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../core/context/hooks/useTheme';
 import styled from 'styled-components';
-import { extractDimensionProps } from '../../../../sharedProps/DimensionProps';
+import { extractDimensionProps } from '../../../sharedProps/DimensionProps';
 import { motion } from 'framer-motion';
-import { extractBackgroundProps } from '../../../../sharedProps/BackgroundProps';
-import { extractShadowProps } from '../../../../sharedProps/ShadowProps';
-import { extractBorderProps } from '../../../../sharedProps/BorderProps';
+import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
+import { extractShadowProps } from '../../../sharedProps/ShadowProps';
+import { extractBorderProps } from '../../../sharedProps/BorderProps';
 
 const Button = styled.button`
     position: relative;

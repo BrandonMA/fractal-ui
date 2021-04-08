@@ -1,5 +1,5 @@
-import { TextProps } from '../../../sharedProps/TextProps';
-import { LayerProps } from '../../containers/Layer/types';
+import { TextProps } from '../../sharedProps/TextProps';
+import { LayerProps } from '../containers/Layer/types';
 
 type TextStyle = Omit<TextProps, 'selectable'>;
 

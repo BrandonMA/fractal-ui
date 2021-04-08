@@ -9,10 +9,10 @@ import {
     extractDisplayProps,
     extractShadowProps,
     extractWebProps
-} from '../../../sharedProps';
-import { useTheme } from '../../../core';
+} from '../../sharedProps';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { SegmentedControlTab } from './SegmentControlTap';
-import { getButtonGroupAccessibilityProps } from '../accessibility/getButtonGroupAccessibilityProps';
+import { getButtonGroupAccessibilityProps } from './accessibility/getButtonGroupAccessibilityProps';
 
 const Container = styled(motion.ol as any)`
     list-style: none;
