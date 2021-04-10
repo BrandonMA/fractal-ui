@@ -21,20 +21,24 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React, { Fragment, memo, useCallback } from 'react';
-import { Cell } from '../containers/Cell';
+import { useTheme } from '../../hooks/useTheme';
+import { Box } from '../containers';
 import { Separator } from '../Separator';
-import { Text } from '../Text';
+import { Text } from '../text';
 import { DetailsRow } from './DetailsRow';
 export var DetailsList = memo(function (_a) {
-    var title = _a.title, details = _a.details, titleVariant = _a.titleVariant, others = __rest(_a, ["title", "details", "titleVariant"]);
+    var title = _a.title, details = _a.details, _b = _a.titleTextVariant, titleTextVariant = _b === void 0 ? 'title' : _b, _c = _a.titleColorVariant, titleColorVariant = _c === void 0 ? 'text' : _c, others = __rest(_a, ["title", "details", "titleTextVariant", "titleColorVariant"]);
+    var _d = useTheme(), colors = _d.colors, spacings = _d.spacings;
+    var colorName = titleColorVariant !== 'text' ? titleColorVariant + "InteractiveColor" : titleColorVariant;
+    var color = colors[colorName];
     var renderItem = useCallback(function (item, index) {
         var isLastItem = index === details.length - 1;
         return (React.createElement(Fragment, { key: item[0] },
-            React.createElement(DetailsRow, { title: item[0], details: item[1], marginBottom: isLastItem ? undefined : 's' }),
-            isLastItem ? null : React.createElement(Separator, { marginBottom: 's' })));
-    }, [details.length]);
-    return (React.createElement(Cell, __assign({}, others),
-        React.createElement(Text, { variant: titleVariant, marginBottom: 'm' }, title),
+            React.createElement(DetailsRow, { title: item[0], details: item[1], marginBottom: isLastItem ? undefined : spacings.s }),
+            isLastItem ? null : React.createElement(Separator, { marginBottom: spacings.s })));
+    }, [details.length, spacings.s]);
+    return (React.createElement(Box, __assign({}, others),
+        React.createElement(Text, { variant: titleTextVariant, color: color, marginBottom: spacings.m }, title),
         details.map(renderItem)));
 });
 //# sourceMappingURL=DetailsList.js.map

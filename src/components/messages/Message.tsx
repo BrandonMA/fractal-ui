@@ -1,11 +1,11 @@
 import React from 'react';
-import { BaseBox, BaseBoxProps } from '../baseComponents/BaseBox';
-import { Text } from '../Text';
-import { HorizontalView } from '../containers';
-import { useTheme } from '@shopify/restyle';
-import { FractalTheme } from '../../themes/FractalTheme';
+import { Text } from '../text';
+import { LayerProps } from '../containers/Layer/types';
+import { useTheme } from '../../core/context/hooks/useTheme';
+import { Layer } from '../containers/Layer/index.native';
+import { HorizontalLayer } from '../containers/HorizontalLayer';
 
-export interface MessageProps extends Partial<Omit<BaseBoxProps, 'children'>> {
+export interface MessageProps extends Partial<Omit<LayerProps, 'children'>> {
     title: string;
     messageType?: 'main' | 'alternative' | 'success' | 'warning' | 'danger';
     icon?: (color: string) => JSX.Element;
@@ -13,20 +13,22 @@ export interface MessageProps extends Partial<Omit<BaseBoxProps, 'children'>> {
 }
 
 export function Message({ messageType = 'main', title, icon, description, ...others }: MessageProps): JSX.Element {
-    const { colors } = useTheme<FractalTheme>();
+    const { colors, spacings, borderRadius } = useTheme();
     const backgroundColor = `${messageType}InteractiveColor100`;
-    const titleVariant = `${messageType}InteractiveTitle`;
+    const titleVariant = `${messageType}InteractiveColor`;
     const textVariant = `${messageType}InteractiveColor`;
 
     return (
-        <BaseBox padding='cell' borderRadius={'cellRadius'} backgroundColor={backgroundColor} {...others}>
-            <HorizontalView alignItems='center' marginBottom='xs'>
+        <Layer padding={spacings.m} borderRadius={borderRadius.m} backgroundColor={colors[backgroundColor]} {...others}>
+            <HorizontalLayer alignItems='center' marginBottom={spacings.xs}>
                 {icon != null ? icon(colors[textVariant]) : null}
-                <Text marginLeft={icon != null ? 's' : undefined} variant={titleVariant}>
+                <Text marginLeft={icon != null ? spacings.s : undefined} variant={'title'} color={colors[titleVariant]}>
                     {title}
                 </Text>
-            </HorizontalView>
-            <Text variant={textVariant}>{description}</Text>
-        </BaseBox>
+            </HorizontalLayer>
+            <Text variant={'normal'} color={colors[textVariant]}>
+                {description}
+            </Text>
+        </Layer>
     );
 }

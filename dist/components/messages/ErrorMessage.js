@@ -6,6 +6,8 @@ var __extends = (this && this.__extends) || (function () {
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -24,9 +26,8 @@ var __assign = (this && this.__assign) || function () {
 };
 import React, { Component } from 'react';
 import { Message } from './Message';
-import { LayoutAnimation } from 'react-native';
-import { BaseBox } from '../baseComponents/BaseBox';
-import { BugIcon } from '../assets/BugIcon';
+import { BugIcon } from '../../assets/BugIcon';
+import { Layer } from '../containers/Layer';
 var ErrorMessage = /** @class */ (function (_super) {
     __extends(ErrorMessage, _super);
     function ErrorMessage(props) {
@@ -36,15 +37,18 @@ var ErrorMessage = /** @class */ (function (_super) {
         return _this;
     }
     ErrorMessage.getDerivedStateFromError = function (error) {
-        // Actualiza el estado para que el siguiente renderizado muestre la interfaz de repuesto
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
         return { hasError: true, errorMessage: error.message, errorTitle: error.name };
+    };
+    ErrorMessage.prototype.componentDidCatch = function (error, info) {
+        var onError = this.props.onError;
+        if (onError)
+            onError(error, info.componentStack);
     };
     ErrorMessage.prototype.render = function () {
         if (this.state.hasError) {
             return (React.createElement(Message, __assign({ messageType: 'danger', title: this.state.errorTitle, description: this.state.errorMessage, icon: this.renderErrorIcon }, this.props)));
         }
-        return React.createElement(BaseBox, __assign({}, this.props), this.props.children);
+        return React.createElement(Layer, __assign({}, this.props), this.props.children);
     };
     return ErrorMessage;
 }(Component));

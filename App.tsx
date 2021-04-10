@@ -1,198 +1,451 @@
 import React, { useCallback, useState } from 'react';
 import { registerRootComponent } from 'expo';
 import {
-    FractalAppRoot,
     Background,
-    Cell,
-    TextField,
-    PaddedContainer,
-    IconTextField,
-    Text,
-    TextButton,
-    Picker,
     Button,
-    SocialMediaButtons,
-    DetailsRow,
-    DetailsList,
+    FractalAppRoot,
+    Text,
+    Box,
+    PaddingLayer,
     Separator,
-    ErrorMessage,
+    Layer,
+    ColorPicker,
+    MiddleCellModal,
+    TextField,
     SearchBar,
+    Picker,
     DatePicker,
     TimePicker,
-    ActivityIndicator,
-    AnimatedPresence,
-    RightSlideAnimation,
-    MiddleCellModal,
-    BaseBox,
-    PopoverView,
-    BaseBoxProps,
-    FractalTheme
+    ErrorMessage,
+    DetailsList,
+    Popover,
+    Grid,
+    GridList,
+    GridColumn,
+    GridRow,
+    Switch,
+    RadioGroup,
+    RadioItem,
+    CheckBox,
+    SocialMediaButtons,
+    TextButton,
+    Slider,
+    useTheme,
+    ImageBackground,
+    blue,
+    SegmentedControl,
+    Avatar,
+    BlurredModal,
+    Bubble,
+    Image
 } from './src';
-import { InteractionManager, LayoutAnimation, SafeAreaView, ScrollView } from 'react-native';
-import { FinalColorPicker } from './examples/FinalColorPicker';
+import { SafeAreaView, ScrollView } from 'react-native';
 import { BuggyComponent } from './examples/BuggyComponent';
 import { ThemeSwapper } from './examples/ThemeSwapper';
-import { AntDesign } from '@expo/vector-icons';
-import { useTheme } from '@shopify/restyle';
+
+const styleVariants = {
+    layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
+    layerVisible: { scale: 1, opacity: 1, backgroundColor: blue.base },
+    initial: { height: 15, width: 15, opacity: 0 },
+    visible: { height: 100, width: 100, opacity: 1 }
+};
 
 const detailsCardContent: Array<[string, string]> = [
     ['Title 1', 'Details 1'],
     ['Title 2', 'Details 2']
 ];
 
-const fixedDate = new Date();
-fixedDate.setFullYear(1998, 7, 26);
-fixedDate.setHours(12, 30, 0);
+function logErrorToService(error: Error, componentStack: string) {
+    console.log('Log Error To Service: ', { error, componentStack });
+}
 
 function PopoverContainer(): JSX.Element {
-    const { colors } = useTheme<FractalTheme>();
-
     return (
-        <Cell width={'50%'} alignSelf='center'>
-            <Button justifyContent='flex-start' variant='alternativeInteractiveColor' reduceColor text='Pasion'>
-                <AntDesign name='star' size={24} color={colors.alternativeInteractiveColor} />
-            </Button>
-        </Cell>
+        <Box width={'50%'} alignSelf='center'>
+            <Button variant='alternative' text='Pasion' />
+        </Box>
     );
 }
 
-export function App(): JSX.Element {
-    const [text, setText] = useState('');
-    const [loading, setLoading] = useState(false);
-    const [visible, setVisible] = useState(false);
-    const [popoverVisible, setPopoverVisible] = useState(false);
+function Content(): JSX.Element {
+    const { spacings, colors } = useTheme();
 
-    const toggleVisible = useCallback(() => {
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
-        setVisible((currentValue) => !currentValue);
-    }, [setVisible]);
+    const [layerVariant, setLayerVariant] = useState('layerVisible');
+    const [popoverVisible, setPopoverVisible] = useState(false);
+    const [isEnabled, setIsEnabled] = useState(false);
+    const [isChecked, setIsChecked] = useState(false);
+    const [sliderValue, setSliderValue] = useState(0);
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [blurredModalVisible, setBlurredModalVisible] = useState(false);
+
+    const toggleBlurredModal = useCallback(() => setBlurredModalVisible((currentValue) => !currentValue), []);
+
+    const toggleVariant = useCallback(
+        () => setLayerVariant((currentValue) => (currentValue === 'layerVisible' ? 'layerInitial' : 'layerVisible')),
+        []
+    );
 
     const togglePopover = useCallback(() => {
         setPopoverVisible((currentValue) => !currentValue);
     }, [setPopoverVisible]);
 
-    const toggleLoading = useCallback(() => {
-        InteractionManager.runAfterInteractions(() => {
-            setLoading((loading) => !loading);
-        });
-    }, [setLoading]);
+    // const [visible, setVisible] = useState(false);
+    // const toggleVisible = useCallback(() => setVisible((currentValue) => !currentValue), []);
+
+    const [middleCellVisible, setMiddleCellVisible] = useState(false);
+    const toggleMiddleCell = useCallback(() => setMiddleCellVisible((currentValue) => !currentValue), []);
+
+    // const [bottomCellVisible, setBottomCellVisible] = useState(false);
+    // const toggleBottomCell = useCallback(() => setBottomCellVisible((currentValue) => !currentValue), []);
+    const valueText = `Value: ${sliderValue}`;
 
     return (
-        <FractalAppRoot>
+        <PaddingLayer>
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Swap Theme
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <ThemeSwapper />
+            </Box>
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Avatar y Image Example
+            </Text>
+            <Box marginBottom={spacings.m} flexDirection={'row'}>
+                <Avatar source={'https://picsum.photos/id/370/200'} label='Avatar' />
+                <Image
+                    source={'https://picsum.photos/id/870/200/300'}
+                    label='Asset'
+                    marginLeft={spacings.m}
+                    width={100}
+                    height={64}
+                    borderRadius={16}
+                />
+            </Box>
+            <Text marginBottom={spacings.m} variant={'title'}>
+                ImageBackground Example
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <ImageBackground
+                    source={'https://picsum.photos/id/870/200/300'}
+                    width={200}
+                    height={200}
+                    borderRadius={16}
+                    justifyContent={'center'}
+                >
+                    <Text variant='button'>Lorem Ipsum is simply dummy text.</Text>
+                </ImageBackground>
+            </Box>
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Blurred Modal Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <Button variant='main' text='Show Blurred Modal' onPress={toggleBlurredModal} />
+                <BlurredModal visible={blurredModalVisible} dismissText={'Done'} onDismiss={toggleBlurredModal}>
+                    <Box margin={spacings.m}>
+                        <Button variant='warning' text='Dismiss Modal' onPress={toggleBlurredModal} />
+                    </Box>
+                </BlurredModal>
+            </Box>
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Button Group Example
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <SegmentedControl
+                    selectedIndex={selectedIndex}
+                    values={['One', 'Two', 'Three', 'Four']}
+                    onChange={(value, index) => {
+                        console.log('On Change: ', { value, index });
+                        setSelectedIndex(index);
+                    }}
+                    onValueChange={(value) => {
+                        console.log('On Value Change: ', value);
+                    }}
+                />
+            </Box>
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Slider Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <Slider
+                    minimumValue={0}
+                    maximumValue={100}
+                    initialValue={0}
+                    onSlidingComplete={(value: number) => {
+                        setSliderValue(value);
+                    }}
+                />
+                <Text marginTop={spacings.m} variant='normal'>
+                    {valueText}
+                </Text>
+            </Box>
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Switch Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <Switch value={isEnabled} onValueChange={(value) => setIsEnabled(value)} />
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Radio Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <RadioGroup
+                    radioButtons={[
+                        { value: '1', label: 'Option One' },
+                        { value: '2', label: 'Option Two' }
+                    ]}
+                    onChange={(item: RadioItem) => console.log(item)}
+                />
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Bubble Example:
+            </Text>
+            <Box>
+                <Layer backgroundColor={colors.background} paddingTop={10} paddingBottom={10}>
+                    <Bubble
+                        arrowPosition={'left'}
+                        color={colors.foreground}
+                        onLongPress={() => console.log('On Long Press')}
+                        onPress={() => console.log('on Press')}
+                    >
+                        <Text variant='normal'>Este es un mensaje dentro de una burbuja </Text>
+                    </Bubble>
+                    <Layer marginBottom={spacings.m} />
+                    <Bubble arrowPosition={'right'} color={colors.mainInteractiveColor}>
+                        <Text variant='normal' color={'white'}>
+                            Este es un mensaje dentro de una burbuja
+                        </Text>
+                    </Bubble>
+                </Layer>
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Check Box Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <CheckBox value={isChecked} onValueChange={(value) => setIsChecked(value)} label={'Selectable'} />
+            </Box>
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Layer Animated Example:
+            </Text>
+            <Layer
+                height={100}
+                width={100}
+                initial={'layerInitial'}
+                animate={layerVariant}
+                variants={styleVariants}
+                backgroundColor={'#FFF'}
+                marginBottom={spacings.m}
+            />
+            <Button
+                variant={'main'}
+                alignSelf={'center'}
+                width={268}
+                marginBottom={spacings.m}
+                text={'Toggle animation'}
+                onPress={toggleVariant}
+            />
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Box Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <Text variant={'normal'} marginBottom={spacings.m}>
+                    Use it to separate your components into blocks.
+                </Text>
+                <Separator marginBottom={spacings.m} />
+                <Text variant={'normal'}>Like this.</Text>
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Box Animated Example:
+            </Text>
+            <Box height={100} width={100} initial={'initial'} animate={'visible'} variants={styleVariants} marginBottom={spacings.m} />
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Text Button Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <TextButton marginBottom={spacings.m} variant={'main'}>
+                    Main
+                </TextButton>
+                <TextButton marginBottom={spacings.m} variant={'alternative'}>
+                    Alternative
+                </TextButton>
+                <TextButton marginBottom={spacings.m} variant={'success'}>
+                    Success
+                </TextButton>
+                <TextButton marginBottom={spacings.m} variant={'warning'}>
+                    Warning
+                </TextButton>
+                <TextButton variant={'danger'}>Danger</TextButton>
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Color Picker Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <ColorPicker
+                    onColorChange={(color) => console.log(color)}
+                    colors={[
+                        colors.mainInteractiveColor,
+                        colors.alternativeInteractiveColor,
+                        colors.successInteractiveColor,
+                        colors.dangerInteractiveColor,
+                        colors.warningInteractiveColor
+                    ]}
+                />
+            </Box>
+            {/*<Separator isAtBackgroundLevel marginBottom={spacings.m} />*/}
+            {/*<Text marginBottom={spacings.m} variant={'title'}>*/}
+            {/*    Dimmed Modal Example:*/}
+            {/*</Text>*/}
+            {/*<Box marginBottom={spacings.m}>*/}
+            {/*    <Button variant='main' text='Show Modal' onPress={toggleVisible} />*/}
+            {/*    <DimmedModal visible={visible} onDismiss={toggleVisible}>*/}
+            {/*        <Box>*/}
+            {/*            <Button variant='warning' text='Dismiss Modal' onPress={toggleVisible} />*/}
+            {/*        </Box>*/}
+            {/*    </DimmedModal>*/}
+            {/*</Box>*/}
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Middle Cell Modal Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <Button variant='main' text='Show Middle Cell Modal' onPress={toggleMiddleCell} />
+                <MiddleCellModal visible={middleCellVisible} onDismiss={toggleMiddleCell}>
+                    <Box>
+                        <Button variant='warning' text='Dismiss Cell Modal' onPress={toggleMiddleCell} />
+                    </Box>
+                </MiddleCellModal>
+            </Box>
+            {/*<Separator isAtBackgroundLevel marginBottom={spacings.m} />*/}
+            {/*<Text marginBottom={spacings.m} variant={'title'}>*/}
+            {/*    Bottom Cell Modal Example:*/}
+            {/*</Text>*/}
+            {/*<Box marginBottom={spacings.m}>*/}
+            {/*    <Button variant='main' text='Show Bottom Cell Modal' onPress={toggleBottomCell} />*/}
+            {/*    <BottomCellModal visible={bottomCellVisible} onDismiss={toggleBottomCell}>*/}
+            {/*        <Box>*/}
+            {/*            <Button variant='warning' text='Dismiss Cell Modal' onPress={toggleBottomCell} />*/}
+            {/*        </Box>*/}
+            {/*    </BottomCellModal>*/}
+            {/*</Box>*/}
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Text Field Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <TextField placeholder='Escribe aquí' />
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Icon Text Field Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <SearchBar placeholder='Escribe aquí' />
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Picker Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <Picker
+                    onChange={(value) => console.log(value)}
+                    iosDoneText='Done'
+                    items={[
+                        ['1', 'Hoy'],
+                        ['2', 'Ayer'],
+                        ['3', 'Prueba'],
+                        ['4', 'Cuatro'],
+                        ['5', 'Cinco']
+                    ]}
+                    initialValue={'3'}
+                />
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Date Picker Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <DatePicker iosDoneText='Done' onChange={(date) => console.log('Local Date: ', date.toLocaleDateString())} />
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Time Picker Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <TimePicker iosDoneText='Done' onChange={(date) => console.log(date.toLocaleDateString())} />
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Error Message Example:
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <ErrorMessage onError={logErrorToService}>
+                    <BuggyComponent />
+                </ErrorMessage>
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                PopoverView Example:
+            </Text>
+            <Popover
+                active={popoverVisible}
+                popoverChildren={() => {
+                    return <PopoverContainer />;
+                }}
+            >
+                <Button variant={'main'} onPress={togglePopover} text={'Popover'} marginBottom={spacings.m} />
+            </Popover>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Details List Example:
+            </Text>
+            <DetailsList title='Title' titleColorVariant='warning' details={detailsCardContent} marginBottom={spacings.m} />
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Grid List Example:
+            </Text>
+            <GridList
+                backgroundColor={colors.warningInteractiveColor}
+                data={['One', 'Two', 'Three', 'Four']}
+                renderItem={() => <Box margin={4} height={60} minWidth={30} />}
+                numColumns={2}
+                marginBottom={spacings.m}
+            />
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Grid Example:
+            </Text>
+            <Box height={300} marginBottom={spacings.m}>
+                <Grid>
+                    <GridColumn backgroundColor={colors.dangerInteractiveColor300} />
+                    <GridColumn>
+                        <GridRow backgroundColor={colors.warningInteractiveColor300} />
+                        <GridRow backgroundColor={colors.mainInteractiveColor300} />
+                    </GridColumn>
+                </Grid>
+            </Box>
+            <Separator isAtBackgroundLevel marginBottom={spacings.m} />
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Social Media Buttons:
+            </Text>
+            <SocialMediaButtons />
+        </PaddingLayer>
+    );
+}
+
+export function App(): JSX.Element {
+    return (
+        <FractalAppRoot handleThemeManually>
             <Background>
-                <SafeAreaView>
-                    <ScrollView>
-                        <PaddedContainer zIndex={2000}>
-                            <BaseBox marginBottom={'m'}>
-                                <ActivityIndicator color={'textColor'} />
-                            </BaseBox>
-                            <DetailsList
-                                title='Title'
-                                titleVariant='warningInteractiveTitle'
-                                details={detailsCardContent}
-                                marginBottom='m'
-                            />
-                            <Cell>
-                                <Button
-                                    variant={'mainInteractiveColor'}
-                                    onPress={toggleVisible}
-                                    text={'Toggle Hidden Component'}
-                                    marginBottom={'m'}
-                                />
-                                <AnimatedPresence>
-                                    {visible ? (
-                                        <RightSlideAnimation width='100%' alignItems='center' marginBottom='m'>
-                                            <BaseBox height={100} width={100} borderRadius={'m'} backgroundColor='facebook' />
-                                        </RightSlideAnimation>
-                                    ) : null}
-                                </AnimatedPresence>
-                                <Button
-                                    variant={'mainInteractiveColor'}
-                                    loading={loading}
-                                    onPress={toggleLoading}
-                                    text={'Hihi'}
-                                    marginBottom={'m'}
-                                />
-                                <TextField value={text} onChangeText={setText} placeholder='Placeholder...' marginBottom='m' />
-                                <IconTextField value={text} onChangeText={setText} placeholder='Placeholder...' marginBottom='m' />
-                                <IconTextField value={text} onChangeText={setText} placeholder='Placeholder...' marginBottom='m' />
-                                <ThemeSwapper />
-                                <PopoverView
-                                    active={popoverVisible}
-                                    popoverChildren={() => {
-                                        return <PopoverContainer />;
-                                    }}
-                                >
-                                    <Button variant={'mainInteractiveColor'} onPress={togglePopover} text={'Popover'} marginBottom={'m'} />
-                                </PopoverView>
-                                <Text variant='title' marginBottom='m'>
-                                    Title
-                                </Text>
-                                <Text variant='subtitle' marginBottom='m'>
-                                    Subtitle
-                                </Text>
-                                <Text variant='regular' marginBottom='m'>
-                                    Regular
-                                </Text>
-                                <Text variant='label' marginBottom='m'>
-                                    label
-                                </Text>
-                                <Text variant='placeholder' marginBottom='m'>
-                                    Placeholder
-                                </Text>
-                                <TextButton variant='mainInteractiveTitle' marginBottom='m'>
-                                    Main Interactive Title
-                                </TextButton>
-                                <TextButton alignSelf='flex-start' variant='alternativeInteractiveColor' marginBottom='m'>
-                                    Alternative Interactive Color
-                                </TextButton>
-                                <TextButton alignSelf='center' variant='successInteractiveColor' marginBottom='m'>
-                                    Success Interactive Color with left icon
-                                </TextButton>
-                                <TextButton alignSelf='flex-end' variant='warningInteractiveColor' marginBottom='m'>
-                                    Warning Interactive Color
-                                </TextButton>
-                                <Separator marginBottom='m' />
-                                <TextButton alignSelf='baseline' variant='dangerInteractiveColor' marginBottom='m'>
-                                    Danger Interactive Color
-                                </TextButton>
-                                <DetailsRow title='Title' details='Details' marginBottom='m' />
-                                <Picker
-                                    onChange={(value) => console.log(value)}
-                                    iosDoneText='Done'
-                                    items={[
-                                        ['1', 'Hoy'],
-                                        ['2', 'Ayer'],
-                                        ['3', 'Prueba'],
-                                        ['4', 'Cuatro'],
-                                        ['5', 'Cinco']
-                                    ]}
-                                    marginBottom='m'
-                                    initialValue={'3'}
-                                />
-                                <DatePicker
-                                    iosDoneText='Done'
-                                    marginBottom='m'
-                                    initialDate={fixedDate}
-                                    onChange={(date) => console.log(date.toLocaleDateString())}
-                                />
-                                <TimePicker
-                                    iosDoneText='Done'
-                                    marginBottom='m'
-                                    initialDate={fixedDate}
-                                    onChange={(date) => console.log(date.toLocaleTimeString())}
-                                />
-                                <ErrorMessage marginBottom={'m'}>
-                                    <BuggyComponent />
-                                </ErrorMessage>
-                                <SearchBar placeholder={'Search...'} marginBottom={'m'} />
-                                <FinalColorPicker />
-                            </Cell>
-                        </PaddedContainer>
-                        <SocialMediaButtons />
-                    </ScrollView>
-                </SafeAreaView>
-                <MiddleCellModal visible={visible} onDismiss={toggleVisible} />
+                <SafeAreaView />
+                <ScrollView>
+                    <Content />
+                </ScrollView>
             </Background>
         </FractalAppRoot>
     );

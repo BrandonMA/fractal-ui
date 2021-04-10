@@ -1,4 +1,6 @@
+export * from './Modal';
 export * from './DimmedModal';
-export * from './BottomCellModal';
 export * from './MiddleCellModal';
-export { HideDimmedModalProvider } from './context/HideDimmedModalProvider';
+export * from './BottomCellModal';
+export * from './BlurredModal';
+export * from './ModalMiddleCell';

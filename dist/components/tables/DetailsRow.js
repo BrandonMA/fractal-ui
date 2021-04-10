@@ -21,14 +21,14 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React from 'react';
-import { BaseBox } from '../baseComponents/BaseBox';
-import { HorizontalView } from '../containers/HorizontalView';
-import { Text } from '../Text';
+import { Layer } from '../containers/Layer';
+import { HorizontalLayer } from '../containers/HorizontalLayer';
+import { Text } from '../text';
 export function DetailsRow(_a) {
     var title = _a.title, details = _a.details, others = __rest(_a, ["title", "details"]);
-    return (React.createElement(HorizontalView, __assign({ alignItems: 'center' }, others),
-        React.createElement(BaseBox, { flexGrow: 1 },
-            React.createElement(Text, { variant: 'smallText' }, title)),
+    return (React.createElement(HorizontalLayer, __assign({ alignItems: 'center' }, others),
+        React.createElement(Layer, { flexGrow: 1 },
+            React.createElement(Text, { variant: 'small' }, title)),
         React.createElement(Text, { variant: 'label' }, details)));
 }
 //# sourceMappingURL=DetailsRow.js.map

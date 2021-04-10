@@ -1,206 +1,163 @@
-import { blue, green, orange, red, white, yellow } from '../palette';
-import { createTheme } from '@shopify/restyle';
-export var lightFractalTheme = createTheme({
-    colors: {
-        // Basic Colors
-        textColor: white.base900,
-        placeholderColor: white.base300,
-        labelColor: white.base200,
-        background: white.base400,
-        foreground: white.base,
-        separatorColor: white.base400,
-        cellColor: white.base,
-        textFieldColor: white.base400,
-        shadowColor: 'black',
-        // Navigation
-        navigationBarButtonColor: blue.base,
-        navigationBarBackground: white.base,
-        navigationBarTitleColor: white.base900,
-        tabBarBackground: white.base,
-        tabBarItemActive: blue.base,
-        tabBarItemInactive: white.base200,
-        // Base Colors
-        transparent: 'transparent',
-        black: 'black',
-        white: 'white',
-        facebook: '#3975EA',
-        // Main Colors
-        mainInteractiveColor100: blue.base100,
-        mainInteractiveColor200: blue.base200,
-        mainInteractiveColor300: blue.base300,
-        mainInteractiveColor400: blue.base400,
-        mainInteractiveColor: blue.base,
-        mainInteractiveColor600: blue.base600,
-        mainInteractiveColor700: blue.base700,
-        mainInteractiveColor800: blue.base800,
-        mainInteractiveColor900: blue.base900,
-        // Alternative Colors
-        alternativeInteractiveColor100: orange.base100,
-        alternativeInteractiveColor200: orange.base200,
-        alternativeInteractiveColor300: orange.base300,
-        alternativeInteractiveColor400: orange.base400,
-        alternativeInteractiveColor: orange.base,
-        alternativeInteractiveColor600: orange.base600,
-        alternativeInteractiveColor700: orange.base700,
-        alternativeInteractiveColor800: orange.base800,
-        alternativeInteractiveColor900: orange.base900,
-        // Success Colors
-        successInteractiveColor100: green.base100,
-        successInteractiveColor200: green.base200,
-        successInteractiveColor300: green.base300,
-        successInteractiveColor400: green.base400,
-        successInteractiveColor: green.base,
-        successInteractiveColor600: green.base600,
-        successInteractiveColor700: green.base700,
-        successInteractiveColor800: green.base800,
-        successInteractiveColor900: green.base900,
-        // Warning
-        warningInteractiveColor100: yellow.base100,
-        warningInteractiveColor200: yellow.base200,
-        warningInteractiveColor300: yellow.base300,
-        warningInteractiveColor400: yellow.base400,
-        warningInteractiveColor: yellow.base,
-        warningInteractiveColor600: yellow.base600,
-        warningInteractiveColor700: yellow.base700,
-        warningInteractiveColor800: yellow.base800,
-        warningInteractiveColor900: yellow.base900,
-        // Danger,
-        dangerInteractiveColor100: red.base100,
-        dangerInteractiveColor200: red.base200,
-        dangerInteractiveColor300: red.base300,
-        dangerInteractiveColor400: red.base400,
-        dangerInteractiveColor: red.base,
-        dangerInteractiveColor600: red.base600,
-        dangerInteractiveColor700: red.base700,
-        dangerInteractiveColor800: red.base800,
-        dangerInteractiveColor900: red.base900
+import { blue, orange, green, yellow, red, white } from '../colors';
+import { systemFont } from './systemFont';
+export var colors = {
+    background: white.base400,
+    foreground: white.base,
+    text: white.base900,
+    textField: white.base400,
+    placeholder: white.base300,
+    label: white.base200,
+    separator: white.base400,
+    black: 'black',
+    white: 'white',
+    transparent: 'transparent',
+    // Main Colors
+    mainInteractiveColor100: blue.base100,
+    mainInteractiveColor200: blue.base200,
+    mainInteractiveColor300: blue.base300,
+    mainInteractiveColor400: blue.base400,
+    mainInteractiveColor: blue.base,
+    mainInteractiveColor600: blue.base600,
+    mainInteractiveColor700: blue.base700,
+    mainInteractiveColor800: blue.base800,
+    mainInteractiveColor900: blue.base900,
+    // Alternative Colors
+    alternativeInteractiveColor100: orange.base100,
+    alternativeInteractiveColor200: orange.base200,
+    alternativeInteractiveColor300: orange.base300,
+    alternativeInteractiveColor400: orange.base400,
+    alternativeInteractiveColor: orange.base,
+    alternativeInteractiveColor600: orange.base600,
+    alternativeInteractiveColor700: orange.base700,
+    alternativeInteractiveColor800: orange.base800,
+    alternativeInteractiveColor900: orange.base900,
+    // Success Colors
+    successInteractiveColor100: green.base100,
+    successInteractiveColor200: green.base200,
+    successInteractiveColor300: green.base300,
+    successInteractiveColor400: green.base400,
+    successInteractiveColor: green.base,
+    successInteractiveColor600: green.base600,
+    successInteractiveColor700: green.base700,
+    successInteractiveColor800: green.base800,
+    successInteractiveColor900: green.base900,
+    // Warning
+    warningInteractiveColor100: yellow.base100,
+    warningInteractiveColor200: yellow.base200,
+    warningInteractiveColor300: yellow.base300,
+    warningInteractiveColor400: yellow.base400,
+    warningInteractiveColor: yellow.base,
+    warningInteractiveColor600: yellow.base600,
+    warningInteractiveColor700: yellow.base700,
+    warningInteractiveColor800: yellow.base800,
+    warningInteractiveColor900: yellow.base900,
+    // Danger,
+    dangerInteractiveColor100: red.base100,
+    dangerInteractiveColor200: red.base200,
+    dangerInteractiveColor300: red.base300,
+    dangerInteractiveColor400: red.base400,
+    dangerInteractiveColor: red.base,
+    dangerInteractiveColor600: red.base600,
+    dangerInteractiveColor700: red.base700,
+    dangerInteractiveColor800: red.base800,
+    dangerInteractiveColor900: red.base900
+};
+export var spacings = {
+    xs: 8,
+    s: 12,
+    m: 16,
+    lg: 24,
+    xl: 32
+};
+export var borderRadius = {
+    xs: 4,
+    s: 8,
+    m: 12,
+    lg: 16,
+    xl: 20
+};
+export var sizes = {
+    interactiveItemHeight: 44,
+    textFieldIconSize: 16,
+    textFieldHeight: 44
+};
+export var shadows = {
+    mainShadow: '0px 1px 2px rgba(0, 0, 0, 0.05)'
+};
+export var textVariants = {
+    normal: {
+        fontSize: 17,
+        fontWeight: 400,
+        color: 'text',
+        fontFamily: systemFont
     },
-    spacing: {
-        xs: 8,
-        s: 12,
-        m: 16,
-        l: 24,
-        xl: 40,
-        cell: 16,
-        paddedContainer: 16
+    title: {
+        fontSize: 27,
+        fontWeight: 700,
+        color: 'text',
+        fontFamily: systemFont
     },
-    breakpoints: {},
-    borderRadii: {
-        xs: 0,
-        s: 8,
-        m: 12,
-        l: 16,
-        xl: 20,
-        cellRadius: 12,
-        buttonRadius: 12,
-        textFieldRadius: 12
+    title2: {
+        fontSize: 25,
+        fontWeight: 700,
+        color: 'text',
+        fontFamily: systemFont
     },
-    interactiveItems: {
-        buttonHeight: 44,
-        textFieldHeight: 44
+    title3: {
+        fontSize: 23,
+        fontWeight: 700,
+        color: 'text',
+        fontFamily: systemFont
     },
-    textFields: {
-        iconSize: 16
+    subtitle: {
+        fontSize: 21,
+        fontWeight: 600,
+        color: 'text',
+        fontFamily: systemFont
     },
-    shadowProperties: {
-        offset: { height: 2, width: 2 },
-        radius: 8,
-        opacity: 0.08,
-        navigationBarOffset: { height: 2, width: 2 },
-        navigationBarRadius: 8,
-        navigationBarOpacity: 0.08
+    placeholder: {
+        fontSize: 21,
+        fontWeight: 600,
+        color: 'placeholder',
+        fontFamily: systemFont
     },
-    textVariants: {
-        defaults: {
-            fontSize: 17,
-            color: 'textColor'
-        },
-        title: {
-            fontSize: 27,
-            fontWeight: '700'
-        },
-        subtitle: {
-            fontSize: 21,
-            fontWeight: '600'
-        },
-        regular: {},
-        smallText: {
-            fontSize: 15
-        },
-        label: {
-            color: 'labelColor',
-            fontSize: 15
-        },
-        placeholder: {
-            color: 'placeholderColor',
-            fontSize: 15
-        },
-        button: {
-            color: 'white',
-            fontWeight: '700'
-        },
-        // Interactive Text or Text with Color
-        mainInteractiveColor: {
-            color: 'mainInteractiveColor'
-        },
-        alternativeInteractiveColor: {
-            color: 'alternativeInteractiveColor'
-        },
-        successInteractiveColor: {
-            color: 'successInteractiveColor'
-        },
-        warningInteractiveColor: {
-            color: 'warningInteractiveColor'
-        },
-        dangerInteractiveColor: {
-            color: 'dangerInteractiveColor'
-        },
-        // Interactive Titles or Titles with Color
-        mainInteractiveTitle: {
-            color: 'mainInteractiveColor',
-            fontSize: 27,
-            fontWeight: '700'
-        },
-        alternativeInteractiveTitle: {
-            color: 'alternativeInteractiveColor',
-            fontSize: 27,
-            fontWeight: '700'
-        },
-        successInteractiveTitle: {
-            color: 'successInteractiveColor',
-            fontSize: 27,
-            fontWeight: '700'
-        },
-        warningInteractiveTitle: {
-            color: 'warningInteractiveColor',
-            fontSize: 27,
-            fontWeight: '700'
-        },
-        dangerInteractiveTitle: {
-            color: 'dangerInteractiveColor',
-            fontSize: 27,
-            fontWeight: '700'
-        },
-        // Navigation
-        navigationBarButtonColor: {
-            color: 'navigationBarButtonColor'
-        },
-        navigationBarTitle: {
-            fontSize: 16,
-            fontWeight: '600',
-            color: 'navigationBarTitleColor'
-        },
-        tabBarItemActive: {
-            fontSize: 11,
-            color: 'tabBarItemActive'
-        },
-        tabBarItemInactive: {
-            fontSize: 11,
-            color: 'tabBarItemInactive'
-        }
+    label: {
+        fontSize: 17,
+        fontWeight: 400,
+        color: 'label',
+        fontFamily: systemFont
     },
-    navigationBar: {
-        navigationBarHeight: 50 // Only works for the custom nav bar, not native.
+    small: {
+        fontSize: 15,
+        fontWeight: 400,
+        color: 'text',
+        fontFamily: systemFont
+    },
+    smallLabel: {
+        fontSize: 15,
+        fontWeight: 400,
+        color: 'label',
+        fontFamily: systemFont
+    },
+    button: {
+        fontSize: 17,
+        fontWeight: 'bold',
+        color: 'white',
+        fontFamily: systemFont
+    },
+    textButton: {
+        fontSize: 17,
+        fontWeight: 400,
+        color: 'mainInteractiveColor',
+        fontFamily: systemFont
     }
-});
+};
+export var lightFractalTheme = {
+    colors: colors,
+    spacings: spacings,
+    borderRadius: borderRadius,
+    sizes: sizes,
+    shadows: shadows,
+    textVariants: textVariants
+};
 //# sourceMappingURL=lightFractalTheme.js.map

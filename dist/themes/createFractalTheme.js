@@ -1,5 +1,4 @@
 import { lightFractalTheme } from './lightFractalTheme';
-// All themes must be able to be represented as JSON objects, so this is the most simple way to deep copy it without an external dependency.
 export function createFractalTheme(properties, baseTheme) {
     if (baseTheme === void 0) { baseTheme = lightFractalTheme; }
     var newTheme = JSON.parse(JSON.stringify(baseTheme));

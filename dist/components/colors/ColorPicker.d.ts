@@ -1,6 +1,5 @@
-/// <reference types="react" />
-import { BoxProps } from '../baseComponents/BaseBox';
-export interface ColorPickerProps extends Partial<Omit<BoxProps, 'children'>> {
+import { LayerProps } from '../containers/Layer/types';
+export interface ColorPickerProps extends Partial<Omit<LayerProps, 'children'>> {
     colors: Array<string>;
     onColorChange: (color: string) => void;
 }

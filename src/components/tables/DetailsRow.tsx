@@ -1,20 +1,21 @@
 import React from 'react';
-import { BaseBox, BaseBoxProps } from '../baseComponents/BaseBox';
-import { HorizontalView } from '../containers/HorizontalView';
-import { Text } from '../Text';
+import { Layer } from '../containers/Layer';
+import { HorizontalLayer } from '../containers/HorizontalLayer';
+import { Text } from '../text';
+import { LayerProps } from '../containers/Layer/types';
 
-export interface DetailsRowProps extends Partial<Omit<BaseBoxProps, 'children'>> {
+export interface DetailsRowProps extends Partial<Omit<LayerProps, 'children'>> {
     title: string;
     details: string;
 }
 
 export function DetailsRow({ title, details, ...others }: DetailsRowProps): JSX.Element {
     return (
-        <HorizontalView alignItems='center' {...others}>
-            <BaseBox flexGrow={1}>
-                <Text variant='smallText'>{title}</Text>
-            </BaseBox>
+        <HorizontalLayer alignItems='center' {...others}>
+            <Layer flexGrow={1}>
+                <Text variant='small'>{title}</Text>
+            </Layer>
             <Text variant='label'>{details}</Text>
-        </HorizontalView>
+        </HorizontalLayer>
     );
 }

@@ -10,10 +10,12 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 import React from 'react';
-import { BaseBox } from '../baseComponents/BaseBox';
+import { Background } from './Background';
 import { ActivityIndicator } from '../ActivityIndicator';
+import { useTheme } from '../../hooks/useTheme';
 export function LoadingBackground(props) {
-    return (React.createElement(BaseBox, __assign({ justifyContent: 'center', alignItems: 'center', flex: 1 }, props),
-        React.createElement(ActivityIndicator, { size: 'large', color: 'textColor' })));
+    var colors = useTheme().colors;
+    return (React.createElement(Background, __assign({}, props),
+        React.createElement(ActivityIndicator, { color: colors.mainInteractiveColor })));
 }
 //# sourceMappingURL=LoadingBackground.js.map

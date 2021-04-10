@@ -14,5 +14,5 @@ export function BuggyComponent(): JSX.Element {
         }
     }, [showError]);
 
-    return <Button variant={'dangerInteractiveColor'} text='Trigger Error' onPress={triggerError} />;
+    return <Button variant='danger' text='Trigger Error' onPress={triggerError} />;
 }

@@ -1,13 +1,13 @@
-/// <reference types="react" />
-import { BaseTextProps } from '../baseComponents/BaseText';
-import { BaseTouchableOpacityProps } from '../baseComponents/BaseTouchableOpacity';
-import { ButtonColorVariant } from './types/ButtonColorVariant';
-import { TitleColorVariant } from './types/TitleColorVariant';
-export interface TextButtonProps extends Partial<Omit<BaseTouchableOpacityProps, 'children'>> {
+import { AnimationProps, FractalSharedProps } from '../../sharedProps';
+import { TextProps } from '../text/BaseText/types';
+import { ButtonVariant } from './ButtonVariant';
+export interface TextButtonProps extends FractalSharedProps, AnimationProps {
+    variant: ButtonVariant;
     children?: string;
-    textProps?: Omit<BaseTextProps, 'children'>;
+    textProps?: Omit<TextProps, 'children'>;
     leftIcon?: (color: string) => JSX.Element;
     rightIcon?: (color: string) => JSX.Element;
-    variant?: ButtonColorVariant | TitleColorVariant | 'navigationBarButtonColor';
+    style?: any;
+    onPress?: () => void;
 }
-export declare function TextButton({ leftIcon, rightIcon, children, textProps, variant, ...others }: TextButtonProps): JSX.Element;
+export declare function TextButton({ variant, children, leftIcon, rightIcon, textProps, ...others }: TextButtonProps): JSX.Element;

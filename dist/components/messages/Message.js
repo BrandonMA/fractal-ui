@@ -21,20 +21,20 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React from 'react';
-import { BaseBox } from '../baseComponents/BaseBox';
-import { Text } from '../Text';
-import { HorizontalView } from '../containers';
-import { useTheme } from '@shopify/restyle';
+import { Text } from '../text';
+import { useTheme } from '../../hooks/useTheme';
+import { Layer } from '../containers/Layer/index.native';
+import { HorizontalLayer } from '../containers/HorizontalLayer';
 export function Message(_a) {
     var _b = _a.messageType, messageType = _b === void 0 ? 'main' : _b, title = _a.title, icon = _a.icon, description = _a.description, others = __rest(_a, ["messageType", "title", "icon", "description"]);
-    var colors = useTheme().colors;
+    var _c = useTheme(), colors = _c.colors, spacings = _c.spacings, borderRadius = _c.borderRadius;
     var backgroundColor = messageType + "InteractiveColor100";
-    var titleVariant = messageType + "InteractiveTitle";
+    var titleVariant = messageType + "InteractiveColor";
     var textVariant = messageType + "InteractiveColor";
-    return (React.createElement(BaseBox, __assign({ padding: 'cell', borderRadius: 'cellRadius', backgroundColor: backgroundColor }, others),
-        React.createElement(HorizontalView, { alignItems: 'center', marginBottom: 'xs' },
+    return (React.createElement(Layer, __assign({ padding: spacings.m, borderRadius: borderRadius.m, backgroundColor: colors[backgroundColor] }, others),
+        React.createElement(HorizontalLayer, { alignItems: 'center', marginBottom: spacings.xs },
             icon != null ? icon(colors[textVariant]) : null,
-            React.createElement(Text, { marginLeft: icon != null ? 's' : undefined, variant: titleVariant }, title)),
-        React.createElement(Text, { variant: textVariant }, description)));
+            React.createElement(Text, { marginLeft: icon != null ? spacings.s : undefined, variant: 'title', color: colors[titleVariant] }, title)),
+        React.createElement(Text, { variant: 'normal', color: colors[textVariant] }, description)));
 }
 //# sourceMappingURL=Message.js.map

@@ -1,8 +1,8 @@
-import React, { ReactNode, Component } from 'react';
+import React, { ReactNode, Component, ErrorInfo } from 'react';
 import { Message } from './Message';
-import { LayoutAnimation } from 'react-native';
-import { BaseBox, BaseBoxProps } from '../baseComponents/BaseBox';
-import { BugIcon } from '../assets/BugIcon';
+import { BugIcon } from '../../assets/BugIcon';
+import { Layer } from '../containers/Layer';
+import { LayerProps } from '../containers/Layer/types';
 
 interface State {
     hasError: boolean;
@@ -10,16 +10,23 @@ interface State {
     errorTitle: string;
 }
 
-export class ErrorMessage extends Component<BaseBoxProps, State> {
-    constructor(props: BaseBoxProps) {
+interface ErrorMessageProps extends LayerProps {
+    onError?: (error: Error, componentStack: string) => void;
+}
+
+export class ErrorMessage extends Component<ErrorMessageProps, State> {
+    constructor(props: LayerProps) {
         super(props);
         this.state = { hasError: false, errorMessage: '', errorTitle: '' };
     }
 
     static getDerivedStateFromError(error: Error): State {
-        // Actualiza el estado para que el siguiente renderizado muestre la interfaz de repuesto
-        LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
         return { hasError: true, errorMessage: error.message, errorTitle: error.name };
+    }
+
+    componentDidCatch(error: Error, info: ErrorInfo): void {
+        const { onError } = this.props;
+        if (onError) onError(error, info.componentStack);
     }
 
     renderErrorIcon = (color: string): JSX.Element => <BugIcon width={20} fill={color} />;
@@ -37,6 +44,6 @@ export class ErrorMessage extends Component<BaseBoxProps, State> {
             );
         }
 
-        return <BaseBox {...this.props}>{this.props.children}</BaseBox>;
+        return <Layer {...this.props}>{this.props.children}</Layer>;
     }
 }

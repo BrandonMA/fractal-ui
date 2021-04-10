@@ -1,4 +1,5 @@
-/// <reference types="react" />
-import { BaseBoxProps } from './baseComponents/BaseBox';
-export declare type SeparatorProps = Partial<Omit<BaseBoxProps, 'children'>>;
-export declare function Separator(props: SeparatorProps): JSX.Element;
+import { LayerProps } from './containers/Layer/types';
+export interface SeparatorProps extends Omit<LayerProps, 'children'> {
+    isAtBackgroundLevel?: boolean;
+}
+export declare function Separator({ isAtBackgroundLevel, ...others }: SeparatorProps): JSX.Element;

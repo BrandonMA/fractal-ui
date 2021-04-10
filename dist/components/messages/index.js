@@ -1,3 +1,3 @@
-export * from './Message';
 export * from './ErrorMessage';
+export * from './Message';
 //# sourceMappingURL=index.js.map

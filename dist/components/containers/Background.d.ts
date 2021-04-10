@@ -1,3 +1,2 @@
-/// <reference types="react" />
-import { BaseBoxProps } from '../baseComponents/BaseBox';
-export declare function Background(props: BaseBoxProps): JSX.Element;
+import { LayerProps } from './Layer/types';
+export declare function Background(props: LayerProps): JSX.Element;

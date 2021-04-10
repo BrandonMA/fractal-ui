@@ -1,0 +1,21 @@
+import React, { Children } from 'react';
+import { Layer } from '../containers/Layer';
+import { GridRow } from './GridRow';
+import { GridProps } from './types';
+import { getGridAccessibilityProps } from './accessibility/getGridAccessibilityProps';
+
+export function Grid({ children, ...others }: GridProps): JSX.Element {
+    const isRow = (): boolean => {
+        let row = false;
+        Children.forEach(children, (child) => {
+            if (child && child.type == GridRow) row = true;
+        });
+        return row;
+    };
+
+    return (
+        <Layer flex={1} flexDirection={isRow() ? 'column' : 'row'} {...others} {...getGridAccessibilityProps()}>
+            {children}
+        </Layer>
+    );
+}

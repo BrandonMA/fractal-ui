@@ -21,18 +21,20 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React, { useCallback, useState } from 'react';
-import { HorizontalView } from '../containers';
+import { useTheme } from '../../hooks/useTheme';
+import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { ColorToggle } from './ColorToggle';
 export function ColorPicker(_a) {
     var colors = _a.colors, onColorChange = _a.onColorChange, others = __rest(_a, ["colors", "onColorChange"]);
     var _b = useState(colors[0]), activeColor = _b[0], setActiveColor = _b[1];
+    var spacings = useTheme().spacings;
     var handleColorChange = useCallback(function (active, color) {
         if (active) {
             setActiveColor(color);
             onColorChange(color);
         }
     }, [onColorChange]);
-    var renderItem = function (color) { return (React.createElement(ColorToggle, { backgroundColor: color, key: color, onActiveChange: handleColorChange, active: activeColor === color, margin: 'xs' })); };
-    return (React.createElement(HorizontalView, __assign({ justifyContent: 'space-around', flexWrap: 'wrap' }, others), colors.map(renderItem)));
+    var renderItem = function (color) { return (React.createElement(ColorToggle, { backgroundColor: color, key: color, onActiveChange: handleColorChange, active: activeColor === color, margin: spacings.xs })); };
+    return (React.createElement(HorizontalLayer, __assign({ justifyContent: 'space-around', flexWrap: 'wrap' }, others), colors.map(renderItem)));
 }
 //# sourceMappingURL=ColorPicker.js.map

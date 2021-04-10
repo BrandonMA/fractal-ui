@@ -10,8 +10,10 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 import React from 'react';
-import { FullScreen } from './FullScreen';
+import { useTheme } from '../../hooks/useTheme';
+import { Layer } from './Layer';
 export function Background(props) {
-    return React.createElement(FullScreen, __assign({ backgroundColor: 'background' }, props));
+    var colors = useTheme().colors;
+    return React.createElement(Layer, __assign({ backgroundColor: colors.background, flex: 1 }, props));
 }
 //# sourceMappingURL=Background.js.map

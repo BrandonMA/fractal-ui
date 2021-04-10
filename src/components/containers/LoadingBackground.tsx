@@ -1,13 +1,15 @@
 import React from 'react';
-import { BaseBox, BaseBoxProps } from '../baseComponents/BaseBox';
+import { LayerProps } from './Layer/types';
+import { Background } from './Background';
 import { ActivityIndicator } from '../ActivityIndicator';
+import { useTheme } from '../../core/context/hooks/useTheme';
 
-export type LoadingBackgroundProps = Partial<Omit<BaseBoxProps, 'children'>>;
+export function LoadingBackground(props: Omit<LayerProps, 'children'>): JSX.Element {
+    const { colors } = useTheme();
 
-export function LoadingBackground(props: LoadingBackgroundProps): JSX.Element {
     return (
-        <BaseBox justifyContent={'center'} alignItems={'center'} flex={1} {...props}>
-            <ActivityIndicator size={'large'} color={'textColor'} />
-        </BaseBox>
+        <Background {...props}>
+            <ActivityIndicator color={colors.mainInteractiveColor} />
+        </Background>
     );
 }

@@ -1,24 +1,26 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+import { black } from '../colors';
 import { createFractalTheme } from './createFractalTheme';
-import { black } from '../palette';
+export var darkColors = {
+    background: black.base400,
+    foreground: black.base,
+    text: black.base900,
+    textField: black.base400,
+    placeholder: black.base300,
+    label: black.base200,
+    separator: black.base400
+};
 export var darkFractalTheme = createFractalTheme({
-    colors: {
-        // Basic Colors
-        textColor: black.base900,
-        placeholderColor: black.base300,
-        labelColor: black.base200,
-        background: black.base400,
-        foreground: black.base,
-        separatorColor: black.base400,
-        textFieldColor: black.base400,
-        cellColor: black.base,
-        // Navigation
-        navigationBarBackground: black.base,
-        navigationBarTitleColor: black.base900,
-        tabBarBackground: black.base,
-        tabBarItemInactive: black.base200
-    },
-    shadowProperties: {
-        opacity: 0.2
-    }
+    colors: __assign({}, darkColors)
 });
 //# sourceMappingURL=darkFractalTheme.js.map

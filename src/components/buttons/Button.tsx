@@ -1,60 +1,53 @@
-import { useTheme } from '@shopify/restyle';
-import React from 'react';
-import { FractalTheme } from '../../themes/FractalTheme';
-import { BaseText } from '../baseComponents/BaseText';
-import { BasePressable } from '../baseComponents/BasePressable';
-import { useBaseButtonAnimations } from './hooks/useBaseButtonAnimations';
-import { ButtonProps } from './types/ButtonProps';
-import { ActivityIndicator } from '../ActivityIndicator';
+import React, { ReactNode, useState } from 'react';
+import { Text } from '../text';
+import { useTheme } from '../../core/context/hooks/useTheme';
+import { BaseButton } from './BaseButton';
+import { AnimationProps, FractalSharedProps } from '../../sharedProps';
+import { ButtonVariant } from './ButtonVariant';
+import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
+
+export interface ButtonProps extends FractalSharedProps, AnimationProps {
+    variant: ButtonVariant;
+    text?: string;
+    addShadow?: boolean;
+    children?: ReactNode | Array<ReactNode>;
+    style?: any;
+    onPress?: () => void;
+}
 
 export function Button(props: ButtonProps): JSX.Element {
-    const {
-        variant = 'mainInteractiveColor',
-        children,
-        addShadow,
-        loading,
-        reduceColor,
-        text,
-        activityIndicatorColor = 'white',
-        ...others
-    } = props;
-    const { interactiveItems, shadowProperties } = useTheme<FractalTheme>();
-    const [handlePressIn, handlePressOut, style] = useBaseButtonAnimations(props);
-    const loadingColor = `${variant}300`;
-    const normalBackgroundColor = reduceColor ? `${variant}100` : variant;
-    const finalBackgroundColor = loading ? loadingColor : normalBackgroundColor;
+    const { variant, children, text, addShadow, onPress, ...others } = props;
+    const { borderRadius, colors, sizes, shadows } = useTheme();
+
+    const [pressed, setPressed] = useState(false);
+
+    const colorName = `${variant}InteractiveColor`;
+    const color = colors[colorName];
+
+    const pressedColorName = `${variant}InteractiveColor600`;
+    const pressedColor = colors[pressedColorName];
+
+    const handlePressButton = (): void => {
+        setPressed(true);
+        onPress?.();
+    };
 
     return (
-        <BasePressable
-            flexDirection='row'
-            backgroundColor={finalBackgroundColor}
-            borderRadius='buttonRadius'
+        <BaseButton
+            height={sizes.interactiveItemHeight}
+            width={'100%'}
+            backgroundColor={color}
+            pressedBackgroundColor={pressedColor}
+            borderRadius={borderRadius.m}
+            boxShadow={addShadow ? shadows.mainShadow : undefined}
             justifyContent='center'
-            paddingHorizontal='m'
             alignItems='center'
-            android_ripple={null}
-            height={interactiveItems.buttonHeight}
-            onPressIn={handlePressIn}
-            onPressOut={handlePressOut}
-            style={style as any}
-            shadowColor={addShadow ? 'shadowColor' : undefined}
-            shadowOffset={addShadow ? shadowProperties.offset : undefined}
-            shadowRadius={addShadow ? shadowProperties.radius : undefined}
-            shadowOpacity={addShadow ? shadowProperties.opacity : undefined}
-            pointerEvents={loading ? 'none' : 'auto'}
+            onPress={handlePressButton}
             {...others}
+            {...getButtonAccessibilityProps(pressed)}
         >
-            {loading ? <ActivityIndicator color={activityIndicatorColor} /> : children}
-            {text && !loading ? (
-                <BaseText
-                    selectable={false}
-                    paddingLeft={children != null ? 'xs' : undefined}
-                    variant='button'
-                    color={reduceColor ? variant : 'white'}
-                >
-                    {text}
-                </BaseText>
-            ) : null}
-        </BasePressable>
+            {children}
+            {text != null ? <Text variant='button'>{text}</Text> : null}
+        </BaseButton>
     );
 }

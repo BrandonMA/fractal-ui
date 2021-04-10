@@ -1,53 +1,24 @@
-import React, { ReactNode } from 'react';
-import { Modal as NativeModal, ModalProps as NativeModalProps } from 'react-native';
-import { BasePressable } from '../baseComponents/BasePressable';
-import { BaseSafeAreaView } from '../baseComponents';
-import { AnimatedPresence, FadeAnimation } from '../animations';
-import { HideDimmedModalProvider } from './context/HideDimmedModalProvider';
-import { useModalAnimatedState } from './hooks/useModalAnimatedState';
+import { Modal } from './Modal';
+import React from 'react';
+import { ModalProps } from './Modal/types';
+import { Pressable } from '../buttons';
+import { SafeAreaLayer } from '../containers/SafeAreaLayer/index.native';
 
-export interface DimmedModalProps extends NativeModalProps {
-    onDismiss?: () => void;
-    children?: ReactNode;
-    justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
-    alignItems?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
-    disableStateResetOnDismiss?: boolean;
-}
-
-export function DimmedModal({
-    children,
-    onDismiss,
-    visible,
-    justifyContent,
-    alignItems,
-    disableStateResetOnDismiss = false,
-    ...others
-}: DimmedModalProps): JSX.Element {
-    const [backgroundVisible, hideAnimated, resetVisibility] = useModalAnimatedState(onDismiss, 0, disableStateResetOnDismiss);
-
+export function DimmedModal({ visible, onDismiss, ...others }: ModalProps): JSX.Element {
     return (
-        <HideDimmedModalProvider hideAnimated={hideAnimated}>
-            <NativeModal visible={visible} transparent animationType='fade' {...others}>
-                <BaseSafeAreaView flex={1} justifyContent={justifyContent} alignItems={alignItems}>
-                    <AnimatedPresence>
-                        {backgroundVisible ? (
-                            <FadeAnimation
-                                position='absolute'
-                                top={0}
-                                right={0}
-                                bottom={0}
-                                left={0}
-                                backgroundColor='black'
-                                activeOpacity={0.6}
-                                onHide={resetVisibility}
-                            >
-                                <BasePressable width={'100%'} height={'100%'} onPress={hideAnimated} opacity={0.6} />
-                            </FadeAnimation>
-                        ) : null}
-                    </AnimatedPresence>
-                    {children}
-                </BaseSafeAreaView>
-            </NativeModal>
-        </HideDimmedModalProvider>
+        <Modal visible={visible} onDismiss={onDismiss} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <Pressable
+                zIndex={999}
+                onPress={onDismiss}
+                position='absolute'
+                width='100%'
+                height='100%'
+                backgroundColor='black'
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.6 }}
+                exit={{ opacity: 0 }}
+            />
+            <SafeAreaLayer zIndex={1000} {...others} />
+        </Modal>
     );
 }

@@ -1,1 +1,0 @@
-{"version":3,"file":"Text.js","sourceRoot":"","sources":["../../src/components/Text.tsx"],"names":[],"mappings":";;;;;;;;;;;AAAA,OAAO,KAAK,EAAE,EAAE,IAAI,EAAE,MAAM,OAAO,CAAC;AACpC,OAAO,EAAiB,QAAQ,EAAE,MAAM,2BAA2B,CAAC;AAEpE,MAAM,CAAC,IAAM,IAAI,GAAG,IAAI,CACpB,UAAC,KAAoB;IACjB,OAAO,oBAAC,QAAQ,aAAC,UAAU,EAAE,KAAK,IAAM,KAAK,EAAI,CAAC;AACtD,CAAC,CACJ,CAAC"}

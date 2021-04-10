@@ -20,21 +20,14 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
+import { Modal } from './Modal';
 import React from 'react';
-import { Modal as NativeModal } from 'react-native';
-import { BasePressable } from '../baseComponents/BasePressable';
-import { BaseSafeAreaView } from '../baseComponents';
-import { AnimatedPresence, FadeAnimation } from '../animations';
-import { HideDimmedModalProvider } from './context/HideDimmedModalProvider';
-import { useModalAnimatedState } from './hooks/useModalAnimatedState';
+import { Pressable } from '../buttons';
+import { SafeAreaLayer } from '../containers/SafeAreaLayer/index.native';
 export function DimmedModal(_a) {
-    var children = _a.children, onDismiss = _a.onDismiss, visible = _a.visible, justifyContent = _a.justifyContent, alignItems = _a.alignItems, _b = _a.disableStateResetOnDismiss, disableStateResetOnDismiss = _b === void 0 ? false : _b, others = __rest(_a, ["children", "onDismiss", "visible", "justifyContent", "alignItems", "disableStateResetOnDismiss"]);
-    var _c = useModalAnimatedState(onDismiss, 0, disableStateResetOnDismiss), backgroundVisible = _c[0], hideAnimated = _c[1], resetVisibility = _c[2];
-    return (React.createElement(HideDimmedModalProvider, { hideAnimated: hideAnimated },
-        React.createElement(NativeModal, __assign({ visible: visible, transparent: true, animationType: 'fade' }, others),
-            React.createElement(BaseSafeAreaView, { flex: 1, justifyContent: justifyContent, alignItems: alignItems },
-                React.createElement(AnimatedPresence, null, backgroundVisible ? (React.createElement(FadeAnimation, { position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: 'black', activeOpacity: 0.6, onHide: resetVisibility },
-                    React.createElement(BasePressable, { width: '100%', height: '100%', onPress: hideAnimated, opacity: 0.6 }))) : null),
-                children))));
+    var visible = _a.visible, onDismiss = _a.onDismiss, others = __rest(_a, ["visible", "onDismiss"]);
+    return (React.createElement(Modal, { visible: visible, onDismiss: onDismiss, initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } },
+        React.createElement(Pressable, { zIndex: 999, onPress: onDismiss, position: 'absolute', width: '100%', height: '100%', backgroundColor: 'black', initial: { opacity: 0 }, animate: { opacity: 0.6 }, exit: { opacity: 0 } }),
+        React.createElement(SafeAreaLayer, __assign({ zIndex: 1000 }, others))));
 }
 //# sourceMappingURL=DimmedModal.js.map

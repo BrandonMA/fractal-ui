@@ -1,1 +1,2 @@
-export * from './usePrevValue';
+export * from './useTheme';
+export * from './useThemeIdentifier';

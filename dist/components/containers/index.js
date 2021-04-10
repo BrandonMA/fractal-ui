@@ -1,7 +1,6 @@
+export * from './Layer';
 export * from './Background';
-export * from './Cell';
-export * from './FullScreen';
-export * from './HorizontalView';
-export * from './PaddedContainer';
-export * from './LoadingBackground';
+export * from './Box';
+export * from './MarginLayer';
+export * from './PaddingLayer';
 //# sourceMappingURL=index.js.map

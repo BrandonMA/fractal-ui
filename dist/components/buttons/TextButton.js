@@ -20,16 +20,18 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import { useTheme } from '@shopify/restyle';
 import React from 'react';
-import { BaseText } from '../baseComponents/BaseText';
-import { BaseTouchableOpacity } from '../baseComponents/BaseTouchableOpacity';
+import { Text } from '../text';
+import { useTheme } from '../../hooks/useTheme';
+import { TouchableOpacity } from './TouchableOpacity';
 export function TextButton(_a) {
-    var leftIcon = _a.leftIcon, rightIcon = _a.rightIcon, children = _a.children, textProps = _a.textProps, _b = _a.variant, variant = _b === void 0 ? 'mainInteractiveColor' : _b, others = __rest(_a, ["leftIcon", "rightIcon", "children", "textProps", "variant"]);
+    var variant = _a.variant, children = _a.children, leftIcon = _a.leftIcon, rightIcon = _a.rightIcon, textProps = _a.textProps, others = __rest(_a, ["variant", "children", "leftIcon", "rightIcon", "textProps"]);
     var colors = useTheme().colors;
-    return (React.createElement(BaseTouchableOpacity, __assign({ flexDirection: 'row', alignItems: 'center' }, others),
-        leftIcon ? leftIcon(colors[variant]) : null,
-        children != null ? (React.createElement(BaseText, __assign({ variant: variant }, textProps), children)) : null,
-        rightIcon ? rightIcon(colors[variant]) : null));
+    var colorName = variant + "InteractiveColor";
+    var color = colors[colorName];
+    return (React.createElement(TouchableOpacity, __assign({}, others),
+        leftIcon && leftIcon(color),
+        children && (React.createElement(Text, __assign({ variant: 'textButton', color: color }, textProps), children)),
+        rightIcon && rightIcon(color)));
 }
 //# sourceMappingURL=TextButton.js.map

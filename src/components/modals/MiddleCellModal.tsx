@@ -1,74 +1,20 @@
-import React, { ReactNode } from 'react';
-import { DimmedModal, DimmedModalProps } from './DimmedModal';
-import { getValueForLargeSize, useWidthSizeGroup } from '@bma98/size-class';
-import { AnimatedPresence, BottomSlideAnimation } from '../animations';
-import { useModalAnimatedState } from './hooks/useModalAnimatedState';
+import React from 'react';
+import { ModalProps } from './Modal/types';
+import { DimmedModal } from './DimmedModal';
+import { ModalMiddleCell } from './ModalMiddleCell';
 
-export interface MiddleCellModalProps extends DimmedModalProps {
-    onDismiss?: () => void;
-    children?: ReactNode;
-}
-
-interface MiddleCellProps {
-    children: ReactNode;
-    onHide?: () => void;
-}
-
-function MiddleCellDesktop({ children, onHide }: MiddleCellProps): JSX.Element {
-    return (
-        <BottomSlideAnimation
-            overflow={'hidden'}
-            borderRadius={'m'}
-            maxWidth={550}
-            maxHeight={550}
-            width={'60%'}
-            height={'60%'}
-            backgroundColor='foreground'
-            onHide={onHide}
-        >
-            {children}
-        </BottomSlideAnimation>
-    );
-}
-
-function MiddleCellPhone({ children, onHide }: MiddleCellProps): JSX.Element {
-    return (
-        <BottomSlideAnimation
-            overflow={'hidden'}
-            borderRadius={'m'}
-            marginTop={'m'}
-            width={'90%'}
-            height={'95%'}
-            backgroundColor='foreground'
-            onHide={onHide}
-        >
-            {children}
-        </BottomSlideAnimation>
-    );
-}
-
-export function MiddleCellModal({
-    children,
-    onDismiss,
-    disableStateResetOnDismiss = false,
-    visible,
-    ...others
-}: MiddleCellModalProps): JSX.Element {
-    const [widthSize] = useWidthSizeGroup();
-    const Wrapper = getValueForLargeSize(widthSize, MiddleCellDesktop, MiddleCellPhone);
-    const justifyContent = getValueForLargeSize(widthSize, 'center', 'flex-start');
-    const [cellIsVisible, hideAnimation, resetVisibility] = useModalAnimatedState(onDismiss, 350, disableStateResetOnDismiss);
-
+export function MiddleCellModal({ visible, onDismiss, ...others }: ModalProps): JSX.Element {
     return (
         <DimmedModal
-            disableStateResetOnDismiss={disableStateResetOnDismiss}
-            onDismiss={hideAnimation}
+            pointerEvents={'box-none'}
             visible={visible}
-            justifyContent={justifyContent}
+            onDismiss={onDismiss}
+            height={'100%'}
+            width={'100%'}
+            justifyContent={'center'}
             alignItems={'center'}
-            {...others}
         >
-            <AnimatedPresence>{cellIsVisible ? <Wrapper onHide={resetVisibility}>{children}</Wrapper> : null}</AnimatedPresence>
+            <ModalMiddleCell {...others} />
         </DimmedModal>
     );
 }

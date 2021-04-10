@@ -1,15 +1,18 @@
 import React, { useCallback, useState } from 'react';
-import { BoxProps } from '../baseComponents/BaseBox';
-import { HorizontalView } from '../containers';
+import { useTheme } from '../../core/context/hooks/useTheme';
+import { HorizontalLayer } from '../containers/HorizontalLayer';
+import { LayerProps } from '../containers/Layer/types';
 import { ColorToggle } from './ColorToggle';
+import { getColorAccessibilityProps } from './accessibility/getColorAccessibilityProps';
 
-export interface ColorPickerProps extends Partial<Omit<BoxProps, 'children'>> {
+export interface ColorPickerProps extends Partial<Omit<LayerProps, 'children'>> {
     colors: Array<string>;
     onColorChange: (color: string) => void;
 }
 
 export function ColorPicker({ colors, onColorChange, ...others }: ColorPickerProps): JSX.Element {
     const [activeColor, setActiveColor] = useState(colors[0]);
+    const { spacings } = useTheme();
 
     const handleColorChange = useCallback(
         (active: boolean, color: string) => {
@@ -22,12 +25,19 @@ export function ColorPicker({ colors, onColorChange, ...others }: ColorPickerPro
     );
 
     const renderItem = (color: string) => (
-        <ColorToggle backgroundColor={color} key={color} onActiveChange={handleColorChange} active={activeColor === color} margin={'xs'} />
+        <ColorToggle
+            backgroundColor={color}
+            key={color}
+            onActiveChange={handleColorChange}
+            active={activeColor === color}
+            margin={spacings.xs}
+            {...getColorAccessibilityProps(activeColor === color, activeColor)}
+        />
     );
 
     return (
-        <HorizontalView justifyContent={'space-around'} flexWrap={'wrap'} {...others}>
+        <HorizontalLayer justifyContent={'space-around'} flexWrap={'wrap'} {...others}>
             {colors.map(renderItem)}
-        </HorizontalView>
+        </HorizontalLayer>
     );
 }

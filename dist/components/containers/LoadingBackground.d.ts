@@ -1,4 +1,2 @@
-/// <reference types="react" />
-import { BaseBoxProps } from '../baseComponents/BaseBox';
-export declare type LoadingBackgroundProps = Partial<Omit<BaseBoxProps, 'children'>>;
-export declare function LoadingBackground(props: LoadingBackgroundProps): JSX.Element;
+import { LayerProps } from './Layer/types';
+export declare function LoadingBackground(props: Omit<LayerProps, 'children'>): JSX.Element;

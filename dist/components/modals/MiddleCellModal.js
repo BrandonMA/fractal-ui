@@ -21,25 +21,23 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React from 'react';
-import { DimmedModal } from './DimmedModal';
+import { Box } from '../containers';
 import { getValueForLargeSize, useWidthSizeGroup } from '@bma98/size-class';
-import { AnimatedPresence, BottomSlideAnimation } from '../animations';
-import { useModalAnimatedState } from './hooks/useModalAnimatedState';
-function MiddleCellDesktop(_a) {
-    var children = _a.children, onHide = _a.onHide;
-    return (React.createElement(BottomSlideAnimation, { overflow: 'hidden', borderRadius: 'm', maxWidth: 550, maxHeight: 550, width: '60%', height: '60%', backgroundColor: 'foreground', onHide: onHide }, children));
+import { DimmedModal } from './DimmedModal';
+import { useTheme } from '../../hooks/useTheme';
+function MiddleCellDesktop(props) {
+    var _a = useTheme(), borderRadius = _a.borderRadius, colors = _a.colors;
+    return (React.createElement(Box, __assign({ pointerEvents: 'auto', overflow: 'hidden', borderRadius: borderRadius.m, maxWidth: 550, maxHeight: 550, width: '60%', height: '60%', initial: { scale: 0 }, animate: { scale: 1 }, exit: { scale: 0 }, backgroundColor: colors.background }, props)));
 }
-function MiddleCellPhone(_a) {
-    var children = _a.children, onHide = _a.onHide;
-    return (React.createElement(BottomSlideAnimation, { overflow: 'hidden', borderRadius: 'm', marginTop: 'm', width: '90%', height: '95%', backgroundColor: 'foreground', onHide: onHide }, children));
+function MiddleCellPhone(props) {
+    var _a = useTheme(), borderRadius = _a.borderRadius, spacings = _a.spacings, colors = _a.colors;
+    return (React.createElement(Box, __assign({ pointerEvents: 'auto', overflow: 'hidden', borderRadius: borderRadius.m, alignSelf: 'stretch', flex: 1, margin: spacings.m, initial: { scale: 0 }, animate: { scale: 1 }, exit: { scale: 0 }, backgroundColor: colors.background }, props)));
 }
 export function MiddleCellModal(_a) {
-    var children = _a.children, onDismiss = _a.onDismiss, _b = _a.disableStateResetOnDismiss, disableStateResetOnDismiss = _b === void 0 ? false : _b, visible = _a.visible, others = __rest(_a, ["children", "onDismiss", "disableStateResetOnDismiss", "visible"]);
+    var visible = _a.visible, onDismiss = _a.onDismiss, others = __rest(_a, ["visible", "onDismiss"]);
     var widthSize = useWidthSizeGroup()[0];
     var Wrapper = getValueForLargeSize(widthSize, MiddleCellDesktop, MiddleCellPhone);
-    var justifyContent = getValueForLargeSize(widthSize, 'center', 'flex-start');
-    var _c = useModalAnimatedState(onDismiss, 350, disableStateResetOnDismiss), cellIsVisible = _c[0], hideAnimation = _c[1], resetVisibility = _c[2];
-    return (React.createElement(DimmedModal, __assign({ disableStateResetOnDismiss: disableStateResetOnDismiss, onDismiss: hideAnimation, visible: visible, justifyContent: justifyContent, alignItems: 'center' }, others),
-        React.createElement(AnimatedPresence, null, cellIsVisible ? React.createElement(Wrapper, { onHide: resetVisibility }, children) : null)));
+    return (React.createElement(DimmedModal, { pointerEvents: 'box-none', visible: visible, onDismiss: onDismiss, height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' },
+        React.createElement(Wrapper, __assign({}, others))));
 }
 //# sourceMappingURL=MiddleCellModal.js.map

@@ -21,21 +21,24 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React from 'react';
-import { Modal as NativeModal } from 'react-native';
-import { BaseBox, BasePressable, BaseSafeAreaView } from '../baseComponents';
 import { BlurView } from 'expo-blur';
-import { useThemeIdentifier } from '../../context/hooks/useThemeIdentifier';
 import { TextButton } from '../buttons/TextButton';
-var textProps = { fontWeight: '600' };
+import { useTheme } from '../../hooks/useTheme';
+import { Layer } from '../containers/Layer/index.native';
+import { Pressable } from '../buttons/Pressable';
+import { SafeAreaLayer } from '../containers/SafeAreaLayer';
+import { useThemeIdentifier } from '../../hooks/useThemeIdentifier';
+import { Modal } from './Modal';
 export function BlurrediOSModal(_a) {
     var children = _a.children, onDismiss = _a.onDismiss, dismissText = _a.dismissText, visible = _a.visible, others = __rest(_a, ["children", "onDismiss", "dismissText", "visible"]);
-    var themeIdentifier = useThemeIdentifier()[0];
-    return (React.createElement(NativeModal, __assign({ visible: visible, transparent: true, animationType: 'slide' }, others),
-        React.createElement(BasePressable, { flex: 1, onPress: onDismiss }),
+    var _b = useTheme(), colors = _b.colors, spacings = _b.spacings;
+    var themeIdentifier = useThemeIdentifier();
+    return (React.createElement(Modal, __assign({ visible: visible }, others),
+        React.createElement(Pressable, { flex: 1, onPress: onDismiss }),
         React.createElement(BlurView, { intensity: 100, tint: themeIdentifier },
-            React.createElement(BaseBox, { backgroundColor: themeIdentifier === 'light' ? 'black' : 'white', opacity: 0.1, position: 'absolute', top: 0, bottom: 0, right: 0, left: 0 }),
-            React.createElement(BaseBox, { borderTopColor: 'placeholderColor', justifyContent: 'center', alignItems: 'flex-end', borderTopWidth: 0.5, backgroundColor: 'background', height: 48, paddingRight: 'm' },
-                React.createElement(TextButton, { textProps: textProps, onPress: onDismiss }, dismissText)),
-            React.createElement(BaseSafeAreaView, null, children))));
+            React.createElement(Layer, { top: 0, bottom: 0, left: 0, right: 0, position: 'absolute', style: { opacity: 0.1 }, backgroundColor: themeIdentifier === 'light' ? 'black' : 'white' }),
+            React.createElement(Layer, { justifyContent: 'center', alignItems: 'flex-end', borderTopWidth: 0.5, borderColor: colors.placeholder, backgroundColor: colors.background, height: 48, paddingRight: spacings.m },
+                React.createElement(TextButton, { variant: 'main', textProps: { variant: 'label', fontWeight: 600 }, onPress: onDismiss }, dismissText)),
+            React.createElement(SafeAreaLayer, null, children))));
 }
 //# sourceMappingURL=BlurrediOSModal.js.map

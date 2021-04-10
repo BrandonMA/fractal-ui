@@ -1,7 +1,9 @@
 import React from 'react';
-import { FullScreen } from './FullScreen';
-import { BaseBoxProps } from '../baseComponents/BaseBox';
+import { useTheme } from '../../core/context/hooks/useTheme';
+import { Layer } from './Layer';
+import { LayerProps } from './Layer/types';
 
-export function Background(props: BaseBoxProps): JSX.Element {
-    return <FullScreen backgroundColor='background' {...props} />;
+export function Background(props: LayerProps): JSX.Element {
+    const { colors } = useTheme();
+    return <Layer backgroundColor={colors.background} flex={1} {...props} />;
 }

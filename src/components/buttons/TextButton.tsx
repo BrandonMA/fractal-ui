@@ -1,38 +1,36 @@
-import { useTheme } from '@shopify/restyle';
 import React from 'react';
-import { FractalTheme } from '../../themes/FractalTheme';
-import { BaseText, BaseTextProps } from '../baseComponents/BaseText';
-import { BaseTouchableOpacity, BaseTouchableOpacityProps } from '../baseComponents/BaseTouchableOpacity';
-import { ButtonColorVariant } from './types/ButtonColorVariant';
-import { TitleColorVariant } from './types/TitleColorVariant';
+import { Text } from '../text';
+import { AnimationProps, FractalSharedProps } from '../../sharedProps';
+import { TextProps } from '../text/BaseText/types';
+import { useTheme } from '../../core/context/hooks/useTheme';
+import { ButtonVariant } from './ButtonVariant';
+import { TouchableOpacity } from './TouchableOpacity';
+import { getTextButtonAccessibilityProps } from './accessibility/getTextButtonAccessibilityProps';
 
-export interface TextButtonProps extends Partial<Omit<BaseTouchableOpacityProps, 'children'>> {
+export interface TextButtonProps extends FractalSharedProps, AnimationProps {
+    variant: ButtonVariant;
     children?: string;
-    textProps?: Omit<BaseTextProps, 'children'>;
+    textProps?: Omit<TextProps, 'children'>;
     leftIcon?: (color: string) => JSX.Element;
     rightIcon?: (color: string) => JSX.Element;
-    variant?: ButtonColorVariant | TitleColorVariant | 'navigationBarButtonColor';
+    style?: any;
+    onPress?: () => void;
 }
 
-export function TextButton({
-    leftIcon,
-    rightIcon,
-    children,
-    textProps,
-    variant = 'mainInteractiveColor',
-    ...others
-}: TextButtonProps): JSX.Element {
-    const { colors } = useTheme<FractalTheme>();
+export function TextButton({ variant, children, leftIcon, rightIcon, textProps, ...others }: TextButtonProps): JSX.Element {
+    const { colors } = useTheme();
+    const colorName = `${variant}InteractiveColor`;
+    const color = colors[colorName];
 
     return (
-        <BaseTouchableOpacity flexDirection='row' alignItems='center' {...others}>
-            {leftIcon ? leftIcon(colors[variant]) : null}
-            {children != null ? (
-                <BaseText variant={variant} {...textProps}>
+        <TouchableOpacity {...others} {...getTextButtonAccessibilityProps()}>
+            {leftIcon && leftIcon(color)}
+            {children && (
+                <Text variant={'textButton'} color={color} {...textProps}>
                     {children}
-                </BaseText>
-            ) : null}
-            {rightIcon ? rightIcon(colors[variant]) : null}
-        </BaseTouchableOpacity>
+                </Text>
+            )}
+            {rightIcon && rightIcon(color)}
+        </TouchableOpacity>
     );
 }

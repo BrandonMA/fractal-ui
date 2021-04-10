@@ -1,6 +1,5 @@
-/// <reference types="react" />
-import { BaseBoxProps } from '../baseComponents/BaseBox';
-export interface MessageProps extends Partial<Omit<BaseBoxProps, 'children'>> {
+import { LayerProps } from '../containers/Layer/types';
+export interface MessageProps extends Partial<Omit<LayerProps, 'children'>> {
     title: string;
     messageType?: 'main' | 'alternative' | 'success' | 'warning' | 'danger';
     icon?: (color: string) => JSX.Element;

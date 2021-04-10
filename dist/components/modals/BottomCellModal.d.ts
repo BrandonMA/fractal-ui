@@ -1,7 +1,2 @@
-import { ReactNode } from 'react';
-import { DimmedModalProps } from './DimmedModal';
-export interface BottomCellModalProps extends DimmedModalProps {
-    onDismiss?: () => void;
-    children?: ReactNode;
-}
-export declare function BottomCellModal({ children, disableStateResetOnDismiss, onDismiss, visible, ...others }: BottomCellModalProps): JSX.Element;
+import { ModalProps } from './Modal/types';
+export declare function BottomCellModal({ visible, onDismiss, ...others }: ModalProps): JSX.Element;

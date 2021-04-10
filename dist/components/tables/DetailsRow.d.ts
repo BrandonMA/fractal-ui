@@ -1,6 +1,5 @@
-/// <reference types="react" />
-import { BaseBoxProps } from '../baseComponents/BaseBox';
-export interface DetailsRowProps extends Partial<Omit<BaseBoxProps, 'children'>> {
+import { LayerProps } from '../containers/Layer/types';
+export interface DetailsRowProps extends Partial<Omit<LayerProps, 'children'>> {
     title: string;
     details: string;
 }

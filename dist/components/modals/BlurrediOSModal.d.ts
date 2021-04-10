@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { ModalProps as NativeModalProps } from 'react-native';
-export interface BlurrediOSModalProps extends NativeModalProps {
+import { ModalProps } from './Modal/types';
+export interface BlurrediOSModalProps extends ModalProps {
     onDismiss?: () => void;
     children?: ReactNode;
     disableStateResetOnDismiss?: boolean;

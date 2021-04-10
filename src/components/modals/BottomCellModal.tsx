@@ -1,57 +1,70 @@
-import React, { ReactNode } from 'react';
-import { BaseTouchableOpacity } from '../baseComponents';
-import { Cell } from '../containers';
-import { useTheme } from '@shopify/restyle';
-import { FractalTheme } from '../../themes';
-import { DimmedModal, DimmedModalProps } from './DimmedModal';
-import { AnimatedPresence, BottomSlideAnimation } from '../animations';
-import { useModalAnimatedState } from './hooks/useModalAnimatedState';
-import { XIcon } from '../assets/XIcon';
+import React from 'react';
+import { ModalProps } from './Modal/types';
+import { Box } from '../containers';
+import { getValueForLargeSize, useWidthSizeGroup } from '@bma98/size-class';
+import { DimmedModal } from './DimmedModal';
+import { LayerProps } from '../containers/Layer/types';
+import { useTheme } from '../../core/context/hooks/useTheme';
+import { Dimensions } from 'react-native';
 
-export interface BottomCellModalProps extends DimmedModalProps {
-    onDismiss?: () => void;
-    children?: ReactNode;
+function BottomCellDesktop(props: LayerProps): JSX.Element {
+    const { borderRadius, colors } = useTheme();
+    const window = Dimensions.get('window');
+
+    return (
+        <Box
+            pointerEvents={'auto'}
+            overflow={'hidden'}
+            borderRadius={borderRadius.m}
+            width={500}
+            minHeight={300}
+            maxHeight={'50%'}
+            initial={{ translateY: window.height }}
+            animate={{ translateY: 0 }}
+            exit={{ translateY: window.height }}
+            backgroundColor={colors.background}
+            {...props}
+        />
+    );
 }
 
-export function BottomCellModal({
-    children,
-    disableStateResetOnDismiss = false,
-    onDismiss,
-    visible,
-    ...others
-}: BottomCellModalProps): JSX.Element {
-    const { colors } = useTheme<FractalTheme>();
-    const [cellIsVisible, hideAnimated, resetVisibility] = useModalAnimatedState(onDismiss, 350, disableStateResetOnDismiss);
+function BottomCellPhone(props: LayerProps): JSX.Element {
+    const { borderRadius, spacings, colors } = useTheme();
+    const window = Dimensions.get('window');
+
+    return (
+        <Box
+            pointerEvents={'auto'}
+            overflow={'hidden'}
+            borderRadius={borderRadius.m}
+            alignSelf={'stretch'}
+            minHeight={300}
+            maxHeight={'50%'}
+            margin={spacings.m}
+            initial={{ translateY: window.height }}
+            animate={{ translateY: 0 }}
+            exit={{ translateY: window.height }}
+            backgroundColor={colors.background}
+            {...props}
+        />
+    );
+}
+
+export function BottomCellModal({ visible, onDismiss, ...others }: ModalProps): JSX.Element {
+    const [widthSize] = useWidthSizeGroup();
+    const Wrapper = getValueForLargeSize(widthSize, BottomCellDesktop, BottomCellPhone);
 
     return (
         <DimmedModal
-            disableStateResetOnDismiss={disableStateResetOnDismiss}
-            onDismiss={hideAnimated}
             visible={visible}
-            {...others}
-            justifyContent='flex-end'
+            onDismiss={onDismiss}
+            pointerEvents={'box-none'}
+            height={'100%'}
+            width={'100%'}
+            justifyContent={'flex-end'}
+            alignItems={'center'}
         >
-            <AnimatedPresence>
-                {cellIsVisible ? (
-                    <BottomSlideAnimation padding='m' alignSelf='center' maxWidth={540} width={'100%'} onHide={resetVisibility}>
-                        <Cell>
-                            <BaseTouchableOpacity
-                                justifyContent='center'
-                                alignItems='center'
-                                backgroundColor='background'
-                                alignSelf='flex-end'
-                                width={32}
-                                height={32}
-                                borderRadius='l'
-                                onPress={hideAnimated}
-                            >
-                                <XIcon height={19} fill={colors.placeholderColor} />
-                            </BaseTouchableOpacity>
-                            {children}
-                        </Cell>
-                    </BottomSlideAnimation>
-                ) : null}
-            </AnimatedPresence>
+            <Wrapper {...others} />
         </DimmedModal>
     );
 }
