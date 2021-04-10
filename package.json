@@ -60,6 +60,7 @@
         "eslint-plugin-react-hooks": "^4.2.0",
         "eslint-plugin-standard": "^5.0.0",
         "expo": "^40.0.1",
+        "expo-av": "^9.0.0",
         "expo-blur": "~8.2.2",
         "expo-module-scripts": "^1.2.0",
         "expo-splash-screen": "~0.8.0",
