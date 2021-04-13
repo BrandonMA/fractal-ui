@@ -9,7 +9,8 @@ export interface BaseSliderProps {
     onSlidingStart?: (value: number) => void;
     onValueChange?: (value: number) => void;
     step?: number;
-    initialValue?: number;
+    defaultValue?: number;
+    value?: number;
     name?: string;
 }
 

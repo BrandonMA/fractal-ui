@@ -45,6 +45,6 @@ export function percentToValue(percent: number, min: number, max: number): numbe
 
 export function clampValue(value: number, min: number, max: number): number {
     if (value == null) return value;
-    if (max < min) return value;
+    if (max <= min) return value;
     return Math.min(Math.max(value, min), max);
 }

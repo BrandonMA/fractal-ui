@@ -4,20 +4,21 @@ import { BaseSlider } from './BaseSlider';
 import { Layer } from '../containers';
 
 export function Slider({
-    initialValue = 0,
-    minimumValue = 0,
-    maximumValue = 1,
+    defaultValue,
+    minimumValue,
+    maximumValue,
     onValueChange,
     onSlidingStart,
     onSlidingComplete,
-    step = 1,
+    step,
     name,
+    value,
     ...layerProps
 }: SliderProps): JSX.Element {
     return (
         <Layer {...layerProps}>
             <BaseSlider
-                initialValue={initialValue}
+                defaultValue={defaultValue}
                 minimumValue={minimumValue}
                 maximumValue={maximumValue}
                 onValueChange={onValueChange}
@@ -25,6 +26,7 @@ export function Slider({
                 onSlidingComplete={onSlidingComplete}
                 step={step}
                 name={name}
+                value={value}
             />
         </Layer>
     );

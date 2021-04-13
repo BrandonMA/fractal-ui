@@ -1,18 +1,21 @@
-import React, { useCallback, useState, useLayoutEffect, useEffect, useMemo, useRef } from 'react';
+import React, { useCallback, useState, useLayoutEffect, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { BaseSliderProps, EventSource } from '../types';
-import { useEventCallback } from '../utils/useEventCallback';
-import { getWidth, getPercentage, getLeft, roundValueToStep, clampValue, percentToValue, valueToPercent } from '../utils/slider';
+import { useCallbackRef } from '../utils/useCallbackRef';
+import { getPercentage, roundValueToStep, clampValue, percentToValue, valueToPercent } from '../utils/slider';
 import { useTheme } from '../../../core/context/hooks/useTheme';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
 import { getSliderAccessibilityProps } from '../accessibility/getSliderAccessibilityProps';
 import { getSliderInputAccessibilityProps } from '../accessibility/getSliderInputAccessibilityProps';
+import { useControllableState } from '../utils/useControllableState';
+import { useUpdateEffect } from '../utils/useUpdateEffect';
 
 const StyledRange = styled.div`
     position: relative;
     border-radius: 2px;
     height: 4px;
+    margin: 8px 0px;
     ${extractBackgroundProps};
 `;
 
@@ -35,59 +38,67 @@ const StyledRangeProgress = styled.div`
     border-radius: 2px;
     position: absolute;
     height: 100%;
-    ${extractBackgroundProps};
+    ${extractBackgroundProps}
 `;
 
 export function BaseSlider({
-    initialValue = 0,
+    value: valueProp,
+    defaultValue = 0,
     minimumValue = 0,
     maximumValue = 1,
     onValueChange,
     onSlidingStart,
     onSlidingComplete,
-    step = 1,
+    step = 0.001,
     name
 }: BaseSliderProps): JSX.Element {
-    const [value, setValue] = useState(initialValue);
-    const [isDragging, setDragging] = useState(true);
+    const [computedValue, setValue] = useControllableState({
+        value: valueProp,
+        defaultValue,
+        onChange: onValueChange
+    });
+    const [isDragging, setDragging] = useState(false);
     const [eventSource, setEventSource] = useState<EventSource>();
     const { colors, shadows } = useTheme();
 
     const sliderRef = useRef<any>(null);
-    const rangeProgressRef = useRef<any>(null);
-    const thumbRef = useRef<any>(null);
+    const rangeProgressRef = useRef<HTMLDivElement>(null);
+    const thumbRef = useRef<HTMLDivElement>(null);
     const diffRef = useRef<any>(null);
 
-    const initialPercentage = getPercentage(value, minimumValue, maximumValue);
+    const value = clampValue(computedValue, minimumValue, maximumValue);
 
-    const handleUpdate = useCallback((percentage) => {
-        thumbRef.current.style.left = getLeft(percentage);
-        rangeProgressRef.current.style.width = getWidth(percentage);
-    }, []);
+    const trackPercent = valueToPercent(value, minimumValue, maximumValue);
 
-    const getValueFromPointer = useCallback(
-        (event): number => {
-            const { clientX } = event.touches?.[0] ?? event;
-            let newX = clientX - diffRef.current - sliderRef.current.getBoundingClientRect().left;
-            const end = sliderRef.current.offsetWidth - thumbRef.current.offsetWidth;
+    const thumbStyle: React.CSSProperties = {
+        left: `calc(${trackPercent}% - 10px)`
+    };
 
-            const start = 0;
+    const rangeProgressStyle: React.CSSProperties = {
+        width: `${trackPercent}%`
+    };
 
-            if (newX < start) {
-                newX = 0;
-            }
+    const getValueFromPointer = useCallbackRef((event): number | undefined => {
+        if (!thumbRef.current) return undefined;
+        const { clientX } = event.touches?.[0] ?? event;
+        let newX = clientX - diffRef.current - sliderRef.current.getBoundingClientRect().left;
+        const end = sliderRef.current.offsetWidth - thumbRef.current.offsetWidth;
 
-            if (newX > end) {
-                newX = end;
-            }
-            const percent = getPercentage(newX, start, end);
-            let nextValue = percentToValue(percent, minimumValue, maximumValue);
-            nextValue = parseFloat(roundValueToStep(nextValue, minimumValue, step) as string);
-            nextValue = clampValue(nextValue, minimumValue, maximumValue);
-            return nextValue;
-        },
-        [maximumValue, minimumValue, step]
-    );
+        const start = 0;
+
+        if (newX < start) {
+            newX = 0;
+        }
+
+        if (newX > end) {
+            newX = end;
+        }
+        const percent = getPercentage(newX, start, end);
+        let nextValue = percentToValue(percent, minimumValue, maximumValue);
+        if (step) nextValue = parseFloat(roundValueToStep(nextValue, minimumValue, step) as string);
+        nextValue = clampValue(nextValue, minimumValue, maximumValue);
+        return nextValue;
+    });
 
     const tenSteps = (maximumValue - minimumValue) / 10;
     const oneStep = step;
@@ -96,10 +107,9 @@ export function BaseSlider({
         (value: number) => {
             value = parseFloat(roundValueToStep(value, minimumValue, oneStep) as string);
             value = clampValue(value, minimumValue, maximumValue);
-            onValueChange?.(value);
             setValue(value);
         },
-        [minimumValue, oneStep, maximumValue, onValueChange]
+        [minimumValue, oneStep, maximumValue, setValue]
     );
 
     const actions = useMemo(
@@ -112,14 +122,14 @@ export function BaseSlider({
                 const next = value - step;
                 constrain(next);
             },
-            reset: () => constrain(initialValue)
+            reset: () => constrain(defaultValue)
         }),
-        [constrain, value, oneStep, initialValue]
+        [constrain, value, oneStep, defaultValue]
     );
 
-    const handleSlidingStart = useEventCallback(() => {
+    const handleSlidingStart = useCallbackRef(() => {
         onSlidingStart?.(value);
-    }, [value]);
+    });
 
     const onKeyDown = useCallback(
         (event: React.KeyboardEvent) => {
@@ -150,11 +160,13 @@ export function BaseSlider({
 
     const handleMoveStart = useCallback(
         (event) => {
-            const { clientX } = event.touches?.[0] ?? event;
-            diffRef.current = clientX - thumbRef.current.getBoundingClientRect().left;
+            if (thumbRef.current) {
+                const { clientX } = event.touches?.[0] ?? event;
+                diffRef.current = clientX - thumbRef.current.getBoundingClientRect().left;
 
-            setDragging(true);
-            handleSlidingStart();
+                setDragging(true);
+                handleSlidingStart();
+            }
         },
         [handleSlidingStart]
     );
@@ -162,10 +174,9 @@ export function BaseSlider({
     const handleMove = useCallback(
         (event) => {
             const newValue = getValueFromPointer(event);
-            onValueChange?.(newValue);
-            setValue(newValue);
+            if (newValue != null) setValue(newValue);
         },
-        [getValueFromPointer, onValueChange]
+        [getValueFromPointer, setValue]
     );
 
     const handleMouseMove = useCallback(
@@ -217,7 +228,6 @@ export function BaseSlider({
     );
 
     useLayoutEffect(() => {
-        handleUpdate(initialPercentage);
         const env = sliderRef.current;
         env.addEventListener('touchstart', handleTouchStart, { passive: false });
         return () => {
@@ -228,26 +238,27 @@ export function BaseSlider({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    useEffect(() => {
-        const trackPercent = valueToPercent(value, minimumValue, maximumValue);
-        handleUpdate(trackPercent);
-        const shouldUpdate = !isDragging && eventSource !== 'keyboard';
+    useUpdateEffect(() => {
+        const shouldUpdate = !isDragging && eventSource != 'keyboard' && eventSource != null;
 
         if (shouldUpdate) {
             onSlidingComplete?.(value);
+            setEventSource(undefined);
         }
         if (eventSource === 'keyboard') {
             onSlidingComplete?.(value);
+            setEventSource(undefined);
         }
-    }, [eventSource, handleUpdate, isDragging, maximumValue, minimumValue, onSlidingComplete, value]);
+    }, [isDragging, eventSource, onSlidingComplete]);
 
     return (
         <StyledRange ref={sliderRef} backgroundColor={colors.placeholder}>
-            <StyledRangeProgress ref={rangeProgressRef} backgroundColor={colors.mainInteractiveColor} />
+            <StyledRangeProgress ref={rangeProgressRef} style={rangeProgressStyle} backgroundColor={colors.mainInteractiveColor} />
             <StyledThumb
                 ref={thumbRef}
                 onMouseDown={(e) => handleMouseDown(e.nativeEvent)}
                 onKeyDown={onKeyDown}
+                style={thumbStyle}
                 boxShadow={shadows.thumbShadow}
                 {...getSliderAccessibilityProps()}
             />

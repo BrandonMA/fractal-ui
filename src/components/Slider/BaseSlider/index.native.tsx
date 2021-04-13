@@ -4,7 +4,7 @@ import Slider from '@react-native-community/slider';
 import { BaseSliderProps } from '../types';
 import { useTheme } from '../../../core/context/hooks/useTheme';
 
-export function BaseSlider({ step = 1, initialValue, ...others }: BaseSliderProps): JSX.Element {
+export function BaseSlider({ step = 0.001, defaultValue, value, ...others }: BaseSliderProps): JSX.Element {
     const { colors } = useTheme();
     return (
         <Slider
@@ -12,7 +12,8 @@ export function BaseSlider({ step = 1, initialValue, ...others }: BaseSliderProp
             maximumTrackTintColor={Platform.OS == 'android' ? colors.label : colors.placeholder}
             thumbTintColor={Platform.OS == 'android' ? colors.mainInteractiveColor : colors.white}
             step={step}
-            value={initialValue}
+            style={{ height: 20 }}
+            value={value || defaultValue}
             {...others}
         />
     );
