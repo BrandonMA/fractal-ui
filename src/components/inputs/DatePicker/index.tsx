@@ -6,7 +6,6 @@ import { numberToArray } from '../util/numberToArray';
 import { getDaysInMonth } from './util/getDaysInMonth';
 import { getYearsInRange } from './util/getYearsInRange';
 import { localeMonthNames } from './util/localeMonthNames';
-import { getMonthName } from './util/getMonthName';
 import { BaseBox } from '../../baseComponents';
 
 export function DatePicker({ minDate, maxDate, initialDate, onChange, ...others }: DatePickerProps): JSX.Element {
@@ -70,11 +69,11 @@ export function DatePicker({ minDate, maxDate, initialDate, onChange, ...others 
     return (
         <BaseBox {...others}>
             <HorizontalView marginBottom='m'>
-                <Picker initialValue={date.getFullYear().toString()} items={years} flex={1} onChange={onYearChange} />
+                <Picker initialValue={date.getFullYear().toString()} items={years} flex={1} onChange={onYearChange} isReadOnly />
                 <BaseBox marginRight='m' />
-                <Picker initialValue={getMonthName(date)} items={localeMonthNames} flex={1} onChange={onMonthChange} />
+                <Picker initialValue={date.getMonth().toString()} items={localeMonthNames} flex={1} onChange={onMonthChange} isReadOnly />
             </HorizontalView>
-            <Picker initialValue={date.getDate().toString()} items={days} onChange={onDayChange} />
+            <Picker initialValue={date.getDate().toString()} items={days} onChange={onDayChange} isReadOnly />
         </BaseBox>
     );
 }

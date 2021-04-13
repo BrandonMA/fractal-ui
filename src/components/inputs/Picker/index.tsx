@@ -15,8 +15,8 @@ const style: any = {
     cursor: 'pointer'
 };
 
-export function Picker({ items, onChange, initialValue, disabled, ...others }: PickerProps): JSX.Element {
-    const [currentValue, handleValueChange] = usePickerState(initialValue, items, onChange);
+export function Picker({ items, onChange, initialValue, disabled, isReadOnly, ...others }: PickerProps): JSX.Element {
+    const [currentValue, handleValueChange] = usePickerState(initialValue, items, onChange, isReadOnly);
     const { colors, interactiveItems } = useTheme<FractalTheme>();
 
     const renderItem = useCallback(
