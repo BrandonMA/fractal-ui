@@ -37,7 +37,7 @@ export interface AudioPlayerReturnedObject {
     enableShufflePlayback: boolean;
     enableRepeatPlayback: boolean;
     setIsPlaying: Dispatch<SetStateAction<boolean>>;
-    setManualTime: (time: number) => void;
+    setPositionManually: (time: number) => Promise<void>;
     toNextTrack: () => void;
     toPreviousTrack: () => void;
     setTrackIndex: Dispatch<SetStateAction<number>>;

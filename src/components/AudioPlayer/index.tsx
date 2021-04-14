@@ -1,30 +1,16 @@
-import React from 'react';
-import { Button } from '../buttons';
+import React, { useCallback } from 'react';
 import { Box } from '../containers';
 import { Layer } from '../containers/Layer/index.native';
 import { AudioPlayerProps } from './types';
 import { useAudioPlayer } from './useAudioPlayer';
 import { Text } from '../text';
 import { useTheme } from '../../core/context/hooks/useTheme';
+import { Image } from '../Image';
+import { AudioControls } from './AudioControls';
+import { AudioProgressBar } from './AudioProgressBar';
 
-const strPadLeft = (string: number, pad: string, length: number): string => {
-    return (new Array(length + 1).join(pad) + string).slice(-length);
-};
-
-function convertNumberToTime(totalSeconds: number): string {
-    if (totalSeconds < 0 || isNaN(totalSeconds)) {
-        return '00:00';
-    }
-    totalSeconds = Number(totalSeconds.toFixed(0));
-    const minutes = Math.floor(totalSeconds / 60);
-    const secondsLeft = totalSeconds - minutes * 60;
-
-    const finalTime = strPadLeft(minutes, '0', 2) + ':' + strPadLeft(secondsLeft, '0', 2);
-    return finalTime;
-}
-
-export function SimpleAudioPlayer({ tracks }: AudioPlayerProps): JSX.Element {
-    const { spacings } = useTheme();
+export function AudioPlayer({ tracks }: AudioPlayerProps): JSX.Element {
+    const { spacings, borderRadius, colors } = useTheme();
     const {
         currentTrackInfo,
         currentTime,
@@ -33,71 +19,43 @@ export function SimpleAudioPlayer({ tracks }: AudioPlayerProps): JSX.Element {
         enableShufflePlayback,
         enableRepeatPlayback,
         setIsPlaying,
-        setManualTime,
+        setPositionManually,
         toNextTrack,
         toPreviousTrack,
         setEnableShufflePlayback,
         setEnableRepeatPlayback
     } = useAudioPlayer(tracks);
 
-    console.log({ enableRepeatPlayback });
+    const { title, image } = currentTrackInfo;
 
-    const addTenSeconds = (): void => {
-        const newTime = currentTime + 10;
-        setManualTime(newTime);
-    };
-
-    const backTenSeconds = (): void => {
-        const newTime = currentTime - 10;
-        setManualTime(newTime);
-    };
-
-    const handleShufflePlayback = (): void => {
-        setEnableShufflePlayback((currentValue) => !currentValue);
-    };
-
-    const handleRepeatPlayback = (): void => {
-        console.log('Repeat');
-        setEnableRepeatPlayback((currentValue) => !currentValue);
-    };
+    const handleUpdateTime = useCallback(
+        async (positionMillis: number) => {
+            await setPositionManually(positionMillis);
+            if (!isPlaying) {
+                setIsPlaying(true);
+            }
+        },
+        [isPlaying, setIsPlaying, setPositionManually]
+    );
 
     return (
-        <Box>
-            <Text variant='normal' marginBottom={spacings.m}>
-                {currentTrackInfo.title}
-            </Text>
-            <Layer flexDirection={'row'} marginBottom={spacings.m} justifyContent={'space-between'}>
-                <Button variant={'main'} marginRight={spacings.m} width={'30%'} text={'Previous'} onPress={toPreviousTrack} />
-                <Button
-                    variant={'main'}
-                    marginRight={spacings.m}
-                    text={isPlaying ? 'Pause' : 'Play'}
-                    width={'30%'}
-                    onPress={() => setIsPlaying((value) => !value)}
+        <Box flexDirection={'row'} maxWidth={768}>
+            <Image source={image} width={104} height={104} resizeMode={'cover'} borderRadius={borderRadius.m} />
+            <Layer flex={1} marginLeft={spacings.xs}>
+                <Text variant='button' color={colors.text}>
+                    {title}
+                </Text>
+                <AudioProgressBar isPlaying={isPlaying} duration={duration} currentTime={currentTime} onTimeUpdate={handleUpdateTime} />
+                <AudioControls
+                    isEnableShuffle={enableShufflePlayback}
+                    isEnableRepeat={enableRepeatPlayback}
+                    isPlaying={isPlaying}
+                    onPlayPausePress={setIsPlaying}
+                    onNextPress={toNextTrack}
+                    onPreviousPress={toPreviousTrack}
+                    onShufflePress={() => setEnableShufflePlayback((currentValue) => !currentValue)}
+                    onRepeatPress={() => setEnableRepeatPlayback((currentValue) => !currentValue)}
                 />
-                <Button variant={'main'} text={'Next'} width={'30%'} onPress={toNextTrack} />
-            </Layer>
-            <Layer flexDirection={'row'} marginBottom={spacings.m} justifyContent={'space-between'}>
-                <Button variant={'alternative'} marginRight={spacings.m} width={'30%'} text={'- 10'} onPress={backTenSeconds} />
-                <Button variant={'alternative'} text={'+ 10'} width={'30%'} onPress={addTenSeconds} />
-            </Layer>
-            <Layer flexDirection={'row'} marginBottom={spacings.m} justifyContent={'space-between'}>
-                <Button
-                    variant={enableShufflePlayback ? 'main' : 'warning'}
-                    marginRight={spacings.m}
-                    width={'30%'}
-                    text={'Aleatorio'}
-                    onPress={handleShufflePlayback}
-                />
-                <Button
-                    variant={'warning'}
-                    text={enableRepeatPlayback ? 'Repetir Activado' : 'Repetir'}
-                    width={'30%'}
-                    onPress={handleRepeatPlayback}
-                />
-            </Layer>
-            <Layer flexDirection={'row'}>
-                <Text variant='normal'>{`${convertNumberToTime(currentTime)} / ${convertNumberToTime(duration)}`}</Text>
             </Layer>
         </Box>
     );

@@ -42,6 +42,7 @@ import {
 import { SafeAreaView, ScrollView } from 'react-native';
 import { BuggyComponent } from './examples/BuggyComponent';
 import { ThemeSwapper } from './examples/ThemeSwapper';
+import { AudioPlayer } from './src/components/AudioPlayer';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -97,10 +98,42 @@ function Content(): JSX.Element {
 
     // const [bottomCellVisible, setBottomCellVisible] = useState(false);
     // const toggleBottomCell = useCallback(() => setBottomCellVisible((currentValue) => !currentValue), []);
-    const valueText = `Value: ${sliderValue}`;
+
+    const handleSliderValue = useCallback((value: number) => {
+        setSliderValue(value);
+    }, []);
 
     return (
         <PaddingLayer>
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Audio Player
+            </Text>
+            <AudioPlayer
+                tracks={[
+                    {
+                        title: 'Rubber Robot',
+                        artist: 'Podington Bear',
+                        audioSrc: 'https://s3.amazonaws.com/exp-us-standard/audio/playlist-example/Podington_Bear_-_Rubber_Robot.mp3',
+                        image: 'https://picsum.photos/id/870/200/300',
+                        color: 'lightblue'
+                    },
+                    {
+                        title: 'All Of Me',
+                        artist: 'Mildred Bailey',
+                        audioSrc:
+                            'https://ia800304.us.archive.org/34/items/PaulWhitemanwithMildredBailey/PaulWhitemanwithMildredBailey-AllofMe.mp3',
+                        image: 'https://picsum.photos/id/872/200/300',
+                        color: 'lightgreen'
+                    },
+                    {
+                        title: 'Instant Crush',
+                        artist: 'Daft Punk ft. Julian Casablancas',
+                        audioSrc: require('./assets/song.mp3'),
+                        image: 'https://picsum.photos/id/875/200/300',
+                        color: 'orange'
+                    }
+                ]}
+            />
             <Text marginBottom={spacings.m} variant={'title'}>
                 Swap Theme
             </Text>
@@ -154,7 +187,6 @@ function Content(): JSX.Element {
                     selectedIndex={selectedIndex}
                     values={['One', 'Two', 'Three', 'Four']}
                     onChange={(value, index) => {
-                        console.log('On Change: ', { value, index });
                         setSelectedIndex(index);
                     }}
                     onValueChange={(value) => {
@@ -166,17 +198,8 @@ function Content(): JSX.Element {
                 Slider Example:
             </Text>
             <Box marginBottom={spacings.m}>
-                <Slider
-                    minimumValue={0}
-                    maximumValue={100}
-                    initialValue={0}
-                    onSlidingComplete={(value: number) => {
-                        setSliderValue(value);
-                    }}
-                />
-                <Text marginTop={spacings.m} variant='normal'>
-                    {valueText}
-                </Text>
+                <Slider onSlidingComplete={handleSliderValue} />
+                <Text variant={'normal'}>{`Value: ${sliderValue}`}</Text>
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Switch Example:

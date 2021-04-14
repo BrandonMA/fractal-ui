@@ -8,6 +8,7 @@ export function useAudioPlayer(
     repeatPlayback?: boolean
 ): AudioPlayerReturnedObject {
     const [trackIndex, setTrackIndex] = useState(0);
+    const [duration, setDuration] = useState(0);
     const [enableRepeatPlayback, setEnableRepeatPlayback] = useState<boolean>(repeatPlayback ?? false);
     const [enableShufflePlayback, setEnableShufflePlayback] = useState<boolean>(shufflePlayback ?? false);
     const [playList, setPlayList] = useState(shufflePlayback ? shuffleArray(tracks) : tracks);
@@ -20,25 +21,23 @@ export function useAudioPlayer(
     const audioRef = useRef<HTMLAudioElement>(new Audio(audioSrc as string));
     const isReady = useRef(false);
 
-    const { duration } = audioRef.current;
+    audioRef.current.onloadeddata = (): void => {
+        const { duration } = audioRef.current;
+        if (!isNaN(duration)) setDuration(duration * 1000);
+    };
 
     audioRef.current.onended = (): void => {
         checkIfShouldToNextTrack();
     };
 
     audioRef.current.ontimeupdate = (): void => {
-        setCurrentTime(audioRef.current.currentTime);
+        setCurrentTime(audioRef.current.currentTime * 1000);
     };
 
-    const setManualTime = useCallback(
-        (time: number): void => {
-            audioRef.current.currentTime = time;
-            if (!isPlaying) {
-                setIsPlaying(true);
-            }
-        },
-        [isPlaying]
-    );
+    const setPositionManually = useCallback(async (positionMillis: number): Promise<void> => {
+        audioRef.current.currentTime = positionMillis / 1000;
+        setCurrentTime(positionMillis);
+    }, []);
 
     const toPreviousTrack = useCallback(() => {
         if (trackIndex - 1 < 0) {
@@ -63,8 +62,9 @@ export function useAudioPlayer(
         } else if (!isLastIndex) {
             toNextTrack();
         } else {
-            setIsPlaying(false);
             audioRef.current.currentTime = 0;
+            setCurrentTime(0);
+            setIsPlaying(false);
         }
     }, [enableRepeatPlayback, toNextTrack, trackIndex, tracks.length]);
 
@@ -86,6 +86,7 @@ export function useAudioPlayer(
         if (isReady.current) {
             audioRef.current.play();
             setIsPlaying(true);
+            setCurrentTime(0);
         } else {
             // Set the isReady ref as true for the next pass
             isReady.current = true;
@@ -116,7 +117,7 @@ export function useAudioPlayer(
         enableShufflePlayback,
         enableRepeatPlayback,
         setIsPlaying,
-        setManualTime,
+        setPositionManually,
         toNextTrack,
         toPreviousTrack,
         setTrackIndex,

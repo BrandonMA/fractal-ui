@@ -33,11 +33,9 @@ export function useAudioPlayer(
         setIsPlaying(false);
     }, [sound]);
 
-    const setManualTime = useCallback(
-        async (timeInSeconds: number): Promise<void> => {
-            const positionMillis = timeInSeconds * 1000;
-            await sound?.playFromPositionAsync(positionMillis);
-            setIsPlaying(true);
+    const setPositionManually = useCallback(
+        async (positionMillis: number): Promise<void> => {
+            await sound?.setPositionAsync(positionMillis);
         },
         [sound]
     );
@@ -51,7 +49,6 @@ export function useAudioPlayer(
     }, [trackIndex, tracks.length]);
 
     const toNextTrack = useCallback(() => {
-        setCurrentTime(0);
         if (trackIndex < tracks.length - 1) {
             setTrackIndex(trackIndex + 1);
         } else {
@@ -65,9 +62,9 @@ export function useAudioPlayer(
         if (!isLastIndex && !enableRepeatPlayback) {
             toNextTrack();
         } else {
-            setIsPlaying(false);
             await sound?.setPositionAsync(0);
             setCurrentTime(0);
+            setIsPlaying(false);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [enableRepeatPlayback, toNextTrack, trackIndex, tracks.length]);
@@ -86,10 +83,10 @@ export function useAudioPlayer(
     const onPlaybackStatusUpdate = useCallback(
         async (status: CustomAVPlaybackStatus): Promise<void> => {
             if (status.positionMillis) {
-                setCurrentTime(status.positionMillis / 1000);
+                setCurrentTime(status.positionMillis);
             }
             if (status.didJustFinish) {
-                checkIfShouldToNextTrack();
+                await checkIfShouldToNextTrack();
             }
         },
         [checkIfShouldToNextTrack]
@@ -101,17 +98,18 @@ export function useAudioPlayer(
 
             if (sound == null) {
                 const { sound, status } = await Audio.Sound.createAsync(source);
-                await sound?.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate);
+                sound?.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate);
                 setSound(sound);
                 const castedStatus = status as CustomAVPlaybackStatus;
 
                 if (castedStatus.durationMillis) {
-                    setDuration(castedStatus.durationMillis / 1000);
+                    setDuration(castedStatus.durationMillis);
                 }
             } else {
                 await sound.unloadAsync();
                 const status = await sound.loadAsync(source, { shouldPlay: true });
-                await sound?.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate);
+                sound?.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate);
+                setCurrentTime(0);
                 const castedStatus = status as CustomAVPlaybackStatus;
 
                 if (!isPlaying) {
@@ -119,7 +117,7 @@ export function useAudioPlayer(
                 }
 
                 if (castedStatus.durationMillis) {
-                    setDuration(castedStatus.durationMillis / 1000);
+                    setDuration(castedStatus.durationMillis);
                 }
             }
         };
@@ -135,11 +133,14 @@ export function useAudioPlayer(
     }, [audioSrc]);
 
     useEffect(() => {
-        if (isPlaying) {
-            playSound();
-        } else {
-            pauseSound();
-        }
+        const handlePlayOrPause = async () => {
+            if (isPlaying) {
+                await playSound();
+            } else {
+                await pauseSound();
+            }
+        };
+        handlePlayOrPause();
     }, [isPlaying, pauseSound, playSound]);
 
     return {
@@ -150,7 +151,7 @@ export function useAudioPlayer(
         enableShufflePlayback,
         enableRepeatPlayback,
         setIsPlaying,
-        setManualTime,
+        setPositionManually,
         toNextTrack,
         toPreviousTrack,
         setTrackIndex,

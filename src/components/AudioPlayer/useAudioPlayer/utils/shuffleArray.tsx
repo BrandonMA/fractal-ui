@@ -1,14 +1,10 @@
-export function shuffleArray<T>(array: Array<T>): Array<T> {
-    let tmp: T;
-    let current: number;
-    let top = array.length;
-    const newArray = [...array];
-    if (top)
-        while (--top) {
-            current = Math.floor(Math.random() * (top + 1));
-            tmp = newArray[current];
-            newArray[current] = array[top];
-            newArray[top] = tmp;
-        }
-    return newArray;
+export function shuffleArray<T>(initialArray: Array<T>): Array<T> {
+    const [...array] = initialArray;
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * i);
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
 }
