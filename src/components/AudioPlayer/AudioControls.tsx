@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import React from 'react';
 import { useTheme } from '../../core';
 import { BaseButton } from '../buttons/BaseButton';
@@ -33,10 +34,18 @@ interface PlayPauseIconProps {
 }
 
 function PlayPauseIcon({ tintColor, isPlaying }: PlayPauseIconProps): JSX.Element {
-    return isPlaying ? (
-        <PauseIcon fill={tintColor} width={ICON_SIZE} height={ICON_SIZE} />
-    ) : (
-        <PlayIcon fill={tintColor} width={ICON_SIZE} height={ICON_SIZE} />
+    return (
+        <AnimatePresence>
+            {isPlaying ? (
+                <Layer initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                    <PauseIcon fill={tintColor} width={ICON_SIZE} height={ICON_SIZE} />
+                </Layer>
+            ) : (
+                <Layer initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                    <PlayIcon fill={tintColor} width={ICON_SIZE} height={ICON_SIZE} />
+                </Layer>
+            )}
+        </AnimatePresence>
     );
 }
 

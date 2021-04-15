@@ -1,3 +1,5 @@
+import { LayerProps } from '../containers/Layer/types';
+
 export interface Track {
     title: string;
     artist: string;
@@ -6,6 +8,6 @@ export interface Track {
     color: string;
 }
 
-export interface AudioPlayerProps {
+export interface AudioPlayerProps extends Omit<LayerProps, 'flexDirection'> {
     tracks: Array<Track>;
 }

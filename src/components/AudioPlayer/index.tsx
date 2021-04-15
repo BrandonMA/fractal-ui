@@ -9,7 +9,7 @@ import { Image } from '../Image';
 import { AudioControls } from './AudioControls';
 import { AudioProgressBar } from './AudioProgressBar';
 
-export function AudioPlayer({ tracks }: AudioPlayerProps): JSX.Element {
+export function AudioPlayer({ tracks, ...layerProps }: AudioPlayerProps): JSX.Element {
     const { spacings, borderRadius, colors } = useTheme();
     const {
         currentTrackInfo,
@@ -39,7 +39,7 @@ export function AudioPlayer({ tracks }: AudioPlayerProps): JSX.Element {
     );
 
     return (
-        <Box flexDirection={'row'} maxWidth={768}>
+        <Box flexDirection={'row'} maxWidth={768} {...layerProps}>
             <Image source={image} width={104} height={104} resizeMode={'cover'} borderRadius={borderRadius.m} />
             <Layer flex={1} marginLeft={spacings.xs}>
                 <Text variant='button' color={colors.text}>
