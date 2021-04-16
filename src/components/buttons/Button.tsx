@@ -27,7 +27,7 @@ export function Button(props: ButtonProps): JSX.Element {
     const pressedColorName = `${variant}InteractiveColor600`;
     const pressedColor = colors[pressedColorName];
 
-    const handlePressButton = (): void => {
+    const handleButtonPress = (): void => {
         setPressed(true);
         onPress?.();
     };
@@ -42,7 +42,7 @@ export function Button(props: ButtonProps): JSX.Element {
             boxShadow={addShadow ? shadows.mainShadow : undefined}
             justifyContent='center'
             alignItems='center'
-            onPress={handlePressButton}
+            onPress={handleButtonPress}
             {...others}
             {...getButtonAccessibilityProps(pressed)}
         >

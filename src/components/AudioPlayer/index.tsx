@@ -8,6 +8,7 @@ import { useTheme } from '../../core/context/hooks/useTheme';
 import { Image } from '../Image';
 import { AudioControls } from './AudioControls';
 import { AudioProgressBar } from './AudioProgressBar';
+import { getAudioPlayerAccessibilityProps } from './accessibility/getAudioPlayerAccessibilityProps';
 
 export function AudioPlayer({ tracks, ...layerProps }: AudioPlayerProps): JSX.Element {
     const { spacings, borderRadius, colors } = useTheme();
@@ -39,8 +40,8 @@ export function AudioPlayer({ tracks, ...layerProps }: AudioPlayerProps): JSX.El
     );
 
     return (
-        <Box flexDirection={'row'} maxWidth={768} {...layerProps}>
-            <Image source={image} width={104} height={104} resizeMode={'cover'} borderRadius={borderRadius.m} />
+        <Box flexDirection={'row'} maxWidth={768} {...layerProps} {...getAudioPlayerAccessibilityProps()}>
+            <Image source={image} width={104} height={104} resizeMode={'cover'} borderRadius={borderRadius.m} label={'Song Image'} />
             <Layer flex={1} marginLeft={spacings.xs}>
                 <Text variant='button' color={colors.text}>
                     {title}

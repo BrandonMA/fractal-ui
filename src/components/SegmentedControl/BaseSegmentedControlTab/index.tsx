@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
 import { extractBorderProps } from '../../../sharedProps/BorderProps';
+import { getSegmentedControlButtonAccessibilityProps } from '../accessibility/getSegmentedControlButtonAccessibilityProps';
 
 const Button = styled.button`
     position: relative;
@@ -83,9 +84,17 @@ export function BaseSegmentedControlTab({
     tintColor
 }: BaseSegmentedControlTabProps): JSX.Element {
     const { borderRadius, colors, shadows } = useTheme();
+
     return (
         <Tap noDivider={hideDivider ?? selected} whileTap={selected ? { scale: 0.95 } : { opacity: 0.6 }}>
-            <Button margin={0} width={'100%'} height={'100%'} onClick={onSelect} type='button'>
+            <Button
+                margin={0}
+                width={'100%'}
+                height={'100%'}
+                onClick={onSelect}
+                type='button'
+                {...getSegmentedControlButtonAccessibilityProps(selected)}
+            >
                 {selected && (
                     <Slider
                         layoutId='SegmentedControlActive'

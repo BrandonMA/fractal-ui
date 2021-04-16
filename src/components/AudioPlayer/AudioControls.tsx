@@ -10,6 +10,11 @@ import { PlayIcon } from './icons/Play';
 import { PreviousIcon } from './icons/Previous';
 import { RepeatIcon } from './icons/Repeat';
 import { ShuffleIcon } from './icons/Shuffle';
+import { getShuffleButtonAccessibilityProps } from './accessibility/getShuffleButtonAccessibilityProps';
+import { getPreviousButtonAccessibilityProps } from './accessibility/getPreviousButtonAccessibilityProps';
+import { getPlayPauseButtonAccessibilityProps } from './accessibility/getPlayPauseButtonAccessibilityProps';
+import { getNextButtonAccessibilityProps } from './accessibility/getNextButtonAccessibilityProps';
+import { getRepeatButtonAccessibilityProps } from './accessibility/getRepeatButtonAccessibilityProps';
 
 interface AudioControlsProps {
     isEnableShuffle: boolean;
@@ -72,10 +77,18 @@ export function AudioControls({
                     width={SMALL_BUTTON}
                     height={SMALL_BUTTON}
                     borderRadius={SMALL_BUTTON / 2}
+                    {...getShuffleButtonAccessibilityProps(isEnableShuffle)}
                 >
                     {(tintColor: string) => <ShuffleIcon fill={tintColor} width={SMALL_ICON_SIZE} height={SMALL_ICON_SIZE} />}
                 </ToggleButton>
-                <BaseButton alignItems={'center'} justifyContent={'center'} width={24} height={24} onPress={onPreviousPress}>
+                <BaseButton
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                    width={24}
+                    height={24}
+                    onPress={onPreviousPress}
+                    {...getPreviousButtonAccessibilityProps()}
+                >
                     <PreviousIcon fill={colors.text} width={SMALL_ICON_SIZE} height={SMALL_ICON_SIZE} />
                 </BaseButton>
                 <ToggleButton
@@ -84,10 +97,18 @@ export function AudioControls({
                     onPress={() => onPlayPausePress(!isPlaying)}
                     width={sizes.interactiveItemHeight}
                     borderRadius={sizes.interactiveItemHeight / 2}
+                    {...getPlayPauseButtonAccessibilityProps(isPlaying)}
                 >
                     {(tintColor: string) => <PlayPauseIcon tintColor={tintColor} isPlaying={isPlaying} />}
                 </ToggleButton>
-                <BaseButton alignItems={'center'} justifyContent={'center'} width={24} height={24} onPress={onNextPress}>
+                <BaseButton
+                    alignItems={'center'}
+                    justifyContent={'center'}
+                    width={24}
+                    height={24}
+                    onPress={onNextPress}
+                    {...getNextButtonAccessibilityProps()}
+                >
                     <NextIcon fill={colors.text} width={SMALL_ICON_SIZE} height={SMALL_ICON_SIZE} />
                 </BaseButton>
                 <ToggleButton
@@ -98,6 +119,7 @@ export function AudioControls({
                     width={SMALL_BUTTON}
                     height={SMALL_BUTTON}
                     borderRadius={SMALL_BUTTON / 2}
+                    {...getRepeatButtonAccessibilityProps(isEnableRepeat)}
                 >
                     {(tintColor: string) => <RepeatIcon fill={tintColor} width={SMALL_ICON_SIZE} height={SMALL_ICON_SIZE} />}
                 </ToggleButton>

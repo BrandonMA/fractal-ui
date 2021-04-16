@@ -12,7 +12,7 @@ import {
 } from '../../sharedProps';
 import { useTheme } from '../../core/context/hooks/useTheme';
 import { SegmentedControlTab } from './SegmentControlTap';
-import { getButtonGroupAccessibilityProps } from './accessibility/getButtonGroupAccessibilityProps';
+import { getSegmentedControlAccessibilityProps } from './accessibility/getSegmentedControlAccessibilityProps';
 
 const Container = styled(motion.ol as any)`
     list-style: none;
@@ -49,7 +49,7 @@ export function SegmentedControl({
                 display={'inline-flex'}
                 flexDirection={'row'}
                 {...layerProps}
-                {...getButtonGroupAccessibilityProps()}
+                {...getSegmentedControlAccessibilityProps()}
             >
                 {values.map((item, index) => {
                     return (
