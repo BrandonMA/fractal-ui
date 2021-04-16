@@ -2,11 +2,11 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { AudioPlayerReturnedObject, MinimalTrackData } from './types';
 import { shuffleArray } from './utils/shuffleArray';
 
-export function useAudioPlayer(
-    tracks: Array<MinimalTrackData>,
+export function useAudioPlayer<T extends MinimalTrackData>(
+    tracks: Array<T>,
     shufflePlayback?: boolean,
     repeatPlayback?: boolean
-): AudioPlayerReturnedObject {
+): AudioPlayerReturnedObject<T> {
     const [trackIndex, setTrackIndex] = useState(0);
     const [duration, setDuration] = useState(0);
     const [enableRepeatPlayback, setEnableRepeatPlayback] = useState<boolean>(repeatPlayback ?? false);
@@ -20,19 +20,6 @@ export function useAudioPlayer(
 
     const audioRef = useRef<HTMLAudioElement>(new Audio(audioSrc as string));
     const isReady = useRef(false);
-
-    audioRef.current.onloadeddata = (): void => {
-        const { duration } = audioRef.current;
-        if (!isNaN(duration)) setDuration(duration * 1000);
-    };
-
-    audioRef.current.onended = (): void => {
-        checkIfShouldToNextTrack();
-    };
-
-    audioRef.current.ontimeupdate = (): void => {
-        setCurrentTime(audioRef.current.currentTime * 1000);
-    };
 
     const setPositionManually = useCallback(async (positionMillis: number): Promise<void> => {
         audioRef.current.currentTime = positionMillis / 1000;
@@ -103,11 +90,32 @@ export function useAudioPlayer(
 
     useEffect(() => {
         const audioCurrentRef = audioRef.current;
+
+        const onLoadedData = (): void => {
+            const { duration } = audioRef.current;
+            if (!isNaN(duration)) setDuration(duration * 1000);
+        };
+
+        const onEnded = (): void => {
+            checkIfShouldToNextTrack();
+        };
+
+        const onTimeUpdate = (): void => {
+            setCurrentTime(audioRef.current.currentTime * 1000);
+        };
+
+        audioRef.current.addEventListener('loadeddata', onLoadedData);
+        audioRef.current.addEventListener('ended', onEnded);
+        audioRef.current.addEventListener('timeupdate', onTimeUpdate);
+
         // Pause and clean up on unmount
         return () => {
             audioCurrentRef.pause();
+            audioCurrentRef.removeEventListener('loadeddata', onLoadedData);
+            audioCurrentRef.removeEventListener('ended', onEnded);
+            audioCurrentRef.removeEventListener('timeupdate', onTimeUpdate);
         };
-    }, [audioRef]);
+    }, [audioRef, checkIfShouldToNextTrack]);
 
     return {
         currentTrackInfo,

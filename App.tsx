@@ -112,25 +112,25 @@ function Content(): JSX.Element {
                 tracks={[
                     {
                         title: 'Rubber Robot',
-                        artist: 'Podington Bear',
+                        //artist: 'Podington Bear',
                         audioSrc: 'https://s3.amazonaws.com/exp-us-standard/audio/playlist-example/Podington_Bear_-_Rubber_Robot.mp3',
-                        image: 'https://picsum.photos/id/870/200/300',
-                        color: 'lightblue'
+                        image: 'https://picsum.photos/id/870/200/300'
+                        //color: 'lightblue'
                     },
                     {
                         title: 'All Of Me',
-                        artist: 'Mildred Bailey',
+                        //artist: 'Mildred Bailey',
                         audioSrc:
                             'https://ia800304.us.archive.org/34/items/PaulWhitemanwithMildredBailey/PaulWhitemanwithMildredBailey-AllofMe.mp3',
-                        image: 'https://picsum.photos/id/872/200/300',
-                        color: 'lightgreen'
+                        image: 'https://picsum.photos/id/872/200/300'
+                        //color: 'lightgreen'
                     },
                     {
                         title: 'Instant Crush',
-                        artist: 'Daft Punk ft. Julian Casablancas',
+                        //artist: 'Daft Punk ft. Julian Casablancas',
                         audioSrc: require('./assets/song.mp3'),
-                        image: 'https://picsum.photos/id/875/200/300',
-                        color: 'orange'
+                        image: 'https://picsum.photos/id/875/200/300'
+                        //color: 'orange'
                     }
                 ]}
             />

@@ -39,6 +39,14 @@ export function AudioPlayer({ tracks, ...layerProps }: AudioPlayerProps): JSX.El
         [isPlaying, setIsPlaying, setPositionManually]
     );
 
+    const handlePlayPause = useCallback(() => {
+        setIsPlaying((prevValue) => !prevValue);
+    }, [setIsPlaying]);
+
+    const handleShuffle = useCallback(() => setEnableShufflePlayback((currentValue) => !currentValue), [setEnableShufflePlayback]);
+
+    const handleRepeat = useCallback(() => setEnableRepeatPlayback((currentValue) => !currentValue), [setEnableRepeatPlayback]);
+
     return (
         <Box flexDirection={'row'} maxWidth={768} {...layerProps} {...getAudioPlayerAccessibilityProps()}>
             <Image source={image} width={104} height={104} resizeMode={'cover'} borderRadius={borderRadius.m} label={'Song Image'} />
@@ -51,11 +59,11 @@ export function AudioPlayer({ tracks, ...layerProps }: AudioPlayerProps): JSX.El
                     isEnableShuffle={enableShufflePlayback}
                     isEnableRepeat={enableRepeatPlayback}
                     isPlaying={isPlaying}
-                    onPlayPausePress={setIsPlaying}
+                    onPlayPausePress={handlePlayPause}
                     onNextPress={toNextTrack}
                     onPreviousPress={toPreviousTrack}
-                    onShufflePress={() => setEnableShufflePlayback((currentValue) => !currentValue)}
-                    onRepeatPress={() => setEnableRepeatPlayback((currentValue) => !currentValue)}
+                    onShufflePress={handleShuffle}
+                    onRepeatPress={handleRepeat}
                 />
             </Layer>
         </Box>

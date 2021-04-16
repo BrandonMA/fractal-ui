@@ -18,13 +18,13 @@ export interface TextButtonProps extends FractalSharedProps, AnimationProps {
 }
 
 export const TextButton = forwardRef(
-    ({ variant, children, leftIcon, rightIcon, textProps, ...others }: TextButtonProps): JSX.Element => {
+    ({ variant, children, leftIcon, rightIcon, textProps, ...others }: TextButtonProps, ref: any): JSX.Element => {
         const { colors } = useTheme();
         const colorName = `${variant}InteractiveColor`;
         const color = colors[colorName];
 
         return (
-            <TouchableOpacity {...others} {...getTextButtonAccessibilityProps()}>
+            <TouchableOpacity ref={ref} {...others} {...getTextButtonAccessibilityProps()}>
                 {leftIcon && leftIcon(color)}
                 {children && (
                     <Text variant={'textButton'} color={color} {...textProps}>

@@ -62,7 +62,6 @@ export function BaseSlider({
     const { colors, shadows } = useTheme();
 
     const sliderRef = useRef<any>(null);
-    const rangeProgressRef = useRef<HTMLDivElement>(null);
     const thumbRef = useRef<HTMLDivElement>(null);
     const diffRef = useRef<any>(null);
 
@@ -253,7 +252,7 @@ export function BaseSlider({
 
     return (
         <StyledRange ref={sliderRef} backgroundColor={colors.placeholder}>
-            <StyledRangeProgress ref={rangeProgressRef} style={rangeProgressStyle} backgroundColor={colors.mainInteractiveColor} />
+            <StyledRangeProgress style={rangeProgressStyle} backgroundColor={colors.mainInteractiveColor} />
             <StyledThumb
                 ref={thumbRef}
                 onMouseDown={(e) => handleMouseDown(e.nativeEvent)}

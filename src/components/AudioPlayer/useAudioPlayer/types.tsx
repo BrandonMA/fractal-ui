@@ -23,14 +23,12 @@ export interface CustomAVPlaybackStatus {
 
 export interface MinimalTrackData {
     title: string;
-    artist: string;
     audioSrc: string | number;
     image: string;
-    color: string;
 }
 
-export interface AudioPlayerReturnedObject {
-    currentTrackInfo: MinimalTrackData;
+export interface AudioPlayerReturnedObject<T> {
+    currentTrackInfo: T;
     currentTime: number;
     duration: number;
     isPlaying: boolean;

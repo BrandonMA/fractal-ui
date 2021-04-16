@@ -23,13 +23,11 @@ export function AudioProgressBar({ duration, currentTime, isPlaying, onTimeUpdat
         setTrackProgress(positionMillis);
     }, []);
 
-    const handleSlidingComplete = useCallback(
-        (time: number) => {
-            setIsDragging(false);
-            onTimeUpdate(time);
-        },
-        [onTimeUpdate]
-    );
+    const handleSlidingComplete = useCallback((time: number) => {
+        setIsDragging(false);
+        onTimeUpdate(time);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         if (isPlaying && !isDragging) {

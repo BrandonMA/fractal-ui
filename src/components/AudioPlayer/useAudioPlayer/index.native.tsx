@@ -3,11 +3,11 @@ import { Audio } from 'expo-av';
 import { AudioPlayerReturnedObject, MinimalTrackData, CustomAVPlaybackStatus } from './types';
 import { shuffleArray } from './utils/shuffleArray';
 
-export function useAudioPlayer(
-    tracks: Array<MinimalTrackData>,
+export function useAudioPlayer<T extends MinimalTrackData>(
+    tracks: Array<T>,
     shufflePlayback?: boolean,
     repeatPlayback?: false
-): AudioPlayerReturnedObject {
+): AudioPlayerReturnedObject<T> {
     const [sound, setSound] = useState<Audio.Sound | undefined>(undefined);
     const [duration, setDuration] = useState(0);
     const [trackIndex, setTrackIndex] = useState(0);
