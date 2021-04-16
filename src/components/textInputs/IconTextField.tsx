@@ -13,6 +13,7 @@ export interface IconTextFieldProps extends Partial<Omit<LayerProps, 'children'>
     onChangeText?: (text: string) => void;
     placeholder?: string;
     textFieldProps?: TextFieldProps;
+    inputRef?: any;
 }
 
 export function IconTextField({
@@ -22,6 +23,7 @@ export function IconTextField({
     placeholder,
     onChangeText,
     textFieldProps,
+    inputRef,
     ...others
 }: IconTextFieldProps): JSX.Element {
     const { spacings, sizes, colors, borderRadius } = useTheme();
@@ -45,6 +47,7 @@ export function IconTextField({
                 </Layer>
             ) : null}
             <BaseTextField
+                ref={inputRef}
                 paddingLeft={paddingLeft}
                 paddingRight={paddingRight}
                 flex={1}

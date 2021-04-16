@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components/native';
 import Reanimated from 'react-native-reanimated';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
@@ -18,8 +18,10 @@ const StyledTouchableOpacity = styled(Reanimated.createAnimatedComponent(RNTouch
     ${extractShadowProps};
 ` as typeof RNTouchableOpacity;
 
-export function TouchableOpacity({ style, ...others }: TouchableOpacityProps): JSX.Element {
-    const animationStyles = useAnimationStyles(others);
+export const TouchableOpacity = forwardRef(
+    ({ style, ...others }: TouchableOpacityProps, ref: any): JSX.Element => {
+        const animationStyles = useAnimationStyles(others);
 
-    return <StyledTouchableOpacity style={[animationStyles, style]} {...others} />;
-}
+        return <StyledTouchableOpacity ref={ref} style={[animationStyles, style]} {...others} />;
+    }
+);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 import styled from 'styled-components';
 import { SegmentedControlProps } from './types';
@@ -24,56 +24,62 @@ const Container = styled(motion.ol as any)`
     ${extractWebProps};
 `;
 
-export function SegmentedControl({
-    onChange,
-    onValueChange,
-    selectedIndex = 0,
-    values,
-    tintColor,
-    backgroundColor,
-    textStyle,
-    activeTextStyle,
-    ...layerProps
-}: SegmentedControlProps): JSX.Element {
-    const { colors, borderRadius, sizes } = useTheme();
+export const SegmentedControl = forwardRef(
+    (
+        {
+            onChange,
+            onValueChange,
+            selectedIndex = 0,
+            values,
+            tintColor,
+            backgroundColor,
+            textStyle,
+            activeTextStyle,
+            ...layerProps
+        }: SegmentedControlProps,
+        ref: any
+    ): JSX.Element => {
+        const { colors, borderRadius, sizes } = useTheme();
 
-    return (
-        <AnimateSharedLayout>
-            <Container
-                backgroundColor={backgroundColor ?? colors.background}
-                margin={0}
-                padding={2}
-                width={'100%'}
-                height={sizes.segmentedControlSize}
-                borderRadius={borderRadius.s}
-                display={'inline-flex'}
-                flexDirection={'row'}
-                {...layerProps}
-                {...getSegmentedControlAccessibilityProps()}
-            >
-                {values.map((item, index) => {
-                    return (
-                        <SegmentedControlTab
-                            selected={selectedIndex === index}
-                            hideDivider={
-                                backgroundColor != undefined ||
-                                tintColor != undefined ||
-                                selectedIndex === index ||
-                                index === selectedIndex - 1
-                            }
-                            key={index}
-                            value={item}
-                            tintColor={tintColor}
-                            textStyle={textStyle}
-                            activeTextStyle={activeTextStyle}
-                            onSelect={() => {
-                                onChange?.(item, index);
-                                onValueChange?.(item);
-                            }}
-                        />
-                    );
-                })}
-            </Container>
-        </AnimateSharedLayout>
-    );
-}
+        return (
+            <AnimateSharedLayout>
+                <Container
+                    ref={ref}
+                    backgroundColor={backgroundColor ?? colors.background}
+                    margin={0}
+                    padding={2}
+                    width={'100%'}
+                    height={sizes.segmentedControlSize}
+                    borderRadius={borderRadius.s}
+                    display={'inline-flex'}
+                    flexDirection={'row'}
+                    {...layerProps}
+                    {...getSegmentedControlAccessibilityProps()}
+                >
+                    {values.map((item, index) => {
+                        return (
+                            <SegmentedControlTab
+                                selected={selectedIndex === index}
+                                hideDivider={
+                                    backgroundColor != undefined ||
+                                    tintColor != undefined ||
+                                    selectedIndex === index ||
+                                    index === selectedIndex - 1
+                                }
+                                key={index}
+                                value={item}
+                                tintColor={tintColor}
+                                textStyle={textStyle}
+                                activeTextStyle={activeTextStyle}
+                                onSelect={() => {
+                                    onChange?.(item, index);
+                                    onValueChange?.(item);
+                                }}
+                            />
+                        );
+                    })}
+                </Container>
+            </AnimateSharedLayout>
+        );
+    }
+);

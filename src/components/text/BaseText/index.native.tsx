@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components/native';
 import { TextProps } from './types';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
@@ -18,6 +18,8 @@ const StyledText = styled(Text)`
     ${extractTextProps};
 ` as typeof Text;
 
-export function BaseText(props: TextProps): JSX.Element {
-    return <StyledText {...props} />;
-}
+export const BaseText = forwardRef(
+    (props: TextProps, ref: any): JSX.Element => {
+        return <StyledText ref={ref} {...props} />;
+    }
+);

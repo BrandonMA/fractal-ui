@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { Layer } from '../containers/Layer';
 import { GridItemProps, extractGridItemProps } from './types';
 import { getGridRowAccessibilityProps } from './accessibility/getGridRowAccessibilityProps';
 
 const StyledGrid = styled(Layer)`
-    flex-direction: row;
     ${extractGridItemProps};
 `;
 
-export function GridRow(props: GridItemProps): JSX.Element {
-    return <StyledGrid {...props} {...getGridRowAccessibilityProps()} />;
-}
+export const GridRow = forwardRef(
+    (props: GridItemProps, ref: any): JSX.Element => {
+        return <StyledGrid ref={ref} flexDirection={'row'} {...props} {...getGridRowAccessibilityProps()} />;
+    }
+);

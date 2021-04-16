@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Layer } from '../containers/Layer';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { Text } from '../text';
@@ -9,13 +9,15 @@ export interface DetailsRowProps extends Partial<Omit<LayerProps, 'children'>> {
     details: string;
 }
 
-export function DetailsRow({ title, details, ...others }: DetailsRowProps): JSX.Element {
-    return (
-        <HorizontalLayer alignItems='center' {...others}>
-            <Layer flexGrow={1}>
-                <Text variant='small'>{title}</Text>
-            </Layer>
-            <Text variant='label'>{details}</Text>
-        </HorizontalLayer>
-    );
-}
+export const DetailsRow = forwardRef(
+    ({ title, details, ...others }: DetailsRowProps, ref: any): JSX.Element => {
+        return (
+            <HorizontalLayer ref={ref} alignItems='center' {...others}>
+                <Layer flexGrow={1}>
+                    <Text variant='small'>{title}</Text>
+                </Layer>
+                <Text variant='label'>{details}</Text>
+            </HorizontalLayer>
+        );
+    }
+);

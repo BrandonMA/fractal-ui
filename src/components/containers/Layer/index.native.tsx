@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components/native';
 import { LayerProps } from './types';
 import Reanimated from 'react-native-reanimated';
@@ -17,7 +17,9 @@ const StyledLayer = styled(Reanimated.View)`
     ${extractShadowProps};
 ` as typeof Reanimated.View;
 
-export const Layer = ({ style, ...others }: LayerProps): JSX.Element => {
-    const animationStyles = useAnimationStyles(others);
-    return <StyledLayer {...others} style={[animationStyles, style]} />;
-};
+export const Layer = forwardRef(
+    ({ style, ...others }: LayerProps, ref: any): JSX.Element => {
+        const animationStyles = useAnimationStyles(others);
+        return <StyledLayer ref={ref} {...others} style={[animationStyles, style]} />;
+    }
+);

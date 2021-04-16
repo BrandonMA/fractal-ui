@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef, ForwardedRef } from 'react';
 import styled from 'styled-components/native';
 import Reanimated from 'react-native-reanimated';
 import { TextFieldProps } from './types';
@@ -18,7 +18,9 @@ const StyledTextInput = styled(Reanimated.createAnimatedComponent(TextInput))`
     ${extractTextProps};
 ` as typeof TextInput;
 
-export function BaseTextField({ style, ...others }: TextFieldProps): JSX.Element {
-    const animationStyles = useAnimationStyles(others);
-    return <StyledTextInput {...others} style={[animationStyles, style]} />;
-}
+export const BaseTextField = forwardRef(
+    ({ style, ...others }: TextFieldProps, ref: ForwardedRef<TextInput>): JSX.Element => {
+        const animationStyles = useAnimationStyles(others);
+        return <StyledTextInput ref={ref} {...others} style={[animationStyles, style]} />;
+    }
+);

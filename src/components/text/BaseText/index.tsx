@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { TextProps } from './types';
 import { motion } from 'framer-motion';
@@ -20,6 +20,8 @@ const StyledText = styled(motion.span as any)`
     ${extractTextProps};
 ` as typeof motion.span;
 
-export function BaseText(props: Omit<TextProps, 'variant'>): JSX.Element {
-    return <StyledText {...props} />;
-}
+export const BaseText = forwardRef(
+    (props: Omit<TextProps, 'variant'>, ref: any): JSX.Element => {
+        return <StyledText ref={ref} {...props} />;
+    }
+);

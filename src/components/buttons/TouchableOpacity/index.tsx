@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
@@ -27,16 +27,27 @@ const StyledTouchableOpacity = styled(motion.button as any)`
 const transition = { type: 'linear', duration: 0.2 };
 const emptyFuntion = () => undefined;
 
-export function TouchableOpacity({ onPress, onLongPress, whileTap, ...others }: TouchableOpacityProps): JSX.Element {
-    const tapStyles = {
-        opacity: 0.4,
-        ...whileTap
-    };
+export const TouchableOpacity = forwardRef(
+    ({ onPress, onLongPress, whileTap, ...others }: TouchableOpacityProps, ref: any): JSX.Element => {
+        const tapStyles = {
+            opacity: 0.4,
+            ...whileTap
+        };
 
-    const longPressEvent = useLongPress(onLongPress ?? emptyFuntion, {
-        isPreventDefault: true,
-        delay: 300
-    });
+        const longPressEvent = useLongPress(onLongPress ?? emptyFuntion, {
+            isPreventDefault: true,
+            delay: 300
+        });
 
-    return <StyledTouchableOpacity transition={transition} whileTap={tapStyles} onClick={onPress} {...longPressEvent} {...others} />;
-}
+        return (
+            <StyledTouchableOpacity
+                ref={ref}
+                transition={transition}
+                whileTap={tapStyles}
+                onClick={onPress}
+                {...longPressEvent}
+                {...others}
+            />
+        );
+    }
+);

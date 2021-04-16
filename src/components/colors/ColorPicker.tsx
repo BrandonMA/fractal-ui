@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, forwardRef } from 'react';
 import { useTheme } from '../../core/context/hooks/useTheme';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { LayerProps } from '../containers/Layer/types';
@@ -10,34 +10,36 @@ export interface ColorPickerProps extends Partial<Omit<LayerProps, 'children'>> 
     onColorChange: (color: string) => void;
 }
 
-export function ColorPicker({ colors, onColorChange, ...others }: ColorPickerProps): JSX.Element {
-    const [activeColor, setActiveColor] = useState(colors[0]);
-    const { spacings } = useTheme();
+export const ColorPicker = forwardRef(
+    ({ colors, onColorChange, ...others }: ColorPickerProps, ref: any): JSX.Element => {
+        const [activeColor, setActiveColor] = useState(colors[0]);
+        const { spacings } = useTheme();
 
-    const handleColorChange = useCallback(
-        (active: boolean, color: string) => {
-            if (active) {
-                setActiveColor(color);
-                onColorChange(color);
-            }
-        },
-        [onColorChange]
-    );
+        const handleColorChange = useCallback(
+            (active: boolean, color: string) => {
+                if (active) {
+                    setActiveColor(color);
+                    onColorChange(color);
+                }
+            },
+            [onColorChange]
+        );
 
-    const renderItem = (color: string) => (
-        <ColorToggle
-            backgroundColor={color}
-            key={color}
-            onActiveChange={handleColorChange}
-            active={activeColor === color}
-            margin={spacings.xs}
-            {...getColorAccessibilityProps(activeColor === color, activeColor)}
-        />
-    );
+        const renderItem = (color: string) => (
+            <ColorToggle
+                backgroundColor={color}
+                key={color}
+                onActiveChange={handleColorChange}
+                active={activeColor === color}
+                margin={spacings.xs}
+                {...getColorAccessibilityProps(activeColor === color, activeColor)}
+            />
+        );
 
-    return (
-        <HorizontalLayer justifyContent={'space-around'} flexWrap={'wrap'} {...others}>
-            {colors.map(renderItem)}
-        </HorizontalLayer>
-    );
-}
+        return (
+            <HorizontalLayer ref={ref} justifyContent={'space-around'} flexWrap={'wrap'} {...others}>
+                {colors.map(renderItem)}
+            </HorizontalLayer>
+        );
+    }
+);

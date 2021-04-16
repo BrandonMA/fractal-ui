@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { LayerProps } from './types';
 import { motion } from 'framer-motion';
@@ -20,6 +20,8 @@ const StyledLayer = styled(motion.div as any)`
 
 const transition = { type: 'spring' };
 
-export function Layer(props: LayerProps): JSX.Element {
-    return <StyledLayer transition={transition} {...props} />;
-}
+export const Layer = forwardRef(
+    (props: LayerProps, ref: any): JSX.Element => {
+        return <StyledLayer ref={ref} transition={transition} {...props} />;
+    }
+);

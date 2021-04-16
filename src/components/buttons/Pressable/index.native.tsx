@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components/native';
 import Reanimated from 'react-native-reanimated';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
@@ -19,11 +19,19 @@ const StyledPressable = styled(Reanimated.createAnimatedComponent(RNPressable as
     ${extractShadowProps};
 `;
 
-export function Pressable({ style, ...others }: PressableProps): JSX.Element {
-    const animationStyles = useAnimationStyles(others);
-    const [tapStyles, handlePressIn, handlePressOut] = usePressableAnimationStyles(others);
+export const Pressable = forwardRef(
+    ({ style, ...others }: PressableProps, ref: any): JSX.Element => {
+        const animationStyles = useAnimationStyles(others);
+        const [tapStyles, handlePressIn, handlePressOut] = usePressableAnimationStyles(others);
 
-    return (
-        <StyledPressable onPressIn={handlePressIn} onPressOut={handlePressOut} style={[tapStyles, animationStyles, style]} {...others} />
-    );
-}
+        return (
+            <StyledPressable
+                ref={ref}
+                onPressIn={handlePressIn}
+                onPressOut={handlePressOut}
+                style={[tapStyles, animationStyles, style]}
+                {...others}
+            />
+        );
+    }
+);

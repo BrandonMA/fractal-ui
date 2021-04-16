@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components/native';
 import { ActivityIndicatorProps } from './types';
 import { Layer } from '../containers';
@@ -9,10 +9,12 @@ const StyledRNActivityIndicator = styled(RNActivityIndicator)`
     height: 100%;
 `;
 
-export function ActivityIndicator({ color, ...others }: ActivityIndicatorProps): JSX.Element {
-    return (
-        <Layer {...others}>
-            <StyledRNActivityIndicator color={color} size='large' />
-        </Layer>
-    );
-}
+export const ActivityIndicator = forwardRef(
+    ({ color, ...others }: ActivityIndicatorProps, ref: any): JSX.Element => {
+        return (
+            <Layer ref={ref} {...others}>
+                <StyledRNActivityIndicator color={color} size='large' />
+            </Layer>
+        );
+    }
+);

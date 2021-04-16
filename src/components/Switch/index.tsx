@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Layer } from '../containers';
 import { BaseSwitch } from './BaseSwitch';
 import { SwitchProps } from './types';
 
-export function Switch({ value, onValueChange, ...layerProps }: SwitchProps): JSX.Element {
-    return (
-        <Layer {...layerProps}>
-            <BaseSwitch value={value} onValueChange={onValueChange} />
-        </Layer>
-    );
-}
+export const Switch = forwardRef(
+    ({ value, onValueChange, ...layerProps }: SwitchProps, ref: any): JSX.Element => {
+        return (
+            <Layer ref={ref} {...layerProps}>
+                <BaseSwitch value={value} onValueChange={onValueChange} />
+            </Layer>
+        );
+    }
+);

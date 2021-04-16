@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
@@ -25,6 +25,8 @@ const StyledPressable = styled(motion.button as any)`
 
 const transition = { type: 'spring' };
 
-export function Pressable({ onPress, ...others }: PressableProps): JSX.Element {
-    return <StyledPressable transition={transition} onClick={onPress} {...others} />;
-}
+export const Pressable = forwardRef(
+    ({ onPress, ...others }: PressableProps, ref: any): JSX.Element => {
+        return <StyledPressable ref={ref} transition={transition} onClick={onPress} {...others} />;
+    }
+);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components/native';
 import Reanimated from 'react-native-reanimated';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
@@ -18,7 +18,9 @@ const StyledLayer = styled(Reanimated.createAnimatedComponent(SafeAreaView))`
     ${extractShadowProps};
 ` as typeof Reanimated.View;
 
-export function SafeAreaLayer({ style, ...others }: LayerProps): JSX.Element {
-    const animationStyles = useAnimationStyles(others);
-    return <StyledLayer {...others} style={[animationStyles, style]} />;
-}
+export const SafeAreaLayer = forwardRef(
+    ({ style, ...others }: LayerProps, ref: any): JSX.Element => {
+        const animationStyles = useAnimationStyles(others);
+        return <StyledLayer ref={ref} {...others} style={[animationStyles, style]} />;
+    }
+);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Text } from '../text';
 import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { TextProps } from '../text/BaseText/types';
@@ -17,20 +17,22 @@ export interface TextButtonProps extends FractalSharedProps, AnimationProps {
     onPress?: () => void;
 }
 
-export function TextButton({ variant, children, leftIcon, rightIcon, textProps, ...others }: TextButtonProps): JSX.Element {
-    const { colors } = useTheme();
-    const colorName = `${variant}InteractiveColor`;
-    const color = colors[colorName];
+export const TextButton = forwardRef(
+    ({ variant, children, leftIcon, rightIcon, textProps, ...others }: TextButtonProps): JSX.Element => {
+        const { colors } = useTheme();
+        const colorName = `${variant}InteractiveColor`;
+        const color = colors[colorName];
 
-    return (
-        <TouchableOpacity {...others} {...getTextButtonAccessibilityProps()}>
-            {leftIcon && leftIcon(color)}
-            {children && (
-                <Text variant={'textButton'} color={color} {...textProps}>
-                    {children}
-                </Text>
-            )}
-            {rightIcon && rightIcon(color)}
-        </TouchableOpacity>
-    );
-}
+        return (
+            <TouchableOpacity {...others} {...getTextButtonAccessibilityProps()}>
+                {leftIcon && leftIcon(color)}
+                {children && (
+                    <Text variant={'textButton'} color={color} {...textProps}>
+                        {children}
+                    </Text>
+                )}
+                {rightIcon && rightIcon(color)}
+            </TouchableOpacity>
+        );
+    }
+);

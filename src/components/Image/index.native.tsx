@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components/native';
 import {
     extractBackgroundProps,
@@ -19,15 +19,18 @@ const StyledImage = styled(Reanimated.Image)`
     ${extractShadowProps};
 `;
 
-export function Image({ source, resizeMode, style, ...others }: ImageProps): JSX.Element {
-    const animationStyles = useAnimationStyles(others);
+export const Image = forwardRef(
+    ({ source, resizeMode, style, ...others }: ImageProps, ref: any): JSX.Element => {
+        const animationStyles = useAnimationStyles(others);
 
-    return (
-        <StyledImage
-            source={typeof source == 'string' ? { uri: source } : source}
-            resizeMode={resizeMode}
-            {...others}
-            style={[animationStyles, style]}
-        />
-    );
-}
+        return (
+            <StyledImage
+                ref={ref}
+                source={typeof source == 'string' ? { uri: source } : source}
+                resizeMode={resizeMode}
+                {...others}
+                style={[animationStyles, style]}
+            />
+        );
+    }
+);

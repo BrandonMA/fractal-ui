@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { useTheme } from '../../core/context/hooks/useTheme';
 import { LayerProps } from './Layer/types';
 import { PaddingLayer } from './PaddingLayer';
 
-export function Box(props: LayerProps): JSX.Element {
-    const { colors, borderRadius, shadows } = useTheme();
-    return <PaddingLayer backgroundColor={colors.foreground} borderRadius={borderRadius.m} boxShadow={shadows.mainShadow} {...props} />;
-}
+export const Box = forwardRef(
+    (props: LayerProps, ref: any): JSX.Element => {
+        const { colors, borderRadius, shadows } = useTheme();
+        return (
+            <PaddingLayer
+                ref={ref}
+                backgroundColor={colors.foreground}
+                borderRadius={borderRadius.m}
+                boxShadow={shadows.mainShadow}
+                {...props}
+            />
+        );
+    }
+);

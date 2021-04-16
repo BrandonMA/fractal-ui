@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { useTheme } from '../../core/context/hooks/useTheme';
 import { ActivityIndicator } from '../ActivityIndicator';
 import { BaseButton } from '../buttons/BaseButton';
@@ -9,20 +9,23 @@ export type BaseMediaButtonProps = Partial<Omit<BaseButtonProps, 'variant'>> & {
     activityIndicatorColor?: string;
 };
 
-export function BaseMediaButton({ loading, children, activityIndicatorColor = 'white', ...others }: BaseMediaButtonProps): JSX.Element {
-    const { sizes, borderRadius, shadows } = useTheme();
+export const BaseMediaButton = forwardRef(
+    ({ loading, children, activityIndicatorColor = 'white', ...others }: BaseMediaButtonProps, ref: any): JSX.Element => {
+        const { sizes, borderRadius, shadows } = useTheme();
 
-    return (
-        <BaseButton
-            height={sizes.interactiveItemHeight}
-            width={'100%'}
-            borderRadius={borderRadius.m}
-            boxShadow={shadows.mainShadow}
-            justifyContent='center'
-            alignItems='center'
-            {...others}
-        >
-            {!loading ? children : <ActivityIndicator height={24} width={24} color={activityIndicatorColor} />}
-        </BaseButton>
-    );
-}
+        return (
+            <BaseButton
+                ref={ref}
+                height={sizes.interactiveItemHeight}
+                width={'100%'}
+                borderRadius={borderRadius.m}
+                boxShadow={shadows.mainShadow}
+                justifyContent='center'
+                alignItems='center'
+                {...others}
+            >
+                {!loading ? children : <ActivityIndicator height={24} width={24} color={activityIndicatorColor} />}
+            </BaseButton>
+        );
+    }
+);

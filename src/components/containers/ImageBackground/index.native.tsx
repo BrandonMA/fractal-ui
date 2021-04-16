@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components/native';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
 import { extractDimensionProps } from '../../../sharedProps/DimensionProps';
@@ -16,14 +16,17 @@ const StyledImageBackground = styled.ImageBackground`
     ${extractShadowProps};
 ` as typeof styled.ImageBackground;
 
-export function ImageBackground({ source, resizeMode, style, ...others }: ImageBackgroundProps): JSX.Element {
-    const animationStyles = useAnimationStyles(others);
-    return (
-        <StyledImageBackground
-            resizeMode={resizeMode}
-            source={typeof source == 'string' ? { uri: source } : source}
-            {...others}
-            style={[animationStyles, style]}
-        />
-    );
-}
+export const ImageBackground = forwardRef(
+    ({ source, resizeMode, style, ...others }: ImageBackgroundProps, ref: any): JSX.Element => {
+        const animationStyles = useAnimationStyles(others);
+        return (
+            <StyledImageBackground
+                ref={ref}
+                resizeMode={resizeMode}
+                source={typeof source == 'string' ? { uri: source } : source}
+                {...others}
+                style={[animationStyles, style]}
+            />
+        );
+    }
+);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Text } from '../text';
 import { LayerProps } from '../containers/Layer/types';
 import { useTheme } from '../../core/context/hooks/useTheme';
@@ -12,23 +12,25 @@ export interface MessageProps extends Partial<Omit<LayerProps, 'children'>> {
     description: string;
 }
 
-export function Message({ messageType = 'main', title, icon, description, ...others }: MessageProps): JSX.Element {
-    const { colors, spacings, borderRadius } = useTheme();
-    const backgroundColor = `${messageType}InteractiveColor100`;
-    const titleVariant = `${messageType}InteractiveColor`;
-    const textVariant = `${messageType}InteractiveColor`;
+export const Message = forwardRef(
+    ({ messageType = 'main', title, icon, description, ...others }: MessageProps, ref: any): JSX.Element => {
+        const { colors, spacings, borderRadius } = useTheme();
+        const backgroundColor = `${messageType}InteractiveColor100`;
+        const titleVariant = `${messageType}InteractiveColor`;
+        const textVariant = `${messageType}InteractiveColor`;
 
-    return (
-        <Layer padding={spacings.m} borderRadius={borderRadius.m} backgroundColor={colors[backgroundColor]} {...others}>
-            <HorizontalLayer alignItems='center' marginBottom={spacings.xs}>
-                {icon != null ? icon(colors[textVariant]) : null}
-                <Text marginLeft={icon != null ? spacings.s : undefined} variant={'title'} color={colors[titleVariant]}>
-                    {title}
+        return (
+            <Layer ref={ref} padding={spacings.m} borderRadius={borderRadius.m} backgroundColor={colors[backgroundColor]} {...others}>
+                <HorizontalLayer alignItems='center' marginBottom={spacings.xs}>
+                    {icon != null ? icon(colors[textVariant]) : null}
+                    <Text marginLeft={icon != null ? spacings.s : undefined} variant={'title'} color={colors[titleVariant]}>
+                        {title}
+                    </Text>
+                </HorizontalLayer>
+                <Text variant={'normal'} color={colors[textVariant]}>
+                    {description}
                 </Text>
-            </HorizontalLayer>
-            <Text variant={'normal'} color={colors[textVariant]}>
-                {description}
-            </Text>
-        </Layer>
-    );
-}
+            </Layer>
+        );
+    }
+);
