@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import { usePickerState } from './hooks/usePickerState';
-import { Platform } from 'react-native';
 import { useTheme } from '../../../core/context/hooks/useTheme';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
 import { BasePicker } from './BasePicker';
@@ -36,7 +35,7 @@ export function Picker({ items, onChange, initialValue, disabled, isReadOnly, ..
             {...others}
         >
             <BasePicker
-                borderWidth={Platform.OS === 'web' ? 0 : undefined}
+                borderWidth={0}
                 backgroundColor='transparent'
                 color={colors.text}
                 selectedValue={currentValue}

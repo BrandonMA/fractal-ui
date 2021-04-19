@@ -8,7 +8,7 @@ interface AudioProgressBarProps {
     duration: number;
     currentTime: number;
     isPlaying: boolean;
-    onTimeUpdate: (time: number) => void;
+    onTimeUpdate: (time: number) => Promise<void>;
 }
 
 export function AudioProgressBar({ duration, currentTime, isPlaying, onTimeUpdate }: AudioProgressBarProps): JSX.Element {
@@ -23,9 +23,9 @@ export function AudioProgressBar({ duration, currentTime, isPlaying, onTimeUpdat
         setTrackProgress(positionMillis);
     }, []);
 
-    const handleSlidingComplete = useCallback((time: number) => {
+    const handleSlidingComplete = useCallback(async (time: number): Promise<void> => {
+        await onTimeUpdate(time);
         setIsDragging(false);
-        onTimeUpdate(time);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -36,7 +36,7 @@ export function AudioProgressBar({ duration, currentTime, isPlaying, onTimeUpdat
     }, [currentTime, isDragging, isPlaying, trackProgress]);
 
     return (
-        <>
+        <Layer>
             <Slider
                 value={trackProgress}
                 minimumValue={0}
@@ -50,6 +50,6 @@ export function AudioProgressBar({ duration, currentTime, isPlaying, onTimeUpdat
                 <Text variant='smallLabel' fontSize={12}>{`${formatNumberToTime(trackProgress)}`}</Text>
                 <Text variant='smallLabel' fontSize={12}>{`${formatNumberToTime(duration)}`}</Text>
             </Layer>
-        </>
+        </Layer>
     );
 }
