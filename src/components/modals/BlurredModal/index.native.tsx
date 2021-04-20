@@ -2,7 +2,7 @@ import React from 'react';
 import { BlurView } from 'expo-blur';
 import { TextButton } from '../../buttons/TextButton';
 import { useTheme } from '../../../core/context/hooks/useTheme';
-import { Layer } from '../../containers/Layer/index.native';
+import { Layer } from '../../containers/Layer';
 import { Pressable } from '../../buttons/Pressable';
 import { SafeAreaLayer } from '../../containers/SafeAreaLayer';
 import { useThemeIdentifier } from '../../../core/context/hooks/useThemeIdentifier';

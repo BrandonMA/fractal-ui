@@ -1,4 +1,4 @@
-import React, { ReactNode, Component, ErrorInfo } from 'react';
+import * as React from 'react';
 import { Message } from './Message';
 import { BugIcon } from '../../assets/BugIcon';
 import { Layer } from '../containers/Layer';
@@ -14,8 +14,8 @@ interface ErrorMessageProps extends LayerProps {
     onError?: (error: Error, componentStack: string) => void;
 }
 
-export class ErrorMessage extends Component<ErrorMessageProps, State> {
-    constructor(props: LayerProps) {
+export class ErrorMessage extends React.Component<ErrorMessageProps, State> {
+    constructor(props: ErrorMessageProps) {
         super(props);
         this.state = { hasError: false, errorMessage: '', errorTitle: '' };
     }
@@ -24,14 +24,14 @@ export class ErrorMessage extends Component<ErrorMessageProps, State> {
         return { hasError: true, errorMessage: error.message, errorTitle: error.name };
     }
 
-    componentDidCatch(error: Error, info: ErrorInfo): void {
+    componentDidCatch(error: Error, info: React.ErrorInfo): void {
         const { onError } = this.props;
         if (onError) onError(error, info.componentStack);
     }
 
     renderErrorIcon = (color: string): JSX.Element => <BugIcon width={20} fill={color} />;
 
-    render(): ReactNode {
+    render() {
         if (this.state.hasError) {
             return (
                 <Message

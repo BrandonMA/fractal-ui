@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { Box } from '../containers';
-import { Layer } from '../containers/Layer/index.native';
+import { Layer } from '../containers/Layer';
 import { AudioPlayerProps } from './types';
 import { useAudioPlayer } from './useAudioPlayer';
 import { Text } from '../text';

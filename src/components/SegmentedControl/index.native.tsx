@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import { SegmentedControlProps } from './types';
 import { SegmentedControlTab } from './SegmentControlTap';
 import { SegmentsSeparators } from './SegmentsSeparators';
-import { Layer } from '../containers/Layer/index.native';
+import { Layer } from '../containers/Layer';
 import { useTheme } from '../../core/context/hooks/useTheme';
 import { extractBorderProps, extractShadowProps } from '../../sharedProps';
 

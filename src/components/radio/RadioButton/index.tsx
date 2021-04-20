@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { RadioButtonProps } from '../types';
-import { Layer } from '../../containers/Layer/index.native';
+import { Layer } from '../../containers/Layer';
 import { BaseRadioButton } from './BaseRadioButton';
 
 export const RadioButton = forwardRef(

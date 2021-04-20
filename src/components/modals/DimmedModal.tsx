@@ -2,7 +2,7 @@ import { Modal } from './Modal';
 import React from 'react';
 import { ModalProps } from './Modal/types';
 import { Pressable } from '../buttons';
-import { SafeAreaLayer } from '../containers/SafeAreaLayer/index.native';
+import { SafeAreaLayer } from '../containers/SafeAreaLayer';
 
 export function DimmedModal({ visible, onDismiss, ...others }: ModalProps): JSX.Element {
     return (

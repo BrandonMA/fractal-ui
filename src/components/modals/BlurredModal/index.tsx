@@ -2,7 +2,7 @@ import React from 'react';
 import { Pressable } from '../../buttons/Pressable';
 import { Modal } from '../Modal';
 import { BlurredModalProps } from './types';
-import { SafeAreaLayer } from '../../containers/SafeAreaLayer/index.native';
+import { SafeAreaLayer } from '../../containers/SafeAreaLayer';
 import { ModalMiddleCell } from '../ModalMiddleCell';
 
 export function BlurredModal({ onDismiss, visible, ...others }: BlurredModalProps): JSX.Element {

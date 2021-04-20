@@ -1,4 +1,5 @@
 export * from './Avatar';
+export * from './AudioPlayer';
 export * from './containers';
 export * from './CheckBox';
 export * from './grids';
