@@ -13,6 +13,6 @@ export declare class ErrorMessage extends React.Component<ErrorMessageProps, Sta
     static getDerivedStateFromError(error: Error): State;
     componentDidCatch(error: Error, info: React.ErrorInfo): void;
     renderErrorIcon: (color: string) => JSX.Element;
-    render(): JSX.Element;
+    render(): React.ReactNode;
 }
 export {};

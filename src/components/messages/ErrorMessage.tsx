@@ -31,7 +31,7 @@ export class ErrorMessage extends React.Component<ErrorMessageProps, State> {
 
     renderErrorIcon = (color: string): JSX.Element => <BugIcon width={20} fill={color} />;
 
-    render() {
+    render(): React.ReactNode {
         if (this.state.hasError) {
             return (
                 <Message
