@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "outDir": "dist",
+        "outDir": "dist", // for create a native build use native/dist
         "module": "esnext",
         "lib": ["dom", "esnext"],
         "moduleResolution": "node",
@@ -18,5 +18,5 @@
         "skipLibCheck": true
     },
     "include": ["src"],
-    "exclude": ["node_modules", "dist", "src/animations", "**/*.native.ts", "**/*.native.tsx", "**/*.android.ts", "**/*.android.tsx", "**/*.ios.ts", "**/*.ios.tsx"]
+    "exclude": ["node_modules", "dist", "src/animations", "**/*.native.ts", "**/*.native.tsx", "**/*.android.ts", "**/*.android.tsx", "**/*.ios.ts", "**/*.ios.tsx"] // for create a native build use "node_modules", "dist", "native"
 }

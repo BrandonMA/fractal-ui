@@ -1,0 +1,1 @@
+{"version":3,"file":"getButtonAccessibilityProps.js","sourceRoot":"","sources":["../../../../../src/components/buttons/accessibility/getButtonAccessibilityProps.tsx"],"names":[],"mappings":"AAAA,MAAM,UAAU,2BAA2B,CAAC,OAAiB;IACzD,OAAO;QACH,IAAI,EAAE,QAAQ;QACd,cAAc,EAAE,OAAO;KAC1B,CAAC;AACN,CAAC"}

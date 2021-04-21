@@ -1,0 +1,1 @@
+{"version":3,"file":"getAudioPlayerAccessibilityProps.js","sourceRoot":"","sources":["../../../../../src/components/AudioPlayer/accessibility/getAudioPlayerAccessibilityProps.tsx"],"names":[],"mappings":"AAAA,MAAM,UAAU,gCAAgC,CAAC,QAAkB;IAC/D,OAAO;QACH,QAAQ,EAAE,CAAC;QACX,YAAY,EAAE,cAAc;QAC5B,eAAe,EAAE,QAAQ;KAC5B,CAAC;AACN,CAAC"}
