@@ -68,40 +68,160 @@ function PopoverContainer(): JSX.Element {
     );
 }
 
-function Content(): JSX.Element {
-    const { spacings, colors } = useTheme();
+function BlurredModalFragment(): JSX.Element {
+    const { spacings } = useTheme();
 
-    const [layerVariant, setLayerVariant] = useState('layerVisible');
-    const [popoverVisible, setPopoverVisible] = useState(false);
-    const [isEnabled, setIsEnabled] = useState(false);
-    const [isChecked, setIsChecked] = useState(false);
-    const [sliderValue, setSliderValue] = useState(0);
-    const [selectedIndex, setSelectedIndex] = useState(0);
     const [blurredModalVisible, setBlurredModalVisible] = useState(false);
 
     const toggleBlurredModal = useCallback(() => setBlurredModalVisible((currentValue) => !currentValue), []);
+
+    return (
+        <React.Fragment>
+            <Button variant='main' text='Show Blurred Modal' onPress={toggleBlurredModal} />
+            <BlurredModal visible={blurredModalVisible} dismissText={'Done'} onDismiss={toggleBlurredModal}>
+                <Box margin={spacings.m}>
+                    <Button variant='warning' text='Dismiss Modal' onPress={toggleBlurredModal} />
+                </Box>
+            </BlurredModal>
+        </React.Fragment>
+    );
+}
+
+function SegmentedControlFragment(): JSX.Element {
+    const [selectedIndex, setSelectedIndex] = useState(0);
+
+    return (
+        <React.Fragment>
+            <SegmentedControl
+                selectedIndex={selectedIndex}
+                values={['One', 'Two', 'Three', 'Four']}
+                onChange={(value, index) => {
+                    setSelectedIndex(index);
+                }}
+                onValueChange={(value) => {
+                    console.log('On Value Change: ', value);
+                }}
+            />
+        </React.Fragment>
+    );
+}
+
+function SliderFragment(): JSX.Element {
+    const [sliderValue, setSliderValue] = useState(0);
+
+    const handleSliderValue = useCallback((value: number) => {
+        setSliderValue(value);
+    }, []);
+
+    return (
+        <React.Fragment>
+            <Slider onSlidingComplete={handleSliderValue} />
+            <Text variant={'normal'}>{`Value: ${sliderValue}`}</Text>
+        </React.Fragment>
+    );
+}
+
+function SwitchFragment(): JSX.Element {
+    const [isEnabled, setIsEnabled] = useState(false);
+
+    return (
+        <React.Fragment>
+            <Switch value={isEnabled} onValueChange={(value) => setIsEnabled(value)} />
+        </React.Fragment>
+    );
+}
+
+function CheckBoxFragment(): JSX.Element {
+    const [isChecked, setIsChecked] = useState(false);
+
+    return (
+        <React.Fragment>
+            <CheckBox value={isChecked} onValueChange={(value) => setIsChecked(value)} label={'Selectable'} />
+        </React.Fragment>
+    );
+}
+
+function LayerAnimatedFragment(): JSX.Element {
+    const { spacings } = useTheme();
+
+    const [layerVariant, setLayerVariant] = useState('layerVisible');
 
     const toggleVariant = useCallback(
         () => setLayerVariant((currentValue) => (currentValue === 'layerVisible' ? 'layerInitial' : 'layerVisible')),
         []
     );
 
+    return (
+        <React.Fragment>
+            <Layer
+                height={100}
+                width={100}
+                initial={'layerInitial'}
+                animate={layerVariant}
+                variants={styleVariants}
+                backgroundColor={'#FFF'}
+                marginBottom={spacings.m}
+            />
+            <Button
+                variant={'main'}
+                alignSelf={'center'}
+                width={268}
+                marginBottom={spacings.m}
+                text={'Toggle animation'}
+                onPress={toggleVariant}
+            />
+        </React.Fragment>
+    );
+}
+
+function MiddleCellModalFragment(): JSX.Element {
+    const [middleCellVisible, setMiddleCellVisible] = useState(false);
+
+    const toggleMiddleCell = useCallback(() => setMiddleCellVisible((currentValue) => !currentValue), []);
+
+    return (
+        <React.Fragment>
+            <Button variant='main' text='Show Middle Cell Modal' onPress={toggleMiddleCell} />
+            <MiddleCellModal visible={middleCellVisible} onDismiss={toggleMiddleCell}>
+                <Box>
+                    <Button variant='warning' text='Dismiss Cell Modal' onPress={toggleMiddleCell} />
+                </Box>
+            </MiddleCellModal>
+        </React.Fragment>
+    );
+}
+
+function PopoverFragment(): JSX.Element {
+    const { spacings } = useTheme();
+
+    const [popoverVisible, setPopoverVisible] = useState(false);
+
     const togglePopover = useCallback(() => {
         setPopoverVisible((currentValue) => !currentValue);
     }, [setPopoverVisible]);
 
+    return (
+        <React.Fragment>
+            <Popover
+                active={popoverVisible}
+                popoverChildren={() => {
+                    return <PopoverContainer />;
+                }}
+            >
+                <Button variant={'main'} onPress={togglePopover} text={'Popover'} marginBottom={spacings.m} />
+            </Popover>
+        </React.Fragment>
+    );
+}
+
+function Content(): JSX.Element {
+    const { spacings, colors } = useTheme();
+
     // const [visible, setVisible] = useState(false);
     // const toggleVisible = useCallback(() => setVisible((currentValue) => !currentValue), []);
 
-    const [middleCellVisible, setMiddleCellVisible] = useState(false);
-    const toggleMiddleCell = useCallback(() => setMiddleCellVisible((currentValue) => !currentValue), []);
-
     // const [bottomCellVisible, setBottomCellVisible] = useState(false);
     // const toggleBottomCell = useCallback(() => setBottomCellVisible((currentValue) => !currentValue), []);
-
-    const handleSliderValue = useCallback((value: number) => {
-        setSliderValue(value);
-    }, []);
 
     return (
         <PaddingLayer>
@@ -172,40 +292,25 @@ function Content(): JSX.Element {
                 Blurred Modal Example:
             </Text>
             <Box marginBottom={spacings.m}>
-                <Button variant='main' text='Show Blurred Modal' onPress={toggleBlurredModal} />
-                <BlurredModal visible={blurredModalVisible} dismissText={'Done'} onDismiss={toggleBlurredModal}>
-                    <Box margin={spacings.m}>
-                        <Button variant='warning' text='Dismiss Modal' onPress={toggleBlurredModal} />
-                    </Box>
-                </BlurredModal>
+                <BlurredModalFragment />
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Button Group Example
             </Text>
             <Box marginBottom={spacings.m}>
-                <SegmentedControl
-                    selectedIndex={selectedIndex}
-                    values={['One', 'Two', 'Three', 'Four']}
-                    onChange={(value, index) => {
-                        setSelectedIndex(index);
-                    }}
-                    onValueChange={(value) => {
-                        console.log('On Value Change: ', value);
-                    }}
-                />
+                <SegmentedControlFragment />
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Slider Example:
             </Text>
             <Box marginBottom={spacings.m}>
-                <Slider onSlidingComplete={handleSliderValue} />
-                <Text variant={'normal'}>{`Value: ${sliderValue}`}</Text>
+                <SliderFragment />
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Switch Example:
             </Text>
             <Box marginBottom={spacings.m}>
-                <Switch value={isEnabled} onValueChange={(value) => setIsEnabled(value)} />
+                <SwitchFragment />
             </Box>
             <Separator isAtBackgroundLevel marginBottom={spacings.m} />
             <Text marginBottom={spacings.m} variant={'title'}>
@@ -247,28 +352,12 @@ function Content(): JSX.Element {
                 Check Box Example:
             </Text>
             <Box marginBottom={spacings.m}>
-                <CheckBox value={isChecked} onValueChange={(value) => setIsChecked(value)} label={'Selectable'} />
+                <CheckBoxFragment />
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Layer Animated Example:
             </Text>
-            <Layer
-                height={100}
-                width={100}
-                initial={'layerInitial'}
-                animate={layerVariant}
-                variants={styleVariants}
-                backgroundColor={'#FFF'}
-                marginBottom={spacings.m}
-            />
-            <Button
-                variant={'main'}
-                alignSelf={'center'}
-                width={268}
-                marginBottom={spacings.m}
-                text={'Toggle animation'}
-                onPress={toggleVariant}
-            />
+            <LayerAnimatedFragment />
             <Separator isAtBackgroundLevel marginBottom={spacings.m} />
             <Text marginBottom={spacings.m} variant={'title'}>
                 Box Example:
@@ -337,12 +426,7 @@ function Content(): JSX.Element {
                 Middle Cell Modal Example:
             </Text>
             <Box marginBottom={spacings.m}>
-                <Button variant='main' text='Show Middle Cell Modal' onPress={toggleMiddleCell} />
-                <MiddleCellModal visible={middleCellVisible} onDismiss={toggleMiddleCell}>
-                    <Box>
-                        <Button variant='warning' text='Dismiss Cell Modal' onPress={toggleMiddleCell} />
-                    </Box>
-                </MiddleCellModal>
+                <MiddleCellModalFragment />
             </Box>
             {/*<Separator isAtBackgroundLevel marginBottom={spacings.m} />*/}
             {/*<Text marginBottom={spacings.m} variant={'title'}>*/}
@@ -415,14 +499,7 @@ function Content(): JSX.Element {
             <Text marginBottom={spacings.m} variant={'title'}>
                 PopoverView Example:
             </Text>
-            <Popover
-                active={popoverVisible}
-                popoverChildren={() => {
-                    return <PopoverContainer />;
-                }}
-            >
-                <Button variant={'main'} onPress={togglePopover} text={'Popover'} marginBottom={spacings.m} />
-            </Popover>
+            <PopoverFragment />
             <Separator isAtBackgroundLevel marginBottom={spacings.m} />
             <Text marginBottom={spacings.m} variant={'title'}>
                 Details List Example:
