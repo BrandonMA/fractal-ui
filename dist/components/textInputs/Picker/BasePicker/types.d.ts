@@ -1,14 +1,13 @@
 import { ReactNode } from 'react';
 import { LayerProps } from '../../../containers/Layer/types';
 import { TextProps as FractalTextProps } from '../../../../sharedProps/TextProps';
-import { StyleProp, TextStyle } from 'react-native';
 declare type ItemValue = number | string;
 interface BasicPickerProps {
     selectedValue?: ItemValue;
     onValueChange?: (itemValue: ItemValue, itemIndex: number) => void;
     enabled?: boolean;
     mode?: 'dialog' | 'dropdown';
-    itemStyle?: StyleProp<TextStyle>;
+    itemStyle?: any;
     prompt?: string;
     testID?: string;
     dropdownIconColor?: string;

@@ -5,11 +5,11 @@ import { getValueForLargeSize, useWidthSizeGroup } from '@bma98/size-class';
 import { DimmedModal } from './DimmedModal';
 import { LayerProps } from '../containers/Layer/types';
 import { useTheme } from '../../core/context/hooks/useTheme';
-import { Dimensions } from 'react-native';
+import { getWindowDimensions } from './utils/getWindowDimensions';
 
 function BottomCellDesktop(props: LayerProps): JSX.Element {
     const { borderRadius, colors } = useTheme();
-    const window = Dimensions.get('window');
+    const window = getWindowDimensions();
 
     return (
         <Box
@@ -30,7 +30,7 @@ function BottomCellDesktop(props: LayerProps): JSX.Element {
 
 function BottomCellPhone(props: LayerProps): JSX.Element {
     const { borderRadius, spacings, colors } = useTheme();
-    const window = Dimensions.get('window');
+    const window = getWindowDimensions();
 
     return (
         <Box

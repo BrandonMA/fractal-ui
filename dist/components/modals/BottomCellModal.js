@@ -25,15 +25,15 @@ import { Box } from '../containers';
 import { getValueForLargeSize, useWidthSizeGroup } from '@bma98/size-class';
 import { DimmedModal } from './DimmedModal';
 import { useTheme } from '../../core/context/hooks/useTheme';
-import { Dimensions } from 'react-native';
+import { getWindowDimensions } from './utils/getWindowDimensions';
 function BottomCellDesktop(props) {
     var _a = useTheme(), borderRadius = _a.borderRadius, colors = _a.colors;
-    var window = Dimensions.get('window');
+    var window = getWindowDimensions();
     return (React.createElement(Box, __assign({ pointerEvents: 'auto', overflow: 'hidden', borderRadius: borderRadius.m, width: 500, minHeight: 300, maxHeight: '50%', initial: { translateY: window.height }, animate: { translateY: 0 }, exit: { translateY: window.height }, backgroundColor: colors.background }, props)));
 }
 function BottomCellPhone(props) {
     var _a = useTheme(), borderRadius = _a.borderRadius, spacings = _a.spacings, colors = _a.colors;
-    var window = Dimensions.get('window');
+    var window = getWindowDimensions();
     return (React.createElement(Box, __assign({ pointerEvents: 'auto', overflow: 'hidden', borderRadius: borderRadius.m, alignSelf: 'stretch', minHeight: 300, maxHeight: '50%', margin: spacings.m, initial: { translateY: window.height }, animate: { translateY: 0 }, exit: { translateY: window.height }, backgroundColor: colors.background }, props)));
 }
 export function BottomCellModal(_a) {
