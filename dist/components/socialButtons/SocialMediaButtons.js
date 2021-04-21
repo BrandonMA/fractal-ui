@@ -20,21 +20,21 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { AppleButton } from './AppleButton';
 import { GoogleButton } from './GoogleButton';
 import { FacebookButton } from './FacebookButton';
 import { Layer } from '../containers';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
-export function SocialMediaButtons(_a) {
+export var SocialMediaButtons = forwardRef(function (_a, ref) {
     var onGooglePress = _a.onGooglePress, onFacebookPress = _a.onFacebookPress, onApplePress = _a.onApplePress, googleLoading = _a.googleLoading, facebookLoading = _a.facebookLoading, appleLoading = _a.appleLoading, appleText = _a.appleText, removeAppleButton = _a.removeAppleButton, others = __rest(_a, ["onGooglePress", "onFacebookPress", "onApplePress", "googleLoading", "facebookLoading", "appleLoading", "appleText", "removeAppleButton"]);
     var spacings = useTheme().spacings;
-    return (React.createElement(Layer, __assign({ padding: spacings.m }, others),
+    return (React.createElement(Layer, __assign({ ref: ref, padding: spacings.m }, others),
         React.createElement(HorizontalLayer, { marginBottom: spacings.m },
             React.createElement(GoogleButton, { loading: googleLoading, flex: 1, onPress: onGooglePress }),
             React.createElement(Layer, { width: 16 }),
             React.createElement(FacebookButton, { loading: facebookLoading, flex: 1, onPress: onFacebookPress })),
         removeAppleButton ? null : React.createElement(AppleButton, { loading: appleLoading, onPress: onApplePress, text: appleText })));
-}
+});
 //# sourceMappingURL=SocialMediaButtons.js.map

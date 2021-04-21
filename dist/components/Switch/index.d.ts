@@ -1,2 +1,3 @@
+import React from 'react';
 import { SwitchProps } from './types';
-export declare function Switch({ value, onValueChange }: SwitchProps): JSX.Element;
+export declare const Switch: React.ForwardRefExoticComponent<SwitchProps & React.RefAttributes<unknown>>;

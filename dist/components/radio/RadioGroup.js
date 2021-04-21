@@ -20,23 +20,24 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useState } from 'react';
-import { useTheme } from '../../hooks/useTheme';
-import { Layer } from '../containers/Layer/index.native';
+import React, { useState, forwardRef } from 'react';
+import { useTheme } from '../../core/context/hooks/useTheme';
+import { Layer } from '../containers/Layer';
 import { RadioButton } from './RadioButton';
-export function RadioGroup(_a) {
+import { getRadioGroupAccessibilityProps } from './accessibility/getRadioGroupAccessibilityProps';
+export var RadioGroup = forwardRef(function (_a, ref) {
     var radioButtons = _a.radioButtons, onChange = _a.onChange, others = __rest(_a, ["radioButtons", "onChange"]);
     var spacings = useTheme().spacings;
-    var _b = useState(''), activeID = _b[0], setActiveID = _b[1];
+    var _b = useState(''), activeValue = _b[0], setActiveValue = _b[1];
     var handleChange = function (id, index) {
-        setActiveID(id);
+        setActiveValue(id);
         onChange(radioButtons[index]);
     };
     var renderRadioButton = function (item, index) {
         var isLastItem = index === radioButtons.length - 1;
         var flexDirection = others.flexDirection;
-        return (React.createElement(RadioButton, { marginBottom: flexDirection != 'row' && isLastItem ? 0 : spacings.s, marginRight: flexDirection == 'row' && isLastItem ? 0 : spacings.s, key: item.id, active: item.id == activeID, label: item.label, onPress: function () { return handleChange(item.id, index); } }));
+        return (React.createElement(RadioButton, { marginBottom: flexDirection != 'row' && isLastItem ? 0 : spacings.s, marginRight: flexDirection == 'row' && isLastItem ? 0 : spacings.s, key: item.value, active: item.value == activeValue, label: item.label, value: item.value, onPress: function () { return handleChange(item.value, index); } }));
     };
-    return React.createElement(Layer, __assign({}, others), radioButtons.map(renderRadioButton));
-}
+    return (React.createElement(Layer, __assign({ ref: ref }, others, getRadioGroupAccessibilityProps()), radioButtons.map(renderRadioButton)));
+});
 //# sourceMappingURL=RadioGroup.js.map

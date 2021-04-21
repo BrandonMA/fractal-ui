@@ -1,3 +1,4 @@
+import React from 'react';
 import { LayerProps } from '../containers/Layer/types';
 export interface MessageProps extends Partial<Omit<LayerProps, 'children'>> {
     title: string;
@@ -5,4 +6,4 @@ export interface MessageProps extends Partial<Omit<LayerProps, 'children'>> {
     icon?: (color: string) => JSX.Element;
     description: string;
 }
-export declare function Message({ messageType, title, icon, description, ...others }: MessageProps): JSX.Element;
+export declare const Message: React.ForwardRefExoticComponent<MessageProps & React.RefAttributes<unknown>>;

@@ -24,7 +24,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { Layer } from '../containers/Layer';
@@ -40,12 +40,12 @@ var transition = { repeat: Infinity, ease: 'linear', type: 'linear', duration: 0
 var animate = {
     rotate: 360
 };
-export function ActivityIndicator(_a) {
+export var ActivityIndicator = forwardRef(function (_a, ref) {
     var color = _a.color, others = __rest(_a, ["color"]);
-    return (React.createElement(Layer, __assign({ animate: animate, transition: transition }, others),
+    return (React.createElement(Layer, __assign({ ref: ref, animate: animate, transition: transition }, others),
         React.createElement(motion.svg, { height: '100%', width: '100%', viewBox: '0 0 32 32' },
             React.createElement(BackgroundCircle, { cx: '16', cy: '16', fill: 'none', r: '14', strokeWidth: '4', color: color }),
             React.createElement(AnimatedSection, { cx: '16', cy: '16', fill: 'none', r: '14', strokeWidth: '4', color: color }))));
-}
+});
 var templateObject_1, templateObject_2;
 //# sourceMappingURL=index.js.map

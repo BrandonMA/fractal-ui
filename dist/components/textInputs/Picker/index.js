@@ -22,16 +22,15 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { useCallback } from 'react';
 import { usePickerState } from './hooks/usePickerState';
-import { Platform } from 'react-native';
-import { useTheme } from '../../../hooks/useTheme';
+import { useTheme } from '../../../core/context/hooks/useTheme';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
 import { BasePicker } from './BasePicker';
 import { Layer } from '../../containers/Layer';
 import { ChevronDown } from '../../../assets/ChevronDown';
 import { PickerItem } from './PickerItem';
 export function Picker(_a) {
-    var items = _a.items, onChange = _a.onChange, initialValue = _a.initialValue, disabled = _a.disabled, others = __rest(_a, ["items", "onChange", "initialValue", "disabled"]);
-    var _b = usePickerState(initialValue, items, onChange), currentValue = _b[0], handleValueChange = _b[1];
+    var items = _a.items, onChange = _a.onChange, initialValue = _a.initialValue, disabled = _a.disabled, isReadOnly = _a.isReadOnly, others = __rest(_a, ["items", "onChange", "initialValue", "disabled", "isReadOnly"]);
+    var _b = usePickerState(initialValue, items, onChange, isReadOnly), currentValue = _b[0], handleValueChange = _b[1];
     var _c = useTheme(), colors = _c.colors, sizes = _c.sizes, borderRadius = _c.borderRadius, spacings = _c.spacings;
     var renderItem = useCallback(function (item) {
         var value = item[0];
@@ -39,7 +38,7 @@ export function Picker(_a) {
         return React.createElement(PickerItem, { color: colors.black, label: label, value: value, key: value });
     }, [colors.black]);
     return (React.createElement(HorizontalLayer, __assign({ justifyContent: 'space-between', alignItems: 'center', position: 'relative', borderRadius: borderRadius.s, height: sizes.textFieldHeight, backgroundColor: colors.textField, pointerEvents: disabled ? 'none' : 'auto', paddingLeft: spacings.s, paddingRight: spacings.s }, others),
-        React.createElement(BasePicker, { borderWidth: Platform.OS === 'web' ? 0 : undefined, backgroundColor: 'transparent', color: colors.text, selectedValue: currentValue, dropdownIconColor: colors.placeholder, onValueChange: handleValueChange, mode: 'dropdown', fontSize: 14, flex: 1 }, items.map(renderItem)),
+        React.createElement(BasePicker, { borderWidth: 0, backgroundColor: 'transparent', color: colors.text, selectedValue: currentValue, dropdownIconColor: colors.placeholder, onValueChange: handleValueChange, mode: 'dropdown', fontSize: 14, flex: 1 }, items.map(renderItem)),
         React.createElement(Layer, { alignSelf: 'center', position: 'absolute', right: 0, marginRight: spacings.s },
             React.createElement(ChevronDown, { width: 21, fill: colors.placeholder }))));
 }

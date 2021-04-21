@@ -74,9 +74,13 @@ export interface FractalThemeSizes {
     interactiveItemHeight: number;
     textFieldIconSize: number;
     textFieldHeight: number;
+    checkBoxSize: number;
+    radioButtonSize: number;
+    segmentedControlSize: number;
 }
 export interface FractalThemeShadows {
     mainShadow: string;
+    thumbShadow: string;
 }
 export interface FractalThemeTextVariants {
     normal: TextStyle;

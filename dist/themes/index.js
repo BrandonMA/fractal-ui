@@ -1,6 +1,6 @@
-export * from './createFractalTheme';
-export * from './darkFractalTheme';
+export * from './templates/createFractalTheme';
+export * from './templates/darkFractalTheme';
 export * from './FractalTheme';
-export * from './lightFractalTheme';
+export * from './templates/lightFractalTheme';
 export * from './TextStyle';
 //# sourceMappingURL=index.js.map

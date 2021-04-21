@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import { TextFieldProps } from './BaseTextField/types';
 import { LayerProps } from '../containers/Layer/types';
 export interface IconTextFieldProps extends Partial<Omit<LayerProps, 'children'>> {
@@ -7,5 +8,6 @@ export interface IconTextFieldProps extends Partial<Omit<LayerProps, 'children'>
     onChangeText?: (text: string) => void;
     placeholder?: string;
     textFieldProps?: TextFieldProps;
+    inputRef?: any;
 }
-export declare function IconTextField({ leftImage, rightImage, value, placeholder, onChangeText, textFieldProps, ...others }: IconTextFieldProps): JSX.Element;
+export declare function IconTextField({ leftImage, rightImage, value, placeholder, onChangeText, textFieldProps, inputRef, ...others }: IconTextFieldProps): JSX.Element;

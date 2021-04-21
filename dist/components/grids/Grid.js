@@ -20,10 +20,11 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { Children } from 'react';
+import React, { Children, forwardRef } from 'react';
 import { Layer } from '../containers/Layer';
 import { GridRow } from './GridRow';
-export function Grid(_a) {
+import { getGridAccessibilityProps } from './accessibility/getGridAccessibilityProps';
+export var Grid = forwardRef(function (_a, ref) {
     var children = _a.children, others = __rest(_a, ["children"]);
     var isRow = function () {
         var row = false;
@@ -33,6 +34,6 @@ export function Grid(_a) {
         });
         return row;
     };
-    return (React.createElement(Layer, __assign({ flex: 1, flexDirection: isRow() ? 'column' : 'row' }, others), children));
-}
+    return (React.createElement(Layer, __assign({ ref: ref, flex: 1, flexDirection: isRow() ? 'column' : 'row' }, others, getGridAccessibilityProps()), children));
+});
 //# sourceMappingURL=Grid.js.map

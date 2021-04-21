@@ -5,7 +5,7 @@ import { TextProps as FractalTextProps } from '../../../sharedProps/TextProps';
 import { FractalThemeTextVariants } from '../../../themes/FractalTheme';
 import { RequiredKeys } from 'utility-types';
 export interface TextProps extends FractalSharedProps, AnimationProps, DefaultTexProps, FractalTextProps {
-    children?: string;
+    children?: string | number;
     style?: any;
     variant: RequiredKeys<FractalThemeTextVariants>;
 }

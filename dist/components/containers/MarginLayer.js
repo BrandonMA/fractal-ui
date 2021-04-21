@@ -9,11 +9,11 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import React from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import React, { forwardRef } from 'react';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { Layer } from './Layer';
-export function MarginLayer(props) {
+export var MarginLayer = forwardRef(function (props, ref) {
     var spacings = useTheme().spacings;
-    return React.createElement(Layer, __assign({ margin: spacings.m }, props));
-}
+    return React.createElement(Layer, __assign({ ref: ref, margin: spacings.m }, props));
+});
 //# sourceMappingURL=MarginLayer.js.map

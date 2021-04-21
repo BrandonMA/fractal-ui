@@ -1,2 +1,3 @@
+import React from 'react';
 import { TextFieldProps } from './types';
-export declare function BaseTextField(props: TextFieldProps): JSX.Element;
+export declare const BaseTextField: React.ForwardRefExoticComponent<TextFieldProps & React.RefAttributes<HTMLInputElement>>;

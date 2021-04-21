@@ -20,12 +20,12 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Pressable } from '../Pressable';
-export function BaseButton(_a) {
+export var BaseButton = forwardRef(function (_a, ref) {
     var pressedBackgroundColor = _a.pressedBackgroundColor, whileHover = _a.whileHover, whileTap = _a.whileTap, others = __rest(_a, ["pressedBackgroundColor", "whileHover", "whileTap"]);
     var hoverStyles = __assign({ backgroundColor: pressedBackgroundColor }, whileHover);
     var tapStyles = __assign({ scale: 0.95, backgroundColor: pressedBackgroundColor }, whileTap);
-    return React.createElement(Pressable, __assign({}, others, { whileHover: hoverStyles, whileTap: tapStyles }));
-}
+    return React.createElement(Pressable, __assign({ ref: ref }, others, { whileHover: hoverStyles, whileTap: tapStyles }));
+});
 //# sourceMappingURL=index.js.map

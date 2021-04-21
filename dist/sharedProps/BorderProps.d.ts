@@ -10,5 +10,6 @@ export interface BorderProps {
     borderLeftWidth?: number;
     borderRightWidth?: number;
     borderColor?: string;
+    borderStyle?: 'solid' | 'dotted' | 'dashed';
 }
-export declare function extractBorderProps({ borderRadius, borderTopLeftRadius, borderTopRightRadius, borderBottomLeftRadius, borderBottomRightRadius, borderWidth, borderTopWidth, borderBottomWidth, borderLeftWidth, borderRightWidth, borderColor }: BorderProps): string;
+export declare function extractBorderProps({ borderRadius, borderTopLeftRadius, borderTopRightRadius, borderBottomLeftRadius, borderBottomRightRadius, borderWidth, borderTopWidth, borderBottomWidth, borderLeftWidth, borderRightWidth, borderColor, borderStyle }: BorderProps): string;

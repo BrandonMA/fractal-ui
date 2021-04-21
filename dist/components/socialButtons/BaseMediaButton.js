@@ -20,13 +20,13 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import React, { forwardRef } from 'react';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { ActivityIndicator } from '../ActivityIndicator';
 import { BaseButton } from '../buttons/BaseButton';
-export function BaseMediaButton(_a) {
+export var BaseMediaButton = forwardRef(function (_a, ref) {
     var loading = _a.loading, children = _a.children, _b = _a.activityIndicatorColor, activityIndicatorColor = _b === void 0 ? 'white' : _b, others = __rest(_a, ["loading", "children", "activityIndicatorColor"]);
     var _c = useTheme(), sizes = _c.sizes, borderRadius = _c.borderRadius, shadows = _c.shadows;
-    return (React.createElement(BaseButton, __assign({ height: sizes.interactiveItemHeight, width: '100%', borderRadius: borderRadius.m, boxShadow: shadows.mainShadow, justifyContent: 'center', alignItems: 'center' }, others), !loading ? children : React.createElement(ActivityIndicator, { height: 24, width: 24, color: activityIndicatorColor })));
-}
+    return (React.createElement(BaseButton, __assign({ ref: ref, height: sizes.interactiveItemHeight, width: '100%', borderRadius: borderRadius.m, boxShadow: shadows.mainShadow, justifyContent: 'center', alignItems: 'center' }, others), !loading ? children : React.createElement(ActivityIndicator, { height: 24, width: 24, color: activityIndicatorColor })));
+});
 //# sourceMappingURL=BaseMediaButton.js.map

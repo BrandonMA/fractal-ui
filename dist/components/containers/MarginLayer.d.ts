@@ -1,2 +1,3 @@
+import React from 'react';
 import { LayerProps } from './Layer/types';
-export declare function MarginLayer(props: LayerProps): JSX.Element;
+export declare const MarginLayer: React.ForwardRefExoticComponent<LayerProps & React.RefAttributes<unknown>>;

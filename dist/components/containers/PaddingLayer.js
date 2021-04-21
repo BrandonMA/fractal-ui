@@ -9,11 +9,11 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import React from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import React, { forwardRef } from 'react';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { Layer } from './Layer';
-export function PaddingLayer(props) {
+export var PaddingLayer = forwardRef(function (props, ref) {
     var spacings = useTheme().spacings;
-    return React.createElement(Layer, __assign({ padding: spacings.m }, props));
-}
+    return React.createElement(Layer, __assign({ ref: ref, padding: spacings.m }, props));
+});
 //# sourceMappingURL=PaddingLayer.js.map

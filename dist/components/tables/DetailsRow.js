@@ -20,15 +20,15 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Layer } from '../containers/Layer';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { Text } from '../text';
-export function DetailsRow(_a) {
+export var DetailsRow = forwardRef(function (_a, ref) {
     var title = _a.title, details = _a.details, others = __rest(_a, ["title", "details"]);
-    return (React.createElement(HorizontalLayer, __assign({ alignItems: 'center' }, others),
+    return (React.createElement(HorizontalLayer, __assign({ ref: ref, alignItems: 'center' }, others),
         React.createElement(Layer, { flexGrow: 1 },
             React.createElement(Text, { variant: 'small' }, title)),
         React.createElement(Text, { variant: 'label' }, details)));
-}
+});
 //# sourceMappingURL=DetailsRow.js.map

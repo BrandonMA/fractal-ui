@@ -1,3 +1,2 @@
-export * from './useTheme';
-export * from './useThemeIdentifier';
+export * from './usePlatformColorScheme';
 //# sourceMappingURL=index.js.map

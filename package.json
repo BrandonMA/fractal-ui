@@ -9,6 +9,8 @@
         "url": "git+https://github.com/BrandonMA/fractal-ui.git"
     },
     "main": "./dist/index.js",
+    "react-native": "./native/dist/index.js",
+    "browser": "./dist/index.js",
     "types": "./dist/index.d.ts",
     "scripts": {
         "start": "expo start",

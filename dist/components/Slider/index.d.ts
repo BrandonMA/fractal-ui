@@ -1,2 +1,3 @@
+import React from 'react';
 import { SliderProps } from './types';
-export declare function Slider({ minimumValue, maximumValue, onValueChange, onSlidingComplete, onSlidingStart, step, value }: SliderProps): JSX.Element;
+export declare const Slider: React.ForwardRefExoticComponent<SliderProps & React.RefAttributes<unknown>>;

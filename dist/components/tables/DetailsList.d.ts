@@ -7,4 +7,4 @@ export interface DetailsListProps extends Partial<Omit<LayerProps, 'children'>> 
     titleTextVariant?: 'title' | 'subtitle';
     titleColorVariant?: ButtonVariant | 'text';
 }
-export declare const DetailsList: React.MemoExoticComponent<({ title, details, titleTextVariant, titleColorVariant, ...others }: DetailsListProps) => JSX.Element>;
+export declare const DetailsList: React.MemoExoticComponent<React.ForwardRefExoticComponent<DetailsListProps & React.RefAttributes<unknown>>>;

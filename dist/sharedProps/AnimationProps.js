@@ -7,15 +7,7 @@ export function isAnimationContent(value) {
             casted.scale != null ||
             casted.rotate != null ||
             casted.backgroundColor != null ||
-            casted.translateY != null));
+            casted.translateY != null ||
+            casted.backdropFilter != null));
 }
-export var emptyAnimationContent = {
-    opacity: undefined,
-    width: undefined,
-    height: undefined,
-    scale: 1,
-    rotate: undefined,
-    backgroundColor: undefined,
-    translateY: undefined
-};
 //# sourceMappingURL=AnimationProps.js.map

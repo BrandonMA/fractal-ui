@@ -20,14 +20,14 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import React, { forwardRef } from 'react';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { BaseText } from './BaseText';
-export function Text(_a) {
+export var Text = forwardRef(function (_a, ref) {
     var variant = _a.variant, others = __rest(_a, ["variant"]);
     var _b = useTheme(), textVariants = _b.textVariants, colors = _b.colors;
     var _c = textVariants[variant], fontSize = _c.fontSize, fontWeight = _c.fontWeight, color = _c.color, fontFamily = _c.fontFamily;
     var finalColor = colors[color];
-    return (React.createElement(BaseText, __assign({ selectable: false, fontFamily: fontFamily, fontSize: fontSize, fontWeight: fontWeight, color: finalColor }, others)));
-}
+    return (React.createElement(BaseText, __assign({ ref: ref, selectable: false, fontFamily: fontFamily, fontSize: fontSize, fontWeight: fontWeight, color: finalColor }, others)));
+});
 //# sourceMappingURL=Text.js.map

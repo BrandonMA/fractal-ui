@@ -9,9 +9,9 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Layer } from './Layer';
-export function HorizontalLayer(props) {
-    return React.createElement(Layer, __assign({ flexDirection: 'row' }, props));
-}
+export var HorizontalLayer = forwardRef(function (props, ref) {
+    return React.createElement(Layer, __assign({ ref: ref, flexDirection: 'row' }, props));
+});
 //# sourceMappingURL=HorizontalLayer.js.map

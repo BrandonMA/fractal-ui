@@ -7,9 +7,10 @@ export interface AnimationContent {
     rotate?: number;
     backgroundColor?: string;
     translateY?: number;
+    backdropFilter?: string;
+    '-webkit-backdrop-filter'?: string;
 }
 export declare function isAnimationContent(value: unknown): value is AnimationContent;
-export declare const emptyAnimationContent: AnimationContent;
 export declare type Variants = {
     [key: string]: AnimationContent;
 };

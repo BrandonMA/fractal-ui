@@ -1,2 +1,3 @@
+import React from 'react';
 import { LayerProps } from './types';
-export declare function Layer(props: LayerProps): JSX.Element;
+export declare const Layer: React.ForwardRefExoticComponent<LayerProps & React.RefAttributes<unknown>>;

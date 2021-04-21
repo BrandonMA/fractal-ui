@@ -1,2 +1,3 @@
+import React from 'react';
 import { LayerProps } from '../../containers/Layer/types';
-export declare function ModalContent({ children, ...others }: LayerProps): JSX.Element;
+export declare const ModalContent: React.ForwardRefExoticComponent<LayerProps & React.RefAttributes<HTMLDivElement>>;

@@ -1,4 +1,4 @@
-import { ReactNode, Component, ErrorInfo } from 'react';
+import * as React from 'react';
 import { LayerProps } from '../containers/Layer/types';
 interface State {
     hasError: boolean;
@@ -8,11 +8,11 @@ interface State {
 interface ErrorMessageProps extends LayerProps {
     onError?: (error: Error, componentStack: string) => void;
 }
-export declare class ErrorMessage extends Component<ErrorMessageProps, State> {
-    constructor(props: LayerProps);
+export declare class ErrorMessage extends React.Component<ErrorMessageProps, State> {
+    constructor(props: ErrorMessageProps);
     static getDerivedStateFromError(error: Error): State;
-    componentDidCatch(error: Error, info: ErrorInfo): void;
+    componentDidCatch(error: Error, info: React.ErrorInfo): void;
     renderErrorIcon: (color: string) => JSX.Element;
-    render(): ReactNode;
+    render(): JSX.Element;
 }
 export {};

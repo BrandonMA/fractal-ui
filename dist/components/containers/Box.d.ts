@@ -1,2 +1,3 @@
+import React from 'react';
 import { LayerProps } from './Layer/types';
-export declare function Box(props: LayerProps): JSX.Element;
+export declare const Box: React.ForwardRefExoticComponent<LayerProps & React.RefAttributes<unknown>>;

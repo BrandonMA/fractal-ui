@@ -1,2 +1,3 @@
+import React from 'react';
 import { RadioGroupProps } from './types';
-export declare function RadioGroup({ radioButtons, onChange, ...others }: RadioGroupProps): JSX.Element;
+export declare const RadioGroup: React.ForwardRefExoticComponent<RadioGroupProps & React.RefAttributes<unknown>>;

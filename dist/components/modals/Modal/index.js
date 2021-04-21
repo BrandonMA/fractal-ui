@@ -21,12 +21,12 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import { AnimatePresence } from 'framer-motion';
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { ModalPortal } from './ModalPortal';
 import { ModalContent } from './ModalContent';
-export function Modal(_a) {
+export var Modal = forwardRef(function (_a, ref) {
     var visible = _a.visible, others = __rest(_a, ["visible"]);
     return (React.createElement(ModalPortal, null,
-        React.createElement(AnimatePresence, null, visible ? React.createElement(ModalContent, __assign({ key: 'ModalContent' }, others)) : null)));
-}
+        React.createElement(AnimatePresence, null, visible ? React.createElement(ModalContent, __assign({ ref: ref, key: 'ModalContent' }, others)) : null)));
+});
 //# sourceMappingURL=index.js.map

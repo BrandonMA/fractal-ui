@@ -1,2 +1,3 @@
+import React from 'react';
 import { TouchableOpacityProps } from './types';
-export declare function TouchableOpacity({ onPress, whileTap, ...others }: TouchableOpacityProps): JSX.Element;
+export declare const TouchableOpacity: React.ForwardRefExoticComponent<TouchableOpacityProps & React.RefAttributes<unknown>>;

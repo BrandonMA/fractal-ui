@@ -1,3 +1,4 @@
+import React from 'react';
 import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { TextProps } from '../text/BaseText/types';
 import { ButtonVariant } from './ButtonVariant';
@@ -10,4 +11,4 @@ export interface TextButtonProps extends FractalSharedProps, AnimationProps {
     style?: any;
     onPress?: () => void;
 }
-export declare function TextButton({ variant, children, leftIcon, rightIcon, textProps, ...others }: TextButtonProps): JSX.Element;
+export declare const TextButton: React.ForwardRefExoticComponent<TextButtonProps & React.RefAttributes<unknown>>;

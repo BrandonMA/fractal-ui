@@ -24,7 +24,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
@@ -33,12 +33,18 @@ import { extractDimensionProps } from '../../../sharedProps/DimensionProps';
 import { extractDisplayProps } from '../../../sharedProps/DisplayProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
 import { extractWebProps } from '../../../sharedProps/WebProps';
+import { useLongPress } from '../useLongPress';
 var StyledTouchableOpacity = styled(motion.button)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    -moz-appearance: none;\n    -webkit-appearance: none;\n    outline: none;\n    border: none;\n    cursor: pointer;\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n"], ["\n    -moz-appearance: none;\n    -webkit-appearance: none;\n    outline: none;\n    border: none;\n    cursor: pointer;\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n"])), extractBackgroundProps, extractDimensionProps, extractDisplayProps, extractBorderProps, extractShadowProps, extractWebProps);
 var transition = { type: 'linear', duration: 0.2 };
-export function TouchableOpacity(_a) {
-    var onPress = _a.onPress, whileTap = _a.whileTap, others = __rest(_a, ["onPress", "whileTap"]);
+var emptyFuntion = function () { return undefined; };
+export var TouchableOpacity = forwardRef(function (_a, ref) {
+    var onPress = _a.onPress, onLongPress = _a.onLongPress, whileTap = _a.whileTap, others = __rest(_a, ["onPress", "onLongPress", "whileTap"]);
     var tapStyles = __assign({ opacity: 0.4 }, whileTap);
-    return React.createElement(StyledTouchableOpacity, __assign({ transition: transition, whileTap: tapStyles, onClick: onPress }, others));
-}
+    var longPressEvent = useLongPress(onLongPress !== null && onLongPress !== void 0 ? onLongPress : emptyFuntion, {
+        isPreventDefault: true,
+        delay: 300
+    });
+    return (React.createElement(StyledTouchableOpacity, __assign({ ref: ref, transition: transition, whileTap: tapStyles, onClick: onPress }, longPressEvent, others)));
+});
 var templateObject_1;
 //# sourceMappingURL=index.js.map

@@ -1,3 +1,4 @@
+import React from 'react';
 import { LayerProps } from '../containers/Layer/types';
 export interface SocialMediaButtonsEventsProps {
     onGooglePress?: () => void;
@@ -11,4 +12,4 @@ export interface SocialMediaButtonsEventsProps {
 }
 export interface SocialMediaButtonsProps extends Partial<Omit<LayerProps, 'children'>>, SocialMediaButtonsEventsProps {
 }
-export declare function SocialMediaButtons({ onGooglePress, onFacebookPress, onApplePress, googleLoading, facebookLoading, appleLoading, appleText, removeAppleButton, ...others }: SocialMediaButtonsProps): JSX.Element;
+export declare const SocialMediaButtons: React.ForwardRefExoticComponent<SocialMediaButtonsProps & React.RefAttributes<unknown>>;

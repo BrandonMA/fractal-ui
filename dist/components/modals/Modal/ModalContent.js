@@ -20,10 +20,10 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useEffect } from 'react';
+import React, { useEffect, forwardRef } from 'react';
 import { Layer } from '../../containers';
 import { useIsPresent } from 'framer-motion';
-export function ModalContent(_a) {
+export var ModalContent = forwardRef(function (_a, ref) {
     var children = _a.children, others = __rest(_a, ["children"]);
     var isPresent = useIsPresent();
     console.log(isPresent);
@@ -33,6 +33,6 @@ export function ModalContent(_a) {
             document.body.style.overflow = 'scroll';
         };
     }, []);
-    return (React.createElement(Layer, __assign({ position: 'fixed', top: 0, right: 0, bottom: 0, left: 0 }, others), children));
-}
+    return (React.createElement(Layer, __assign({ ref: ref, position: 'fixed', top: 0, right: 0, bottom: 0, left: 0 }, others), children));
+});
 //# sourceMappingURL=ModalContent.js.map

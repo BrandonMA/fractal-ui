@@ -9,11 +9,11 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import React from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import React, { forwardRef } from 'react';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { PaddingLayer } from './PaddingLayer';
-export function Box(props) {
+export var Box = forwardRef(function (props, ref) {
     var _a = useTheme(), colors = _a.colors, borderRadius = _a.borderRadius, shadows = _a.shadows;
-    return React.createElement(PaddingLayer, __assign({ backgroundColor: colors.foreground, borderRadius: borderRadius.m, boxShadow: shadows.mainShadow }, props));
-}
+    return (React.createElement(PaddingLayer, __assign({ ref: ref, backgroundColor: colors.foreground, borderRadius: borderRadius.m, boxShadow: shadows.mainShadow }, props)));
+});
 //# sourceMappingURL=Box.js.map

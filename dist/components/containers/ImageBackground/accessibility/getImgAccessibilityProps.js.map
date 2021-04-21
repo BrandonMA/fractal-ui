@@ -1,0 +1,1 @@
+{"version":3,"file":"getImgAccessibilityProps.js","sourceRoot":"","sources":["../../../../../src/components/containers/ImageBackground/accessibility/getImgAccessibilityProps.tsx"],"names":[],"mappings":"AAAA,MAAM,UAAU,wBAAwB;IACpC,OAAO;QACH,QAAQ,EAAE,CAAC;QACX,IAAI,EAAE,KAAK;QACX,YAAY,EAAE,kBAAkB;KACnC,CAAC;AACN,CAAC"}

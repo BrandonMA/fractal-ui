@@ -20,7 +20,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, forwardRef } from 'react';
 import { Pressable } from '../buttons';
 import { Layer } from '../containers';
 import { CheckIcon } from '../../assets/CheckIcon';
@@ -31,7 +31,7 @@ var styleVariants = {
 function getVariant(active) {
     return active ? styleVariants.visible : styleVariants.hidden;
 }
-export function ColorToggle(_a) {
+export var ColorToggle = forwardRef(function (_a, ref) {
     var onActiveChange = _a.onActiveChange, backgroundColor = _a.backgroundColor, active = _a.active, others = __rest(_a, ["onActiveChange", "backgroundColor", "active"]);
     var _b = useState(!!active), uncontrolledActive = _b[0], setUncontrolledActive = _b[1];
     var variant = getVariant(active != null ? active : uncontrolledActive);
@@ -57,8 +57,8 @@ export function ColorToggle(_a) {
             handleUncontrolledActiveToggle();
         }
     }, [handleControlledActiveToggle, handleUncontrolledActiveToggle, active]);
-    return (React.createElement(Pressable, __assign({ onPress: handlePress, width: 40, height: 40, borderRadius: 20, justifyContent: 'center', alignItems: 'center', backgroundColor: backgroundColor }, others),
+    return (React.createElement(Pressable, __assign({ ref: ref, onPress: handlePress, width: 40, height: 40, borderRadius: 20, justifyContent: 'center', alignItems: 'center', backgroundColor: backgroundColor }, others),
         React.createElement(Layer, { initial: variant, animate: variant, variants: styleVariants },
             React.createElement(CheckIcon, { height: 24, width: 24, fill: 'white' }))));
-}
+});
 //# sourceMappingURL=ColorToggle.js.map

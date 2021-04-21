@@ -20,13 +20,14 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { Fragment, memo, useCallback } from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import React, { Fragment, memo, useCallback, forwardRef } from 'react';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { Box } from '../containers';
 import { Separator } from '../Separator';
 import { Text } from '../text';
 import { DetailsRow } from './DetailsRow';
-export var DetailsList = memo(function (_a) {
+import { getListItemAccessibilityProps } from './accessibility/getListItemAccessibilityProps';
+var BaseDetailsList = forwardRef(function (_a, ref) {
     var title = _a.title, details = _a.details, _b = _a.titleTextVariant, titleTextVariant = _b === void 0 ? 'title' : _b, _c = _a.titleColorVariant, titleColorVariant = _c === void 0 ? 'text' : _c, others = __rest(_a, ["title", "details", "titleTextVariant", "titleColorVariant"]);
     var _d = useTheme(), colors = _d.colors, spacings = _d.spacings;
     var colorName = titleColorVariant !== 'text' ? titleColorVariant + "InteractiveColor" : titleColorVariant;
@@ -34,11 +35,12 @@ export var DetailsList = memo(function (_a) {
     var renderItem = useCallback(function (item, index) {
         var isLastItem = index === details.length - 1;
         return (React.createElement(Fragment, { key: item[0] },
-            React.createElement(DetailsRow, { title: item[0], details: item[1], marginBottom: isLastItem ? undefined : spacings.s }),
+            React.createElement(DetailsRow, __assign({ title: item[0], details: item[1], marginBottom: isLastItem ? undefined : spacings.s }, getListItemAccessibilityProps())),
             isLastItem ? null : React.createElement(Separator, { marginBottom: spacings.s })));
     }, [details.length, spacings.s]);
-    return (React.createElement(Box, __assign({}, others),
+    return (React.createElement(Box, __assign({ ref: ref }, others),
         React.createElement(Text, { variant: titleTextVariant, color: color, marginBottom: spacings.m }, title),
         details.map(renderItem)));
 });
+export var DetailsList = memo(BaseDetailsList);
 //# sourceMappingURL=DetailsList.js.map

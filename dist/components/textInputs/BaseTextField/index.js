@@ -24,7 +24,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useCallback } from 'react';
+import React, { useCallback, forwardRef } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
@@ -34,13 +34,14 @@ import { extractDisplayProps } from '../../../sharedProps/DisplayProps';
 import { extractTextProps } from '../../../sharedProps/TextProps';
 import { extractWebProps } from '../../../sharedProps/WebProps';
 import { extractPlaceholder } from '../../../sharedProps/PlaceholderProps';
+import { getTextFieldAccessibilityProps } from '../accessibility/getTextInputccessibilityProps';
 var StyledTextInput = styled(motion.input)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    outline: none;\n    border-width: 0px;\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n"], ["\n    outline: none;\n    border-width: 0px;\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n"])), extractPlaceholder, extractBackgroundProps, extractDimensionProps, extractDisplayProps, extractBorderProps, extractTextProps, extractWebProps);
-export function BaseTextField(props) {
+export var BaseTextField = forwardRef(function (props, ref) {
     var onChangeText = props.onChangeText, placeholder = props.placeholder, others = __rest(props, ["onChangeText", "placeholder"]);
     var handleChange = useCallback(function (event) {
         onChangeText && onChangeText(event.target.value);
     }, [onChangeText]);
-    return React.createElement(StyledTextInput, __assign({ placeholder: placeholder, selectable: true, onChange: handleChange }, others));
-}
+    return (React.createElement(StyledTextInput, __assign({ ref: ref, placeholder: placeholder, selectable: true, onChange: handleChange }, others, getTextFieldAccessibilityProps(placeholder))));
+});
 var templateObject_1;
 //# sourceMappingURL=index.js.map

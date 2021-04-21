@@ -9,11 +9,12 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { GoogleIcon } from '../../assets/GoogleIcon';
 import { BaseMediaButton } from './BaseMediaButton';
-export function GoogleButton(props) {
-    return (React.createElement(BaseMediaButton, __assign({ backgroundColor: 'white', pressedBackgroundColor: '#F4F4F4', activityIndicatorColor: 'black' }, props),
+import { getGoogleButtonAccessibilityProps } from './accessibility/getGoogleButtonAccessibilityProps';
+export var GoogleButton = forwardRef(function (props, ref) {
+    return (React.createElement(BaseMediaButton, __assign({ ref: ref, backgroundColor: 'white', pressedBackgroundColor: '#F4F4F4', activityIndicatorColor: 'black' }, props, getGoogleButtonAccessibilityProps()),
         React.createElement(GoogleIcon, { height: 24 })));
-}
+});
 //# sourceMappingURL=GoogleButton.js.map

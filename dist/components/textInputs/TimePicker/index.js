@@ -21,7 +21,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React, { useCallback, useState } from 'react';
-import { useTheme } from '../../../hooks/useTheme';
+import { useTheme } from '../../../core/context/hooks/useTheme';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
 import { Picker } from '../Picker';
 import { numberToArray } from '../util/numberToArray';

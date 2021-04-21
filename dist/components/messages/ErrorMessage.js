@@ -6,8 +6,6 @@ var __extends = (this && this.__extends) || (function () {
         return extendStatics(d, b);
     };
     return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -24,7 +22,7 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Message } from './Message';
 import { BugIcon } from '../../assets/BugIcon';
 import { Layer } from '../containers/Layer';
@@ -51,6 +49,6 @@ var ErrorMessage = /** @class */ (function (_super) {
         return React.createElement(Layer, __assign({}, this.props), this.props.children);
     };
     return ErrorMessage;
-}(Component));
+}(React.Component));
 export { ErrorMessage };
 //# sourceMappingURL=ErrorMessage.js.map

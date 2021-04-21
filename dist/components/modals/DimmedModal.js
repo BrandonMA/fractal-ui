@@ -23,7 +23,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 import { Modal } from './Modal';
 import React from 'react';
 import { Pressable } from '../buttons';
-import { SafeAreaLayer } from '../containers/SafeAreaLayer/index.native';
+import { SafeAreaLayer } from '../containers/SafeAreaLayer';
 export function DimmedModal(_a) {
     var visible = _a.visible, onDismiss = _a.onDismiss, others = __rest(_a, ["visible", "onDismiss"]);
     return (React.createElement(Modal, { visible: visible, onDismiss: onDismiss, initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } },

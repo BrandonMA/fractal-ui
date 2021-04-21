@@ -9,12 +9,12 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import React from 'react';
-import { useTheme } from '../../hooks/useTheme';
-import { sizes } from '../../themes/lightFractalTheme';
+import React, { forwardRef } from 'react';
+import { useTheme } from '../../core/context/hooks/useTheme';
+import { sizes } from '../../themes/templates/lightFractalTheme';
 import { BaseTextField } from './BaseTextField';
-export function TextField(props) {
+export var TextField = forwardRef(function (props, ref) {
     var _a = useTheme(), colors = _a.colors, borderRadius = _a.borderRadius, spacings = _a.spacings;
-    return (React.createElement(BaseTextField, __assign({ borderRadius: borderRadius.s, color: colors.text, backgroundColor: colors.textField, placeholderTextColor: colors.placeholder, fontSize: 14, paddingRight: spacings.s, paddingLeft: spacings.s, height: sizes.textFieldHeight }, props)));
-}
+    return (React.createElement(BaseTextField, __assign({ ref: ref, borderRadius: borderRadius.s, color: colors.text, backgroundColor: colors.textField, placeholderTextColor: colors.placeholder, fontSize: 14, paddingRight: spacings.s, paddingLeft: spacings.s, height: sizes.textFieldHeight }, props)));
+});
 //# sourceMappingURL=TextField.js.map

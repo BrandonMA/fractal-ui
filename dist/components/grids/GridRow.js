@@ -13,13 +13,14 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { Layer } from '../containers/Layer';
 import { extractGridItemProps } from './types';
-var StyledGrid = styled(Layer)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    flex-direction: row;\n    ", ";\n"], ["\n    flex-direction: row;\n    ", ";\n"])), extractGridItemProps);
-export function GridRow(props) {
-    return React.createElement(StyledGrid, __assign({}, props));
-}
+import { getGridRowAccessibilityProps } from './accessibility/getGridRowAccessibilityProps';
+var StyledGrid = styled(Layer)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    ", ";\n"], ["\n    ", ";\n"])), extractGridItemProps);
+export var GridRow = forwardRef(function (props, ref) {
+    return React.createElement(StyledGrid, __assign({ ref: ref, flexDirection: 'row' }, props, getGridRowAccessibilityProps()));
+});
 var templateObject_1;
 //# sourceMappingURL=GridRow.js.map

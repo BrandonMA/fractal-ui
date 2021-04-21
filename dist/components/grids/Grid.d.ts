@@ -1,2 +1,3 @@
+import React from 'react';
 import { GridProps } from './types';
-export declare function Grid({ children, ...others }: GridProps): JSX.Element;
+export declare const Grid: React.ForwardRefExoticComponent<GridProps & React.RefAttributes<unknown>>;

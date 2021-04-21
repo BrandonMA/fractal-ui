@@ -1,28 +1,31 @@
-var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
-import React from 'react';
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { useTheme } from '../../hooks';
-var SliderInput = styled(motion.input)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    -webkit-appearance: none;\n    width: 100%;\n    height: 4px;\n    background-color: ", ";\n    outline: none;\n    :hover {\n        opacity: 1;\n    }\n    ::-webkit-slider-thumb {\n        appearance: none;\n        width: 20px;\n        height: 20px;\n        border-radius: 10px;\n        background: ", ";\n        cursor: pointer;\n        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);\n    }\n"], ["\n    -webkit-appearance: none;\n    width: 100%;\n    height: 4px;\n    background-color: ", ";\n    outline: none;\n    :hover {\n        opacity: 1;\n    }\n    ::-webkit-slider-thumb {\n        appearance: none;\n        width: 20px;\n        height: 20px;\n        border-radius: 10px;\n        background: ", ";\n        cursor: pointer;\n        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);\n    }\n"])), function (props) { return props.backgroundColor; }, function (props) { return props.thumbColor; });
-export function Slider(_a) {
-    var minimumValue = _a.minimumValue, maximumValue = _a.maximumValue, onValueChange = _a.onValueChange, onSlidingComplete = _a.onSlidingComplete, onSlidingStart = _a.onSlidingStart, step = _a.step, value = _a.value;
-    var colors = useTheme().colors;
-    var handleOnChange = function (e) {
-        if (onValueChange)
-            onValueChange(e.target.value);
-    };
-    var handleTouchEndCapture = function (e) {
-        if (onSlidingComplete)
-            onSlidingComplete(e.target.value);
-    };
-    var handleTouchStartCapture = function (e) {
-        if (onSlidingStart)
-            onSlidingStart(e.target.value);
-    };
-    return (React.createElement(SliderInput, { value: value, type: 'range', defaultValue: 0, step: step, min: minimumValue, max: maximumValue, backgroundColor: colors.placeholder, thumbColor: colors.mainInteractiveColor, onChange: handleOnChange, onTouchEndCapture: handleTouchEndCapture, onTouchStart: handleTouchStartCapture }));
-}
-var templateObject_1;
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+import React, { forwardRef } from 'react';
+import { BaseSlider } from './BaseSlider';
+import { Layer } from '../containers';
+export var Slider = forwardRef(function (_a, ref) {
+    var defaultValue = _a.defaultValue, minimumValue = _a.minimumValue, maximumValue = _a.maximumValue, onValueChange = _a.onValueChange, onSlidingStart = _a.onSlidingStart, onSlidingComplete = _a.onSlidingComplete, step = _a.step, name = _a.name, value = _a.value, layerProps = __rest(_a, ["defaultValue", "minimumValue", "maximumValue", "onValueChange", "onSlidingStart", "onSlidingComplete", "step", "name", "value"]);
+    return (React.createElement(Layer, __assign({ ref: ref }, layerProps),
+        React.createElement(BaseSlider, { defaultValue: defaultValue, minimumValue: minimumValue, maximumValue: maximumValue, onValueChange: onValueChange, onSlidingStart: onSlidingStart, onSlidingComplete: onSlidingComplete, step: step, name: name, value: value })));
+});
 //# sourceMappingURL=index.js.map

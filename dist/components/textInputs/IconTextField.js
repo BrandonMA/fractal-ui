@@ -22,17 +22,17 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React from 'react';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { Layer } from '../containers/Layer';
 import { BaseTextField } from './BaseTextField';
 export function IconTextField(_a) {
-    var leftImage = _a.leftImage, rightImage = _a.rightImage, value = _a.value, placeholder = _a.placeholder, onChangeText = _a.onChangeText, textFieldProps = _a.textFieldProps, others = __rest(_a, ["leftImage", "rightImage", "value", "placeholder", "onChangeText", "textFieldProps"]);
+    var leftImage = _a.leftImage, rightImage = _a.rightImage, value = _a.value, placeholder = _a.placeholder, onChangeText = _a.onChangeText, textFieldProps = _a.textFieldProps, inputRef = _a.inputRef, others = __rest(_a, ["leftImage", "rightImage", "value", "placeholder", "onChangeText", "textFieldProps", "inputRef"]);
     var _b = useTheme(), spacings = _b.spacings, sizes = _b.sizes, colors = _b.colors, borderRadius = _b.borderRadius;
     var paddingLeft = leftImage != null ? spacings.xs : undefined;
     var paddingRight = rightImage != null ? spacings.xs : undefined;
     return (React.createElement(HorizontalLayer, __assign({ paddingLeft: paddingLeft, paddingRight: paddingRight, borderRadius: borderRadius.s, height: sizes.textFieldHeight, backgroundColor: colors.textField, justifyContent: 'space-evenly', alignItems: 'center' }, others),
         leftImage != null ? (React.createElement(Layer, { flexShrink: 0, height: sizes.textFieldIconSize, width: sizes.textFieldIconSize }, leftImage(colors.placeholder, sizes.textFieldIconSize))) : null,
-        React.createElement(BaseTextField, __assign({ paddingLeft: paddingLeft, paddingRight: paddingRight, flex: 1, value: value, color: colors.text, placeholderTextColor: colors.placeholder, fontSize: 14, onChangeText: onChangeText, placeholder: placeholder }, textFieldProps)),
+        React.createElement(BaseTextField, __assign({ ref: inputRef, paddingLeft: paddingLeft, paddingRight: paddingRight, flex: 1, value: value, color: colors.text, placeholderTextColor: colors.placeholder, fontSize: 14, onChangeText: onChangeText, placeholder: placeholder }, textFieldProps)),
         rightImage != null ? (React.createElement(Layer, { flexShrink: 0, height: sizes.textFieldIconSize, width: sizes.textFieldIconSize }, rightImage(colors.placeholder, sizes.textFieldIconSize))) : null));
 }
 //# sourceMappingURL=IconTextField.js.map

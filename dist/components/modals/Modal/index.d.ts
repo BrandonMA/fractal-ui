@@ -1,2 +1,3 @@
+import React from 'react';
 import { ModalProps } from './types';
-export declare function Modal({ visible, ...others }: ModalProps): JSX.Element;
+export declare const Modal: React.ForwardRefExoticComponent<ModalProps & React.RefAttributes<HTMLDivElement>>;

@@ -1,2 +1,3 @@
+import React from 'react';
 import { LayerProps } from './Layer/types';
-export declare function HorizontalLayer(props: LayerProps): JSX.Element;
+export declare const HorizontalLayer: React.ForwardRefExoticComponent<LayerProps & React.RefAttributes<unknown>>;

@@ -12,7 +12,7 @@ var __assign = (this && this.__assign) || function () {
 import React from 'react';
 import { Background } from './Background';
 import { ActivityIndicator } from '../ActivityIndicator';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
 export function LoadingBackground(props) {
     var colors = useTheme().colors;
     return (React.createElement(Background, __assign({}, props),

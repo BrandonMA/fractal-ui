@@ -23,8 +23,8 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { useCallback, useEffect, useState } from 'react';
 import { PickerButton } from '../PickerButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { useTheme } from '../../../hooks/useTheme';
-import { BlurrediOSModal } from '../../modals/BlurrediOSModal';
+import { useTheme } from '../../../core/context/hooks/useTheme';
+import { BlurredModal } from '../../modals';
 export function DatePicker(_a) {
     var initialDate = _a.initialDate, _b = _a.mode, mode = _b === void 0 ? 'date' : _b, minDate = _a.minDate, maxDate = _a.maxDate, onChange = _a.onChange, _c = _a.iosDoneText, iosDoneText = _c === void 0 ? 'Done' : _c, others = __rest(_a, ["initialDate", "mode", "minDate", "maxDate", "onChange", "iosDoneText"]);
     var defaultDate = new Date();
@@ -57,7 +57,7 @@ export function DatePicker(_a) {
     }, [modalActive, colors]);
     return (React.createElement(React.Fragment, null,
         React.createElement(PickerButton, __assign({ onPress: toggleModal }, others), mode === 'date' ? date.toLocaleDateString() : date.toLocaleTimeString()),
-        React.createElement(BlurrediOSModal, { dismissText: iosDoneText, visible: modalActive, onDismiss: toggleModal },
+        React.createElement(BlurredModal, { dismissText: iosDoneText, visible: modalActive, onDismiss: toggleModal },
             React.createElement(DateTimePicker, { value: date, mode: mode, display: 'spinner', is24Hour: true, minimumDate: minDate, maximumDate: maxDate, onChange: onPickerValueChange, textColor: textColor }))));
 }
 //# sourceMappingURL=index.ios.js.map

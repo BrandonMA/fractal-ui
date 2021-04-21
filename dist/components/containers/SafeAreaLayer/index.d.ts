@@ -1,2 +1,2 @@
-import { Layer } from '../Layer';
-export declare const SafeAreaLayer: typeof Layer;
+/// <reference types="react" />
+export declare const SafeAreaLayer: import("react").ForwardRefExoticComponent<import("../Layer/types").LayerProps & import("react").RefAttributes<unknown>>;

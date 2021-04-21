@@ -10,7 +10,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 import React from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../core/context/hooks/useTheme';
 import { Layer } from './Layer';
 export function Background(props) {
     var colors = useTheme().colors;

@@ -1,2 +1,3 @@
+import React from 'react';
 import { BaseButtonProps } from './types';
-export declare function BaseButton({ pressedBackgroundColor, whileHover, whileTap, ...others }: BaseButtonProps): JSX.Element;
+export declare const BaseButton: React.ForwardRefExoticComponent<BaseButtonProps & React.RefAttributes<unknown>>;

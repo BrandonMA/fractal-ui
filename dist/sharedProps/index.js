@@ -3,8 +3,9 @@ export * from './BackgroundProps';
 export * from './BorderProps';
 export * from './DimensionProps';
 export * from './DisplayProps';
-export * from './ShadowProps';
-export * from './WebProps';
 export * from './FractalSharedProps';
+export * from './PlaceholderProps';
+export * from './ShadowProps';
 export * from './TextProps';
+export * from './WebProps';
 //# sourceMappingURL=index.js.map

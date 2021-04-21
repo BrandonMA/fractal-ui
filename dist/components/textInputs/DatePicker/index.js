@@ -26,10 +26,9 @@ import { numberToArray } from '../util/numberToArray';
 import { getDaysInMonth } from './util/getDaysInMonth';
 import { getYearsInRange } from './util/getYearsInRange';
 import { localeMonthNames } from './util/localeMonthNames';
-import { getMonthName } from './util/getMonthName';
 import { Layer } from '../../containers';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
-import { useTheme } from '../../../hooks/useTheme';
+import { useTheme } from '../../../core/context/hooks/useTheme';
 export function DatePicker(_a) {
     var minDate = _a.minDate, maxDate = _a.maxDate, initialDate = _a.initialDate, onChange = _a.onChange, others = __rest(_a, ["minDate", "maxDate", "initialDate", "onChange"]);
     var spacings = useTheme().spacings;
@@ -74,9 +73,9 @@ export function DatePicker(_a) {
     }, [handleOnChange]);
     return (React.createElement(Layer, __assign({}, others),
         React.createElement(HorizontalLayer, { marginBottom: spacings.m },
-            React.createElement(Picker, { initialValue: date.getFullYear().toString(), items: years, flex: 1, onChange: onYearChange }),
+            React.createElement(Picker, { initialValue: date.getFullYear().toString(), items: years, flex: 1, onChange: onYearChange, isReadOnly: true }),
             React.createElement(Layer, { marginRight: spacings.m }),
-            React.createElement(Picker, { initialValue: getMonthName(date), items: localeMonthNames, flex: 1, onChange: onMonthChange })),
-        React.createElement(Picker, { initialValue: date.getDate().toString(), items: days, onChange: onDayChange })));
+            React.createElement(Picker, { initialValue: date.getMonth().toString(), items: localeMonthNames, flex: 1, onChange: onMonthChange, isReadOnly: true })),
+        React.createElement(Picker, { initialValue: date.getDate().toString(), items: days, onChange: onDayChange, isReadOnly: true })));
 }
 //# sourceMappingURL=index.js.map

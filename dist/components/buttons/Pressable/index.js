@@ -24,7 +24,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
@@ -35,9 +35,9 @@ import { extractShadowProps } from '../../../sharedProps/ShadowProps';
 import { extractWebProps } from '../../../sharedProps/WebProps';
 var StyledPressable = styled(motion.button)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    -moz-appearance: none;\n    -webkit-appearance: none;\n    outline: none;\n    border: none;\n    cursor: pointer;\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n"], ["\n    -moz-appearance: none;\n    -webkit-appearance: none;\n    outline: none;\n    border: none;\n    cursor: pointer;\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n"])), extractBackgroundProps, extractDimensionProps, extractDisplayProps, extractBorderProps, extractShadowProps, extractWebProps);
 var transition = { type: 'spring' };
-export function Pressable(_a) {
+export var Pressable = forwardRef(function (_a, ref) {
     var onPress = _a.onPress, others = __rest(_a, ["onPress"]);
-    return React.createElement(StyledPressable, __assign({ transition: transition, onClick: onPress }, others));
-}
+    return React.createElement(StyledPressable, __assign({ ref: ref, transition: transition, onClick: onPress }, others));
+});
 var templateObject_1;
 //# sourceMappingURL=index.js.map

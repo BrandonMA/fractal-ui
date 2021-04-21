@@ -1,11 +1,14 @@
 import { LayerProps } from '../containers/Layer/types';
-export interface RadioButtonProps extends Omit<LayerProps, 'children'> {
-    label: string;
+export interface BaseRadioButtonProps {
+    label?: string;
+    value: string;
     onPress: () => void;
     active: boolean;
 }
+export interface RadioButtonProps extends BaseRadioButtonProps, Omit<LayerProps, 'children'> {
+}
 export interface RadioItem {
-    id: string;
+    value: string;
     label: string;
 }
 export interface RadioGroupProps extends LayerProps {
