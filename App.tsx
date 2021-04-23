@@ -51,6 +51,30 @@ const styleVariants = {
     visible: { height: 100, width: 100, opacity: 1 }
 };
 
+const tracks = [
+    {
+        title: 'Rubber Robot',
+        //artist: 'Podington Bear',
+        audioSrc: 'https://s3.amazonaws.com/exp-us-standard/audio/playlist-example/Podington_Bear_-_Rubber_Robot.mp3',
+        image: 'https://picsum.photos/id/870/200/300'
+        //color: 'lightblue'
+    },
+    {
+        title: 'All Of Me',
+        //artist: 'Mildred Bailey',
+        audioSrc: 'https://ia800304.us.archive.org/34/items/PaulWhitemanwithMildredBailey/PaulWhitemanwithMildredBailey-AllofMe.mp3',
+        image: 'https://picsum.photos/id/872/200/300'
+        //color: 'lightgreen'
+    },
+    {
+        title: 'Instant Crush',
+        //artist: 'Daft Punk ft. Julian Casablancas',
+        audioSrc: require('./assets/song.mp3'),
+        image: 'https://picsum.photos/id/875/200/300'
+        //color: 'orange'
+    }
+];
+
 const detailsCardContent: Array<[string, string]> = [
     ['Title 1', 'Details 1'],
     ['Title 2', 'Details 2']
@@ -228,32 +252,7 @@ function Content(): JSX.Element {
             <Text marginBottom={spacings.m} variant={'title'}>
                 Audio Player
             </Text>
-            <AudioPlayer
-                tracks={[
-                    {
-                        title: 'Rubber Robot',
-                        //artist: 'Podington Bear',
-                        audioSrc: 'https://s3.amazonaws.com/exp-us-standard/audio/playlist-example/Podington_Bear_-_Rubber_Robot.mp3',
-                        image: 'https://picsum.photos/id/870/200/300'
-                        //color: 'lightblue'
-                    },
-                    {
-                        title: 'All Of Me',
-                        //artist: 'Mildred Bailey',
-                        audioSrc:
-                            'https://ia800304.us.archive.org/34/items/PaulWhitemanwithMildredBailey/PaulWhitemanwithMildredBailey-AllofMe.mp3',
-                        image: 'https://picsum.photos/id/872/200/300'
-                        //color: 'lightgreen'
-                    },
-                    {
-                        title: 'Instant Crush',
-                        //artist: 'Daft Punk ft. Julian Casablancas',
-                        audioSrc: require('./assets/song.mp3'),
-                        image: 'https://picsum.photos/id/875/200/300'
-                        //color: 'orange'
-                    }
-                ]}
-            />
+            <AudioPlayer tracks={tracks} />
             <Text marginBottom={spacings.m} variant={'title'}>
                 Swap Theme
             </Text>
