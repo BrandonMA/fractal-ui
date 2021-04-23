@@ -1,4 +1,4 @@
-export var pink = {
+export const pink = {
     base100: '#FFE4E5',
     base200: '#FFC9D1',
     base300: '#FFAFC3',

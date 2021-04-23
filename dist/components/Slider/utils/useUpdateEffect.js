@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
-export var useUpdateEffect = function (effect, deps) {
-    var mounted = useRef(false);
-    useEffect(function () {
+export const useUpdateEffect = (effect, deps) => {
+    const mounted = useRef(false);
+    useEffect(() => {
         if (mounted.current) {
             return effect();
         }

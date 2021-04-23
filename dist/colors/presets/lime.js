@@ -1,4 +1,4 @@
-export var lime = {
+export const lime = {
     base100: '#F5FDCD',
     base200: '#E8FB9C',
     base300: '#D4F56A',

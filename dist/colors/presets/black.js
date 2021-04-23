@@ -1,4 +1,4 @@
-export var black = {
+export const black = {
     base100: '#000',
     base200: '#565e76',
     base300: '#2b2f3b',

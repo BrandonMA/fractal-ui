@@ -1,2 +1,2 @@
-export var systemFont = 'system-ui';
+export const systemFont = 'system-ui';
 //# sourceMappingURL=index.js.map

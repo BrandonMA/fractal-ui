@@ -1,6 +1,6 @@
 {
   "name": "@bma98/fractal-ui",
-  "version": "1.8.0",
+  "version": "2.0.0",
   "description": "UIKit meant to reduce development time.",
   "author": "BrandonMA",
   "license": "MIT",
@@ -9,8 +9,6 @@
     "url": "git+https://github.com/BrandonMA/fractal-ui.git"
   },
   "main": "./dist/index.js",
-  "react-native": "./native/dist/index.js",
-  "browser": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "start": "react-native start",
@@ -34,7 +32,7 @@
     "react-native-svg": "12.1.0"
   },
   "dependencies": {
-    "@bma98/size-class": "^2.0.4",
+    "@bma98/size-class": "^2.2.0",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
@@ -64,6 +62,7 @@
     "expo": "^41.0.0",
     "expo-av": "~9.1.2",
     "expo-blur": "~9.0.3",
+    "expo-module-scripts": "^2.0.0",
     "expo-splash-screen": "~0.10.2",
     "expo-updates": "~0.5.4",
     "framer-motion": "^4.1.8",

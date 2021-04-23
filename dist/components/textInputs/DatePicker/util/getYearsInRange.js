@@ -1,9 +1,9 @@
 export function getYearsInRange(maxDate, minDate) {
-    var minValue = minDate.getFullYear();
-    var difference = maxDate.getFullYear() - minValue;
-    var arrayOfValues = Array();
+    const minValue = minDate.getFullYear();
+    let difference = maxDate.getFullYear() - minValue;
+    const arrayOfValues = Array();
     while (difference > 0) {
-        var value = difference + minValue;
+        const value = difference + minValue;
         arrayOfValues.push([value.toString(), value.toString()]);
         difference--;
     }

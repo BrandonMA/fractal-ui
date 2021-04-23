@@ -1,4 +1,4 @@
-export var turquoise = {
+export const turquoise = {
     base100: '#CAFDE1',
     base200: '#96FBCE',
     base300: '#61F3BF',

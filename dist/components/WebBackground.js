@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useTheme } from '../core/context/hooks/useTheme';
 export function WebBackground() {
-    var colors = useTheme().colors;
-    useEffect(function () {
+    const { colors } = useTheme();
+    useEffect(() => {
         document.body.style.backgroundColor = colors.background;
     }, [colors.background]);
     return null;

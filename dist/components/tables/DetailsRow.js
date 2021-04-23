@@ -1,14 +1,3 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -24,9 +13,9 @@ import React, { forwardRef } from 'react';
 import { Layer } from '../containers/Layer';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { Text } from '../text';
-export var DetailsRow = forwardRef(function (_a, ref) {
-    var title = _a.title, details = _a.details, others = __rest(_a, ["title", "details"]);
-    return (React.createElement(HorizontalLayer, __assign({ ref: ref, alignItems: 'center' }, others),
+export const DetailsRow = forwardRef((_a, ref) => {
+    var { title, details } = _a, others = __rest(_a, ["title", "details"]);
+    return (React.createElement(HorizontalLayer, Object.assign({ ref: ref, alignItems: 'center' }, others),
         React.createElement(Layer, { flexGrow: 1 },
             React.createElement(Text, { variant: 'small' }, title)),
         React.createElement(Text, { variant: 'label' }, details)));

@@ -1,5 +1,8 @@
-export function extractPlaceholder(_a) {
-    var placeholderTextColor = _a.placeholderTextColor;
-    return "\n        ::placeholder {\n            color: " + (placeholderTextColor !== null && placeholderTextColor !== void 0 ? placeholderTextColor : 'black') + "\n        }\n    ";
+export function extractPlaceholder({ placeholderTextColor }) {
+    return `
+        ::placeholder {
+            color: ${placeholderTextColor !== null && placeholderTextColor !== void 0 ? placeholderTextColor : 'black'}
+        }
+    `;
 }
 //# sourceMappingURL=PlaceholderProps.js.map

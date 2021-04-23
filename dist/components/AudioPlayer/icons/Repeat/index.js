@@ -1,17 +1,6 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 import React, { memo } from 'react';
-export var RepeatIcon = memo(function (props) {
-    return (React.createElement("svg", __assign({ focusable: false, width: '18', height: '14', viewBox: '0 0 18 14' }, props),
+export const RepeatIcon = memo((props) => {
+    return (React.createElement("svg", Object.assign({ focusable: false, width: '18', height: '14', viewBox: '0 0 18 14' }, props),
         React.createElement("g", { fillRule: 'evenodd', stroke: 'none', strokeWidth: '1' },
             React.createElement("g", { fillRule: 'nonzero', transform: 'translate(-338 -137)' },
                 React.createElement("g", { transform: 'translate(16 53)' },

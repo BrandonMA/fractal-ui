@@ -1,4 +1,4 @@
-export var white = {
+export const white = {
     base100: '#FFF',
     base200: '#999',
     base300: '#C3C3C3',

@@ -2,7 +2,7 @@ import { LayerProps } from '../containers/Layer/types';
 import { useTheme } from '../../core';
 import { Box } from '../containers';
 import React from 'react';
-import { getValueForLargeSize, useWidthSizeGroup } from '@bma98/size-class';
+import { useValueForLargeSizeType } from '@bma98/size-class';
 
 function ModalCellDesktop(props: LayerProps): JSX.Element {
     const { borderRadius, colors } = useTheme();
@@ -46,8 +46,7 @@ function ModalCellPhone(props: LayerProps): JSX.Element {
 }
 
 export function ModalMiddleCell(props: LayerProps): JSX.Element {
-    const [widthSize] = useWidthSizeGroup();
-    const Wrapper = getValueForLargeSize(widthSize, ModalCellDesktop, ModalCellPhone);
+    const Wrapper = useValueForLargeSizeType('width', ModalCellDesktop, ModalCellPhone);
 
     return <Wrapper {...props} />;
 }

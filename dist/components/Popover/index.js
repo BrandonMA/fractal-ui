@@ -1,14 +1,3 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -23,15 +12,15 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { useEffect, useState } from 'react';
 import { Layer } from '../containers';
 import { styleVariants } from './styleVariants';
-var styles = {
+const styles = {
     width: '100%',
     zIndex: 2000
 };
 export function Popover(props) {
-    var active = props.active, popoverChildren = props.popoverChildren, popoverContainerProps = props.popoverContainerProps, others = __rest(props, ["active", "popoverChildren", "popoverContainerProps"]);
-    var mainViewLayout = { x: 0, y: 0, height: 0, width: 0 };
-    var _a = useState('initial'), layerVariant = _a[0], setLayerVariant = _a[1];
-    useEffect(function () {
+    const { active, popoverChildren, popoverContainerProps } = props, others = __rest(props, ["active", "popoverChildren", "popoverContainerProps"]);
+    const mainViewLayout = { x: 0, y: 0, height: 0, width: 0 };
+    const [layerVariant, setLayerVariant] = useState('initial');
+    useEffect(() => {
         if (active) {
             setLayerVariant('visible');
         }
@@ -40,7 +29,7 @@ export function Popover(props) {
         }
     }, [active]);
     return (React.createElement(Layer, { position: 'relative', display: 'inline-block' },
-        React.createElement(Layer, __assign({}, others)),
-        React.createElement(Layer, __assign({ initial: 'initial', animate: layerVariant, variants: styleVariants, position: 'absolute', style: styles }, popoverContainerProps), popoverChildren(mainViewLayout))));
+        React.createElement(Layer, Object.assign({}, others)),
+        React.createElement(Layer, Object.assign({ initial: 'initial', animate: layerVariant, variants: styleVariants, position: 'absolute', style: styles }, popoverContainerProps), popoverChildren(mainViewLayout))));
 }
 //# sourceMappingURL=index.js.map

@@ -1,14 +1,3 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -22,8 +11,8 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { forwardRef } from 'react';
 import { Image } from '../Image';
-export var Avatar = forwardRef(function (_a, ref) {
-    var _b = _a.size, size = _b === void 0 ? 64 : _b, others = __rest(_a, ["size"]);
-    return React.createElement(Image, __assign({ ref: ref, width: size, height: size, borderRadius: size / 2 }, others));
+export const Avatar = forwardRef((_a, ref) => {
+    var { size = 64 } = _a, others = __rest(_a, ["size"]);
+    return React.createElement(Image, Object.assign({ ref: ref, width: size, height: size, borderRadius: size / 2 }, others));
 });
 //# sourceMappingURL=index.js.map

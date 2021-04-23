@@ -1,18 +1,3 @@
-var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
-};
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -35,13 +20,22 @@ import { extractTextProps } from '../../../sharedProps/TextProps';
 import { extractWebProps } from '../../../sharedProps/WebProps';
 import { extractPlaceholder } from '../../../sharedProps/PlaceholderProps';
 import { getTextFieldAccessibilityProps } from '../accessibility/getTextInputccessibilityProps';
-var StyledTextInput = styled(motion.input)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    outline: none;\n    border-width: 0px;\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n"], ["\n    outline: none;\n    border-width: 0px;\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n    ", ";\n"])), extractPlaceholder, extractBackgroundProps, extractDimensionProps, extractDisplayProps, extractBorderProps, extractTextProps, extractWebProps);
-export var BaseTextField = forwardRef(function (props, ref) {
-    var onChangeText = props.onChangeText, placeholder = props.placeholder, others = __rest(props, ["onChangeText", "placeholder"]);
-    var handleChange = useCallback(function (event) {
+const StyledTextInput = styled(motion.input) `
+    outline: none;
+    border-width: 0px;
+    ${extractPlaceholder};
+    ${extractBackgroundProps};
+    ${extractDimensionProps};
+    ${extractDisplayProps};
+    ${extractBorderProps};
+    ${extractTextProps};
+    ${extractWebProps};
+`;
+export const BaseTextField = forwardRef((props, ref) => {
+    const { onChangeText, placeholder } = props, others = __rest(props, ["onChangeText", "placeholder"]);
+    const handleChange = useCallback((event) => {
         onChangeText && onChangeText(event.target.value);
     }, [onChangeText]);
-    return (React.createElement(StyledTextInput, __assign({ ref: ref, placeholder: placeholder, selectable: true, onChange: handleChange }, others, getTextFieldAccessibilityProps(placeholder))));
+    return (React.createElement(StyledTextInput, Object.assign({ ref: ref, placeholder: placeholder, selectable: true, onChange: handleChange }, others, getTextFieldAccessibilityProps(placeholder))));
 });
-var templateObject_1;
 //# sourceMappingURL=index.js.map

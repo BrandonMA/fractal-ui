@@ -1,5 +1,7 @@
-export function extractBackgroundProps(_a) {
-    var backgroundColor = _a.backgroundColor, bg = _a.bg;
-    return "\n        background-color: " + (bg !== null && bg !== void 0 ? bg : 'transparent') + ";\n        background-color: " + (backgroundColor !== null && backgroundColor !== void 0 ? backgroundColor : 'transparent') + ";\n    ";
+export function extractBackgroundProps({ backgroundColor, bg }) {
+    return `
+        background-color: ${bg !== null && bg !== void 0 ? bg : 'transparent'};
+        background-color: ${backgroundColor !== null && backgroundColor !== void 0 ? backgroundColor : 'transparent'};
+    `;
 }
 //# sourceMappingURL=BackgroundProps.js.map

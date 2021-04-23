@@ -1,9 +1,8 @@
 import { lightFractalTheme } from './lightFractalTheme';
-export function createFractalTheme(properties, baseTheme) {
-    if (baseTheme === void 0) { baseTheme = lightFractalTheme; }
-    var newTheme = JSON.parse(JSON.stringify(baseTheme));
-    var keys = Object.keys(baseTheme);
-    keys.forEach(function (key) {
+export function createFractalTheme(properties, baseTheme = lightFractalTheme) {
+    const newTheme = JSON.parse(JSON.stringify(baseTheme));
+    const keys = Object.keys(baseTheme);
+    keys.forEach((key) => {
         Object.assign(newTheme[key], properties[key]);
     });
     return newTheme;

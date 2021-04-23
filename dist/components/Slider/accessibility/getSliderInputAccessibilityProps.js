@@ -2,7 +2,7 @@ export function getSliderInputAccessibilityProps(value, isDragging, min, max, di
     return {
         role: 'Slider',
         'data-active': isDragging,
-        'aria-valuetext': "" + value,
+        'aria-valuetext': `${value}`,
         'aria-valuemin': min,
         'aria-valuemax': max,
         'aria-valuenow': value,

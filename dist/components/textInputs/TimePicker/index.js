@@ -1,14 +1,3 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -27,37 +16,37 @@ import { Picker } from '../Picker';
 import { numberToArray } from '../util/numberToArray';
 import { normalizeHourValues } from './util/normalizeHourValues';
 export function TimePicker(_a) {
-    var onChange = _a.onChange, initialDate = _a.initialDate, others = __rest(_a, ["onChange", "initialDate"]);
-    var spacings = useTheme().spacings;
-    var defaultDate = new Date();
+    var { onChange, initialDate } = _a, others = __rest(_a, ["onChange", "initialDate"]);
+    const { spacings } = useTheme();
+    const defaultDate = new Date();
     defaultDate.setSeconds(0);
-    var _b = useState(initialDate !== null && initialDate !== void 0 ? initialDate : defaultDate), date = _b[0], setDate = _b[1];
-    var hours = normalizeHourValues(numberToArray(24));
-    var minutes = normalizeHourValues(numberToArray(59, true));
-    var handleOnChange = useCallback(function (date) {
+    const [date, setDate] = useState(initialDate !== null && initialDate !== void 0 ? initialDate : defaultDate);
+    const hours = normalizeHourValues(numberToArray(24));
+    const minutes = normalizeHourValues(numberToArray(59, true));
+    const handleOnChange = useCallback((date) => {
         if (onChange != null) {
             onChange(date);
         }
     }, [onChange]);
-    var onHoursChange = useCallback(function (pair) {
-        var hoursIndex = Number(pair[0]);
-        setDate(function (currentDate) {
-            var newDate = new Date(currentDate);
+    const onHoursChange = useCallback((pair) => {
+        const hoursIndex = Number(pair[0]);
+        setDate((currentDate) => {
+            const newDate = new Date(currentDate);
             newDate.setHours(hoursIndex);
             handleOnChange(newDate);
             return newDate;
         });
     }, [handleOnChange]);
-    var onMinutesChange = useCallback(function (pair) {
-        var minutesIndex = Number(pair[0]);
-        setDate(function (currentDate) {
-            var newDate = new Date(currentDate);
+    const onMinutesChange = useCallback((pair) => {
+        const minutesIndex = Number(pair[0]);
+        setDate((currentDate) => {
+            const newDate = new Date(currentDate);
             newDate.setMinutes(minutesIndex);
             handleOnChange(newDate);
             return newDate;
         });
     }, [handleOnChange]);
-    return (React.createElement(HorizontalLayer, __assign({}, others),
+    return (React.createElement(HorizontalLayer, Object.assign({}, others),
         React.createElement(Picker, { initialValue: date.getHours().toString(), items: hours, flex: 1, onChange: onHoursChange, marginRight: spacings.xs }),
         React.createElement(Picker, { initialValue: date.getMinutes().toString(), items: minutes, flex: 1, onChange: onMinutesChange })));
 }

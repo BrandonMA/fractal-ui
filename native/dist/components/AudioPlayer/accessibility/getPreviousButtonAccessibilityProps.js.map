@@ -1,1 +1,0 @@
-{"version":3,"file":"getPreviousButtonAccessibilityProps.js","sourceRoot":"","sources":["../../../../../src/components/AudioPlayer/accessibility/getPreviousButtonAccessibilityProps.tsx"],"names":[],"mappings":"AAAA,MAAM,UAAU,mCAAmC,CAAC,QAAkB;IAClE,OAAO;QACH,YAAY,EAAE,UAAU;QACxB,eAAe,EAAE,QAAQ;KAC5B,CAAC;AACN,CAAC"}

@@ -1,1 +1,0 @@
-{"version":3,"file":"getGoogleButtonAccessibilityProps.js","sourceRoot":"","sources":["../../../../../src/components/socialButtons/accessibility/getGoogleButtonAccessibilityProps.tsx"],"names":[],"mappings":"AAAA,MAAM,UAAU,iCAAiC,CAAC,OAAiB,EAAE,QAAkB;IACnF,OAAO;QACH,IAAI,EAAE,QAAQ;QACd,cAAc,EAAE,OAAO;QACvB,eAAe,EAAE,QAAQ;QACzB,YAAY,EAAE,QAAQ;KACzB,CAAC;AACN,CAAC"}

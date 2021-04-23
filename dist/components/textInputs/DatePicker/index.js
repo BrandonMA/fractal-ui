@@ -1,14 +1,3 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -30,48 +19,48 @@ import { Layer } from '../../containers';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
 import { useTheme } from '../../../core/context/hooks/useTheme';
 export function DatePicker(_a) {
-    var minDate = _a.minDate, maxDate = _a.maxDate, initialDate = _a.initialDate, onChange = _a.onChange, others = __rest(_a, ["minDate", "maxDate", "initialDate", "onChange"]);
-    var spacings = useTheme().spacings;
-    var finalMinDate = useMemo(function () { return minDate !== null && minDate !== void 0 ? minDate : new Date('Jan 1, 1920'); }, [minDate]);
-    var _b = useState(initialDate !== null && initialDate !== void 0 ? initialDate : new Date()), date = _b[0], setDate = _b[1];
-    var years = useMemo(function () { return getYearsInRange(maxDate !== null && maxDate !== void 0 ? maxDate : date, finalMinDate); }, [maxDate, date, finalMinDate]);
-    var days = useMemo(function () {
-        var amountOfDaysInMonth = getDaysInMonth(2021, date.getMonth());
+    var { minDate, maxDate, initialDate, onChange } = _a, others = __rest(_a, ["minDate", "maxDate", "initialDate", "onChange"]);
+    const { spacings } = useTheme();
+    const finalMinDate = useMemo(() => minDate !== null && minDate !== void 0 ? minDate : new Date('Jan 1, 1920'), [minDate]);
+    const [date, setDate] = useState(initialDate !== null && initialDate !== void 0 ? initialDate : new Date());
+    const years = useMemo(() => getYearsInRange(maxDate !== null && maxDate !== void 0 ? maxDate : date, finalMinDate), [maxDate, date, finalMinDate]);
+    const days = useMemo(() => {
+        const amountOfDaysInMonth = getDaysInMonth(2021, date.getMonth());
         return numberToArray(amountOfDaysInMonth);
     }, [date]);
-    var handleOnChange = useCallback(function (date) {
+    const handleOnChange = useCallback((date) => {
         if (onChange != null) {
             onChange(date);
         }
     }, [onChange]);
-    var onYearChange = useCallback(function (pair) {
-        var yearIndex = Number(pair[0]);
-        setDate(function (currentDate) {
-            var newDate = new Date(currentDate);
+    const onYearChange = useCallback((pair) => {
+        const yearIndex = Number(pair[0]);
+        setDate((currentDate) => {
+            const newDate = new Date(currentDate);
             newDate.setFullYear(yearIndex);
             handleOnChange(newDate);
             return newDate;
         });
     }, [handleOnChange]);
-    var onMonthChange = useCallback(function (pair) {
-        var monthIndex = Number(pair[0]);
-        setDate(function (currentDate) {
-            var newDate = new Date(currentDate);
+    const onMonthChange = useCallback((pair) => {
+        const monthIndex = Number(pair[0]);
+        setDate((currentDate) => {
+            const newDate = new Date(currentDate);
             newDate.setMonth(monthIndex);
             handleOnChange(newDate);
             return newDate;
         });
     }, [handleOnChange]);
-    var onDayChange = useCallback(function (pair) {
-        var dayIndex = Number(pair[0]);
-        setDate(function (currentDate) {
-            var newDate = new Date(currentDate);
+    const onDayChange = useCallback((pair) => {
+        const dayIndex = Number(pair[0]);
+        setDate((currentDate) => {
+            const newDate = new Date(currentDate);
             newDate.setDate(dayIndex);
             handleOnChange(newDate);
             return newDate;
         });
     }, [handleOnChange]);
-    return (React.createElement(Layer, __assign({}, others),
+    return (React.createElement(Layer, Object.assign({}, others),
         React.createElement(HorizontalLayer, { marginBottom: spacings.m },
             React.createElement(Picker, { initialValue: date.getFullYear().toString(), items: years, flex: 1, onChange: onYearChange, isReadOnly: true }),
             React.createElement(Layer, { marginRight: spacings.m }),

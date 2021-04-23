@@ -1,14 +1,3 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -22,10 +11,10 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { forwardRef } from 'react';
 import { Pressable } from '../Pressable';
-export var BaseButton = forwardRef(function (_a, ref) {
-    var pressedBackgroundColor = _a.pressedBackgroundColor, whileHover = _a.whileHover, whileTap = _a.whileTap, others = __rest(_a, ["pressedBackgroundColor", "whileHover", "whileTap"]);
-    var hoverStyles = __assign({ backgroundColor: pressedBackgroundColor }, whileHover);
-    var tapStyles = __assign({ scale: 0.95, backgroundColor: pressedBackgroundColor }, whileTap);
-    return React.createElement(Pressable, __assign({ ref: ref }, others, { whileHover: hoverStyles, whileTap: tapStyles }));
+export const BaseButton = forwardRef((_a, ref) => {
+    var { pressedBackgroundColor, whileHover, whileTap } = _a, others = __rest(_a, ["pressedBackgroundColor", "whileHover", "whileTap"]);
+    const hoverStyles = Object.assign({ backgroundColor: pressedBackgroundColor }, whileHover);
+    const tapStyles = Object.assign({ scale: 0.95, backgroundColor: pressedBackgroundColor }, whileTap);
+    return React.createElement(Pressable, Object.assign({ ref: ref }, others, { whileHover: hoverStyles, whileTap: tapStyles }));
 });
 //# sourceMappingURL=index.js.map

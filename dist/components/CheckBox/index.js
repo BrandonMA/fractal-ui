@@ -1,14 +1,3 @@
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -23,9 +12,9 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { forwardRef } from 'react';
 import { Layer } from '../containers';
 import { BaseCheckBox } from './BaseCheckBox';
-export var CheckBox = forwardRef(function (_a, ref) {
-    var value = _a.value, onValueChange = _a.onValueChange, label = _a.label, layerProps = __rest(_a, ["value", "onValueChange", "label"]);
-    return (React.createElement(Layer, __assign({ ref: ref }, layerProps),
+export const CheckBox = forwardRef((_a, ref) => {
+    var { value, onValueChange, label } = _a, layerProps = __rest(_a, ["value", "onValueChange", "label"]);
+    return (React.createElement(Layer, Object.assign({ ref: ref }, layerProps),
         React.createElement(BaseCheckBox, { value: value, onValueChange: onValueChange, label: label })));
 });
 //# sourceMappingURL=index.js.map

@@ -1,18 +1,3 @@
-var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cooked, raw) {
-    if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
-    return cooked;
-};
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __rest = (this && this.__rest) || function (s, e) {
     var t = {};
     for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
@@ -28,24 +13,24 @@ import React, { forwardRef } from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { Layer } from '../containers/Layer';
-var BackgroundCircle = styled(motion.circle)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    stroke: ", ";\n    opacity: 0.2;\n"], ["\n    stroke: ", ";\n    opacity: 0.2;\n"])), function (_a) {
-    var color = _a.color;
-    return color;
-});
-var AnimatedSection = styled(motion.circle)(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n    stroke: ", ";\n    stroke-dasharray: 80;\n    stroke-dashoffset: 60;\n"], ["\n    stroke: ", ";\n    stroke-dasharray: 80;\n    stroke-dashoffset: 60;\n"])), function (_a) {
-    var color = _a.color;
-    return color;
-});
-var transition = { repeat: Infinity, ease: 'linear', type: 'linear', duration: 0.75 };
-var animate = {
+const BackgroundCircle = styled(motion.circle) `
+    stroke: ${({ color }) => color};
+    opacity: 0.2;
+`;
+const AnimatedSection = styled(motion.circle) `
+    stroke: ${({ color }) => color};
+    stroke-dasharray: 80;
+    stroke-dashoffset: 60;
+`;
+const transition = { repeat: Infinity, ease: 'linear', type: 'linear', duration: 0.75 };
+const animate = {
     rotate: 360
 };
-export var ActivityIndicator = forwardRef(function (_a, ref) {
-    var color = _a.color, others = __rest(_a, ["color"]);
-    return (React.createElement(Layer, __assign({ ref: ref, animate: animate, transition: transition }, others),
+export const ActivityIndicator = forwardRef((_a, ref) => {
+    var { color } = _a, others = __rest(_a, ["color"]);
+    return (React.createElement(Layer, Object.assign({ ref: ref, animate: animate, transition: transition }, others),
         React.createElement(motion.svg, { height: '100%', width: '100%', viewBox: '0 0 32 32' },
             React.createElement(BackgroundCircle, { cx: '16', cy: '16', fill: 'none', r: '14', strokeWidth: '4', color: color }),
             React.createElement(AnimatedSection, { cx: '16', cy: '16', fill: 'none', r: '14', strokeWidth: '4', color: color }))));
 });
-var templateObject_1, templateObject_2;
 //# sourceMappingURL=index.js.map

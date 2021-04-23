@@ -1,4 +1,4 @@
-export var brinkPink = {
+export const brinkPink = {
     base100: '#FFE4DE',
     base200: '#FFC4BE',
     base300: '#FF9E9F',

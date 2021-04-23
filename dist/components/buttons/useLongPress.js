@@ -1,27 +1,26 @@
 import { useCallback, useRef } from 'react';
-var isTouchEvent = function (ev) {
+const isTouchEvent = (ev) => {
     return 'touches' in ev;
 };
-var preventDefault = function (ev) {
+const preventDefault = (ev) => {
     if (!isTouchEvent(ev))
         return;
     if (ev.touches.length < 2 && ev.preventDefault) {
         ev.preventDefault();
     }
 };
-export var useLongPress = function (callback, _a) {
-    var _b = _a === void 0 ? {} : _a, _c = _b.isPreventDefault, isPreventDefault = _c === void 0 ? true : _c, _d = _b.delay, delay = _d === void 0 ? 300 : _d;
-    var timeout = useRef();
-    var target = useRef();
-    var start = useCallback(function (event) {
+export const useLongPress = (callback, { isPreventDefault = true, delay = 300 } = {}) => {
+    const timeout = useRef();
+    const target = useRef();
+    const start = useCallback((event) => {
         // prevent ghost click on mobile devices
         if (isPreventDefault && event.target) {
             event.target.addEventListener('touchend', preventDefault, { passive: false });
             target.current = event.target;
         }
-        timeout.current = setTimeout(function () { return callback(); }, delay);
+        timeout.current = setTimeout(() => callback(), delay);
     }, [callback, delay, isPreventDefault]);
-    var clear = useCallback(function () {
+    const clear = useCallback(() => {
         // clearTimeout and removeEventListener
         timeout.current && clearTimeout(timeout.current);
         if (isPreventDefault && target.current) {
@@ -29,8 +28,8 @@ export var useLongPress = function (callback, _a) {
         }
     }, [isPreventDefault]);
     return {
-        onMouseDown: function (e) { return start(e); },
-        onTouchStart: function (e) { return start(e); },
+        onMouseDown: (e) => start(e),
+        onTouchStart: (e) => start(e),
         onMouseUp: clear,
         onMouseLeave: clear,
         onTouchEnd: clear

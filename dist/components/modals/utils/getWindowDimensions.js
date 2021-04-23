@@ -1,6 +1,6 @@
 export function getWindowDimensions() {
-    var win = window;
-    var docEl = win.document.documentElement;
+    const win = window;
+    const docEl = win.document.documentElement;
     return {
         fontScale: 1,
         height: docEl.clientHeight,

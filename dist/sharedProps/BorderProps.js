@@ -1,5 +1,17 @@
-export function extractBorderProps(_a) {
-    var borderRadius = _a.borderRadius, borderTopLeftRadius = _a.borderTopLeftRadius, borderTopRightRadius = _a.borderTopRightRadius, borderBottomLeftRadius = _a.borderBottomLeftRadius, borderBottomRightRadius = _a.borderBottomRightRadius, borderWidth = _a.borderWidth, borderTopWidth = _a.borderTopWidth, borderBottomWidth = _a.borderBottomWidth, borderLeftWidth = _a.borderLeftWidth, borderRightWidth = _a.borderRightWidth, borderColor = _a.borderColor, borderStyle = _a.borderStyle;
-    return "\n        " + (borderRadius != null ? "border-radius: " + borderRadius + "px" : '') + ";\n        " + (borderTopLeftRadius != null ? "border-top-left-radius: " + borderTopLeftRadius + "px" : '') + ";\n        " + (borderTopRightRadius != null ? "border-top-right-radius: " + borderTopRightRadius + "px" : '') + ";\n        " + (borderBottomLeftRadius != null ? "border-bottom-left-radius: " + borderBottomLeftRadius + "px" : '') + ";\n        " + (borderBottomRightRadius != null ? "border-bottom-right-radius: " + borderBottomRightRadius + "px" : '') + ";\n        " + (borderWidth != null ? "border-width: " + borderWidth + "px" : '') + ";\n        " + (borderTopWidth != null ? "border-top-width: " + borderTopWidth + "px" : '') + ";\n        " + (borderBottomWidth != null ? "border-bottom-width: " + borderBottomWidth + "px" : '') + ";\n        " + (borderLeftWidth != null ? "border-left-width: " + borderLeftWidth + "px" : '') + ";\n        " + (borderRightWidth != null ? "border-right-width: " + borderRightWidth + "px" : '') + ";\n        " + (borderColor != null ? "border-color: " + borderColor : '') + ";\n        " + (borderStyle != null ? "border-style: " + borderStyle : '') + ";\n    ";
+export function extractBorderProps({ borderRadius, borderTopLeftRadius, borderTopRightRadius, borderBottomLeftRadius, borderBottomRightRadius, borderWidth, borderTopWidth, borderBottomWidth, borderLeftWidth, borderRightWidth, borderColor, borderStyle }) {
+    return `
+        ${borderRadius != null ? `border-radius: ${borderRadius}px` : ''};
+        ${borderTopLeftRadius != null ? `border-top-left-radius: ${borderTopLeftRadius}px` : ''};
+        ${borderTopRightRadius != null ? `border-top-right-radius: ${borderTopRightRadius}px` : ''};
+        ${borderBottomLeftRadius != null ? `border-bottom-left-radius: ${borderBottomLeftRadius}px` : ''};
+        ${borderBottomRightRadius != null ? `border-bottom-right-radius: ${borderBottomRightRadius}px` : ''};
+        ${borderWidth != null ? `border-width: ${borderWidth}px` : ''};
+        ${borderTopWidth != null ? `border-top-width: ${borderTopWidth}px` : ''};
+        ${borderBottomWidth != null ? `border-bottom-width: ${borderBottomWidth}px` : ''};
+        ${borderLeftWidth != null ? `border-left-width: ${borderLeftWidth}px` : ''};
+        ${borderRightWidth != null ? `border-right-width: ${borderRightWidth}px` : ''};
+        ${borderColor != null ? `border-color: ${borderColor}` : ''};
+        ${borderStyle != null ? `border-style: ${borderStyle}` : ''};
+    `;
 }
 //# sourceMappingURL=BorderProps.js.map

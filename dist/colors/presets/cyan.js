@@ -1,4 +1,4 @@
-export var cyan = {
+export const cyan = {
     base100: '#CEFEF1',
     base200: '#9DFDEB',
     base300: '#6CF9EB',

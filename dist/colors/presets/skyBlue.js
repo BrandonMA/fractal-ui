@@ -1,4 +1,4 @@
-export var skyBlue = {
+export const skyBlue = {
     base100: '#CBFEFA',
     base200: '#97FDFC',
     base300: '#63EEF9',

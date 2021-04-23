@@ -1,7 +1,7 @@
 import React from 'react';
 import { ModalProps } from './Modal/types';
 import { Box } from '../containers';
-import { getValueForLargeSize, useWidthSizeGroup } from '@bma98/size-class';
+import { useValueForLargeSizeType } from '@bma98/size-class';
 import { DimmedModal } from './DimmedModal';
 import { LayerProps } from '../containers/Layer/types';
 import { useTheme } from '../../core/context/hooks/useTheme';
@@ -51,8 +51,7 @@ function BottomCellPhone(props: LayerProps): JSX.Element {
 }
 
 export function BottomCellModal({ visible, onDismiss, ...others }: ModalProps): JSX.Element {
-    const [widthSize] = useWidthSizeGroup();
-    const Wrapper = getValueForLargeSize(widthSize, BottomCellDesktop, BottomCellPhone);
+    const Wrapper = useValueForLargeSizeType('width', BottomCellDesktop, BottomCellPhone);
 
     return (
         <DimmedModal

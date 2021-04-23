@@ -1,4 +1,4 @@
-export var orange = {
+export const orange = {
     base100: '#FFF2CC',
     base200: '#FFE299',
     base300: '#FFCE66',

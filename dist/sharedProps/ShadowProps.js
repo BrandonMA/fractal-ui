@@ -1,5 +1,6 @@
-export function extractShadowProps(_a) {
-    var boxShadow = _a.boxShadow;
-    return "\n        " + (boxShadow != null ? "box-shadow: " + boxShadow : '') + ";\n    ";
+export function extractShadowProps({ boxShadow }) {
+    return `
+        ${boxShadow != null ? `box-shadow: ${boxShadow}` : ''};
+    `;
 }
 //# sourceMappingURL=ShadowProps.js.map

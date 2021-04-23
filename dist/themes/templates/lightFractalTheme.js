@@ -1,6 +1,6 @@
 import { blue, orange, green, yellow, red, white } from '../../colors';
 import { systemFont } from '../systemFont';
-export var colors = {
+export const colors = {
     background: white.base400,
     foreground: white.base,
     text: white.base900,
@@ -62,21 +62,21 @@ export var colors = {
     dangerInteractiveColor800: red.base800,
     dangerInteractiveColor900: red.base900
 };
-export var spacings = {
+export const spacings = {
     xs: 8,
     s: 12,
     m: 16,
     lg: 24,
     xl: 32
 };
-export var borderRadius = {
+export const borderRadius = {
     xs: 4,
     s: 8,
     m: 12,
     lg: 16,
     xl: 20
 };
-export var sizes = {
+export const sizes = {
     interactiveItemHeight: 44,
     textFieldIconSize: 16,
     textFieldHeight: 44,
@@ -84,11 +84,11 @@ export var sizes = {
     radioButtonSize: 20,
     segmentedControlSize: 32
 };
-export var shadows = {
+export const shadows = {
     mainShadow: '0px 1px 2px rgba(0, 0, 0, 0.05)',
     thumbShadow: '0px 1px 2px rgba(0, 0, 0, 0.25)'
 };
-export var textVariants = {
+export const textVariants = {
     normal: {
         fontSize: 17,
         fontWeight: 400,
@@ -156,12 +156,12 @@ export var textVariants = {
         fontFamily: systemFont
     }
 };
-export var lightFractalTheme = {
-    colors: colors,
-    spacings: spacings,
-    borderRadius: borderRadius,
-    sizes: sizes,
-    shadows: shadows,
-    textVariants: textVariants
+export const lightFractalTheme = {
+    colors,
+    spacings,
+    borderRadius,
+    sizes,
+    shadows,
+    textVariants
 };
 //# sourceMappingURL=lightFractalTheme.js.map

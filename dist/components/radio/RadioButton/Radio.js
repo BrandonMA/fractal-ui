@@ -2,10 +2,9 @@ import React from 'react';
 import { useTheme } from '../../../core/context/hooks/useTheme';
 import { Layer } from '../../containers/Layer';
 import { RadioControl } from './RadioControl';
-export function Radio(_a) {
-    var active = _a.active;
-    var colors = useTheme().colors;
-    var circleVariants = {
+export function Radio({ active }) {
+    const { colors } = useTheme();
+    const circleVariants = {
         active: { scale: 1 },
         inactive: { scale: 0 }
     };

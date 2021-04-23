@@ -1,1 +1,0 @@
-{"version":3,"file":"getColorAccessibilityProps.js","sourceRoot":"","sources":["../../../../../src/components/colors/accessibility/getColorAccessibilityProps.tsx"],"names":[],"mappings":"AAAA,MAAM,UAAU,0BAA0B,CAAC,OAAgB,EAAE,KAAa,EAAE,QAAkB;IAC1F,OAAO;QACH,IAAI,EAAE,QAAQ;QACd,cAAc,EAAE,OAAO;QACvB,eAAe,EAAE,QAAQ;QACzB,YAAY,EAAE,eAAe,GAAG,KAAK;KACxC,CAAC;AACN,CAAC"}

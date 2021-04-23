@@ -1,5 +1,5 @@
 export function isAnimationContent(value) {
-    var casted = value;
+    const casted = value;
     return (casted != null &&
         (casted.opacity != null ||
             casted.width != null ||

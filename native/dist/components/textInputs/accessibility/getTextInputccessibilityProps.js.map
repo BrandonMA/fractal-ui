@@ -1,1 +1,0 @@
-{"version":3,"file":"getTextInputccessibilityProps.js","sourceRoot":"","sources":["../../../../../src/components/textInputs/accessibility/getTextInputccessibilityProps.tsx"],"names":[],"mappings":"AAAA,MAAM,UAAU,8BAA8B,CAAC,WAAoB,EAAE,QAAkB;IACnF,OAAO;QACH,IAAI,EAAE,SAAS;QACf,kBAAkB,EAAE,WAAW;QAC/B,eAAe,EAAE,QAAQ;KAC5B,CAAC;AACN,CAAC"}

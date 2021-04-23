@@ -1,4 +1,4 @@
-export var yellow = {
+export const yellow = {
     base100: '#FFF9CD',
     base200: '#FFF29B',
     base300: '#FFE969',

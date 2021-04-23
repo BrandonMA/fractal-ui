@@ -1,4 +1,4 @@
-export var purple = {
+export const purple = {
     base100: '#EBD9FE',
     base200: '#D6B4FE',
     base300: '#BC8EFC',

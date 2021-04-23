@@ -1,16 +1,15 @@
 import React, { createContext, useState, useLayoutEffect } from 'react';
 import { usePlatformColorScheme } from '../../hooks/usePlatformColorScheme';
-var placeholderFunction = function () {
+const placeholderFunction = () => {
     return;
 };
-var defaultValue = ['light', placeholderFunction];
-export var ThemeIdentifierContext = createContext(defaultValue);
-export function ThemeIdentifierProvider(_a) {
-    var children = _a.children, handleThemeManually = _a.handleThemeManually;
-    var handleState = useState('light');
-    var setThemeIdentifier = handleState[1];
-    var systemColorScheme = usePlatformColorScheme();
-    useLayoutEffect(function () {
+const defaultValue = ['light', placeholderFunction];
+export const ThemeIdentifierContext = createContext(defaultValue);
+export function ThemeIdentifierProvider({ children, handleThemeManually }) {
+    const handleState = useState('light');
+    const setThemeIdentifier = handleState[1];
+    const systemColorScheme = usePlatformColorScheme();
+    useLayoutEffect(() => {
         if (!handleThemeManually) {
             setThemeIdentifier(systemColorScheme);
         }

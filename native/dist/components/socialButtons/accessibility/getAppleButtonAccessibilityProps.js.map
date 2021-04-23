@@ -1,1 +1,0 @@
-{"version":3,"file":"getAppleButtonAccessibilityProps.js","sourceRoot":"","sources":["../../../../../src/components/socialButtons/accessibility/getAppleButtonAccessibilityProps.tsx"],"names":[],"mappings":"AAAA,MAAM,UAAU,gCAAgC,CAAC,OAAiB,EAAE,QAAkB;IAClF,OAAO;QACH,IAAI,EAAE,QAAQ;QACd,cAAc,EAAE,OAAO;QACvB,eAAe,EAAE,QAAQ;QACzB,YAAY,EAAE,OAAO;KACxB,CAAC;AACN,CAAC"}
