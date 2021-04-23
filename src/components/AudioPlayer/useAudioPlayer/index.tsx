@@ -18,11 +18,11 @@ export function useAudioPlayer<T extends MinimalTrackData>(
     const currentTrackInfo = playList[trackIndex];
     const { audioSrc } = currentTrackInfo;
 
-    const audioRef = useRef<HTMLAudioElement>(new Audio(audioSrc as string));
+    const audioRef = useRef<HTMLAudioElement>();
     const isReady = useRef(false);
 
     const setPositionManually = useCallback(async (positionMillis: number): Promise<void> => {
-        audioRef.current.currentTime = positionMillis / 1000;
+        if (audioRef.current) audioRef.current.currentTime = positionMillis / 1000;
         setCurrentTime(positionMillis);
     }, []);
 
@@ -49,7 +49,7 @@ export function useAudioPlayer<T extends MinimalTrackData>(
         } else if (!isLastIndex) {
             toNextTrack();
         } else {
-            audioRef.current.currentTime = 0;
+            if (audioRef.current) audioRef.current.currentTime = 0;
             setCurrentTime(0);
             setIsPlaying(false);
         }
@@ -66,9 +66,10 @@ export function useAudioPlayer<T extends MinimalTrackData>(
     }, [enableShufflePlayback, tracks]);
 
     useEffect(() => {
-        audioRef.current.pause();
+        if (audioRef.current) audioRef.current.pause();
 
         audioRef.current = new Audio(audioSrc as string);
+        const audioCurrentRef = audioRef.current;
 
         if (isReady.current) {
             audioRef.current.play();
@@ -78,22 +79,12 @@ export function useAudioPlayer<T extends MinimalTrackData>(
             // Set the isReady ref as true for the next pass
             isReady.current = true;
         }
-    }, [audioSrc, trackIndex]);
-
-    useEffect(() => {
-        if (isPlaying) {
-            audioRef.current.play();
-        } else {
-            audioRef.current.pause();
-        }
-    }, [isPlaying]);
-
-    useEffect(() => {
-        const audioCurrentRef = audioRef.current;
 
         const onLoadedData = (): void => {
-            const { duration } = audioRef.current;
-            if (!isNaN(duration)) setDuration(duration * 1000);
+            if (audioRef.current) {
+                const { duration } = audioRef.current;
+                if (!isNaN(duration)) setDuration(duration * 1000);
+            }
         };
 
         const onEnded = (): void => {
@@ -101,21 +92,28 @@ export function useAudioPlayer<T extends MinimalTrackData>(
         };
 
         const onTimeUpdate = (): void => {
-            setCurrentTime(audioRef.current.currentTime * 1000);
+            if (audioRef.current) setCurrentTime(audioRef.current.currentTime * 1000);
         };
 
         audioRef.current.addEventListener('loadeddata', onLoadedData);
         audioRef.current.addEventListener('ended', onEnded);
         audioRef.current.addEventListener('timeupdate', onTimeUpdate);
 
-        // Pause and clean up on unmount
         return () => {
-            audioCurrentRef.pause();
-            audioCurrentRef.removeEventListener('loadeddata', onLoadedData);
-            audioCurrentRef.removeEventListener('ended', onEnded);
-            audioCurrentRef.removeEventListener('timeupdate', onTimeUpdate);
+            audioCurrentRef?.pause();
+            audioCurrentRef?.removeEventListener('loadeddata', onLoadedData);
+            audioCurrentRef?.removeEventListener('ended', onEnded);
+            audioCurrentRef?.removeEventListener('timeupdate', onTimeUpdate);
         };
-    }, [audioRef, checkIfShouldToNextTrack]);
+    }, [audioSrc, checkIfShouldToNextTrack, trackIndex]);
+
+    useEffect(() => {
+        if (isPlaying) {
+            if (audioRef.current) audioRef.current.play();
+        } else {
+            if (audioRef.current) audioRef.current.pause();
+        }
+    }, [isPlaying]);
 
     return {
         currentTrackInfo,

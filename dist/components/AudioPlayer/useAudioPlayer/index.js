@@ -19,10 +19,11 @@ export function useAudioPlayer(tracks, shufflePlayback, repeatPlayback) {
     const [isPlaying, setIsPlaying] = useState(false);
     const currentTrackInfo = playList[trackIndex];
     const { audioSrc } = currentTrackInfo;
-    const audioRef = useRef(new Audio(audioSrc));
+    const audioRef = useRef();
     const isReady = useRef(false);
     const setPositionManually = useCallback((positionMillis) => __awaiter(this, void 0, void 0, function* () {
-        audioRef.current.currentTime = positionMillis / 1000;
+        if (audioRef.current)
+            audioRef.current.currentTime = positionMillis / 1000;
         setCurrentTime(positionMillis);
     }), []);
     const toPreviousTrack = useCallback(() => {
@@ -50,7 +51,8 @@ export function useAudioPlayer(tracks, shufflePlayback, repeatPlayback) {
             toNextTrack();
         }
         else {
-            audioRef.current.currentTime = 0;
+            if (audioRef.current)
+                audioRef.current.currentTime = 0;
             setCurrentTime(0);
             setIsPlaying(false);
         }
@@ -66,8 +68,10 @@ export function useAudioPlayer(tracks, shufflePlayback, repeatPlayback) {
         }
     }, [enableShufflePlayback, tracks]);
     useEffect(() => {
-        audioRef.current.pause();
+        if (audioRef.current)
+            audioRef.current.pause();
         audioRef.current = new Audio(audioSrc);
+        const audioCurrentRef = audioRef.current;
         if (isReady.current) {
             audioRef.current.play();
             setIsPlaying(true);
@@ -77,39 +81,40 @@ export function useAudioPlayer(tracks, shufflePlayback, repeatPlayback) {
             // Set the isReady ref as true for the next pass
             isReady.current = true;
         }
-    }, [audioSrc, trackIndex]);
-    useEffect(() => {
-        if (isPlaying) {
-            audioRef.current.play();
-        }
-        else {
-            audioRef.current.pause();
-        }
-    }, [isPlaying]);
-    useEffect(() => {
-        const audioCurrentRef = audioRef.current;
         const onLoadedData = () => {
-            const { duration } = audioRef.current;
-            if (!isNaN(duration))
-                setDuration(duration * 1000);
+            if (audioRef.current) {
+                const { duration } = audioRef.current;
+                if (!isNaN(duration))
+                    setDuration(duration * 1000);
+            }
         };
         const onEnded = () => {
             checkIfShouldToNextTrack();
         };
         const onTimeUpdate = () => {
-            setCurrentTime(audioRef.current.currentTime * 1000);
+            if (audioRef.current)
+                setCurrentTime(audioRef.current.currentTime * 1000);
         };
         audioRef.current.addEventListener('loadeddata', onLoadedData);
         audioRef.current.addEventListener('ended', onEnded);
         audioRef.current.addEventListener('timeupdate', onTimeUpdate);
-        // Pause and clean up on unmount
         return () => {
-            audioCurrentRef.pause();
-            audioCurrentRef.removeEventListener('loadeddata', onLoadedData);
-            audioCurrentRef.removeEventListener('ended', onEnded);
-            audioCurrentRef.removeEventListener('timeupdate', onTimeUpdate);
+            audioCurrentRef === null || audioCurrentRef === void 0 ? void 0 : audioCurrentRef.pause();
+            audioCurrentRef === null || audioCurrentRef === void 0 ? void 0 : audioCurrentRef.removeEventListener('loadeddata', onLoadedData);
+            audioCurrentRef === null || audioCurrentRef === void 0 ? void 0 : audioCurrentRef.removeEventListener('ended', onEnded);
+            audioCurrentRef === null || audioCurrentRef === void 0 ? void 0 : audioCurrentRef.removeEventListener('timeupdate', onTimeUpdate);
         };
-    }, [audioRef, checkIfShouldToNextTrack]);
+    }, [audioSrc, checkIfShouldToNextTrack, trackIndex]);
+    useEffect(() => {
+        if (isPlaying) {
+            if (audioRef.current)
+                audioRef.current.play();
+        }
+        else {
+            if (audioRef.current)
+                audioRef.current.pause();
+        }
+    }, [isPlaying]);
     return {
         currentTrackInfo,
         currentTime,

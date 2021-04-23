@@ -1,3 +1,4 @@
+import { getUserSelectProp } from './utils/getUserSelectProp';
 export function extractTextProps({ fontSize, fontWeight, fontFamily, color, fontStyle, selectable }) {
     return `
         ${fontSize != null ? `font-size: ${fontSize}px` : ''};
@@ -5,7 +6,7 @@ export function extractTextProps({ fontSize, fontWeight, fontFamily, color, font
         ${color != null ? `color: ${color}` : ''};
         ${fontFamily != null ? `font-family: ${fontFamily}` : ''};
         ${fontStyle != null ? `font-family: ${fontStyle}` : ''};
-        ${window.document != null ? `user-select: ${selectable ? 'text' : 'none'}` : ''};
+        ${getUserSelectProp(selectable)};
     `;
 }
 //# sourceMappingURL=TextProps.js.map
