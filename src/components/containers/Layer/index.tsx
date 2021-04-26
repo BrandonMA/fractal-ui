@@ -18,10 +18,8 @@ const StyledLayer = styled(motion.div as any)`
     ${extractWebProps};
 ` as typeof motion.div;
 
-const transition = { type: 'spring' };
-
 export const Layer = forwardRef(
-    (props: LayerProps, ref: any): JSX.Element => {
-        return <StyledLayer ref={ref} transition={transition} {...props} />;
+    ({ transition = { type: 'spring' }, ...others }: LayerProps, ref: any): JSX.Element => {
+        return <StyledLayer ref={ref} transition={transition} {...others} />;
     }
 );

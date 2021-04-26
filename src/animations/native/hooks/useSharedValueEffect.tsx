@@ -1,5 +1,6 @@
 import Reanimated, { useSharedValue } from 'react-native-reanimated';
-import { useEffect } from 'react';
+import { useFinalAnimationEffect } from './useFinalAnimationEffect';
+import { useExitAnimationEffect } from './useExitAnimationEffect';
 
 export function useSharedValueEffect(
     initialValue: number | string | undefined,
@@ -9,13 +10,8 @@ export function useSharedValueEffect(
 ): Reanimated.SharedValue<number | string | undefined> {
     const animatedValue = useSharedValue(initialValue);
 
-    useEffect(() => {
-        if (finalValue != null && isPresent) {
-            animatedValue.value = finalValue;
-        } else if (exitValue != null && !isPresent) {
-            animatedValue.value = exitValue;
-        }
-    }, [finalValue, animatedValue, isPresent, exitValue]);
+    useFinalAnimationEffect(animatedValue, finalValue, isPresent);
+    useExitAnimationEffect(animatedValue, exitValue, isPresent);
 
     return animatedValue;
 }

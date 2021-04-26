@@ -1,7 +1,7 @@
 import React from 'react';
 import { ModalProps } from './Modal/types';
 import { DimmedModal } from './DimmedModal';
-import { ModalMiddleCell } from './ModalMiddleCell';
+import { ModalCell } from './ModalCell';
 
 export function MiddleCellModal({ visible, onDismiss, ...others }: ModalProps): JSX.Element {
     return (
@@ -14,7 +14,7 @@ export function MiddleCellModal({ visible, onDismiss, ...others }: ModalProps): 
             justifyContent={'center'}
             alignItems={'center'}
         >
-            <ModalMiddleCell {...others} />
+            <ModalCell {...others} variant={'middle'} />
         </DimmedModal>
     );
 }

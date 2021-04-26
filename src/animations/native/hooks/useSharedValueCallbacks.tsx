@@ -1,4 +1,4 @@
-import Reanimated, { useSharedValue } from 'react-native-reanimated';
+import Reanimated, { useSharedValue, withSpring } from 'react-native-reanimated';
 import { useCallback } from 'react';
 
 export function useSharedValueCallbacks(
@@ -9,13 +9,13 @@ export function useSharedValueCallbacks(
 
     const startAnimation = useCallback(() => {
         if (finalValue != null && animatedValue.value !== finalValue) {
-            animatedValue.value = finalValue;
+            animatedValue.value = withSpring(finalValue);
         }
     }, [animatedValue, finalValue]);
 
     const resetAnimation = useCallback(() => {
         if (initialValue != null && animatedValue.value !== initialValue) {
-            animatedValue.value = initialValue;
+            animatedValue.value = withSpring(initialValue);
         }
     }, [animatedValue, initialValue]);
 

@@ -7,10 +7,7 @@ export function useColorAnimationCallbacks(
 ): [Reanimated.SharedValue<number>, Array<string>, () => void, () => void] {
     const animatedValue = useSharedValue<number>(0);
 
-    const colorsAvailable = useMemo(() => backgroundColor != null && pressedBackgroundColor != null, [
-        backgroundColor,
-        pressedBackgroundColor
-    ]);
+    const colorsAvailable = backgroundColor != null && pressedBackgroundColor != null;
 
     const colors = useMemo(() => {
         const colors = Array<string>();

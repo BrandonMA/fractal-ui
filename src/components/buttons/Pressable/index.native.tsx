@@ -29,7 +29,7 @@ export const Pressable = forwardRef(
                 ref={ref}
                 onPressIn={handlePressIn}
                 onPressOut={handlePressOut}
-                style={[tapStyles, animationStyles, style]}
+                style={[animationStyles, tapStyles, style]}
                 {...others}
             />
         );

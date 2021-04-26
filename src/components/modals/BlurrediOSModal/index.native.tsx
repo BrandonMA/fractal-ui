@@ -15,10 +15,11 @@ const StyledBlurView = styled(BlurView)`
     height: 100%;
 ` as typeof BlurView;
 
-export function BlurredModal({ children, onDismiss, dismissText, visible, ...others }: BlurredModalProps): JSX.Element {
+export function BlurrediOSModal({ children, onDismiss, dismissText, visible, ...others }: BlurredModalProps): JSX.Element {
     const { colors, spacings } = useTheme();
     const themeIdentifier = useThemeIdentifier();
     const window = Dimensions.get('window');
+    const modalContentHeight = (window.height * 35) / 100;
 
     return (
         <Modal
@@ -31,7 +32,13 @@ export function BlurredModal({ children, onDismiss, dismissText, visible, ...oth
             {...others}
         >
             <Pressable flex={1} onPress={onDismiss} />
-            <Layer height={'35%'} initial={{ translateY: window.height }} animate={{ translateY: 0 }} exit={{ translateY: window.height }}>
+            <Layer
+                height={'35%'}
+                transition={{ type: 'ease', duration: 350 }}
+                initial={{ translateY: modalContentHeight }}
+                animate={{ translateY: 0 }}
+                exit={{ translateY: modalContentHeight }}
+            >
                 <StyledBlurView intensity={100} tint={themeIdentifier}>
                     <Layer
                         top={0}

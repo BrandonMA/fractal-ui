@@ -35,7 +35,7 @@ import {
     blue,
     SegmentedControl,
     Avatar,
-    BlurredModal,
+    BlurrediOSModal,
     Bubble,
     Image
 } from './src';
@@ -102,11 +102,11 @@ function BlurredModalFragment(): JSX.Element {
     return (
         <React.Fragment>
             <Button variant='main' text='Show Blurred Modal' onPress={toggleBlurredModal} />
-            <BlurredModal visible={blurredModalVisible} dismissText={'Done'} onDismiss={toggleBlurredModal}>
+            <BlurrediOSModal visible={blurredModalVisible} dismissText={'Done'} onDismiss={toggleBlurredModal}>
                 <Box margin={spacings.m}>
                     <Button variant='warning' text='Dismiss Modal' onPress={toggleBlurredModal} />
                 </Box>
-            </BlurredModal>
+            </BlurrediOSModal>
         </React.Fragment>
     );
 }
@@ -120,6 +120,7 @@ function SegmentedControlFragment(): JSX.Element {
                 selectedIndex={selectedIndex}
                 values={['One', 'Two', 'Three', 'Four']}
                 onChange={(value, index) => {
+                    console.log(value);
                     setSelectedIndex(index);
                 }}
                 onValueChange={(value) => {

@@ -8,8 +8,8 @@ export interface AnimationContent {
     rotate?: number;
     backgroundColor?: string;
     translateY?: number;
-    backdropFilter?: string;
-    '-webkit-backdrop-filter'?: string;
+    backdropFilter?: string; // Web only
+    '-webkit-backdrop-filter'?: string; // Web only
 }
 
 export function isAnimationContent(value: unknown): value is AnimationContent {
@@ -29,10 +29,15 @@ export function isAnimationContent(value: unknown): value is AnimationContent {
 
 export type Variants = { [key: string]: AnimationContent };
 
+export type FractalTransition = Omit<Transition, 'type'> & {
+    duration?: number;
+    type?: 'ease' | 'spring';
+};
+
 export interface AnimationProps {
     initial?: AnimationContent | string;
     animate?: AnimationContent | string;
     variants?: Variants;
-    transition?: Transition;
+    transition?: FractalTransition;
     exit?: AnimationContent;
 }

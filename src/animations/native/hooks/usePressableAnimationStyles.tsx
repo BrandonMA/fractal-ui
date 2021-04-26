@@ -2,9 +2,9 @@ import { PressableProps } from '../../../components/buttons/Pressable/types';
 import { ViewStyle } from 'react-native';
 import { useSharedValueCallbacks } from './useSharedValueCallbacks';
 import { interpolateColor, useAnimatedStyle } from 'react-native-reanimated';
-import { insertSharedValueToStyles } from '../worklets/insertSharedValueToStyles';
-import { insertSharedTransformValueToStyles } from '../worklets/insertSharedTransformValueToStyles';
 import { useColorAnimationCallbacks } from './useColorAnimationCallbacks';
+import { insertTransitionValue } from '../worklets/inserTransitionValue';
+import { insertTransformTransitionValue } from '../worklets/insertTransformTransitionValue';
 
 export function usePressableAnimationStyles({
     whileTap,
@@ -56,16 +56,16 @@ export function usePressableAnimationStyles({
             transform: []
         };
 
-        insertSharedValueToStyles('opacity', styles, opacityAnimatedValue.value);
-        insertSharedValueToStyles('width', styles, widthAnimatedValue.value);
-        insertSharedValueToStyles('height', styles, heightAnimatedValue.value);
+        insertTransitionValue(styles, 'opacity', opacityAnimatedValue.value);
+        insertTransitionValue(styles, 'width', widthAnimatedValue.value);
+        insertTransitionValue(styles, 'height', heightAnimatedValue.value);
 
         if (backgroundColors.length === 2) {
             styles['backgroundColor'] = interpolateColor(backgroundColorAnimatedValue.value, [0, 1], backgroundColors);
         }
 
-        insertSharedTransformValueToStyles('scale', styles, scaleAnimatedValue.value);
-        insertSharedTransformValueToStyles('rotate', styles, rotationAnimatedValue.value);
+        insertTransformTransitionValue(styles, 'scale', scaleAnimatedValue.value);
+        insertTransformTransitionValue(styles, 'rotate', rotationAnimatedValue.value);
 
         return styles;
     });

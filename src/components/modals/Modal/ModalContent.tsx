@@ -1,12 +1,9 @@
 import React, { useEffect, forwardRef, ForwardedRef } from 'react';
 import { Layer } from '../../containers';
 import { LayerProps } from '../../containers/Layer/types';
-import { useIsPresent } from 'framer-motion';
 
 export const ModalContent = forwardRef(
     ({ children, ...others }: LayerProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
-        const isPresent = useIsPresent();
-        console.log(isPresent);
         useEffect(() => {
             document.body.style.overflow = 'hidden';
 
