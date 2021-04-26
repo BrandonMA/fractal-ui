@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useLayoutEffect, useMemo, useRef } from 'react';
+import React, { useCallback, useState, useEffect, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { BaseSliderProps, EventSource } from '../types';
 import { useCallbackRef } from '../utils/useCallbackRef';
@@ -70,7 +70,7 @@ export function BaseSlider({
     const trackPercent = valueToPercent(value, minimumValue, maximumValue);
 
     const thumbStyle: React.CSSProperties = {
-        left: `calc(${trackPercent}% - 10px)`
+        left: `${trackPercent}%`
     };
 
     const rangeProgressStyle: React.CSSProperties = {
@@ -226,7 +226,7 @@ export function BaseSlider({
         [handleCleanTouchStart, handleMoveStart, handleTouchMove]
     );
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const env = sliderRef.current;
         env.addEventListener('touchstart', handleTouchStart, { passive: false });
         return () => {

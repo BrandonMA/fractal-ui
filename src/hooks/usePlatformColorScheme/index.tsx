@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const darkMediaQuery = '(prefers-color-scheme: dark)';
 
@@ -9,7 +9,7 @@ export function usePlatformColorScheme(): 'light' | 'dark' {
         setColorScheme(event.matches ? 'dark' : 'light');
     }, []);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const isDarkColorScheme = window.matchMedia && window.matchMedia(darkMediaQuery).matches;
         setColorScheme(isDarkColorScheme ? 'dark' : 'light');
 
