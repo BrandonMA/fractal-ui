@@ -1,5 +1,5 @@
 import React, { useEffect, forwardRef } from 'react';
-import { Animated, Easing } from 'react-native';
+import Reanimated, { withTiming, useSharedValue, useAnimatedStyle, Easing } from 'react-native-reanimated';
 import styled from 'styled-components/native';
 import { SegmentedControlProps } from './types';
 import { SegmentedControlTab } from './SegmentControlTap';
@@ -18,7 +18,7 @@ const SegmentsContainer = styled.View`
     elevation: 2;
 `;
 
-const Slider = styled(Animated.View)`
+const Slider = styled(Reanimated.View)`
     position: absolute;
     top: 2px;
     bottom: 2px;
@@ -46,7 +46,7 @@ export const SegmentedControl = forwardRef(
     ): JSX.Element => {
         const { colors, shadows, borderRadius, sizes } = useTheme();
         const [segmentWidth, setSegmentWidth] = React.useState(0);
-        const animation = React.useRef(new Animated.Value(0)).current;
+        const translateX = useSharedValue(0);
 
         const handleChange = (index: number) => {
             onChange?.(values[index], index);
@@ -54,15 +54,16 @@ export const SegmentedControl = forwardRef(
         };
 
         useEffect(() => {
-            if (animation && segmentWidth) {
-                Animated.timing(animation, {
-                    toValue: segmentWidth * selectedIndex,
-                    duration: 300,
-                    easing: Easing.out(Easing.quad),
-                    useNativeDriver: true
-                }).start();
+            if (translateX && segmentWidth) {
+                translateX.value = withTiming(segmentWidth * selectedIndex, { duration: 300, easing: Easing.out(Easing.quad) });
             }
-        }, [animation, segmentWidth, selectedIndex]);
+        }, [segmentWidth, selectedIndex, translateX]);
+
+        const sliderStyle = useAnimatedStyle(() => ({
+            transform: [{ translateX: translateX.value }],
+            width: segmentWidth - 4,
+            backgroundColor: tintColor || colors.foreground
+        }));
 
         return (
             <Layer
@@ -79,7 +80,7 @@ export const SegmentedControl = forwardRef(
                 }) => {
                     const newSegmentWidth = values.length ? width / values.length : 0;
                     if (newSegmentWidth !== segmentWidth) {
-                        animation.setValue(newSegmentWidth * (selectedIndex || 0));
+                        translateX.value = newSegmentWidth * (selectedIndex || 0);
                         setSegmentWidth(newSegmentWidth);
                     }
                 }}
@@ -105,17 +106,7 @@ export const SegmentedControl = forwardRef(
                         })}
                 </SegmentsContainer>
                 {selectedIndex != null && segmentWidth ? (
-                    <Slider
-                        boxShadow={shadows.mainShadow}
-                        borderRadius={borderRadius.s}
-                        style={[
-                            {
-                                transform: [{ translateX: animation }],
-                                width: segmentWidth - 4,
-                                backgroundColor: tintColor || colors.foreground
-                            }
-                        ]}
-                    />
+                    <Slider boxShadow={shadows.mainShadow} borderRadius={borderRadius.s} style={sliderStyle} />
                 ) : null}
             </Layer>
         );
