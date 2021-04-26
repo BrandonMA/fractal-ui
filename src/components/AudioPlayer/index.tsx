@@ -48,9 +48,9 @@ export function AudioPlayer({ tracks, ...layerProps }: AudioPlayerProps): JSX.El
     const handleRepeat = useCallback(() => setEnableRepeatPlayback((currentValue) => !currentValue), [setEnableRepeatPlayback]);
 
     return (
-        <Box flexDirection={'row'} maxWidth={768} {...layerProps} {...getAudioPlayerAccessibilityProps()}>
-            <Image source={image} width={104} height={104} resizeMode={'cover'} borderRadius={borderRadius.m} label={'Song Image'} />
-            <Layer flex={1} marginLeft={spacings.xs}>
+        <Box flexDirection={'row'} padding={spacings.s} {...layerProps} {...getAudioPlayerAccessibilityProps()}>
+            <Image source={image} width={103} height={103} resizeMode={'cover'} borderRadius={borderRadius.m} label={'Song Image'} />
+            <Layer flex={1} marginLeft={spacings.s}>
                 <Text variant='button' color={colors.text}>
                     {title}
                 </Text>

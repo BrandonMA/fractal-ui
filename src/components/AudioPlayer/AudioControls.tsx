@@ -69,7 +69,7 @@ export const AudioControls = memo(
     }: AudioControlsProps): JSX.Element => {
         const { colors, sizes } = useTheme();
         return (
-            <>
+            <Layer>
                 <Layer flexDirection='row' alignItems={'center'} justifyContent={'space-between'}>
                     <ToggleButton
                         active={isEnableShuffle}
@@ -86,8 +86,8 @@ export const AudioControls = memo(
                     <BaseButton
                         alignItems={'center'}
                         justifyContent={'center'}
-                        width={24}
-                        height={24}
+                        width={36}
+                        height={36}
                         onPress={onPreviousPress}
                         {...getPreviousButtonAccessibilityProps()}
                     >
@@ -106,8 +106,8 @@ export const AudioControls = memo(
                     <BaseButton
                         alignItems={'center'}
                         justifyContent={'center'}
-                        width={24}
-                        height={24}
+                        width={36}
+                        height={36}
                         onPress={onNextPress}
                         {...getNextButtonAccessibilityProps()}
                     >
@@ -126,7 +126,7 @@ export const AudioControls = memo(
                         {(tintColor: string) => <RepeatIcon fill={tintColor} width={SMALL_ICON_SIZE} height={SMALL_ICON_SIZE} />}
                     </ToggleButton>
                 </Layer>
-            </>
+            </Layer>
         );
     }
 );
