@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useCallback } from 'react';
 import { useTheme } from '../../core';
 import { Layer } from '../containers/Layer';
 
@@ -9,9 +10,12 @@ interface Props {
 
 export const SegmentsSeparators = ({ values, selectedIndex }: Props): JSX.Element => {
     const { colors } = useTheme();
-    const hide = (val: number) => {
-        return selectedIndex === val || selectedIndex === val + 1;
-    };
+    const hide = useCallback(
+        (val: number) => {
+            return selectedIndex === val || selectedIndex === val + 1;
+        },
+        [selectedIndex]
+    );
 
     return (
         <Layer

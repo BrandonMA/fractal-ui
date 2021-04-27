@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useTheme } from '../../../core/context/hooks/useTheme';
 import { TouchableOpacity } from '../../buttons/TouchableOpacity';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
@@ -10,9 +10,10 @@ import { BaseCheckBoxProps } from '../types';
 export function BaseCheckBox({ value, onValueChange, label }: BaseCheckBoxProps): JSX.Element {
     const { colors, spacings, borderRadius, sizes } = useTheme();
 
-    const handleValueChange = (): void => {
+    const handleValueChange = useCallback((): void => {
         onValueChange(!value);
-    };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [value]);
 
     return (
         <TouchableOpacity onPress={handleValueChange}>

@@ -1,4 +1,5 @@
-import React, { ReactNode, useState, forwardRef } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { ReactNode, useState, forwardRef, useCallback } from 'react';
 import { Text } from '../text';
 import { useTheme } from '../../core/context/hooks/useTheme';
 import { BaseButton } from './BaseButton';
@@ -28,10 +29,10 @@ export const Button = forwardRef(
         const pressedColorName = `${variant}InteractiveColor600`;
         const pressedColor = colors[pressedColorName];
 
-        const handleButtonPress = (): void => {
+        const handleButtonPress = useCallback((): void => {
             setPressed(true);
             onPress?.();
-        };
+        }, []);
 
         return (
             <BaseButton

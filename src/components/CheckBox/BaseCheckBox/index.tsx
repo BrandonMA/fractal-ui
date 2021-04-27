@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTheme } from '../../../core/context/hooks/useTheme';
@@ -36,9 +36,10 @@ const StyledLayer = styled(Layer)`
 export function BaseCheckBox({ value, onValueChange, label }: BaseCheckBoxProps): JSX.Element {
     const { colors, spacings, sizes, borderRadius } = useTheme();
 
-    const handleValueChange = (): void => {
+    const handleValueChange = useCallback((): void => {
         onValueChange(!value);
-    };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [value]);
 
     return (
         <Wrapper>

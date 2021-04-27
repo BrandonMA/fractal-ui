@@ -1,4 +1,4 @@
-import React, { useEffect, forwardRef } from 'react';
+import React, { useEffect, forwardRef, useCallback } from 'react';
 import Reanimated, { withTiming, useSharedValue, useAnimatedStyle, Easing } from 'react-native-reanimated';
 import styled from 'styled-components/native';
 import { SegmentedControlProps } from './types';
@@ -48,10 +48,13 @@ export const SegmentedControl = forwardRef(
         const [segmentWidth, setSegmentWidth] = React.useState(0);
         const translateX = useSharedValue(0);
 
-        const handleChange = (index: number) => {
-            onChange?.(values[index], index);
-            onValueChange?.(values[index]);
-        };
+        const handleChange = useCallback(
+            (index: number) => {
+                onChange?.(values[index], index);
+                onValueChange?.(values[index]);
+            },
+            [onChange, onValueChange, values]
+        );
 
         useEffect(() => {
             if (translateX && segmentWidth) {
