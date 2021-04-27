@@ -1,9 +1,12 @@
 import { LayerProps } from '../containers/Layer/types';
 
-export interface BaseCheckBoxProps {
+export interface CheckProps {
     value: boolean;
-    onValueChange: (value: boolean) => void;
     label?: string;
+}
+
+export interface BaseCheckBoxProps extends CheckProps {
+    onValueChange: (value: boolean) => void;
 }
 
 export interface CheckBoxProps extends BaseCheckBoxProps, Omit<LayerProps, 'children'> {}

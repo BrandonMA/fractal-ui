@@ -33,11 +33,13 @@ export interface WebProps {
         | 'se-resize'
         | 'sw-resize'
         | 'w-resize';
+    boxSizing?: 'border-box' | 'content-box';
 }
 
-export function extractWebProps({ cursor, pointerEvents }: WebProps): string {
+export function extractWebProps({ cursor, pointerEvents, boxSizing = 'border-box' }: WebProps): string {
     return `
         ${cursor ? `cursor: ${cursor}` : ''};
         ${pointerEvents ? `pointer-events: ${pointerEvents === 'box-none' ? 'none' : pointerEvents}` : ''};
+        ${boxSizing ? `box-sizing: ${boxSizing}` : ''};
     `;
 }

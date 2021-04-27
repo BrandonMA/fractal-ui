@@ -1,10 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Text } from '../../../text';
-import { useTheme } from '../../../../core/context/hooks/useTheme';
 import { BaseRadioButtonProps } from '../../types';
 import styled from 'styled-components';
-import { Radio } from '../Radio';
+import { RadioControl } from '../RadioControl';
 import { getRadioButtonAccessibilityProps } from '../../accessibility/getRadioButtonAccessibilityProps';
 
 const Wrapper = styled(motion.label)`
@@ -28,8 +26,6 @@ const RadioInput = styled(motion.input)`
 `;
 
 export function BaseRadioButton({ label, onPress, active, value }: BaseRadioButtonProps): JSX.Element {
-    const { spacings } = useTheme();
-
     return (
         <Wrapper>
             <RadioInput
@@ -39,12 +35,7 @@ export function BaseRadioButton({ label, onPress, active, value }: BaseRadioButt
                 onChange={() => onPress()}
                 {...getRadioButtonAccessibilityProps(active)}
             />
-            <Radio active={active} />
-            {label && (
-                <Text marginLeft={spacings.xs} variant='normal'>
-                    {label}
-                </Text>
-            )}
+            <RadioControl active={active} label={label} />
         </Wrapper>
     );
 }
