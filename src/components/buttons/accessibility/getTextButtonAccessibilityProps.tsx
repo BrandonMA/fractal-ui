@@ -1,6 +1,5 @@
-export function getTextButtonAccessibilityProps(name?: string, pressed?: boolean): Record<string, any> {
+export function getTextButtonAccessibilityProps(name?: string): Record<string, any> {
     return {
-        'aria-label': name,
-        'aria-pressed': pressed
+        'aria-label': name
     };
 }

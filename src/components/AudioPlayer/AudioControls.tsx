@@ -79,7 +79,7 @@ export const AudioControls = memo(
                         width={SMALL_BUTTON}
                         height={SMALL_BUTTON}
                         borderRadius={SMALL_BUTTON / 2}
-                        {...getShuffleButtonAccessibilityProps(isEnableShuffle)}
+                        {...getShuffleButtonAccessibilityProps()}
                     >
                         {(tintColor: string) => <ShuffleIcon fill={tintColor} width={SMALL_ICON_SIZE} height={SMALL_ICON_SIZE} />}
                     </ToggleButton>
@@ -99,7 +99,7 @@ export const AudioControls = memo(
                         onPress={onPlayPausePress}
                         width={sizes.interactiveItemHeight}
                         borderRadius={sizes.interactiveItemHeight / 2}
-                        {...getPlayPauseButtonAccessibilityProps(isPlaying)}
+                        {...getPlayPauseButtonAccessibilityProps()}
                     >
                         {(tintColor: string) => <PlayPauseIcon tintColor={tintColor} isPlaying={isPlaying} />}
                     </ToggleButton>
@@ -121,7 +121,7 @@ export const AudioControls = memo(
                         width={SMALL_BUTTON}
                         height={SMALL_BUTTON}
                         borderRadius={SMALL_BUTTON / 2}
-                        {...getRepeatButtonAccessibilityProps(isEnableRepeat)}
+                        {...getRepeatButtonAccessibilityProps()}
                     >
                         {(tintColor: string) => <RepeatIcon fill={tintColor} width={SMALL_ICON_SIZE} height={SMALL_ICON_SIZE} />}
                     </ToggleButton>

@@ -35,6 +35,7 @@ export function BaseSwitch({ value, onValueChange }: BaseSwitchProps): JSX.Eleme
             onPress={onPress}
             alignItems='center'
             initial={'inactive'}
+            type={'switch'}
             animate={value ? 'active' : 'inactive'}
             variants={backgroundVariants}
             {...getSwitchAccessibilityProps(value)}

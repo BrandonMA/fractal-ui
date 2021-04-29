@@ -1,6 +1,5 @@
-export function getNextButtonAccessibilityProps(disabled?: boolean): Record<string, any> {
+export function getNextButtonAccessibilityProps(): Record<string, any> {
     return {
-        'aria-label': 'Next',
-        'aria-disabled': disabled
+        'aria-label': 'Next'
     };
 }

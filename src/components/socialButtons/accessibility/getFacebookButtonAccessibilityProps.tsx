@@ -1,8 +1,5 @@
-export function getFacebookButtonAccessibilityProps(pressed?: boolean, disabled?: boolean): Record<string, any> {
+export function getFacebookButtonAccessibilityProps(): Record<string, any> {
     return {
-        role: 'button',
-        'aria-pressed': pressed,
-        'aria-disabled': disabled,
         'aria-label': 'Facebook'
     };
 }

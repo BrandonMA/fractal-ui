@@ -470,6 +470,7 @@ function Content(): JSX.Element {
                         ['5', 'Cinco']
                     ]}
                     initialValue={'3'}
+                    disabled
                 />
             </Box>
             <Separator isAtBackgroundLevel marginBottom={spacings.m} />

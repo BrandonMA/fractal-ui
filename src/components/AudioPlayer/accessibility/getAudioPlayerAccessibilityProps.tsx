@@ -1,7 +1,6 @@
-export function getAudioPlayerAccessibilityProps(disabled?: boolean): Record<string, any> {
+export function getAudioPlayerAccessibilityProps(): Record<string, any> {
     return {
         tabIndex: 0,
-        'aria-label': 'Audio Player',
-        'aria-disabled': disabled
+        'aria-label': 'Audio Player'
     };
 }
