@@ -1,85 +1,33 @@
-import React, { forwardRef } from 'react';
-import { motion, AnimateSharedLayout } from 'framer-motion';
-import styled from 'styled-components';
+import React, { forwardRef, useCallback } from 'react';
 import { SegmentedControlProps } from './types';
-import {
-    extractBackgroundProps,
-    extractBorderProps,
-    extractDimensionProps,
-    extractDisplayProps,
-    extractShadowProps,
-    extractWebProps
-} from '../../sharedProps';
-import { useTheme } from '../../core/context/hooks/useTheme';
-import { SegmentedControlTab } from './SegmentControlTap';
-import { getSegmentedControlAccessibilityProps } from './accessibility/getSegmentedControlAccessibilityProps';
-
-const Container = styled(motion.ol as any)`
-    list-style: none;
-    ${extractBackgroundProps};
-    ${extractDimensionProps};
-    ${extractDisplayProps};
-    ${extractBorderProps};
-    ${extractShadowProps};
-    ${extractWebProps};
-`;
+import { useControllableState } from '../../hooks/useControllableState';
+import { BaseSegmentedControl } from './BaseSegmentedControl';
 
 export const SegmentedControl = forwardRef(
     (
-        {
-            onChange,
-            onValueChange,
-            selectedIndex = 0,
-            values,
-            tintColor,
-            backgroundColor,
-            textStyle,
-            activeTextStyle,
-            ...layerProps
-        }: SegmentedControlProps,
+        { onChange, onValueChange, selectedIndex: selectedIndexProp, defaultSelectedIndex, values, ...others }: SegmentedControlProps,
         ref: any
     ): JSX.Element => {
-        const { colors, borderRadius, sizes } = useTheme();
-
-        return (
-            <AnimateSharedLayout>
-                <Container
-                    ref={ref}
-                    backgroundColor={backgroundColor ?? colors.background}
-                    margin={0}
-                    padding={2}
-                    width={'100%'}
-                    height={sizes.segmentedControlSize}
-                    borderRadius={borderRadius.s}
-                    display={'inline-flex'}
-                    flexDirection={'row'}
-                    {...layerProps}
-                    {...getSegmentedControlAccessibilityProps()}
-                >
-                    {values.map((item, index) => {
-                        return (
-                            <SegmentedControlTab
-                                selected={selectedIndex === index}
-                                hideDivider={
-                                    backgroundColor != undefined ||
-                                    tintColor != undefined ||
-                                    selectedIndex === index ||
-                                    index === selectedIndex - 1
-                                }
-                                key={index}
-                                value={item}
-                                tintColor={tintColor}
-                                textStyle={textStyle}
-                                activeTextStyle={activeTextStyle}
-                                onSelect={() => {
-                                    onChange?.(item, index);
-                                    onValueChange?.(item);
-                                }}
-                            />
-                        );
-                    })}
-                </Container>
-            </AnimateSharedLayout>
+        const onIndexChange = useCallback(
+            (index: number) => {
+                onChange?.(values[index], index);
+                onValueChange?.(values[index]);
+            },
+            [onChange, onValueChange, values]
         );
+        const [selectedIndex, setSelectedIndex] = useControllableState({
+            value: selectedIndexProp,
+            defaultValue: defaultSelectedIndex ?? 0,
+            onChange: onIndexChange
+        });
+
+        const handleIndexChange = useCallback(
+            (index: number) => {
+                setSelectedIndex(index);
+            },
+            [setSelectedIndex]
+        );
+
+        return <BaseSegmentedControl ref={ref} values={values} selectedIndex={selectedIndex} onTabPress={handleIndexChange} {...others} />;
     }
 );

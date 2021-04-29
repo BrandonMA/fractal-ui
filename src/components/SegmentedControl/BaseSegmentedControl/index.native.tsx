@@ -1,12 +1,12 @@
-import React, { useEffect, forwardRef, useCallback } from 'react';
+import React, { useEffect, forwardRef } from 'react';
 import Reanimated, { withTiming, useSharedValue, useAnimatedStyle, Easing } from 'react-native-reanimated';
 import styled from 'styled-components/native';
-import { SegmentedControlProps } from './types';
-import { SegmentedControlTab } from './SegmentControlTap';
-import { SegmentsSeparators } from './SegmentsSeparators';
-import { Layer } from '../containers/Layer';
-import { useTheme } from '../../core/context/hooks/useTheme';
-import { extractBorderProps, extractShadowProps } from '../../sharedProps';
+import { BaseSegmentedControlProps } from '../types';
+import { SegmentedControlTab } from '../SegmentControlTap';
+import { SegmentsSeparators } from '../SegmentsSeparators';
+import { Layer } from '../../containers/Layer';
+import { useTheme } from '../../../core/context/hooks/useTheme';
+import { extractBorderProps, extractShadowProps } from '../../../sharedProps';
 
 const SegmentsContainer = styled.View`
     flex: 1;
@@ -29,32 +29,23 @@ const Slider = styled(Reanimated.View)`
     ${extractBorderProps};
 `;
 
-export const SegmentedControl = forwardRef(
+export const BaseSegmentedControl = forwardRef(
     (
         {
-            onChange,
-            onValueChange,
-            selectedIndex = 0,
+            selectedIndex,
             values,
             tintColor,
             backgroundColor,
             textStyle,
             activeTextStyle,
+            onTabPress,
             ...layerProps
-        }: SegmentedControlProps,
+        }: BaseSegmentedControlProps,
         ref: any
     ): JSX.Element => {
         const { colors, shadows, borderRadius, sizes } = useTheme();
         const [segmentWidth, setSegmentWidth] = React.useState(0);
         const translateX = useSharedValue(0);
-
-        const handleChange = useCallback(
-            (index: number) => {
-                onChange?.(values[index], index);
-                onValueChange?.(values[index]);
-            },
-            [onChange, onValueChange, values]
-        );
 
         useEffect(() => {
             if (translateX && segmentWidth) {
@@ -102,7 +93,7 @@ export const SegmentedControl = forwardRef(
                                     textStyle={textStyle}
                                     activeTextStyle={activeTextStyle}
                                     onSelect={() => {
-                                        handleChange(index);
+                                        onTabPress(index);
                                     }}
                                 />
                             );

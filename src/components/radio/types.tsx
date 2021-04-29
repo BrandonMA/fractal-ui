@@ -18,6 +18,8 @@ export interface RadioItem {
 }
 
 export interface RadioGroupProps extends LayerProps {
+    value?: string;
+    defaultValue?: string;
     radioButtons: Array<RadioItem>;
-    onChange: (item: RadioItem) => void;
+    onValueChange: (value: string) => void;
 }

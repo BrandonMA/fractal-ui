@@ -7,8 +7,8 @@ import { PickerItem } from './PickerItem';
 import { BasePicker } from './BasePicker';
 import { BlurrediOSModal } from '../../modals';
 
-export function Picker({ items, initialValue, onChange, iosDoneText = 'Done', ...others }: PickerProps): JSX.Element {
-    const [currentValue, handleValueChange, index] = usePickerState(initialValue, items, onChange);
+export function Picker({ items, defaultValue, value, onChange, iosDoneText = 'Done', ...others }: PickerProps): JSX.Element {
+    const [currentValue, handleValueChange, index] = usePickerState(defaultValue, items, value, onChange);
     const [modalActive, setModalActive] = useState(false);
     const { colors } = useTheme();
 

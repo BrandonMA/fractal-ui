@@ -1,22 +1,8 @@
 import { useState, useCallback, Dispatch, SetStateAction } from 'react';
+import { UseControllableStateProps } from '../../../hooks/useControllableState';
 import { useCallbackRef } from './useCallbackRef';
 
 const runIfFn = (value: any, ...args: any[]) => (typeof value === 'function' ? value(...args) : value);
-
-export interface UseControllableStateProps<T> {
-    /**
-     * The value to used in controlled mode
-     */
-    value?: T;
-    /**
-     * The initial value to be used, in uncontrolled mode
-     */
-    defaultValue?: T | (() => T);
-    /**
-     * The callback fired when the value changes
-     */
-    onChange?: (value: T) => void;
-}
 
 export function useControllableState<T>(props: UseControllableStateProps<T>): [T, Dispatch<SetStateAction<T>>] {
     const { value: valueProp, defaultValue, onChange } = props;

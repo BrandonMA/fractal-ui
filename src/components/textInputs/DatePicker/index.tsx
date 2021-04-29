@@ -71,11 +71,11 @@ export function DatePicker({ minDate, maxDate, initialDate, onChange, ...others 
     return (
         <Layer {...others}>
             <HorizontalLayer marginBottom={spacings.m}>
-                <Picker initialValue={date.getFullYear().toString()} items={years} flex={1} onChange={onYearChange} isReadOnly />
+                <Picker value={date.getFullYear().toString()} items={years} flex={1} onChange={onYearChange} />
                 <Layer marginRight={spacings.m} />
-                <Picker initialValue={date.getMonth().toString()} items={localeMonthNames} flex={1} onChange={onMonthChange} isReadOnly />
+                <Picker value={date.getMonth().toString()} items={localeMonthNames} flex={1} onChange={onMonthChange} />
             </HorizontalLayer>
-            <Picker initialValue={date.getDate().toString()} items={days} onChange={onDayChange} isReadOnly />
+            <Picker value={date.getDate().toString()} items={days} onChange={onDayChange} />
         </Layer>
     );
 }

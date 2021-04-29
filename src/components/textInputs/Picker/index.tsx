@@ -9,8 +9,8 @@ import { PickerItem } from './PickerItem';
 import { PickerProps } from './types/PickerProps';
 import { getBasePickerAccessibilityProps } from '../accessibility/getBasePickerAccessibilityProps';
 
-export function Picker({ items, onChange, initialValue, disabled, isReadOnly, ...others }: PickerProps): JSX.Element {
-    const [currentValue, handleValueChange] = usePickerState(initialValue, items, onChange, isReadOnly);
+export function Picker({ items, onChange, value, defaultValue, disabled, ...others }: PickerProps): JSX.Element {
+    const [currentValue, handleValueChange] = usePickerState(defaultValue, items, value, onChange);
     const { colors, sizes, borderRadius, spacings } = useTheme();
 
     const renderItem = useCallback(

@@ -1,21 +1,21 @@
-import React, { useState, forwardRef, useCallback } from 'react';
+import React, { forwardRef, useCallback } from 'react';
 import { useTheme } from '../../core/context/hooks/useTheme';
 import { Layer } from '../containers/Layer';
 import { RadioButton } from './RadioButton';
 import { RadioGroupProps, RadioItem } from './types';
 import { getRadioGroupAccessibilityProps } from './accessibility/getRadioGroupAccessibilityProps';
+import { useControllableState } from '../../hooks/useControllableState';
 
 export const RadioGroup = forwardRef(
-    ({ radioButtons, onChange, ...others }: RadioGroupProps, ref: any): JSX.Element => {
+    ({ value, defaultValue, radioButtons, onValueChange, ...others }: RadioGroupProps, ref: any): JSX.Element => {
         const { spacings } = useTheme();
-        const [activeValue, setActiveValue] = useState('');
+        const [activeValue, setActiveValue] = useControllableState({ value, defaultValue: defaultValue ?? '', onChange: onValueChange });
 
         const handleChange = useCallback(
-            (id: string, index: number): void => {
-                setActiveValue(id);
-                onChange(radioButtons[index]);
+            (value: string): void => {
+                setActiveValue(value);
             },
-            [onChange, radioButtons]
+            [setActiveValue]
         );
 
         const renderRadioButton = useCallback(
@@ -31,7 +31,7 @@ export const RadioGroup = forwardRef(
                         active={item.value == activeValue}
                         label={item.label}
                         value={item.value}
-                        onPress={() => handleChange(item.value, index)}
+                        onPress={() => handleChange(item.value)}
                     />
                 );
             },

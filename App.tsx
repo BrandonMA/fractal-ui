@@ -25,7 +25,6 @@ import {
     GridRow,
     Switch,
     RadioGroup,
-    RadioItem,
     CheckBox,
     SocialMediaButtons,
     TextButton,
@@ -322,7 +321,7 @@ function Content(): JSX.Element {
                         { value: '1', label: 'Option One' },
                         { value: '2', label: 'Option Two' }
                     ]}
-                    onChange={(item: RadioItem) => console.log(item)}
+                    onValueChange={(value: string) => console.log(value)}
                 />
             </Box>
             <Separator isAtBackgroundLevel marginBottom={spacings.m} />
@@ -469,7 +468,7 @@ function Content(): JSX.Element {
                         ['4', 'Cuatro'],
                         ['5', 'Cinco']
                     ]}
-                    initialValue={'3'}
+                    defaultValue={'3'}
                     disabled
                 />
             </Box>

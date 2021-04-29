@@ -23,13 +23,29 @@ export interface SegmentedControlTabProps extends TextStyleProps, BaseControlTab
     selected: boolean;
 }
 
-export interface SegmentedControlProps extends TextStyleProps, Omit<LayerProps, 'children'> {
+export interface BaseSegmentedControlProps extends TextStyleProps, Omit<LayerProps, 'children'> {
     /**
      * The labels for the control's segment buttons, in order.
      */
     values: Array<string>;
     /**
+     * The index in `props.values` of the segment to be selected.
+     */
+    selectedIndex: number;
+    /**
+     * Accent color of the control.
+     */
+    tintColor?: string;
+    onTabPress: (index: number) => void;
+}
+
+export interface SegmentedControlProps extends Omit<BaseSegmentedControlProps, 'selectedIndex' | 'onTabPress'> {
+    /**
      * The index in `props.values` of the segment to be (pre)selected.
+     */
+    defaultSelectedIndex?: number;
+    /**
+     * The index in `props.values` of the segment to be selected.
      */
     selectedIndex?: number;
     /**
@@ -42,8 +58,4 @@ export interface SegmentedControlProps extends TextStyleProps, Omit<LayerProps, 
      * passes the event as an argument
      */
     onChange?: (value: string, index: number) => void;
-    /**
-     * Accent color of the control.
-     */
-    tintColor?: string;
 }
