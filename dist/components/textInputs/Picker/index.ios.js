@@ -15,10 +15,10 @@ import { usePickerState } from './hooks/usePickerState';
 import { useTheme } from '../../../core/context/hooks/useTheme';
 import { PickerItem } from './PickerItem';
 import { BasePicker } from './BasePicker';
-import { BlurredModal } from '../../modals';
+import { BlurrediOSModal } from '../../modals';
 export function Picker(_a) {
-    var { items, initialValue, onChange, iosDoneText = 'Done' } = _a, others = __rest(_a, ["items", "initialValue", "onChange", "iosDoneText"]);
-    const [currentValue, handleValueChange, index] = usePickerState(initialValue, items, onChange);
+    var { items, defaultValue, value, onChange, iosDoneText = 'Done' } = _a, others = __rest(_a, ["items", "defaultValue", "value", "onChange", "iosDoneText"]);
+    const [currentValue, handleValueChange, index] = usePickerState(defaultValue, items, value, onChange);
     const [modalActive, setModalActive] = useState(false);
     const { colors } = useTheme();
     const toggleModal = useCallback(() => setModalActive((current) => !current), [setModalActive]);
@@ -29,7 +29,7 @@ export function Picker(_a) {
     }, [colors.text]);
     return (React.createElement(React.Fragment, null,
         React.createElement(PickerButton, Object.assign({ onPress: toggleModal }, others), items[index][1]),
-        React.createElement(BlurredModal, { dismissText: iosDoneText, visible: modalActive, onDismiss: toggleModal },
+        React.createElement(BlurrediOSModal, { dismissText: iosDoneText, visible: modalActive, onDismiss: toggleModal },
             React.createElement(BasePicker, { selectedValue: currentValue, onValueChange: handleValueChange }, items.map(renderItem)))));
 }
 //# sourceMappingURL=index.ios.js.map

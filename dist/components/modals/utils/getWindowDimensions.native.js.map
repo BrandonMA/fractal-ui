@@ -1,1 +1,0 @@
-{"version":3,"file":"getWindowDimensions.native.js","sourceRoot":"","sources":["../../../../src/components/modals/utils/getWindowDimensions.native.tsx"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAE,MAAM,cAAc,CAAC;AAG1C,MAAM,UAAU,mBAAmB;IAC/B,OAAO,UAAU,CAAC,GAAG,CAAC,QAAQ,CAAC,CAAC;AACpC,CAAC"}

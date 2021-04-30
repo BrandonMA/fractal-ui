@@ -1,1 +1,1 @@
-export declare function getAudioPlayerAccessibilityProps(disabled?: boolean): Record<string, any>;
+export declare function getAudioPlayerAccessibilityProps(): Record<string, any>;

@@ -1,1 +1,1 @@
-export declare function getTextButtonAccessibilityProps(name?: string, pressed?: boolean): Record<string, any>;
+export declare function getTextButtonAccessibilityProps(name?: string): Record<string, any>;

@@ -25,14 +25,14 @@ const PlayPauseIcon = memo(({ tintColor, isPlaying }) => {
 });
 export const AudioControls = memo(({ isPlaying, isEnableShuffle, isEnableRepeat, onPlayPausePress, onNextPress, onPreviousPress, onShufflePress, onRepeatPress }) => {
     const { colors, sizes } = useTheme();
-    return (React.createElement(React.Fragment, null,
+    return (React.createElement(Layer, null,
         React.createElement(Layer, { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-            React.createElement(ToggleButton, Object.assign({ active: isEnableShuffle, variant: 'main', onPress: onShufflePress, useGrayVariant: true, width: SMALL_BUTTON, height: SMALL_BUTTON, borderRadius: SMALL_BUTTON / 2 }, getShuffleButtonAccessibilityProps(isEnableShuffle)), (tintColor) => React.createElement(ShuffleIcon, { fill: tintColor, width: SMALL_ICON_SIZE, height: SMALL_ICON_SIZE })),
-            React.createElement(BaseButton, Object.assign({ alignItems: 'center', justifyContent: 'center', width: 24, height: 24, onPress: onPreviousPress }, getPreviousButtonAccessibilityProps()),
+            React.createElement(ToggleButton, Object.assign({ active: isEnableShuffle, variant: 'main', onPress: onShufflePress, useGrayVariant: true, width: SMALL_BUTTON, height: SMALL_BUTTON, borderRadius: SMALL_BUTTON / 2 }, getShuffleButtonAccessibilityProps()), (tintColor) => React.createElement(ShuffleIcon, { fill: tintColor, width: SMALL_ICON_SIZE, height: SMALL_ICON_SIZE })),
+            React.createElement(BaseButton, Object.assign({ alignItems: 'center', justifyContent: 'center', width: 36, height: 36, onPress: onPreviousPress }, getPreviousButtonAccessibilityProps()),
                 React.createElement(PreviousIcon, { fill: colors.text, width: SMALL_ICON_SIZE, height: SMALL_ICON_SIZE })),
-            React.createElement(ToggleButton, Object.assign({ active: !isPlaying, variant: 'main', onPress: onPlayPausePress, width: sizes.interactiveItemHeight, borderRadius: sizes.interactiveItemHeight / 2 }, getPlayPauseButtonAccessibilityProps(isPlaying)), (tintColor) => React.createElement(PlayPauseIcon, { tintColor: tintColor, isPlaying: isPlaying })),
-            React.createElement(BaseButton, Object.assign({ alignItems: 'center', justifyContent: 'center', width: 24, height: 24, onPress: onNextPress }, getNextButtonAccessibilityProps()),
+            React.createElement(ToggleButton, Object.assign({ active: !isPlaying, variant: 'main', onPress: onPlayPausePress, width: sizes.interactiveItemHeight, borderRadius: sizes.interactiveItemHeight / 2 }, getPlayPauseButtonAccessibilityProps()), (tintColor) => React.createElement(PlayPauseIcon, { tintColor: tintColor, isPlaying: isPlaying })),
+            React.createElement(BaseButton, Object.assign({ alignItems: 'center', justifyContent: 'center', width: 36, height: 36, onPress: onNextPress }, getNextButtonAccessibilityProps()),
                 React.createElement(NextIcon, { fill: colors.text, width: SMALL_ICON_SIZE, height: SMALL_ICON_SIZE })),
-            React.createElement(ToggleButton, Object.assign({ active: isEnableRepeat, variant: 'main', onPress: onRepeatPress, useGrayVariant: true, width: SMALL_BUTTON, height: SMALL_BUTTON, borderRadius: SMALL_BUTTON / 2 }, getRepeatButtonAccessibilityProps(isEnableRepeat)), (tintColor) => React.createElement(RepeatIcon, { fill: tintColor, width: SMALL_ICON_SIZE, height: SMALL_ICON_SIZE })))));
+            React.createElement(ToggleButton, Object.assign({ active: isEnableRepeat, variant: 'main', onPress: onRepeatPress, useGrayVariant: true, width: SMALL_BUTTON, height: SMALL_BUTTON, borderRadius: SMALL_BUTTON / 2 }, getRepeatButtonAccessibilityProps()), (tintColor) => React.createElement(RepeatIcon, { fill: tintColor, width: SMALL_ICON_SIZE, height: SMALL_ICON_SIZE })))));
 });
 //# sourceMappingURL=AudioControls.js.map

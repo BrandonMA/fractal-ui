@@ -1,12 +1,12 @@
 export const orange = {
-    base100: '#FFF2CC',
-    base200: '#FFE299',
-    base300: '#FFCE66',
-    base400: '#FFBA3F',
-    base: '#FF9900',
-    base600: '#DB7A00',
-    base700: '#B75F00',
-    base800: '#934600',
-    base900: '#7A3500'
+    base100: '#FEEED4',
+    base200: '#FDD8AA',
+    base300: '#FABB7F',
+    base400: '#F69F5E',
+    base: '#F0732B',
+    base600: '#CE541F',
+    base700: '#AC3A15',
+    base800: '#8B240D',
+    base900: '#731408'
 };
 //# sourceMappingURL=orange.js.map

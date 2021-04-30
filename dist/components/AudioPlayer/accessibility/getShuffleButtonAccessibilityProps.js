@@ -1,8 +1,6 @@
-export function getShuffleButtonAccessibilityProps(pressed, disabled) {
+export function getShuffleButtonAccessibilityProps() {
     return {
-        'aria-label': 'Shuffle',
-        'aria-pressed': pressed,
-        'aria-disabled': disabled
+        'aria-label': 'Shuffle'
     };
 }
 //# sourceMappingURL=getShuffleButtonAccessibilityProps.js.map

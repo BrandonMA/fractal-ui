@@ -9,45 +9,34 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useTheme } from '../../../core/context/hooks/useTheme';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
+import { useControllableState } from '../../Slider/utils/useControllableState';
 import { Picker } from '../Picker';
 import { numberToArray } from '../util/numberToArray';
 import { normalizeHourValues } from './util/normalizeHourValues';
 export function TimePicker(_a) {
-    var { onChange, initialDate } = _a, others = __rest(_a, ["onChange", "initialDate"]);
+    var { value, onChange, initialDate = new Date() } = _a, others = __rest(_a, ["value", "onChange", "initialDate"]);
+    initialDate.setSeconds(0);
     const { spacings } = useTheme();
-    const defaultDate = new Date();
-    defaultDate.setSeconds(0);
-    const [date, setDate] = useState(initialDate !== null && initialDate !== void 0 ? initialDate : defaultDate);
+    const [date, setDate] = useControllableState({ value, defaultValue: initialDate, onChange }); //useState(initialDate);
     const hours = normalizeHourValues(numberToArray(24));
     const minutes = normalizeHourValues(numberToArray(59, true));
-    const handleOnChange = useCallback((date) => {
-        if (onChange != null) {
-            onChange(date);
-        }
-    }, [onChange]);
     const onHoursChange = useCallback((pair) => {
         const hoursIndex = Number(pair[0]);
-        setDate((currentDate) => {
-            const newDate = new Date(currentDate);
-            newDate.setHours(hoursIndex);
-            handleOnChange(newDate);
-            return newDate;
-        });
-    }, [handleOnChange]);
+        const newDate = new Date(date);
+        newDate.setHours(hoursIndex);
+        setDate(newDate);
+    }, [date, setDate]);
     const onMinutesChange = useCallback((pair) => {
         const minutesIndex = Number(pair[0]);
-        setDate((currentDate) => {
-            const newDate = new Date(currentDate);
-            newDate.setMinutes(minutesIndex);
-            handleOnChange(newDate);
-            return newDate;
-        });
-    }, [handleOnChange]);
+        const newDate = new Date(date);
+        newDate.setMinutes(minutesIndex);
+        setDate(newDate);
+    }, [date, setDate]);
     return (React.createElement(HorizontalLayer, Object.assign({}, others),
-        React.createElement(Picker, { initialValue: date.getHours().toString(), items: hours, flex: 1, onChange: onHoursChange, marginRight: spacings.xs }),
-        React.createElement(Picker, { initialValue: date.getMinutes().toString(), items: minutes, flex: 1, onChange: onMinutesChange })));
+        React.createElement(Picker, { value: date.getHours().toString(), items: hours, flex: 1, onChange: onHoursChange, marginRight: spacings.xs }),
+        React.createElement(Picker, { value: date.getMinutes().toString(), items: minutes, flex: 1, onChange: onMinutesChange })));
 }
 //# sourceMappingURL=index.js.map

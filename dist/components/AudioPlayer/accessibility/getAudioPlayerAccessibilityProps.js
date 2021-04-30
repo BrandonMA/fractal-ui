@@ -1,8 +1,7 @@
-export function getAudioPlayerAccessibilityProps(disabled) {
+export function getAudioPlayerAccessibilityProps() {
     return {
         tabIndex: 0,
-        'aria-label': 'Audio Player',
-        'aria-disabled': disabled
+        'aria-label': 'Audio Player'
     };
 }
 //# sourceMappingURL=getAudioPlayerAccessibilityProps.js.map

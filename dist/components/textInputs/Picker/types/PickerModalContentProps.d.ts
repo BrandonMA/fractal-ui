@@ -3,5 +3,6 @@ export interface PickerModalContentProps {
     items: Array<[string, string]>;
     onChange?: (pair: [string, string]) => void;
     iosDoneText?: string;
-    initialValue?: string;
+    defaultValue?: string;
+    value?: string;
 }

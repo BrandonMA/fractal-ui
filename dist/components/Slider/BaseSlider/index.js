@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useLayoutEffect, useMemo, useRef } from 'react';
+import React, { useCallback, useState, useEffect, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 import { useCallbackRef } from '../utils/useCallbackRef';
 import { getPercentage, roundValueToStep, clampValue, percentToValue, valueToPercent } from '../utils/slider';
@@ -51,7 +51,7 @@ export function BaseSlider({ value: valueProp, defaultValue = 0, minimumValue = 
     const value = clampValue(computedValue, minimumValue, maximumValue);
     const trackPercent = valueToPercent(value, minimumValue, maximumValue);
     const thumbStyle = {
-        left: `calc(${trackPercent}% - 10px)`
+        left: `${trackPercent}%`
     };
     const rangeProgressStyle = {
         width: `${trackPercent}%`
@@ -162,7 +162,7 @@ export function BaseSlider({ value: valueProp, defaultValue = 0, minimumValue = 
         sliderRef.current.addEventListener('touchend', handleCleanTouchStart);
         sliderRef.current.addEventListener('touchcancel', handleCleanTouchStart);
     }, [handleCleanTouchStart, handleMoveStart, handleTouchMove]);
-    useLayoutEffect(() => {
+    useEffect(() => {
         const env = sliderRef.current;
         env.addEventListener('touchstart', handleTouchStart, { passive: false });
         return () => {

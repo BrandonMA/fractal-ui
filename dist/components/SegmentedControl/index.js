@@ -9,34 +9,23 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef } from 'react';
-import { motion, AnimateSharedLayout } from 'framer-motion';
-import styled from 'styled-components';
-import { extractBackgroundProps, extractBorderProps, extractDimensionProps, extractDisplayProps, extractShadowProps, extractWebProps } from '../../sharedProps';
-import { useTheme } from '../../core/context/hooks/useTheme';
-import { SegmentedControlTab } from './SegmentControlTap';
-import { getSegmentedControlAccessibilityProps } from './accessibility/getSegmentedControlAccessibilityProps';
-const Container = styled(motion.ol) `
-    list-style: none;
-    ${extractBackgroundProps};
-    ${extractDimensionProps};
-    ${extractDisplayProps};
-    ${extractBorderProps};
-    ${extractShadowProps};
-    ${extractWebProps};
-`;
+import React, { forwardRef, useCallback } from 'react';
+import { useControllableState } from '../../hooks/useControllableState';
+import { BaseSegmentedControl } from './BaseSegmentedControl';
 export const SegmentedControl = forwardRef((_a, ref) => {
-    var { onChange, onValueChange, selectedIndex = 0, values, tintColor, backgroundColor, textStyle, activeTextStyle } = _a, layerProps = __rest(_a, ["onChange", "onValueChange", "selectedIndex", "values", "tintColor", "backgroundColor", "textStyle", "activeTextStyle"]);
-    const { colors, borderRadius, sizes } = useTheme();
-    return (React.createElement(AnimateSharedLayout, null,
-        React.createElement(Container, Object.assign({ ref: ref, backgroundColor: backgroundColor !== null && backgroundColor !== void 0 ? backgroundColor : colors.background, margin: 0, padding: 2, width: '100%', height: sizes.segmentedControlSize, borderRadius: borderRadius.s, display: 'inline-flex', flexDirection: 'row' }, layerProps, getSegmentedControlAccessibilityProps()), values.map((item, index) => {
-            return (React.createElement(SegmentedControlTab, { selected: selectedIndex === index, hideDivider: backgroundColor != undefined ||
-                    tintColor != undefined ||
-                    selectedIndex === index ||
-                    index === selectedIndex - 1, key: index, value: item, tintColor: tintColor, textStyle: textStyle, activeTextStyle: activeTextStyle, onSelect: () => {
-                    onChange === null || onChange === void 0 ? void 0 : onChange(item, index);
-                    onValueChange === null || onValueChange === void 0 ? void 0 : onValueChange(item);
-                } }));
-        }))));
+    var { onChange, onValueChange, selectedIndex: selectedIndexProp, defaultSelectedIndex, values } = _a, others = __rest(_a, ["onChange", "onValueChange", "selectedIndex", "defaultSelectedIndex", "values"]);
+    const onIndexChange = useCallback((index) => {
+        onChange === null || onChange === void 0 ? void 0 : onChange(values[index], index);
+        onValueChange === null || onValueChange === void 0 ? void 0 : onValueChange(values[index]);
+    }, [onChange, onValueChange, values]);
+    const [selectedIndex, setSelectedIndex] = useControllableState({
+        value: selectedIndexProp,
+        defaultValue: defaultSelectedIndex !== null && defaultSelectedIndex !== void 0 ? defaultSelectedIndex : 0,
+        onChange: onIndexChange
+    });
+    const handleIndexChange = useCallback((index) => {
+        setSelectedIndex(index);
+    }, [setSelectedIndex]);
+    return React.createElement(BaseSegmentedControl, Object.assign({ ref: ref, values: values, selectedIndex: selectedIndex, onTabPress: handleIndexChange }, others));
 });
 //# sourceMappingURL=index.js.map

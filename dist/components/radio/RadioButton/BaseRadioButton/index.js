@@ -1,9 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Text } from '../../../text';
-import { useTheme } from '../../../../core/context/hooks/useTheme';
 import styled from 'styled-components';
-import { Radio } from '../Radio';
+import { RadioControl } from '../RadioControl';
 import { getRadioButtonAccessibilityProps } from '../../accessibility/getRadioButtonAccessibilityProps';
 const Wrapper = styled(motion.label) `
     display: inline-flex;
@@ -24,10 +22,8 @@ const RadioInput = styled(motion.input) `
     position: absolute;
 `;
 export function BaseRadioButton({ label, onPress, active, value }) {
-    const { spacings } = useTheme();
     return (React.createElement(Wrapper, null,
         React.createElement(RadioInput, Object.assign({ value: value, type: 'radio', checked: active, onChange: () => onPress() }, getRadioButtonAccessibilityProps(active))),
-        React.createElement(Radio, { active: active }),
-        label && (React.createElement(Text, { marginLeft: spacings.xs, variant: 'normal' }, label))));
+        React.createElement(RadioControl, { active: active, label: label })));
 }
 //# sourceMappingURL=index.js.map

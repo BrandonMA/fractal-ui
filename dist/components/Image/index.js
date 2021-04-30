@@ -9,13 +9,13 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useCallback } from 'react';
 import { getImageAccessibilityProps } from './accessibility/getImageAccessibilityProps';
 import { ResizableImage } from './ResizableImage';
 import { Layer } from '../containers/Layer';
 export const Image = forwardRef((_a, ref) => {
     var { label, source, resizeMode, width, height } = _a, others = __rest(_a, ["label", "source", "resizeMode", "width", "height"]);
-    const getBackgroundSize = () => {
+    const getBackgroundSize = useCallback(() => {
         if ((resizeMode == 'center' || resizeMode == 'repeat') && width != null && height != null) {
             if (typeof width == 'string') {
                 return `${width} ${height}`;
@@ -23,7 +23,7 @@ export const Image = forwardRef((_a, ref) => {
             return width < height ? `${width}px` : `${height}px`;
         }
         return undefined;
-    };
+    }, [height, resizeMode, width]);
     return (React.createElement(Layer, Object.assign({ ref: ref, flexBasis: 'auto', overflow: 'hidden', zIndex: 0, display: 'flex', width: width, height: height }, others, getImageAccessibilityProps(label)),
         React.createElement(ResizableImage, { source: source, resizeMode: resizeMode, backgroundSize: getBackgroundSize() })));
 });

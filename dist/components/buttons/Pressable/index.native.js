@@ -31,6 +31,6 @@ export const Pressable = forwardRef((_a, ref) => {
     var { style } = _a, others = __rest(_a, ["style"]);
     const animationStyles = useAnimationStyles(others);
     const [tapStyles, handlePressIn, handlePressOut] = usePressableAnimationStyles(others);
-    return (React.createElement(StyledPressable, Object.assign({ ref: ref, onPressIn: handlePressIn, onPressOut: handlePressOut, style: [tapStyles, animationStyles, style] }, others)));
+    return (React.createElement(StyledPressable, Object.assign({ ref: ref, onPressIn: handlePressIn, onPressOut: handlePressOut, style: [animationStyles, tapStyles, style] }, others)));
 });
 //# sourceMappingURL=index.native.js.map

@@ -1,8 +1,6 @@
-export function getColorAccessibilityProps(checked, color, disabled) {
+export function getColorAccessibilityProps(checked, color) {
     return {
-        role: 'button',
         'aria-pressed': checked,
-        'aria-disabled': disabled,
         'aria-label': 'Color Picker ' + color
     };
 }

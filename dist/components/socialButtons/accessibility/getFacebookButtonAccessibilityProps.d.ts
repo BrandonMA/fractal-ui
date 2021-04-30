@@ -1,1 +1,1 @@
-export declare function getFacebookButtonAccessibilityProps(pressed?: boolean, disabled?: boolean): Record<string, any>;
+export declare function getFacebookButtonAccessibilityProps(): Record<string, any>;

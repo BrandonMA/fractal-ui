@@ -11,11 +11,8 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { useEffect, forwardRef } from 'react';
 import { Layer } from '../../containers';
-import { useIsPresent } from 'framer-motion';
 export const ModalContent = forwardRef((_a, ref) => {
     var { children } = _a, others = __rest(_a, ["children"]);
-    const isPresent = useIsPresent();
-    console.log(isPresent);
     useEffect(() => {
         document.body.style.overflow = 'hidden';
         return () => {

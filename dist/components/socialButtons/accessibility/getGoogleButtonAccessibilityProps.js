@@ -1,8 +1,5 @@
-export function getGoogleButtonAccessibilityProps(pressed, disabled) {
+export function getGoogleButtonAccessibilityProps() {
     return {
-        role: 'button',
-        'aria-pressed': pressed,
-        'aria-disabled': disabled,
         'aria-label': 'Google'
     };
 }

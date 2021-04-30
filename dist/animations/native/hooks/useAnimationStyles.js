@@ -1,11 +1,11 @@
 import { useAnimatedStyle } from 'react-native-reanimated';
-import { insertSharedValueToStyles } from '../worklets/insertSharedValueToStyles';
+import { insertTransitionValueAnimated } from '../worklets/insertTransitionValueAnimated';
 import { usePresence } from 'framer-motion';
-import { useCallback } from 'react';
-import { insertSharedTransformValueToStyles } from '../worklets/insertSharedTransformValueToStyles';
+import { insertTransformTransitionValueAnimated } from '../worklets/insertTransformTransitionValueAnimated';
 import { useAnimationContent } from './useAnimationContent';
 import { useSharedValueEffect } from './useSharedValueEffect';
-export function useAnimationStyles({ initial, animate, exit, variants }) {
+import { useCallback } from 'react';
+export function useAnimationStyles({ initial, animate, exit, variants, transition = { type: 'spring' } }) {
     const [isPresent, setIsSafeToRemove] = usePresence();
     const initialAnimationContent = useAnimationContent(initial, variants);
     const animateAnimationContent = useAnimationContent(animate, variants);
@@ -19,7 +19,7 @@ export function useAnimationStyles({ initial, animate, exit, variants }) {
     const scaleSharedValue = useSharedValueEffect(initialAnimationContent.scale, animateAnimationContent.scale, exitAnimationContent.scale, isPresent);
     const rotationSharedValue = useSharedValueEffect(initialAnimationContent.rotate, animateAnimationContent.rotate, exitAnimationContent.rotate, isPresent);
     const translateYSharedValue = useSharedValueEffect(initialAnimationContent.translateY, animateAnimationContent.translateY, exitAnimationContent.translateY, isPresent);
-    const removeIfNeeded = useCallback((finished) => {
+    const removeIfFinished = useCallback((finished) => {
         if (!isPresent && finished && setIsSafeToRemove) {
             setIsSafeToRemove();
         }
@@ -28,13 +28,13 @@ export function useAnimationStyles({ initial, animate, exit, variants }) {
         const styles = {
             transform: []
         };
-        insertSharedValueToStyles('opacity', styles, opacitySharedValue.value, removeIfNeeded);
-        insertSharedValueToStyles('width', styles, widthSharedValue.value, removeIfNeeded);
-        insertSharedValueToStyles('height', styles, heightSharedValue.value, removeIfNeeded);
-        insertSharedValueToStyles('backgroundColor', styles, backgroundColorSharedValue.value, removeIfNeeded);
-        insertSharedTransformValueToStyles('scale', styles, scaleSharedValue.value, removeIfNeeded);
-        insertSharedTransformValueToStyles('rotate', styles, rotationSharedValue.value, removeIfNeeded);
-        insertSharedTransformValueToStyles('translateY', styles, translateYSharedValue.value, removeIfNeeded);
+        insertTransitionValueAnimated(styles, 'opacity', opacitySharedValue.value, transition, removeIfFinished);
+        insertTransitionValueAnimated(styles, 'width', widthSharedValue.value, transition, removeIfFinished);
+        insertTransitionValueAnimated(styles, 'height', heightSharedValue.value, transition, removeIfFinished);
+        insertTransitionValueAnimated(styles, 'backgroundColor', backgroundColorSharedValue.value, transition, removeIfFinished);
+        insertTransformTransitionValueAnimated(styles, 'scale', scaleSharedValue.value, transition, removeIfFinished);
+        insertTransformTransitionValueAnimated(styles, 'rotate', rotationSharedValue.value, transition, removeIfFinished);
+        insertTransformTransitionValueAnimated(styles, 'translateY', translateYSharedValue.value, transition, removeIfFinished);
         return styles;
     });
 }

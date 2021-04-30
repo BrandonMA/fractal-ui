@@ -1,9 +1,8 @@
-export function getSwitchAccessibilityProps(checked, disabled) {
+export function getSwitchAccessibilityProps(checked) {
     return {
         role: 'switch',
         'aria-label': 'Switch',
-        'aria-checked': checked,
-        'aria-disabled': disabled
+        'aria-checked': checked
     };
 }
 //# sourceMappingURL=getSwitchAccessibilityProps.js.map

@@ -11,10 +11,10 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React from 'react';
 import { DimmedModal } from './DimmedModal';
-import { ModalMiddleCell } from './ModalMiddleCell';
+import { ModalCell } from './ModalCell';
 export function MiddleCellModal(_a) {
     var { visible, onDismiss } = _a, others = __rest(_a, ["visible", "onDismiss"]);
     return (React.createElement(DimmedModal, { pointerEvents: 'box-none', visible: visible, onDismiss: onDismiss, height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' },
-        React.createElement(ModalMiddleCell, Object.assign({}, others))));
+        React.createElement(ModalCell, Object.assign({}, others, { variant: 'middle' }))));
 }
 //# sourceMappingURL=MiddleCellModal.js.map

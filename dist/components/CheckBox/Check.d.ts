@@ -1,6 +1,3 @@
 /// <reference types="react" />
-interface Props {
-    value: boolean;
-}
-export declare function Check({ value }: Props): JSX.Element;
-export {};
+import { CheckProps } from './types';
+export declare function Check({ value, label }: CheckProps): JSX.Element;

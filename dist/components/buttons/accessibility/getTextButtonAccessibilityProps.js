@@ -1,7 +1,6 @@
-export function getTextButtonAccessibilityProps(name, pressed) {
+export function getTextButtonAccessibilityProps(name) {
     return {
-        'aria-label': name,
-        'aria-pressed': pressed
+        'aria-label': name
     };
 }
 //# sourceMappingURL=getTextButtonAccessibilityProps.js.map

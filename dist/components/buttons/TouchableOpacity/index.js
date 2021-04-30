@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
@@ -19,6 +19,7 @@ import { extractDisplayProps } from '../../../sharedProps/DisplayProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
 import { extractWebProps } from '../../../sharedProps/WebProps';
 import { useLongPress } from '../useLongPress';
+import { getButtonAccessibilityProps } from '../accessibility/getButtonAccessibilityProps';
 const StyledTouchableOpacity = styled(motion.button) `
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -36,11 +37,17 @@ const transition = { type: 'linear', duration: 0.2 };
 const emptyFuntion = () => undefined;
 export const TouchableOpacity = forwardRef((_a, ref) => {
     var { onPress, onLongPress, whileTap } = _a, others = __rest(_a, ["onPress", "onLongPress", "whileTap"]);
+    const [pressed, setPressed] = useState(false);
     const tapStyles = Object.assign({ opacity: 0.4 }, whileTap);
     const longPressEvent = useLongPress(onLongPress !== null && onLongPress !== void 0 ? onLongPress : emptyFuntion, {
         isPreventDefault: true,
         delay: 300
     });
-    return (React.createElement(StyledTouchableOpacity, Object.assign({ ref: ref, transition: transition, whileTap: tapStyles, onClick: onPress }, longPressEvent, others)));
+    const handleButtonPress = useCallback(() => {
+        setPressed(true);
+        onPress === null || onPress === void 0 ? void 0 : onPress();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+    return (React.createElement(StyledTouchableOpacity, Object.assign({ ref: ref, transition: transition, whileTap: tapStyles, onClick: handleButtonPress }, longPressEvent, getButtonAccessibilityProps(pressed), others)));
 });
 //# sourceMappingURL=index.js.map

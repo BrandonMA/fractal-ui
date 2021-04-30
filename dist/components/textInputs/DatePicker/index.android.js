@@ -12,23 +12,21 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { useCallback, useState } from 'react';
 import { PickerButton } from '../PickerButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { useControllableState } from '../../../hooks/useControllableState';
 export function DatePicker(_a) {
-    var { initialDate, mode = 'date', minDate, maxDate, onChange } = _a, others = __rest(_a, ["initialDate", "mode", "minDate", "maxDate", "onChange"]);
-    const defaultDate = new Date();
-    defaultDate.setSeconds(0);
+    var { value, initialDate = new Date(), mode = 'date', minDate, maxDate, onChange } = _a, others = __rest(_a, ["value", "initialDate", "mode", "minDate", "maxDate", "onChange"]);
+    initialDate.setSeconds(0);
     const [modalActive, setModalActive] = useState(false);
-    const [date, setDate] = useState(initialDate !== null && initialDate !== void 0 ? initialDate : defaultDate);
-    const toggleModal = useCallback(() => setModalActive((current) => !current), [setModalActive]);
+    const [date, setDate] = useControllableState({ value, defaultValue: initialDate, onChange });
+    console.log({ modalActive });
+    const toggleModal = useCallback(() => {
+        setModalActive((current) => !current);
+    }, [setModalActive]);
     const onPickerValueChange = useCallback((_, selectedDate) => {
-        setDate((currentDate) => {
-            const newDate = selectedDate !== null && selectedDate !== void 0 ? selectedDate : currentDate;
-            if (onChange != null) {
-                onChange(newDate);
-                toggleModal();
-            }
-            return newDate;
-        });
-    }, [setDate, onChange, toggleModal]);
+        const currentDate = selectedDate || date;
+        toggleModal();
+        setDate(currentDate);
+    }, [date, setDate, toggleModal]);
     return (React.createElement(React.Fragment, null,
         React.createElement(PickerButton, Object.assign({ onPress: toggleModal }, others), mode === 'date' ? date.toLocaleDateString() : date.toLocaleTimeString()),
         modalActive ? (React.createElement(DateTimePicker, { value: date, mode: mode, is24Hour: true, minimumDate: minDate, maximumDate: maxDate, onChange: onPickerValueChange })) : null));

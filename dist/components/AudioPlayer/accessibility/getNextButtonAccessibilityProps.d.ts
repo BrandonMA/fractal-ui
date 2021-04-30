@@ -1,1 +1,1 @@
-export declare function getNextButtonAccessibilityProps(disabled?: boolean): Record<string, any>;
+export declare function getNextButtonAccessibilityProps(): Record<string, any>;

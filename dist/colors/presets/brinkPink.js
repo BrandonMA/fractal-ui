@@ -1,12 +1,12 @@
 export const brinkPink = {
-    base100: '#FFE4DE',
-    base200: '#FFC4BE',
-    base300: '#FF9E9F',
-    base400: '#FF8692',
-    base: '#FF5E7E',
-    base600: '#DB4470',
-    base700: '#B72F64',
-    base800: '#931D57',
-    base900: '#7A124E'
+    base100: '#FEDCD7',
+    base200: '#FDB3B0',
+    base300: '#FB888F',
+    base400: '#F86A80',
+    base: '#E63763',
+    base600: '#D12A64',
+    base700: '#AF1D5E',
+    base800: '#8D1255',
+    base900: '#750B4E'
 };
 //# sourceMappingURL=brinkPink.js.map

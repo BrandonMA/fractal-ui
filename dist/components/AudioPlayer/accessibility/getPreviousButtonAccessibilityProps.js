@@ -1,7 +1,6 @@
-export function getPreviousButtonAccessibilityProps(disabled) {
+export function getPreviousButtonAccessibilityProps() {
     return {
-        'aria-label': 'Previous',
-        'aria-disabled': disabled
+        'aria-label': 'Previous'
     };
 }
 //# sourceMappingURL=getPreviousButtonAccessibilityProps.js.map

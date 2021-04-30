@@ -21,7 +21,7 @@ export const TextButton = forwardRef((_a, ref) => {
     const color = colors[colorName];
     return (React.createElement(TouchableOpacity, Object.assign({ ref: ref }, others, getTextButtonAccessibilityProps()),
         leftIcon && leftIcon(color),
-        children && (React.createElement(Text, Object.assign({ variant: 'textButton', color: color }, textProps), children)),
+        children && (React.createElement(Text, Object.assign({ fontWeight: 500, variant: 'textButton', color: color }, textProps), children)),
         rightIcon && rightIcon(color)));
 });
 //# sourceMappingURL=TextButton.js.map

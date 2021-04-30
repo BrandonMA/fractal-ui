@@ -14,10 +14,14 @@ export declare function isAnimationContent(value: unknown): value is AnimationCo
 export declare type Variants = {
     [key: string]: AnimationContent;
 };
+export declare type FractalTransition = Omit<Transition, 'type'> & {
+    duration?: number;
+    type?: 'ease' | 'spring';
+};
 export interface AnimationProps {
     initial?: AnimationContent | string;
     animate?: AnimationContent | string;
     variants?: Variants;
-    transition?: Transition;
+    transition?: FractalTransition;
     exit?: AnimationContent;
 }

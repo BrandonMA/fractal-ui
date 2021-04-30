@@ -1,1 +1,1 @@
-export declare function getAppleButtonAccessibilityProps(pressed?: boolean, disabled?: boolean): Record<string, any>;
+export declare function getAppleButtonAccessibilityProps(): Record<string, any>;

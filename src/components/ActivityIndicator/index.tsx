@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { ActivityIndicatorCircleProps, ActivityIndicatorProps } from './types';
 import { Layer } from '../containers/Layer';
+import { FractalTransition } from '../../sharedProps';
 
 const BackgroundCircle = styled(motion.circle)`
     stroke: ${({ color }: ActivityIndicatorCircleProps) => color};
@@ -15,7 +16,7 @@ const AnimatedSection = styled(motion.circle)`
     stroke-dashoffset: 60;
 `;
 
-const transition = { repeat: Infinity, ease: 'linear', type: 'linear', duration: 0.75 };
+const transition: FractalTransition = { repeat: Infinity, type: 'ease', duration: 0.75 };
 
 const animate = {
     rotate: 360

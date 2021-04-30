@@ -13,25 +13,20 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { PickerButton } from '../PickerButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useTheme } from '../../../core/context/hooks/useTheme';
-import { BlurredModal } from '../../modals';
+import { BlurrediOSModal } from '../../modals';
+import { useControllableState } from '../../../hooks/useControllableState';
 export function DatePicker(_a) {
-    var { initialDate, mode = 'date', minDate, maxDate, onChange, iosDoneText = 'Done' } = _a, others = __rest(_a, ["initialDate", "mode", "minDate", "maxDate", "onChange", "iosDoneText"]);
-    const defaultDate = new Date();
-    defaultDate.setSeconds(0);
+    var { value, initialDate = new Date(), mode = 'date', minDate, maxDate, onChange, iosDoneText = 'Done' } = _a, others = __rest(_a, ["value", "initialDate", "mode", "minDate", "maxDate", "onChange", "iosDoneText"]);
+    initialDate.setSeconds(0);
     const [modalActive, setModalActive] = useState(false);
-    const [date, setDate] = useState(initialDate !== null && initialDate !== void 0 ? initialDate : defaultDate);
+    const [date, setDate] = useControllableState({ value, defaultValue: initialDate, onChange }); //useState(initialDate ?? defaultDate);
     const { colors } = useTheme();
     const [textColor, setTextColor] = useState('black');
     const toggleModal = useCallback(() => setModalActive((current) => !current), [setModalActive]);
     const onPickerValueChange = useCallback((_, selectedDate) => {
-        setDate((currentDate) => {
-            const newDate = selectedDate !== null && selectedDate !== void 0 ? selectedDate : currentDate;
-            if (onChange != null) {
-                onChange(newDate);
-            }
-            return newDate;
-        });
-    }, [setDate, onChange]);
+        const currentDate = selectedDate || date;
+        setDate(currentDate);
+    }, [date, setDate]);
     useEffect(() => {
         // Further info on the bug: https://github.com/react-native-datetimepicker/datetimepicker/issues/308
         // This is really not performant so check constanly if the bug is fixed.
@@ -46,7 +41,7 @@ export function DatePicker(_a) {
     }, [modalActive, colors]);
     return (React.createElement(React.Fragment, null,
         React.createElement(PickerButton, Object.assign({ onPress: toggleModal }, others), mode === 'date' ? date.toLocaleDateString() : date.toLocaleTimeString()),
-        React.createElement(BlurredModal, { dismissText: iosDoneText, visible: modalActive, onDismiss: toggleModal },
+        React.createElement(BlurrediOSModal, { dismissText: iosDoneText, visible: modalActive, onDismiss: toggleModal },
             React.createElement(DateTimePicker, { value: date, mode: mode, display: 'spinner', is24Hour: true, minimumDate: minDate, maximumDate: maxDate, onChange: onPickerValueChange, textColor: textColor }))));
 }
 //# sourceMappingURL=index.ios.js.map

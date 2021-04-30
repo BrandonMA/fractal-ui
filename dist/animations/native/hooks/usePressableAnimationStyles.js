@@ -1,8 +1,8 @@
 import { useSharedValueCallbacks } from './useSharedValueCallbacks';
 import { interpolateColor, useAnimatedStyle } from 'react-native-reanimated';
-import { insertSharedValueToStyles } from '../worklets/insertSharedValueToStyles';
-import { insertSharedTransformValueToStyles } from '../worklets/insertSharedTransformValueToStyles';
 import { useColorAnimationCallbacks } from './useColorAnimationCallbacks';
+import { insertTransitionValue } from '../worklets/inserTransitionValue';
+import { insertTransformTransitionValue } from '../worklets/insertTransformTransitionValue';
 export function usePressableAnimationStyles({ whileTap, opacity, width, height, backgroundColor, onPressOut, onPressIn }) {
     const [opacityAnimatedValue, animateOpacity, resetOpacity] = useSharedValueCallbacks(opacity !== null && opacity !== void 0 ? opacity : 1, whileTap === null || whileTap === void 0 ? void 0 : whileTap.opacity);
     const [widthAnimatedValue, animateWidth, resetWidth] = useSharedValueCallbacks(width !== null && width !== void 0 ? width : '100%', whileTap === null || whileTap === void 0 ? void 0 : whileTap.width);
@@ -36,14 +36,14 @@ export function usePressableAnimationStyles({ whileTap, opacity, width, height, 
         const styles = {
             transform: []
         };
-        insertSharedValueToStyles('opacity', styles, opacityAnimatedValue.value);
-        insertSharedValueToStyles('width', styles, widthAnimatedValue.value);
-        insertSharedValueToStyles('height', styles, heightAnimatedValue.value);
+        insertTransitionValue(styles, 'opacity', opacityAnimatedValue.value);
+        insertTransitionValue(styles, 'width', widthAnimatedValue.value);
+        insertTransitionValue(styles, 'height', heightAnimatedValue.value);
         if (backgroundColors.length === 2) {
             styles['backgroundColor'] = interpolateColor(backgroundColorAnimatedValue.value, [0, 1], backgroundColors);
         }
-        insertSharedTransformValueToStyles('scale', styles, scaleAnimatedValue.value);
-        insertSharedTransformValueToStyles('rotate', styles, rotationAnimatedValue.value);
+        insertTransformTransitionValue(styles, 'scale', scaleAnimatedValue.value);
+        insertTransformTransitionValue(styles, 'rotate', rotationAnimatedValue.value);
         return styles;
     });
     return [tapStyles, handlePressIn, handlePressOut];

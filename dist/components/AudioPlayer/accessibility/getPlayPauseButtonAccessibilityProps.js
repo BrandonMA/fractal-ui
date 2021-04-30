@@ -1,8 +1,6 @@
-export function getPlayPauseButtonAccessibilityProps(pressed, disabled) {
+export function getPlayPauseButtonAccessibilityProps() {
     return {
-        'aria-label': 'Play Pause',
-        'aria-pressed': pressed,
-        'aria-disabled': disabled
+        'aria-label': 'Play Pause'
     };
 }
 //# sourceMappingURL=getPlayPauseButtonAccessibilityProps.js.map

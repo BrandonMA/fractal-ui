@@ -1,8 +1,6 @@
-export function getRepeatButtonAccessibilityProps(pressed, disabled) {
+export function getRepeatButtonAccessibilityProps() {
     return {
-        'aria-label': 'Repeat',
-        'aria-pressed': pressed,
-        'aria-disabled': disabled
+        'aria-label': 'Repeat'
     };
 }
 //# sourceMappingURL=getRepeatButtonAccessibilityProps.js.map

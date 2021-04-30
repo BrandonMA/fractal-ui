@@ -36,7 +36,8 @@ import {
     Avatar,
     BlurrediOSModal,
     Bubble,
-    Image
+    Image,
+    ActivityIndicator
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { BuggyComponent } from './examples/BuggyComponent';
@@ -249,6 +250,7 @@ function Content(): JSX.Element {
 
     return (
         <PaddingLayer>
+            <ActivityIndicator width={20} height={20} color={colors.mainInteractiveColor} />
             <Text marginBottom={spacings.m} variant={'title'}>
                 Audio Player
             </Text>

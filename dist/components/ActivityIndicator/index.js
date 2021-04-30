@@ -22,7 +22,7 @@ const AnimatedSection = styled(motion.circle) `
     stroke-dasharray: 80;
     stroke-dashoffset: 60;
 `;
-const transition = { repeat: Infinity, ease: 'linear', type: 'linear', duration: 0.75 };
+const transition = { repeat: Infinity, type: 'ease', duration: 0.75 };
 const animate = {
     rotate: 360
 };

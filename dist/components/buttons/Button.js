@@ -9,24 +9,19 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useState, forwardRef } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { forwardRef } from 'react';
 import { Text } from '../text';
 import { useTheme } from '../../core/context/hooks/useTheme';
 import { BaseButton } from './BaseButton';
-import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
 export const Button = forwardRef((props, ref) => {
-    const { variant, children, text, addShadow, onPress } = props, others = __rest(props, ["variant", "children", "text", "addShadow", "onPress"]);
+    const { variant, children, text, addShadow } = props, others = __rest(props, ["variant", "children", "text", "addShadow"]);
     const { borderRadius, colors, sizes, shadows } = useTheme();
-    const [pressed, setPressed] = useState(false);
     const colorName = `${variant}InteractiveColor`;
     const color = colors[colorName];
     const pressedColorName = `${variant}InteractiveColor600`;
     const pressedColor = colors[pressedColorName];
-    const handleButtonPress = () => {
-        setPressed(true);
-        onPress === null || onPress === void 0 ? void 0 : onPress();
-    };
-    return (React.createElement(BaseButton, Object.assign({ ref: ref, height: sizes.interactiveItemHeight, width: '100%', backgroundColor: color, pressedBackgroundColor: pressedColor, borderRadius: borderRadius.m, boxShadow: addShadow ? shadows.mainShadow : undefined, justifyContent: 'center', alignItems: 'center', onPress: handleButtonPress }, others, getButtonAccessibilityProps(pressed)),
+    return (React.createElement(BaseButton, Object.assign({ ref: ref, height: sizes.interactiveItemHeight, width: '100%', backgroundColor: color, pressedBackgroundColor: pressedColor, borderRadius: borderRadius.m, boxShadow: addShadow ? shadows.mainShadow : undefined, justifyContent: 'center', alignItems: 'center' }, others),
         children,
         text != null ? React.createElement(Text, { variant: 'button' }, text) : null));
 });

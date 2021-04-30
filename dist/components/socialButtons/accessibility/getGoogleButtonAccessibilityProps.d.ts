@@ -1,1 +1,1 @@
-export declare function getGoogleButtonAccessibilityProps(pressed?: boolean, disabled?: boolean): Record<string, any>;
+export declare function getGoogleButtonAccessibilityProps(): Record<string, any>;

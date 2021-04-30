@@ -1,8 +1,5 @@
-export function getAppleButtonAccessibilityProps(pressed, disabled) {
+export function getAppleButtonAccessibilityProps() {
     return {
-        role: 'button',
-        'aria-pressed': pressed,
-        'aria-disabled': disabled,
         'aria-label': 'Apple'
     };
 }

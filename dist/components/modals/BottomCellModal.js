@@ -10,25 +10,11 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React from 'react';
-import { Box } from '../containers';
-import { useValueForLargeSizeType } from '@bma98/size-class';
 import { DimmedModal } from './DimmedModal';
-import { useTheme } from '../../core/context/hooks/useTheme';
-import { getWindowDimensions } from './utils/getWindowDimensions';
-function BottomCellDesktop(props) {
-    const { borderRadius, colors } = useTheme();
-    const window = getWindowDimensions();
-    return (React.createElement(Box, Object.assign({ pointerEvents: 'auto', overflow: 'hidden', borderRadius: borderRadius.m, width: 500, minHeight: 300, maxHeight: '50%', initial: { translateY: window.height }, animate: { translateY: 0 }, exit: { translateY: window.height }, backgroundColor: colors.background }, props)));
-}
-function BottomCellPhone(props) {
-    const { borderRadius, spacings, colors } = useTheme();
-    const window = getWindowDimensions();
-    return (React.createElement(Box, Object.assign({ pointerEvents: 'auto', overflow: 'hidden', borderRadius: borderRadius.m, alignSelf: 'stretch', minHeight: 300, maxHeight: '50%', margin: spacings.m, initial: { translateY: window.height }, animate: { translateY: 0 }, exit: { translateY: window.height }, backgroundColor: colors.background }, props)));
-}
+import { ModalCell } from './ModalCell';
 export function BottomCellModal(_a) {
     var { visible, onDismiss } = _a, others = __rest(_a, ["visible", "onDismiss"]);
-    const Wrapper = useValueForLargeSizeType('width', BottomCellDesktop, BottomCellPhone);
-    return (React.createElement(DimmedModal, { visible: visible, onDismiss: onDismiss, pointerEvents: 'box-none', height: '100%', width: '100%', justifyContent: 'flex-end', alignItems: 'center' },
-        React.createElement(Wrapper, Object.assign({}, others))));
+    return (React.createElement(DimmedModal, { pointerEvents: 'box-none', visible: visible, onDismiss: onDismiss, height: '100%', width: '100%', justifyContent: 'flex-end', alignItems: 'center' },
+        React.createElement(ModalCell, Object.assign({}, others, { variant: 'bottom' }))));
 }
 //# sourceMappingURL=BottomCellModal.js.map

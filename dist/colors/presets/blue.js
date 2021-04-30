@@ -1,12 +1,12 @@
 export const blue = {
-    base100: '#CFEEFF',
-    base200: '#A0D9FF',
-    base300: '#70C0FF',
-    base400: '#4DA8FF',
-    base: '#1281FF',
-    base600: '#0D63DB',
-    base700: '#094AB7',
-    base800: '#053493',
-    base900: '#03247A'
+    base100: '#CEEDFD',
+    base200: '#9ED7FC',
+    base300: '#6DBAF7',
+    base400: '#489EF0',
+    base: '#1074E6',
+    base600: '#0B59C5',
+    base700: '#0842A5',
+    base800: '#052E85',
+    base900: '#03216E'
 };
 //# sourceMappingURL=blue.js.map

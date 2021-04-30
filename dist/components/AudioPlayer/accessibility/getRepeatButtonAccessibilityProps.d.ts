@@ -1,1 +1,1 @@
-export declare function getRepeatButtonAccessibilityProps(pressed: boolean, disabled?: boolean): Record<string, any>;
+export declare function getRepeatButtonAccessibilityProps(): Record<string, any>;
