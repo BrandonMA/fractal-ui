@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Picker } from '../Picker';
 import { DatePickerProps } from './types/DatePickerProps';
 import { numberToArray } from '../util/numberToArray';
@@ -8,64 +8,47 @@ import { localeMonthNames } from './util/localeMonthNames';
 import { Layer } from '../../containers';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
 import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useControllableState } from '../../../hooks/useControllableState';
 
-export function DatePicker({ minDate, maxDate, initialDate, onChange, ...others }: DatePickerProps): JSX.Element {
+export function DatePicker({ value, minDate, maxDate, initialDate = new Date(), onChange, ...others }: DatePickerProps): JSX.Element {
     const { spacings } = useTheme();
     const finalMinDate = useMemo(() => minDate ?? new Date('Jan 1, 1920'), [minDate]);
-    const [date, setDate] = useState(initialDate ?? new Date());
+    const [date, setDate] = useControllableState({ value, defaultValue: initialDate, onChange }); //useState(initialDate);
 
-    const years = useMemo(() => getYearsInRange(maxDate ?? date, finalMinDate), [maxDate, date, finalMinDate]);
+    const years = useMemo(() => getYearsInRange(maxDate ?? new Date(), finalMinDate), [maxDate, finalMinDate]);
     const days = useMemo(() => {
         const amountOfDaysInMonth = getDaysInMonth(2021, date.getMonth());
         return numberToArray(amountOfDaysInMonth);
     }, [date]);
 
-    const handleOnChange = useCallback(
-        (date: Date) => {
-            if (onChange != null) {
-                onChange(date);
-            }
-        },
-        [onChange]
-    );
-
     const onYearChange = useCallback(
         (pair) => {
             const yearIndex = Number(pair[0]);
-            setDate((currentDate) => {
-                const newDate = new Date(currentDate);
-                newDate.setFullYear(yearIndex);
-                handleOnChange(newDate);
-                return newDate;
-            });
+            const newDate = new Date(date);
+            newDate.setFullYear(yearIndex);
+            setDate(newDate);
         },
-        [handleOnChange]
+        [date, setDate]
     );
 
     const onMonthChange = useCallback(
         (pair) => {
             const monthIndex = Number(pair[0]);
-            setDate((currentDate) => {
-                const newDate = new Date(currentDate);
-                newDate.setMonth(monthIndex);
-                handleOnChange(newDate);
-                return newDate;
-            });
+            const newDate = new Date(date);
+            newDate.setMonth(monthIndex);
+            setDate(newDate);
         },
-        [handleOnChange]
+        [date, setDate]
     );
 
     const onDayChange = useCallback(
         (pair) => {
             const dayIndex = Number(pair[0]);
-            setDate((currentDate) => {
-                const newDate = new Date(currentDate);
-                newDate.setDate(dayIndex);
-                handleOnChange(newDate);
-                return newDate;
-            });
+            const newDate = new Date(date);
+            newDate.setDate(dayIndex);
+            setDate(newDate);
         },
-        [handleOnChange]
+        [date, setDate]
     );
 
     return (

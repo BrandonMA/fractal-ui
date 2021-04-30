@@ -1,6 +1,7 @@
 import { LayerProps } from '../../../containers/Layer/types';
 
 export interface DatePickerProps extends Partial<Omit<LayerProps, 'children'>> {
+    value?: Date;
     initialDate?: Date;
     minDate?: Date;
     maxDate?: Date;

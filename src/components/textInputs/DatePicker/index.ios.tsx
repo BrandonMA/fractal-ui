@@ -4,9 +4,11 @@ import { DatePickerProps } from './types/DatePickerProps';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { useTheme } from '../../../core/context/hooks/useTheme';
 import { BlurrediOSModal } from '../../modals';
+import { useControllableState } from '../../../hooks/useControllableState';
 
 export function DatePicker({
-    initialDate,
+    value,
+    initialDate = new Date(),
     mode = 'date',
     minDate,
     maxDate,
@@ -14,11 +16,9 @@ export function DatePicker({
     iosDoneText = 'Done',
     ...others
 }: DatePickerProps): JSX.Element {
-    const defaultDate = new Date();
-    defaultDate.setSeconds(0);
-
+    initialDate.setSeconds(0);
     const [modalActive, setModalActive] = useState(false);
-    const [date, setDate] = useState(initialDate ?? defaultDate);
+    const [date, setDate] = useControllableState({ value, defaultValue: initialDate, onChange }); //useState(initialDate ?? defaultDate);
     const { colors } = useTheme();
     const [textColor, setTextColor] = useState('black');
 
@@ -26,15 +26,10 @@ export function DatePicker({
 
     const onPickerValueChange = useCallback(
         (_, selectedDate) => {
-            setDate((currentDate) => {
-                const newDate = selectedDate ?? currentDate;
-                if (onChange != null) {
-                    onChange(newDate);
-                }
-                return newDate;
-            });
+            const currentDate = selectedDate || date;
+            setDate(currentDate);
         },
-        [setDate, onChange]
+        [date, setDate]
     );
 
     useEffect(() => {
