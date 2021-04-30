@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { ReactNode, forwardRef } from 'react';
+import React, { ReactNode, forwardRef, useState, useCallback } from 'react';
 import { Text } from '../text';
 import { useTheme } from '../../core/context/hooks/useTheme';
 import { BaseButton } from './BaseButton';
 import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { ButtonVariant } from './ButtonVariant';
+import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
 
 export interface ButtonProps extends FractalSharedProps, AnimationProps {
     variant: ButtonVariant;
@@ -17,14 +18,22 @@ export interface ButtonProps extends FractalSharedProps, AnimationProps {
 
 export const Button = forwardRef(
     (props: ButtonProps, ref: any): JSX.Element => {
-        const { variant, children, text, addShadow, ...others } = props;
+        const { variant, children, text, addShadow, onPress, ...others } = props;
         const { borderRadius, colors, sizes, shadows } = useTheme();
+
+        const [pressed, setPressed] = useState(false);
 
         const colorName = `${variant}InteractiveColor`;
         const color = colors[colorName];
 
         const pressedColorName = `${variant}InteractiveColor600`;
         const pressedColor = colors[pressedColorName];
+
+        const handleButtonPress = useCallback((): void => {
+            setPressed(true);
+            onPress?.();
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, []);
 
         return (
             <BaseButton
@@ -37,6 +46,8 @@ export const Button = forwardRef(
                 boxShadow={addShadow ? shadows.mainShadow : undefined}
                 justifyContent='center'
                 alignItems='center'
+                onPress={handleButtonPress}
+                {...getButtonAccessibilityProps(pressed)}
                 {...others}
             >
                 {children}

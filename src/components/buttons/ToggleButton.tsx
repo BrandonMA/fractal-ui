@@ -1,8 +1,9 @@
-import React, { ReactNode, forwardRef } from 'react';
+import React, { ReactNode, forwardRef, useState, useCallback } from 'react';
 import { useTheme } from '../../core/context/hooks/useTheme';
 import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { BaseButton } from './BaseButton';
 import { ButtonVariant } from './ButtonVariant';
+import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
 
 export interface ButtonProps extends FractalSharedProps, AnimationProps {
     variant: ButtonVariant;
@@ -18,6 +19,8 @@ export const ToggleButton = forwardRef(
         const { active, variant, children, onPress, useGrayVariant, ...others } = props;
         const { colors, sizes, borderRadius } = useTheme();
 
+        const [pressed, setPressed] = useState(false);
+
         const backgroundColorName = `${variant}InteractiveColor100`;
         const backgroundColor = active ? colors[backgroundColorName] : colors.background;
 
@@ -26,6 +29,12 @@ export const ToggleButton = forwardRef(
 
         const colorName = `${variant}InteractiveColor`;
         const color = active ? colors[colorName] : useGrayVariant ? colors.placeholder : colors.text;
+
+        const handleButtonPress = useCallback((): void => {
+            setPressed(true);
+            onPress?.();
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, []);
 
         return (
             <BaseButton
@@ -37,7 +46,7 @@ export const ToggleButton = forwardRef(
                 borderRadius={borderRadius.m}
                 justifyContent='center'
                 alignItems='center'
-                onPress={onPress}
+                onPress={handleButtonPress}
                 variants={{
                     active: {
                         backgroundColor
@@ -47,6 +56,7 @@ export const ToggleButton = forwardRef(
                     }
                 }}
                 animate={active ? 'active' : 'inactive'}
+                {...getButtonAccessibilityProps(pressed)}
                 {...others}
             >
                 {children?.(color)}

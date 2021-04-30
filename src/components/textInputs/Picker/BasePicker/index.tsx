@@ -8,6 +8,7 @@ import { extractDisplayProps } from '../../../../sharedProps/DisplayProps';
 import { extractBorderProps } from '../../../../sharedProps/BorderProps';
 import { extractWebProps } from '../../../../sharedProps/WebProps';
 import { BasePickerProps } from './types';
+import { getBasePickerAccessibilityProps } from '../../accessibility/getBasePickerAccessibilityProps';
 
 const StyledSelect = styled(motion.select as any)`
     appearance: none;
@@ -30,5 +31,13 @@ export function BasePicker({ onValueChange, enabled, selectedValue, ...others }:
         },
         [onValueChange]
     );
-    return <StyledSelect disabled={enabled === false ? true : undefined} onChange={handleChange} value={selectedValue} {...others} />;
+    return (
+        <StyledSelect
+            disabled={enabled === false ? true : undefined}
+            onChange={handleChange}
+            value={selectedValue}
+            {...getBasePickerAccessibilityProps()}
+            {...others}
+        />
+    );
 }

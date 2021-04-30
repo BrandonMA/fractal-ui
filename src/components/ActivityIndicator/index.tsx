@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { ActivityIndicatorCircleProps, ActivityIndicatorProps } from './types';
 import { Layer } from '../containers/Layer';
 import { FractalTransition } from '../../sharedProps';
+import { getActivityIndicatorProps } from './accessibility/getActivityIndicatorProps';
 
 const BackgroundCircle = styled(motion.circle)`
     stroke: ${({ color }: ActivityIndicatorCircleProps) => color};
@@ -27,7 +28,7 @@ export const ActivityIndicator = forwardRef(
         return (
             <Layer ref={ref} animate={animate} transition={transition} {...others}>
                 <motion.svg height='100%' width='100%' viewBox='0 0 32 32'>
-                    <BackgroundCircle cx='16' cy='16' fill='none' r='14' strokeWidth='4' color={color} />
+                    <BackgroundCircle cx='16' cy='16' fill='none' r='14' strokeWidth='4' color={color} {...getActivityIndicatorProps()} />
                     <AnimatedSection cx='16' cy='16' fill='none' r='14' strokeWidth='4' color={color} />
                 </motion.svg>
             </Layer>

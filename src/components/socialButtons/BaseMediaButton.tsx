@@ -1,8 +1,9 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useState, useCallback } from 'react';
 import { useTheme } from '../../core/context/hooks/useTheme';
 import { ActivityIndicator } from '../ActivityIndicator';
 import { BaseButton } from '../buttons/BaseButton';
 import { BaseButtonProps } from '../buttons/BaseButton/types';
+import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
 
 export type BaseMediaButtonProps = Partial<Omit<BaseButtonProps, 'variant'>> & {
     loading?: boolean;
@@ -10,8 +11,16 @@ export type BaseMediaButtonProps = Partial<Omit<BaseButtonProps, 'variant'>> & {
 };
 
 export const BaseMediaButton = forwardRef(
-    ({ loading, children, activityIndicatorColor = 'white', ...others }: BaseMediaButtonProps, ref: any): JSX.Element => {
+    ({ loading, children, activityIndicatorColor = 'white', onPress, ...others }: BaseMediaButtonProps, ref: any): JSX.Element => {
         const { sizes, borderRadius, shadows } = useTheme();
+
+        const [pressed, setPressed] = useState(false);
+
+        const handleButtonPress = useCallback((): void => {
+            setPressed(true);
+            onPress?.();
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+        }, []);
 
         return (
             <BaseButton
@@ -22,6 +31,8 @@ export const BaseMediaButton = forwardRef(
                 boxShadow={shadows.mainShadow}
                 justifyContent='center'
                 alignItems='center'
+                onPress={handleButtonPress}
+                {...getButtonAccessibilityProps(pressed)}
                 {...others}
             >
                 {!loading ? children : <ActivityIndicator height={24} width={24} color={activityIndicatorColor} />}

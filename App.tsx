@@ -471,7 +471,6 @@ function Content(): JSX.Element {
                         ['5', 'Cinco']
                     ]}
                     defaultValue={'3'}
-                    disabled
                 />
             </Box>
             <Separator isAtBackgroundLevel marginBottom={spacings.m} />

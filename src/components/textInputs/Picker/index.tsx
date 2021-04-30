@@ -7,7 +7,6 @@ import { Layer } from '../../containers/Layer';
 import { ChevronDown } from '../../../assets/ChevronDown';
 import { PickerItem } from './PickerItem';
 import { PickerProps } from './types/PickerProps';
-import { getBasePickerAccessibilityProps } from '../accessibility/getBasePickerAccessibilityProps';
 
 export function Picker({ items, onChange, value, defaultValue, disabled, ...others }: PickerProps): JSX.Element {
     const [currentValue, handleValueChange] = usePickerState(defaultValue, items, value, onChange);
@@ -30,6 +29,7 @@ export function Picker({ items, onChange, value, defaultValue, disabled, ...othe
             borderRadius={borderRadius.s}
             height={sizes.textFieldHeight}
             backgroundColor={colors.textField}
+            pointerEvents={disabled ? 'none' : 'auto'}
             paddingLeft={spacings.s}
             paddingRight={spacings.s}
             {...others}
@@ -44,7 +44,6 @@ export function Picker({ items, onChange, value, defaultValue, disabled, ...othe
                 mode='dropdown'
                 fontSize={14}
                 flex={1}
-                {...getBasePickerAccessibilityProps(disabled)}
             >
                 {items.map(renderItem)}
             </BasePicker>
