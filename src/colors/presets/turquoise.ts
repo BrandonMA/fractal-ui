@@ -1,13 +1,13 @@
 import { Color } from '../Color';
 
 export const turquoise: Color = {
-    base100: '#CAFDE1',
-    base200: '#96FBCE',
-    base300: '#61F3BF',
-    base400: '#3AE8BA',
-    base: '#00D9B5',
-    base600: '#00BAAD',
-    base700: '#00989C',
-    base800: '#006F7D',
-    base900: '#005268'
+    base100: '#CFFCE4',
+    base200: '#A0FAD2',
+    base300: '#6FF1C3',
+    base400: '#49E3BB',
+    base: '#15D1B2',
+    base600: '#0FB3A8',
+    base700: '#0A9396',
+    base800: '#066B79',
+    base900: '#045064'
 };

@@ -1,13 +1,13 @@
 import { Color } from '../Color';
 
 export const cyan: Color = {
-    base100: '#CEFEF1',
-    base200: '#9DFDEB',
-    base300: '#6CF9EB',
-    base400: '#47F3F0',
-    base: '#0EDCEB',
-    base600: '#0AADCA',
-    base700: '#0783A9',
-    base800: '#045E88',
-    base900: '#024470'
+    base100: '#CEFDF9',
+    base200: '#9EFBFB',
+    base300: '#6CECF5',
+    base400: '#47D4EC',
+    base: '#10B3E0',
+    base600: '#0B8CC0',
+    base700: '#0869A1',
+    base800: '#054B81',
+    base900: '#03366B'
 };

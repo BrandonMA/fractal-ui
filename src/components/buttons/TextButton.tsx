@@ -27,7 +27,7 @@ export const TextButton = forwardRef(
             <TouchableOpacity ref={ref} {...others} {...getTextButtonAccessibilityProps()}>
                 {leftIcon && leftIcon(color)}
                 {children && (
-                    <Text variant={'textButton'} color={color} {...textProps}>
+                    <Text fontWeight={500} variant={'textButton'} color={color} {...textProps}>
                         {children}
                     </Text>
                 )}
