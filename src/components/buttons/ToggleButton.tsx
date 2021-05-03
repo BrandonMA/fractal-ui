@@ -40,12 +40,12 @@ const ToggleButton = forwardRef(
                 ref={ref}
                 height={sizes.interactiveItemHeight}
                 width={'100%'}
-                backgroundColor={backgroundColor}
                 pressedBackgroundColor={pressedColor}
                 borderRadius={borderRadius.m}
                 justifyContent='center'
                 alignItems='center'
                 onPress={handleButtonPress}
+                initial={{ backgroundColor }}
                 variants={{
                     active: {
                         backgroundColor
