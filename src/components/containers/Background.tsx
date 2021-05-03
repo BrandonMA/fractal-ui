@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { useTheme } from '../../context/hooks/useTheme';
 import { Layer } from './Layer';
 import { LayerProps } from './Layer/types';
 
-export function Background(props: LayerProps): JSX.Element {
-    const { colors } = useTheme();
-    return <Layer backgroundColor={colors.background} flex={1} {...props} />;
-}
+const Background = forwardRef(
+    (props: LayerProps, ref: any): JSX.Element => {
+        const { colors } = useTheme();
+        return <Layer ref={ref} backgroundColor={colors.background} flex={1} {...props} />;
+    }
+);
+
+Background.displayName = 'Background';
+
+export { Background };

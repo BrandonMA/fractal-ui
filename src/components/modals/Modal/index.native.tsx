@@ -1,11 +1,11 @@
-import React, { ForwardedRef, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { ModalProps } from './types';
 import { Modal as RNModal } from 'react-native';
 import { AnimatePresence } from 'framer-motion';
 import { Layer } from '../../containers';
 
 const Modal = forwardRef(
-    ({ visible, ...others }: ModalProps, ref: ForwardedRef<RNModal>): JSX.Element => {
+    ({ visible, ...others }: ModalProps, ref: any): JSX.Element => {
         return (
             <AnimatePresence>
                 {visible ? (

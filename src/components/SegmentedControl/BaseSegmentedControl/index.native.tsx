@@ -29,7 +29,7 @@ const Slider = styled(Reanimated.View)`
     ${extractBorderProps};
 `;
 
-export const BaseSegmentedControl = forwardRef(
+const BaseSegmentedControl = forwardRef(
     (
         {
             selectedIndex,
@@ -106,3 +106,7 @@ export const BaseSegmentedControl = forwardRef(
         );
     }
 );
+
+BaseSegmentedControl.displayName = 'BaseSegmentedControl';
+
+export { BaseSegmentedControl };

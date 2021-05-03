@@ -24,7 +24,7 @@ const Container = styled(motion.ol as any)`
     ${extractWebProps};
 `;
 
-export const BaseSegmentedControl = forwardRef(
+const BaseSegmentedControl = forwardRef(
     (
         {
             selectedIndex,
@@ -81,3 +81,7 @@ export const BaseSegmentedControl = forwardRef(
         );
     }
 );
+
+BaseSegmentedControl.displayName = 'BaseSegmentedControl';
+
+export { BaseSegmentedControl };

@@ -3,7 +3,7 @@ import { RadioButtonProps } from '../types';
 import { Layer } from '../../containers/Layer';
 import { BaseRadioButton } from './BaseRadioButton';
 
-export const RadioButton = forwardRef(
+const RadioButton = forwardRef(
     ({ label, onPress, active, value, ...layerProps }: RadioButtonProps, ref: any): JSX.Element => {
         return (
             <Layer ref={ref} {...layerProps}>
@@ -12,3 +12,7 @@ export const RadioButton = forwardRef(
         );
     }
 );
+
+RadioButton.displayName = 'RadioButton';
+
+export { RadioButton };

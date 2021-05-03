@@ -3,7 +3,7 @@ import { SegmentedControlProps } from './types';
 import { useControllableState } from '../../hooks/useControllableState';
 import { BaseSegmentedControl } from './BaseSegmentedControl';
 
-export const SegmentedControl = forwardRef(
+const SegmentedControl = forwardRef(
     (
         { onChange, onValueChange, selectedIndex: selectedIndexProp, defaultSelectedIndex, values, ...others }: SegmentedControlProps,
         ref: any
@@ -31,3 +31,7 @@ export const SegmentedControl = forwardRef(
         return <BaseSegmentedControl ref={ref} values={values} selectedIndex={selectedIndex} onTabPress={handleIndexChange} {...others} />;
     }
 );
+
+SegmentedControl.displayName = 'SegmentedControl';
+
+export { SegmentedControl };

@@ -5,7 +5,7 @@ import { getRadioGroupAccessibilityProps } from './accessibility/getRadioGroupAc
 import { useControllableState } from '../../hooks/useControllableState';
 import { RadioGroupItem } from './RadioGroupItem';
 
-export const RadioGroup = forwardRef(
+const RadioGroup = forwardRef(
     ({ value, defaultValue, radioButtons, onValueChange, ...others }: RadioGroupProps, ref: any): JSX.Element => {
         const [activeValue, setActiveValue] = useControllableState({ value, defaultValue: defaultValue ?? '', onChange: onValueChange });
         const { flexDirection } = others;
@@ -39,3 +39,7 @@ export const RadioGroup = forwardRef(
         );
     }
 );
+
+RadioGroup.displayName = 'RadioGroup';
+
+export { RadioGroup };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { TextFieldProps } from './BaseTextField/types';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { LayerProps } from '../containers/Layer/types';
@@ -16,54 +16,55 @@ export interface IconTextFieldProps extends Partial<Omit<LayerProps, 'children'>
     inputRef?: any;
 }
 
-export function IconTextField({
-    leftImage,
-    rightImage,
-    value,
-    placeholder,
-    onChangeText,
-    textFieldProps,
-    inputRef,
-    ...others
-}: IconTextFieldProps): JSX.Element {
-    const { spacings, sizes, colors, borderRadius } = useTheme();
-    const paddingLeft = leftImage != null ? spacings.xs : undefined;
-    const paddingRight = rightImage != null ? spacings.xs : undefined;
+const IconTextField = forwardRef(
+    (
+        { leftImage, rightImage, value, placeholder, onChangeText, textFieldProps, inputRef, ...others }: IconTextFieldProps,
+        ref: any
+    ): JSX.Element => {
+        const { spacings, sizes, colors, borderRadius } = useTheme();
+        const paddingLeft = leftImage != null ? spacings.xs : undefined;
+        const paddingRight = rightImage != null ? spacings.xs : undefined;
 
-    return (
-        <HorizontalLayer
-            paddingLeft={paddingLeft}
-            paddingRight={paddingRight}
-            borderRadius={borderRadius.s}
-            height={sizes.textFieldHeight}
-            backgroundColor={colors.textField}
-            justifyContent={'space-evenly'}
-            alignItems={'center'}
-            {...others}
-        >
-            {leftImage != null ? (
-                <Layer flexShrink={0} height={sizes.textFieldIconSize} width={sizes.textFieldIconSize}>
-                    {leftImage(colors.placeholder, sizes.textFieldIconSize)}
-                </Layer>
-            ) : null}
-            <BaseTextField
-                ref={inputRef}
+        return (
+            <HorizontalLayer
+                ref={ref}
                 paddingLeft={paddingLeft}
                 paddingRight={paddingRight}
-                flex={1}
-                value={value}
-                color={colors.text}
-                placeholderTextColor={colors.placeholder}
-                fontSize={14}
-                onChangeText={onChangeText}
-                placeholder={placeholder}
-                {...textFieldProps}
-            />
-            {rightImage != null ? (
-                <Layer flexShrink={0} height={sizes.textFieldIconSize} width={sizes.textFieldIconSize}>
-                    {rightImage(colors.placeholder, sizes.textFieldIconSize)}
-                </Layer>
-            ) : null}
-        </HorizontalLayer>
-    );
-}
+                borderRadius={borderRadius.s}
+                height={sizes.textFieldHeight}
+                backgroundColor={colors.textField}
+                justifyContent={'space-evenly'}
+                alignItems={'center'}
+                {...others}
+            >
+                {leftImage != null ? (
+                    <Layer flexShrink={0} height={sizes.textFieldIconSize} width={sizes.textFieldIconSize}>
+                        {leftImage(colors.placeholder, sizes.textFieldIconSize)}
+                    </Layer>
+                ) : null}
+                <BaseTextField
+                    ref={inputRef}
+                    paddingLeft={paddingLeft}
+                    paddingRight={paddingRight}
+                    flex={1}
+                    value={value}
+                    color={colors.text}
+                    placeholderTextColor={colors.placeholder}
+                    fontSize={14}
+                    onChangeText={onChangeText}
+                    placeholder={placeholder}
+                    {...textFieldProps}
+                />
+                {rightImage != null ? (
+                    <Layer flexShrink={0} height={sizes.textFieldIconSize} width={sizes.textFieldIconSize}>
+                        {rightImage(colors.placeholder, sizes.textFieldIconSize)}
+                    </Layer>
+                ) : null}
+            </HorizontalLayer>
+        );
+    }
+);
+
+IconTextField.displayName = 'IconTextField';
+
+export { IconTextField };
