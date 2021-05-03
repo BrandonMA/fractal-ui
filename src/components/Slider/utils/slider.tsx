@@ -31,16 +31,16 @@ export function roundValueToStep(value: number, from: number, step: number): str
     return toPrecision(nextValue, precision);
 }
 
-export function valueToPercent(value: number, min: number, max: number): number {
+export function valueToPercentage(value: number, min: number, max: number): number {
     return ((value - min) * 100) / (max - min);
 }
 
-export function percentToValue(percent: number, min: number, max: number): number {
-    return ((max - min) / 100) * percent + min;
+export function percentageToValue(percentage: number, min: number, max: number): number {
+    return ((max - min) / 100) * percentage + min;
 }
 
-export function clampValue(value: number, min: number, max: number): number {
-    if (value == null) return value;
-    if (max <= min) return value;
-    return Math.min(Math.max(value, min), max);
+export function clamp(value: number, minValue: number, maxValue: number): number {
+    if (maxValue <= minValue) return value;
+    const higherMinimumValue = Math.max(value, minValue);
+    return Math.min(higherMinimumValue, maxValue);
 }

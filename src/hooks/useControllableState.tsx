@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-export interface UseControllableStateProps<T> {
+export interface ControllableStateProps<T> {
     /**
      * The value to used in controlled mode
      */
@@ -15,9 +15,7 @@ export interface UseControllableStateProps<T> {
     onChange?: (value: T) => void;
 }
 
-export function useControllableState<T>(props: UseControllableStateProps<T>): [T, (valu: T) => void] {
-    const { value: valueProp, defaultValue, onChange } = props;
-
+export function useControllableState<T>({ value: valueProp, defaultValue, onChange }: ControllableStateProps<T>): [T, (valu: T) => void] {
     const [valueState, setValue] = useState(defaultValue as T);
 
     const isControlled = valueProp !== undefined;
