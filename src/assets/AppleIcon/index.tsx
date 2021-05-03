@@ -1,6 +1,6 @@
 import React, { memo, SVGProps } from 'react';
 
-export const AppleIcon = memo(
+const AppleIcon = memo(
     (props: SVGProps<SVGSVGElement>): JSX.Element => {
         return (
             <svg focusable={false} viewBox='0 0 30 30' width={30} height={30} {...props}>
@@ -9,3 +9,7 @@ export const AppleIcon = memo(
         );
     }
 );
+
+AppleIcon.displayName = 'AppleIcon';
+
+export { AppleIcon };

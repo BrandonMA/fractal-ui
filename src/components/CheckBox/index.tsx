@@ -3,7 +3,7 @@ import { Layer } from '../containers';
 import { CheckBoxProps } from './types';
 import { BaseCheckBox } from './BaseCheckBox';
 
-export const CheckBox = forwardRef(
+const CheckBox = forwardRef(
     ({ value, onValueChange, label, ...layerProps }: CheckBoxProps, ref: any): JSX.Element => {
         return (
             <Layer ref={ref} {...layerProps}>
@@ -12,3 +12,7 @@ export const CheckBox = forwardRef(
         );
     }
 );
+
+CheckBox.displayName = 'CheckBox';
+
+export { CheckBox };

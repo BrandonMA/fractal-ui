@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { LayerProps } from './Layer/types';
 import { PaddingLayer } from './PaddingLayer';
 
-export const Box = forwardRef(
+const Box = forwardRef(
     (props: LayerProps, ref: any): JSX.Element => {
         const { colors, borderRadius, shadows } = useTheme();
         return (
@@ -17,3 +17,7 @@ export const Box = forwardRef(
         );
     }
 );
+
+Box.displayName = 'Box';
+
+export { Box };

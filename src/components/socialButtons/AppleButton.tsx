@@ -8,7 +8,7 @@ export type AppleButtonProps = Partial<Omit<ButtonProps, 'variant'>> & {
     loading?: boolean;
 };
 
-export const AppleButton = forwardRef(
+const AppleButton = forwardRef(
     (props: AppleButtonProps, ref: any): JSX.Element => {
         const { text } = props;
 
@@ -25,3 +25,7 @@ export const AppleButton = forwardRef(
         );
     }
 );
+
+AppleButton.displayName = 'AppleButton';
+
+export { AppleButton };

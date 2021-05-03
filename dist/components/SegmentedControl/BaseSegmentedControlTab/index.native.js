@@ -2,7 +2,7 @@ import React from 'react';
 import { Layer } from '../../containers/Layer';
 import { TouchableOpacity } from '../../buttons/TouchableOpacity';
 import { Text } from '../../text';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 export function BaseSegmentedControlTab({ onSelect, value, fontFamily, fontSize, color, fontWeight, fontStyle }) {
     const { borderRadius } = useTheme();
     return (React.createElement(TouchableOpacity, { onPress: onSelect, flex: 1, borderRadius: borderRadius.xs },

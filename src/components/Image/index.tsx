@@ -4,7 +4,7 @@ import { getImageAccessibilityProps } from './accessibility/getImageAccessibilit
 import { ResizableImage } from './ResizableImage';
 import { Layer } from '../containers/Layer';
 
-export const Image = forwardRef(
+const Image = forwardRef(
     ({ label, source, resizeMode, width, height, ...others }: ImageProps, ref: any): JSX.Element => {
         const getBackgroundSize = useCallback((): string | undefined => {
             if ((resizeMode == 'center' || resizeMode == 'repeat') && width != null && height != null) {
@@ -33,3 +33,7 @@ export const Image = forwardRef(
         );
     }
 );
+
+Image.displayName = 'Image';
+
+export { Image };

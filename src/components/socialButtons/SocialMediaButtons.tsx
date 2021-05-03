@@ -4,7 +4,7 @@ import { GoogleButton } from './GoogleButton';
 import { FacebookButton } from './FacebookButton';
 import { LayerProps } from '../containers/Layer/types';
 import { Layer } from '../containers';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 
 export interface SocialMediaButtonsEventsProps {
@@ -20,7 +20,7 @@ export interface SocialMediaButtonsEventsProps {
 
 export interface SocialMediaButtonsProps extends Partial<Omit<LayerProps, 'children'>>, SocialMediaButtonsEventsProps {}
 
-export const SocialMediaButtons = forwardRef(
+const SocialMediaButtons = forwardRef(
     (
         {
             onGooglePress,
@@ -48,3 +48,7 @@ export const SocialMediaButtons = forwardRef(
         );
     }
 );
+
+SocialMediaButtons.displayName = 'SocialMediaButtons';
+
+export { SocialMediaButtons };

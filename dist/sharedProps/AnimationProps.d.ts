@@ -1,12 +1,17 @@
 import { Transition } from 'framer-motion';
-export interface AnimationContent {
+interface BasicAnimationContent {
     opacity?: number;
     width?: number;
     height?: number;
+    backgroundColor?: string;
+}
+interface TransformAnimationContent {
     scale?: number;
     rotate?: number;
-    backgroundColor?: string;
     translateY?: number;
+    translateX?: number;
+}
+export interface AnimationContent extends TransformAnimationContent, BasicAnimationContent {
     backdropFilter?: string;
     '-webkit-backdrop-filter'?: string;
 }
@@ -25,3 +30,4 @@ export interface AnimationProps {
     transition?: FractalTransition;
     exit?: AnimationContent;
 }
+export {};

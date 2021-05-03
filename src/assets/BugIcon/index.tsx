@@ -1,6 +1,6 @@
 import React, { memo, SVGProps } from 'react';
 
-export const BugIcon = memo(
+const BugIcon = memo(
     (props: SVGProps<SVGSVGElement>): JSX.Element => {
         return (
             <svg focusable={false} viewBox='0 0 30 30' width={30} height={30} {...props}>
@@ -9,3 +9,7 @@ export const BugIcon = memo(
         );
     }
 );
+
+BugIcon.displayName = 'BugIcon';
+
+export { BugIcon };

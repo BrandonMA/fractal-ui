@@ -3,7 +3,7 @@ import { Layer } from '../containers';
 import { BaseSwitch } from './BaseSwitch';
 import { SwitchProps } from './types';
 
-export const Switch = forwardRef(
+const Switch = forwardRef(
     ({ value, onValueChange, ...layerProps }: SwitchProps, ref: any): JSX.Element => {
         return (
             <Layer ref={ref} {...layerProps}>
@@ -12,3 +12,7 @@ export const Switch = forwardRef(
         );
     }
 );
+
+Switch.displayName = 'Switch';
+
+export { Switch };

@@ -18,6 +18,7 @@ export function useAnimationStyles({ initial, animate, exit, variants, transitio
     // Transform properties
     const scaleSharedValue = useSharedValueEffect(initialAnimationContent.scale, animateAnimationContent.scale, exitAnimationContent.scale, isPresent);
     const rotationSharedValue = useSharedValueEffect(initialAnimationContent.rotate, animateAnimationContent.rotate, exitAnimationContent.rotate, isPresent);
+    const translateXSharedValue = useSharedValueEffect(initialAnimationContent.translateX, animateAnimationContent.translateX, exitAnimationContent.translateX, isPresent);
     const translateYSharedValue = useSharedValueEffect(initialAnimationContent.translateY, animateAnimationContent.translateY, exitAnimationContent.translateY, isPresent);
     const removeIfFinished = useCallback((finished) => {
         if (!isPresent && finished && setIsSafeToRemove) {
@@ -34,6 +35,7 @@ export function useAnimationStyles({ initial, animate, exit, variants, transitio
         insertTransitionValueAnimated(styles, 'backgroundColor', backgroundColorSharedValue.value, transition, removeIfFinished);
         insertTransformTransitionValueAnimated(styles, 'scale', scaleSharedValue.value, transition, removeIfFinished);
         insertTransformTransitionValueAnimated(styles, 'rotate', rotationSharedValue.value, transition, removeIfFinished);
+        insertTransformTransitionValueAnimated(styles, 'translateX', translateXSharedValue.value, transition, removeIfFinished);
         insertTransformTransitionValueAnimated(styles, 'translateY', translateYSharedValue.value, transition, removeIfFinished);
         return styles;
     });

@@ -25,8 +25,7 @@ const CheckBoxInput = styled(motion.input) `
 export function BaseCheckBox({ value, onValueChange, label }) {
     const handleValueChange = useCallback(() => {
         onValueChange(!value);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [value]);
+    }, [value, onValueChange]);
     return (React.createElement(Wrapper, null,
         React.createElement(CheckBoxInput, Object.assign({ type: 'checkbox', checked: value, onChange: handleValueChange }, getCheckBoxAccessibilityProps(value))),
         React.createElement(Check, { value: value, label: label })));

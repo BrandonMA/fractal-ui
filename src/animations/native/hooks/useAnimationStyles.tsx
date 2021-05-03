@@ -61,6 +61,13 @@ export function useAnimationStyles({ initial, animate, exit, variants, transitio
         isPresent
     );
 
+    const translateXSharedValue = useSharedValueEffect(
+        initialAnimationContent.translateX,
+        animateAnimationContent.translateX,
+        exitAnimationContent.translateX,
+        isPresent
+    );
+
     const translateYSharedValue = useSharedValueEffect(
         initialAnimationContent.translateY,
         animateAnimationContent.translateY,
@@ -89,6 +96,7 @@ export function useAnimationStyles({ initial, animate, exit, variants, transitio
 
         insertTransformTransitionValueAnimated(styles, 'scale', scaleSharedValue.value, transition, removeIfFinished);
         insertTransformTransitionValueAnimated(styles, 'rotate', rotationSharedValue.value, transition, removeIfFinished);
+        insertTransformTransitionValueAnimated(styles, 'translateX', translateXSharedValue.value, transition, removeIfFinished);
         insertTransformTransitionValueAnimated(styles, 'translateY', translateYSharedValue.value, transition, removeIfFinished);
 
         return styles;

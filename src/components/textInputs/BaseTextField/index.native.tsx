@@ -18,9 +18,13 @@ const StyledTextInput = styled(Reanimated.createAnimatedComponent(TextInput))`
     ${extractTextProps};
 ` as typeof TextInput;
 
-export const BaseTextField = forwardRef(
+const BaseTextField = forwardRef(
     ({ style, ...others }: TextFieldProps, ref: ForwardedRef<TextInput>): JSX.Element => {
         const animationStyles = useAnimationStyles(others);
         return <StyledTextInput ref={ref} {...others} style={[animationStyles, style]} />;
     }
 );
+
+BaseTextField.displayName = 'BaseTextField';
+
+export { BaseTextField };

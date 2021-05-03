@@ -1,6 +1,6 @@
 import React, { memo, SVGProps } from 'react';
 
-export const SquareIcon = memo(
+const SquareIcon = memo(
     (props: SVGProps<SVGSVGElement>): JSX.Element => {
         return (
             <svg x='0' y='0' enableBackground='new 0 0 50 50' viewBox='0 0 50 50' {...props}>
@@ -9,3 +9,7 @@ export const SquareIcon = memo(
         );
     }
 );
+
+SquareIcon.displayName = 'SquareIcon';
+
+export { SquareIcon };

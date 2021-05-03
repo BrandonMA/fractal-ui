@@ -7,7 +7,7 @@ import { getYearsInRange } from './util/getYearsInRange';
 import { localeMonthNames } from './util/localeMonthNames';
 import { Layer } from '../../containers';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 import { useControllableState } from '../../../hooks/useControllableState';
 
 export function DatePicker({ value, minDate, maxDate, initialDate = new Date(), onChange, ...others }: DatePickerProps): JSX.Element {

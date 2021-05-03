@@ -15,7 +15,9 @@ const StyledText = styled(Text) `
     ${extractShadowProps};
     ${extractTextProps};
 `;
-export const BaseText = forwardRef((props, ref) => {
+const BaseText = forwardRef((props, ref) => {
     return React.createElement(StyledText, Object.assign({ ref: ref }, props));
 });
+BaseText.displayName = 'BaseText';
+export { BaseText };
 //# sourceMappingURL=index.native.js.map

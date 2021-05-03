@@ -12,7 +12,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { useCallback, useEffect, useState } from 'react';
 import { PickerButton } from '../PickerButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 import { BlurrediOSModal } from '../../modals';
 import { useControllableState } from '../../../hooks/useControllableState';
 export function DatePicker(_a) {

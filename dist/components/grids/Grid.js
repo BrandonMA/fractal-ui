@@ -13,7 +13,7 @@ import React, { Children, forwardRef, useCallback } from 'react';
 import { Layer } from '../containers/Layer';
 import { GridRow } from './GridRow';
 import { getGridAccessibilityProps } from './accessibility/getGridAccessibilityProps';
-export const Grid = forwardRef((_a, ref) => {
+const Grid = forwardRef((_a, ref) => {
     var { children } = _a, others = __rest(_a, ["children"]);
     const isRow = useCallback(() => {
         let row = false;
@@ -25,4 +25,6 @@ export const Grid = forwardRef((_a, ref) => {
     }, [children]);
     return (React.createElement(Layer, Object.assign({ ref: ref, flex: 1, flexDirection: isRow() ? 'column' : 'row' }, others, getGridAccessibilityProps()), children));
 });
+Grid.displayName = 'Grid';
+export { Grid };
 //# sourceMappingURL=Grid.js.map

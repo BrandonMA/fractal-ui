@@ -21,9 +21,11 @@ const StyledImage = styled(Reanimated.Image) `
     ${extractBorderProps};
     ${extractShadowProps};
 `;
-export const Image = forwardRef((_a, ref) => {
+const Image = forwardRef((_a, ref) => {
     var { source, resizeMode, style } = _a, others = __rest(_a, ["source", "resizeMode", "style"]);
     const animationStyles = useAnimationStyles(others);
     return (React.createElement(StyledImage, Object.assign({ ref: ref, source: typeof source == 'string' ? { uri: source } : source, resizeMode: resizeMode }, others, { style: [animationStyles, style] })));
 });
+Image.displayName = 'Image';
+export { Image };
 //# sourceMappingURL=index.native.js.map

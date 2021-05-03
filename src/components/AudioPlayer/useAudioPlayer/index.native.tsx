@@ -17,22 +17,24 @@ export function useAudioPlayer<T extends MinimalTrackData>(
     const [isPlaying, setIsPlaying] = useState(false);
 
     const soundRef = useRef<Audio.Sound>();
-    const sound = soundRef.current;
 
     const currentTrackInfo = playList[trackIndex];
     const { audioSrc } = currentTrackInfo;
 
     const playSound = useCallback(async (): Promise<void> => {
-        await sound?.playAsync();
-    }, [sound]);
+        await soundRef.current?.playAsync();
+    }, [soundRef]);
 
     const pauseSound = useCallback(async (): Promise<void> => {
-        await sound?.pauseAsync();
-    }, [sound]);
+        await soundRef.current?.pauseAsync();
+    }, [soundRef]);
 
-    const setPositionManually = useCallback(async (positionMillis: number): Promise<void> => {
-        await soundRef.current?.setPositionAsync(positionMillis);
-    }, []);
+    const setPositionManually = useCallback(
+        async (positionMillis: number): Promise<void> => {
+            await soundRef.current?.setPositionAsync(positionMillis);
+        },
+        [soundRef]
+    );
 
     const toPreviousTrack = useCallback(() => {
         if (trackIndex - 1 < 0) {
@@ -56,23 +58,21 @@ export function useAudioPlayer<T extends MinimalTrackData>(
         if (!isLastIndex && !enableRepeatPlayback) {
             toNextTrack();
         } else {
-            await sound?.setPositionAsync(0);
+            await soundRef.current?.setPositionAsync(0);
             setCurrentTime(0);
             setIsPlaying(false);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [enableRepeatPlayback, toNextTrack, trackIndex, tracks.length]);
+    }, [enableRepeatPlayback, toNextTrack, trackIndex, tracks.length, soundRef]);
 
     useEffect(() => {
-        if (sound != null) {
+        if (soundRef.current != null) {
             if (enableShufflePlayback) {
                 setPlayList((currentPlayList) => shuffleArray(currentPlayList));
             } else {
                 setPlayList(tracks);
             }
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [enableShufflePlayback, tracks]);
+    }, [enableShufflePlayback, tracks, soundRef]);
 
     const onPlaybackStatusUpdate = useCallback(
         async (status: CustomAVPlaybackStatus): Promise<void> => {
@@ -90,7 +90,7 @@ export function useAudioPlayer<T extends MinimalTrackData>(
         const loadSoundAsync = async (): Promise<void> => {
             const source = typeof audioSrc == 'string' ? { uri: audioSrc } : audioSrc;
 
-            if (sound === undefined) {
+            if (soundRef.current === undefined) {
                 await Audio.setAudioModeAsync({
                     playsInSilentModeIOS: true
                 });
@@ -103,9 +103,9 @@ export function useAudioPlayer<T extends MinimalTrackData>(
                     setDuration(castedStatus.durationMillis);
                 }
             } else {
-                await sound.unloadAsync();
-                const status = await sound.loadAsync(source, { shouldPlay: true });
-                sound.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate);
+                await soundRef.current?.unloadAsync();
+                const status = await soundRef.current?.loadAsync(source, { shouldPlay: true });
+                soundRef.current?.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate);
                 setCurrentTime(0);
                 const castedStatus = status as CustomAVPlaybackStatus;
 
@@ -119,15 +119,14 @@ export function useAudioPlayer<T extends MinimalTrackData>(
             }
         };
 
-        loadSoundAsync();
+        loadSoundAsync().catch((error) => alert(error.message));
 
-        return sound
+        return soundRef.current
             ? (): void => {
-                  sound.unloadAsync();
+                  soundRef.current?.unloadAsync();
               }
             : undefined;
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [audioSrc]);
+    }, [audioSrc, soundRef, isPlaying, onPlaybackStatusUpdate]);
 
     useEffect(() => {
         const handlePlayOrPause = async () => {
@@ -137,7 +136,8 @@ export function useAudioPlayer<T extends MinimalTrackData>(
                 await pauseSound();
             }
         };
-        handlePlayOrPause();
+
+        handlePlayOrPause().catch((error) => alert(error.message));
     }, [isPlaying, pauseSound, playSound]);
 
     return {

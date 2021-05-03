@@ -1,4 +1,3 @@
-export declare function getWidth(percentage: number): string;
 export declare function getPercentage(current: number, min: number, max: number): number;
 export declare function getLeft(percentage: number): string;
 export declare function toPrecision(value: number, precision?: number): string | number;

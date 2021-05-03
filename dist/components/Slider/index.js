@@ -12,9 +12,11 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { forwardRef } from 'react';
 import { BaseSlider } from './BaseSlider';
 import { Layer } from '../containers';
-export const Slider = forwardRef((_a, ref) => {
+const Slider = forwardRef((_a, ref) => {
     var { defaultValue, minimumValue, maximumValue, onValueChange, onSlidingStart, onSlidingComplete, step, name, value } = _a, layerProps = __rest(_a, ["defaultValue", "minimumValue", "maximumValue", "onValueChange", "onSlidingStart", "onSlidingComplete", "step", "name", "value"]);
     return (React.createElement(Layer, Object.assign({ ref: ref }, layerProps),
         React.createElement(BaseSlider, { defaultValue: defaultValue, minimumValue: minimumValue, maximumValue: maximumValue, onValueChange: onValueChange, onSlidingStart: onSlidingStart, onSlidingComplete: onSlidingComplete, step: step, name: name, value: value })));
 });
+Slider.displayName = 'Slider';
+export { Slider };
 //# sourceMappingURL=index.js.map

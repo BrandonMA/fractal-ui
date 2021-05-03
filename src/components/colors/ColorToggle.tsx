@@ -19,7 +19,7 @@ function getVariant(active?: boolean): typeof styleVariants.visible {
     return active ? styleVariants.visible : styleVariants.hidden;
 }
 
-export const ColorToggle = forwardRef(
+const ColorToggle = forwardRef(
     ({ onActiveChange, backgroundColor, active, ...others }: ColorToggleProps, ref: any): JSX.Element => {
         const [uncontrolledActive, setUncontrolledActive] = useState(!!active);
         const variant = getVariant(active != null ? active : uncontrolledActive);
@@ -67,3 +67,7 @@ export const ColorToggle = forwardRef(
         );
     }
 );
+
+ColorToggle.displayName = 'ColorToggle';
+
+export { ColorToggle };

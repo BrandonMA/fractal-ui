@@ -3,7 +3,7 @@ import { SliderProps } from './types';
 import { BaseSlider } from './BaseSlider';
 import { Layer } from '../containers';
 
-export const Slider = forwardRef(
+const Slider = forwardRef(
     (
         {
             defaultValue,
@@ -36,3 +36,7 @@ export const Slider = forwardRef(
         );
     }
 );
+
+Slider.displayName = 'Slider';
+
+export { Slider };

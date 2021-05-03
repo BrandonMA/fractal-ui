@@ -20,7 +20,7 @@ const styleVariants = {
 function getVariant(active) {
     return active ? styleVariants.visible : styleVariants.hidden;
 }
-export const ColorToggle = forwardRef((_a, ref) => {
+const ColorToggle = forwardRef((_a, ref) => {
     var { onActiveChange, backgroundColor, active } = _a, others = __rest(_a, ["onActiveChange", "backgroundColor", "active"]);
     const [uncontrolledActive, setUncontrolledActive] = useState(!!active);
     const variant = getVariant(active != null ? active : uncontrolledActive);
@@ -50,4 +50,6 @@ export const ColorToggle = forwardRef((_a, ref) => {
         React.createElement(Layer, { initial: variant, animate: variant, variants: styleVariants },
             React.createElement(CheckIcon, { height: 24, width: 24, fill: 'white' }))));
 });
+ColorToggle.displayName = 'ColorToggle';
+export { ColorToggle };
 //# sourceMappingURL=ColorToggle.js.map

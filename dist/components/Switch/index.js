@@ -12,9 +12,11 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { forwardRef } from 'react';
 import { Layer } from '../containers';
 import { BaseSwitch } from './BaseSwitch';
-export const Switch = forwardRef((_a, ref) => {
+const Switch = forwardRef((_a, ref) => {
     var { value, onValueChange } = _a, layerProps = __rest(_a, ["value", "onValueChange"]);
     return (React.createElement(Layer, Object.assign({ ref: ref }, layerProps),
         React.createElement(BaseSwitch, { value: value, onValueChange: onValueChange })));
 });
+Switch.displayName = 'Switch';
+export { Switch };
 //# sourceMappingURL=index.js.map

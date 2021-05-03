@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, StatusBar as RNStatusBar } from 'react-native';
-import { useThemeIdentifier } from '../../core/context/hooks/useThemeIdentifier';
+import { useThemeIdentifier } from '../../context/hooks/useThemeIdentifier';
 export function StatusBar() {
     const currentThemeIdentifier = useThemeIdentifier();
     if (Platform.OS === 'android') {

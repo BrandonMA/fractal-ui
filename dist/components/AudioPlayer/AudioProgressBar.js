@@ -24,8 +24,7 @@ export function AudioProgressBar({ duration, currentTime, isPlaying, onTimeUpdat
     const handleSlidingComplete = useCallback((time) => __awaiter(this, void 0, void 0, function* () {
         yield onTimeUpdate(time);
         setIsDragging(false);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }), []);
+    }), [onTimeUpdate]);
     useEffect(() => {
         if (isPlaying && !isDragging) {
             setTrackProgress(currentTime);

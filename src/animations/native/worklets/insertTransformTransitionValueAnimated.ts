@@ -1,10 +1,11 @@
 import { Easing, runOnJS, withSpring, withTiming } from 'react-native-reanimated';
 import { ViewStyle } from 'react-native';
-import { FractalTransition } from '../../../sharedProps';
+import { AnimationContent, FractalTransition } from '../../../sharedProps';
+import { OptionalKeys } from 'utility-types';
 
 export function insertTransformTransitionValueAnimated(
     animatedStyles: ViewStyle,
-    propertyName: string,
+    propertyName: OptionalKeys<AnimationContent>,
     value?: number | string,
     transition?: FractalTransition,
     callback?: ((finished: boolean) => void) | null

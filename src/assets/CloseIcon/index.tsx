@@ -1,6 +1,6 @@
 import React, { memo, SVGProps } from 'react';
 
-export const CloseIcon = memo(
+const CloseIcon = memo(
     (props: SVGProps<SVGSVGElement>): JSX.Element => {
         return (
             <svg focusable={false} viewBox='0 0 30 30' width={30} height={30} {...props}>
@@ -9,3 +9,7 @@ export const CloseIcon = memo(
         );
     }
 );
+
+CloseIcon.displayName = 'CloseIcon';
+
+export { CloseIcon };

@@ -1,10 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { ReactNode, forwardRef, useState, useCallback } from 'react';
 import { Text } from '../text';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { BaseButton } from './BaseButton';
 import { AnimationProps, FractalSharedProps } from '../../sharedProps';
-import { ButtonVariant } from './ButtonVariant';
+import { ButtonVariant } from './types/ButtonVariant';
 import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
 
 export interface ButtonProps extends FractalSharedProps, AnimationProps {
@@ -16,7 +15,7 @@ export interface ButtonProps extends FractalSharedProps, AnimationProps {
     onPress?: () => void;
 }
 
-export const Button = forwardRef(
+const Button = forwardRef(
     (props: ButtonProps, ref: any): JSX.Element => {
         const { variant, children, text, addShadow, onPress, ...others } = props;
         const { borderRadius, colors, sizes, shadows } = useTheme();
@@ -32,8 +31,7 @@ export const Button = forwardRef(
         const handleButtonPress = useCallback((): void => {
             setPressed(true);
             onPress?.();
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, []);
+        }, [onPress]);
 
         return (
             <BaseButton
@@ -56,3 +54,7 @@ export const Button = forwardRef(
         );
     }
 );
+
+Button.displayName = 'Button';
+
+export { Button };

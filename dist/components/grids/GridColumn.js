@@ -6,7 +6,9 @@ import { getGridColumnAccessibilityProps } from './accessibility/getGridColumnAc
 const StyledGrid = styled(Layer) `
     ${extractGridItemProps};
 `;
-export const GridColumn = forwardRef((props, ref) => {
+const GridColumn = forwardRef((props, ref) => {
     return React.createElement(StyledGrid, Object.assign({ ref: ref, flexDirection: 'column' }, props, getGridColumnAccessibilityProps()));
 });
+GridColumn.displayName = 'GridColumn';
+export { GridColumn };
 //# sourceMappingURL=GridColumn.js.map

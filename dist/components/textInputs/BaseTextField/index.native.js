@@ -26,9 +26,11 @@ const StyledTextInput = styled(Reanimated.createAnimatedComponent(TextInput)) `
     ${extractBorderProps};
     ${extractTextProps};
 `;
-export const BaseTextField = forwardRef((_a, ref) => {
+const BaseTextField = forwardRef((_a, ref) => {
     var { style } = _a, others = __rest(_a, ["style"]);
     const animationStyles = useAnimationStyles(others);
     return React.createElement(StyledTextInput, Object.assign({ ref: ref }, others, { style: [animationStyles, style] }));
 });
+BaseTextField.displayName = 'BaseTextField';
+export { BaseTextField };
 //# sourceMappingURL=index.native.js.map

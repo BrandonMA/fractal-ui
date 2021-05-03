@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { CloseIcon } from '../../assets/CloseIcon';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { BaseButton } from './BaseButton';
 
@@ -8,7 +8,7 @@ interface CloseButtonProps extends FractalSharedProps, AnimationProps {
     onPress?: () => void;
 }
 
-export const CloseButton = forwardRef(
+const CloseButton = forwardRef(
     (props: CloseButtonProps, ref: any): JSX.Element => {
         const { colors } = useTheme();
         return (
@@ -18,3 +18,7 @@ export const CloseButton = forwardRef(
         );
     }
 );
+
+CloseButton.displayName = 'CloseButton';
+
+export { CloseButton };

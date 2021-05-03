@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
 import { usePickerState } from './hooks/usePickerState';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
 import { BasePicker } from './BasePicker';
 import { Layer } from '../../containers/Layer';
-import { ChevronDown } from '../../../assets/ChevronDown';
+import { ChevronDownIcon } from '../../../assets/ChevronDownIcon';
 import { PickerItem } from './PickerItem';
 import { PickerProps } from './types/PickerProps';
 
@@ -48,7 +48,7 @@ export function Picker({ items, onChange, value, defaultValue, disabled, ...othe
                 {items.map(renderItem)}
             </BasePicker>
             <Layer alignSelf='center' position='absolute' right={0} marginRight={spacings.s}>
-                <ChevronDown width={21} fill={colors.placeholder} />
+                <ChevronDownIcon width={21} fill={colors.placeholder} />
             </Layer>
         </HorizontalLayer>
     );

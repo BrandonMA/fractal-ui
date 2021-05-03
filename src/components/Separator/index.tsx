@@ -1,14 +1,14 @@
 import React, { forwardRef } from 'react';
 import { LayerProps } from '../containers/Layer/types';
 import { Layer } from '../containers';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { getSeparatorAccessibilityProps } from './accessibility/getSeparatorAccessibilityProps';
 
 export interface SeparatorProps extends Omit<LayerProps, 'children'> {
     isAtBackgroundLevel?: boolean;
 }
 
-export const Separator = forwardRef(
+const Separator = forwardRef(
     ({ isAtBackgroundLevel, ...others }: SeparatorProps, ref: any): JSX.Element => {
         const { colors } = useTheme();
 
@@ -24,3 +24,7 @@ export const Separator = forwardRef(
         );
     }
 );
+
+Separator.displayName = 'Separator';
+
+export { Separator };

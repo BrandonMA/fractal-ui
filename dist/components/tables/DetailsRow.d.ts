@@ -4,4 +4,5 @@ export interface DetailsRowProps extends Partial<Omit<LayerProps, 'children'>> {
     title: string;
     details: string;
 }
-export declare const DetailsRow: React.ForwardRefExoticComponent<DetailsRowProps & React.RefAttributes<unknown>>;
+declare const DetailsRow: React.ForwardRefExoticComponent<DetailsRowProps & React.RefAttributes<unknown>>;
+export { DetailsRow };

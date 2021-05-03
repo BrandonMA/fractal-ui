@@ -1,16 +1,16 @@
 import React from 'react';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 import { Layer } from '../../containers/Layer';
 import { Text } from '../../text';
 import { RadioControlProps } from '../types';
 
+const circleVariants = {
+    active: { scale: 1 },
+    inactive: { scale: 0 }
+};
+
 export function RadioControl({ active, label }: RadioControlProps): JSX.Element {
     const { colors, sizes, spacings } = useTheme();
-
-    const circleVariants = {
-        active: { scale: 1 },
-        inactive: { scale: 0 }
-    };
 
     return (
         <>

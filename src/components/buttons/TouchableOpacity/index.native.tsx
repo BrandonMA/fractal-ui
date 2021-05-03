@@ -18,10 +18,14 @@ const StyledTouchableOpacity = styled(Reanimated.createAnimatedComponent(RNTouch
     ${extractShadowProps};
 ` as typeof RNTouchableOpacity;
 
-export const TouchableOpacity = forwardRef(
+const TouchableOpacity = forwardRef(
     ({ style, ...others }: TouchableOpacityProps, ref: any): JSX.Element => {
         const animationStyles = useAnimationStyles(others);
 
         return <StyledTouchableOpacity ref={ref} style={[animationStyles, style]} {...others} />;
     }
 );
+
+TouchableOpacity.displayName = 'TouchableOpacity';
+
+export { TouchableOpacity };

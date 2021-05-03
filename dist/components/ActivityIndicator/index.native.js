@@ -17,9 +17,11 @@ const StyledRNActivityIndicator = styled(RNActivityIndicator) `
     width: 100%;
     height: 100%;
 `;
-export const ActivityIndicator = forwardRef((_a, ref) => {
+const ActivityIndicator = forwardRef((_a, ref) => {
     var { color } = _a, others = __rest(_a, ["color"]);
     return (React.createElement(Layer, Object.assign({ ref: ref }, others),
         React.createElement(StyledRNActivityIndicator, { color: color, size: 'large' })));
 });
+ActivityIndicator.displayName = 'ActivityIndicator';
+export { ActivityIndicator };
 //# sourceMappingURL=index.native.js.map

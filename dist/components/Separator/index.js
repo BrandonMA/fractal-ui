@@ -11,11 +11,13 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { forwardRef } from 'react';
 import { Layer } from '../containers';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { getSeparatorAccessibilityProps } from './accessibility/getSeparatorAccessibilityProps';
-export const Separator = forwardRef((_a, ref) => {
+const Separator = forwardRef((_a, ref) => {
     var { isAtBackgroundLevel } = _a, others = __rest(_a, ["isAtBackgroundLevel"]);
     const { colors } = useTheme();
     return (React.createElement(Layer, Object.assign({ ref: ref, height: 1, width: '100%', backgroundColor: isAtBackgroundLevel ? colors.placeholder : colors.background }, others, getSeparatorAccessibilityProps())));
 });
+Separator.displayName = 'Separator';
+export { Separator };
 //# sourceMappingURL=index.js.map

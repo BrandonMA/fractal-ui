@@ -17,7 +17,7 @@ import { getYearsInRange } from './util/getYearsInRange';
 import { localeMonthNames } from './util/localeMonthNames';
 import { Layer } from '../../containers';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 import { useControllableState } from '../../../hooks/useControllableState';
 export function DatePicker(_a) {
     var { value, minDate, maxDate, initialDate = new Date(), onChange } = _a, others = __rest(_a, ["value", "minDate", "maxDate", "initialDate", "onChange"]);

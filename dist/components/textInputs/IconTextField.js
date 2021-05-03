@@ -11,7 +11,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React from 'react';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { Layer } from '../containers/Layer';
 import { BaseTextField } from './BaseTextField';
 export function IconTextField(_a) {

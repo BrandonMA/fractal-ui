@@ -27,10 +27,12 @@ const StyledPressable = styled(Reanimated.createAnimatedComponent(RNPressable)) 
     ${extractBorderProps};
     ${extractShadowProps};
 `;
-export const Pressable = forwardRef((_a, ref) => {
+const Pressable = forwardRef((_a, ref) => {
     var { style } = _a, others = __rest(_a, ["style"]);
     const animationStyles = useAnimationStyles(others);
     const [tapStyles, handlePressIn, handlePressOut] = usePressableAnimationStyles(others);
     return (React.createElement(StyledPressable, Object.assign({ ref: ref, onPressIn: handlePressIn, onPressOut: handlePressOut, style: [animationStyles, tapStyles, style] }, others)));
 });
+Pressable.displayName = 'Pressable';
+export { Pressable };
 //# sourceMappingURL=index.native.js.map

@@ -19,7 +19,7 @@ const StyledImage = styled(Reanimated.Image)`
     ${extractShadowProps};
 `;
 
-export const Image = forwardRef(
+const Image = forwardRef(
     ({ source, resizeMode, style, ...others }: ImageProps, ref: any): JSX.Element => {
         const animationStyles = useAnimationStyles(others);
 
@@ -34,3 +34,7 @@ export const Image = forwardRef(
         );
     }
 );
+
+Image.displayName = 'Image';
+
+export { Image };

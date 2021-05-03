@@ -1,11 +1,11 @@
 import React from 'react';
 import { BlurView } from 'expo-blur';
 import { TextButton } from '../../buttons/TextButton';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 import { Layer } from '../../containers/Layer';
 import { Pressable } from '../../buttons/Pressable';
 import { SafeAreaLayer } from '../../containers/SafeAreaLayer';
-import { useThemeIdentifier } from '../../../core/context/hooks/useThemeIdentifier';
+import { useThemeIdentifier } from '../../../context/hooks/useThemeIdentifier';
 import { Modal } from '../Modal';
 import styled from 'styled-components/native';
 import { BlurredModalProps } from './types';

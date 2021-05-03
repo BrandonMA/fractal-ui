@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { Layer } from './Layer';
 export function Background(props) {
     const { colors } = useTheme();

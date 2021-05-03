@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { BaseText } from './BaseText';
 import { TextProps } from './BaseText/types';
 
-export const Text = forwardRef(
+const Text = forwardRef(
     ({ variant, ...others }: TextProps, ref: any): JSX.Element => {
         const { textVariants, colors } = useTheme();
         const { fontSize, fontWeight, color, fontFamily } = textVariants[variant];
@@ -22,3 +22,7 @@ export const Text = forwardRef(
         );
     }
 );
+
+Text.displayName = 'Text';
+
+export { Text };

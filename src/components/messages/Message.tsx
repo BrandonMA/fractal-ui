@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { Text } from '../text';
 import { LayerProps } from '../containers/Layer/types';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { Layer } from '../containers/Layer';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 
@@ -12,7 +12,7 @@ export interface MessageProps extends Partial<Omit<LayerProps, 'children'>> {
     description: string;
 }
 
-export const Message = forwardRef(
+const Message = forwardRef(
     ({ messageType = 'main', title, icon, description, ...others }: MessageProps, ref: any): JSX.Element => {
         const { colors, spacings, borderRadius } = useTheme();
         const backgroundColor = `${messageType}InteractiveColor100`;
@@ -34,3 +34,7 @@ export const Message = forwardRef(
         );
     }
 );
+
+Message.displayName = 'Message';
+
+export { Message };

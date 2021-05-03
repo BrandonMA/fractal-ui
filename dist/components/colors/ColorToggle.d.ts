@@ -5,4 +5,5 @@ export interface ColorToggleProps extends LayerProps {
     backgroundColor: string;
     active?: boolean;
 }
-export declare const ColorToggle: React.ForwardRefExoticComponent<ColorToggleProps & React.RefAttributes<unknown>>;
+declare const ColorToggle: React.ForwardRefExoticComponent<ColorToggleProps & React.RefAttributes<unknown>>;
+export { ColorToggle };

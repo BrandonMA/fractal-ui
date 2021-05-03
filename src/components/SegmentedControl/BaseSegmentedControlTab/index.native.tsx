@@ -3,7 +3,7 @@ import { Layer } from '../../containers/Layer';
 import { TouchableOpacity } from '../../buttons/TouchableOpacity';
 import { Text } from '../../text';
 import { BaseSegmentedControlTabProps } from '../types';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 
 export function BaseSegmentedControlTab({
     onSelect,

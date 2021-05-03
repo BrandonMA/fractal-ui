@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef, useState, useCallback } from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
@@ -18,7 +18,6 @@ import { extractDimensionProps } from '../../../sharedProps/DimensionProps';
 import { extractDisplayProps } from '../../../sharedProps/DisplayProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
 import { extractWebProps } from '../../../sharedProps/WebProps';
-import { getButtonAccessibilityProps } from '../accessibility/getButtonAccessibilityProps';
 const StyledPressable = styled(motion.button) `
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -32,15 +31,10 @@ const StyledPressable = styled(motion.button) `
     ${extractShadowProps};
     ${extractWebProps};
 `;
-const transition = { type: 'spring' };
-export const Pressable = forwardRef((_a, ref) => {
-    var { onPress, type } = _a, others = __rest(_a, ["onPress", "type"]);
-    const [pressed, setPressed] = useState(false);
-    const handleButtonPress = useCallback(() => {
-        setPressed(true);
-        onPress === null || onPress === void 0 ? void 0 : onPress();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    return (React.createElement(StyledPressable, Object.assign({ ref: ref, transition: transition, onClick: handleButtonPress }, getButtonAccessibilityProps(pressed, type), others)));
+const Pressable = forwardRef((_a, ref) => {
+    var { onPress, transition = { type: 'spring' } } = _a, others = __rest(_a, ["onPress", "transition"]);
+    return React.createElement(StyledPressable, Object.assign({ ref: ref, transition: transition, onClick: onPress }, others));
 });
+Pressable.displayName = 'Pressable';
+export { Pressable };
 //# sourceMappingURL=index.js.map

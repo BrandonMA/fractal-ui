@@ -2,7 +2,7 @@ import React, { useEffect, forwardRef, ForwardedRef } from 'react';
 import { Layer } from '../../containers';
 import { LayerProps } from '../../containers/Layer/types';
 
-export const ModalContent = forwardRef(
+const ModalContent = forwardRef(
     ({ children, ...others }: LayerProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
         useEffect(() => {
             document.body.style.overflow = 'hidden';
@@ -19,3 +19,7 @@ export const ModalContent = forwardRef(
         );
     }
 );
+
+ModalContent.displayName = 'ModalContent';
+
+export { ModalContent };

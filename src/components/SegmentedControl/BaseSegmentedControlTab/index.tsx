@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text } from '../../text';
 import { BaseSegmentedControlTabProps } from '../types';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 import styled from 'styled-components';
 import { extractDimensionProps } from '../../../sharedProps/DimensionProps';
 import { motion } from 'framer-motion';

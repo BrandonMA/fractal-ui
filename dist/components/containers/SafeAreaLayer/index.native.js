@@ -26,9 +26,11 @@ const StyledLayer = styled(Reanimated.createAnimatedComponent(SafeAreaView)) `
     ${extractBorderProps};
     ${extractShadowProps};
 `;
-export const SafeAreaLayer = forwardRef((_a, ref) => {
+const SafeAreaLayer = forwardRef((_a, ref) => {
     var { style } = _a, others = __rest(_a, ["style"]);
     const animationStyles = useAnimationStyles(others);
     return React.createElement(StyledLayer, Object.assign({ ref: ref }, others, { style: [animationStyles, style] }));
 });
+SafeAreaLayer.displayName = 'SafeAreaLayer';
+export { SafeAreaLayer };
 //# sourceMappingURL=index.native.js.map

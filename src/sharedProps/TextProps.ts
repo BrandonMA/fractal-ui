@@ -1,4 +1,4 @@
-import { getUserSelectProp } from './utils/getUserSelectProp';
+import { getUserSelectAccessibilityProp } from './utils/getUserSelectAccessibilityProp';
 
 export interface TextProps {
     fontSize?: number;
@@ -16,6 +16,6 @@ export function extractTextProps({ fontSize, fontWeight, fontFamily, color, font
         ${color != null ? `color: ${color}` : ''};
         ${fontFamily != null ? `font-family: ${fontFamily}` : ''};
         ${fontStyle != null ? `font-family: ${fontStyle}` : ''};
-        ${getUserSelectProp(selectable)};
+        ${getUserSelectAccessibilityProp(selectable)};
     `;
 }

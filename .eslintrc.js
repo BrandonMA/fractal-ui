@@ -34,7 +34,6 @@ module.exports = {
     rules: {
         'no-prototype-builtins': 'off',
         'react/jsx-handler-names': 'off',
-        'react/display-name': 'off',
         '@typescript-eslint/no-explicit-any': 'off'
     }
 };

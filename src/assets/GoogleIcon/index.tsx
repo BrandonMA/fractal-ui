@@ -1,6 +1,6 @@
 import React, { memo, SVGProps } from 'react';
 
-export const GoogleIcon = memo(
+const GoogleIcon = memo(
     (props: SVGProps<SVGSVGElement>): JSX.Element => {
         return (
             <svg focusable={false} viewBox='0 0 48 48' width={96} height={96} {...props}>
@@ -24,3 +24,7 @@ export const GoogleIcon = memo(
         );
     }
 );
+
+GoogleIcon.displayName = 'GoogleIcon';
+
+export { GoogleIcon };

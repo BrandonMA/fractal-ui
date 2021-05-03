@@ -13,11 +13,13 @@ import React, { forwardRef } from 'react';
 import { Layer } from '../containers/Layer';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { Text } from '../text';
-export const DetailsRow = forwardRef((_a, ref) => {
+const DetailsRow = forwardRef((_a, ref) => {
     var { title, details } = _a, others = __rest(_a, ["title", "details"]);
     return (React.createElement(HorizontalLayer, Object.assign({ ref: ref, alignItems: 'center' }, others),
         React.createElement(Layer, { flexGrow: 1 },
             React.createElement(Text, { variant: 'small' }, title)),
         React.createElement(Text, { variant: 'label' }, details)));
 });
+DetailsRow.displayName = 'DetailsRow';
+export { DetailsRow };
 //# sourceMappingURL=DetailsRow.js.map

@@ -7,6 +7,5 @@ export function useCallbackRef<T extends (...args: any[]) => any>(fn: T | undefi
         ref.current = fn;
     });
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     return useCallback(((...args) => ref.current?.(...args)) as T, []);
 }

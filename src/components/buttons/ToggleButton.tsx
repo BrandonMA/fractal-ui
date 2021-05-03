@@ -1,8 +1,8 @@
 import React, { ReactNode, forwardRef, useState, useCallback } from 'react';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { BaseButton } from './BaseButton';
-import { ButtonVariant } from './ButtonVariant';
+import { ButtonVariant } from './types/ButtonVariant';
 import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
 
 export interface ButtonProps extends FractalSharedProps, AnimationProps {
@@ -14,7 +14,7 @@ export interface ButtonProps extends FractalSharedProps, AnimationProps {
     onPress?: () => void;
 }
 
-export const ToggleButton = forwardRef(
+const ToggleButton = forwardRef(
     (props: ButtonProps, ref: any): JSX.Element => {
         const { active, variant, children, onPress, useGrayVariant, ...others } = props;
         const { colors, sizes, borderRadius } = useTheme();
@@ -33,8 +33,7 @@ export const ToggleButton = forwardRef(
         const handleButtonPress = useCallback((): void => {
             setPressed(true);
             onPress?.();
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, []);
+        }, [onPress]);
 
         return (
             <BaseButton
@@ -64,3 +63,7 @@ export const ToggleButton = forwardRef(
         );
     }
 );
+
+ToggleButton.displayName = 'ToggleButton';
+
+export { ToggleButton };

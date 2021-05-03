@@ -19,19 +19,20 @@ export function useAudioPlayer(tracks, shufflePlayback, repeatPlayback) {
     const [currentTime, setCurrentTime] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
     const soundRef = useRef();
-    const sound = soundRef.current;
     const currentTrackInfo = playList[trackIndex];
     const { audioSrc } = currentTrackInfo;
     const playSound = useCallback(() => __awaiter(this, void 0, void 0, function* () {
-        yield (sound === null || sound === void 0 ? void 0 : sound.playAsync());
-    }), [sound]);
-    const pauseSound = useCallback(() => __awaiter(this, void 0, void 0, function* () {
-        yield (sound === null || sound === void 0 ? void 0 : sound.pauseAsync());
-    }), [sound]);
-    const setPositionManually = useCallback((positionMillis) => __awaiter(this, void 0, void 0, function* () {
         var _a;
-        yield ((_a = soundRef.current) === null || _a === void 0 ? void 0 : _a.setPositionAsync(positionMillis));
-    }), []);
+        yield ((_a = soundRef.current) === null || _a === void 0 ? void 0 : _a.playAsync());
+    }), [soundRef]);
+    const pauseSound = useCallback(() => __awaiter(this, void 0, void 0, function* () {
+        var _b;
+        yield ((_b = soundRef.current) === null || _b === void 0 ? void 0 : _b.pauseAsync());
+    }), [soundRef]);
+    const setPositionManually = useCallback((positionMillis) => __awaiter(this, void 0, void 0, function* () {
+        var _c;
+        yield ((_c = soundRef.current) === null || _c === void 0 ? void 0 : _c.setPositionAsync(positionMillis));
+    }), [soundRef]);
     const toPreviousTrack = useCallback(() => {
         if (trackIndex - 1 < 0) {
             setTrackIndex(tracks.length - 1);
@@ -49,19 +50,19 @@ export function useAudioPlayer(tracks, shufflePlayback, repeatPlayback) {
         }
     }, [trackIndex, tracks.length]);
     const checkIfShouldToNextTrack = useCallback(() => __awaiter(this, void 0, void 0, function* () {
+        var _d;
         const isLastIndex = trackIndex == tracks.length - 1;
         if (!isLastIndex && !enableRepeatPlayback) {
             toNextTrack();
         }
         else {
-            yield (sound === null || sound === void 0 ? void 0 : sound.setPositionAsync(0));
+            yield ((_d = soundRef.current) === null || _d === void 0 ? void 0 : _d.setPositionAsync(0));
             setCurrentTime(0);
             setIsPlaying(false);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }), [enableRepeatPlayback, toNextTrack, trackIndex, tracks.length]);
+    }), [enableRepeatPlayback, toNextTrack, trackIndex, tracks.length, soundRef]);
     useEffect(() => {
-        if (sound != null) {
+        if (soundRef.current != null) {
             if (enableShufflePlayback) {
                 setPlayList((currentPlayList) => shuffleArray(currentPlayList));
             }
@@ -69,8 +70,7 @@ export function useAudioPlayer(tracks, shufflePlayback, repeatPlayback) {
                 setPlayList(tracks);
             }
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [enableShufflePlayback, tracks]);
+    }, [enableShufflePlayback, tracks, soundRef]);
     const onPlaybackStatusUpdate = useCallback((status) => __awaiter(this, void 0, void 0, function* () {
         if (status.positionMillis) {
             setCurrentTime(status.positionMillis);
@@ -81,9 +81,9 @@ export function useAudioPlayer(tracks, shufflePlayback, repeatPlayback) {
     }), [checkIfShouldToNextTrack]);
     useEffect(() => {
         const loadSoundAsync = () => __awaiter(this, void 0, void 0, function* () {
-            var _a;
+            var _a, _b, _c, _d;
             const source = typeof audioSrc == 'string' ? { uri: audioSrc } : audioSrc;
-            if (sound === undefined) {
+            if (soundRef.current === undefined) {
                 yield Audio.setAudioModeAsync({
                     playsInSilentModeIOS: true
                 });
@@ -96,9 +96,9 @@ export function useAudioPlayer(tracks, shufflePlayback, repeatPlayback) {
                 }
             }
             else {
-                yield sound.unloadAsync();
-                const status = yield sound.loadAsync(source, { shouldPlay: true });
-                sound.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate);
+                yield ((_b = soundRef.current) === null || _b === void 0 ? void 0 : _b.unloadAsync());
+                const status = yield ((_c = soundRef.current) === null || _c === void 0 ? void 0 : _c.loadAsync(source, { shouldPlay: true }));
+                (_d = soundRef.current) === null || _d === void 0 ? void 0 : _d.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate);
                 setCurrentTime(0);
                 const castedStatus = status;
                 if (!isPlaying) {
@@ -109,14 +109,14 @@ export function useAudioPlayer(tracks, shufflePlayback, repeatPlayback) {
                 }
             }
         });
-        loadSoundAsync();
-        return sound
+        loadSoundAsync().catch((error) => alert(error.message));
+        return soundRef.current
             ? () => {
-                sound.unloadAsync();
+                var _a;
+                (_a = soundRef.current) === null || _a === void 0 ? void 0 : _a.unloadAsync();
             }
             : undefined;
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [audioSrc]);
+    }, [audioSrc, soundRef, isPlaying, onPlaybackStatusUpdate]);
     useEffect(() => {
         const handlePlayOrPause = () => __awaiter(this, void 0, void 0, function* () {
             if (isPlaying) {
@@ -126,7 +126,7 @@ export function useAudioPlayer(tracks, shufflePlayback, repeatPlayback) {
                 yield pauseSound();
             }
         });
-        handlePlayOrPause();
+        handlePlayOrPause().catch((error) => alert(error.message));
     }, [isPlaying, pauseSound, playSound]);
     return {
         currentTrackInfo,

@@ -2,7 +2,7 @@ import React from 'react';
 import { Platform } from 'react-native';
 import Slider from '@react-native-community/slider';
 import { BaseSliderProps } from '../types';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 
 export function BaseSlider({ step = 0.001, defaultValue, value, ...others }: BaseSliderProps): JSX.Element {
     const { colors } = useTheme();

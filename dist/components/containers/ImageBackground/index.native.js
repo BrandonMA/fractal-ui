@@ -26,9 +26,11 @@ const StyledImageBackground = styled(Reanimated.createAnimatedComponent(RNImageB
     ${extractBorderProps};
     ${extractShadowProps};
 `;
-export const ImageBackground = forwardRef((_a, ref) => {
+const ImageBackground = forwardRef((_a, ref) => {
     var { source, resizeMode, style } = _a, others = __rest(_a, ["source", "resizeMode", "style"]);
     const animationStyles = useAnimationStyles(others);
     return (React.createElement(StyledImageBackground, Object.assign({ ref: ref, resizeMode: resizeMode, source: typeof source == 'string' ? { uri: source } : source }, others, { style: [animationStyles, style] })));
 });
+ImageBackground.displayName = 'ImageBackground';
+export { ImageBackground };
 //# sourceMappingURL=index.native.js.map

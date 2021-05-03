@@ -10,7 +10,7 @@ import {
     extractShadowProps,
     extractWebProps
 } from '../../../sharedProps';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 import { SegmentedControlTab } from '../SegmentControlTap';
 import { getSegmentedControlAccessibilityProps } from '../accessibility/getSegmentedControlAccessibilityProps';
 

@@ -23,11 +23,13 @@ export function AudioProgressBar({ duration, currentTime, isPlaying, onTimeUpdat
         setTrackProgress(positionMillis);
     }, []);
 
-    const handleSlidingComplete = useCallback(async (time: number): Promise<void> => {
-        await onTimeUpdate(time);
-        setIsDragging(false);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    const handleSlidingComplete = useCallback(
+        async (time: number): Promise<void> => {
+            await onTimeUpdate(time);
+            setIsDragging(false);
+        },
+        [onTimeUpdate]
+    );
 
     useEffect(() => {
         if (isPlaying && !isDragging) {
@@ -41,7 +43,7 @@ export function AudioProgressBar({ duration, currentTime, isPlaying, onTimeUpdat
                 value={trackProgress}
                 minimumValue={0}
                 step={1}
-                maximumValue={duration} //148035
+                maximumValue={duration}
                 onSlidingStart={handleSlidingStart}
                 onValueChange={handleValueChange}
                 onSlidingComplete={handleSlidingComplete}

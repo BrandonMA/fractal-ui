@@ -11,8 +11,10 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { forwardRef } from 'react';
 import { Image } from '../Image';
-export const Avatar = forwardRef((_a, ref) => {
+const Avatar = forwardRef((_a, ref) => {
     var { size = 64 } = _a, others = __rest(_a, ["size"]);
     return React.createElement(Image, Object.assign({ ref: ref, width: size, height: size, borderRadius: size / 2 }, others));
 });
+Avatar.displayName = 'Avatar';
+export { Avatar };
 //# sourceMappingURL=index.js.map

@@ -12,4 +12,5 @@ export interface SocialMediaButtonsEventsProps {
 }
 export interface SocialMediaButtonsProps extends Partial<Omit<LayerProps, 'children'>>, SocialMediaButtonsEventsProps {
 }
-export declare const SocialMediaButtons: React.ForwardRefExoticComponent<SocialMediaButtonsProps & React.RefAttributes<unknown>>;
+declare const SocialMediaButtons: React.ForwardRefExoticComponent<SocialMediaButtonsProps & React.RefAttributes<unknown>>;
+export { SocialMediaButtons };

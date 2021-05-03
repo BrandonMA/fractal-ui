@@ -23,10 +23,12 @@ const StyledPressable = styled(motion.button as any)`
     ${extractWebProps};
 ` as typeof motion.button;
 
-const transition = { type: 'spring' };
-
-export const Pressable = forwardRef(
-    ({ onPress, ...others }: PressableProps, ref: any): JSX.Element => {
+const Pressable = forwardRef(
+    ({ onPress, transition = { type: 'spring' }, ...others }: PressableProps, ref: any): JSX.Element => {
         return <StyledPressable ref={ref} transition={transition} onClick={onPress} {...others} />;
     }
 );
+
+Pressable.displayName = 'Pressable';
+
+export { Pressable };

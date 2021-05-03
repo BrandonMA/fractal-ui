@@ -18,8 +18,12 @@ const StyledText = styled(Text)`
     ${extractTextProps};
 ` as typeof Text;
 
-export const BaseText = forwardRef(
+const BaseText = forwardRef(
     (props: TextProps, ref: any): JSX.Element => {
         return <StyledText ref={ref} {...props} />;
     }
 );
+
+BaseText.displayName = 'BaseText';
+
+export { BaseText };

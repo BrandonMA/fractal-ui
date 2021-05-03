@@ -4,7 +4,7 @@ import { GridRow } from './GridRow';
 import { GridProps } from './types';
 import { getGridAccessibilityProps } from './accessibility/getGridAccessibilityProps';
 
-export const Grid = forwardRef(
+const Grid = forwardRef(
     ({ children, ...others }: GridProps, ref: any): JSX.Element => {
         const isRow = useCallback((): boolean => {
             let row = false;
@@ -21,3 +21,7 @@ export const Grid = forwardRef(
         );
     }
 );
+
+Grid.displayName = 'Grid';
+
+export { Grid };

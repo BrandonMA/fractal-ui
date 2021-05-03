@@ -26,9 +26,11 @@ const StyledTouchableOpacity = styled(Reanimated.createAnimatedComponent(RNTouch
     ${extractBorderProps};
     ${extractShadowProps};
 `;
-export const TouchableOpacity = forwardRef((_a, ref) => {
+const TouchableOpacity = forwardRef((_a, ref) => {
     var { style } = _a, others = __rest(_a, ["style"]);
     const animationStyles = useAnimationStyles(others);
     return React.createElement(StyledTouchableOpacity, Object.assign({ ref: ref, style: [animationStyles, style] }, others));
 });
+TouchableOpacity.displayName = 'TouchableOpacity';
+export { TouchableOpacity };
 //# sourceMappingURL=index.native.js.map

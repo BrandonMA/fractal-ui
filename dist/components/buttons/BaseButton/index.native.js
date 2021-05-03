@@ -11,9 +11,11 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { forwardRef } from 'react';
 import { Pressable } from '../Pressable';
-export const BaseButton = forwardRef((_a, ref) => {
+const BaseButton = forwardRef((_a, ref) => {
     var { whileTap, pressedBackgroundColor } = _a, others = __rest(_a, ["whileTap", "pressedBackgroundColor"]);
     const tapStyles = Object.assign({ scale: 0.9, backgroundColor: pressedBackgroundColor }, whileTap);
     return React.createElement(Pressable, Object.assign({ ref: ref, whileTap: tapStyles }, others));
 });
+BaseButton.displayName = 'BaseButton';
+export { BaseButton };
 //# sourceMappingURL=index.native.js.map

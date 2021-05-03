@@ -2,7 +2,7 @@ import React from 'react';
 import { TextFieldProps } from './BaseTextField/types';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { LayerProps } from '../containers/Layer/types';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { Layer } from '../containers/Layer';
 import { BaseTextField } from './BaseTextField';
 

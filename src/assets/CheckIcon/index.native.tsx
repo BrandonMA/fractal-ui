@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
 
-export const CheckIcon = memo(
+const CheckIcon = memo(
     (props: SvgProps): JSX.Element => {
         return (
             <Svg focusable={false} viewBox='0 0 50 50' width={50} height={50} {...props}>
@@ -10,3 +10,7 @@ export const CheckIcon = memo(
         );
     }
 );
+
+CheckIcon.displayName = 'CheckIcon';
+
+export { CheckIcon };

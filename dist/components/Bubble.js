@@ -16,7 +16,7 @@ import { Layer } from './containers/Layer';
 import { TouchableOpacity } from './buttons/TouchableOpacity';
 const BubbleTriangleLeft = styled(Layer) `
     position: absolute;
-    left: 0px;
+    left: 0;
     border-color: transparent;
     border-top-color: ${(props) => props.color};
     border-top-width: 12px;
@@ -27,7 +27,7 @@ const BubbleTriangleLeft = styled(Layer) `
 `;
 const BubbleTriangleRight = styled(Layer) `
     position: absolute;
-    right: 0px;
+    right: 0;
     border-color: transparent;
     border-top-color: ${(props) => props.color};
     border-top-width: 12px;
@@ -36,7 +36,7 @@ const BubbleTriangleRight = styled(Layer) `
     background-color: transparent;
     border-style: solid;
 `;
-export const Bubble = forwardRef((_a, ref) => {
+const Bubble = forwardRef((_a, ref) => {
     var { children, arrowPosition, color } = _a, others = __rest(_a, ["children", "arrowPosition", "color"]);
     const { shadows, spacings, borderRadius } = useTheme();
     return (React.createElement(TouchableOpacity, Object.assign({ ref: ref }, others),
@@ -44,4 +44,6 @@ export const Bubble = forwardRef((_a, ref) => {
             React.createElement(Layer, { padding: spacings.m, backgroundColor: color, borderRadius: borderRadius.m, borderTopLeftRadius: arrowPosition === 'left' ? 0 : borderRadius.m, borderTopRightRadius: arrowPosition === 'right' ? 0 : borderRadius.m, boxShadow: shadows.mainShadow, width: '100%' }, children),
             arrowPosition == 'left' ? React.createElement(BubbleTriangleLeft, { color: color }) : React.createElement(BubbleTriangleRight, { color: color }))));
 });
+Bubble.displayName = 'Bubble';
+export { Bubble };
 //# sourceMappingURL=Bubble.js.map

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
 import { useControllableState } from '../../Slider/utils/useControllableState';
 import { Picker } from '../Picker';

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import Svg, { Path, SvgProps } from 'react-native-svg';
 
-export const GoogleIcon = memo((props: SvgProps) => {
+const GoogleIcon = memo((props: SvgProps) => {
     return (
         <Svg focusable={false} viewBox='0 0 48 48' width={96} height={96} {...props}>
             <Path
@@ -23,3 +23,7 @@ export const GoogleIcon = memo((props: SvgProps) => {
         </Svg>
     );
 });
+
+GoogleIcon.displayName = 'GoogleIcon';
+
+export { GoogleIcon };

@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
-import { useTheme } from '../core/context/hooks/useTheme';
-import { ButtonVariant } from './buttons/ButtonVariant';
+import { useTheme } from '../context/hooks/useTheme';
+import { ButtonVariant } from './buttons/types/ButtonVariant';
 import { Layer } from './containers';
 import { Text } from './text';
 
@@ -9,7 +9,7 @@ interface BadgeProps {
     variant: ButtonVariant;
 }
 
-export const Badge = forwardRef(
+const Badge = forwardRef(
     ({ children, variant }: BadgeProps, ref: any): JSX.Element => {
         const { colors, spacings } = useTheme();
         const colorName100 = `${variant}InteractiveColor100`;
@@ -32,3 +32,7 @@ export const Badge = forwardRef(
         );
     }
 );
+
+Badge.displayName = 'Badge';
+
+export { Badge };

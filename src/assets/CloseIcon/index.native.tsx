@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import Svg, { SvgProps, Path } from 'react-native-svg';
 
-export const CloseIcon = memo(
+const CloseIcon = memo(
     (props: SvgProps): JSX.Element => {
         return (
             <Svg focusable={false} viewBox='0 0 30 30' width={30} height={30} {...props}>
@@ -10,3 +10,7 @@ export const CloseIcon = memo(
         );
     }
 );
+
+CloseIcon.displayName = 'CloseIcon';
+
+export { CloseIcon };

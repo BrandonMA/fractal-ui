@@ -8,7 +8,7 @@ export type GoogleButtonProps = Partial<Omit<ButtonProps, 'variant'>> & {
     loading?: boolean;
 };
 
-export const GoogleButton = forwardRef(
+const GoogleButton = forwardRef(
     (props: GoogleButtonProps, ref: any): JSX.Element => {
         return (
             <BaseMediaButton
@@ -24,3 +24,7 @@ export const GoogleButton = forwardRef(
         );
     }
 );
+
+GoogleButton.displayName = 'GoogleButton';
+
+export { GoogleButton };

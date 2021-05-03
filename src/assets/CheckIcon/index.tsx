@@ -1,6 +1,6 @@
 import React, { memo, SVGProps } from 'react';
 
-export const CheckIcon = memo(
+const CheckIcon = memo(
     (props: SVGProps<SVGSVGElement>): JSX.Element => {
         return (
             <svg focusable={false} viewBox='0 0 50 50' width={50} height={50} {...props}>
@@ -9,3 +9,7 @@ export const CheckIcon = memo(
         );
     }
 );
+
+CheckIcon.displayName = 'CheckIcon';
+
+export { CheckIcon };

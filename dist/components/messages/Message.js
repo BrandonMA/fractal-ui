@@ -11,10 +11,10 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { forwardRef } from 'react';
 import { Text } from '../text';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { Layer } from '../containers/Layer';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
-export const Message = forwardRef((_a, ref) => {
+const Message = forwardRef((_a, ref) => {
     var { messageType = 'main', title, icon, description } = _a, others = __rest(_a, ["messageType", "title", "icon", "description"]);
     const { colors, spacings, borderRadius } = useTheme();
     const backgroundColor = `${messageType}InteractiveColor100`;
@@ -26,4 +26,6 @@ export const Message = forwardRef((_a, ref) => {
             React.createElement(Text, { marginLeft: icon != null ? spacings.s : undefined, variant: 'title', color: colors[titleVariant] }, title)),
         React.createElement(Text, { variant: 'normal', color: colors[textVariant] }, description)));
 });
+Message.displayName = 'Message';
+export { Message };
 //# sourceMappingURL=Message.js.map

@@ -29,8 +29,7 @@ const CheckBoxInput = styled(motion.input)`
 export function BaseCheckBox({ value, onValueChange, label }: BaseCheckBoxProps): JSX.Element {
     const handleValueChange = useCallback((): void => {
         onValueChange(!value);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [value]);
+    }, [value, onValueChange]);
 
     return (
         <Wrapper>

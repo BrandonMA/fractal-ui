@@ -9,5 +9,5 @@ interface AudioControlsProps {
     onShufflePress: () => void;
     onRepeatPress: () => void;
 }
-export declare const AudioControls: React.MemoExoticComponent<({ isPlaying, isEnableShuffle, isEnableRepeat, onPlayPausePress, onNextPress, onPreviousPress, onShufflePress, onRepeatPress }: AudioControlsProps) => JSX.Element>;
-export {};
+declare const AudioControls: React.MemoExoticComponent<({ isPlaying, isEnableShuffle, isEnableRepeat, onPlayPausePress, onNextPress, onPreviousPress, onShufflePress, onRepeatPress }: AudioControlsProps) => JSX.Element>;
+export { AudioControls };

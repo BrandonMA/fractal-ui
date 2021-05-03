@@ -12,7 +12,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React from 'react';
 import { Platform } from 'react-native';
 import Slider from '@react-native-community/slider';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 export function BaseSlider(_a) {
     var { step = 0.001, defaultValue, value } = _a, others = __rest(_a, ["step", "defaultValue", "value"]);
     const { colors } = useTheme();

@@ -4,7 +4,7 @@ import { ModalPortal } from './ModalPortal';
 import { ModalContent } from './ModalContent';
 import { ModalProps } from './types';
 
-export const Modal = forwardRef(
+const Modal = forwardRef(
     ({ visible, ...others }: ModalProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
         return (
             <ModalPortal>
@@ -13,3 +13,7 @@ export const Modal = forwardRef(
         );
     }
 );
+
+Modal.displayName = 'Modal';
+
+export { Modal };

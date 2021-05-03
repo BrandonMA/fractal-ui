@@ -8,7 +8,7 @@ export type FacebookButtonProps = Partial<Omit<ButtonProps, 'variant'>> & {
     loading?: boolean;
 };
 
-export const FacebookButton = forwardRef(
+const FacebookButton = forwardRef(
     (props: FacebookButtonProps, ref: any): JSX.Element => {
         return (
             <BaseMediaButton
@@ -23,3 +23,7 @@ export const FacebookButton = forwardRef(
         );
     }
 );
+
+FacebookButton.displayName = 'FacebookButton';
+
+export { FacebookButton };

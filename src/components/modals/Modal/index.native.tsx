@@ -4,7 +4,7 @@ import { Modal as RNModal } from 'react-native';
 import { AnimatePresence } from 'framer-motion';
 import { Layer } from '../../containers';
 
-export const Modal = forwardRef(
+const Modal = forwardRef(
     ({ visible, ...others }: ModalProps, ref: ForwardedRef<RNModal>): JSX.Element => {
         return (
             <AnimatePresence>
@@ -17,3 +17,7 @@ export const Modal = forwardRef(
         );
     }
 );
+
+Modal.displayName = 'Modal';
+
+export { Modal };

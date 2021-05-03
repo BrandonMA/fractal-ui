@@ -6,4 +6,5 @@ export interface MessageProps extends Partial<Omit<LayerProps, 'children'>> {
     icon?: (color: string) => JSX.Element;
     description: string;
 }
-export declare const Message: React.ForwardRefExoticComponent<MessageProps & React.RefAttributes<unknown>>;
+declare const Message: React.ForwardRefExoticComponent<MessageProps & React.RefAttributes<unknown>>;
+export { Message };

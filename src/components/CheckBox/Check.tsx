@@ -1,6 +1,6 @@
 import React from 'react';
 import { CheckIcon } from '../../assets/CheckIcon';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { Layer } from '../containers/Layer';
 import { Text } from '../text';
 import { CheckProps } from './types';

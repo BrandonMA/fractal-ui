@@ -2,7 +2,7 @@ import React, { forwardRef } from 'react';
 import { BaseButtonProps } from './types';
 import { Pressable } from '../Pressable';
 
-export const BaseButton = forwardRef(
+const BaseButton = forwardRef(
     ({ pressedBackgroundColor, whileHover, whileTap, ...others }: BaseButtonProps, ref: any): JSX.Element => {
         const hoverStyles = {
             backgroundColor: pressedBackgroundColor,
@@ -18,3 +18,7 @@ export const BaseButton = forwardRef(
         return <Pressable ref={ref} {...others} whileHover={hoverStyles} whileTap={tapStyles} />;
     }
 );
+
+BaseButton.displayName = 'BaseButton';
+
+export { BaseButton };

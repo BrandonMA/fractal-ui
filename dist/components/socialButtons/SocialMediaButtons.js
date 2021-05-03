@@ -14,9 +14,9 @@ import { AppleButton } from './AppleButton';
 import { GoogleButton } from './GoogleButton';
 import { FacebookButton } from './FacebookButton';
 import { Layer } from '../containers';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
-export const SocialMediaButtons = forwardRef((_a, ref) => {
+const SocialMediaButtons = forwardRef((_a, ref) => {
     var { onGooglePress, onFacebookPress, onApplePress, googleLoading, facebookLoading, appleLoading, appleText, removeAppleButton } = _a, others = __rest(_a, ["onGooglePress", "onFacebookPress", "onApplePress", "googleLoading", "facebookLoading", "appleLoading", "appleText", "removeAppleButton"]);
     const { spacings } = useTheme();
     return (React.createElement(Layer, Object.assign({ ref: ref, padding: spacings.m }, others),
@@ -26,4 +26,6 @@ export const SocialMediaButtons = forwardRef((_a, ref) => {
             React.createElement(FacebookButton, { loading: facebookLoading, flex: 1, onPress: onFacebookPress })),
         removeAppleButton ? null : React.createElement(AppleButton, { loading: appleLoading, onPress: onApplePress, text: appleText })));
 });
+SocialMediaButtons.displayName = 'SocialMediaButtons';
+export { SocialMediaButtons };
 //# sourceMappingURL=SocialMediaButtons.js.map

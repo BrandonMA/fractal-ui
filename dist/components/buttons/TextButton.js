@@ -11,10 +11,10 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { forwardRef } from 'react';
 import { Text } from '../text';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { TouchableOpacity } from './TouchableOpacity';
 import { getTextButtonAccessibilityProps } from './accessibility/getTextButtonAccessibilityProps';
-export const TextButton = forwardRef((_a, ref) => {
+const TextButton = forwardRef((_a, ref) => {
     var { variant, children, leftIcon, rightIcon, textProps } = _a, others = __rest(_a, ["variant", "children", "leftIcon", "rightIcon", "textProps"]);
     const { colors } = useTheme();
     const colorName = `${variant}InteractiveColor`;
@@ -24,4 +24,6 @@ export const TextButton = forwardRef((_a, ref) => {
         children && (React.createElement(Text, Object.assign({ fontWeight: 500, variant: 'textButton', color: color }, textProps), children)),
         rightIcon && rightIcon(color)));
 });
+TextButton.displayName = 'TextButton';
+export { TextButton };
 //# sourceMappingURL=TextButton.js.map

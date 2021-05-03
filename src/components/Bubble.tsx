@@ -11,7 +11,7 @@ interface BubbleTriangleProps {
 
 const BubbleTriangleLeft = styled(Layer)`
     position: absolute;
-    left: 0px;
+    left: 0;
     border-color: transparent;
     border-top-color: ${(props: BubbleTriangleProps) => props.color};
     border-top-width: 12px;
@@ -23,7 +23,7 @@ const BubbleTriangleLeft = styled(Layer)`
 
 const BubbleTriangleRight = styled(Layer)`
     position: absolute;
-    right: 0px;
+    right: 0;
     border-color: transparent;
     border-top-color: ${(props: BubbleTriangleProps) => props.color};
     border-top-width: 12px;
@@ -37,7 +37,7 @@ interface BubbleProps extends BubbleTriangleProps, TouchableOpacityProps {
     arrowPosition: 'left' | 'right';
 }
 
-export const Bubble = forwardRef(
+const Bubble = forwardRef(
     ({ children, arrowPosition, color, ...others }: BubbleProps, ref: any): JSX.Element => {
         const { shadows, spacings, borderRadius } = useTheme();
         return (
@@ -67,3 +67,7 @@ export const Bubble = forwardRef(
         );
     }
 );
+
+Bubble.displayName = 'Bubble';
+
+export { Bubble };

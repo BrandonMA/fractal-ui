@@ -42,7 +42,7 @@ export function useAudioPlayer<T extends MinimalTrackData>(
         }
     }, [trackIndex, tracks.length]);
 
-    const checkIfShouldToNextTrack = useCallback(() => {
+    const checkIfShouldGoToNextTrack = useCallback(() => {
         const isLastIndex = trackIndex == tracks.length - 1;
         if (enableRepeatPlayback) {
             toNextTrack();
@@ -88,7 +88,7 @@ export function useAudioPlayer<T extends MinimalTrackData>(
         };
 
         const onEnded = (): void => {
-            checkIfShouldToNextTrack();
+            checkIfShouldGoToNextTrack();
         };
 
         const onTimeUpdate = (): void => {
@@ -105,7 +105,7 @@ export function useAudioPlayer<T extends MinimalTrackData>(
             audioCurrentRef?.removeEventListener('ended', onEnded);
             audioCurrentRef?.removeEventListener('timeupdate', onTimeUpdate);
         };
-    }, [audioSrc, checkIfShouldToNextTrack, trackIndex]);
+    }, [audioSrc, checkIfShouldGoToNextTrack, trackIndex]);
 
     useEffect(() => {
         if (isPlaying) {

@@ -13,7 +13,7 @@ import React, { forwardRef } from 'react';
 import { motion, AnimateSharedLayout } from 'framer-motion';
 import styled from 'styled-components';
 import { extractBackgroundProps, extractBorderProps, extractDimensionProps, extractDisplayProps, extractShadowProps, extractWebProps } from '../../../sharedProps';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 import { SegmentedControlTab } from '../SegmentControlTap';
 import { getSegmentedControlAccessibilityProps } from '../accessibility/getSegmentedControlAccessibilityProps';
 const Container = styled(motion.ol) `

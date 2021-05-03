@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 import { Pressable } from '../../buttons/Pressable';
 import { Layer } from '../../containers/Layer';
 import { getSwitchAccessibilityProps } from '../accessibility/getSwitchAccessibilityProps';
@@ -18,7 +18,7 @@ export function BaseSwitch({ value, onValueChange }) {
         active: { backgroundColor: colors.mainInteractiveColor },
         inactive: { backgroundColor: colors.placeholder }
     };
-    return (React.createElement(Pressable, Object.assign({ flexDirection: 'row', height: 24, width: 40, borderRadius: 12, paddingLeft: 2, paddingRight: 2, onPress: onPress, alignItems: 'center', initial: 'inactive', type: 'switch', animate: value ? 'active' : 'inactive', variants: backgroundVariants }, getSwitchAccessibilityProps(value)),
+    return (React.createElement(Pressable, Object.assign({ flexDirection: 'row', height: 24, width: 40, borderRadius: 12, paddingLeft: 2, paddingRight: 2, onPress: onPress, alignItems: 'center', initial: 'inactive', animate: value ? 'active' : 'inactive', variants: backgroundVariants }, getSwitchAccessibilityProps(value)),
         React.createElement(Layer, { initial: 'start', animate: value ? 'end' : 'start', variants: styleVariants, height: 20, width: 20, borderRadius: 10, backgroundColor: colors.white, boxShadow: shadows.mainShadow })));
 }
 //# sourceMappingURL=index.js.map

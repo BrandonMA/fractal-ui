@@ -12,9 +12,11 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { forwardRef } from 'react';
 import { Layer } from '../containers';
 import { BaseCheckBox } from './BaseCheckBox';
-export const CheckBox = forwardRef((_a, ref) => {
+const CheckBox = forwardRef((_a, ref) => {
     var { value, onValueChange, label } = _a, layerProps = __rest(_a, ["value", "onValueChange", "label"]);
     return (React.createElement(Layer, Object.assign({ ref: ref }, layerProps),
         React.createElement(BaseCheckBox, { value: value, onValueChange: onValueChange, label: label })));
 });
+CheckBox.displayName = 'CheckBox';
+export { CheckBox };
 //# sourceMappingURL=index.js.map

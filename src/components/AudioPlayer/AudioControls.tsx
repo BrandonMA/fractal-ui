@@ -1,20 +1,18 @@
-import { AnimatePresence } from 'framer-motion';
 import React, { memo } from 'react';
 import { useTheme } from '../../core';
 import { BaseButton } from '../buttons/BaseButton';
 import { ToggleButton } from '../buttons/ToggleButton';
 import { Layer } from '../containers/Layer';
-import { NextIcon } from './icons/Next';
-import { PauseIcon } from './icons/Pause';
-import { PlayIcon } from './icons/Play';
-import { PreviousIcon } from './icons/Previous';
-import { RepeatIcon } from './icons/Repeat';
-import { ShuffleIcon } from './icons/Shuffle';
+import { NextIcon } from '../../assets/NextIcon';
+import { PreviousIcon } from '../../assets/PreviousIcon';
+import { RepeatIcon } from '../../assets/RepeatIcon';
+import { ShuffleIcon } from '../../assets/ShuffleIcon';
 import { getShuffleButtonAccessibilityProps } from './accessibility/getShuffleButtonAccessibilityProps';
 import { getPreviousButtonAccessibilityProps } from './accessibility/getPreviousButtonAccessibilityProps';
 import { getPlayPauseButtonAccessibilityProps } from './accessibility/getPlayPauseButtonAccessibilityProps';
 import { getNextButtonAccessibilityProps } from './accessibility/getNextButtonAccessibilityProps';
 import { getRepeatButtonAccessibilityProps } from './accessibility/getRepeatButtonAccessibilityProps';
+import { PlayPauseIcon } from './PlayPauseIcon';
 
 interface AudioControlsProps {
     isEnableShuffle: boolean;
@@ -27,36 +25,11 @@ interface AudioControlsProps {
     onRepeatPress: () => void;
 }
 
-const ICON_SIZE = 20;
-
 const SMALL_ICON_SIZE = 16;
 
 const SMALL_BUTTON = 32;
 
-interface PlayPauseIconProps {
-    tintColor: string;
-    isPlaying: boolean;
-}
-
-const PlayPauseIcon = memo(
-    ({ tintColor, isPlaying }: PlayPauseIconProps): JSX.Element => {
-        return (
-            <AnimatePresence>
-                {isPlaying ? (
-                    <Layer initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                        <PauseIcon fill={tintColor} width={ICON_SIZE} height={ICON_SIZE} />
-                    </Layer>
-                ) : (
-                    <Layer initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-                        <PlayIcon fill={tintColor} width={ICON_SIZE} height={ICON_SIZE} />
-                    </Layer>
-                )}
-            </AnimatePresence>
-        );
-    }
-);
-
-export const AudioControls = memo(
+const AudioControls = memo(
     ({
         isPlaying,
         isEnableShuffle,
@@ -68,6 +41,7 @@ export const AudioControls = memo(
         onRepeatPress
     }: AudioControlsProps): JSX.Element => {
         const { colors, sizes } = useTheme();
+
         return (
             <Layer>
                 <Layer flexDirection='row' alignItems={'center'} justifyContent={'space-between'}>
@@ -130,3 +104,7 @@ export const AudioControls = memo(
         );
     }
 );
+
+AudioControls.displayName = 'AudioControls';
+
+export { AudioControls };

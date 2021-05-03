@@ -42,7 +42,7 @@ export function useAudioPlayer(tracks, shufflePlayback, repeatPlayback) {
             setTrackIndex(0);
         }
     }, [trackIndex, tracks.length]);
-    const checkIfShouldToNextTrack = useCallback(() => {
+    const checkIfShouldGoToNextTrack = useCallback(() => {
         const isLastIndex = trackIndex == tracks.length - 1;
         if (enableRepeatPlayback) {
             toNextTrack();
@@ -89,7 +89,7 @@ export function useAudioPlayer(tracks, shufflePlayback, repeatPlayback) {
             }
         };
         const onEnded = () => {
-            checkIfShouldToNextTrack();
+            checkIfShouldGoToNextTrack();
         };
         const onTimeUpdate = () => {
             if (audioRef.current)
@@ -104,7 +104,7 @@ export function useAudioPlayer(tracks, shufflePlayback, repeatPlayback) {
             audioCurrentRef === null || audioCurrentRef === void 0 ? void 0 : audioCurrentRef.removeEventListener('ended', onEnded);
             audioCurrentRef === null || audioCurrentRef === void 0 ? void 0 : audioCurrentRef.removeEventListener('timeupdate', onTimeUpdate);
         };
-    }, [audioSrc, checkIfShouldToNextTrack, trackIndex]);
+    }, [audioSrc, checkIfShouldGoToNextTrack, trackIndex]);
     useEffect(() => {
         if (isPlaying) {
             if (audioRef.current)

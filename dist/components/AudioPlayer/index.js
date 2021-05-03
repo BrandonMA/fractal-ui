@@ -23,7 +23,7 @@ import { Box } from '../containers';
 import { Layer } from '../containers/Layer';
 import { useAudioPlayer } from './useAudioPlayer';
 import { Text } from '../text';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { Image } from '../Image';
 import { AudioControls } from './AudioControls';
 import { AudioProgressBar } from './AudioProgressBar';

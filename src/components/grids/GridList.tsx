@@ -3,7 +3,7 @@ import { Layer } from '../containers/Layer';
 import { GridListProps } from './types';
 import { getGridListAccessibilityProps } from './accessibility/getGridListAccessibilityProps';
 
-export const GridList = forwardRef(function List<T>(props: GridListProps<T>, ref: any): JSX.Element {
+const GridList = forwardRef(function List<T>(props: GridListProps<T>, ref: any): JSX.Element {
     const { numColumns, renderItem, data } = props;
 
     const renderWrapper = useCallback(
@@ -23,3 +23,7 @@ export const GridList = forwardRef(function List<T>(props: GridListProps<T>, ref
         </Layer>
     );
 });
+
+GridList.displayName = 'GridList';
+
+export { GridList };

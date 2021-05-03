@@ -1,10 +1,10 @@
 import React, { forwardRef } from 'react';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { sizes } from '../../themes/templates/lightFractalTheme';
 import { BaseTextField } from './BaseTextField';
 import { TextFieldProps } from './BaseTextField/types';
 
-export const TextField = forwardRef(
+const TextField = forwardRef(
     (props: TextFieldProps, ref: any): JSX.Element => {
         const { colors, borderRadius, spacings } = useTheme();
 
@@ -24,3 +24,7 @@ export const TextField = forwardRef(
         );
     }
 );
+
+TextField.displayName = 'TextField';
+
+export { TextField };

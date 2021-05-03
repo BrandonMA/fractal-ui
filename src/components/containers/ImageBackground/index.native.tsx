@@ -18,7 +18,7 @@ const StyledImageBackground = styled(Reanimated.createAnimatedComponent(RNImageB
     ${extractShadowProps};
 ` as typeof styled.ImageBackground;
 
-export const ImageBackground = forwardRef(
+const ImageBackground = forwardRef(
     ({ source, resizeMode, style, ...others }: ImageBackgroundProps, ref: any): JSX.Element => {
         const animationStyles = useAnimationStyles(others);
 
@@ -33,3 +33,7 @@ export const ImageBackground = forwardRef(
         );
     }
 );
+
+ImageBackground.displayName = 'ImageBackground';
+
+export { ImageBackground };

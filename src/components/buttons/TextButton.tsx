@@ -2,8 +2,8 @@ import React, { forwardRef } from 'react';
 import { Text } from '../text';
 import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { TextProps } from '../text/BaseText/types';
-import { useTheme } from '../../core/context/hooks/useTheme';
-import { ButtonVariant } from './ButtonVariant';
+import { useTheme } from '../../context/hooks/useTheme';
+import { ButtonVariant } from './types/ButtonVariant';
 import { TouchableOpacity } from './TouchableOpacity';
 import { getTextButtonAccessibilityProps } from './accessibility/getTextButtonAccessibilityProps';
 
@@ -17,7 +17,7 @@ export interface TextButtonProps extends FractalSharedProps, AnimationProps {
     onPress?: () => void;
 }
 
-export const TextButton = forwardRef(
+const TextButton = forwardRef(
     ({ variant, children, leftIcon, rightIcon, textProps, ...others }: TextButtonProps, ref: any): JSX.Element => {
         const { colors } = useTheme();
         const colorName = `${variant}InteractiveColor`;
@@ -36,3 +36,7 @@ export const TextButton = forwardRef(
         );
     }
 );
+
+TextButton.displayName = 'TextButton';
+
+export { TextButton };

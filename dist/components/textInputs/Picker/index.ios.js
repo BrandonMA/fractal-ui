@@ -12,7 +12,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { useCallback, useState } from 'react';
 import { PickerButton } from '../PickerButton';
 import { usePickerState } from './hooks/usePickerState';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 import { PickerItem } from './PickerItem';
 import { BasePicker } from './BasePicker';
 import { BlurrediOSModal } from '../../modals';

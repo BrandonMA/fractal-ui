@@ -13,9 +13,11 @@ import React, { forwardRef } from 'react';
 import { Modal as RNModal } from 'react-native';
 import { AnimatePresence } from 'framer-motion';
 import { Layer } from '../../containers';
-export const Modal = forwardRef((_a, ref) => {
+const Modal = forwardRef((_a, ref) => {
     var { visible } = _a, others = __rest(_a, ["visible"]);
     return (React.createElement(AnimatePresence, null, visible ? (React.createElement(RNModal, { ref: ref, animationType: 'none', transparent: true },
         React.createElement(Layer, Object.assign({ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0 }, others)))) : null));
 });
+Modal.displayName = 'Modal';
+export { Modal };
 //# sourceMappingURL=index.native.js.map

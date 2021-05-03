@@ -18,6 +18,7 @@ import { extractDimensionProps } from '../../../../sharedProps/DimensionProps';
 import { extractDisplayProps } from '../../../../sharedProps/DisplayProps';
 import { extractBorderProps } from '../../../../sharedProps/BorderProps';
 import { extractWebProps } from '../../../../sharedProps/WebProps';
+import { getBasePickerAccessibilityProps } from '../../accessibility/getBasePickerAccessibilityProps';
 const StyledSelect = styled(motion.select) `
     appearance: none;
     cursor: pointer;
@@ -36,6 +37,6 @@ export function BasePicker(_a) {
             onValueChange(value, selectedIndex);
         }
     }, [onValueChange]);
-    return React.createElement(StyledSelect, Object.assign({ disabled: enabled === false ? true : undefined, onChange: handleChange, value: selectedValue }, others));
+    return (React.createElement(StyledSelect, Object.assign({ disabled: enabled === false ? true : undefined, onChange: handleChange, value: selectedValue }, getBasePickerAccessibilityProps(), others)));
 }
 //# sourceMappingURL=index.js.map

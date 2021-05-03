@@ -18,7 +18,7 @@ import { extractDimensionProps } from '../../../sharedProps/DimensionProps';
 import { extractDisplayProps } from '../../../sharedProps/DisplayProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
 import { extractWebProps } from '../../../sharedProps/WebProps';
-import { useLongPress } from '../useLongPress';
+import { useLongPress } from '../hooks/useLongPress';
 import { getButtonAccessibilityProps } from '../accessibility/getButtonAccessibilityProps';
 const StyledTouchableOpacity = styled(motion.button) `
     -moz-appearance: none;
@@ -34,20 +34,17 @@ const StyledTouchableOpacity = styled(motion.button) `
     ${extractWebProps};
 `;
 const transition = { type: 'linear', duration: 0.2 };
-const emptyFuntion = () => undefined;
-export const TouchableOpacity = forwardRef((_a, ref) => {
+const TouchableOpacity = forwardRef((_a, ref) => {
     var { onPress, onLongPress, whileTap } = _a, others = __rest(_a, ["onPress", "onLongPress", "whileTap"]);
     const [pressed, setPressed] = useState(false);
     const tapStyles = Object.assign({ opacity: 0.4 }, whileTap);
-    const longPressEvent = useLongPress(onLongPress !== null && onLongPress !== void 0 ? onLongPress : emptyFuntion, {
-        isPreventDefault: true,
-        delay: 300
-    });
+    const longPressEvent = useLongPress(onLongPress);
     const handleButtonPress = useCallback(() => {
         setPressed(true);
         onPress === null || onPress === void 0 ? void 0 : onPress();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [onPress]);
     return (React.createElement(StyledTouchableOpacity, Object.assign({ ref: ref, transition: transition, whileTap: tapStyles, onClick: handleButtonPress }, longPressEvent, getButtonAccessibilityProps(pressed), others)));
 });
+TouchableOpacity.displayName = 'TouchableOpacity';
+export { TouchableOpacity };
 //# sourceMappingURL=index.js.map

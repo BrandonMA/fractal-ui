@@ -13,9 +13,11 @@ import { AnimatePresence } from 'framer-motion';
 import React, { forwardRef } from 'react';
 import { ModalPortal } from './ModalPortal';
 import { ModalContent } from './ModalContent';
-export const Modal = forwardRef((_a, ref) => {
+const Modal = forwardRef((_a, ref) => {
     var { visible } = _a, others = __rest(_a, ["visible"]);
     return (React.createElement(ModalPortal, null,
         React.createElement(AnimatePresence, null, visible ? React.createElement(ModalContent, Object.assign({ ref: ref, key: 'ModalContent' }, others)) : null)));
 });
+Modal.displayName = 'Modal';
+export { Modal };
 //# sourceMappingURL=index.js.map

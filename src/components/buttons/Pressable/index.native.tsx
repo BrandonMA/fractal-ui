@@ -19,7 +19,7 @@ const StyledPressable = styled(Reanimated.createAnimatedComponent(RNPressable as
     ${extractShadowProps};
 `;
 
-export const Pressable = forwardRef(
+const Pressable = forwardRef(
     ({ style, ...others }: PressableProps, ref: any): JSX.Element => {
         const animationStyles = useAnimationStyles(others);
         const [tapStyles, handlePressIn, handlePressOut] = usePressableAnimationStyles(others);
@@ -35,3 +35,7 @@ export const Pressable = forwardRef(
         );
     }
 );
+
+Pressable.displayName = 'Pressable';
+
+export { Pressable };

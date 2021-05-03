@@ -9,14 +9,14 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { Fragment, memo, useCallback, forwardRef } from 'react';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import React, { Fragment, useCallback, forwardRef } from 'react';
+import { useTheme } from '../../context/hooks/useTheme';
 import { Box } from '../containers';
 import { Separator } from '../Separator';
 import { Text } from '../text';
 import { DetailsRow } from './DetailsRow';
 import { getListItemAccessibilityProps } from './accessibility/getListItemAccessibilityProps';
-const BaseDetailsList = forwardRef((_a, ref) => {
+const DetailsList = forwardRef((_a, ref) => {
     var { title, details, titleTextVariant = 'title', titleColorVariant = 'text' } = _a, others = __rest(_a, ["title", "details", "titleTextVariant", "titleColorVariant"]);
     const { colors, spacings } = useTheme();
     const colorName = titleColorVariant !== 'text' ? `${titleColorVariant}InteractiveColor` : titleColorVariant;
@@ -31,5 +31,6 @@ const BaseDetailsList = forwardRef((_a, ref) => {
         React.createElement(Text, { variant: titleTextVariant, color: color, marginBottom: spacings.m }, title),
         details.map(renderItem)));
 });
-export const DetailsList = memo(BaseDetailsList);
+DetailsList.displayName = 'DetailsList';
+export { DetailsList };
 //# sourceMappingURL=DetailsList.js.map

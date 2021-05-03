@@ -3,7 +3,7 @@ import { ImageBackgroundProps } from './types';
 import { Layer } from '../Layer';
 import { Image } from '../../Image';
 
-export const ImageBackground = forwardRef(
+const ImageBackground = forwardRef(
     ({ children, resizeMode, source, width, height, ...others }: ImageBackgroundProps, ref: any): JSX.Element => {
         return (
             <Layer ref={ref} position={'relative'} overflow={'hidden'} width={width} height={height} {...others}>
@@ -13,3 +13,7 @@ export const ImageBackground = forwardRef(
         );
     }
 );
+
+ImageBackground.displayName = 'ImageBackground';
+
+export { ImageBackground };

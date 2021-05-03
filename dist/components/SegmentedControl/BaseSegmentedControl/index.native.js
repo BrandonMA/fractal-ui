@@ -15,7 +15,7 @@ import styled from 'styled-components/native';
 import { SegmentedControlTab } from '../SegmentControlTap';
 import { SegmentsSeparators } from '../SegmentsSeparators';
 import { Layer } from '../../containers/Layer';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 import { extractBorderProps, extractShadowProps } from '../../../sharedProps';
 const SegmentsContainer = styled.View `
     flex: 1;

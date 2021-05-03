@@ -8,8 +8,12 @@ const StyledGrid = styled(Layer)`
     ${extractGridItemProps};
 `;
 
-export const GridColumn = forwardRef(
+const GridColumn = forwardRef(
     (props: GridItemProps, ref: any): JSX.Element => {
         return <StyledGrid ref={ref} flexDirection={'column'} {...props} {...getGridColumnAccessibilityProps()} />;
     }
 );
+
+GridColumn.displayName = 'GridColumn';
+
+export { GridColumn };

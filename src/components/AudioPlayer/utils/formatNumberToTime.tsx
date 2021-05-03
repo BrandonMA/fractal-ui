@@ -11,6 +11,5 @@ export function formatNumberToTime(totalMilliSeconds: number): string {
     const minutes = Math.floor(totalSeconds / 60);
     const secondsLeft = totalSeconds - minutes * 60;
 
-    const finalTime = minutes + ':' + strPadLeft(secondsLeft, '0', 2);
-    return finalTime;
+    return minutes + ':' + strPadLeft(secondsLeft, '0', 2);
 }

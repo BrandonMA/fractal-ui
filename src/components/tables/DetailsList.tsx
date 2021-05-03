@@ -1,5 +1,5 @@
-import React, { Fragment, memo, useCallback, forwardRef } from 'react';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import React, { Fragment, useCallback, forwardRef } from 'react';
+import { useTheme } from '../../context/hooks/useTheme';
 import { ButtonVariant } from '../buttons';
 import { Box } from '../containers';
 import { LayerProps } from '../containers/Layer/types';
@@ -15,7 +15,7 @@ export interface DetailsListProps extends Partial<Omit<LayerProps, 'children'>> 
     titleColorVariant?: ButtonVariant | 'text';
 }
 
-const BaseDetailsList = forwardRef(
+const DetailsList = forwardRef(
     ({ title, details, titleTextVariant = 'title', titleColorVariant = 'text', ...others }: DetailsListProps, ref: any): JSX.Element => {
         const { colors, spacings } = useTheme();
         const colorName = titleColorVariant !== 'text' ? `${titleColorVariant}InteractiveColor` : titleColorVariant;
@@ -50,4 +50,6 @@ const BaseDetailsList = forwardRef(
     }
 );
 
-export const DetailsList = memo(BaseDetailsList);
+DetailsList.displayName = 'DetailsList';
+
+export { DetailsList };

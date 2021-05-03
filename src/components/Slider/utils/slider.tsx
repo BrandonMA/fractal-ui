@@ -1,7 +1,3 @@
-export function getWidth(percentage: number): string {
-    return `${percentage}%`;
-}
-
 export function getPercentage(current: number, min: number, max: number): number {
     return ((current - min) / (max - min)) * 100;
 }

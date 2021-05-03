@@ -23,7 +23,7 @@ const StyledTextInput = styled(motion.input as any)`
     ${extractWebProps};
 ` as typeof motion.input;
 
-export const BaseTextField = forwardRef(
+const BaseTextField = forwardRef(
     (props: TextFieldProps, ref: ForwardedRef<HTMLInputElement>): JSX.Element => {
         const { onChangeText, placeholder, ...others } = props;
 
@@ -46,3 +46,7 @@ export const BaseTextField = forwardRef(
         );
     }
 );
+
+BaseTextField.displayName = 'BaseTextField';
+
+export { BaseTextField };

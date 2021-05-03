@@ -4,7 +4,6 @@ export function useCallbackRef(fn) {
     useEffect(() => {
         ref.current = fn;
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     return useCallback(((...args) => { var _a; return (_a = ref.current) === null || _a === void 0 ? void 0 : _a.call(ref, ...args); }), []);
 }
 //# sourceMappingURL=useCallbackRef.js.map

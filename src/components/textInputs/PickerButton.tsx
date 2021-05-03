@@ -1,16 +1,16 @@
 import React, { forwardRef } from 'react';
 import { Text } from '../text';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { TouchableOpacity } from '../buttons/TouchableOpacity';
 import { TouchableOpacityProps } from '../buttons/TouchableOpacity/types';
 import { Layer } from '../containers';
-import { ChevronDown } from '../../assets/ChevronDown';
+import { ChevronDownIcon } from '../../assets/ChevronDownIcon';
 
 export interface PickerButtonProps extends Partial<Omit<TouchableOpacityProps, 'children'>> {
     children: string;
 }
 
-export const PickerButton = forwardRef(
+const PickerButton = forwardRef(
     ({ children, ...others }: PickerButtonProps, ref: any): JSX.Element => {
         const { sizes, spacings, borderRadius, colors } = useTheme();
 
@@ -32,9 +32,13 @@ export const PickerButton = forwardRef(
                     </Text>
                 </Layer>
                 <Layer alignSelf='center'>
-                    <ChevronDown width={21} fill={colors.placeholder} />
+                    <ChevronDownIcon width={21} fill={colors.placeholder} />
                 </Layer>
             </TouchableOpacity>
         );
     }
 );
+
+PickerButton.displayName = 'PickerButton';
+
+export { PickerButton };

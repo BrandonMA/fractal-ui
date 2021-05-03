@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { BaseSliderProps, EventSource } from '../types';
 import { useCallbackRef } from '../utils/useCallbackRef';
 import { getPercentage, roundValueToStep, clampValue, percentToValue, valueToPercent } from '../utils/slider';
-import { useTheme } from '../../../core/context/hooks/useTheme';
+import { useTheme } from '../../../context/hooks/useTheme';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
 import { getSliderAccessibilityProps } from '../accessibility/getSliderAccessibilityProps';
@@ -15,7 +15,7 @@ const StyledRange = styled.div`
     position: relative;
     border-radius: 2px;
     height: 4px;
-    margin: 8px 0px;
+    margin: 8px 0;
     ${extractBackgroundProps};
 `;
 
@@ -227,15 +227,14 @@ export function BaseSlider({
     );
 
     useEffect(() => {
-        const env = sliderRef.current;
-        env.addEventListener('touchstart', handleTouchStart, { passive: false });
+        const sliderDomElement = sliderRef.current;
+        sliderDomElement.addEventListener('touchstart', handleTouchStart, { passive: false });
         return () => {
-            env.removeEventListener('touchstart', handleTouchStart, { passive: false });
-            env.removeEventListener('touchend', handleCleanTouchStart);
-            env.removeEventListener('touchcancel', handleCleanTouchStart);
+            sliderDomElement.removeEventListener('touchstart', handleTouchStart, { passive: false });
+            sliderDomElement.removeEventListener('touchend', handleCleanTouchStart);
+            sliderDomElement.removeEventListener('touchcancel', handleCleanTouchStart);
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [handleCleanTouchStart, handleTouchStart, sliderRef]);
 
     useUpdateEffect(() => {
         const shouldUpdate = !isDragging && eventSource != 'keyboard' && eventSource != null;

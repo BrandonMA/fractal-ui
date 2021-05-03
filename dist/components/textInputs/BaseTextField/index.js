@@ -31,11 +31,13 @@ const StyledTextInput = styled(motion.input) `
     ${extractTextProps};
     ${extractWebProps};
 `;
-export const BaseTextField = forwardRef((props, ref) => {
+const BaseTextField = forwardRef((props, ref) => {
     const { onChangeText, placeholder } = props, others = __rest(props, ["onChangeText", "placeholder"]);
     const handleChange = useCallback((event) => {
         onChangeText && onChangeText(event.target.value);
     }, [onChangeText]);
     return (React.createElement(StyledTextInput, Object.assign({ ref: ref, placeholder: placeholder, selectable: true, onChange: handleChange }, others, getTextFieldAccessibilityProps(placeholder))));
 });
+BaseTextField.displayName = 'BaseTextField';
+export { BaseTextField };
 //# sourceMappingURL=index.js.map

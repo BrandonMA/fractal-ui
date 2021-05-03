@@ -1,5 +1,5 @@
 import React, { forwardRef, useState, useCallback } from 'react';
-import { useTheme } from '../../core/context/hooks/useTheme';
+import { useTheme } from '../../context/hooks/useTheme';
 import { ActivityIndicator } from '../ActivityIndicator';
 import { BaseButton } from '../buttons/BaseButton';
 import { BaseButtonProps } from '../buttons/BaseButton/types';
@@ -10,7 +10,7 @@ export type BaseMediaButtonProps = Partial<Omit<BaseButtonProps, 'variant'>> & {
     activityIndicatorColor?: string;
 };
 
-export const BaseMediaButton = forwardRef(
+const BaseMediaButton = forwardRef(
     ({ loading, children, activityIndicatorColor = 'white', onPress, ...others }: BaseMediaButtonProps, ref: any): JSX.Element => {
         const { sizes, borderRadius, shadows } = useTheme();
 
@@ -19,8 +19,7 @@ export const BaseMediaButton = forwardRef(
         const handleButtonPress = useCallback((): void => {
             setPressed(true);
             onPress?.();
-            // eslint-disable-next-line react-hooks/exhaustive-deps
-        }, []);
+        }, [onPress]);
 
         return (
             <BaseButton
@@ -40,3 +39,7 @@ export const BaseMediaButton = forwardRef(
         );
     }
 );
+
+BaseMediaButton.displayName = 'BaseMediaButton';
+
+export { BaseMediaButton };

@@ -9,7 +9,7 @@ export interface DetailsRowProps extends Partial<Omit<LayerProps, 'children'>> {
     details: string;
 }
 
-export const DetailsRow = forwardRef(
+const DetailsRow = forwardRef(
     ({ title, details, ...others }: DetailsRowProps, ref: any): JSX.Element => {
         return (
             <HorizontalLayer ref={ref} alignItems='center' {...others}>
@@ -21,3 +21,7 @@ export const DetailsRow = forwardRef(
         );
     }
 );
+
+DetailsRow.displayName = 'DetailsRow';
+
+export { DetailsRow };
