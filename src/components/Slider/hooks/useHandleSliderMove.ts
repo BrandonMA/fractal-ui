@@ -1,5 +1,5 @@
 import { RefObject, useCallback } from 'react';
-import { clamp, getPercentage, percentageToValue, roundValueToStep } from '../utils/slider';
+import { clamp, valueToPercentage, percentageToValue, roundValueToStep } from '../utils/slider';
 
 export function useHandleSliderMove(
     thumbRef: RefObject<any>,
@@ -26,7 +26,7 @@ export function useHandleSliderMove(
             if (newX > end) {
                 newX = end;
             }
-            const percentage = getPercentage(newX, start, end);
+            const percentage = valueToPercentage(newX, start, end);
             let nextValue = percentageToValue(percentage, minimumValue, maximumValue);
             if (step) nextValue = parseFloat(roundValueToStep(nextValue, minimumValue, step) as string);
             nextValue = clamp(nextValue, minimumValue, maximumValue);

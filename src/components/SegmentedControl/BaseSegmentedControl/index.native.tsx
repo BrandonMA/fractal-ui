@@ -1,4 +1,4 @@
-import React, { useEffect, forwardRef } from 'react';
+import React, { useEffect, forwardRef, useState } from 'react';
 import Reanimated, { withTiming, useSharedValue, useAnimatedStyle, Easing } from 'react-native-reanimated';
 import styled from 'styled-components/native';
 import { BaseSegmentedControlProps } from '../types';
@@ -44,7 +44,7 @@ const BaseSegmentedControl = forwardRef(
         ref: any
     ): JSX.Element => {
         const { colors, shadows, borderRadius, sizes } = useTheme();
-        const [segmentWidth, setSegmentWidth] = React.useState(0);
+        const [segmentWidth, setSegmentWidth] = useState(0);
         const translateX = useSharedValue(0);
 
         useEffect(() => {

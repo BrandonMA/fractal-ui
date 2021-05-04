@@ -1,11 +1,3 @@
-export function getPercentage(current: number, min: number, max: number): number {
-    return ((current - min) / (max - min)) * 100;
-}
-
-export function getLeft(percentage: number): string {
-    return `calc(${percentage}% - 10px)`;
-}
-
 export function toPrecision(value: number, precision?: number): string | number {
     let nextValue = value;
     const scaleFactor = 10 ** (precision ?? 10);
@@ -31,8 +23,12 @@ export function roundValueToStep(value: number, from: number, step: number): str
     return toPrecision(nextValue, precision);
 }
 
+/**
+ * This function converts the x value of the thumb into a percentage according to the width of the slider
+ */
+
 export function valueToPercentage(value: number, min: number, max: number): number {
-    return ((value - min) * 100) / (max - min);
+    return ((value - min) / (max - min)) * 100;
 }
 
 export function percentageToValue(percentage: number, min: number, max: number): number {
