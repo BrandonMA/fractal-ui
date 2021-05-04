@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layer } from '../containers/Layer';
 import { Text } from '../text';
 import { Slider } from '../Slider';
@@ -15,21 +15,14 @@ export function AudioProgressBar({ duration, currentTime, isPlaying, onTimeUpdat
     const [trackProgress, setTrackProgress] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
 
-    const handleSlidingStart = useCallback(() => {
-        setIsDragging(true);
-    }, []);
+    const handleSlidingStart = () => setIsDragging(true);
 
-    const handleValueChange = useCallback((positionMillis: number) => {
-        setTrackProgress(positionMillis);
-    }, []);
+    const handleValueChange = (positionMillis: number) => setTrackProgress(positionMillis);
 
-    const handleSlidingComplete = useCallback(
-        async (time: number): Promise<void> => {
-            await onTimeUpdate(time);
-            setIsDragging(false);
-        },
-        [onTimeUpdate]
-    );
+    const handleSlidingComplete = async (time: number): Promise<void> => {
+        await onTimeUpdate(time);
+        setIsDragging(false);
+    };
 
     useEffect(() => {
         if (isPlaying && !isDragging) {

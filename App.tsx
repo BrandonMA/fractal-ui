@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { registerRootComponent } from 'expo';
 import {
     Background,
@@ -97,7 +97,7 @@ function BlurredModalFragment(): JSX.Element {
 
     const [blurredModalVisible, setBlurredModalVisible] = useState(false);
 
-    const toggleBlurredModal = useCallback(() => setBlurredModalVisible((currentValue) => !currentValue), []);
+    const toggleBlurredModal = () => setBlurredModalVisible((currentValue) => !currentValue);
 
     return (
         <React.Fragment>
@@ -134,9 +134,7 @@ function SegmentedControlFragment(): JSX.Element {
 function SliderFragment(): JSX.Element {
     const [sliderValue, setSliderValue] = useState(0);
 
-    const handleSliderValue = useCallback((value: number) => {
-        setSliderValue(value);
-    }, []);
+    const handleSliderValue = (value: number) => setSliderValue(value);
 
     return (
         <React.Fragment>
@@ -171,10 +169,7 @@ function LayerAnimatedFragment(): JSX.Element {
 
     const [layerVariant, setLayerVariant] = useState('layerVisible');
 
-    const toggleVariant = useCallback(
-        () => setLayerVariant((currentValue) => (currentValue === 'layerVisible' ? 'layerInitial' : 'layerVisible')),
-        []
-    );
+    const toggleVariant = () => setLayerVariant((currentValue) => (currentValue === 'layerVisible' ? 'layerInitial' : 'layerVisible'));
 
     return (
         <React.Fragment>
@@ -202,7 +197,7 @@ function LayerAnimatedFragment(): JSX.Element {
 function MiddleCellModalFragment(): JSX.Element {
     const [middleCellVisible, setMiddleCellVisible] = useState(false);
 
-    const toggleMiddleCell = useCallback(() => setMiddleCellVisible((currentValue) => !currentValue), []);
+    const toggleMiddleCell = () => setMiddleCellVisible((currentValue) => !currentValue);
 
     return (
         <React.Fragment>
@@ -221,9 +216,7 @@ function PopoverFragment(): JSX.Element {
 
     const [popoverVisible, setPopoverVisible] = useState(false);
 
-    const togglePopover = useCallback(() => {
-        setPopoverVisible((currentValue) => !currentValue);
-    }, [setPopoverVisible]);
+    const togglePopover = () => setPopoverVisible((currentValue) => !currentValue);
 
     return (
         <React.Fragment>

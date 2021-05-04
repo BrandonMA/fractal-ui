@@ -21,18 +21,18 @@ export function useAudioPlayer<T extends MinimalTrackData>(
     const audioRef = useRef<HTMLAudioElement>();
     const isReady = useRef(false);
 
-    const setPositionManually = useCallback(async (positionMillis: number): Promise<void> => {
+    const setPositionManually = async (positionMillis: number): Promise<void> => {
         if (audioRef.current) audioRef.current.currentTime = positionMillis / 1000;
         setCurrentTime(positionMillis);
-    }, []);
+    };
 
-    const toPreviousTrack = useCallback(() => {
+    const toPreviousTrack = () => {
         if (trackIndex - 1 < 0) {
             setTrackIndex(tracks.length - 1);
         } else {
             setTrackIndex(trackIndex - 1);
         }
-    }, [trackIndex, tracks.length]);
+    };
 
     const toNextTrack = useCallback(() => {
         if (trackIndex < tracks.length - 1) {

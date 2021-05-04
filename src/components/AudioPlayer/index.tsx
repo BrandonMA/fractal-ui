@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Box } from '../containers';
 import { Layer } from '../containers/Layer';
 import { AudioPlayerProps } from './types';
@@ -29,23 +29,18 @@ export function AudioPlayer({ tracks, ...layerProps }: AudioPlayerProps): JSX.El
 
     const { title, image } = currentTrackInfo;
 
-    const handleUpdateTime = useCallback(
-        async (positionMillis: number) => {
-            await setPositionManually(positionMillis);
-            if (!isPlaying) {
-                setIsPlaying(true);
-            }
-        },
-        [isPlaying, setIsPlaying, setPositionManually]
-    );
+    const handleUpdateTime = async (positionMillis: number) => {
+        await setPositionManually(positionMillis);
+        if (!isPlaying) {
+            setIsPlaying(true);
+        }
+    };
 
-    const handlePlayPause = useCallback(() => {
-        setIsPlaying((prevValue) => !prevValue);
-    }, [setIsPlaying]);
+    const handlePlayPause = () => setIsPlaying((prevValue) => !prevValue);
 
-    const handleShuffle = useCallback(() => setEnableShufflePlayback((currentValue) => !currentValue), [setEnableShufflePlayback]);
+    const handleShuffle = () => setEnableShufflePlayback((currentValue) => !currentValue);
 
-    const handleRepeat = useCallback(() => setEnableRepeatPlayback((currentValue) => !currentValue), [setEnableRepeatPlayback]);
+    const handleRepeat = () => setEnableRepeatPlayback((currentValue) => !currentValue);
 
     return (
         <Box flexDirection={'row'} padding={spacings.s} {...layerProps} {...getAudioPlayerAccessibilityProps()}>
