@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Box } from '../containers';
 import { Layer } from '../containers/Layer';
 import { AudioPlayerProps } from './types';
@@ -19,28 +19,22 @@ export function AudioPlayer({ tracks, ...layerProps }: AudioPlayerProps): JSX.El
         isPlaying,
         enableShufflePlayback,
         enableRepeatPlayback,
-        setIsPlaying,
+        handlePlayPause,
         setPositionManually,
         toNextTrack,
         toPreviousTrack,
-        setEnableShufflePlayback,
-        setEnableRepeatPlayback
+        toggleShufflePlayback,
+        toggleRepeatPlayback
     } = useAudioPlayer(tracks);
 
     const { title, image } = currentTrackInfo;
 
-    const handleUpdateTime = async (positionMillis: number) => {
-        await setPositionManually(positionMillis);
-        if (!isPlaying) {
-            setIsPlaying(true);
-        }
-    };
-
-    const handlePlayPause = () => setIsPlaying((prevValue) => !prevValue);
-
-    const handleShuffle = () => setEnableShufflePlayback((currentValue) => !currentValue);
-
-    const handleRepeat = () => setEnableRepeatPlayback((currentValue) => !currentValue);
+    const handleUpdateTime = useCallback(
+        async (positionMillis: number) => {
+            await setPositionManually(positionMillis);
+        },
+        [setPositionManually]
+    );
 
     return (
         <Box flexDirection={'row'} padding={spacings.s} {...layerProps} {...getAudioPlayerAccessibilityProps()}>
@@ -57,8 +51,8 @@ export function AudioPlayer({ tracks, ...layerProps }: AudioPlayerProps): JSX.El
                     onPlayPausePress={handlePlayPause}
                     onNextPress={toNextTrack}
                     onPreviousPress={toPreviousTrack}
-                    onShufflePress={handleShuffle}
-                    onRepeatPress={handleRepeat}
+                    onShufflePress={toggleShufflePlayback}
+                    onRepeatPress={toggleRepeatPlayback}
                 />
             </Layer>
         </Box>

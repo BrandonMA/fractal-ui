@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { Layer } from '../containers';
-import { PauseIcon } from '../../assets/PauseIcon';
-import { PlayIcon } from '../../assets/PlayIcon';
+import { Layer } from '../../containers';
+import { PauseIcon } from '../../../assets/PauseIcon';
+import { PlayIcon } from '../../../assets/PlayIcon';
 
 const ICON_SIZE = 20;
 

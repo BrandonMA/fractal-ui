@@ -34,11 +34,11 @@ export interface AudioPlayerReturnedObject<T> {
     isPlaying: boolean;
     enableShufflePlayback: boolean;
     enableRepeatPlayback: boolean;
-    setIsPlaying: Dispatch<SetStateAction<boolean>>;
+    handlePlayPause: () => void;
     setPositionManually: (time: number) => Promise<void>;
     toNextTrack: () => void;
     toPreviousTrack: () => void;
     setTrackIndex: Dispatch<SetStateAction<number>>;
-    setEnableShufflePlayback: Dispatch<SetStateAction<boolean>>;
-    setEnableRepeatPlayback: Dispatch<SetStateAction<boolean>>;
+    toggleShufflePlayback: () => void;
+    toggleRepeatPlayback: () => void;
 }

@@ -5,7 +5,7 @@ import { BaseButton } from './BaseButton';
 import { ButtonVariant } from './types/ButtonVariant';
 import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
 
-export interface ButtonProps extends FractalSharedProps, AnimationProps {
+export interface ToggleButtonProps extends FractalSharedProps, AnimationProps {
     variant: ButtonVariant;
     active: boolean;
     useGrayVariant?: boolean;
@@ -15,7 +15,7 @@ export interface ButtonProps extends FractalSharedProps, AnimationProps {
 }
 
 const ToggleButton = forwardRef(
-    (props: ButtonProps, ref: any): JSX.Element => {
+    (props: ToggleButtonProps, ref: any): JSX.Element => {
         const { active, variant, children, onPress, useGrayVariant, ...others } = props;
         const { colors, sizes, borderRadius } = useTheme();
 

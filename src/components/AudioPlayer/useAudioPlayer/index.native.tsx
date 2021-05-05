@@ -1,144 +1,175 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Audio } from 'expo-av';
 import { AudioPlayerReturnedObject, MinimalTrackData, CustomAVPlaybackStatus } from './types';
-import { shuffleArray } from './utils/shuffleArray';
+import { useShufflePlaybackController } from './hooks/useShufflePlaybackController';
+import { useEnableRepeatPlayback } from './hooks/useEnableRepeatPlayback';
+import { useCheckIfShouldGoToNextTrack } from './hooks/useCheckIfShouldGoToNextTrack';
 
 export function useAudioPlayer<T extends MinimalTrackData>(
     tracks: Array<T>,
     shufflePlayback?: boolean,
     repeatPlayback?: false
 ): AudioPlayerReturnedObject<T> {
+    const [sound, setSound] = useState<Audio.Sound>();
+    const [didJustFinish, setDidJustFinish] = useState(false);
     const [duration, setDuration] = useState(0);
     const [trackIndex, setTrackIndex] = useState(0);
-    const [enableRepeatPlayback, setEnableRepeatPlayback] = useState<boolean>(repeatPlayback ?? false);
-    const [enableShufflePlayback, setEnableShufflePlayback] = useState<boolean>(shufflePlayback ?? false);
-    const [playList, setPlayList] = useState(shufflePlayback ? shuffleArray(tracks) : tracks);
     const [currentTime, setCurrentTime] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
-
-    const soundRef = useRef<Audio.Sound>();
+    const { enableRepeatPlayback, toggleRepeatPlayback } = useEnableRepeatPlayback(repeatPlayback);
+    const { enableShufflePlayback, toggleShufflePlayback, playList } = useShufflePlaybackController(tracks, trackIndex, shufflePlayback);
 
     const currentTrackInfo = playList[trackIndex];
     const { audioSrc } = currentTrackInfo;
 
-    const playSound = useCallback(async (): Promise<void> => {
-        await soundRef.current?.playAsync();
-    }, [soundRef]);
+    const onPlaybackStatusUpdate = useCallback((status: CustomAVPlaybackStatus): void => {
+        if (status.positionMillis) {
+            setCurrentTime(status.positionMillis);
+        }
+        if (status.didJustFinish) {
+            setDidJustFinish(status.didJustFinish);
+        }
+    }, []);
 
-    const pauseSound = useCallback(async (): Promise<void> => {
-        await soundRef.current?.pauseAsync();
-    }, [soundRef]);
+    const loadNewSoundAsync = useCallback(
+        async (newTrackIndex: number, shouldPlay: boolean, positionMillis?: number): Promise<void> => {
+            const { audioSrc } = playList[newTrackIndex];
+            const source = typeof audioSrc == 'string' ? { uri: audioSrc } : audioSrc;
+            try {
+                if (sound) {
+                    await sound.unloadAsync();
+                    sound.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate);
+                    const status = await sound.loadAsync(source, { shouldPlay, positionMillis });
+                    const castedStatus = status as CustomAVPlaybackStatus;
+                    if (castedStatus.durationMillis) {
+                        setDuration(castedStatus.durationMillis);
+                    }
+                    setCurrentTime(0);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        [onPlaybackStatusUpdate, playList, sound]
+    );
+
+    const pauseAsync = useCallback(async () => {
+        if (sound) {
+            const { isLoaded } = await sound.getStatusAsync();
+            if (!isLoaded) {
+                await loadNewSoundAsync(trackIndex, false);
+            } else {
+                await sound.pauseAsync();
+            }
+            setIsPlaying(false);
+        }
+    }, [loadNewSoundAsync, sound, trackIndex]);
+
+    const playAsync = useCallback(async () => {
+        if (sound) {
+            const { isLoaded } = await sound.getStatusAsync();
+            if (!isLoaded) {
+                await loadNewSoundAsync(trackIndex, true, currentTime);
+            } else {
+                await sound.playAsync();
+            }
+            setIsPlaying(true);
+        }
+    }, [currentTime, loadNewSoundAsync, sound, trackIndex]);
+
+    const handlePlayPause = useCallback(async () => {
+        if (isPlaying) {
+            await pauseAsync();
+        } else {
+            await playAsync();
+        }
+    }, [isPlaying, pauseAsync, playAsync]);
 
     const setPositionManually = useCallback(
         async (positionMillis: number): Promise<void> => {
-            await soundRef.current?.setPositionAsync(positionMillis);
+            await sound?.setPositionAsync(positionMillis);
+            if (!isPlaying) await playAsync();
         },
-        [soundRef]
+        [isPlaying, playAsync, sound]
     );
 
-    const toPreviousTrack = useCallback(() => {
-        if (trackIndex - 1 < 0) {
-            setTrackIndex(tracks.length - 1);
-        } else {
-            setTrackIndex(trackIndex - 1);
-        }
-    }, [trackIndex, tracks.length]);
-
-    const toNextTrack = useCallback(() => {
-        if (trackIndex < tracks.length - 1) {
-            setTrackIndex(trackIndex + 1);
-        } else {
-            setTrackIndex(0);
-        }
-    }, [trackIndex, tracks.length]);
-
-    const checkIfShouldToNextTrack = useCallback(async () => {
-        const isLastIndex = trackIndex == tracks.length - 1;
-
-        if (!isLastIndex && !enableRepeatPlayback) {
-            toNextTrack();
-        } else {
-            await soundRef.current?.setPositionAsync(0);
-            setCurrentTime(0);
-            setIsPlaying(false);
-        }
-    }, [enableRepeatPlayback, toNextTrack, trackIndex, tracks.length, soundRef]);
-
-    useEffect(() => {
-        if (soundRef.current != null) {
-            if (enableShufflePlayback) {
-                setPlayList((currentPlayList) => shuffleArray(currentPlayList));
-            } else {
-                setPlayList(tracks);
-            }
-        }
-    }, [enableShufflePlayback, tracks, soundRef]);
-
-    const onPlaybackStatusUpdate = useCallback(
-        async (status: CustomAVPlaybackStatus): Promise<void> => {
-            if (status.positionMillis) {
-                setCurrentTime(status.positionMillis);
-            }
-            if (status.didJustFinish) {
-                await checkIfShouldToNextTrack();
-            }
+    const handleChangeSound = useCallback(
+        async (newTrackIndex) => {
+            setIsPlaying(true);
+            await loadNewSoundAsync(newTrackIndex, true);
         },
-        [checkIfShouldToNextTrack]
+        [loadNewSoundAsync]
+    );
+
+    const toPreviousTrack = useCallback(async () => {
+        if (sound) {
+            const newTrackIndex = trackIndex - 1 < 0 ? tracks.length - 1 : trackIndex - 1;
+            setTrackIndex(newTrackIndex);
+            await handleChangeSound(newTrackIndex);
+        }
+    }, [handleChangeSound, sound, trackIndex, tracks.length]);
+
+    const toNextTrack = useCallback(async () => {
+        if (sound) {
+            const newTrackIndex = trackIndex < tracks.length - 1 ? trackIndex + 1 : 0;
+            setTrackIndex(newTrackIndex);
+            await handleChangeSound(newTrackIndex);
+        }
+    }, [handleChangeSound, sound, trackIndex, tracks.length]);
+
+    const resetPosition = useCallback(async () => {
+        await sound?.setPositionAsync(0);
+    }, [sound]);
+
+    const checkIfShouldGoToNextTrack = useCheckIfShouldGoToNextTrack(
+        trackIndex,
+        tracks.length,
+        enableRepeatPlayback,
+        toNextTrack,
+        setCurrentTime,
+        setIsPlaying,
+        resetPosition
     );
 
     useEffect(() => {
-        const loadSoundAsync = async (): Promise<void> => {
+        const loadInitialSoundAsync = async () => {
             const source = typeof audioSrc == 'string' ? { uri: audioSrc } : audioSrc;
-
-            if (soundRef.current === undefined) {
-                await Audio.setAudioModeAsync({
-                    playsInSilentModeIOS: true
-                });
-                const { sound: audioSound, status } = await Audio.Sound.createAsync(source);
-                soundRef.current = audioSound;
-                soundRef.current?.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate);
-                const castedStatus = status as CustomAVPlaybackStatus;
-
-                if (castedStatus.durationMillis) {
-                    setDuration(castedStatus.durationMillis);
+            try {
+                if (!sound) {
+                    await Audio.setAudioModeAsync({
+                        playsInSilentModeIOS: true
+                    });
+                    const { sound: audioSound, status } = await Audio.Sound.createAsync(
+                        source,
+                        { shouldPlay: false },
+                        onPlaybackStatusUpdate
+                    );
+                    const castedStatus = status as CustomAVPlaybackStatus;
+                    setSound(audioSound);
+                    if (castedStatus.durationMillis) {
+                        setDuration(castedStatus.durationMillis);
+                    }
                 }
-            } else {
-                await soundRef.current?.unloadAsync();
-                const status = await soundRef.current?.loadAsync(source, { shouldPlay: true });
-                soundRef.current?.setOnPlaybackStatusUpdate(onPlaybackStatusUpdate);
-                setCurrentTime(0);
-                const castedStatus = status as CustomAVPlaybackStatus;
-
-                if (!isPlaying) {
-                    setIsPlaying(true);
-                }
-
-                if (castedStatus.durationMillis) {
-                    setDuration(castedStatus.durationMillis);
-                }
+            } catch (error) {
+                console.log(error.message);
             }
         };
-
-        loadSoundAsync().catch((error) => alert(error.message));
-
-        return soundRef.current
-            ? (): void => {
-                  soundRef.current?.unloadAsync();
-              }
-            : undefined;
-    }, [audioSrc, soundRef, isPlaying, onPlaybackStatusUpdate]);
+        loadInitialSoundAsync();
+    }, [audioSrc, currentTrackInfo, isPlaying, onPlaybackStatusUpdate, sound]);
 
     useEffect(() => {
-        const handlePlayOrPause = async () => {
-            if (isPlaying) {
-                await playSound();
-            } else {
-                await pauseSound();
-            }
-        };
+        if (didJustFinish) {
+            setDidJustFinish(false);
+            checkIfShouldGoToNextTrack();
+        }
+    }, [checkIfShouldGoToNextTrack, didJustFinish]);
 
-        handlePlayOrPause().catch((error) => alert(error.message));
-    }, [isPlaying, pauseSound, playSound]);
+    /*useEffect(() => {
+        return () => {
+            console.log('Unloading Sound');
+            sound?.unloadAsync();
+        };
+    }, [sound]);*/
 
     return {
         currentTrackInfo,
@@ -147,12 +178,12 @@ export function useAudioPlayer<T extends MinimalTrackData>(
         isPlaying,
         enableShufflePlayback,
         enableRepeatPlayback,
-        setIsPlaying,
+        handlePlayPause,
         setPositionManually: (time: number) => setPositionManually(time),
         toNextTrack,
         toPreviousTrack,
         setTrackIndex,
-        setEnableShufflePlayback,
-        setEnableRepeatPlayback
+        toggleShufflePlayback,
+        toggleRepeatPlayback
     };
 }
