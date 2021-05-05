@@ -11,8 +11,8 @@ interface Props {
 export const SegmentsSeparators = ({ values, selectedIndex }: Props): JSX.Element => {
     const { colors } = useTheme();
     const hide = useCallback(
-        (val: number) => {
-            return selectedIndex === val || selectedIndex === val + 1;
+        (value: number) => {
+            return selectedIndex === value || selectedIndex === value + 1;
         },
         [selectedIndex]
     );
@@ -28,8 +28,8 @@ export const SegmentsSeparators = ({ values, selectedIndex }: Props): JSX.Elemen
             alignItems={'center'}
             justifyContent={'space-evenly'}
         >
-            {[...Array.from(new Array(values - 1).keys())].map((val) => {
-                return <Layer key={val} width={1} height={'50%'} backgroundColor={hide(val) ? 'transparent' : colors.placeholder} />;
+            {[...Array.from(new Array(values - 1).keys())].map((value) => {
+                return <Layer key={value} width={1} height={'50%'} backgroundColor={hide(value) ? 'transparent' : colors.placeholder} />;
             })}
         </Layer>
     );

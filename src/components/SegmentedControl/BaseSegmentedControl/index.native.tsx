@@ -1,5 +1,5 @@
-import React, { useEffect, forwardRef, useState } from 'react';
-import Reanimated, { withTiming, useSharedValue, useAnimatedStyle, Easing } from 'react-native-reanimated';
+import React, { forwardRef } from 'react';
+import Reanimated from 'react-native-reanimated';
 import styled from 'styled-components/native';
 import { BaseSegmentedControlProps } from '../types';
 import { SegmentedControlTab } from '../SegmentControlTap';
@@ -7,6 +7,7 @@ import { SegmentsSeparators } from '../SegmentsSeparators';
 import { Layer } from '../../containers/Layer';
 import { useTheme } from '../../../context/hooks/useTheme';
 import { extractBorderProps, extractShadowProps } from '../../../sharedProps';
+import { useSegmentManager } from './hooks/useSegmentManager';
 
 const SegmentsContainer = styled.View`
     flex: 1;
@@ -44,20 +45,7 @@ const BaseSegmentedControl = forwardRef(
         ref: any
     ): JSX.Element => {
         const { colors, shadows, borderRadius, sizes } = useTheme();
-        const [segmentWidth, setSegmentWidth] = useState(0);
-        const translateX = useSharedValue(0);
-
-        useEffect(() => {
-            if (translateX && segmentWidth) {
-                translateX.value = withTiming(segmentWidth * selectedIndex, { duration: 300, easing: Easing.out(Easing.quad) });
-            }
-        }, [segmentWidth, selectedIndex, translateX]);
-
-        const sliderStyle = useAnimatedStyle(() => ({
-            transform: [{ translateX: translateX.value }],
-            width: segmentWidth - 4,
-            backgroundColor: tintColor || colors.foreground
-        }));
+        const { segmentWidth, handleLayout, sliderStyle } = useSegmentManager(values.length, selectedIndex, tintColor || colors.foreground);
 
         return (
             <Layer
@@ -67,17 +55,7 @@ const BaseSegmentedControl = forwardRef(
                 height={sizes.segmentedControlSize}
                 backgroundColor={backgroundColor ?? colors.background}
                 borderRadius={borderRadius.s}
-                onLayout={({
-                    nativeEvent: {
-                        layout: { width }
-                    }
-                }) => {
-                    const newSegmentWidth = values.length ? width / values.length : 0;
-                    if (newSegmentWidth !== segmentWidth) {
-                        translateX.value = newSegmentWidth * (selectedIndex || 0);
-                        setSegmentWidth(newSegmentWidth);
-                    }
-                }}
+                onLayout={handleLayout}
                 {...layerProps}
             >
                 {!backgroundColor && !tintColor && <SegmentsSeparators values={values.length} selectedIndex={selectedIndex} />}
