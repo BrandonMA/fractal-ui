@@ -3,7 +3,8 @@ import { useEnableRepeatPlayback } from './hooks/useEnableRepeatPlayback';
 import { useShufflePlaybackController } from './hooks/useShufflePlaybackController';
 import { useCheckIfShouldGoToNextTrack } from './hooks/useCheckIfShouldGoToNextTrack';
 import { AudioPlayerReturnedObject, MinimalTrackData } from './types';
-import { useAudioEffect } from './hooks/useAudioEffect';
+import { useAudioWebEffects } from './hooks/useAudioWebEffects';
+import { usePreviousAndNextControllers } from './hooks/usePreviousAndNextControllers';
 
 export function useAudioPlayer<T extends MinimalTrackData>(
     tracks: Array<T>,
@@ -33,7 +34,6 @@ export function useAudioPlayer<T extends MinimalTrackData>(
     }, []);
 
     const handlePlayPause = useCallback(() => {
-        console.log('handlePlayPause');
         if (isPlaying) {
             pause();
         } else {
@@ -50,21 +50,7 @@ export function useAudioPlayer<T extends MinimalTrackData>(
         [isPlaying, play]
     );
 
-    const toPreviousTrack = () => {
-        if (trackIndex - 1 < 0) {
-            setTrackIndex(tracks.length - 1);
-        } else {
-            setTrackIndex(trackIndex - 1);
-        }
-    };
-
-    const toNextTrack = useCallback(() => {
-        if (trackIndex < tracks.length - 1) {
-            setTrackIndex(trackIndex + 1);
-        } else {
-            setTrackIndex(0);
-        }
-    }, [trackIndex, tracks.length]);
+    const { toPreviousTrack, toNextTrack } = usePreviousAndNextControllers(audioRef, trackIndex, tracks.length, setTrackIndex);
 
     const resetPosition = useCallback(async () => {
         if (audioRef.current) audioRef.current.currentTime = 0;
@@ -80,7 +66,7 @@ export function useAudioPlayer<T extends MinimalTrackData>(
         resetPosition
     );
 
-    useAudioEffect(audioRef, audioSrc as string, setIsPlaying, setCurrentTime, setDuration, checkIfShouldGoToNextTrack);
+    useAudioWebEffects(audioRef, audioSrc as string, setIsPlaying, setCurrentTime, setDuration, checkIfShouldGoToNextTrack);
 
     return {
         currentTrackInfo,

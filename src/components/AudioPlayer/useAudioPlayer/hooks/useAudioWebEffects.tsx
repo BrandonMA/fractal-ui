@@ -1,6 +1,6 @@
 import { MutableRefObject, useRef, useEffect, Dispatch, SetStateAction } from 'react';
 
-export function useAudioEffect(
+export function useAudioWebEffects(
     audioRef: MutableRefObject<HTMLAudioElement | undefined>,
     audioSrc: string,
     setIsPlaying: Dispatch<SetStateAction<boolean>>,
@@ -9,11 +9,12 @@ export function useAudioEffect(
     checkIfShouldGoToNextTrack: () => void
 ): void {
     const isReady = useRef(false);
-    useEffect(() => {
-        if (audioRef.current) audioRef.current.pause();
 
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.pause();
+        }
         audioRef.current = new Audio(audioSrc);
-        const audioCurrentRef = audioRef.current;
 
         if (isReady.current) {
             audioRef.current.play();
@@ -23,6 +24,10 @@ export function useAudioEffect(
             // Set the isReady ref as true for the next pass
             isReady.current = true;
         }
+    }, [audioRef, audioSrc, setCurrentTime, setIsPlaying]);
+
+    useEffect(() => {
+        const audioCurrentRef = audioRef.current;
 
         const onLoadedData = (): void => {
             if (audioRef.current) {
@@ -31,23 +36,29 @@ export function useAudioEffect(
             }
         };
 
-        const onEnded = (): void => {
-            checkIfShouldGoToNextTrack();
-        };
-
         const onTimeUpdate = (): void => {
             if (audioRef.current) setCurrentTime(audioRef.current.currentTime * 1000);
         };
 
-        audioRef.current.addEventListener('loadeddata', onLoadedData);
-        audioRef.current.addEventListener('ended', onEnded);
-        audioRef.current.addEventListener('timeupdate', onTimeUpdate);
+        audioCurrentRef?.addEventListener('loadeddata', onLoadedData);
+        audioCurrentRef?.addEventListener('timeupdate', onTimeUpdate);
 
         return () => {
             audioCurrentRef?.pause();
             audioCurrentRef?.removeEventListener('loadeddata', onLoadedData);
-            audioCurrentRef?.removeEventListener('ended', onEnded);
             audioCurrentRef?.removeEventListener('timeupdate', onTimeUpdate);
         };
-    }, [audioRef, audioSrc, checkIfShouldGoToNextTrack, setCurrentTime, setDuration, setIsPlaying]);
+    }, [audioRef, audioSrc, setCurrentTime, setDuration, setIsPlaying]);
+
+    useEffect(() => {
+        const audioCurrentRef = audioRef.current;
+        const onEnded = (): void => {
+            checkIfShouldGoToNextTrack();
+        };
+        audioCurrentRef?.addEventListener('ended', onEnded);
+
+        return () => {
+            audioCurrentRef?.removeEventListener('ended', onEnded);
+        };
+    }, [audioRef, checkIfShouldGoToNextTrack]);
 }

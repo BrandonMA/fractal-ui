@@ -9,7 +9,13 @@ export interface AudioControlsProps {
     onRepeatPress: () => void;
 }
 
-export interface ToggleControlProps {
+export interface ControlButtonProps {
+    onPress: () => void;
+    variant: 'previous' | 'next';
+}
+
+export interface ControlToggleButtonProps {
     active: boolean;
     onPress: () => void;
+    variant: 'shuffle' | 'repeat';
 }
