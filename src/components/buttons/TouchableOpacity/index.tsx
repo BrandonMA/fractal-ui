@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useCallback } from 'react';
+import React, { forwardRef, useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
@@ -38,10 +38,10 @@ const TouchableOpacity = forwardRef(
 
         const longPressEvent = useLongPress(onLongPress);
 
-        const handleButtonPress = useCallback((): void => {
+        const handleButtonPress = (): void => {
             setPressed(true);
             onPress?.();
-        }, [onPress]);
+        };
 
         return (
             <StyledTouchableOpacity

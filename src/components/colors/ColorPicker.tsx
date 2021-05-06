@@ -1,4 +1,4 @@
-import React, { useCallback, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { useTheme } from '../../context/hooks/useTheme';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { LayerProps } from '../containers/Layer/types';
@@ -19,12 +19,7 @@ export const ColorPicker = forwardRef(
         const [activeColor, setActiveColor] = useControllableState({ value, defaultValue: finalDefaultValue, onChange: onColorChange });
         const { spacings } = useTheme();
 
-        const handleColorChange = useCallback(
-            (_active: boolean, color: string) => {
-                setActiveColor(color);
-            },
-            [setActiveColor]
-        );
+        const handleColorChange = (_active: boolean, color: string) => setActiveColor(color);
 
         const renderColorToggle = (color: string) => {
             return (

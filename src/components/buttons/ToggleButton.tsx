@@ -1,4 +1,4 @@
-import React, { ReactNode, forwardRef, useState, useCallback } from 'react';
+import React, { ReactNode, forwardRef, useState } from 'react';
 import { useTheme } from '../../context/hooks/useTheme';
 import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { BaseButton } from './BaseButton';
@@ -30,10 +30,10 @@ const ToggleButton = forwardRef(
         const colorName = `${variant}InteractiveColor`;
         const color = active ? colors[colorName] : useGrayVariant ? colors.placeholder : colors.text;
 
-        const handleButtonPress = useCallback((): void => {
+        const handleButtonPress = (): void => {
             setPressed(true);
             onPress?.();
-        }, [onPress]);
+        };
 
         return (
             <BaseButton

@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
 import { useTheme } from '../../context';
 import { RadioButton } from './RadioButton';
 import { RadioItem } from './types';
@@ -15,9 +15,7 @@ export const RadioGroupItem = memo(
     ({ item, isLastItem, flexDirection, active, handleChange }: RadioGroupItemProps): JSX.Element => {
         const { spacings } = useTheme();
 
-        const handlePress = useCallback(() => {
-            handleChange(item.value);
-        }, [item.value, handleChange]);
+        const handlePress = () => handleChange(item.value);
 
         return (
             <RadioButton

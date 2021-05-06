@@ -1,4 +1,4 @@
-import React, { ReactNode, forwardRef, useState, useCallback } from 'react';
+import React, { ReactNode, forwardRef, useState } from 'react';
 import { Text } from '../text';
 import { useTheme } from '../../context/hooks/useTheme';
 import { BaseButton } from './BaseButton';
@@ -28,10 +28,10 @@ const Button = forwardRef(
         const pressedColorName = `${variant}InteractiveColor600`;
         const pressedColor = colors[pressedColorName];
 
-        const handleButtonPress = useCallback((): void => {
+        const handleButtonPress = (): void => {
             setPressed(true);
             onPress?.();
-        }, [onPress]);
+        };
 
         return (
             <BaseButton

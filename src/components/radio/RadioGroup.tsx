@@ -1,4 +1,4 @@
-import React, { forwardRef, useCallback } from 'react';
+import React, { forwardRef } from 'react';
 import { Layer } from '../containers/Layer';
 import { RadioGroupProps, RadioItem } from './types';
 import { getRadioGroupAccessibilityProps } from './accessibility/getRadioGroupAccessibilityProps';
@@ -10,12 +10,7 @@ const RadioGroup = forwardRef(
         const [activeValue, setActiveValue] = useControllableState({ value, defaultValue: defaultValue ?? '', onChange: onValueChange });
         const { flexDirection } = others;
 
-        const handleChange = useCallback(
-            (value: string): void => {
-                setActiveValue(value);
-            },
-            [setActiveValue]
-        );
+        const handleChange = (value: string): void => setActiveValue(value);
 
         // Memoizing the callback is hard because it depends on the active value, to it will be re generated every time they change it.
         // It makes more sense to create a new component that depends only on primitives, and memoize that, that way when the value changes only 2 components will update.

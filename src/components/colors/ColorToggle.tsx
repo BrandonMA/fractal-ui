@@ -1,4 +1,4 @@
-import React, { useCallback, useState, forwardRef } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { LayerProps } from '../containers/Layer/types';
 import { Pressable } from '../buttons';
 import { Layer } from '../containers';
@@ -24,13 +24,13 @@ const ColorToggle = forwardRef(
         const [uncontrolledActive, setUncontrolledActive] = useState(!!active);
         const variant = getVariant(active != null ? active : uncontrolledActive);
 
-        const handleControlledActiveToggle = useCallback(() => {
+        const handleControlledActiveToggle = () => {
             if (onActiveChange) {
                 onActiveChange(!active, backgroundColor);
             }
-        }, [onActiveChange, active, backgroundColor]);
+        };
 
-        const handleUncontrolledActiveToggle = useCallback(() => {
+        const handleUncontrolledActiveToggle = () => {
             setUncontrolledActive((uncontrolledActive) => {
                 const newValue = !uncontrolledActive;
                 if (onActiveChange != null) {
@@ -38,15 +38,15 @@ const ColorToggle = forwardRef(
                 }
                 return newValue;
             });
-        }, [setUncontrolledActive, onActiveChange, backgroundColor]);
+        };
 
-        const handlePress = useCallback(() => {
+        const handlePress = () => {
             if (active != null) {
                 handleControlledActiveToggle();
             } else {
                 handleUncontrolledActiveToggle();
             }
-        }, [handleControlledActiveToggle, handleUncontrolledActiveToggle, active]);
+        };
 
         return (
             <Pressable

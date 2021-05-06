@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Check } from '../Check';
@@ -27,9 +27,7 @@ const CheckBoxInput = styled(motion.input)`
 `;
 
 export function BaseCheckBox({ value, onValueChange, label }: BaseCheckBoxProps): JSX.Element {
-    const handleValueChange = useCallback((): void => {
-        onValueChange(!value);
-    }, [value, onValueChange]);
+    const handleValueChange = (): void => onValueChange(!value);
 
     return (
         <Wrapper>
