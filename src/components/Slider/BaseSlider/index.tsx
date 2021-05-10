@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useRef } from 'react';
+import React, { useCallback, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { BaseSliderProps, EventSource } from '../types';
 import { clamp, valueToPercentage } from '../utils/slider';
@@ -12,6 +12,7 @@ import { useHandleSliderMove } from '../hooks/useHandleSliderMove';
 import { useSliderTouchEffects } from '../hooks/useSliderTouchEffects';
 import { useHandleOnKeyDown } from '../hooks/useHandleOnKeyDown';
 import { useHandleOnMouseDown } from '../hooks/useHandleOnMouseDown';
+import { useCleanEventSource } from '../hooks/useCleanEventSource';
 
 const StyledRange = styled.div`
     position: relative;
@@ -54,34 +55,29 @@ export function BaseSlider({
     step = 0.001,
     name
 }: BaseSliderProps): JSX.Element {
-    const [computedValue, setValue] = useControllableState({
-        value,
-        defaultValue,
-        onChange: onValueChange
-    });
+    const [computedValue, setValue] = useControllableState(value, defaultValue, onValueChange);
+    const { colors, shadows } = useTheme();
     const [isDragging, setDragging] = useState(false);
     const [eventSource, setEventSource] = useState<EventSource>();
-    const { colors, shadows } = useTheme();
 
     const sliderRef = useRef<any>(null);
     const thumbRef = useRef<HTMLDivElement>(null);
     const diffRef = useRef<any>(null);
 
-    const clampedValue = clamp(computedValue, minimumValue, maximumValue);
-
-    const trackPercentage = valueToPercentage(clampedValue, minimumValue, maximumValue);
+    const clampedValue = useRef(clamp(computedValue, minimumValue, maximumValue));
+    const trackPercentage = valueToPercentage(clampedValue.current, minimumValue, maximumValue);
 
     const handleSlidingStart = useCallback(() => {
-        onSlidingStart?.(clampedValue);
+        onSlidingStart?.(clampedValue.current);
     }, [onSlidingStart, clampedValue]);
 
     const handleOnKeyDown = useHandleOnKeyDown(
         maximumValue,
         minimumValue,
         step,
+        defaultValue,
         setValue,
         clampedValue,
-        defaultValue,
         setEventSource,
         handleSlidingStart
     );
@@ -99,23 +95,11 @@ export function BaseSlider({
         [handleSlidingStart]
     );
 
-    const handleSliderMove = useHandleSliderMove(thumbRef, diffRef, sliderRef, maximumValue, minimumValue, step, setValue);
+    const handleSliderMove = useHandleSliderMove(maximumValue, minimumValue, step, setValue, thumbRef, diffRef, sliderRef);
     const handleMouseDown = useHandleOnMouseDown(setEventSource, handleSliderMove, setDragging, handleMoveStart);
 
     useSliderTouchEffects(setEventSource, handleSliderMove, sliderRef, setDragging, handleMoveStart);
-
-    useEffect(() => {
-        const shouldUpdate = !isDragging && eventSource !== 'keyboard' && eventSource != null;
-
-        if (shouldUpdate) {
-            onSlidingComplete?.(clampedValue);
-            setEventSource(undefined);
-        }
-        if (eventSource === 'keyboard') {
-            onSlidingComplete?.(clampedValue);
-            setEventSource(undefined);
-        }
-    }, [isDragging, eventSource, onSlidingComplete, clampedValue]);
+    useCleanEventSource(isDragging, eventSource, setEventSource, onSlidingComplete, clampedValue);
 
     return (
         <StyledRange ref={sliderRef} backgroundColor={colors.placeholder}>
@@ -138,8 +122,8 @@ export function BaseSlider({
             <input
                 name={name}
                 type='hidden'
-                value={clampedValue}
-                {...getSliderInputAccessibilityProps(clampedValue, isDragging, minimumValue, maximumValue)}
+                value={clampedValue.current}
+                {...getSliderInputAccessibilityProps(clampedValue.current, isDragging, minimumValue, maximumValue)}
             />
         </StyledRange>
     );

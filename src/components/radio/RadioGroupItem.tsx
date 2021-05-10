@@ -11,7 +11,7 @@ interface RadioGroupItemProps {
     handleChange: (value: string) => void;
 }
 
-export const RadioGroupItem = memo(
+const RadioGroupItem = memo(
     ({ item, isLastItem, flexDirection, active, handleChange }: RadioGroupItemProps): JSX.Element => {
         const { spacings } = useTheme();
 
@@ -32,3 +32,5 @@ export const RadioGroupItem = memo(
 );
 
 RadioGroupItem.displayName = 'RadioGroupItem';
+
+export { RadioGroupItem };

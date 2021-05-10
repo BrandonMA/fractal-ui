@@ -13,7 +13,7 @@ import { useControllableState } from '../../../hooks/useControllableState';
 export function DatePicker({ value, minDate, maxDate, initialDate = new Date(), onChange, ...others }: DatePickerProps): JSX.Element {
     const { spacings } = useTheme();
     const finalMinDate = useMemo(() => minDate ?? new Date('Jan 1, 1920'), [minDate]);
-    const [date, setDate] = useControllableState({ value, defaultValue: initialDate, onChange }); //useState(initialDate);
+    const [date, setDate] = useControllableState(value, initialDate, onChange);
 
     const years = useMemo(() => getYearsInRange(maxDate ?? new Date(), finalMinDate), [maxDate, finalMinDate]);
     const days = useMemo(() => {

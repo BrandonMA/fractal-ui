@@ -13,10 +13,10 @@ export interface ColorPickerProps extends Partial<Omit<LayerProps, 'children'>> 
     value?: string;
 }
 
-export const ColorPicker = forwardRef(
+const ColorPicker = forwardRef(
     ({ colors, onColorChange, defaultValue, value, ...others }: ColorPickerProps, ref: any): JSX.Element => {
         const finalDefaultValue = defaultValue ? defaultValue : colors[0];
-        const [activeColor, setActiveColor] = useControllableState({ value, defaultValue: finalDefaultValue, onChange: onColorChange });
+        const [activeColor, setActiveColor] = useControllableState(value, finalDefaultValue, onColorChange);
         const { spacings } = useTheme();
 
         const handleColorChange = (_active: boolean, color: string) => setActiveColor(color);
@@ -41,3 +41,7 @@ export const ColorPicker = forwardRef(
         );
     }
 );
+
+ColorPicker.displayName = 'ColorPicker';
+
+export { ColorPicker };

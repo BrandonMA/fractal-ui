@@ -11,7 +11,7 @@ export function TimePicker({ value, onChange, initialDate = new Date(), ...other
     initialDate.setSeconds(0);
     const { spacings } = useTheme();
 
-    const [date, setDate] = useControllableState({ value, defaultValue: initialDate, onChange }); //useState(initialDate);
+    const [date, setDate] = useControllableState(value, initialDate, onChange);
 
     const hours = normalizeHourValues(numberToArray(24));
     const minutes: Array<[string, string]> = normalizeHourValues(numberToArray(59, true));

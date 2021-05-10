@@ -2,13 +2,13 @@ import { RefObject, useCallback } from 'react';
 import { clamp, valueToPercentage, percentageToValue, roundValueToStep } from '../utils/slider';
 
 export function useHandleSliderMove(
-    thumbRef: RefObject<any>,
-    diffRef: RefObject<any>,
-    sliderRef: RefObject<any>,
     maximumValue: number,
     minimumValue: number,
     step: number,
-    setValue: (value: number) => void
+    setValue: (value: number) => void,
+    thumbRef: RefObject<any>,
+    diffRef: RefObject<any>,
+    sliderRef: RefObject<any>
 ): (event: any) => void {
     const getValueFromPointer = useCallback(
         (event): number | undefined => {

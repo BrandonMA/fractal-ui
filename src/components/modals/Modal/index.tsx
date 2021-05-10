@@ -6,6 +6,8 @@ import { ModalProps } from './types';
 
 const Modal = forwardRef(
     ({ visible, ...others }: ModalProps, ref: any): JSX.Element => {
+        delete others['onDismiss'];
+
         return (
             <ModalPortal>
                 <AnimatePresence>{visible ? <ModalContent ref={ref} key='ModalContent' {...others} /> : null}</AnimatePresence>

@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useCallback, useMemo } from 'react';
+import React, { Dispatch, MutableRefObject, SetStateAction, useCallback, useMemo } from 'react';
 import { clamp, roundValueToStep } from '../utils/slider';
 import { EventSource } from '../types';
 
@@ -6,9 +6,9 @@ export function useHandleOnKeyDown(
     maximumValue: number,
     minimumValue: number,
     step: number,
-    setValue: (value: number) => void,
-    clampedValue: number,
     defaultValue: number,
+    setValue: (value: number) => void,
+    clampedValue: MutableRefObject<number>,
     setEventSource: Dispatch<SetStateAction<EventSource | undefined>>,
     handleSlidingStart: () => void
 ): (event: React.KeyboardEvent) => unknown {
@@ -26,11 +26,11 @@ export function useHandleOnKeyDown(
     const actions = useMemo(
         () => ({
             stepUp: (nextStep = step) => {
-                const next = clampedValue + nextStep;
+                const next = clampedValue.current + nextStep;
                 constrain(next);
             },
             stepDown: (nextStep = step) => {
-                const next = clampedValue - nextStep;
+                const next = clampedValue.current - nextStep;
                 constrain(next);
             },
             reset: () => constrain(defaultValue)

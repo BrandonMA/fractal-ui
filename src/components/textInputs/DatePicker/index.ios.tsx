@@ -18,7 +18,7 @@ export function DatePicker({
 }: DatePickerProps): JSX.Element {
     initialDate.setSeconds(0);
     const [modalActive, setModalActive] = useState(false);
-    const [date, setDate] = useControllableState({ value, defaultValue: initialDate, onChange }); //useState(initialDate ?? defaultDate);
+    const [date, setDate] = useControllableState(value, initialDate, onChange);
     const { colors } = useTheme();
     const [textColor, setTextColor] = useState('black');
 

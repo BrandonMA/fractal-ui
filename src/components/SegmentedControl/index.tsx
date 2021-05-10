@@ -15,11 +15,7 @@ const SegmentedControl = forwardRef(
             },
             [onChange, onValueChange, values]
         );
-        const [selectedIndex, setSelectedIndex] = useControllableState({
-            value: selectedIndexProp,
-            defaultValue: defaultSelectedIndex ?? 0,
-            onChange: onIndexChange
-        });
+        const [selectedIndex, setSelectedIndex] = useControllableState(selectedIndexProp, defaultSelectedIndex ?? 0, onIndexChange);
 
         const handleIndexChange = useCallback(
             (index: number) => {

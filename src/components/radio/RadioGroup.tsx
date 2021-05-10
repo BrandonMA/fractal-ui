@@ -7,13 +7,13 @@ import { RadioGroupItem } from './RadioGroupItem';
 
 const RadioGroup = forwardRef(
     ({ value, defaultValue, radioButtons, onValueChange, ...others }: RadioGroupProps, ref: any): JSX.Element => {
-        const [activeValue, setActiveValue] = useControllableState({ value, defaultValue: defaultValue ?? '', onChange: onValueChange });
+        const [activeValue, setActiveValue] = useControllableState(value, defaultValue ?? '', onValueChange);
         const { flexDirection } = others;
 
         const handleChange = (value: string): void => setActiveValue(value);
 
-        // Memoizing the callback is hard because it depends on the active value, to it will be re generated every time they change it.
-        // It makes more sense to create a new component that depends only on primitives, and memoize that, that way when the value changes only 2 components will update.
+        // Memoizing the callback is hard because it depends on the active value, so it will be re generated everytime it changes.
+        // It makes more sense to create a new component that depends only on primitives, and memoize that.
         const renderRadioButton = (item: RadioItem, index: number): JSX.Element => {
             return (
                 <RadioGroupItem
