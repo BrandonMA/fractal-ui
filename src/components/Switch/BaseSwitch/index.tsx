@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useTheme } from '../../../context/hooks/useTheme';
 import { Pressable } from '../../buttons/Pressable';
 import { Layer } from '../../containers/Layer';
@@ -13,11 +13,11 @@ const styleVariants = {
 export function BaseSwitch({ value, onValueChange }: BaseSwitchProps): JSX.Element {
     const { colors, shadows } = useTheme();
 
-    const onPress = useCallback(() => {
+    const onPress = () => {
         if (onValueChange) {
             onValueChange(!value);
         }
-    }, [onValueChange, value]);
+    };
 
     const backgroundVariants = {
         active: { backgroundColor: colors.mainInteractiveColor },

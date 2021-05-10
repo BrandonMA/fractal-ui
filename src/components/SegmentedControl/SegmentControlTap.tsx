@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useTheme } from '../../context/hooks/useTheme';
 import { SegmentedControlTabProps } from './types';
 import { BaseSegmentedControlTab } from './BaseSegmentedControlTab';
@@ -23,7 +23,7 @@ export const SegmentedControlTab = ({
         fontStyle: activeFontStyle
     } = activeTextStyle;
 
-    const getColor = useCallback(() => {
+    const getColor = () => {
         if (textColor) {
             return textColor;
         }
@@ -31,7 +31,7 @@ export const SegmentedControlTab = ({
             return 'white';
         }
         return colors.text;
-    }, [colors.text, textColor, tintColor]);
+    };
 
     const color = getColor();
 

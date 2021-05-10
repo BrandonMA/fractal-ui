@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, useCallback } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { useTheme } from '../../context/hooks/useTheme';
 import { ActivityIndicator } from '../ActivityIndicator';
 import { BaseButton } from '../buttons/BaseButton';
@@ -16,10 +16,10 @@ const BaseMediaButton = forwardRef(
 
         const [pressed, setPressed] = useState(false);
 
-        const handleButtonPress = useCallback((): void => {
+        const handleButtonPress = (): void => {
             setPressed(true);
             onPress?.();
-        }, [onPress]);
+        };
 
         return (
             <BaseButton

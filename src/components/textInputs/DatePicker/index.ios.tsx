@@ -22,7 +22,7 @@ export function DatePicker({
     const { colors } = useTheme();
     const [textColor, setTextColor] = useState('black');
 
-    const toggleModal = useCallback(() => setModalActive((current) => !current), [setModalActive]);
+    const toggleModal = () => setModalActive((current) => !current);
 
     const onPickerValueChange = useCallback(
         (_, selectedDate) => {

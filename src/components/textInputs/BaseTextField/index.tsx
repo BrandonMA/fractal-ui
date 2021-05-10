@@ -1,4 +1,4 @@
-import React, { useCallback, forwardRef, ForwardedRef } from 'react';
+import React, { forwardRef, ForwardedRef } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { TextFieldProps } from './types';
@@ -26,13 +26,7 @@ const StyledTextInput = styled(motion.input as any)`
 const BaseTextField = forwardRef(
     (props: TextFieldProps, ref: ForwardedRef<HTMLInputElement>): JSX.Element => {
         const { onChangeText, placeholder, ...others } = props;
-
-        const handleChange = useCallback(
-            (event): void => {
-                onChangeText && onChangeText(event.target.value);
-            },
-            [onChangeText]
-        );
+        const handleChange = (event): void => onChangeText && onChangeText(event.target.value);
 
         return (
             <StyledTextInput

@@ -12,7 +12,7 @@ export function Picker({ items, defaultValue, value, onChange, iosDoneText = 'Do
     const [modalActive, setModalActive] = useState(false);
     const { colors } = useTheme();
 
-    const toggleModal = useCallback(() => setModalActive((current) => !current), [setModalActive]);
+    const toggleModal = () => setModalActive((current) => !current);
 
     const renderItem = useCallback(
         (item) => {

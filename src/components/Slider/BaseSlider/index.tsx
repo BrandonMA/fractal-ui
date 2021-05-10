@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { BaseSliderProps, EventSource } from '../types';
 import { clampValue, valueToPercentage } from '../utils';
@@ -68,9 +68,7 @@ export function BaseSlider({
     clampedValue.current = clampValue(computedValue, minimumValue, maximumValue);
     const trackPercentage = valueToPercentage(clampedValue.current, minimumValue, maximumValue);
 
-    const handleSlidingStart = useCallback(() => {
-        onSlidingStart?.(clampedValue.current);
-    }, [onSlidingStart, clampedValue]);
+    const handleSlidingStart = () => onSlidingStart?.(clampedValue.current);
 
     const handleOnKeyDown = useHandleOnKeyDown(
         maximumValue,
@@ -83,18 +81,15 @@ export function BaseSlider({
         handleSlidingStart
     );
 
-    const handleMoveStart = useCallback(
-        (event) => {
-            if (thumbRef.current) {
-                const { clientX } = event.touches?.[0] ?? event;
-                diffRef.current = clientX - thumbRef.current.getBoundingClientRect().left;
+    const handleMoveStart = (event) => {
+        if (thumbRef.current) {
+            const { clientX } = event.touches?.[0] ?? event;
+            diffRef.current = clientX - thumbRef.current.getBoundingClientRect().left;
 
-                setDragging(true);
-                handleSlidingStart();
-            }
-        },
-        [handleSlidingStart]
-    );
+            setDragging(true);
+            handleSlidingStart();
+        }
+    };
 
     const handleSliderMove = useHandleSliderMove(maximumValue, minimumValue, step, setValue, thumbRef, diffRef, sliderRef);
     const handleMouseDown = useHandleOnMouseDown(setEventSource, handleSliderMove, setDragging, handleMoveStart);
