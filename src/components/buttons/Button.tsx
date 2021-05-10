@@ -49,7 +49,11 @@ const Button = forwardRef(
                 {...others}
             >
                 {children}
-                {text != null ? <Text variant='button'>{text}</Text> : null}
+                {text != null ? (
+                    <Text variant='button' color={variant === 'content' ? colors.text : 'white'}>
+                        {text}
+                    </Text>
+                ) : null}
             </BaseButton>
         );
     }

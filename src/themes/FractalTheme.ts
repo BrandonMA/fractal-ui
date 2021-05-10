@@ -61,6 +61,16 @@ export interface FractalThemeColors {
     dangerInteractiveColor700: string;
     dangerInteractiveColor800: string;
     dangerInteractiveColor900: string;
+    // Content
+    contentInteractiveColor100: string;
+    contentInteractiveColor200: string;
+    contentInteractiveColor300: string;
+    contentInteractiveColor400: string;
+    contentInteractiveColor: string;
+    contentInteractiveColor600: string;
+    contentInteractiveColor700: string;
+    contentInteractiveColor800: string;
+    contentInteractiveColor900: string;
 }
 
 export interface FractalThemeSpacings {

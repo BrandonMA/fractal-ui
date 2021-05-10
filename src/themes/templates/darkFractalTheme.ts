@@ -8,7 +8,17 @@ export const darkColors = {
     textField: black.base400,
     placeholder: black.base300,
     label: black.base200,
-    separator: black.base400
+    separator: black.base400,
+    //Content
+    contentInteractiveColor100: black.base100,
+    contentInteractiveColor200: black.base200,
+    contentInteractiveColor300: black.base300,
+    contentInteractiveColor400: black.base400,
+    contentInteractiveColor: black.base400,
+    contentInteractiveColor600: black.base600,
+    contentInteractiveColor700: black.base700,
+    contentInteractiveColor800: black.base800,
+    contentInteractiveColor900: black.base900
 };
 
 export const darkFractalTheme = createFractalTheme({

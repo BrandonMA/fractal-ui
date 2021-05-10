@@ -25,7 +25,7 @@ const ToggleButton = forwardRef(
         const backgroundColor = active ? colors[backgroundColorName] : colors.background;
 
         const pressedColorName = `${variant}InteractiveColor200`;
-        const pressedColor = colors[pressedColorName];
+        const pressedColor = active ? colors[pressedColorName] : colors.background;
 
         const colorName = `${variant}InteractiveColor`;
         const color = active ? colors[colorName] : useGrayVariant ? colors.placeholder : colors.text;
