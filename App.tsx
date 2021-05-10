@@ -37,7 +37,8 @@ import {
     BlurrediOSModal,
     Bubble,
     Image,
-    ActivityIndicator
+    ActivityIndicator,
+    CrossButton
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { BuggyComponent } from './examples/BuggyComponent';
@@ -243,6 +244,7 @@ function Content(): JSX.Element {
 
     return (
         <PaddingLayer>
+            <CrossButton />
             <ActivityIndicator width={20} height={20} color={colors.mainInteractiveColor} />
             <Text marginBottom={spacings.m} variant={'title'}>
                 Audio Player

@@ -8,7 +8,7 @@ interface CloseButtonProps extends FractalSharedProps, AnimationProps {
     onPress?: () => void;
 }
 
-const CloseButton = forwardRef(
+const CrossButton = forwardRef(
     (props: CloseButtonProps, ref: any): JSX.Element => {
         const { colors } = useTheme();
         return (
@@ -19,6 +19,6 @@ const CloseButton = forwardRef(
     }
 );
 
-CloseButton.displayName = 'CloseButton';
+CrossButton.displayName = 'CrossButton';
 
-export { CloseButton };
+export { CrossButton };
