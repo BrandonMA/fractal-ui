@@ -23,7 +23,7 @@ export function useSliderTouchEffects(
 
     const handleTouchStart = useCallback(
         (event: TouchEvent) => {
-            event.preventDefault();
+            if (event.cancelable) event.preventDefault();
             handleMoveStart(event);
 
             sliderRef.current.addEventListener('touchmove', handleTouchMove);

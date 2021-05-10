@@ -20,5 +20,5 @@ export function useCleanEventSource(
             onSlidingComplete?.(clampedValue.current);
             setEventSource(undefined);
         }
-    }, [isDragging, eventSource, onSlidingComplete, clampedValue]);
+    }, [isDragging, eventSource, onSlidingComplete, clampedValue, setEventSource]);
 }

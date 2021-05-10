@@ -1,5 +1,5 @@
 import React, { Dispatch, MutableRefObject, SetStateAction, useCallback, useMemo } from 'react';
-import { clamp, roundValueToStep } from '../utils/slider';
+import { clampValue, roundValueToStep } from '../utils';
 import { EventSource } from '../types';
 
 export function useHandleOnKeyDown(
@@ -16,8 +16,8 @@ export function useHandleOnKeyDown(
 
     const constrain = useCallback(
         (value: number) => {
-            value = parseFloat(roundValueToStep(value, minimumValue, step) as string);
-            value = clamp(value, minimumValue, maximumValue);
+            value = roundValueToStep(value, minimumValue, step);
+            value = clampValue(value, minimumValue, maximumValue);
             setValue(value);
         },
         [minimumValue, step, maximumValue, setValue]

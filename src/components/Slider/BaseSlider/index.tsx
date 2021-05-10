@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { BaseSliderProps, EventSource } from '../types';
-import { clamp, valueToPercentage } from '../utils/slider';
+import { clampValue, valueToPercentage } from '../utils';
 import { useTheme } from '../../../context/hooks/useTheme';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
@@ -63,8 +63,9 @@ export function BaseSlider({
     const sliderRef = useRef<any>(null);
     const thumbRef = useRef<HTMLDivElement>(null);
     const diffRef = useRef<any>(null);
+    const clampedValue = useRef(clampValue(computedValue, minimumValue, maximumValue));
 
-    const clampedValue = useRef(clamp(computedValue, minimumValue, maximumValue));
+    clampedValue.current = clampValue(computedValue, minimumValue, maximumValue);
     const trackPercentage = valueToPercentage(clampedValue.current, minimumValue, maximumValue);
 
     const handleSlidingStart = useCallback(() => {
@@ -114,7 +115,7 @@ export function BaseSlider({
                 onMouseDown={(e) => handleMouseDown(e.nativeEvent)}
                 onKeyDown={handleOnKeyDown}
                 style={{
-                    left: `${trackPercentage}%`
+                    left: `calc(${trackPercentage}% - 10px)`
                 }}
                 boxShadow={shadows.thumbShadow}
                 {...getSliderAccessibilityProps()}
