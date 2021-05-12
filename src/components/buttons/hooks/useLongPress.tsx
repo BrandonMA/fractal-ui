@@ -11,10 +11,6 @@ const isTouchEvent = (event: Event): event is TouchEvent => {
 
 const preventDefault = (event: Event) => {
     if (!isTouchEvent(event)) return;
-
-    if (event.touches.length < 2 && event.preventDefault) {
-        event.preventDefault();
-    }
 };
 
 export const useLongPress = (callback: (() => void) | undefined, options: Options = {}): any => {
