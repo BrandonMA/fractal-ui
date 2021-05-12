@@ -1,12 +1,34 @@
-import React, { DragEvent, useState, useEffect } from 'react';
+import React from 'react';
 import styled, { StyledComponent } from 'styled-components';
 import { useTheme } from '../../context';
 import { Text } from '../text';
 import { Layer } from '../containers/Layer';
 import { LayerProps } from '../containers/Layer/types';
+import { UploadIcon } from '../../assets/UploadIcon';
+import { extractTextProps } from '../../sharedProps/TextProps';
+import { motion } from 'framer-motion';
+import { useDropzone } from './hooks/useDropzone';
 
 const FileInput = styled.input`
     display: none;
+`;
+
+const StyledText = styled(motion.span)`
+    ${extractTextProps};
+`;
+
+const StyledButton = styled(motion.button)`
+    position: relative;
+    cursor: pointer;
+    background: transparent;
+    padding: 0;
+    border: 0;
+    font-family: inherit;
+    font-size: inherit;
+    &:hover {
+        text-decoration: underline;
+    }
+    ${extractTextProps};
 `;
 
 const UploadBox = styled(Layer)`
@@ -14,63 +36,54 @@ const UploadBox = styled(Layer)`
     border-width: 1px;
     justify-content: center;
     align-items: center;
+    flex-direction: row;
 ` as StyledComponent<'div', any, LayerProps>;
 
 interface DropzoneProps {
     acceptedTypes?: Array<string>;
     pickMultipleFiles?: boolean;
-    onChangeSelectedFiles: (selectedFiles: Array<File>) => void;
+    maxNumberFiles?: number;
+    maxFileSize?: number;
+    onChangeAcceptedFiles: (acceptedFiles: Array<File>) => void;
 }
 
-export function Dropzone({ acceptedTypes, pickMultipleFiles, onChangeSelectedFiles }: DropzoneProps): JSX.Element {
-    const { sizes, colors } = useTheme();
-    const [selectedFiles, setSelectedFiles] = useState<Array<File>>([]);
-
-    const handlePreventDefault = (dragEvent: DragEvent) => {
-        dragEvent.preventDefault();
-    };
-
-    const validateFile = (file: File) => {
-        if (acceptedTypes && acceptedTypes.indexOf(file.type) === -1) {
-            return false;
-        }
-        return true;
-    };
-
-    const handleFiles = (files: FileList) => {
-        for (let i = 0; i < files.length; i++) {
-            if (validateFile(files[i])) {
-                setSelectedFiles((prevArray) => {
-                    const newSelectedFiles = [...prevArray, files[i]];
-                    onChangeSelectedFiles(newSelectedFiles);
-                    return newSelectedFiles;
-                });
-            }
-        }
-    };
-
-    const fileDrop = (dragEvent: DragEvent) => {
-        handlePreventDefault(dragEvent);
-        const files = dragEvent.dataTransfer.files;
-        if (files.length > 0) {
-            handleFiles(files);
-        }
-    };
+export function Dropzone({
+    acceptedTypes,
+    pickMultipleFiles,
+    maxNumberFiles,
+    maxFileSize,
+    onChangeAcceptedFiles
+}: DropzoneProps): JSX.Element {
+    const { sizes, colors, spacings, textVariants } = useTheme();
+    const { fontSize, fontWeight, color, fontFamily } = textVariants.normal;
+    const finalColor = colors[color];
+    const { acceptedFiles, containerProps, fileInputProps, openFileDialog, dragFocused } = useDropzone(
+        acceptedTypes,
+        pickMultipleFiles,
+        maxNumberFiles,
+        maxFileSize,
+        onChangeAcceptedFiles
+    );
 
     return (
         <Layer>
             <UploadBox
-                height={sizes.interactiveItemHeight}
-                borderColor={colors.placeholder}
-                onDragOver={handlePreventDefault}
-                onDragEnter={handlePreventDefault}
-                onDragLeave={handlePreventDefault}
-                onDrop={fileDrop}
+                minHeight={sizes.interactiveItemHeight}
+                padding={spacings.s}
+                borderColor={dragFocused ? colors.mainInteractiveColor : colors.placeholder}
+                {...containerProps}
             >
-                <FileInput accept={acceptedTypes?.join(',')} multiple={pickMultipleFiles} type={'file'} />
-                <Text variant='normal'>Seleccionar archivo</Text>
+                <FileInput {...fileInputProps} />
+                <UploadIcon width={24} height={24} fill={colors.text} />
+                <Layer width={spacings.xs} />
+                <StyledText selectable={false} fontFamily={fontFamily} fontSize={fontSize} fontWeight={fontWeight} color={finalColor}>
+                    Suelta los archivos para adjuntarlos o{' '}
+                    <StyledButton onClick={openFileDialog} color={colors.mainInteractiveColor}>
+                        explorar
+                    </StyledButton>
+                </StyledText>
             </UploadBox>
-            {selectedFiles.map((file, index) => (
+            {acceptedFiles.map((file, index) => (
                 <Text key={`${index}`} variant='normal'>
                     {file.name}
                 </Text>
