@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useValidateFile } from './useValidateFile';
 
 export function useAcceptedFiles(
@@ -10,28 +10,56 @@ export function useAcceptedFiles(
     const [acceptedFiles, setAcceptedFiles] = useState<Array<File>>([]);
     const validateFile = useValidateFile(acceptedTypes, maxFileSize);
 
-    const addAcceptedFiles = (files: FileList, endIndex: number) => {
-        for (let i = 0; i < endIndex; i++) {
-            if (validateFile(files[i])) {
-                setAcceptedFiles((prevArray) => {
-                    const newSelectedFiles = [...prevArray, files[i]];
-                    onChangeAcceptedFiles(newSelectedFiles);
-                    return newSelectedFiles;
-                });
-            }
-        }
-    };
+    const pushAcceptedFiles = useCallback(
+        (newFiles: Array<File>) => {
+            setAcceptedFiles((currentAcceptedFile) => {
+                const newAcceptedFiles = [...currentAcceptedFile, ...newFiles];
+                onChangeAcceptedFiles(newAcceptedFiles);
+                return newAcceptedFiles;
+            });
+        },
+        [onChangeAcceptedFiles]
+    );
 
-    const handleFiles = (files: FileList) => {
-        if (maxNumberFiles) {
-            if (acceptedFiles.length < maxNumberFiles) {
-                const filesLength = maxNumberFiles - acceptedFiles.length;
-                addAcceptedFiles(files, filesLength);
+    const getValidFiles = useCallback(
+        (files: FileList, endIndex: number): Array<File> => {
+            let validFiles: Array<File> = [];
+            for (let i = 0; i < endIndex; i++) {
+                if (validateFile(files[i])) {
+                    validFiles = [...validFiles, files[i]];
+                }
             }
-        } else {
-            addAcceptedFiles(files, files.length);
-        }
-    };
+            return validFiles;
+        },
+        [validateFile]
+    );
 
-    return [acceptedFiles, handleFiles];
+    const getAcceptedFiles = useCallback(
+        (files: FileList): Array<File> => {
+            if (maxNumberFiles) {
+                if (acceptedFiles.length < maxNumberFiles) {
+                    const filesLength = maxNumberFiles - acceptedFiles.length;
+                    return getValidFiles(files, filesLength);
+                } else {
+                    return [];
+                }
+            }
+
+            return getValidFiles(files, files.length);
+        },
+        [acceptedFiles.length, getValidFiles, maxNumberFiles]
+    );
+
+    const updateAcceptedFiles = useCallback(
+        (newSelectedFiles: FileList) => {
+            const newAcceptedFiles = getAcceptedFiles(newSelectedFiles);
+
+            if (newAcceptedFiles.length > 0) {
+                pushAcceptedFiles(newAcceptedFiles);
+            }
+        },
+        [getAcceptedFiles, pushAcceptedFiles]
+    );
+
+    return [acceptedFiles, updateAcceptedFiles];
 }
