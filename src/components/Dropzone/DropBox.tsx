@@ -1,11 +1,10 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-import styled, { StyledComponent } from 'styled-components';
+import styled from 'styled-components';
 import { UploadIcon } from '../../assets/UploadIcon';
 import { useTheme } from '../../context/hooks/useTheme';
 import { extractTextProps } from '../../sharedProps/TextProps';
 import { Layer } from '../containers/Layer';
-import { LayerProps } from '../containers/Layer/types';
 import { DropBoxProps } from './types';
 
 const FileInput = styled.input`
@@ -29,14 +28,6 @@ const StyledButton = styled(motion.button)`
         text-decoration: underline;
     }
 `;
-
-const UploadBox = styled(Layer)`
-    border-style: dashed;
-    border-width: 1px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-` as StyledComponent<'div', any, LayerProps>;
 
 export function DropBox({
     dropContainerProps,
@@ -64,12 +55,17 @@ export function DropBox({
     };
 
     return (
-        <UploadBox
+        <Layer
+            position='relative'
             minHeight={sizes.interactiveItemHeight}
             padding={spacings.xs}
+            borderStyle={'dashed'}
+            borderWidth={1}
+            justifyContent={'center'}
+            alignItems={'center'}
+            flexDirection={'row'}
             variants={variants}
             animate={dragFocused ? 'focus' : 'normal'}
-            {...dropContainerProps}
         >
             <FileInput {...fileInputProps} />
             <UploadIcon width={24} height={24} fill={colors.text} />
@@ -80,6 +76,7 @@ export function DropBox({
                     {textButton}
                 </StyledButton>
             </StyledText>
-        </UploadBox>
+            <Layer position={'absolute'} top={0} bottom={0} left={0} right={0} {...dropContainerProps} />
+        </Layer>
     );
 }
