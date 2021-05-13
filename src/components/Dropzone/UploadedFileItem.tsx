@@ -11,9 +11,9 @@ import { FileIcon } from '../../assets/FileIcon';
 const PREVIEW_SIZE = 44;
 
 const variants = {
-    initial: { opacity: 0, height: 0 },
-    animate: { opacity: 1, height: PREVIEW_SIZE },
-    exit: { opacity: 0, height: 0 }
+    initial: { opacity: 0, height: 0, marginTop: 0 },
+    animate: { opacity: 1, height: PREVIEW_SIZE, marginTop: 8 },
+    exit: { opacity: 0, height: 0, marginTop: 0 }
 };
 
 export function UploadedFileItem({ file, onDeletePress }: UploadedFileItemProps): JSX.Element {
