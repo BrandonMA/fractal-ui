@@ -259,6 +259,12 @@ function Content(): JSX.Element {
                 <ThemeSwapper />
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
+                Button Content Example
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <Button variant='content' text='Button with content variant' />
+            </Box>
+            <Text marginBottom={spacings.m} variant={'title'}>
                 Dropzone Example
             </Text>
             <Box marginBottom={spacings.m}>
