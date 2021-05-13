@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { Button, ButtonProps } from './Button';
 import { useTheme } from '../../context/hooks/useTheme';
+import { getCircularIconButtonAccessibilityProps } from './accessibility/getCircularIconButtonAccessibilityProps';
 
 export interface CircularIconButtonProps extends ButtonProps {
     children?: (color: string) => ReactNode | Array<ReactNode>;
@@ -19,6 +20,7 @@ const CircularIconButton = (props: CircularIconButtonProps): JSX.Element => {
             height={sizes.interactiveItemHeight}
             width={sizes.interactiveItemHeight}
             borderRadius={sizes.interactiveItemHeight / 2}
+            {...getCircularIconButtonAccessibilityProps()}
             {...others}
         >
             {children?.(color)}
