@@ -39,7 +39,8 @@ import {
     Image,
     ActivityIndicator,
     CrossButton,
-    CircularIconButton
+    CircularIconButton,
+    Dropzone
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { BuggyComponent } from './examples/BuggyComponent';
@@ -256,6 +257,12 @@ function Content(): JSX.Element {
             </Text>
             <Box marginBottom={spacings.m}>
                 <ThemeSwapper />
+            </Box>
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Dropzone Example
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <Dropzone onChangeAcceptedFiles={(files) => console.log('Accepted files: ', files)} />
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Avatar y Image Example
