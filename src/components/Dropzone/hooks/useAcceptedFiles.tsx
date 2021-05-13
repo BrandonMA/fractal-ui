@@ -6,17 +6,14 @@ export function useAcceptedFiles(
     maxFileSize: number | undefined,
     maxNumberFiles: number | undefined,
     onChangeAcceptedFiles: (acceptedFiles: Array<File>) => void
-): [acceptedFiles: Array<File>, setAcceptedFiles: (files: FileList) => void] {
+): [acceptedFiles: Array<File>, setAcceptedFiles: (files: FileList) => void, removeFile: (fileIndex: number) => void] {
     const [acceptedFiles, setAcceptedFiles] = useState<Array<File>>([]);
     const validateFile = useValidateFile(acceptedTypes, maxFileSize);
 
-    const pushAcceptedFiles = useCallback(
+    const updateAcceptedFiles = useCallback(
         (newFiles: Array<File>) => {
-            setAcceptedFiles((currentAcceptedFile) => {
-                const newAcceptedFiles = [...currentAcceptedFile, ...newFiles];
-                onChangeAcceptedFiles(newAcceptedFiles);
-                return newAcceptedFiles;
-            });
+            setAcceptedFiles(newFiles);
+            onChangeAcceptedFiles(newFiles);
         },
         [onChangeAcceptedFiles]
     );
@@ -50,16 +47,22 @@ export function useAcceptedFiles(
         [acceptedFiles.length, getValidFiles, maxNumberFiles]
     );
 
-    const updateAcceptedFiles = useCallback(
+    const addAcceptedFiles = useCallback(
         (newSelectedFiles: FileList) => {
-            const newAcceptedFiles = getAcceptedFiles(newSelectedFiles);
+            const newAddedFiles = getAcceptedFiles(newSelectedFiles);
 
-            if (newAcceptedFiles.length > 0) {
-                pushAcceptedFiles(newAcceptedFiles);
+            if (newAddedFiles.length > 0) {
+                const newAcceptedFiles = [...acceptedFiles, ...newAddedFiles];
+                updateAcceptedFiles(newAcceptedFiles);
             }
         },
-        [getAcceptedFiles, pushAcceptedFiles]
+        [acceptedFiles, getAcceptedFiles, updateAcceptedFiles]
     );
 
-    return [acceptedFiles, updateAcceptedFiles];
+    const removeFile = (fileIndex: number) => {
+        acceptedFiles.splice(fileIndex, 1);
+        updateAcceptedFiles([...acceptedFiles]);
+    };
+
+    return [acceptedFiles, addAcceptedFiles, removeFile];
 }

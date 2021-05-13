@@ -1,0 +1,63 @@
+import React, { useEffect, useState, useCallback } from 'react';
+import { HorizontalLayer } from '../containers/HorizontalLayer';
+import { Image } from '../Image';
+import { useValidateFileType } from './hooks/useValidateFileType';
+import { UploadedFileItemProps } from './types';
+import { Text } from '../text';
+import { useTheme } from '../../context/hooks/useTheme';
+import { CrossButton } from '../buttons';
+import { FileIcon } from '../../assets/FileIcon';
+
+const PREVIEW_SIZE = 44;
+
+const variants = {
+    initial: { opacity: 0, height: 0 },
+    animate: { opacity: 1, height: PREVIEW_SIZE },
+    exit: { opacity: 0, height: 0 }
+};
+
+export function UploadedFileItem({ file, onDeletePress }: UploadedFileItemProps): JSX.Element {
+    const { spacings, colors } = useTheme();
+    const validateFileType = useValidateFileType(['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/x-icon']);
+    const isImageFile = validateFileType(file);
+    const [imageSource, setImageSource] = useState<string>();
+
+    const formatFileSize = useCallback((size: number) => {
+        if (size === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['bytes', 'kB', 'MB', 'GB', 'TB'];
+        const i = Math.floor(Math.log(size) / Math.log(k));
+        return parseFloat((size / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }, []);
+
+    useEffect(() => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = (progressEvent) => {
+            if (progressEvent.target?.result) {
+                setImageSource(progressEvent.target.result as string);
+            }
+        };
+    }, [file]);
+
+    return (
+        <HorizontalLayer initial={variants.initial} animate={variants.animate} exit={variants.exit} alignItems={'center'} width={'100%'}>
+            {isImageFile ? (
+                <Image width={PREVIEW_SIZE} height={PREVIEW_SIZE} source={imageSource as string} />
+            ) : (
+                <FileIcon width={PREVIEW_SIZE} height={PREVIEW_SIZE} fill={colors.text} />
+            )}
+            <HorizontalLayer
+                width={'100%'}
+                justifyContent={'space-between'}
+                marginLeft={spacings.xs}
+                marginRight={spacings.xs}
+                alignItems={'center'}
+            >
+                <Text variant='normal'>{file.name}</Text>
+                <Text variant='label'>{formatFileSize(file.size)}</Text>
+            </HorizontalLayer>
+            <CrossButton onPress={onDeletePress} />
+        </HorizontalLayer>
+    );
+}

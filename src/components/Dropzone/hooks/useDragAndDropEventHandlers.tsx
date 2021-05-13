@@ -1,14 +1,7 @@
-import { DragEvent, useState, DragEventHandler, useCallback } from 'react';
+import { DragEvent, useState, useCallback } from 'react';
+import { DragAndDropProps } from '../types';
 
-export function useDragAndDropEventHandlers(
-    handleFiles: (files: FileList) => void
-): {
-    dragFocused: boolean;
-    onDragOver: DragEventHandler;
-    onDragEnter: DragEventHandler;
-    onDragLeave: DragEventHandler;
-    onDrop: DragEventHandler;
-} {
+export function useDragAndDropEventHandlers(handleFiles: (files: FileList) => void): DragAndDropProps {
     const [dragFocused, setDragFocused] = useState(false);
 
     const handlePreventDefault = useCallback((dragEvent: DragEvent) => {

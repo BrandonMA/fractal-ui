@@ -1,15 +1,8 @@
 import { useCallback } from 'react';
+import { useValidateFileType } from './useValidateFileType';
 
 export function useValidateFile(acceptedTypes: Array<string> | undefined, maxFileSize: number | undefined): (file: File) => boolean {
-    const validateFileType = useCallback(
-        (file: File) => {
-            if (acceptedTypes && acceptedTypes.indexOf(file.type) === -1) {
-                return false;
-            }
-            return true;
-        },
-        [acceptedTypes]
-    );
+    const validateFileType = useValidateFileType(acceptedTypes);
 
     const validateFileSize = useCallback(
         (file: File) => {
