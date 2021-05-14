@@ -7,11 +7,12 @@ import { ButtonVariant } from './types/ButtonVariant';
 import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
 
 export interface ButtonProps extends FractalSharedProps, AnimationProps {
+    style?: any;
     variant: ButtonVariant;
     text?: string;
     addShadow?: boolean;
+    pressedBackgroundColor?: string;
     children?: ReactNode | Array<ReactNode>;
-    style?: any;
     onPress?: () => void;
 }
 
@@ -36,8 +37,8 @@ const Button = forwardRef(
         return (
             <BaseButton
                 ref={ref}
-                height={sizes.interactiveItemHeight}
                 width={'100%'}
+                height={sizes.interactiveItemHeight}
                 backgroundColor={color}
                 pressedBackgroundColor={pressedColor}
                 borderRadius={borderRadius.m}

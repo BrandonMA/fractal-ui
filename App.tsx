@@ -48,7 +48,7 @@ import { ThemeSwapper } from './examples/ThemeSwapper';
 import { AudioPlayer } from './src/components/AudioPlayer';
 import { FilterIcon } from './src/assets/FilterIcon';
 import { TrashIcon } from './src/assets/TrashIcon';
-import { UploadIcon } from './src/assets/UploadIcon';
+import { LoadIcon } from './src/assets/LoadIcon';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -309,7 +309,7 @@ function Content(): JSX.Element {
             </Text>
             <Box marginBottom={spacings.m} flexDirection={'row'}>
                 <CircularIconButton variant={'main'} marginRight={spacings.m}>
-                    {(variantColor: string) => <UploadIcon height={24} width={24} fill={variantColor} />}
+                    {(variantColor: string) => <LoadIcon height={24} width={24} fill={variantColor} />}
                 </CircularIconButton>
                 <CircularIconButton variant={'success'} marginRight={spacings.m}>
                     {(variantColor: string) => <FilterIcon height={24} width={24} fill={variantColor} />}

@@ -14,9 +14,18 @@ const CircularIconButton = (props: CircularIconButtonProps): JSX.Element => {
     const colorName = `${variant}InteractiveColor800`;
     const color = colors[colorName];
 
+    const backgroundColorName = `${variant}InteractiveColor400`;
+    const backgroundColor = colors[backgroundColorName];
+
+    const pressedColorName = `${variant}InteractiveColor`;
+    const pressedColor = colors[pressedColorName];
+
     return (
         <Button
+            initial={{ backgroundColor }}
             variant={variant}
+            backgroundColor={backgroundColor}
+            pressedBackgroundColor={pressedColor}
             height={sizes.interactiveItemHeight}
             width={sizes.interactiveItemHeight}
             borderRadius={sizes.interactiveItemHeight / 2}
