@@ -3,19 +3,28 @@ import { BaseButtonProps } from './types';
 import { Pressable } from '../Pressable';
 
 const BaseButton = forwardRef(
-    ({ pressedBackgroundColor, whileHover, whileTap, ...others }: BaseButtonProps, ref: any): JSX.Element => {
+    ({ pressedBackgroundColor, backgroundColor, whileHover, whileTap, ...others }: BaseButtonProps, ref: any): JSX.Element => {
         const hoverStyles = {
             backgroundColor: pressedBackgroundColor,
             ...whileHover
         };
 
         const tapStyles = {
-            scale: 0.95,
+            scale: 0.9,
             backgroundColor: pressedBackgroundColor,
             ...whileTap
         };
 
-        return <Pressable ref={ref} {...others} whileHover={hoverStyles} whileTap={tapStyles} />;
+        return (
+            <Pressable
+                ref={ref}
+                animate={{ backgroundColor: backgroundColor }}
+                backgroundColor={backgroundColor}
+                whileHover={hoverStyles}
+                whileTap={tapStyles}
+                {...others}
+            />
+        );
     }
 );
 

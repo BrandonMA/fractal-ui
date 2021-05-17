@@ -1,4 +1,4 @@
-import { black } from '../../colors';
+import { black } from '../../colors/presets/black';
 import { createFractalTheme } from './createFractalTheme';
 
 export const darkColors = {
@@ -13,12 +13,12 @@ export const darkColors = {
     contentInteractiveColor100: black.base100,
     contentInteractiveColor200: black.base200,
     contentInteractiveColor300: black.base300,
-    contentInteractiveColor400: black.base400,
+    contentInteractiveColor400: black.base300,
     contentInteractiveColor: black.base400,
-    contentInteractiveColor600: black.base600,
-    contentInteractiveColor700: black.base700,
-    contentInteractiveColor800: black.base800,
-    contentInteractiveColor900: black.base900
+    contentInteractiveColor600: black.base300,
+    contentInteractiveColor700: black.base300,
+    contentInteractiveColor800: black.base200,
+    contentInteractiveColor900: black.base100
 };
 
 export const darkFractalTheme = createFractalTheme({

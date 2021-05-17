@@ -26,7 +26,7 @@ const PlayPauseIcon = memo(
                         <PauseIcon fill={tintColor} width={ICON_SIZE} height={ICON_SIZE} />
                     </Layer>
                 ) : (
-                    <Layer initial={variants.initial} animate={variants.animate} exit={variants.exit}>
+                    <Layer paddingLeft={2} initial={variants.initial} animate={variants.animate} exit={variants.exit}>
                         <PlayIcon fill={tintColor} width={ICON_SIZE} height={ICON_SIZE} />
                     </Layer>
                 )}

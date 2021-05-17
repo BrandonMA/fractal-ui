@@ -22,7 +22,6 @@ const CircularIconButton = (props: CircularIconButtonProps): JSX.Element => {
 
     return (
         <Button
-            initial={{ backgroundColor }}
             variant={variant}
             backgroundColor={backgroundColor}
             pressedBackgroundColor={pressedColor}

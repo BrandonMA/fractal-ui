@@ -37,7 +37,7 @@ export function DropBox({
     textButton = 'explorar',
     text = 'Suelta los archivos para adjuntarlos o '
 }: DropBoxProps): JSX.Element {
-    const { sizes, colors, spacings, textVariants } = useTheme();
+    const { sizes, colors, spacings, textVariants, borderRadius } = useTheme();
     const { fontSize, fontWeight, color, fontFamily } = textVariants.normal;
     const finalColor = colors[color];
 
@@ -60,6 +60,7 @@ export function DropBox({
             minHeight={sizes.interactiveItemHeight}
             padding={spacings.xs}
             borderStyle={'dashed'}
+            borderRadius={borderRadius.m}
             borderWidth={1}
             justifyContent={'center'}
             alignItems={'center'}
