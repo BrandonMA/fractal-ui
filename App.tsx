@@ -49,6 +49,7 @@ import { AudioPlayer } from './src/components/AudioPlayer';
 import { FilterIcon } from './src/assets/FilterIcon';
 import { TrashIcon } from './src/assets/TrashIcon';
 import { LoadIcon } from './src/assets/LoadIcon';
+import { TableExample } from './examples/TableExample';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -269,6 +270,12 @@ function Content(): JSX.Element {
             </Text>
             <Box marginBottom={spacings.m}>
                 <Dropzone onChangeAcceptedFiles={(files) => console.log('Accepted files: ', files)} />
+            </Box>
+            <Text marginBottom={spacings.m} variant={'title'}>
+                Table Example
+            </Text>
+            <Box marginBottom={spacings.m}>
+                <TableExample />
             </Box>
             <Text marginBottom={spacings.m} variant={'title'}>
                 Avatar y Image Example
