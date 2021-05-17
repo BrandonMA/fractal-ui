@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 
-export function useValidateFileType(acceptedTypes: Array<string> | undefined): (file: File) => boolean {
+export function useValidateFileType(acceptedTypes: Array<string> | undefined): (fileType: string) => boolean {
     return useCallback(
-        (file: File) => {
-            if (acceptedTypes && acceptedTypes.indexOf(file.type) === -1) {
+        (fileType: string) => {
+            if (acceptedTypes && acceptedTypes.indexOf(fileType) === -1) {
                 return false;
             }
             return true;

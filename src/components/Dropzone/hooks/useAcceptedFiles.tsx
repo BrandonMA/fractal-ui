@@ -1,17 +1,22 @@
 import { useCallback, useState } from 'react';
+import { DropzoneProps, FractalFile, NativeFileInfo } from '../types';
 import { useValidateFile } from './useValidateFile';
 
 export function useAcceptedFiles(
     acceptedTypes: Array<string> | undefined,
     maxFileSize: number | undefined,
     maxNumberFiles: number | undefined,
-    onChangeAcceptedFiles: (acceptedFiles: Array<File>) => void
-): [acceptedFiles: Array<File>, setAcceptedFiles: (files: FileList) => void, removeFile: (fileIndex: number) => void] {
-    const [acceptedFiles, setAcceptedFiles] = useState<Array<File>>([]);
+    onChangeAcceptedFiles: DropzoneProps['onChangeAcceptedFiles']
+): [
+    acceptedFiles: Array<FractalFile>,
+    setAcceptedFiles: (files: FileList | Array<NativeFileInfo>) => void,
+    removeFile: (fileIndex: number) => void
+] {
+    const [acceptedFiles, setAcceptedFiles] = useState<Array<FractalFile>>([]);
     const validateFile = useValidateFile(acceptedTypes, maxFileSize);
 
     const updateAcceptedFiles = useCallback(
-        (newFiles: Array<File>) => {
+        (newFiles: Array<FractalFile>) => {
             setAcceptedFiles(newFiles);
             onChangeAcceptedFiles(newFiles);
         },
@@ -19,10 +24,10 @@ export function useAcceptedFiles(
     );
 
     const getValidFiles = useCallback(
-        (files: FileList, endIndex: number): Array<File> => {
-            let validFiles: Array<File> = [];
+        (files: FileList | Array<NativeFileInfo>, endIndex: number): Array<FractalFile> => {
+            let validFiles: Array<FractalFile> = [];
             for (let i = 0; i < endIndex; i++) {
-                if (validateFile(files[i])) {
+                if (validateFile(files[i].type, files[i].size)) {
                     validFiles = [...validFiles, files[i]];
                 }
             }
@@ -32,7 +37,7 @@ export function useAcceptedFiles(
     );
 
     const getAcceptedFiles = useCallback(
-        (files: FileList): Array<File> => {
+        (files: FileList | Array<NativeFileInfo>): Array<FractalFile> => {
             if (maxNumberFiles) {
                 if (acceptedFiles.length < maxNumberFiles) {
                     const filesLength = maxNumberFiles - acceptedFiles.length;
@@ -48,7 +53,7 @@ export function useAcceptedFiles(
     );
 
     const addAcceptedFiles = useCallback(
-        (newSelectedFiles: FileList) => {
+        (newSelectedFiles: FileList | Array<NativeFileInfo>) => {
             const newAddedFiles = getAcceptedFiles(newSelectedFiles);
 
             if (newAddedFiles.length > 0) {

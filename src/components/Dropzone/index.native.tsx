@@ -1,8 +1,27 @@
 import React from 'react';
-import { DropBoxProps } from './types';
+import { Layer } from '../containers';
+import { DropzoneProps, NativeFileInfo } from './types';
+import { useAcceptedFiles } from './hooks/useAcceptedFiles';
+import { UploadButton } from './UploadButton';
+import { UploadedFileList } from './UploadedFileList';
 
-export function Dropzone(props: DropBoxProps): JSX.Element {
-    console.log(props);
-    console.log('Dropzone should only be used on Web, not on iOS or Android');
-    return <></>;
+export function Dropzone({ acceptedTypes, maxNumberFiles, maxFileSize, onChangeAcceptedFiles }: DropzoneProps): JSX.Element {
+    const [acceptedFiles, setAcceptedFiles, removeFile] = useAcceptedFiles(
+        acceptedTypes,
+        maxFileSize,
+        maxNumberFiles,
+        onChangeAcceptedFiles
+    );
+
+    const handleSelectFile = (fileInfo: NativeFileInfo) => {
+        console.log('Handle Select File: ', fileInfo);
+        setAcceptedFiles([fileInfo]);
+    };
+
+    return (
+        <Layer>
+            <UploadButton onSelectFile={handleSelectFile} acceptedTypes={acceptedTypes} />
+            <UploadedFileList files={acceptedFiles} removeFile={removeFile} />
+        </Layer>
+    );
 }

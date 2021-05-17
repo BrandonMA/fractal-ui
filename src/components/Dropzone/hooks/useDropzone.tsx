@@ -1,5 +1,5 @@
 import { useRef, ChangeEvent, useCallback } from 'react';
-import { DragAndDropEventHandlers, fileInputProps } from '../types';
+import { DragAndDropEventHandlers, fileInputProps, FractalFile } from '../types';
 import { useAcceptedFiles } from './useAcceptedFiles';
 import { useDragAndDropEventHandlers } from './useDragAndDropEventHandlers';
 
@@ -20,7 +20,7 @@ export function useDropzone(
     maxFileSize: number | undefined,
     onChangeAcceptedFiles: (acceptedFiles: Array<File>) => void
 ): {
-    acceptedFiles: Array<File>;
+    acceptedFiles: Array<FractalFile>;
     dragFocused: boolean;
     openFileDialog: () => void;
     removeFile: (fileIndex: number) => void;
