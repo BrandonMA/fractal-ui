@@ -1,9 +1,14 @@
+import { ReactNode } from 'react';
 import { LayerProps } from '../containers/Layer/types';
-import { TextProps } from '../text/BaseText/types';
-import { TextProps as FractalTextProps } from '../../sharedProps/TextProps';
+import { ButtonVariant } from '../buttons/types/ButtonVariant';
 
-export interface TableCellTextProps extends FractalTextProps, Omit<LayerProps, 'children'> {
-    textVariant?: TextProps['variant'];
-    children: TextProps['children'];
-    textProps?: FractalTextProps;
+export type TextColorVariant = ButtonVariant | 'text';
+
+export interface TableContainerProps extends Partial<Omit<LayerProps, 'children'>> {
+    title: string;
+    children?: ReactNode;
+    titleTextVariant?: 'title' | 'subtitle' | 'normal';
+    titleColorVariant?: TextColorVariant;
+    label?: string;
+    labelColorVariant?: TextColorVariant;
 }
