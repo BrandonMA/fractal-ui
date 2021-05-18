@@ -8,6 +8,7 @@ import { useTheme } from '../../context/hooks/useTheme';
 import { CrossButton } from '../buttons';
 import { FileIcon } from '../../assets/FileIcon';
 import { Layer } from '../containers/Layer';
+import { fileTypes } from './fileTypes';
 
 const PREVIEW_SIZE = 44;
 
@@ -26,7 +27,7 @@ export interface UploadedFileItemProps {
 
 export function UploadedFileItem({ file, onDeletePress }: UploadedFileItemProps): JSX.Element {
     const { spacings, colors } = useTheme();
-    const validateFileType = useValidateFileType(['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/x-icon']);
+    const validateFileType = useValidateFileType([fileTypes.images]);
     const isImageFile = validateFileType(file.type);
     const [imageSource, setImageSource] = useState<string>();
 
