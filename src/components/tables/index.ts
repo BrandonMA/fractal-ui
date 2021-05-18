@@ -1,5 +1,5 @@
 export * from './DetailsRow';
-export * from './DetailsList';
+export * from './TableContainer';
 export * from './Table';
 export * from './TableCell';
 export * from './TableCellText';

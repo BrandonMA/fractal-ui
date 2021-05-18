@@ -17,7 +17,7 @@ import {
     DatePicker,
     TimePicker,
     ErrorMessage,
-    DetailsList,
+    TableContainer,
     Popover,
     Grid,
     GridList,
@@ -40,7 +40,8 @@ import {
     ActivityIndicator,
     CrossButton,
     CircularIconButton,
-    Dropzone
+    Dropzone,
+    DetailsRow
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { BuggyComponent } from './examples/BuggyComponent';
@@ -535,7 +536,12 @@ function Content(): JSX.Element {
             <Text marginBottom={spacings.m} variant={'title'}>
                 Details List Example:
             </Text>
-            <DetailsList title='Title' titleColorVariant='warning' details={detailsCardContent} marginBottom={spacings.m} />
+            <TableContainer title='Title' titleColorVariant='warning' marginBottom={spacings.m}>
+                {detailsCardContent.map((item, index) => {
+                    const isLastItem = index === detailsCardContent.length - 1;
+                    return <DetailsRow key={item[0]} title={item[0]} details={item[1]} addSeparator={!isLastItem} />;
+                })}
+            </TableContainer>
             <Separator isAtBackgroundLevel marginBottom={spacings.m} />
             <Text marginBottom={spacings.m} variant={'title'}>
                 Grid List Example:
