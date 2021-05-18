@@ -6,6 +6,8 @@ import { DropBox } from './DropBox';
 import { UploadedFileList } from './UploadedFileList';
 
 export function Dropzone({
+    text,
+    webTextButton,
     acceptedTypes,
     pickMultipleFiles,
     maxNumberFiles,
@@ -27,6 +29,8 @@ export function Dropzone({
                 fileInputProps={fileInputProps}
                 dragFocused={dragFocused}
                 onButtonPress={openFileDialog}
+                text={text}
+                textButton={webTextButton}
             />
             <UploadedFileList files={acceptedFiles} removeFile={removeFile} />
         </Layer>

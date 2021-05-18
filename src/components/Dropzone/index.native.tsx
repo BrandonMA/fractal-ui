@@ -5,7 +5,7 @@ import { useAcceptedFiles } from './hooks/useAcceptedFiles';
 import { UploadButton } from './UploadButton';
 import { UploadedFileList } from './UploadedFileList';
 
-export function Dropzone({ acceptedTypes, maxNumberFiles, maxFileSize, onChangeAcceptedFiles }: DropzoneProps): JSX.Element {
+export function Dropzone({ text, acceptedTypes, maxNumberFiles, maxFileSize, onChangeAcceptedFiles }: DropzoneProps): JSX.Element {
     const [acceptedFiles, setAcceptedFiles, removeFile] = useAcceptedFiles(
         acceptedTypes,
         maxFileSize,
@@ -14,13 +14,12 @@ export function Dropzone({ acceptedTypes, maxNumberFiles, maxFileSize, onChangeA
     );
 
     const handleSelectFile = (fileInfo: NativeFileInfo) => {
-        console.log('Handle Select File: ', fileInfo);
         setAcceptedFiles([fileInfo]);
     };
 
     return (
         <Layer>
-            <UploadButton onSelectFile={handleSelectFile} acceptedTypes={acceptedTypes} />
+            <UploadButton text={text} onSelectFile={handleSelectFile} acceptedTypes={acceptedTypes} />
             <UploadedFileList files={acceptedFiles} removeFile={removeFile} />
         </Layer>
     );
