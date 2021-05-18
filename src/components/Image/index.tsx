@@ -1,8 +1,8 @@
 import React, { forwardRef, useCallback } from 'react';
 import { ImageProps } from './types';
-import { getImageAccessibilityProps } from './accessibility/getImageAccessibilityProps';
 import { ResizableImage } from './ResizableImage';
 import { Layer } from '../containers/Layer';
+import { getImageAccessibilityProps } from './accessibility/getImageAccessibilityProps';
 
 const Image = forwardRef(
     ({ label, source, resizeMode, width, height, ...others }: ImageProps, ref: any): JSX.Element => {

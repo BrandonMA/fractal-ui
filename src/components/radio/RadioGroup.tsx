@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
 import { Layer } from '../containers/Layer';
 import { RadioGroupProps, RadioItem } from './types';
-import { getRadioGroupAccessibilityProps } from './accessibility/getRadioGroupAccessibilityProps';
 import { useControllableState } from '../../hooks/useControllableState';
 import { RadioGroupItem } from './RadioGroupItem';
+import { getRadioGroupAccessibilityProps } from './accessibility/getRadioGroupAccessibilityProps';
 
 const RadioGroup = forwardRef(
     ({ value, defaultValue, radioButtons, onValueChange, ...others }: RadioGroupProps, ref: any): JSX.Element => {

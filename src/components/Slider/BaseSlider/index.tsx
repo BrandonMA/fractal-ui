@@ -5,14 +5,14 @@ import { clampValue, valueToPercentage } from '../utils';
 import { useTheme } from '../../../context/hooks/useTheme';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
-import { getSliderAccessibilityProps } from '../accessibility/getSliderAccessibilityProps';
-import { getSliderInputAccessibilityProps } from '../accessibility/getSliderInputAccessibilityProps';
 import { useControllableState } from '../../../hooks/useControllableState';
 import { useHandleSliderMove } from '../hooks/useHandleSliderMove';
 import { useSliderTouchEffects } from '../hooks/useSliderTouchEffects';
 import { useHandleOnKeyDown } from '../hooks/useHandleOnKeyDown';
 import { useHandleOnMouseDown } from '../hooks/useHandleOnMouseDown';
 import { useCleanEventSource } from '../hooks/useCleanEventSource';
+import { getSliderAccessibilityProps } from '../accessibility/getSliderAccessibilityProps';
+import { getSliderInputAccessibilityProps } from '../accessibility/getSliderInputAccessibilityProps';
 
 const StyledRange = styled.div`
     position: relative;
