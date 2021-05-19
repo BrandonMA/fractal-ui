@@ -41,7 +41,8 @@ import {
     CrossButton,
     CircularIconButton,
     Dropzone,
-    DetailsRow
+    DetailsRow,
+    TextFieldMask
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { BuggyComponent } from './examples/BuggyComponent';
@@ -607,6 +608,16 @@ function TextFieldFragment(): JSX.Element {
             </Text>
             <Box>
                 <TextField placeholder='Escribe aquí' />
+            </Box>
+            <Text variant={'title'} marginBottom={spacings.m}>
+                Text Field Mask Example
+            </Text>
+            <Box marginBottom={spacings.xl}>
+                <TextFieldMask
+                    type={'money'}
+                    placeholder={'Monto'}
+                    onChangeText={(maskedText, rawText) => console.log({ maskedText, rawText })}
+                />
             </Box>
         </Layer>
     );

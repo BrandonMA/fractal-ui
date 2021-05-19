@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { useTheme } from '../../../context/hooks/useTheme';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
 import { Picker } from '../Picker';
-import { numberToArray } from '../util/numberToArray';
+import { numberToArray } from '../utils/numberToArray';
 import { TimePickerProps } from './types/TimePickerProps';
 import { normalizeHourValues } from './util/normalizeHourValues';
 import { useControllableState } from '../../../hooks/useControllableState';
