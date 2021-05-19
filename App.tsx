@@ -104,12 +104,12 @@ function AudioPlayerFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Audio Player
             </Text>
-            <AudioPlayer tracks={tracks} marginBottom={spacings.xl} />
-        </React.Fragment>
+            <AudioPlayer tracks={tracks} />
+        </Layer>
     );
 }
 
@@ -117,14 +117,14 @@ function SwapThemeFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Swap Theme
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <ThemeSwapper />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -132,14 +132,14 @@ function ButtonContentFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Button Content Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <Button variant={'content'} text='Button with content variant' />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -147,14 +147,14 @@ function DropZoneFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Dropzone Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <Dropzone onChangeAcceptedFiles={(files) => console.log('Accepted files: ', files)} />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -162,12 +162,12 @@ function TableExampleFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Table Example
             </Text>
             <TableExample />
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -175,30 +175,29 @@ function CrossButtonFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Cross Button Example
             </Text>
-            <Box alignContent={'center'} marginBottom={spacings.xl}>
+            <Box alignContent={'center'}>
                 <CrossButton />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
 function ActivityIndicatorFragment(): JSX.Element {
     const { colors, spacings } = useTheme();
-
     const width = 25;
     const height = 25;
     const marginRight = 10;
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Activity Indicator Example
             </Text>
-            <Box alignContent={'center'} flexDirection={'row'} marginBottom={spacings.xl}>
+            <Box alignContent={'center'} flexDirection={'row'}>
                 <ActivityIndicator width={width} height={height} color={colors.mainInteractiveColor} marginRight={marginRight} />
                 <ActivityIndicator width={width} height={height} color={colors.alternativeInteractiveColor} marginRight={marginRight} />
                 <ActivityIndicator width={width} height={height} color={colors.successInteractiveColor} marginRight={marginRight} />
@@ -206,7 +205,7 @@ function ActivityIndicatorFragment(): JSX.Element {
                 <ActivityIndicator width={width} height={height} color={colors.dangerInteractiveColor} marginRight={marginRight} />
                 <ActivityIndicator width={width} height={height} color={colors.contentInteractiveColor} marginRight={marginRight} />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -214,11 +213,11 @@ function CircularIconButtonFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Circular Icon Button Example
             </Text>
-            <Box flexDirection={'row'} marginBottom={spacings.xl}>
+            <Box flexDirection={'row'}>
                 <CircularIconButton variant={'main'} marginRight={spacings.m}>
                     {(variantColor: string) => <LoadIcon height={24} width={24} fill={variantColor} />}
                 </CircularIconButton>
@@ -229,7 +228,7 @@ function CircularIconButtonFragment(): JSX.Element {
                     {(variantColor: string) => <TrashIcon height={24} width={24} fill={variantColor} />}
                 </CircularIconButton>
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -237,11 +236,11 @@ function AvatarImageFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Avatar and Image Example
             </Text>
-            <Box flexDirection={'row'} marginBottom={spacings.xl}>
+            <Box flexDirection={'row'}>
                 <Avatar source={'https://picsum.photos/id/370/200'} label='Avatar' />
                 <Image
                     source={'https://picsum.photos/id/870/200/300'}
@@ -252,7 +251,7 @@ function AvatarImageFragment(): JSX.Element {
                     borderRadius={16}
                 />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -260,11 +259,11 @@ function ImageBackgroundFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 ImageBackground Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <ImageBackground
                     source={'https://picsum.photos/id/870/200/300'}
                     width={200}
@@ -275,7 +274,7 @@ function ImageBackgroundFragment(): JSX.Element {
                     <Text variant={'button'}>Lorem Ipsum is simply dummy text.</Text>
                 </ImageBackground>
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -284,11 +283,11 @@ function SegmentedControlFragment(): JSX.Element {
     const [selectedIndex, setSelectedIndex] = useState(0);
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Button Group Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <SegmentedControl
                     selectedIndex={selectedIndex}
                     values={['One', 'Two', 'Three', 'Four']}
@@ -301,26 +300,25 @@ function SegmentedControlFragment(): JSX.Element {
                     }}
                 />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
 function SliderFragment(): JSX.Element {
     const { spacings } = useTheme();
     const [sliderValue, setSliderValue] = useState(0);
-
     const handleSliderValue = (value: number) => setSliderValue(value);
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Slider Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <Slider onSlidingComplete={handleSliderValue} minimumValue={0} maximumValue={100} />
                 <Text variant={'normal'}>{`Value: ${sliderValue}`}</Text>
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -329,14 +327,14 @@ function SwitchFragment(): JSX.Element {
     const [isEnabled, setIsEnabled] = useState(false);
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Switch Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <Switch value={isEnabled} onValueChange={(value) => setIsEnabled(value)} />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -345,14 +343,14 @@ function CheckBoxFragment(): JSX.Element {
     const [isChecked, setIsChecked] = useState(false);
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Check Box Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <CheckBox value={isChecked} onValueChange={(value) => setIsChecked(value)} label={'Selectable'} />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -360,11 +358,11 @@ function RadioFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Radio Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <RadioGroup
                     radioButtons={[
                         { value: '1', label: 'Option One' },
@@ -373,7 +371,7 @@ function RadioFragment(): JSX.Element {
                     onValueChange={(value: string) => console.log(value)}
                 />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -381,11 +379,11 @@ function BubbleFragment(): JSX.Element {
     const { colors, spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Bubble Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <Layer backgroundColor={colors.background} paddingTop={10} paddingBottom={10}>
                     <Bubble
                         arrowPosition={'left'}
@@ -403,22 +401,21 @@ function BubbleFragment(): JSX.Element {
                     </Bubble>
                 </Layer>
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
 function LayerAnimatedFragment(): JSX.Element {
     const { spacings } = useTheme();
     const [layerVariant, setLayerVariant] = useState('layerVisible');
-
     const toggleVariant = () => setLayerVariant((currentValue) => (currentValue === 'layerVisible' ? 'layerInitial' : 'layerVisible'));
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Layer Animated Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <Layer
                     height={100}
                     width={100}
@@ -437,7 +434,7 @@ function LayerAnimatedFragment(): JSX.Element {
                     onPress={toggleVariant}
                 />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -445,12 +442,12 @@ function BoxAnimatedFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Box Animated Example
             </Text>
-            <Box height={100} width={100} initial={'initial'} animate={'visible'} variants={styleVariants} marginBottom={spacings.xl} />
-        </React.Fragment>
+            <Box height={100} width={100} initial={'initial'} animate={'visible'} variants={styleVariants} />
+        </Layer>
     );
 }
 
@@ -458,11 +455,11 @@ function TextFragment(): JSX.Element {
     const { colors, spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Text Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <Text variant={'title'} marginBottom={spacings.xs}>
                     Title text.
                 </Text>
@@ -503,7 +500,7 @@ function TextFragment(): JSX.Element {
                     Selectable text with different color (Only on Android).
                 </Text>
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -511,18 +508,18 @@ function BoxContentFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Box Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <Text variant={'normal'} marginBottom={spacings.m}>
                     Use it to separate your components into blocks.
                 </Text>
                 <Separator marginBottom={spacings.m} />
                 <Text variant={'normal'}>Like this.</Text>
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -530,11 +527,11 @@ function SeparatorsFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Separator Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <Text variant={'normal'} marginBottom={spacings.m}>
                     Below is the separator that is more visible with the isAtBackgroundLevel variable
                 </Text>
@@ -545,7 +542,7 @@ function SeparatorsFragment(): JSX.Element {
                 <Separator marginBottom={spacings.m} />
                 <Text variant={'normal'}>Some text.</Text>
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -553,11 +550,11 @@ function TextButtonFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Text Button Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <TextButton variant={'main'} marginBottom={spacings.m}>
                     Main
                 </TextButton>
@@ -572,7 +569,7 @@ function TextButtonFragment(): JSX.Element {
                 </TextButton>
                 <TextButton variant={'danger'}>Danger</TextButton>
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -580,11 +577,11 @@ function ColorPickerFragment(): JSX.Element {
     const { colors, spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Color Picker Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <ColorPicker
                     onColorChange={(color) => console.log(color)}
                     colors={[
@@ -596,7 +593,7 @@ function ColorPickerFragment(): JSX.Element {
                     ]}
                 />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -604,14 +601,14 @@ function TextFieldFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Text Field Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <TextField placeholder='Escribe aquí' />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -619,14 +616,14 @@ function IconTextFieldFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Icon Text Field Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <SearchBar placeholder='Escribe aquí' />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -634,11 +631,11 @@ function PickerFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Picker Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <Picker
                     onChange={(value) => console.log(value)}
                     iosDoneText='Done'
@@ -652,7 +649,7 @@ function PickerFragment(): JSX.Element {
                     defaultValue={'3'}
                 />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -660,14 +657,14 @@ function DatePickerFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Date Picker Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <DatePicker iosDoneText='Done' onChange={(date) => console.log('Local Date: ', date.toLocaleDateString())} />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -675,29 +672,28 @@ function TimePickerFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Time Picker Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <TimePicker iosDoneText='Done' onChange={(date) => console.log(date.toLocaleDateString())} />
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
 function BlurredModalFragment(): JSX.Element {
     const { spacings } = useTheme();
     const [blurredModalVisible, setBlurredModalVisible] = useState(false);
-
     const toggleBlurredModal = () => setBlurredModalVisible((currentValue) => !currentValue);
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Blurred Modal Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <Button variant='main' text='Show Blurred Modal' onPress={toggleBlurredModal} />
                 <BlurrediOSModal visible={blurredModalVisible} dismissText={'Done'} onDismiss={toggleBlurredModal}>
                     <Box margin={spacings.m}>
@@ -705,22 +701,21 @@ function BlurredModalFragment(): JSX.Element {
                     </Box>
                 </BlurrediOSModal>
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
 function MiddleCellModalFragment(): JSX.Element {
     const { spacings } = useTheme();
     const [middleCellVisible, setMiddleCellVisible] = useState(false);
-
     const toggleMiddleCell = () => setMiddleCellVisible((currentValue) => !currentValue);
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Middle Cell Modal Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <Button variant='main' text='Show Middle Cell Modal' onPress={toggleMiddleCell} />
                 <MiddleCellModal visible={middleCellVisible} onDismiss={toggleMiddleCell}>
                     <Box>
@@ -728,7 +723,7 @@ function MiddleCellModalFragment(): JSX.Element {
                     </Box>
                 </MiddleCellModal>
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -736,31 +731,30 @@ function ErrorMessageFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Error Message Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <ErrorMessage onError={logErrorToService}>
                     <BuggyComponent />
                 </ErrorMessage>
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
 function PopoverFragment(): JSX.Element {
     const { spacings } = useTheme();
     const [popoverVisible, setPopoverVisible] = useState(false);
-
     const togglePopover = () => setPopoverVisible((currentValue) => !currentValue);
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 PopoverView Example
             </Text>
-            <Box marginBottom={spacings.xl}>
+            <Box>
                 <Popover
                     active={popoverVisible}
                     popoverChildren={() => {
@@ -770,7 +764,7 @@ function PopoverFragment(): JSX.Element {
                     <Button variant={'main'} onPress={togglePopover} text={'Popover'} marginBottom={spacings.m} />
                 </Popover>
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -778,17 +772,17 @@ function DetailsListFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Details List Example
             </Text>
-            <TableContainer title='Title' titleColorVariant='warning' label='2' labelColorVariant='warning' marginBottom={spacings.m}>
+            <TableContainer title='Title' titleColorVariant='warning' label='2' labelColorVariant='warning'>
                 {detailsCardContent.map((item, index) => {
                     const isLastItem = index === detailsCardContent.length - 1;
                     return <DetailsRow key={item[0]} title={item[0]} details={item[1]} addSeparator={!isLastItem} />;
                 })}
             </TableContainer>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -796,7 +790,7 @@ function GridListFragment(): JSX.Element {
     const { colors, spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Grid List Example
             </Text>
@@ -805,9 +799,8 @@ function GridListFragment(): JSX.Element {
                 data={['One', 'Two', 'Three', 'Four']}
                 renderItem={() => <Box margin={4} height={60} minWidth={30} />}
                 numColumns={2}
-                marginBottom={spacings.xl}
             />
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -815,11 +808,11 @@ function GridFragment(): JSX.Element {
     const { colors, spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Grid Example
             </Text>
-            <Box height={300} marginBottom={spacings.xl}>
+            <Box height={300}>
                 <Grid>
                     <GridColumn backgroundColor={colors.dangerInteractiveColor300} />
                     <GridColumn>
@@ -828,7 +821,7 @@ function GridFragment(): JSX.Element {
                     </GridColumn>
                 </Grid>
             </Box>
-        </React.Fragment>
+        </Layer>
     );
 }
 
@@ -836,22 +829,16 @@ function SocialMediaButtonsFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <React.Fragment>
+        <Layer marginBottom={spacings.xl}>
             <Text variant={'title'} marginBottom={spacings.m}>
                 Social Media Buttons
             </Text>
             <SocialMediaButtons />
-        </React.Fragment>
+        </Layer>
     );
 }
 
 function Content(): JSX.Element {
-    // const [visible, setVisible] = useState(false);
-    // const toggleVisible = useCallback(() => setVisible((currentValue) => !currentValue), []);
-
-    // const [bottomCellVisible, setBottomCellVisible] = useState(false);
-    // const toggleBottomCell = useCallback(() => setBottomCellVisible((currentValue) => !currentValue), []);
-
     return (
         <PaddingLayer>
             <AudioPlayerFragment />
@@ -877,30 +864,6 @@ function Content(): JSX.Element {
             <SeparatorsFragment />
             <TextButtonFragment />
             <ColorPickerFragment />
-            {/*<Separator isAtBackgroundLevel marginBottom={spacings.m} />*/}
-            {/*<Text marginBottom={spacings.m} variant={'title'}>*/}
-            {/*    Dimmed Modal Example:*/}
-            {/*</Text>*/}
-            {/*<Box marginBottom={spacings.m}>*/}
-            {/*    <Button variant='main' text='Show Modal' onPress={toggleVisible} />*/}
-            {/*    <DimmedModal visible={visible} onDismiss={toggleVisible}>*/}
-            {/*        <Box>*/}
-            {/*            <Button variant='warning' text='Dismiss Modal' onPress={toggleVisible} />*/}
-            {/*        </Box>*/}
-            {/*    </DimmedModal>*/}
-            {/*</Box>*/}
-            {/*<Separator isAtBackgroundLevel marginBottom={spacings.m} />*/}
-            {/*<Text marginBottom={spacings.m} variant={'title'}>*/}
-            {/*    Bottom Cell Modal Example:*/}
-            {/*</Text>*/}
-            {/*<Box marginBottom={spacings.m}>*/}
-            {/*    <Button variant='main' text='Show Bottom Cell Modal' onPress={toggleBottomCell} />*/}
-            {/*    <BottomCellModal visible={bottomCellVisible} onDismiss={toggleBottomCell}>*/}
-            {/*        <Box>*/}
-            {/*            <Button variant='warning' text='Dismiss Cell Modal' onPress={toggleBottomCell} />*/}
-            {/*        </Box>*/}
-            {/*    </BottomCellModal>*/}
-            {/*</Box>*/}
             <TextFieldFragment />
             <IconTextFieldFragment />
             <PickerFragment />
