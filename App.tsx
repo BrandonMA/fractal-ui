@@ -51,7 +51,6 @@ import { AudioPlayer } from './src/components/AudioPlayer';
 import { FilterIcon } from './src/assets/FilterIcon';
 import { TrashIcon } from './src/assets/TrashIcon';
 import { LoadIcon } from './src/assets/LoadIcon';
-import { TableExample } from './examples/TableExample';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -91,14 +90,6 @@ const detailsCardContent: Array<[string, string]> = [
 
 function logErrorToService(error: Error, componentStack: string) {
     console.log('Log Error To Service: ', { error, componentStack });
-}
-
-function PopoverContainer(): JSX.Element {
-    return (
-        <Box width={'50%'} alignSelf='center'>
-            <Button variant='alternative' text='Pasion' />
-        </Box>
-    );
 }
 
 function AudioPlayerFragment(): JSX.Element {
@@ -155,19 +146,6 @@ function DropZoneFragment(): JSX.Element {
             <Box>
                 <Dropzone onChangeAcceptedFiles={(files) => console.log('Accepted files: ', files)} />
             </Box>
-        </Layer>
-    );
-}
-
-function TableExampleFragment(): JSX.Element {
-    const { spacings } = useTheme();
-
-    return (
-        <Layer marginBottom={spacings.xl}>
-            <Text variant={'title'} marginBottom={spacings.m}>
-                Table Example
-            </Text>
-            <TableExample />
         </Layer>
     );
 }
@@ -755,6 +733,14 @@ function ErrorMessageFragment(): JSX.Element {
     );
 }
 
+function PopoverContent(): JSX.Element {
+    return (
+        <Box width={'50%'} alignSelf='center'>
+            <Button variant='alternative' text='Pasion' />
+        </Box>
+    );
+}
+
 function PopoverFragment(): JSX.Element {
     const { spacings } = useTheme();
     const [popoverVisible, setPopoverVisible] = useState(false);
@@ -769,7 +755,7 @@ function PopoverFragment(): JSX.Element {
                 <Popover
                     active={popoverVisible}
                     popoverChildren={() => {
-                        return <PopoverContainer />;
+                        return <PopoverContent />;
                     }}
                 >
                     <Button variant={'main'} onPress={togglePopover} text={'Popover'} marginBottom={spacings.m} />
@@ -856,7 +842,6 @@ function Content(): JSX.Element {
             <SwapThemeFragment />
             <ButtonContentFragment />
             <DropZoneFragment />
-            <TableExampleFragment />
             <CrossButtonFragment />
             <ActivityIndicatorFragment />
             <CircularIconButtonFragment />
