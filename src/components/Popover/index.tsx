@@ -1,18 +1,16 @@
-import React, { useEffect, useState, forwardRef } from 'react';
+import React, { useEffect, useState, forwardRef, useRef } from 'react';
 import { Layer } from '../containers';
 import { styleVariants } from './styleVariants';
 import { PopoverProps } from './types';
-
-const styles = {
-    width: '100%',
-    zIndex: 2000
-};
+import { getPlacementOffsetStyle } from './utils/getPlacementOffsetStyle';
 
 const Popover = forwardRef(
-    (props: PopoverProps, ref: any): JSX.Element => {
-        const { active, popoverChildren, popoverContainerProps, ...others } = props;
+    ({ active, placement = 'bottom', popoverChildren, popoverContainerProps, ...others }: PopoverProps, ref: any): JSX.Element => {
         const mainViewLayout = { x: 0, y: 0, height: 0, width: 0 };
         const [layerVariant, setLayerVariant] = useState('initial');
+        const anchorElementRef = useRef<HTMLDivElement>();
+
+        const placementOffsetStyle = getPlacementOffsetStyle(anchorElementRef, placement);
 
         useEffect((): void => {
             if (active) {
@@ -24,13 +22,15 @@ const Popover = forwardRef(
 
         return (
             <Layer ref={ref} position='relative' display='inline-block'>
-                <Layer {...others} />
+                <Layer ref={anchorElementRef} display={'table'} {...others} />
                 <Layer
                     initial={'initial'}
                     animate={layerVariant}
                     variants={styleVariants}
                     position={'absolute'}
-                    style={styles}
+                    minWidth={200}
+                    zIndex={2000}
+                    style={placementOffsetStyle}
                     {...popoverContainerProps}
                 >
                     {popoverChildren(mainViewLayout)}

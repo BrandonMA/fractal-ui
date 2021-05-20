@@ -4,8 +4,7 @@ import { styleVariants } from './styleVariants';
 import { LayoutRectangle, PopoverProps } from './types';
 
 const Popover = forwardRef(
-    (props: PopoverProps, ref: any): JSX.Element => {
-        const { active, popoverChildren, popoverContainerProps, ...others } = props;
+    ({ active, placement = 'bottom', popoverChildren, popoverContainerProps, ...others }: PopoverProps, ref: any): JSX.Element => {
         const [mainViewLayout, setMainViewLayout] = useState<LayoutRectangle>({ x: 0, y: 0, height: 0, width: 0 });
         const yValueWithOffset = mainViewLayout.y + mainViewLayout.height;
         const [layerVariant, setLayerVariant] = useState('initial');

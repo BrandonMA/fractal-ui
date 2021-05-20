@@ -94,14 +94,6 @@ function logErrorToService(error: Error, componentStack: string) {
     console.log('Log Error To Service: ', { error, componentStack });
 }
 
-function PopoverContent(): JSX.Element {
-    return (
-        <Box width={'50%'} alignSelf='center'>
-            <Button variant='alternative' text='Pasion' />
-        </Box>
-    );
-}
-
 function AudioPlayerFragment(): JSX.Element {
     const { spacings } = useTheme();
 
@@ -616,20 +608,29 @@ function ErrorMessageFragment(): JSX.Element {
     );
 }
 
+function PopoverContent(): JSX.Element {
+    return (
+        <Box width={'100%'} backgroundColor={'rgba(0,0,0, 0.6)'}>
+            <Button variant='alternative' text='Pasion' />
+        </Box>
+    );
+}
+
 function PopoverFragment(): JSX.Element {
     const { spacings } = useTheme();
     const [popoverVisible, setPopoverVisible] = useState(false);
     const togglePopover = () => setPopoverVisible((currentValue) => !currentValue);
 
     return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
+        <Box marginTop={spacings.s} marginBottom={spacings.xl} alignItems='center'>
             <Popover
+                placement={'right'}
                 active={popoverVisible}
                 popoverChildren={() => {
                     return <PopoverContent />;
                 }}
             >
-                <Button variant={'main'} onPress={togglePopover} text={'Popover'} marginBottom={spacings.m} />
+                <Button variant={'main'} width={220} onPress={togglePopover} text={'Popover'} />
             </Popover>
         </Box>
     );
