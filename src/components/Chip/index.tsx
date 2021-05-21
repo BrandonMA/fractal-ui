@@ -1,31 +1,36 @@
 import React, { forwardRef, useState } from 'react';
 import { ChipProps } from './types';
-import { Button } from '../buttons';
-import { CrossButton } from '../buttons/CrossButton';
 import { useTheme } from '../../context/hooks/useTheme';
+import { Box } from '../containers/Box';
+import { Text } from '../text';
+import { CrossButton } from '../buttons/CrossButton';
 
 const Chip = forwardRef(
-    ({ children, ...others }: ChipProps, ref: any): JSX.Element => {
+    ({ text, children, ...others }: ChipProps, ref: any): JSX.Element => {
         const { colors, spacings } = useTheme();
         const [display, setDisplay] = useState(true);
-
         const handleButtonPress = () => setDisplay(false);
 
         return (
-            <Button
+            <Box
                 ref={ref}
-                width={120}
-                variant={'content'}
+                maxWidth={200}
                 flexDirection={'row'}
+                alignItems={'center'}
+                justifyContent={'center'}
                 display={display ? 'flex' : 'none'}
                 padding={spacings.xs}
                 backgroundColor={colors.foreground}
-                pressedBackgroundColor={colors.foreground}
                 {...others}
             >
+                {text != null ? (
+                    <Text variant='button' color={colors.black}>
+                        {text}
+                    </Text>
+                ) : null}
                 {children}
                 <CrossButton marginLeft={spacings.xs} onPress={handleButtonPress} />
-            </Button>
+            </Box>
         );
     }
 );

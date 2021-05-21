@@ -131,21 +131,15 @@ function DropZoneFragment(): JSX.Element {
 }
 
 function Chipfragment(): JSX.Element {
-    const { spacings } = useTheme();
+    const { colors, spacings } = useTheme();
 
     return (
         <Layer flexDirection={'row'} marginTop={spacings.s} marginBottom={spacings.xl}>
+            <Chip marginRight={spacings.s} text={'Grupo A'} />
             <Chip marginRight={spacings.s}>
-                <Text variant={'normal'} fontWeight={'bold'}>
-                    Grupo A
-                </Text>
+                <FileIcon height={24} width={24} fill={colors.black} />
             </Chip>
-            <Chip marginRight={spacings.s}>
-                <FileIcon height={24} width={24} />
-            </Chip>
-            <Chip marginRight={spacings.s}>
-                <Text variant={'normal'}>Ver reportes</Text>
-            </Chip>
+            <Chip marginRight={spacings.s} text={'Ver reportes'} />
         </Layer>
     );
 }
@@ -344,7 +338,14 @@ function LayerAnimatedFragment(): JSX.Element {
                 animate={layerVariant}
                 variants={styleVariants}
             />
-            <Button variant={'main'} alignSelf={'center'} width={268} text={'Toggle animation'} onPress={toggleVariant} />
+            <Button
+                width={268}
+                variant={'main'}
+                alignSelf={'center'}
+                text={'Toggle animation'}
+                onPress={toggleVariant}
+                marginTop={spacings.s}
+            />
         </Box>
     );
 }
