@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { registerRootComponent } from 'expo';
 import {
     Background,
@@ -611,7 +611,7 @@ function ErrorMessageFragment(): JSX.Element {
 
 function PopoverContent(): JSX.Element {
     return (
-        <Box width={'100%'} backgroundColor={'rgba(0,0,0, 0.6)'}>
+        <Box width={'100%'}>
             <Button variant='alternative' text='Pasion' />
         </Box>
     );
@@ -625,11 +625,10 @@ function PopoverFragment(): JSX.Element {
     return (
         <Box marginTop={spacings.s} marginBottom={spacings.xl} alignItems='center'>
             <Popover
-                placement={'right'}
+                placement={'bottom'}
                 active={popoverVisible}
-                popoverChildren={() => {
-                    return <PopoverContent />;
-                }}
+                onRequestClose={() => setPopoverVisible(false)}
+                popoverChildren={PopoverContent}
             >
                 <Button variant={'main'} width={220} onPress={togglePopover} text={'Popover'} />
             </Popover>

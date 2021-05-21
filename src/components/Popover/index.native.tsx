@@ -1,52 +1,60 @@
-import React, { useCallback, useEffect, useMemo, useState, forwardRef } from 'react';
-import { LayoutChangeEvent } from 'react-native';
-import { Layer } from '../containers';
-import { styleVariants } from './styleVariants';
+import React, { useCallback, useEffect, useMemo, useState, forwardRef, useRef } from 'react';
+import { LayoutChangeEvent, View } from 'react-native';
+import { Pressable } from '../buttons/Pressable';
+import { Layer } from '../containers/Layer';
+import { Modal } from '../modals/Modal';
+import { styleVariants } from './utils/styleVariants';
 import { LayoutRectangle, PopoverProps } from './types';
 import { getNativePlacementOffsetStyle } from './utils/getNativePlacementOffsetStyle';
 
 const Popover = forwardRef(
-    ({ active, placement = 'bottom', popoverChildren, popoverContainerProps, ...others }: PopoverProps, ref: any): JSX.Element => {
+    (
+        { active, placement = 'bottom', popoverChildren, popoverContainerProps, onRequestClose, ...others }: PopoverProps,
+        ref: any
+    ): JSX.Element => {
         const [anchorViewLayout, setAnchorViewLayout] = useState<LayoutRectangle>({ x: 0, y: 0, height: 0, width: 0 });
-        const [childViewLayout, setChildViewLayout] = useState<LayoutRectangle>({ x: 0, y: 0, height: 0, width: 0 });
-        const [layerVariant, setLayerVariant] = useState('initial');
+        const [popoverViewLayout, setPopoverViewLayout] = useState<LayoutRectangle>({ x: 0, y: 0, height: 0, width: 0 });
+        const anchorRef = useRef<View>();
 
         const styles = useMemo(() => {
-            return getNativePlacementOffsetStyle(anchorViewLayout, childViewLayout, placement);
-        }, [anchorViewLayout, childViewLayout, placement]);
+            return getNativePlacementOffsetStyle(anchorViewLayout, popoverViewLayout, placement);
+        }, [anchorViewLayout, placement, popoverViewLayout]);
 
-        const onAnchorLayout = useCallback(({ nativeEvent: { layout } }: LayoutChangeEvent) => {
-            setAnchorViewLayout(layout);
+        const onPopoverLayout = useCallback(({ nativeEvent: { layout } }: LayoutChangeEvent) => {
+            setPopoverViewLayout(layout);
         }, []);
 
-        const onChildLayout = useCallback(({ nativeEvent: { layout } }: LayoutChangeEvent) => {
-            setChildViewLayout(layout);
+        const measureInWindow = useCallback(() => {
+            anchorRef.current?.measureInWindow((x, y, width, height) => {
+                setAnchorViewLayout({ x, y, width, height });
+            });
         }, []);
 
         useEffect((): void => {
             if (active) {
-                setLayerVariant('visible');
-            } else {
-                setLayerVariant('initial');
+                measureInWindow();
             }
-        }, [active]);
+        }, [active, measureInWindow]);
 
         return (
             <Layer ref={ref}>
-                <Layer {...others} onLayout={onAnchorLayout} />
-                <Layer
-                    onLayout={onChildLayout}
-                    initial={'initial'}
-                    animate={layerVariant}
-                    variants={styleVariants}
-                    position={'absolute'}
-                    minWidth={200}
-                    zIndex={2000}
-                    style={styles}
-                    {...popoverContainerProps}
-                >
-                    {popoverChildren(anchorViewLayout)}
-                </Layer>
+                <Layer ref={anchorRef} {...others} />
+                <Modal visible={active}>
+                    <Pressable zIndex={0} onPress={onRequestClose} position='absolute' width='100%' height='100%' />
+                    <Layer
+                        onLayout={onPopoverLayout}
+                        initial={styleVariants.initial}
+                        animate={styleVariants.visible}
+                        exit={styleVariants.initial}
+                        position={'absolute'}
+                        minWidth={200}
+                        zIndex={2}
+                        style={styles}
+                        {...popoverContainerProps}
+                    >
+                        {popoverChildren()}
+                    </Layer>
+                </Modal>
             </Layer>
         );
     }
