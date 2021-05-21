@@ -2,7 +2,7 @@ import React, { useEffect, useState, forwardRef, useRef } from 'react';
 import { Layer } from '../containers';
 import { styleVariants } from './styleVariants';
 import { PopoverProps } from './types';
-import { getPlacementOffsetStyle } from './utils/getPlacementOffsetStyle';
+import { getWebPlacementOffsetStyle } from './utils/getWebPlacementOffsetStyle';
 
 const Popover = forwardRef(
     ({ active, placement = 'bottom', popoverChildren, popoverContainerProps, ...others }: PopoverProps, ref: any): JSX.Element => {
@@ -10,7 +10,7 @@ const Popover = forwardRef(
         const [layerVariant, setLayerVariant] = useState('initial');
         const anchorElementRef = useRef<HTMLDivElement>();
 
-        const placementOffsetStyle = getPlacementOffsetStyle(anchorElementRef, placement);
+        const placementOffsetStyle = getWebPlacementOffsetStyle(anchorElementRef, placement);
 
         useEffect((): void => {
             if (active) {

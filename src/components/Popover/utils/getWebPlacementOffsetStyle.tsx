@@ -1,7 +1,7 @@
 import { MutableRefObject } from 'react';
 import { PlacementType } from '../types';
 
-export function getPlacementOffsetStyle(
+export function getWebPlacementOffsetStyle(
     anchorElementRef: MutableRefObject<HTMLDivElement | undefined>,
     placement: PlacementType
 ):

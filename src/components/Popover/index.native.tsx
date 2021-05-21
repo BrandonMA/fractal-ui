@@ -1,29 +1,27 @@
 import React, { useCallback, useEffect, useMemo, useState, forwardRef } from 'react';
+import { LayoutChangeEvent } from 'react-native';
 import { Layer } from '../containers';
 import { styleVariants } from './styleVariants';
 import { LayoutRectangle, PopoverProps } from './types';
+import { getNativePlacementOffsetStyle } from './utils/getNativePlacementOffsetStyle';
 
 const Popover = forwardRef(
     ({ active, placement = 'bottom', popoverChildren, popoverContainerProps, ...others }: PopoverProps, ref: any): JSX.Element => {
-        const [mainViewLayout, setMainViewLayout] = useState<LayoutRectangle>({ x: 0, y: 0, height: 0, width: 0 });
-        const yValueWithOffset = mainViewLayout.y + mainViewLayout.height;
+        const [anchorViewLayout, setAnchorViewLayout] = useState<LayoutRectangle>({ x: 0, y: 0, height: 0, width: 0 });
+        const [childViewLayout, setChildViewLayout] = useState<LayoutRectangle>({ x: 0, y: 0, height: 0, width: 0 });
         const [layerVariant, setLayerVariant] = useState('initial');
 
         const styles = useMemo(() => {
-            return {
-                left: mainViewLayout.x,
-                top: yValueWithOffset,
-                width: mainViewLayout.width,
-                zIndex: 2000
-            };
-        }, [yValueWithOffset, mainViewLayout]);
+            return getNativePlacementOffsetStyle(anchorViewLayout, childViewLayout, placement);
+        }, [anchorViewLayout, childViewLayout, placement]);
 
-        const onLayout = useCallback(
-            (nativeElement) => {
-                setMainViewLayout(nativeElement.nativeEvent.layout);
-            },
-            [setMainViewLayout]
-        );
+        const onAnchorLayout = useCallback(({ nativeEvent: { layout } }: LayoutChangeEvent) => {
+            setAnchorViewLayout(layout);
+        }, []);
+
+        const onChildLayout = useCallback(({ nativeEvent: { layout } }: LayoutChangeEvent) => {
+            setChildViewLayout(layout);
+        }, []);
 
         useEffect((): void => {
             if (active) {
@@ -34,19 +32,22 @@ const Popover = forwardRef(
         }, [active]);
 
         return (
-            <>
-                <Layer ref={ref} {...others} onLayout={onLayout} />
+            <Layer ref={ref}>
+                <Layer {...others} onLayout={onAnchorLayout} />
                 <Layer
+                    onLayout={onChildLayout}
                     initial={'initial'}
                     animate={layerVariant}
                     variants={styleVariants}
                     position={'absolute'}
+                    minWidth={200}
+                    zIndex={2000}
                     style={styles}
                     {...popoverContainerProps}
                 >
-                    {popoverChildren(mainViewLayout)}
+                    {popoverChildren(anchorViewLayout)}
                 </Layer>
-            </>
+            </Layer>
         );
     }
 );
