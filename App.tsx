@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { registerRootComponent } from 'expo';
 import {
     Background,
@@ -48,6 +48,7 @@ import {
 import { SafeAreaView, ScrollView } from 'react-native';
 import { BuggyComponent } from './examples/BuggyComponent';
 import { ThemeSwapper } from './examples/ThemeSwapper';
+import { MultiSelectInput } from './examples/MultiSelectInput';
 import { AudioPlayer } from './src/components/AudioPlayer';
 import { FilterIcon } from './src/assets/FilterIcon';
 import { TrashIcon } from './src/assets/TrashIcon';
@@ -706,6 +707,7 @@ function Content(): JSX.Element {
             <DropZoneFragment />
             <Text variant={'title'}>Chip Example</Text>
             <Chipfragment />
+            <MultiSelectInput />
             <Text variant={'title'}>Cross Button Example</Text>
             <CrossButtonFragment />
             <Text variant={'title'}>Activity Indicator Example</Text>

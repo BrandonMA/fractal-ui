@@ -19,9 +19,11 @@ const StyledTextInput = styled(Reanimated.createAnimatedComponent(TextInput))`
 ` as typeof TextInput;
 
 const BaseTextField = forwardRef(
-    ({ style, ...others }: TextFieldProps, ref: ForwardedRef<TextInput>): JSX.Element => {
+    ({ style, onSubmitEditing, ...others }: TextFieldProps, ref: ForwardedRef<TextInput>): JSX.Element => {
         const animationStyles = useAnimationStyles(others);
-        return <StyledTextInput ref={ref} {...others} style={[animationStyles, style]} />;
+        const handleKeydown = (): void => onSubmitEditing && onSubmitEditing();
+
+        return <StyledTextInput ref={ref} {...others} style={[animationStyles, style]} onSubmitEditing={handleKeydown} />;
     }
 );
 

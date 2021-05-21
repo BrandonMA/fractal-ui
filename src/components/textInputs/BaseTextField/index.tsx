@@ -25,8 +25,9 @@ const StyledTextInput = styled(motion.input as any)`
 
 const BaseTextField = forwardRef(
     (props: TextFieldProps, ref: ForwardedRef<HTMLInputElement>): JSX.Element => {
-        const { onChangeText, placeholder, ...others } = props;
-        const handleChange = (event): void => onChangeText && onChangeText(event.target.value);
+        const { onChangeText, onKeyDown, placeholder, ...others } = props;
+        const handleChange = (event: { target: { value: string } }): void => onChangeText && onChangeText(event.target.value);
+        const handleKeydown = (event: React.KeyboardEvent<HTMLInputElement>): void => onKeyDown && onKeyDown(event);
 
         return (
             <StyledTextInput
@@ -34,6 +35,7 @@ const BaseTextField = forwardRef(
                 placeholder={placeholder}
                 selectable
                 onChange={handleChange}
+                onKeyDown={handleKeydown}
                 {...others}
                 {...getTextFieldAccessibilityProps(placeholder)}
             />
