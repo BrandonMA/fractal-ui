@@ -25,9 +25,15 @@ const StyledTextInput = styled(motion.input as any)`
 
 const BaseTextField = forwardRef(
     (props: TextFieldProps, ref: ForwardedRef<HTMLInputElement>): JSX.Element => {
-        const { onChangeText, onKeyDown, placeholder, ...others } = props;
+        const { onChangeText, onSubmitEditing, placeholder, ...others } = props;
+
         const handleChange = (event: { target: { value: string } }): void => onChangeText && onChangeText(event.target.value);
-        const handleKeydown = (event: React.KeyboardEvent<HTMLInputElement>): void => onKeyDown && onKeyDown(event);
+
+        const handleKeydown = (keyboardEvent: React.KeyboardEvent<HTMLInputElement>): void => {
+            if (keyboardEvent.key === 'Enter') {
+                onSubmitEditing?.();
+            }
+        };
 
         return (
             <StyledTextInput

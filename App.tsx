@@ -43,7 +43,8 @@ import {
     Dropzone,
     DetailsRow,
     TextFieldMask,
-    Chip
+    Chip,
+    IconTextField
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { BuggyComponent } from './examples/BuggyComponent';
@@ -54,6 +55,7 @@ import { FilterIcon } from './src/assets/FilterIcon';
 import { TrashIcon } from './src/assets/TrashIcon';
 import { LoadIcon } from './src/assets/LoadIcon';
 import { FileIcon } from './src/assets/FileIcon';
+import { SearchIcon } from './src/assets/SearchIcon';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -515,10 +517,21 @@ function TextFieldFragment(): JSX.Element {
 
 function IconTextFieldFragment(): JSX.Element {
     const { spacings } = useTheme();
+    const renderSearchIcon = React.useCallback((color: string, size: number) => <SearchIcon height={size} width={size} fill={color} />, []);
 
     return (
         <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <SearchBar placeholder='Escribe aquí' />
+            <IconTextField leftImage={renderSearchIcon} placeholder='Escribe aquí' />
+        </Box>
+    );
+}
+
+function SearchBarFragment(): JSX.Element {
+    const { spacings } = useTheme();
+
+    return (
+        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
+            <SearchBar addEventBasedSearch onSearch={(query: string) => console.log('Query: ', query)} placeholder='Escribe aquí' />
         </Box>
     );
 }
@@ -747,6 +760,8 @@ function Content(): JSX.Element {
             <TextFieldFragment />
             <Text variant={'title'}>Icon Text Field Example</Text>
             <IconTextFieldFragment />
+            <Text variant={'title'}>Search Bar Example</Text>
+            <SearchBarFragment />
             <Text variant={'title'}>Picker Example</Text>
             <PickerFragment />
             <Text variant={'title'}>Date Picker Example</Text>

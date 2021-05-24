@@ -28,8 +28,8 @@ const IconTextField = forwardRef(
         return (
             <HorizontalLayer
                 ref={ref}
-                paddingLeft={paddingLeft}
-                paddingRight={paddingRight}
+                paddingLeft={spacings.xs}
+                paddingRight={spacings.xs}
                 borderRadius={borderRadius.s}
                 height={sizes.textFieldHeight}
                 backgroundColor={colors.textField}

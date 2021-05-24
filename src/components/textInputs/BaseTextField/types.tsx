@@ -7,7 +7,6 @@ interface BaseTextInputProps {
     value?: string;
     placeholder?: string;
     onChangeText?: (text: string) => void;
-    onKeyDown?: (key: React.KeyboardEvent<HTMLInputElement>) => void;
     onSubmitEditing?: () => void;
 }
 

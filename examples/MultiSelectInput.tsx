@@ -6,12 +6,6 @@ export function MultiSelectInput(): JSX.Element {
     const [tag, setTag] = useState('');
     const [tags, setTags] = useState([]);
 
-    const onEnterPressed = (e: { key: string }) => {
-        if (e.key === 'Enter') {
-            addTag(tag);
-        }
-    };
-
     // This function is for native event
     const submitEditing = () => {
         addTag(tag);
@@ -44,13 +38,7 @@ export function MultiSelectInput(): JSX.Element {
             <Text variant={'title3'} marginBottom={spacings.m}>
                 Etiquetas
             </Text>
-            <TextField
-                placeholder='Buscar'
-                value={tag}
-                onKeyDown={onEnterPressed}
-                onSubmitEditing={submitEditing}
-                onChangeText={(value) => setTag(value)}
-            />
+            <TextField placeholder='Buscar' value={tag} onSubmitEditing={submitEditing} onChangeText={(value) => setTag(value)} />
             <Layer
                 maxHeight={200}
                 overflow={'scroll'}
