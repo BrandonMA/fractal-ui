@@ -13,6 +13,8 @@ import {
     MiddleCellModal,
     TextField,
     SearchBar,
+    MessageInput,
+    InputButtonSend,
     Picker,
     DatePicker,
     TimePicker,
@@ -176,18 +178,18 @@ function ActivityIndicatorFragment(): JSX.Element {
 }
 
 function CircularIconButtonFragment(): JSX.Element {
-    const { spacings } = useTheme();
+    const { colors, spacings } = useTheme();
 
     return (
         <Box flexDirection={'row'} marginTop={spacings.s} marginBottom={spacings.xl}>
             <CircularIconButton variant={'main'} marginRight={spacings.m}>
-                {(variantColor: string) => <LoadIcon height={24} width={24} fill={variantColor} />}
+                <LoadIcon height={24} width={24} fill={colors.mainInteractiveColor800} />
             </CircularIconButton>
             <CircularIconButton variant={'success'} marginRight={spacings.m}>
-                {(variantColor: string) => <FilterIcon height={24} width={24} fill={variantColor} />}
+                <FilterIcon height={24} width={24} fill={colors.successInteractiveColor800} />
             </CircularIconButton>
             <CircularIconButton variant={'danger'} marginRight={spacings.m}>
-                {(variantColor: string) => <TrashIcon height={24} width={24} fill={variantColor} />}
+                <TrashIcon height={24} width={24} fill={colors.dangerInteractiveColor800} />
             </CircularIconButton>
         </Box>
     );
@@ -536,6 +538,33 @@ function SearchBarFragment(): JSX.Element {
     );
 }
 
+function MessageInputFragment(): JSX.Element {
+    const { spacings } = useTheme();
+
+    return (
+        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
+            <MessageInput onSendMessage={(message: string) => console.log('Message: ', message)} placeholder='Escribe aquí' />
+        </Box>
+    );
+}
+
+function InputButtonSendFragment(): JSX.Element {
+    const { spacings } = useTheme();
+
+    return (
+        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
+            <InputButtonSend
+                addEventBasedSend
+                buttonVariant={'success'}
+                placeholder={'Escribe aquí'}
+                onSend={(message: string) => console.log('Message: ', message)}
+            >
+                {(color: string, size: number) => <SearchIcon height={size} width={size} fill={color} />}
+            </InputButtonSend>
+        </Box>
+    );
+}
+
 function PickerFragment(): JSX.Element {
     const { spacings } = useTheme();
 
@@ -762,6 +791,8 @@ function Content(): JSX.Element {
             <IconTextFieldFragment />
             <Text variant={'title'}>Search Bar Example</Text>
             <SearchBarFragment />
+            <Text variant={'title'}>Message Input Example</Text>
+            <InputButtonSendFragment />
             <Text variant={'title'}>Picker Example</Text>
             <PickerFragment />
             <Text variant={'title'}>Date Picker Example</Text>
