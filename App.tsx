@@ -46,7 +46,8 @@ import {
     DetailsRow,
     TextFieldMask,
     Chip,
-    IconTextField
+    IconTextField,
+    Autocomplete
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { BuggyComponent } from './examples/BuggyComponent';
@@ -548,6 +549,54 @@ function MessageInputFragment(): JSX.Element {
     );
 }
 
+function AutocompleteFragment(): JSX.Element {
+    const { spacings } = useTheme();
+
+    interface Film {
+        id: string;
+        title: string;
+        year: number;
+    }
+
+    const top20Films: Array<Film> = [
+        { id: '1', title: 'The Shawshank Redemption', year: 1994 },
+        { id: '2', title: 'The Godfather', year: 1972 },
+        { id: '3', title: 'The Godfather: Part II', year: 1974 },
+        { id: '4', title: 'The Dark Knight', year: 2008 },
+        { id: '5', title: '12 Angry Men', year: 1957 },
+        { id: '6', title: "Schindler's List", year: 1993 },
+        { id: '7', title: 'Pulp Fiction', year: 1994 },
+        { id: '8', title: 'The Lord of the Rings: The Return of the King', year: 2003 },
+        { id: '9', title: 'The Good, the Bad and the Ugly', year: 1966 },
+        { id: '10', title: 'Fight Club', year: 1999 },
+        { id: '11', title: 'The Lord of the Rings: The Fellowship of the Ring', year: 2001 },
+        { id: '12', title: 'Star Wars: Episode V - The Empire Strikes Back', year: 1980 },
+        { id: '13', title: 'Forrest Gump', year: 1994 },
+        { id: '14', title: 'Inception', year: 2010 },
+        { id: '15', title: 'The Lord of the Rings: The Two Towers', year: 2002 },
+        { id: '16', title: "One Flew Over the Cuckoo's Nest", year: 1975 },
+        { id: '17', title: 'Goodfellas', year: 1990 },
+        { id: '18', title: 'The Matrix', year: 1999 },
+        { id: '19', title: 'Seven Samurai', year: 1954 },
+        { id: '20', title: 'Star Wars: Episode IV - A New Hope', year: 1977 }
+    ];
+
+    const handleSelect = (option: Film | Film[]) => {
+        console.log('onSelectFilm: ', option);
+    };
+
+    return (
+        <Box marginTop={spacings.m} marginBottom={spacings.m}>
+            <Autocomplete
+                placeholder={'Escribe aquí'}
+                options={top20Films}
+                getOptionLabel={(option) => option.title}
+                onSelect={handleSelect}
+            />
+        </Box>
+    );
+}
+
 function InputButtonSendFragment(): JSX.Element {
     const { spacings } = useTheme();
 
@@ -791,6 +840,8 @@ function Content(): JSX.Element {
             <IconTextFieldFragment />
             <Text variant={'title'}>Search Bar Example</Text>
             <SearchBarFragment />
+            <Text variant={'title'}>Autocomplete Example</Text>
+            <AutocompleteFragment />
             <Text variant={'title'}>Message Input Example</Text>
             <InputButtonSendFragment />
             <Text variant={'title'}>Picker Example</Text>

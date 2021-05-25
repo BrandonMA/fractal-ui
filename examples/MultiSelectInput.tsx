@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { useTheme, Chip, Box, Layer, Button, Text, AutocompleteTextField } from '../src';
+import { useTheme, Chip, Box, Layer, Button, Text, Autocomplete } from '../src';
 
 interface Tag {
     id: string;
@@ -58,7 +58,7 @@ export function MultiSelectInput(): JSX.Element {
             <Text variant={'title3'} marginBottom={spacings.m}>
                 Etiquetas
             </Text>
-            <AutocompleteTextField
+            <Autocomplete
                 value={tag}
                 multiple
                 options={tags}
