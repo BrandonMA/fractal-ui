@@ -1,3 +1,4 @@
+export * from './AutocompleteTextField';
 export * from './BaseTextField';
 export * from './DatePicker';
 export * from './Picker';

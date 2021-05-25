@@ -11,6 +11,7 @@ export function getWebPlacementOffsetStyle(
           top?: number;
           bottom?: number;
           transform: string;
+          width: number;
       }
     | undefined {
     if (anchorElementRef.current) {
@@ -20,28 +21,32 @@ export function getWebPlacementOffsetStyle(
             return {
                 right: offsetWidth / 2,
                 top: offsetHeight,
-                transform: 'translateX(50%)'
+                transform: 'translateX(50%)',
+                width: offsetWidth
             };
         }
         if (placement === 'top') {
             return {
                 right: offsetWidth / 2,
                 bottom: offsetHeight,
-                transform: 'translateX(50%)'
+                transform: 'translateX(50%)',
+                width: offsetWidth
             };
         }
         if (placement === 'left') {
             return {
                 right: offsetWidth,
                 bottom: offsetHeight / 2,
-                transform: 'translateY(50%)'
+                transform: 'translateY(50%)',
+                width: offsetWidth
             };
         }
         if (placement == 'right') {
             return {
                 left: offsetWidth,
                 bottom: offsetHeight / 2,
-                transform: 'translateY(50%)'
+                transform: 'translateY(50%)',
+                width: offsetWidth
             };
         }
     }

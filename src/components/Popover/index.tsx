@@ -18,7 +18,7 @@ const Popover = forwardRef(
         return (
             <OutsideClickListener onOutsideClick={onRequestClose}>
                 <Layer ref={ref} position={'relative'} display={'inline-block'}>
-                    <Layer ref={anchorElementRef} display={'table'} {...others} />
+                    <Layer ref={anchorElementRef} {...others} />
                     <AnimatePresence>
                         {active ? (
                             <Layer

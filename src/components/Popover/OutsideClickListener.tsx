@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useCallback } from 'react';
+import { Layer } from '../containers/Layer';
 
 export function OutsideClickListener({ children, onOutsideClick }: { children: React.ReactNode; onOutsideClick: () => void }): JSX.Element {
     const wrapperRef = useRef<HTMLDivElement>(null);
@@ -19,5 +20,5 @@ export function OutsideClickListener({ children, onOutsideClick }: { children: R
         };
     }, [handleOutsideClick]);
 
-    return <div ref={wrapperRef}>{children}</div>;
+    return <Layer ref={wrapperRef}>{children}</Layer>;
 }

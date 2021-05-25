@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef } from 'react';
 import { ChipProps } from './types';
 import { useTheme } from '../../context/hooks/useTheme';
 import { Box } from '../containers/Box';
@@ -6,10 +6,8 @@ import { Text } from '../text';
 import { CrossButton } from '../buttons/CrossButton';
 
 const Chip = forwardRef(
-    ({ text, children, ...others }: ChipProps, ref: any): JSX.Element => {
+    ({ text, children, onCrossButtonPress, ...others }: ChipProps, ref: any): JSX.Element => {
         const { colors, spacings } = useTheme();
-        const [display, setDisplay] = useState(true);
-        const handleButtonPress = () => setDisplay(false);
 
         return (
             <Box
@@ -18,7 +16,6 @@ const Chip = forwardRef(
                 flexDirection={'row'}
                 alignItems={'center'}
                 justifyContent={'center'}
-                display={display ? 'flex' : 'none'}
                 padding={spacings.xs}
                 backgroundColor={colors.foreground}
                 {...others}
@@ -29,7 +26,7 @@ const Chip = forwardRef(
                     </Text>
                 ) : null}
                 {children}
-                <CrossButton marginLeft={spacings.xs} onPress={handleButtonPress} />
+                <CrossButton marginLeft={spacings.xs} onPress={onCrossButtonPress} />
             </Box>
         );
     }

@@ -1,59 +1,87 @@
 import React, { useState, useCallback } from 'react';
-import { useTheme, Chip, Box, Layer, Button, Text, TextField } from '../src';
+import { useTheme, Chip, Box, Layer, Button, Text, AutocompleteTextField } from '../src';
+
+interface Tag {
+    id: string;
+    value: string;
+}
 
 export function MultiSelectInput(): JSX.Element {
-    const { colors, borderRadius, spacings } = useTheme();
+    const { colors, borderRadius, spacings, sizes } = useTheme();
     const [tag, setTag] = useState('');
-    const [tags, setTags] = useState([]);
+    const [tags, setTags] = useState<Array<Tag>>([
+        { id: '0', value: 'ventas' },
+        { id: '1', value: 'vendidos' },
+        { id: '2', value: 'vaca' },
+        { id: '3', value: 'vela' }
+    ]);
+    const [selectedTags, setSelectedTags] = useState<Array<Tag>>([]);
 
-    // This function is for native event
-    const submitEditing = () => {
-        addTag(tag);
+    const handleSubmitEditing = () => {
+        console.log('Enter');
+        addNewTag(tag);
     };
 
-    const addTag = (item: string) => {
-        if (item.length > 0) {
-            setTags([...tags, { key: tags.length, name: item }]);
-            setTag('');
-        }
+    const addNewTag = (tag: string) => {
+        const newTag = { id: `${tags.length}`, value: tag };
+        setTags((currentTags) => [...currentTags, newTag]);
+        addSelectedTag(newTag);
+        setTag('');
+    };
+
+    const addSelectedTag = (tag: Tag) => {
+        setSelectedTags((currentTags) => [...currentTags, tag]);
     };
 
     const clearTags = () => {
-        setTags([]);
+        setSelectedTags([]);
     };
 
-    const renderItem = useCallback(
-        (item) => {
-            return (
-                <Chip key={item.key} marginRight={spacings.s}>
-                    <Text variant={'normal'}>{item.name}</Text>
-                </Chip>
-            );
-        },
-        [spacings.s]
-    );
+    const handleSelect = (values: Tag | Array<Tag>) => {
+        setSelectedTags(values as Array<Tag>);
+    };
+
+    const removeTag = (tag: Tag) => {
+        setSelectedTags((currentTags) => currentTags.filter((item) => item.id != tag.id));
+    };
+
+    const renderItem = useCallback((item: Tag) => {
+        return (
+            <Chip margin={2} key={item.id} onCrossButtonPress={() => removeTag(item)}>
+                <Text variant={'normal'}>{item.value}</Text>
+            </Chip>
+        );
+    }, []);
 
     return (
-        <Box width={'50%'} marginTop={spacings.s} marginBottom={spacings.xl}>
+        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
             <Text variant={'title3'} marginBottom={spacings.m}>
                 Etiquetas
             </Text>
-            <TextField placeholder='Buscar' value={tag} onSubmitEditing={submitEditing} onChangeText={(value) => setTag(value)} />
+            <AutocompleteTextField
+                value={tag}
+                multiple
+                options={tags}
+                getOptionLabel={(option: Tag) => option.value}
+                placeholder='Buscar'
+                onSelect={handleSelect}
+                controllableSelectedOptions={selectedTags}
+                onChangeText={setTag}
+                onSubmitEditing={handleSubmitEditing}
+            />
             <Layer
-                maxHeight={200}
+                minHeight={sizes.textFieldHeight}
                 overflow={'scroll'}
                 flexDirection={'row'}
-                padding={spacings.s}
+                flexWrap={'wrap'}
                 marginTop={spacings.s}
                 marginBottom={spacings.s}
                 borderRadius={borderRadius.s}
                 backgroundColor={colors.background}
             >
-                {tags.map(renderItem)}
+                {selectedTags.map(renderItem)}
             </Layer>
-            <Button variant={'warning'} onPress={clearTags}>
-                <Text variant={'button'}>Limpiar</Text>
-            </Button>
+            <Button variant={'warning'} onPress={clearTags} text='Limpiar' />
         </Box>
     );
 }

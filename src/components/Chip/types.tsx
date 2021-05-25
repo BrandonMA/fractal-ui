@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
-import { AnimationProps, FractalSharedProps } from '../../sharedProps';
+import { LayerProps } from '../containers/Layer/types';
 
-export interface ChipProps extends FractalSharedProps, AnimationProps {
+export interface ChipProps extends LayerProps {
     text?: string;
     children?: ReactNode;
+    onCrossButtonPress?: () => void;
 }

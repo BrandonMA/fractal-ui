@@ -10,34 +10,41 @@ export function getNativePlacementOffsetStyle(
     top?: number;
     bottom?: number;
     transform: Array<{ translateX: number } | { translateY: number }>;
+    width: number;
 } {
-    const xValueVertical = anchorLayoutRectangle.x + anchorLayoutRectangle.width / 2;
+    const anchorWidth = anchorLayoutRectangle.width;
+    const xValueVertical = anchorLayoutRectangle.x + anchorWidth / 2;
     const yValueHorizontal = anchorLayoutRectangle.y + anchorLayoutRectangle.height / 2;
+    const popoverWidth = popoverLayoutRectangle.width;
 
     if (placement == 'top') {
         return {
             right: xValueVertical,
             top: anchorLayoutRectangle.y - popoverLayoutRectangle.height,
-            transform: [{ translateX: popoverLayoutRectangle.width / 2 }]
+            transform: [{ translateX: popoverWidth / 2 }],
+            width: anchorWidth
         };
     }
     if (placement == 'left') {
         return {
-            left: anchorLayoutRectangle.x - popoverLayoutRectangle.width,
+            left: anchorLayoutRectangle.x - popoverWidth,
             top: yValueHorizontal,
-            transform: [{ translateY: -(popoverLayoutRectangle.height / 2) }]
+            transform: [{ translateY: -(popoverLayoutRectangle.height / 2) }],
+            width: anchorWidth
         };
     }
     if (placement == 'right') {
         return {
-            left: anchorLayoutRectangle.x + anchorLayoutRectangle.width,
+            left: anchorLayoutRectangle.x + anchorWidth,
             top: yValueHorizontal,
-            transform: [{ translateY: -(popoverLayoutRectangle.height / 2) }]
+            transform: [{ translateY: -(popoverLayoutRectangle.height / 2) }],
+            width: anchorWidth
         };
     }
     return {
         right: xValueVertical,
         top: anchorLayoutRectangle.y + anchorLayoutRectangle.height,
-        transform: [{ translateX: popoverLayoutRectangle.width / 2 }]
+        transform: [{ translateX: popoverWidth / 2 }],
+        width: anchorWidth
     };
 }

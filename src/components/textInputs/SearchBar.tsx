@@ -4,9 +4,10 @@ import { useTheme } from '../../context';
 import { useControllableState } from '../../hooks/useControllableState';
 import { Button, ButtonVariant } from '../buttons';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
-import { IconTextField, IconTextFieldProps } from './IconTextField';
+import { TextFieldProps } from './BaseTextField/types';
+import { TextField } from './TextField';
 
-interface SearchBarprops extends IconTextFieldProps {
+export interface SearchBarProps extends TextFieldProps {
     onSearch: (query: string) => void;
     addEventBasedSearch?: boolean;
     buttonVariant?: ButtonVariant;
@@ -14,7 +15,7 @@ interface SearchBarprops extends IconTextFieldProps {
 
 const SearchBar = forwardRef(
     (
-        { value, onChangeText, onSearch, addEventBasedSearch = false, buttonVariant = 'main', ...others }: SearchBarprops,
+        { value, onChangeText, onSearch, addEventBasedSearch = false, buttonVariant = 'main', ...others }: SearchBarProps,
         ref: any
     ): JSX.Element => {
         const { sizes, spacings } = useTheme();
@@ -35,13 +36,11 @@ const SearchBar = forwardRef(
 
         return (
             <HorizontalLayer width={'100%'} alignItems={'center'} height={sizes.textFieldHeight}>
-                <IconTextField
+                <TextField
                     ref={ref}
                     value={query}
                     onChangeText={handleChangeText}
-                    textFieldProps={{ onSubmitEditing: addEventBasedSearch ? handleSearch : undefined }}
-                    paddingLeft={spacings.xs}
-                    leftImage={addEventBasedSearch ? undefined : renderSearchIcon}
+                    onSubmitEditing={addEventBasedSearch ? handleSearch : undefined}
                     {...others}
                     flex={1}
                 />
