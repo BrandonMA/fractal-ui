@@ -1,40 +1,38 @@
 import React, { forwardRef, useCallback, useState } from 'react';
-import { SearchIcon } from '../../assets/SearchIcon';
-import { useTheme } from '../../context';
-import { Button, ButtonVariant } from '../buttons';
-import { HorizontalLayer } from '../containers/HorizontalLayer';
-import { IconTextField, IconTextFieldProps } from './IconTextField';
+import { ButtonTextField } from './ButtonTextField';
+import { Trazado } from '../../assets/TrazadoIcon';
 
-interface MessageInputProps extends IconTextFieldProps {
-    onSendMessage: (message: string) => void;
-    buttonVariant?: ButtonVariant;
+interface MessageInputProps {
+    onSend: (message: string) => void;
+    onChangeText?: (text: string) => void;
+    placeholder?: string;
 }
 
 const MessageInput = forwardRef(
-    ({ onSendMessage, buttonVariant = 'success', ...others }: MessageInputProps, ref: any): JSX.Element => {
-        const { colors, sizes, spacings } = useTheme();
+    ({ onSend, onChangeText, ...others }: MessageInputProps, ref: any): JSX.Element => {
+        const showButton = true;
         const [text, setText] = useState('');
 
-        const renderIcon = useCallback((color: string, size: number) => <SearchIcon height={size} width={size} fill={color} />, []);
+        const renderIcon = useCallback((color: string, size: number) => <Trazado height={size} width={size} fill={color} />, []);
 
         const handleSend = () => {
-            onSendMessage(text);
+            onSend(text);
         };
-
+        const handleChangeText = (text: string) => {
+            setText(text);
+            onChangeText?.(text);
+        };
         return (
-            <HorizontalLayer width={'100%'} alignItems={'center'} height={sizes.textFieldHeight}>
-                <IconTextField
-                    ref={ref}
-                    flex={1}
-                    value={text}
-                    paddingLeft={spacings.xs}
-                    onChangeText={(text) => setText(text)}
-                    {...others}
-                />
-                <Button variant={buttonVariant} marginLeft={spacings.m} width={sizes.textFieldHeight} onPress={handleSend}>
-                    {renderIcon(colors.white, 24)}
-                </Button>
-            </HorizontalLayer>
+            <ButtonTextField
+                ref={ref}
+                showButton={showButton}
+                buttonVariant={'success'}
+                image={renderIcon}
+                onPress={handleSend}
+                onChangeText={handleChangeText}
+                textFieldProps={{ onSubmitEditing: showButton ? undefined : handleSend }}
+                {...others}
+            />
         );
     }
 );

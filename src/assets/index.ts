@@ -13,3 +13,4 @@ export * from './PlayIcon';
 export * from './PreviousIcon';
 export * from './RepeatIcon';
 export * from './ShuffleIcon';
+export * from './TrazadoIcon';

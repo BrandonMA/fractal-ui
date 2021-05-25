@@ -14,7 +14,6 @@ import {
     TextField,
     SearchBar,
     MessageInput,
-    InputButtonSend,
     Picker,
     DatePicker,
     TimePicker,
@@ -544,7 +543,7 @@ function MessageInputFragment(): JSX.Element {
 
     return (
         <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <MessageInput onSendMessage={(message: string) => console.log('Message: ', message)} placeholder='Escribe aquí' />
+            <MessageInput onSend={(message: string) => console.log('Message: ', message)} placeholder='Escribe aquí' />
         </Box>
     );
 }
@@ -593,23 +592,6 @@ function AutocompleteFragment(): JSX.Element {
                 getOptionLabel={(option) => option.title}
                 onSelect={handleSelect}
             />
-        </Box>
-    );
-}
-
-function InputButtonSendFragment(): JSX.Element {
-    const { spacings } = useTheme();
-
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <InputButtonSend
-                addEventBasedSend
-                buttonVariant={'success'}
-                placeholder={'Escribe aquí'}
-                onSend={(message: string) => console.log('Message: ', message)}
-            >
-                {(color: string, size: number) => <SearchIcon height={size} width={size} fill={color} />}
-            </InputButtonSend>
         </Box>
     );
 }
@@ -843,7 +825,7 @@ function Content(): JSX.Element {
             <Text variant={'title'}>Autocomplete Example</Text>
             <AutocompleteFragment />
             <Text variant={'title'}>Message Input Example</Text>
-            <InputButtonSendFragment />
+            <MessageInputFragment />
             <Text variant={'title'}>Picker Example</Text>
             <PickerFragment />
             <Text variant={'title'}>Date Picker Example</Text>

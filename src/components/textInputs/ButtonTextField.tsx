@@ -5,32 +5,31 @@ import { Button, ButtonVariant } from '../buttons';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { IconTextField, IconTextFieldProps } from './IconTextField';
 
-interface InputButtonSendProps extends IconTextFieldProps {
-    onSend: (text: string) => void;
-    children: (color: string, size: number) => JSX.Element;
-    addEventBasedSend?: boolean;
+interface ButtonTextFieldProps extends IconTextFieldProps {
+    onPress: (text: string) => void;
+    image: (color: string, size: number) => JSX.Element;
     buttonVariant?: ButtonVariant;
+    showButton?: boolean;
 }
 
-const InputButtonSend = forwardRef(
+const ButtonTextField = forwardRef(
     (
-        { value, children, onChangeText, onSend, addEventBasedSend = false, buttonVariant = 'main', ...others }: InputButtonSendProps,
+        { value, image, onChangeText, onPress, buttonVariant = 'main', showButton = false, ...others }: ButtonTextFieldProps,
         ref: any
     ): JSX.Element => {
         const { colors, sizes, spacings } = useTheme();
         const [text, setText] = useControllableState(value, '', onChangeText);
 
-        const renderIcon = useCallback((color: string, size: number) => children?.(color, size), [children]);
+        const renderIcon = useCallback((color: string, size: number) => image?.(color, size), [image]);
 
         const handleChangeText = (text: string) => {
-            if (!addEventBasedSend) {
-                onSend(text);
+            if (!showButton) {
+                onPress(text);
             }
             setText(text);
         };
-
         const handleSend = () => {
-            onSend(text);
+            onPress(text);
         };
 
         return (
@@ -41,13 +40,12 @@ const InputButtonSend = forwardRef(
                     value={text}
                     paddingLeft={spacings.xs}
                     onChangeText={handleChangeText}
-                    textFieldProps={{ onSubmitEditing: addEventBasedSend ? handleSend : undefined }}
-                    leftImage={addEventBasedSend ? undefined : renderIcon}
+                    leftImage={showButton ? undefined : renderIcon}
                     {...others}
                 />
-                {addEventBasedSend ? (
+                {showButton ? (
                     <Button variant={buttonVariant} marginLeft={spacings.m} width={sizes.textFieldHeight} onPress={handleSend}>
-                        {children?.(colors.white, 24)}
+                        {image?.(colors.white, 24)}
                     </Button>
                 ) : null}
             </HorizontalLayer>
@@ -55,6 +53,6 @@ const InputButtonSend = forwardRef(
     }
 );
 
-InputButtonSend.displayName = 'InputButtonSend';
+ButtonTextField.displayName = 'ButtonTextField';
 
-export { InputButtonSend };
+export { ButtonTextField };
