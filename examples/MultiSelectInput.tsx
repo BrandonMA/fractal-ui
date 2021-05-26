@@ -45,18 +45,17 @@ export function MultiSelectInput(): JSX.Element {
         setSelectedTags((currentTags) => currentTags.filter((item) => item.id != tag.id));
     };
 
-    const renderItem = useCallback((item: Tag) => {
-        return (
-            <Chip margin={2} key={item.id} onCrossButtonPress={() => removeTag(item)}>
-                <Text variant={'normal'}>{item.value}</Text>
-            </Chip>
-        );
-    }, []);
+    const renderItem = useCallback(
+        (item: Tag) => {
+            return <Chip marginRight={spacings.s} key={item.id} onCrossButtonPress={() => removeTag(item)} text={item.value} />;
+        },
+        [spacings]
+    );
 
     return (
         <Box marginTop={spacings.s} marginBottom={spacings.xl}>
             <Text variant={'title3'} marginBottom={spacings.m}>
-                Etiquetas
+                Autocomplete
             </Text>
             <Autocomplete
                 value={tag}
@@ -76,6 +75,7 @@ export function MultiSelectInput(): JSX.Element {
                 flexWrap={'wrap'}
                 marginTop={spacings.s}
                 marginBottom={spacings.s}
+                padding={spacings.s}
                 borderRadius={borderRadius.s}
                 backgroundColor={colors.background}
             >

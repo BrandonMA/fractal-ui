@@ -7,7 +7,7 @@ import { CrossButton } from '../buttons/CrossButton';
 
 const Chip = forwardRef(
     ({ text, children, onCrossButtonPress, ...others }: ChipProps, ref: any): JSX.Element => {
-        const { colors, spacings } = useTheme();
+        const { spacings } = useTheme();
 
         return (
             <Box
@@ -17,14 +17,9 @@ const Chip = forwardRef(
                 alignItems={'center'}
                 justifyContent={'center'}
                 padding={spacings.xs}
-                backgroundColor={colors.foreground}
                 {...others}
             >
-                {text != null ? (
-                    <Text variant='button' color={colors.black}>
-                        {text}
-                    </Text>
-                ) : null}
+                {text != null ? <Text variant='normal'>{text}</Text> : null}
                 {children}
                 <CrossButton marginLeft={spacings.xs} onPress={onCrossButtonPress} />
             </Box>
