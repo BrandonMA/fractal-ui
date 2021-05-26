@@ -1,30 +1,8 @@
 import { MutableRefObject } from 'react';
 import { PlacementType } from '../types';
 
-const flipSign = (x: number) => x * -1;
-
-export function getElementViewportOffset(
-    element: HTMLDivElement,
-    offset = 0
-): {
-    top: number;
-    bottom: number;
-    left: number;
-    right: number;
-} {
-    const rect = element.getBoundingClientRect();
-
-    return {
-        top: rect.top - offset,
-        bottom: flipSign(rect.bottom - window.innerHeight) - offset,
-        left: rect.left - offset,
-        right: flipSign(rect.right - window.innerWidth) - offset
-    };
-}
-
 export function getWebPlacementOffsetStyle(
     anchorRef: MutableRefObject<HTMLDivElement | undefined>,
-    //popoverRef: MutableRefObject<HTMLDivElement | undefined>,
     placement: PlacementType
 ):
     | {
@@ -40,7 +18,7 @@ export function getWebPlacementOffsetStyle(
         transform: ''
     };
 
-    if (anchorRef.current /*&& popoverRef.current*/) {
+    if (anchorRef.current) {
         const offsetHeight = anchorRef.current.offsetHeight;
         const offsetWidth = anchorRef.current.offsetWidth;
         if (placement == 'bottom') {
@@ -55,7 +33,7 @@ export function getWebPlacementOffsetStyle(
             style = {
                 right: offsetWidth / 2,
                 bottom: offsetHeight,
-                //width: offsetWidth,
+                width: offsetWidth,
                 transform: 'translateX(50%)'
             };
         }
@@ -63,7 +41,7 @@ export function getWebPlacementOffsetStyle(
             style = {
                 right: offsetWidth,
                 bottom: offsetHeight / 2,
-                //width: offsetWidth,
+                width: offsetWidth,
                 transform: 'translateY(50%)'
             };
         }
@@ -71,25 +49,10 @@ export function getWebPlacementOffsetStyle(
             style = {
                 left: offsetWidth,
                 bottom: offsetHeight / 2,
-                //width: offsetWidth,
+                width: offsetWidth,
                 transform: 'translateY(50%)'
             };
         }
-        /*const offset = getElementViewportOffset(anchorRef.current, 10);
-        const popoverOffsetWidth = popoverRef.current.offsetWidth;
-
-        const isOverflowingRight = offset.left + popoverOffsetWidth > window.innerWidth;
-
-        console.log({ offset: offset.left, popoverOffsetWidth, windowInnerWidth: window.innerWidth });
-
-        console.log({ isOverflowingRight });
-        console.log({ style });
-        if (isOverflowingRight) {
-            style.right = -300;
-        }
-
-        console.log({ newstyle: style });*/
-
         return style;
     }
     return undefined;

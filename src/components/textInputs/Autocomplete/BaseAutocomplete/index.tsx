@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTheme } from '../../../../context';
 import { Box } from '../../../containers/Box';
 import { Popover } from '../../../Popover';
@@ -20,6 +20,12 @@ export function BaseAutocomplete<T extends IDEnabled>({
     ...searchBarProps
 }: BaseAutocompleteProps<T>): JSX.Element {
     const { spacings } = useTheme();
+
+    useEffect(() => {
+        if (filteredData.length == 0) {
+            hideSuggestions();
+        }
+    }, [filteredData.length, hideSuggestions]);
 
     return (
         <Popover
