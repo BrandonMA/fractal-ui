@@ -45,7 +45,7 @@ const ButtonTextField = forwardRef(
                 />
                 {showButton ? (
                     <Button variant={buttonVariant} marginLeft={spacings.m} width={sizes.textFieldHeight} onPress={handleSend}>
-                        {image?.(colors.white, 24)}
+                        {image(colors.white, 24)}
                     </Button>
                 ) : null}
             </HorizontalLayer>

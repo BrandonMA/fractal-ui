@@ -32,9 +32,11 @@ export function DatePicker({
 
     return (
         <>
-            <PickerButton onPress={toggleModal} {...others}>
-                {mode === 'date' ? date.toLocaleDateString() : date.toLocaleTimeString()}
-            </PickerButton>
+            <PickerButton
+                value={mode === 'date' ? date.toLocaleDateString() : date.toLocaleTimeString()}
+                onPress={toggleModal}
+                {...others}
+            />
             {modalActive ? (
                 <DateTimePicker
                     value={date}

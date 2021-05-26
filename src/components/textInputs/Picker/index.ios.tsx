@@ -25,9 +25,7 @@ export function Picker({ items, defaultValue, value, onChange, iosDoneText = 'Do
 
     return (
         <>
-            <PickerButton onPress={toggleModal} {...others}>
-                {items[index][1]}
-            </PickerButton>
+            <PickerButton value={items[index][1]} onPress={toggleModal} {...others} />
             <BlurrediOSModal dismissText={iosDoneText} visible={modalActive} onDismiss={toggleModal}>
                 <BasePicker selectedValue={currentValue} onValueChange={handleValueChange}>
                     {items.map(renderItem)}

@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import { SearchBarProps } from '../SearchBar';
 
 export interface IDEnabled {
@@ -21,8 +20,14 @@ export interface AutocompleteProps<T> extends Omit<SearchBarProps, 'onSearch'> {
     controllableSelectedOptions?: Array<T>;
 }
 
-export interface AutocompleteWrapperProps<T> extends SuggestionsListProps<T> {
-    children: ReactNode;
+export interface BaseAutocompleteProps<T> extends Omit<SuggestionsListProps<T>, 'onItemPress'>, SearchBarProps {
+    onItemPress: (item: T, isSelected: boolean, keepInput?: boolean) => void;
     suggestionsVisible: boolean;
     hideSuggestions: () => void;
+    doneText?: string;
+}
+
+export interface AutocompleteModalProps<T> extends Omit<BaseAutocompleteProps<T>, 'suggestionsVisible'> {
+    visible: boolean;
+    hideModal: () => void;
 }

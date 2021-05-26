@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useControllableState } from '../../../hooks/useControllableState';
-import { SearchBar } from '../SearchBar';
-import { AutocompleteWrapper } from './AutocompleteWrapper';
+import { BaseAutocomplete } from './BaseAutocomplete';
 import { AutocompleteProps, IDEnabled } from './types';
 
 export function Autocomplete<T extends IDEnabled>({
@@ -28,6 +27,8 @@ export function Autocomplete<T extends IDEnabled>({
     const [selectedOptions, setSelectedOptions] = useControllableState(controllableSelectedOptions, [], handleSelect);
     const selectedOptionsIds = selectedOptions.map((selectedOption) => selectedOption.id);
 
+    console.log({ selectedOptions, selectedOptionsIds });
+
     const handleSearch = (query: string) => {
         const newFilteredOptions = options.filter((option) => {
             const candidate = getOptionLabel(option);
@@ -40,8 +41,7 @@ export function Autocomplete<T extends IDEnabled>({
 
     const addSelectedOption = (option: T) => {
         if (multiple) {
-            selectedOptions.push(option);
-            setSelectedOptions(selectedOptions);
+            setSelectedOptions([...selectedOptions, option]);
         } else {
             setSelectedOptions([option]);
         }
@@ -51,8 +51,13 @@ export function Autocomplete<T extends IDEnabled>({
         setSelectedOptions(selectedOptions.filter((item) => item.id != option.id));
     };
 
-    const onOptionPress = (option: T, isSelected: boolean) => {
-        setUserInput(multiple ? '' : getOptionLabel(option));
+    const onOptionPress = (option: T, isSelected: boolean, keepInput?: boolean) => {
+        if (!keepInput && multiple) {
+            setUserInput('');
+        }
+        if (!multiple) {
+            setUserInput(getOptionLabel(option));
+        }
         setSuggestionsVisible(false);
         if (!isSelected) {
             addSelectedOption(option);
@@ -68,7 +73,10 @@ export function Autocomplete<T extends IDEnabled>({
     };
 
     return (
-        <AutocompleteWrapper
+        <BaseAutocomplete
+            value={userInput}
+            onSearch={handleSearch}
+            onChangeText={handleChangeText}
             suggestionsVisible={suggestionsVisible}
             hideSuggestions={hideSuggestions}
             filteredData={filteredOptions}
@@ -76,8 +84,7 @@ export function Autocomplete<T extends IDEnabled>({
             onItemPress={onOptionPress}
             selectedIds={selectedOptionsIds}
             multiple={multiple}
-        >
-            <SearchBar value={userInput} onSearch={handleSearch} onChangeText={handleChangeText} {...searchBarProps} />
-        </AutocompleteWrapper>
+            {...searchBarProps}
+        />
     );
 }

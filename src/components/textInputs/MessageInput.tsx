@@ -1,6 +1,6 @@
 import React, { forwardRef, useCallback, useState } from 'react';
 import { ButtonTextField } from './ButtonTextField';
-import { Trazado } from '../../assets/TrazadoIcon';
+import { TrazadoIcon } from '../../assets/TrazadoIcon';
 
 interface MessageInputProps {
     onSend: (message: string) => void;
@@ -13,7 +13,7 @@ const MessageInput = forwardRef(
         const showButton = true;
         const [text, setText] = useState('');
 
-        const renderIcon = useCallback((color: string, size: number) => <Trazado height={size} width={size} fill={color} />, []);
+        const renderIcon = useCallback((color: string, size: number) => <TrazadoIcon height={size} width={size} fill={color} />, []);
 
         const handleSend = () => {
             onSend(text);

@@ -9,13 +9,14 @@ import { TextField } from './TextField';
 
 export interface SearchBarProps extends TextFieldProps {
     onSearch: (query: string) => void;
+    inputRef?: any;
     addEventBasedSearch?: boolean;
     buttonVariant?: ButtonVariant;
 }
 
 const SearchBar = forwardRef(
     (
-        { value, onChangeText, onSearch, addEventBasedSearch = false, buttonVariant = 'main', ...others }: SearchBarProps,
+        { inputRef, value, onChangeText, onSearch, addEventBasedSearch = false, buttonVariant = 'main', ...others }: SearchBarProps,
         ref: any
     ): JSX.Element => {
         const { sizes, spacings } = useTheme();
@@ -35,9 +36,9 @@ const SearchBar = forwardRef(
         };
 
         return (
-            <HorizontalLayer width={'100%'} alignItems={'center'} height={sizes.textFieldHeight}>
+            <HorizontalLayer ref={ref} width={'100%'} alignItems={'center'} height={sizes.textFieldHeight}>
                 <TextField
-                    ref={ref}
+                    ref={inputRef}
                     value={query}
                     onChangeText={handleChangeText}
                     onSubmitEditing={addEventBasedSearch ? handleSearch : undefined}

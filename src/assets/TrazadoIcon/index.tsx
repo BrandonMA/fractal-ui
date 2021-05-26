@@ -1,6 +1,6 @@
 import React, { memo, SVGProps } from 'react';
 
-const Trazado = memo(
+const TrazadoIcon = memo(
     (props: SVGProps<SVGSVGElement>): JSX.Element => {
         return (
             <svg width='22' height='22' viewBox='0 0 22 22' {...props}>
@@ -13,6 +13,6 @@ const Trazado = memo(
     }
 );
 
-Trazado.displayName = 'Trazado';
+TrazadoIcon.displayName = 'TrazadoIcon';
 
-export { Trazado };
+export { TrazadoIcon };
