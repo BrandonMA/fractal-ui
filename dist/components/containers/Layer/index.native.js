@@ -25,9 +25,11 @@ const StyledLayer = styled(Reanimated.View) `
     ${extractBorderProps};
     ${extractShadowProps};
 `;
-export const Layer = forwardRef((_a, ref) => {
+const Layer = forwardRef((_a, ref) => {
     var { style } = _a, others = __rest(_a, ["style"]);
     const animationStyles = useAnimationStyles(others);
     return React.createElement(StyledLayer, Object.assign({ ref: ref }, others, { style: [animationStyles, style] }));
 });
+Layer.displayName = 'Layer';
+export { Layer };
 //# sourceMappingURL=index.native.js.map

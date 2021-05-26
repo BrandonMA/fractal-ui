@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { Check } from '../Check';
@@ -23,9 +23,7 @@ const CheckBoxInput = styled(motion.input) `
     position: absolute;
 `;
 export function BaseCheckBox({ value, onValueChange, label }) {
-    const handleValueChange = useCallback(() => {
-        onValueChange(!value);
-    }, [value, onValueChange]);
+    const handleValueChange = () => onValueChange(!value);
     return (React.createElement(Wrapper, null,
         React.createElement(CheckBoxInput, Object.assign({ type: 'checkbox', checked: value, onChange: handleValueChange }, getCheckBoxAccessibilityProps(value))),
         React.createElement(Check, { value: value, label: label })));

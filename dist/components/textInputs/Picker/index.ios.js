@@ -21,7 +21,7 @@ export function Picker(_a) {
     const [currentValue, handleValueChange, index] = usePickerState(defaultValue, items, value, onChange);
     const [modalActive, setModalActive] = useState(false);
     const { colors } = useTheme();
-    const toggleModal = useCallback(() => setModalActive((current) => !current), [setModalActive]);
+    const toggleModal = () => setModalActive((current) => !current);
     const renderItem = useCallback((item) => {
         const value = item[0];
         const label = item[1];

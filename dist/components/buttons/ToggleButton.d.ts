@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { ButtonVariant } from './types/ButtonVariant';
-export interface ButtonProps extends FractalSharedProps, AnimationProps {
+export interface ToggleButtonProps extends FractalSharedProps, AnimationProps {
     variant: ButtonVariant;
     active: boolean;
     useGrayVariant?: boolean;
@@ -9,5 +9,5 @@ export interface ButtonProps extends FractalSharedProps, AnimationProps {
     style?: any;
     onPress?: () => void;
 }
-declare const ToggleButton: React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<unknown>>;
+declare const ToggleButton: React.ForwardRefExoticComponent<ToggleButtonProps & React.RefAttributes<unknown>>;
 export { ToggleButton };

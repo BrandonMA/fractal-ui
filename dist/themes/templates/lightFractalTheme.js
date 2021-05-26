@@ -60,7 +60,17 @@ export const colors = {
     dangerInteractiveColor600: red.base600,
     dangerInteractiveColor700: red.base700,
     dangerInteractiveColor800: red.base800,
-    dangerInteractiveColor900: red.base900
+    dangerInteractiveColor900: red.base900,
+    // Content
+    contentInteractiveColor100: white.base100,
+    contentInteractiveColor200: white.base200,
+    contentInteractiveColor300: white.base300,
+    contentInteractiveColor400: white.base300,
+    contentInteractiveColor: white.base400,
+    contentInteractiveColor600: white.base300,
+    contentInteractiveColor700: white.base300,
+    contentInteractiveColor800: white.base200,
+    contentInteractiveColor900: white.base100
 };
 export const spacings = {
     xs: 8,

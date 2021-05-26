@@ -9,35 +9,40 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Layer } from '../containers';
-import { styleVariants } from './styleVariants';
-export function Popover(props) {
-    const { active, popoverChildren, popoverContainerProps } = props, others = __rest(props, ["active", "popoverChildren", "popoverContainerProps"]);
-    const [mainViewLayout, setMainViewLayout] = useState({ x: 0, y: 0, height: 0, width: 0 });
-    const yValueWithOffset = mainViewLayout.y + mainViewLayout.height;
-    const [layerVariant, setLayerVariant] = useState('initial');
+import React, { useCallback, useEffect, useMemo, useState, forwardRef, useRef } from 'react';
+import { Pressable } from '../buttons/Pressable';
+import { Layer } from '../containers/Layer';
+import { Modal } from '../modals/Modal';
+import { styleVariants } from './utils/styleVariants';
+import { getNativePlacementOffsetStyle } from './utils/getNativePlacementOffsetStyle';
+const Popover = forwardRef((_a, ref) => {
+    var { active, placement = 'bottom', popoverChildren, popoverContainerProps, onRequestClose } = _a, others = __rest(_a, ["active", "placement", "popoverChildren", "popoverContainerProps", "onRequestClose"]);
+    const [anchorViewLayout, setAnchorViewLayout] = useState({ x: 0, y: 0, height: 0, width: 0 });
+    const [popoverViewLayout, setPopoverViewLayout] = useState({ x: 0, y: 0, height: 0, width: 0 });
+    const anchorRef = useRef();
     const styles = useMemo(() => {
-        return {
-            left: mainViewLayout.x,
-            top: yValueWithOffset,
-            width: mainViewLayout.width,
-            zIndex: 2000
-        };
-    }, [yValueWithOffset, mainViewLayout]);
-    const onLayout = useCallback((nativeElement) => {
-        setMainViewLayout(nativeElement.nativeEvent.layout);
-    }, [setMainViewLayout]);
+        return getNativePlacementOffsetStyle(anchorViewLayout, popoverViewLayout, placement);
+    }, [anchorViewLayout, placement, popoverViewLayout]);
+    const onPopoverLayout = useCallback(({ nativeEvent: { layout } }) => {
+        setPopoverViewLayout(layout);
+    }, []);
+    const measureInWindow = useCallback(() => {
+        var _a;
+        (_a = anchorRef.current) === null || _a === void 0 ? void 0 : _a.measureInWindow((x, y, width, height) => {
+            setAnchorViewLayout({ x, y, width, height });
+        });
+    }, []);
     useEffect(() => {
         if (active) {
-            setLayerVariant('visible');
+            measureInWindow();
         }
-        else {
-            setLayerVariant('initial');
-        }
-    }, [active]);
-    return (React.createElement(React.Fragment, null,
-        React.createElement(Layer, Object.assign({}, others, { onLayout: onLayout })),
-        React.createElement(Layer, Object.assign({ initial: 'initial', animate: layerVariant, variants: styleVariants, position: 'absolute', style: styles }, popoverContainerProps), popoverChildren(mainViewLayout))));
-}
+    }, [active, measureInWindow]);
+    return (React.createElement(Layer, { ref: ref },
+        React.createElement(Layer, Object.assign({ ref: anchorRef }, others)),
+        React.createElement(Modal, { visible: active },
+            React.createElement(Pressable, { zIndex: 0, onPress: onRequestClose, position: 'absolute', width: '100%', height: '100%' }),
+            React.createElement(Layer, Object.assign({ onLayout: onPopoverLayout, initial: styleVariants.initial, animate: styleVariants.visible, exit: styleVariants.initial, position: 'absolute', minWidth: 200, zIndex: 2, style: styles }, popoverContainerProps), popoverChildren()))));
+});
+Popover.displayName = 'Popover';
+export { Popover };
 //# sourceMappingURL=index.native.js.map

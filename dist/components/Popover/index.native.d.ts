@@ -1,3 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 import { PopoverProps } from './types';
-export declare function Popover(props: PopoverProps): JSX.Element;
+declare const Popover: React.ForwardRefExoticComponent<PopoverProps & React.RefAttributes<unknown>>;
+export { Popover };

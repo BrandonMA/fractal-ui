@@ -11,7 +11,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { useCallback, useMemo } from 'react';
 import { Picker } from '../Picker';
-import { numberToArray } from '../util/numberToArray';
+import { numberToArray } from '../utils/numberToArray';
 import { getDaysInMonth } from './util/getDaysInMonth';
 import { getYearsInRange } from './util/getYearsInRange';
 import { localeMonthNames } from './util/localeMonthNames';
@@ -23,7 +23,7 @@ export function DatePicker(_a) {
     var { value, minDate, maxDate, initialDate = new Date(), onChange } = _a, others = __rest(_a, ["value", "minDate", "maxDate", "initialDate", "onChange"]);
     const { spacings } = useTheme();
     const finalMinDate = useMemo(() => minDate !== null && minDate !== void 0 ? minDate : new Date('Jan 1, 1920'), [minDate]);
-    const [date, setDate] = useControllableState({ value, defaultValue: initialDate, onChange }); //useState(initialDate);
+    const [date, setDate] = useControllableState(value, initialDate, onChange);
     const years = useMemo(() => getYearsInRange(maxDate !== null && maxDate !== void 0 ? maxDate : new Date(), finalMinDate), [maxDate, finalMinDate]);
     const days = useMemo(() => {
         const amountOfDaysInMonth = getDaysInMonth(2021, date.getMonth());

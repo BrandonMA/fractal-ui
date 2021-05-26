@@ -1,4 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 import { TextFieldProps } from './BaseTextField/types';
 import { LayerProps } from '../containers/Layer/types';
 export interface IconTextFieldProps extends Partial<Omit<LayerProps, 'children'>> {
@@ -10,4 +10,5 @@ export interface IconTextFieldProps extends Partial<Omit<LayerProps, 'children'>
     textFieldProps?: TextFieldProps;
     inputRef?: any;
 }
-export declare function IconTextField({ leftImage, rightImage, value, placeholder, onChangeText, textFieldProps, inputRef, ...others }: IconTextFieldProps): JSX.Element;
+declare const IconTextField: React.ForwardRefExoticComponent<IconTextFieldProps & React.RefAttributes<unknown>>;
+export { IconTextField };

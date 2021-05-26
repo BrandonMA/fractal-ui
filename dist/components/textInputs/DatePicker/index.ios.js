@@ -19,10 +19,10 @@ export function DatePicker(_a) {
     var { value, initialDate = new Date(), mode = 'date', minDate, maxDate, onChange, iosDoneText = 'Done' } = _a, others = __rest(_a, ["value", "initialDate", "mode", "minDate", "maxDate", "onChange", "iosDoneText"]);
     initialDate.setSeconds(0);
     const [modalActive, setModalActive] = useState(false);
-    const [date, setDate] = useControllableState({ value, defaultValue: initialDate, onChange }); //useState(initialDate ?? defaultDate);
+    const [date, setDate] = useControllableState(value, initialDate, onChange);
     const { colors } = useTheme();
     const [textColor, setTextColor] = useState('black');
-    const toggleModal = useCallback(() => setModalActive((current) => !current), [setModalActive]);
+    const toggleModal = () => setModalActive((current) => !current);
     const onPickerValueChange = useCallback((_, selectedDate) => {
         const currentDate = selectedDate || date;
         setDate(currentDate);

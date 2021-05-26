@@ -9,19 +9,21 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { useTheme } from '../../context/hooks/useTheme';
 import { Layer } from '../containers/Layer';
 import { BaseTextField } from './BaseTextField';
-export function IconTextField(_a) {
+const IconTextField = forwardRef((_a, ref) => {
     var { leftImage, rightImage, value, placeholder, onChangeText, textFieldProps, inputRef } = _a, others = __rest(_a, ["leftImage", "rightImage", "value", "placeholder", "onChangeText", "textFieldProps", "inputRef"]);
     const { spacings, sizes, colors, borderRadius } = useTheme();
     const paddingLeft = leftImage != null ? spacings.xs : undefined;
     const paddingRight = rightImage != null ? spacings.xs : undefined;
-    return (React.createElement(HorizontalLayer, Object.assign({ paddingLeft: paddingLeft, paddingRight: paddingRight, borderRadius: borderRadius.s, height: sizes.textFieldHeight, backgroundColor: colors.textField, justifyContent: 'space-evenly', alignItems: 'center' }, others),
+    return (React.createElement(HorizontalLayer, Object.assign({ ref: ref, paddingLeft: spacings.xs, paddingRight: spacings.xs, borderRadius: borderRadius.s, height: sizes.textFieldHeight, backgroundColor: colors.textField, justifyContent: 'space-evenly', alignItems: 'center' }, others),
         leftImage != null ? (React.createElement(Layer, { flexShrink: 0, height: sizes.textFieldIconSize, width: sizes.textFieldIconSize }, leftImage(colors.placeholder, sizes.textFieldIconSize))) : null,
         React.createElement(BaseTextField, Object.assign({ ref: inputRef, paddingLeft: paddingLeft, paddingRight: paddingRight, flex: 1, value: value, color: colors.text, placeholderTextColor: colors.placeholder, fontSize: 14, onChangeText: onChangeText, placeholder: placeholder }, textFieldProps)),
         rightImage != null ? (React.createElement(Layer, { flexShrink: 0, height: sizes.textFieldIconSize, width: sizes.textFieldIconSize }, rightImage(colors.placeholder, sizes.textFieldIconSize))) : null));
-}
+});
+IconTextField.displayName = 'IconTextField';
+export { IconTextField };
 //# sourceMappingURL=IconTextField.js.map

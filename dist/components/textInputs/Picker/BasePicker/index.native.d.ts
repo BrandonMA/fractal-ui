@@ -1,3 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 import { BasePickerProps } from './types';
-export declare function BasePicker(props: BasePickerProps): JSX.Element;
+declare const BasePicker: React.ForwardRefExoticComponent<BasePickerProps & React.RefAttributes<unknown>>;
+export { BasePicker };

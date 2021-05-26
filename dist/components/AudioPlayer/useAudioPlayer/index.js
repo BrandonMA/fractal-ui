@@ -7,114 +7,54 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { useState, useRef, useEffect, useCallback } from 'react';
-import { shuffleArray } from './utils/shuffleArray';
+import { useState, useRef, useCallback } from 'react';
+import { useEnableRepeatPlayback } from './hooks/useEnableRepeatPlayback';
+import { useShufflePlaybackController } from './hooks/useShufflePlaybackController';
+import { useCheckIfShouldGoToNextTrack } from './hooks/useCheckIfShouldGoToNextTrack';
+import { useAudioWebEffects } from './hooks/useAudioWebEffects';
+import { usePreviousAndNextControllers } from './hooks/usePreviousAndNextControllers';
 export function useAudioPlayer(tracks, shufflePlayback, repeatPlayback) {
     const [trackIndex, setTrackIndex] = useState(0);
     const [duration, setDuration] = useState(0);
-    const [enableRepeatPlayback, setEnableRepeatPlayback] = useState(repeatPlayback !== null && repeatPlayback !== void 0 ? repeatPlayback : false);
-    const [enableShufflePlayback, setEnableShufflePlayback] = useState(shufflePlayback !== null && shufflePlayback !== void 0 ? shufflePlayback : false);
-    const [playList, setPlayList] = useState(shufflePlayback ? shuffleArray(tracks) : tracks);
     const [currentTime, setCurrentTime] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
+    const { enableRepeatPlayback, toggleRepeatPlayback } = useEnableRepeatPlayback(repeatPlayback);
+    const { enableShufflePlayback, toggleShufflePlayback, playList } = useShufflePlaybackController(tracks, trackIndex, shufflePlayback);
     const currentTrackInfo = playList[trackIndex];
     const { audioSrc } = currentTrackInfo;
     const audioRef = useRef();
-    const isReady = useRef(false);
+    const play = useCallback(() => {
+        if (audioRef.current)
+            audioRef.current.play();
+        setIsPlaying(true);
+    }, []);
+    const pause = useCallback(() => {
+        if (audioRef.current)
+            audioRef.current.pause();
+        setIsPlaying(false);
+    }, []);
+    const handlePlayPause = useCallback(() => {
+        if (isPlaying) {
+            pause();
+        }
+        else {
+            play();
+        }
+    }, [isPlaying, pause, play]);
     const setPositionManually = useCallback((positionMillis) => __awaiter(this, void 0, void 0, function* () {
         if (audioRef.current)
             audioRef.current.currentTime = positionMillis / 1000;
         setCurrentTime(positionMillis);
-    }), []);
-    const toPreviousTrack = useCallback(() => {
-        if (trackIndex - 1 < 0) {
-            setTrackIndex(tracks.length - 1);
-        }
-        else {
-            setTrackIndex(trackIndex - 1);
-        }
-    }, [trackIndex, tracks.length]);
-    const toNextTrack = useCallback(() => {
-        if (trackIndex < tracks.length - 1) {
-            setTrackIndex(trackIndex + 1);
-        }
-        else {
-            setTrackIndex(0);
-        }
-    }, [trackIndex, tracks.length]);
-    const checkIfShouldGoToNextTrack = useCallback(() => {
-        const isLastIndex = trackIndex == tracks.length - 1;
-        if (enableRepeatPlayback) {
-            toNextTrack();
-        }
-        else if (!isLastIndex) {
-            toNextTrack();
-        }
-        else {
-            if (audioRef.current)
-                audioRef.current.currentTime = 0;
-            setCurrentTime(0);
-            setIsPlaying(false);
-        }
-    }, [enableRepeatPlayback, toNextTrack, trackIndex, tracks.length]);
-    useEffect(() => {
-        if (isReady.current) {
-            if (enableShufflePlayback) {
-                setPlayList((currentPlayList) => shuffleArray(currentPlayList));
-            }
-            else {
-                setPlayList(tracks);
-            }
-        }
-    }, [enableShufflePlayback, tracks]);
-    useEffect(() => {
+        if (!isPlaying)
+            play();
+    }), [isPlaying, play]);
+    const { toPreviousTrack, toNextTrack } = usePreviousAndNextControllers(audioRef, trackIndex, tracks.length, setTrackIndex);
+    const resetPosition = useCallback(() => __awaiter(this, void 0, void 0, function* () {
         if (audioRef.current)
-            audioRef.current.pause();
-        audioRef.current = new Audio(audioSrc);
-        const audioCurrentRef = audioRef.current;
-        if (isReady.current) {
-            audioRef.current.play();
-            setIsPlaying(true);
-            setCurrentTime(0);
-        }
-        else {
-            // Set the isReady ref as true for the next pass
-            isReady.current = true;
-        }
-        const onLoadedData = () => {
-            if (audioRef.current) {
-                const { duration } = audioRef.current;
-                if (!isNaN(duration))
-                    setDuration(duration * 1000);
-            }
-        };
-        const onEnded = () => {
-            checkIfShouldGoToNextTrack();
-        };
-        const onTimeUpdate = () => {
-            if (audioRef.current)
-                setCurrentTime(audioRef.current.currentTime * 1000);
-        };
-        audioRef.current.addEventListener('loadeddata', onLoadedData);
-        audioRef.current.addEventListener('ended', onEnded);
-        audioRef.current.addEventListener('timeupdate', onTimeUpdate);
-        return () => {
-            audioCurrentRef === null || audioCurrentRef === void 0 ? void 0 : audioCurrentRef.pause();
-            audioCurrentRef === null || audioCurrentRef === void 0 ? void 0 : audioCurrentRef.removeEventListener('loadeddata', onLoadedData);
-            audioCurrentRef === null || audioCurrentRef === void 0 ? void 0 : audioCurrentRef.removeEventListener('ended', onEnded);
-            audioCurrentRef === null || audioCurrentRef === void 0 ? void 0 : audioCurrentRef.removeEventListener('timeupdate', onTimeUpdate);
-        };
-    }, [audioSrc, checkIfShouldGoToNextTrack, trackIndex]);
-    useEffect(() => {
-        if (isPlaying) {
-            if (audioRef.current)
-                audioRef.current.play();
-        }
-        else {
-            if (audioRef.current)
-                audioRef.current.pause();
-        }
-    }, [isPlaying]);
+            audioRef.current.currentTime = 0;
+    }), []);
+    const checkIfShouldGoToNextTrack = useCheckIfShouldGoToNextTrack(trackIndex, tracks.length, enableRepeatPlayback, toNextTrack, setCurrentTime, setIsPlaying, resetPosition);
+    useAudioWebEffects(audioRef, audioSrc, setIsPlaying, setCurrentTime, setDuration, checkIfShouldGoToNextTrack);
     return {
         currentTrackInfo,
         currentTime,
@@ -122,13 +62,13 @@ export function useAudioPlayer(tracks, shufflePlayback, repeatPlayback) {
         isPlaying,
         enableShufflePlayback,
         enableRepeatPlayback,
-        setIsPlaying,
+        handlePlayPause,
         setPositionManually,
         toNextTrack,
         toPreviousTrack,
         setTrackIndex,
-        setEnableShufflePlayback,
-        setEnableRepeatPlayback
+        toggleShufflePlayback,
+        toggleRepeatPlayback
     };
 }
 //# sourceMappingURL=index.js.map

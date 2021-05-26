@@ -17,7 +17,7 @@ export function DatePicker(_a) {
     var { value, initialDate = new Date(), mode = 'date', minDate, maxDate, onChange } = _a, others = __rest(_a, ["value", "initialDate", "mode", "minDate", "maxDate", "onChange"]);
     initialDate.setSeconds(0);
     const [modalActive, setModalActive] = useState(false);
-    const [date, setDate] = useControllableState({ value, defaultValue: initialDate, onChange });
+    const [date, setDate] = useControllableState(value, initialDate, onChange);
     const toggleModal = useCallback(() => {
         setModalActive((current) => !current);
     }, [setModalActive]);

@@ -6,4 +6,5 @@ export interface ColorPickerProps extends Partial<Omit<LayerProps, 'children'>> 
     defaultValue?: string;
     value?: string;
 }
-export declare const ColorPicker: React.ForwardRefExoticComponent<ColorPickerProps & React.RefAttributes<unknown>>;
+declare const ColorPicker: React.ForwardRefExoticComponent<ColorPickerProps & React.RefAttributes<unknown>>;
+export { ColorPicker };

@@ -1,3 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 import { BlurredModalProps } from './types';
-export declare function BlurrediOSModal({ children, onDismiss, dismissText, visible, ...others }: BlurredModalProps): JSX.Element;
+declare const BlurrediOSModal: React.ForwardRefExoticComponent<BlurredModalProps & React.RefAttributes<unknown>>;
+export { BlurrediOSModal };

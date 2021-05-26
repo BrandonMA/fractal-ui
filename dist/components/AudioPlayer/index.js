@@ -31,24 +31,16 @@ import { getAudioPlayerAccessibilityProps } from './accessibility/getAudioPlayer
 export function AudioPlayer(_a) {
     var { tracks } = _a, layerProps = __rest(_a, ["tracks"]);
     const { spacings, borderRadius, colors } = useTheme();
-    const { currentTrackInfo, currentTime, duration, isPlaying, enableShufflePlayback, enableRepeatPlayback, setIsPlaying, setPositionManually, toNextTrack, toPreviousTrack, setEnableShufflePlayback, setEnableRepeatPlayback } = useAudioPlayer(tracks);
+    const { currentTrackInfo, currentTime, duration, isPlaying, enableShufflePlayback, enableRepeatPlayback, handlePlayPause, setPositionManually, toNextTrack, toPreviousTrack, toggleShufflePlayback, toggleRepeatPlayback } = useAudioPlayer(tracks);
     const { title, image } = currentTrackInfo;
     const handleUpdateTime = useCallback((positionMillis) => __awaiter(this, void 0, void 0, function* () {
         yield setPositionManually(positionMillis);
-        if (!isPlaying) {
-            setIsPlaying(true);
-        }
-    }), [isPlaying, setIsPlaying, setPositionManually]);
-    const handlePlayPause = useCallback(() => {
-        setIsPlaying((prevValue) => !prevValue);
-    }, [setIsPlaying]);
-    const handleShuffle = useCallback(() => setEnableShufflePlayback((currentValue) => !currentValue), [setEnableShufflePlayback]);
-    const handleRepeat = useCallback(() => setEnableRepeatPlayback((currentValue) => !currentValue), [setEnableRepeatPlayback]);
+    }), [setPositionManually]);
     return (React.createElement(Box, Object.assign({ flexDirection: 'row', padding: spacings.s }, layerProps, getAudioPlayerAccessibilityProps()),
         React.createElement(Image, { source: image, width: 103, height: 103, resizeMode: 'cover', borderRadius: borderRadius.m, label: 'Song Image' }),
         React.createElement(Layer, { flex: 1, marginLeft: spacings.s },
             React.createElement(Text, { variant: 'button', color: colors.text }, title),
             React.createElement(AudioProgressBar, { isPlaying: isPlaying, duration: duration, currentTime: currentTime, onTimeUpdate: handleUpdateTime }),
-            React.createElement(AudioControls, { isEnableShuffle: enableShufflePlayback, isEnableRepeat: enableRepeatPlayback, isPlaying: isPlaying, onPlayPausePress: handlePlayPause, onNextPress: toNextTrack, onPreviousPress: toPreviousTrack, onShufflePress: handleShuffle, onRepeatPress: handleRepeat }))));
+            React.createElement(AudioControls, { isEnableShuffle: enableShufflePlayback, isEnableRepeat: enableRepeatPlayback, isPlaying: isPlaying, onPlayPausePress: handlePlayPause, onNextPress: toNextTrack, onPreviousPress: toPreviousTrack, onShufflePress: toggleShufflePlayback, onRepeatPress: toggleRepeatPlayback }))));
 }
 //# sourceMappingURL=index.js.map

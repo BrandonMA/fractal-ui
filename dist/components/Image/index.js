@@ -10,9 +10,9 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React, { forwardRef, useCallback } from 'react';
-import { getImageAccessibilityProps } from './accessibility/getImageAccessibilityProps';
 import { ResizableImage } from './ResizableImage';
 import { Layer } from '../containers/Layer';
+import { getImageAccessibilityProps } from './accessibility/getImageAccessibilityProps';
 const Image = forwardRef((_a, ref) => {
     var { label, source, resizeMode, width, height } = _a, others = __rest(_a, ["label", "source", "resizeMode", "width", "height"]);
     const getBackgroundSize = useCallback(() => {

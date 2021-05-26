@@ -12,15 +12,15 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { useCallback } from 'react';
 import { useTheme } from '../../../context/hooks/useTheme';
 import { HorizontalLayer } from '../../containers/HorizontalLayer';
-import { useControllableState } from '../../Slider/utils/useControllableState';
 import { Picker } from '../Picker';
-import { numberToArray } from '../util/numberToArray';
+import { numberToArray } from '../utils/numberToArray';
 import { normalizeHourValues } from './util/normalizeHourValues';
+import { useControllableState } from '../../../hooks/useControllableState';
 export function TimePicker(_a) {
     var { value, onChange, initialDate = new Date() } = _a, others = __rest(_a, ["value", "onChange", "initialDate"]);
     initialDate.setSeconds(0);
     const { spacings } = useTheme();
-    const [date, setDate] = useControllableState({ value, defaultValue: initialDate, onChange }); //useState(initialDate);
+    const [date, setDate] = useControllableState(value, initialDate, onChange);
     const hours = normalizeHourValues(numberToArray(24));
     const minutes = normalizeHourValues(numberToArray(59, true));
     const onHoursChange = useCallback((pair) => {

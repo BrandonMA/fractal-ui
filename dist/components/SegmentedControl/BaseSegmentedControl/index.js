@@ -25,7 +25,7 @@ const Container = styled(motion.ol) `
     ${extractShadowProps};
     ${extractWebProps};
 `;
-export const BaseSegmentedControl = forwardRef((_a, ref) => {
+const BaseSegmentedControl = forwardRef((_a, ref) => {
     var { selectedIndex, values, tintColor, backgroundColor, textStyle, activeTextStyle, onTabPress } = _a, layerProps = __rest(_a, ["selectedIndex", "values", "tintColor", "backgroundColor", "textStyle", "activeTextStyle", "onTabPress"]);
     const { colors, borderRadius, sizes } = useTheme();
     return (React.createElement(AnimateSharedLayout, null,
@@ -38,4 +38,6 @@ export const BaseSegmentedControl = forwardRef((_a, ref) => {
                 } }));
         }))));
 });
+BaseSegmentedControl.displayName = 'BaseSegmentedControl';
+export { BaseSegmentedControl };
 //# sourceMappingURL=index.js.map

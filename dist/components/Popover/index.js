@@ -9,27 +9,21 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useEffect, useState } from 'react';
+import React, { forwardRef, useRef } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { Layer } from '../containers';
-import { styleVariants } from './styleVariants';
-const styles = {
-    width: '100%',
-    zIndex: 2000
-};
-export function Popover(props) {
-    const { active, popoverChildren, popoverContainerProps } = props, others = __rest(props, ["active", "popoverChildren", "popoverContainerProps"]);
-    const mainViewLayout = { x: 0, y: 0, height: 0, width: 0 };
-    const [layerVariant, setLayerVariant] = useState('initial');
-    useEffect(() => {
-        if (active) {
-            setLayerVariant('visible');
-        }
-        else {
-            setLayerVariant('initial');
-        }
-    }, [active]);
-    return (React.createElement(Layer, { position: 'relative', display: 'inline-block' },
-        React.createElement(Layer, Object.assign({}, others)),
-        React.createElement(Layer, Object.assign({ initial: 'initial', animate: layerVariant, variants: styleVariants, position: 'absolute', style: styles }, popoverContainerProps), popoverChildren(mainViewLayout))));
-}
+import { styleVariants } from './utils/styleVariants';
+import { getWebPlacementOffsetStyle } from './utils/getWebPlacementOffsetStyle';
+import { OutsideClickListener } from './OutsideClickListener';
+const Popover = forwardRef((_a, ref) => {
+    var { active, placement = 'bottom', popoverChildren, popoverContainerProps, onRequestClose } = _a, others = __rest(_a, ["active", "placement", "popoverChildren", "popoverContainerProps", "onRequestClose"]);
+    const anchorElementRef = useRef();
+    const placementOffsetStyle = getWebPlacementOffsetStyle(anchorElementRef, placement);
+    return (React.createElement(OutsideClickListener, { onOutsideClick: onRequestClose },
+        React.createElement(Layer, { ref: ref, position: 'relative', display: 'inline-block' },
+            React.createElement(Layer, Object.assign({ ref: anchorElementRef }, others)),
+            React.createElement(AnimatePresence, null, active ? (React.createElement(Layer, Object.assign({ initial: styleVariants.initial, animate: styleVariants.visible, exit: styleVariants.initial, position: 'absolute', minWidth: 200, zIndex: 2000, style: placementOffsetStyle }, popoverContainerProps), popoverChildren())) : null))));
+});
+Popover.displayName = 'Popover';
+export { Popover };
 //# sourceMappingURL=index.js.map

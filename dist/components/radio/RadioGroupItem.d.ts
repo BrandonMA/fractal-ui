@@ -7,5 +7,5 @@ interface RadioGroupItemProps {
     active: boolean;
     handleChange: (value: string) => void;
 }
-export declare const RadioGroupItem: React.MemoExoticComponent<({ item, isLastItem, flexDirection, active, handleChange }: RadioGroupItemProps) => JSX.Element>;
-export {};
+declare const RadioGroupItem: React.MemoExoticComponent<({ item, isLastItem, flexDirection, active, handleChange }: RadioGroupItemProps) => JSX.Element>;
+export { RadioGroupItem };

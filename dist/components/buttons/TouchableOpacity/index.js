@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef, useState, useCallback } from 'react';
+import React, { forwardRef, useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
@@ -39,10 +39,10 @@ const TouchableOpacity = forwardRef((_a, ref) => {
     const [pressed, setPressed] = useState(false);
     const tapStyles = Object.assign({ opacity: 0.4 }, whileTap);
     const longPressEvent = useLongPress(onLongPress);
-    const handleButtonPress = useCallback(() => {
+    const handleButtonPress = () => {
         setPressed(true);
         onPress === null || onPress === void 0 ? void 0 : onPress();
-    }, [onPress]);
+    };
     return (React.createElement(StyledTouchableOpacity, Object.assign({ ref: ref, transition: transition, whileTap: tapStyles, onClick: handleButtonPress }, longPressEvent, getButtonAccessibilityProps(pressed), others)));
 });
 TouchableOpacity.displayName = 'TouchableOpacity';

@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef, useState, useCallback } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { useTheme } from '../../context/hooks/useTheme';
 import { ActivityIndicator } from '../ActivityIndicator';
 import { BaseButton } from '../buttons/BaseButton';
@@ -18,10 +18,10 @@ const BaseMediaButton = forwardRef((_a, ref) => {
     var { loading, children, activityIndicatorColor = 'white', onPress } = _a, others = __rest(_a, ["loading", "children", "activityIndicatorColor", "onPress"]);
     const { sizes, borderRadius, shadows } = useTheme();
     const [pressed, setPressed] = useState(false);
-    const handleButtonPress = useCallback(() => {
+    const handleButtonPress = () => {
         setPressed(true);
         onPress === null || onPress === void 0 ? void 0 : onPress();
-    }, [onPress]);
+    };
     return (React.createElement(BaseButton, Object.assign({ ref: ref, height: sizes.interactiveItemHeight, width: '100%', borderRadius: borderRadius.m, boxShadow: shadows.mainShadow, justifyContent: 'center', alignItems: 'center', onPress: handleButtonPress }, getButtonAccessibilityProps(pressed), others), !loading ? children : React.createElement(ActivityIndicator, { height: 24, width: 24, color: activityIndicatorColor })));
 });
 BaseMediaButton.displayName = 'BaseMediaButton';

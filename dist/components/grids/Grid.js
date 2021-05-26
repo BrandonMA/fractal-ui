@@ -9,20 +9,20 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { Children, forwardRef, useCallback } from 'react';
+import React, { Children, forwardRef } from 'react';
 import { Layer } from '../containers/Layer';
 import { GridRow } from './GridRow';
 import { getGridAccessibilityProps } from './accessibility/getGridAccessibilityProps';
 const Grid = forwardRef((_a, ref) => {
     var { children } = _a, others = __rest(_a, ["children"]);
-    const isRow = useCallback(() => {
+    const isRow = () => {
         let row = false;
         Children.forEach(children, (child) => {
             if (child && child.type == GridRow)
                 row = true;
         });
         return row;
-    }, [children]);
+    };
     return (React.createElement(Layer, Object.assign({ ref: ref, flex: 1, flexDirection: isRow() ? 'column' : 'row' }, others, getGridAccessibilityProps()), children));
 });
 Grid.displayName = 'Grid';

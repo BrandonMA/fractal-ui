@@ -12,9 +12,11 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { forwardRef } from 'react';
 import { Layer } from '../../containers/Layer';
 import { BaseRadioButton } from './BaseRadioButton';
-export const RadioButton = forwardRef((_a, ref) => {
+const RadioButton = forwardRef((_a, ref) => {
     var { label, onPress, active, value } = _a, layerProps = __rest(_a, ["label", "onPress", "active", "value"]);
     return (React.createElement(Layer, Object.assign({ ref: ref }, layerProps),
         React.createElement(BaseRadioButton, { value: value, active: active, onPress: onPress, label: label })));
 });
+RadioButton.displayName = 'RadioButton';
+export { RadioButton };
 //# sourceMappingURL=index.js.map

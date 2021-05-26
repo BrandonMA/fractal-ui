@@ -1,3 +1,10 @@
-/// <reference types="react" />
-import { IconTextFieldProps } from './IconTextField';
-export declare function SearchBar(props: IconTextFieldProps): JSX.Element;
+import React from 'react';
+import { ButtonVariant } from '../buttons';
+import { TextFieldProps } from './BaseTextField/types';
+export interface SearchBarProps extends TextFieldProps {
+    onSearch: (query: string) => void;
+    addEventBasedSearch?: boolean;
+    buttonVariant?: ButtonVariant;
+}
+declare const SearchBar: React.ForwardRefExoticComponent<SearchBarProps & React.RefAttributes<unknown>>;
+export { SearchBar };

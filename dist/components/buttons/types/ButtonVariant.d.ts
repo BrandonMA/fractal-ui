@@ -1,1 +1,1 @@
-export declare type ButtonVariant = 'main' | 'alternative' | 'danger' | 'warning' | 'success';
+export declare type ButtonVariant = 'main' | 'alternative' | 'danger' | 'warning' | 'success' | 'content';

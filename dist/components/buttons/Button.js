@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef, useState, useCallback } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { Text } from '../text';
 import { useTheme } from '../../context/hooks/useTheme';
 import { BaseButton } from './BaseButton';
@@ -22,13 +22,13 @@ const Button = forwardRef((props, ref) => {
     const color = colors[colorName];
     const pressedColorName = `${variant}InteractiveColor600`;
     const pressedColor = colors[pressedColorName];
-    const handleButtonPress = useCallback(() => {
+    const handleButtonPress = () => {
         setPressed(true);
         onPress === null || onPress === void 0 ? void 0 : onPress();
-    }, [onPress]);
-    return (React.createElement(BaseButton, Object.assign({ ref: ref, height: sizes.interactiveItemHeight, width: '100%', backgroundColor: color, pressedBackgroundColor: pressedColor, borderRadius: borderRadius.m, boxShadow: addShadow ? shadows.mainShadow : undefined, justifyContent: 'center', alignItems: 'center', onPress: handleButtonPress }, getButtonAccessibilityProps(pressed), others),
+    };
+    return (React.createElement(BaseButton, Object.assign({ ref: ref, width: '100%', height: sizes.interactiveItemHeight, backgroundColor: color, pressedBackgroundColor: pressedColor, borderRadius: borderRadius.m, boxShadow: addShadow ? shadows.mainShadow : undefined, justifyContent: 'center', alignItems: 'center', onPress: handleButtonPress }, getButtonAccessibilityProps(pressed), others),
         children,
-        text != null ? React.createElement(Text, { variant: 'button' }, text) : null));
+        text != null ? (React.createElement(Text, { variant: 'button', color: variant === 'content' ? colors.text : 'white' }, text)) : null));
 });
 Button.displayName = 'Button';
 export { Button };

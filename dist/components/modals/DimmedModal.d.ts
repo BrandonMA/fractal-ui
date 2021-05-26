@@ -1,3 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 import { ModalProps } from './Modal/types';
-export declare function DimmedModal({ visible, onDismiss, ...others }: ModalProps): JSX.Element;
+declare const DimmedModal: React.ForwardRefExoticComponent<ModalProps & React.RefAttributes<unknown>>;
+export { DimmedModal };

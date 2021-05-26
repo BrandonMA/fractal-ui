@@ -9,12 +9,14 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { DimmedModal } from './DimmedModal';
 import { ModalCell } from './ModalCell';
-export function BottomCellModal(_a) {
+const BottomCellModal = forwardRef((_a, ref) => {
     var { visible, onDismiss } = _a, others = __rest(_a, ["visible", "onDismiss"]);
-    return (React.createElement(DimmedModal, { pointerEvents: 'box-none', visible: visible, onDismiss: onDismiss, height: '100%', width: '100%', justifyContent: 'flex-end', alignItems: 'center' },
+    return (React.createElement(DimmedModal, { ref: ref, pointerEvents: 'box-none', visible: visible, onDismiss: onDismiss, height: '100%', width: '100%', justifyContent: 'flex-end', alignItems: 'center' },
         React.createElement(ModalCell, Object.assign({}, others, { variant: 'bottom' }))));
-}
+});
+BottomCellModal.displayName = 'BottomCellModal';
+export { BottomCellModal };
 //# sourceMappingURL=BottomCellModal.js.map

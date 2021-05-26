@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useCallback } from 'react';
+import React, { useCallback, forwardRef } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { extractTextProps } from '../../../../sharedProps/TextProps';
@@ -29,7 +29,7 @@ const StyledSelect = styled(motion.select) `
     ${extractTextProps};
     ${extractWebProps};
 `;
-export function BasePicker(_a) {
+const BasePicker = forwardRef((_a, ref) => {
     var { onValueChange, enabled, selectedValue } = _a, others = __rest(_a, ["onValueChange", "enabled", "selectedValue"]);
     const handleChange = useCallback((e) => {
         const { selectedIndex, value } = e.target;
@@ -37,6 +37,8 @@ export function BasePicker(_a) {
             onValueChange(value, selectedIndex);
         }
     }, [onValueChange]);
-    return (React.createElement(StyledSelect, Object.assign({ disabled: enabled === false ? true : undefined, onChange: handleChange, value: selectedValue }, getBasePickerAccessibilityProps(), others)));
-}
+    return (React.createElement(StyledSelect, Object.assign({ ref: ref, disabled: enabled === false ? true : undefined, onChange: handleChange, value: selectedValue }, getBasePickerAccessibilityProps(), others)));
+});
+BasePicker.displayName = 'BasePicker';
+export { BasePicker };
 //# sourceMappingURL=index.js.map

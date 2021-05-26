@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Picker } from '@react-native-picker/picker';
 import { extractTextProps } from '../../../../sharedProps/TextProps';
 import styled from 'styled-components/native';
@@ -13,7 +13,9 @@ const StyledPicker = styled(Picker) `
     ${extractBorderProps};
     ${extractTextProps};
 `;
-export function BasePicker(props) {
-    return React.createElement(StyledPicker, Object.assign({}, props));
-}
+const BasePicker = forwardRef((props, ref) => {
+    return React.createElement(StyledPicker, Object.assign({ ref: ref }, props));
+});
+BasePicker.displayName = 'BasePicker';
+export { BasePicker };
 //# sourceMappingURL=index.native.js.map

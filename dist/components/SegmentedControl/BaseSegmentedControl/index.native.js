@@ -9,14 +9,15 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useEffect, forwardRef } from 'react';
-import Reanimated, { withTiming, useSharedValue, useAnimatedStyle, Easing } from 'react-native-reanimated';
+import React, { forwardRef } from 'react';
+import Reanimated from 'react-native-reanimated';
 import styled from 'styled-components/native';
 import { SegmentedControlTab } from '../SegmentControlTap';
 import { SegmentsSeparators } from '../SegmentsSeparators';
 import { Layer } from '../../containers/Layer';
 import { useTheme } from '../../../context/hooks/useTheme';
 import { extractBorderProps, extractShadowProps } from '../../../sharedProps';
+import { useSegmentManager } from './hooks/useSegmentManager';
 const SegmentsContainer = styled.View `
     flex: 1;
     flex-direction: row;
@@ -36,28 +37,11 @@ const Slider = styled(Reanimated.View) `
     ${extractShadowProps};
     ${extractBorderProps};
 `;
-export const BaseSegmentedControl = forwardRef((_a, ref) => {
+const BaseSegmentedControl = forwardRef((_a, ref) => {
     var { selectedIndex, values, tintColor, backgroundColor, textStyle, activeTextStyle, onTabPress } = _a, layerProps = __rest(_a, ["selectedIndex", "values", "tintColor", "backgroundColor", "textStyle", "activeTextStyle", "onTabPress"]);
     const { colors, shadows, borderRadius, sizes } = useTheme();
-    const [segmentWidth, setSegmentWidth] = React.useState(0);
-    const translateX = useSharedValue(0);
-    useEffect(() => {
-        if (translateX && segmentWidth) {
-            translateX.value = withTiming(segmentWidth * selectedIndex, { duration: 300, easing: Easing.out(Easing.quad) });
-        }
-    }, [segmentWidth, selectedIndex, translateX]);
-    const sliderStyle = useAnimatedStyle(() => ({
-        transform: [{ translateX: translateX.value }],
-        width: segmentWidth - 4,
-        backgroundColor: tintColor || colors.foreground
-    }));
-    return (React.createElement(Layer, Object.assign({ ref: ref, overflow: 'hidden', position: 'relative', height: sizes.segmentedControlSize, backgroundColor: backgroundColor !== null && backgroundColor !== void 0 ? backgroundColor : colors.background, borderRadius: borderRadius.s, onLayout: ({ nativeEvent: { layout: { width } } }) => {
-            const newSegmentWidth = values.length ? width / values.length : 0;
-            if (newSegmentWidth !== segmentWidth) {
-                translateX.value = newSegmentWidth * (selectedIndex || 0);
-                setSegmentWidth(newSegmentWidth);
-            }
-        } }, layerProps),
+    const { segmentWidth, handleLayout, sliderStyle } = useSegmentManager(values.length, selectedIndex, tintColor || colors.foreground);
+    return (React.createElement(Layer, Object.assign({ ref: ref, overflow: 'hidden', position: 'relative', height: sizes.segmentedControlSize, backgroundColor: backgroundColor !== null && backgroundColor !== void 0 ? backgroundColor : colors.background, borderRadius: borderRadius.s, onLayout: handleLayout }, layerProps),
         !backgroundColor && !tintColor && React.createElement(SegmentsSeparators, { values: values.length, selectedIndex: selectedIndex }),
         React.createElement(SegmentsContainer, null, values &&
             values.map((value, index) => {
@@ -67,4 +51,6 @@ export const BaseSegmentedControl = forwardRef((_a, ref) => {
             })),
         selectedIndex != null && segmentWidth ? (React.createElement(Slider, { boxShadow: shadows.mainShadow, borderRadius: borderRadius.s, style: sliderStyle })) : null));
 });
+BaseSegmentedControl.displayName = 'BaseSegmentedControl';
+export { BaseSegmentedControl };
 //# sourceMappingURL=index.native.js.map

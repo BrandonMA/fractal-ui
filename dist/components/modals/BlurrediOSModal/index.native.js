@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { BlurView } from 'expo-blur';
 import { TextButton } from '../../buttons/TextButton';
 import { useTheme } from '../../../context/hooks/useTheme';
@@ -23,13 +23,13 @@ import { Dimensions } from 'react-native';
 const StyledBlurView = styled(BlurView) `
     height: 100%;
 `;
-export function BlurrediOSModal(_a) {
+const BlurrediOSModal = forwardRef((_a, ref) => {
     var { children, onDismiss, dismissText, visible } = _a, others = __rest(_a, ["children", "onDismiss", "dismissText", "visible"]);
     const { colors, spacings } = useTheme();
     const themeIdentifier = useThemeIdentifier();
     const window = Dimensions.get('window');
     const modalContentHeight = (window.height * 35) / 100;
-    return (React.createElement(Modal, Object.assign({ visible: visible, onDismiss: onDismiss, pointerEvents: 'box-none', height: '100%', width: '100%', justifyContent: 'flex-end' }, others),
+    return (React.createElement(Modal, Object.assign({ ref: ref, visible: visible, onDismiss: onDismiss, pointerEvents: 'box-none', height: '100%', width: '100%', justifyContent: 'flex-end' }, others),
         React.createElement(Pressable, { flex: 1, onPress: onDismiss }),
         React.createElement(Layer, { height: '35%', transition: { type: 'ease', duration: 350 }, initial: { translateY: modalContentHeight }, animate: { translateY: 0 }, exit: { translateY: modalContentHeight } },
             React.createElement(StyledBlurView, { intensity: 100, tint: themeIdentifier },
@@ -37,5 +37,7 @@ export function BlurrediOSModal(_a) {
                 React.createElement(Layer, { justifyContent: 'center', alignItems: 'flex-end', borderTopWidth: 0.5, borderColor: colors.placeholder, backgroundColor: colors.background, height: 48, paddingRight: spacings.m },
                     React.createElement(TextButton, { variant: 'main', textProps: { variant: 'label', fontWeight: 600 }, onPress: onDismiss }, dismissText)),
                 React.createElement(SafeAreaLayer, { justifyContent: 'center' }, children)))));
-}
+});
+BlurrediOSModal.displayName = 'BlurrediOSModal';
+export { BlurrediOSModal };
 //# sourceMappingURL=index.native.js.map

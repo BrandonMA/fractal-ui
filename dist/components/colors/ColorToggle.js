@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useCallback, useState, forwardRef } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { Pressable } from '../buttons';
 import { Layer } from '../containers';
 import { CheckIcon } from '../../assets/CheckIcon';
@@ -24,12 +24,12 @@ const ColorToggle = forwardRef((_a, ref) => {
     var { onActiveChange, backgroundColor, active } = _a, others = __rest(_a, ["onActiveChange", "backgroundColor", "active"]);
     const [uncontrolledActive, setUncontrolledActive] = useState(!!active);
     const variant = getVariant(active != null ? active : uncontrolledActive);
-    const handleControlledActiveToggle = useCallback(() => {
+    const handleControlledActiveToggle = () => {
         if (onActiveChange) {
             onActiveChange(!active, backgroundColor);
         }
-    }, [onActiveChange, active, backgroundColor]);
-    const handleUncontrolledActiveToggle = useCallback(() => {
+    };
+    const handleUncontrolledActiveToggle = () => {
         setUncontrolledActive((uncontrolledActive) => {
             const newValue = !uncontrolledActive;
             if (onActiveChange != null) {
@@ -37,15 +37,15 @@ const ColorToggle = forwardRef((_a, ref) => {
             }
             return newValue;
         });
-    }, [setUncontrolledActive, onActiveChange, backgroundColor]);
-    const handlePress = useCallback(() => {
+    };
+    const handlePress = () => {
         if (active != null) {
             handleControlledActiveToggle();
         }
         else {
             handleUncontrolledActiveToggle();
         }
-    }, [handleControlledActiveToggle, handleUncontrolledActiveToggle, active]);
+    };
     return (React.createElement(Pressable, Object.assign({ ref: ref, onPress: handlePress, width: 40, height: 40, borderRadius: 20, justifyContent: 'center', alignItems: 'center', backgroundColor: backgroundColor }, others),
         React.createElement(Layer, { initial: variant, animate: variant, variants: styleVariants },
             React.createElement(CheckIcon, { height: 24, width: 24, fill: 'white' }))));

@@ -1,3 +1,5 @@
+export * from './ScrollableTableContent';
 export * from './DetailsRow';
-export * from './DetailsList';
+export * from './ScrollableTableContainer';
+export * from './TableContainer';
 //# sourceMappingURL=index.js.map

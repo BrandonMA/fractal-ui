@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef, useState, useCallback } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { useTheme } from '../../context/hooks/useTheme';
 import { BaseButton } from './BaseButton';
 import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
@@ -20,14 +20,14 @@ const ToggleButton = forwardRef((props, ref) => {
     const backgroundColorName = `${variant}InteractiveColor100`;
     const backgroundColor = active ? colors[backgroundColorName] : colors.background;
     const pressedColorName = `${variant}InteractiveColor200`;
-    const pressedColor = colors[pressedColorName];
+    const pressedColor = active ? colors[pressedColorName] : colors.background;
     const colorName = `${variant}InteractiveColor`;
     const color = active ? colors[colorName] : useGrayVariant ? colors.placeholder : colors.text;
-    const handleButtonPress = useCallback(() => {
+    const handleButtonPress = () => {
         setPressed(true);
         onPress === null || onPress === void 0 ? void 0 : onPress();
-    }, [onPress]);
-    return (React.createElement(BaseButton, Object.assign({ ref: ref, height: sizes.interactiveItemHeight, width: '100%', backgroundColor: backgroundColor, pressedBackgroundColor: pressedColor, borderRadius: borderRadius.m, justifyContent: 'center', alignItems: 'center', onPress: handleButtonPress, variants: {
+    };
+    return (React.createElement(BaseButton, Object.assign({ ref: ref, height: sizes.interactiveItemHeight, width: '100%', pressedBackgroundColor: pressedColor, borderRadius: borderRadius.m, justifyContent: 'center', alignItems: 'center', onPress: handleButtonPress, initial: { backgroundColor }, variants: {
             active: {
                 backgroundColor
             },

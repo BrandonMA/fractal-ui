@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layer } from '../containers/Layer';
 import { Text } from '../text';
 import { Slider } from '../Slider';
@@ -15,16 +15,12 @@ import { formatNumberToTime } from './utils/formatNumberToTime';
 export function AudioProgressBar({ duration, currentTime, isPlaying, onTimeUpdate }) {
     const [trackProgress, setTrackProgress] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
-    const handleSlidingStart = useCallback(() => {
-        setIsDragging(true);
-    }, []);
-    const handleValueChange = useCallback((positionMillis) => {
-        setTrackProgress(positionMillis);
-    }, []);
-    const handleSlidingComplete = useCallback((time) => __awaiter(this, void 0, void 0, function* () {
+    const handleSlidingStart = () => setIsDragging(true);
+    const handleValueChange = (positionMillis) => setTrackProgress(positionMillis);
+    const handleSlidingComplete = (time) => __awaiter(this, void 0, void 0, function* () {
         yield onTimeUpdate(time);
         setIsDragging(false);
-    }), [onTimeUpdate]);
+    });
     useEffect(() => {
         if (isPlaying && !isDragging) {
             setTrackProgress(currentTime);

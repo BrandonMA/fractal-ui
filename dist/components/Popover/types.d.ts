@@ -6,8 +6,11 @@ export interface LayoutRectangle {
     width: number;
     height: number;
 }
+export declare type PlacementType = 'top' | 'right' | 'bottom' | 'left';
 export interface PopoverProps extends LayerProps {
     active: boolean;
-    popoverChildren: (mainViewLayout: LayoutRectangle) => ReactNode;
+    onRequestClose: () => void;
+    placement?: PlacementType;
+    popoverChildren: () => ReactNode;
     popoverContainerProps?: Omit<LayerProps, 'children'>;
 }

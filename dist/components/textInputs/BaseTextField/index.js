@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useCallback, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
@@ -32,11 +32,14 @@ const StyledTextInput = styled(motion.input) `
     ${extractWebProps};
 `;
 const BaseTextField = forwardRef((props, ref) => {
-    const { onChangeText, placeholder } = props, others = __rest(props, ["onChangeText", "placeholder"]);
-    const handleChange = useCallback((event) => {
-        onChangeText && onChangeText(event.target.value);
-    }, [onChangeText]);
-    return (React.createElement(StyledTextInput, Object.assign({ ref: ref, placeholder: placeholder, selectable: true, onChange: handleChange }, others, getTextFieldAccessibilityProps(placeholder))));
+    const { onChangeText, onSubmitEditing, placeholder } = props, others = __rest(props, ["onChangeText", "onSubmitEditing", "placeholder"]);
+    const handleChange = (event) => onChangeText && onChangeText(event.target.value);
+    const handleKeydown = (keyboardEvent) => {
+        if (keyboardEvent.key === 'Enter') {
+            onSubmitEditing === null || onSubmitEditing === void 0 ? void 0 : onSubmitEditing();
+        }
+    };
+    return (React.createElement(StyledTextInput, Object.assign({ ref: ref, placeholder: placeholder, selectable: true, onChange: handleChange, onKeyDown: handleKeydown }, others, getTextFieldAccessibilityProps(placeholder))));
 });
 BaseTextField.displayName = 'BaseTextField';
 export { BaseTextField };

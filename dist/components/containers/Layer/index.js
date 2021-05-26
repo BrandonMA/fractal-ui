@@ -26,8 +26,10 @@ const StyledLayer = styled(motion.div) `
     ${extractShadowProps};
     ${extractWebProps};
 `;
-export const Layer = forwardRef((_a, ref) => {
+const Layer = forwardRef((_a, ref) => {
     var { transition = { type: 'spring' } } = _a, others = __rest(_a, ["transition"]);
     return React.createElement(StyledLayer, Object.assign({ ref: ref, transition: transition }, others));
 });
+Layer.displayName = 'Layer';
+export { Layer };
 //# sourceMappingURL=index.js.map
