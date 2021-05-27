@@ -140,11 +140,10 @@ function Chipfragment(): JSX.Element {
 
     return (
         <Layer flexDirection={'row'} marginTop={spacings.s} marginBottom={spacings.xl}>
-            <Chip marginRight={spacings.s} text={'Grupo A'} />
+            <Chip marginRight={spacings.s} text={'Ver reportes'} />
             <Chip marginRight={spacings.s}>
                 <FileIcon height={24} width={24} fill={colors.text} />
             </Chip>
-            <Chip marginRight={spacings.s} text={'Ver reportes'} />
         </Layer>
     );
 }

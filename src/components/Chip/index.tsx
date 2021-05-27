@@ -16,10 +16,15 @@ const Chip = forwardRef(
                 flexDirection={'row'}
                 alignItems={'center'}
                 justifyContent={'center'}
-                padding={spacings.xs}
+                paddingLeft={spacings.lg}
+                paddingRight={spacings.lg}
                 {...others}
             >
-                {text != null ? <Text variant='normal'>{text}</Text> : null}
+            {text != null ? (
+                <Text variant='normal' overflow={'hidden'} numberOfLines={1}>
+                    {text}
+                </Text>
+            ) : null}
                 {children}
                 <CrossButton marginLeft={spacings.xs} onPress={onCrossButtonPress} />
             </Box>
