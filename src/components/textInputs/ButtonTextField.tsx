@@ -14,7 +14,7 @@ interface ButtonTextFieldProps extends IconTextFieldProps {
 
 const ButtonTextField = forwardRef(
     (
-        { value, image, onChangeText, onPress, buttonVariant = 'main', showButton = false, ...others }: ButtonTextFieldProps,
+        { value, image, onChangeText, onPress, showButton = false, buttonVariant = 'main', ...others }: ButtonTextFieldProps,
         ref: any
     ): JSX.Element => {
         const { colors, sizes, spacings } = useTheme();
@@ -23,12 +23,9 @@ const ButtonTextField = forwardRef(
         const renderIcon = useCallback((color: string, size: number) => image?.(color, size), [image]);
 
         const handleChangeText = (text: string) => {
-            if (!showButton) {
-                onPress(text);
-            }
             setText(text);
         };
-        const handleSend = () => {
+        const handlePress = () => {
             onPress(text);
         };
 
@@ -44,7 +41,7 @@ const ButtonTextField = forwardRef(
                     {...others}
                 />
                 {showButton ? (
-                    <Button variant={buttonVariant} marginLeft={spacings.m} width={sizes.textFieldHeight} onPress={handleSend}>
+                    <Button variant={buttonVariant} marginLeft={spacings.m} width={sizes.textFieldHeight} onPress={handlePress}>
                         {image(colors.white, 24)}
                     </Button>
                 ) : null}
