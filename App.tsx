@@ -1,63 +1,59 @@
 import React, { useState } from 'react';
 import { registerRootComponent } from 'expo';
 import {
-    Background,
-    Button,
-    FractalAppRoot,
-    Text,
-    Box,
-    PaddingLayer,
-    Separator,
-    Layer,
-    ColorPicker,
-    MiddleCellModal,
-    TextField,
-    SearchBar,
-    MessageInput,
-    Picker,
-    DatePicker,
-    TimePicker,
-    ErrorMessage,
-    TableContainer,
-    Popover,
-    Grid,
-    GridList,
-    GridColumn,
-    GridRow,
-    Switch,
-    RadioGroup,
-    CheckBox,
-    SocialMediaButtons,
-    TextButton,
-    Slider,
-    useTheme,
-    ImageBackground,
-    blue,
-    SegmentedControl,
-    Avatar,
-    BlurrediOSModal,
-    Bubble,
-    Image,
     ActivityIndicator,
-    CrossButton,
-    CircularIconButton,
-    Dropzone,
-    DetailsRow,
-    TextFieldMask,
+    Autocomplete,
+    Avatar,
+    Background,
+    blue,
+    BlurrediOSModal,
+    Box,
+    Bubble,
+    Button,
+    CheckBox,
     Chip,
+    ColorPicker,
+    CrossButton,
+    DatePicker,
+    DetailsRow,
+    Dropzone,
+    ErrorMessage,
+    FractalAppRoot,
+    Grid,
+    GridColumn,
+    GridList,
+    GridRow,
     IconTextField,
-    Autocomplete
+    Image,
+    ImageBackground,
+    Layer,
+    MessageInput,
+    MiddleCellModal,
+    PaddingLayer,
+    Picker,
+    Popover,
+    RadioGroup,
+    SearchBar,
+    SegmentedControl,
+    Separator,
+    Slider,
+    SocialMediaButtons,
+    Switch,
+    TableContainer,
+    Text,
+    TextField,
+    TextFieldMask,
+    TimePicker,
+    useTheme
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
-import { BuggyComponent } from './examples/BuggyComponent';
-import { ThemeSwapper } from './examples/ThemeSwapper';
-import { MultiSelectInputExample } from './examples/MultiSelectInputExample';
+import { BuggyComponent } from './documentation/examples/BuggyComponent';
+import { ThemeSwapper } from './documentation/examples/ThemeSwapper';
+import { MultiSelectInputExample } from './documentation/examples/MultiSelectInputExample';
 import { AudioPlayer } from './src/components/AudioPlayer';
-import { FilterIcon } from './src/assets/FilterIcon';
-import { TrashIcon } from './src/assets/TrashIcon';
-import { LoadIcon } from './src/assets/LoadIcon';
 import { FileIcon } from './src/assets/FileIcon';
 import { SearchIcon } from './src/assets/SearchIcon';
+import { ButtonsFragments } from './documentation/fragments/Buttons';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -115,16 +111,6 @@ function SwapThemeFragment(): JSX.Element {
     );
 }
 
-function ButtonContentFragment(): JSX.Element {
-    const { spacings } = useTheme();
-
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <Button variant={'content'} text='Button with content variant' />
-        </Box>
-    );
-}
-
 function DropZoneFragment(): JSX.Element {
     const { spacings } = useTheme();
 
@@ -171,25 +157,7 @@ function ActivityIndicatorFragment(): JSX.Element {
             <ActivityIndicator width={width} height={height} color={colors.successInteractiveColor} marginRight={marginRight} />
             <ActivityIndicator width={width} height={height} color={colors.warningInteractiveColor} marginRight={marginRight} />
             <ActivityIndicator width={width} height={height} color={colors.dangerInteractiveColor} marginRight={marginRight} />
-            <ActivityIndicator width={width} height={height} color={colors.contentInteractiveColor} marginRight={marginRight} />
-        </Box>
-    );
-}
-
-function CircularIconButtonFragment(): JSX.Element {
-    const { colors, spacings } = useTheme();
-
-    return (
-        <Box flexDirection={'row'} marginTop={spacings.s} marginBottom={spacings.xl}>
-            <CircularIconButton variant={'main'} marginRight={spacings.m}>
-                <LoadIcon height={24} width={24} fill={colors.mainInteractiveColor800} />
-            </CircularIconButton>
-            <CircularIconButton variant={'success'} marginRight={spacings.m}>
-                <FilterIcon height={24} width={24} fill={colors.successInteractiveColor800} />
-            </CircularIconButton>
-            <CircularIconButton variant={'danger'} marginRight={spacings.m}>
-                <TrashIcon height={24} width={24} fill={colors.dangerInteractiveColor800} />
-            </CircularIconButton>
+            <ActivityIndicator width={width} height={height} color={colors.text} marginRight={marginRight} />
         </Box>
     );
 }
@@ -354,22 +322,6 @@ function LayerAnimatedFragment(): JSX.Element {
     );
 }
 
-function BoxAnimatedFragment(): JSX.Element {
-    const { spacings } = useTheme();
-
-    return (
-        <Box
-            height={100}
-            width={100}
-            initial={'initial'}
-            animate={'visible'}
-            variants={styleVariants}
-            marginTop={spacings.s}
-            marginBottom={spacings.xl}
-        />
-    );
-}
-
 function TextFragment(): JSX.Element {
     const { colors, spacings } = useTheme();
 
@@ -446,28 +398,6 @@ function SeparatorsFragment(): JSX.Element {
             </Text>
             <Separator marginBottom={spacings.s} />
             <Text variant={'normal'}>Some text.</Text>
-        </Box>
-    );
-}
-
-function TextButtonFragment(): JSX.Element {
-    const { spacings } = useTheme();
-
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <TextButton variant={'main'} marginBottom={spacings.s}>
-                Main
-            </TextButton>
-            <TextButton variant={'alternative'} marginBottom={spacings.s}>
-                Alternative
-            </TextButton>
-            <TextButton variant={'success'} marginBottom={spacings.s}>
-                Success
-            </TextButton>
-            <TextButton variant={'warning'} marginBottom={spacings.s}>
-                Warning
-            </TextButton>
-            <TextButton variant={'danger'}>Danger</TextButton>
         </Box>
     );
 }
@@ -774,8 +704,6 @@ function Content(): JSX.Element {
             <AudioPlayerFragment />
             <Text variant={'title'}>Swap Theme</Text>
             <SwapThemeFragment />
-            <Text variant={'title'}>Button Content Example</Text>
-            <ButtonContentFragment />
             <Text variant={'title'}>Dropzone Example</Text>
             <DropZoneFragment />
             <Text variant={'title'}>Chip Example</Text>
@@ -786,8 +714,6 @@ function Content(): JSX.Element {
             <CrossButtonFragment />
             <Text variant={'title'}>Activity Indicator Example</Text>
             <ActivityIndicatorFragment />
-            <Text variant={'title'}>Circular Icon Button Example</Text>
-            <CircularIconButtonFragment />
             <Text variant={'title'}>Avatar and Image Example</Text>
             <AvatarImageFragment />
             <Text variant={'title'}>ImageBackground Example</Text>
@@ -806,16 +732,13 @@ function Content(): JSX.Element {
             <BubbleFragment />
             <Text variant={'title'}>Layer Animated Example</Text>
             <LayerAnimatedFragment />
-            <Text variant={'title'}>Box Animated Example</Text>
-            <BoxAnimatedFragment />
             <Text variant={'title'}>Text Example</Text>
             <TextFragment />
             <Text variant={'title'}>Box Example</Text>
             <BoxContentFragment />
             <Text variant={'title'}>Separator Example</Text>
             <SeparatorsFragment />
-            <Text variant={'title'}>Text Button Example</Text>
-            <TextButtonFragment />
+            <ButtonsFragments />
             <Text variant={'title'}>Color Picker Example</Text>
             <ColorPickerFragment />
             <TextFieldFragment />

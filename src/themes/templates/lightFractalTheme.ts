@@ -105,7 +105,9 @@ export const sizes: FractalThemeSizes = {
     textFieldHeight: 44,
     checkBoxSize: 20,
     radioButtonSize: 20,
-    segmentedControlSize: 32
+    segmentedControlSize: 32,
+    audioControlToggleButtonSize: 32,
+    audioControlToggleButtonIconSize: 16
 };
 
 export const shadows: FractalThemeShadows = {

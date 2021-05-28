@@ -7,7 +7,7 @@ import { SMALL_ICON_SIZE } from './sizes';
 import { ControlButtonProps } from './types';
 import { getControlToggleButtonAccessibilityProps } from '../accessibility/getControlToggleButtonAccessibilityProps';
 
-export function ControlButton({ onPress, variant }: ControlButtonProps): JSX.Element {
+export function AudioControlButton({ onPress, variant }: ControlButtonProps): JSX.Element {
     const { colors } = useTheme();
     return (
         <BaseButton

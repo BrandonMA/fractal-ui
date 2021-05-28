@@ -5,3 +5,4 @@ export * from './types';
 export * from './TextButton';
 export * from './CrossButton';
 export * from './CircularIconButton';
+export { useButtonColors } from './hooks/useButtonColors';

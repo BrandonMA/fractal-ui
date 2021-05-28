@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { Button, useSetThemeIdentifier } from '../src';
+import { Button, useSetThemeIdentifier } from '../../src';
 
 export function ThemeSwapper(): JSX.Element {
     const setThemeIdentifier = useSetThemeIdentifier();

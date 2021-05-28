@@ -1,37 +1,31 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Button, ButtonProps } from './Button';
 import { useTheme } from '../../context/hooks/useTheme';
 import { getCircularIconButtonAccessibilityProps } from './accessibility/getCircularIconButtonAccessibilityProps';
+import { useCircularButtonColors } from './hooks/useCircularIconButtonColors';
 
-export interface CircularIconButtonProps extends ButtonProps {
-    children: JSX.Element;
-}
+const CircularIconButton = forwardRef((props: ButtonProps, ref: any): JSX.Element => {
+    const { variant, children, reduceColor, ...others } = props;
+    const { sizes } = useTheme();
 
-const CircularIconButton = (props: CircularIconButtonProps): JSX.Element => {
-    const { variant, children, ...others } = props;
-    const { colors, sizes } = useTheme();
-
-    const backgroundColorName = `${variant}InteractiveColor400`;
-    const backgroundColor = colors[backgroundColorName];
-
-    const pressedColorName = `${variant}InteractiveColor`;
-    const pressedColor = colors[pressedColorName];
+    const [backgroundColor, foregroundColor, pressedBackgroundColor] = useCircularButtonColors(variant, reduceColor);
 
     return (
         <Button
+            ref={ref}
             variant={variant}
             backgroundColor={backgroundColor}
-            pressedBackgroundColor={pressedColor}
+            pressedBackgroundColor={pressedBackgroundColor}
             height={sizes.interactiveItemHeight}
             width={sizes.interactiveItemHeight}
             borderRadius={sizes.interactiveItemHeight / 2}
             {...getCircularIconButtonAccessibilityProps()}
             {...others}
         >
-            {children}
+            {typeof children === 'function' ? children?.(foregroundColor) : children}
         </Button>
     );
-};
+});
 
 CircularIconButton.displayName = 'CircularIconButton';
 

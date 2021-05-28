@@ -2,8 +2,8 @@ import React, { memo } from 'react';
 import { Layer } from '../../containers/Layer';
 import { AudioControlsProps } from './types';
 import { PlayPauseToggleButton } from './PlayPauseToggleButton';
-import { ControlButton } from './ControlButton';
-import { ControlToggleButton } from './ControlToggleButton';
+import { AudioControlButton } from './AudioControlButton';
+import { AudioControlToggleButton } from './AudioControlToggleButton';
 
 const AudioControls = memo(
     ({
@@ -19,11 +19,11 @@ const AudioControls = memo(
         return (
             <Layer>
                 <Layer flexDirection='row' alignItems={'center'} justifyContent={'space-between'}>
-                    <ControlToggleButton variant={'shuffle'} active={isEnableShuffle} onPress={onShufflePress} />
-                    <ControlButton variant={'previous'} onPress={onPreviousPress} />
+                    <AudioControlToggleButton variant={'shuffle'} active={isEnableShuffle} onPress={onShufflePress} />
+                    <AudioControlButton variant={'previous'} onPress={onPreviousPress} />
                     <PlayPauseToggleButton active={!isPlaying} onPress={onPlayPausePress} />
-                    <ControlButton variant={'next'} onPress={onNextPress} />
-                    <ControlToggleButton variant={'repeat'} active={isEnableRepeat} onPress={onRepeatPress} />
+                    <AudioControlButton variant={'next'} onPress={onNextPress} />
+                    <AudioControlToggleButton variant={'repeat'} active={isEnableRepeat} onPress={onRepeatPress} />
                 </Layer>
             </Layer>
         );

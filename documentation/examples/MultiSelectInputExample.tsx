@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTheme, Box, MultiSelectInput } from '../src';
+import { useTheme, Box, MultiSelectInput } from '../../src';
 
 interface Tag {
     id: string;

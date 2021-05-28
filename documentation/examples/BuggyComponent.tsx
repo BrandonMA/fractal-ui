@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Button } from '../src';
+import { Button } from '../../src';
 
 export function BuggyComponent(): JSX.Element {
     const [showError, setShowError] = useState(false);
