@@ -30,6 +30,7 @@ export function BaseAutocomplete<T extends IDEnabled>({
         <Layer>
             <TextFieldButton onPress={showModal} value={value} placeholder={placeholder} />
             <AutocompleteModal
+                placeholder={placeholder}
                 visible={modalVisible}
                 hideModal={hideModal}
                 doneText={doneText}

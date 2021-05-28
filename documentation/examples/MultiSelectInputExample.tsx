@@ -45,8 +45,9 @@ export function MultiSelectInputExample(): JSX.Element {
     };
 
     return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
+        <Box marginTop={spacings.s} marginBottom={spacings.xl} maxHeight={320}>
             <MultiSelectInput
+                placeholder={'Escribe y da enter'}
                 options={tags}
                 getOptionLabel={(tag: Tag) => tag.value}
                 onSelect={handleSelect}

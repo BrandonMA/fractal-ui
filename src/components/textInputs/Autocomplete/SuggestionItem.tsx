@@ -18,10 +18,7 @@ export function SuggestionItem({ label, isSelected, isMultiple, onPress }: Sugge
     const { spacings } = useTheme();
     return (
         <TouchableOpacity
-            paddingTop={spacings.xs}
-            paddingBottom={spacings.xs}
-            paddingRight={spacings.m}
-            paddingLeft={spacings.m}
+            padding={spacings.s}
             backgroundColor={isSelected && !isMultiple ? activeBackground : undefined}
             whileHover={{ backgroundColor: activeBackground }}
             onPress={onPress}
