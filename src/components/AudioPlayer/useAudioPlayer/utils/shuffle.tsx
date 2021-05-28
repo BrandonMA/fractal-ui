@@ -12,7 +12,6 @@ export function shuffleArray<T>(initialArray: Array<T>): Array<T> {
 export function shufflePlayList<T>(initialPlayList: Array<T>, currentIndex: number): Array<T> {
     const firstPart = initialPlayList.slice(0, currentIndex + 1);
     const secondPart = initialPlayList.slice(currentIndex + 1);
-    console.log({ initialPlayList, firstPart, secondPart });
     const suffleSecondPart = shuffleArray(secondPart);
     return [...firstPart, ...suffleSecondPart];
 }

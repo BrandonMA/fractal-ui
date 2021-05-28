@@ -27,8 +27,6 @@ export function Autocomplete<T extends IDEnabled>({
     const [selectedOptions, setSelectedOptions] = useControllableState(controllableSelectedOptions, [], handleSelect);
     const selectedOptionsIds = selectedOptions.map((selectedOption) => selectedOption.id);
 
-    console.log({ selectedOptions, selectedOptionsIds });
-
     const handleSearch = (query: string) => {
         const newFilteredOptions = options.filter((option) => {
             const candidate = getOptionLabel(option);
