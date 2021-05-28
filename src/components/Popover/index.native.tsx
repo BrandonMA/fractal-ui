@@ -52,7 +52,7 @@ const Popover = forwardRef(
                         style={styles}
                         {...popoverContainerProps}
                     >
-                        {popoverChildren()}
+                        {popoverChildren(anchorViewLayout.width)}
                     </Layer>
                 </Modal>
             </Layer>

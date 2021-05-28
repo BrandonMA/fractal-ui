@@ -32,8 +32,15 @@ export function BaseAutocomplete<T extends IDEnabled>({
             placement={'bottom'}
             active={suggestionsVisible}
             onRequestClose={hideSuggestions}
-            popoverChildren={() => (
-                <Box padding={0} paddingTop={spacings.xs} paddingBottom={spacings.xs} maxHeight={240} overflow={'scroll'}>
+            popoverChildren={(anchorWidth: number) => (
+                <Box
+                    width={anchorWidth}
+                    padding={0}
+                    paddingTop={spacings.xs}
+                    paddingBottom={spacings.xs}
+                    maxHeight={240}
+                    overflow={'scroll'}
+                >
                     <SuggestionsList
                         multiple={multiple}
                         filteredData={filteredData}
