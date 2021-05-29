@@ -1,6 +1,6 @@
 import React from 'react';
-import { IDEnabled } from '../Autocomplete/types';
-import { Autocomplete } from '../Autocomplete';
+import { IDEnabled } from '../AutoComplete/types';
+import { AutoComplete } from '../AutoComplete';
 import { Button } from '../../buttons/Button';
 import { ChosenItemsList } from './ChosenItemsList';
 import { Layer } from '../../containers';
@@ -32,7 +32,7 @@ export function MultiSelectInput<T extends IDEnabled>({
 }: MultiSelectInputProps<T>): JSX.Element {
     return (
         <Layer>
-            <Autocomplete
+            <AutoComplete
                 value={inputValue}
                 multiple
                 options={options}

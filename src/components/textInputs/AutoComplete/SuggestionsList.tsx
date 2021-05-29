@@ -1,6 +1,8 @@
 import React from 'react';
 import { SuggestionItem } from './SuggestionItem';
 import { IDEnabled, SuggestionsListProps } from './types';
+import { Layer } from '../../containers';
+import { useTheme } from '../../../context';
 
 export function SuggestionsList<T extends IDEnabled>({
     filteredData,
@@ -9,9 +11,10 @@ export function SuggestionsList<T extends IDEnabled>({
     selectedIds,
     multiple
 }: SuggestionsListProps<T>): JSX.Element | null {
+    const { spacings } = useTheme();
     return (
-        <>
-            {filteredData.map((item) => {
+        <Layer padding={spacings.m}>
+            {filteredData.map((item, index) => {
                 const label = getLabel(item);
                 const isSelected = selectedIds.indexOf(item.id) > -1;
 
@@ -26,9 +29,10 @@ export function SuggestionsList<T extends IDEnabled>({
                         isSelected={isSelected}
                         isMultiple={multiple}
                         onPress={handleItemPress}
+                        addSeparator={index !== filteredData.length - 1}
                     />
                 );
             })}
-        </>
+        </Layer>
     );
 }

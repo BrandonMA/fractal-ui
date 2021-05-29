@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useControllableState } from '../../../hooks/useControllableState';
-import { BaseAutocomplete } from './BaseAutocomplete';
-import { AutocompleteProps, IDEnabled } from './types';
+import { BaseAutoComplete } from './BaseAutoComplete';
+import { AutoCompleteProps, IDEnabled } from './types';
 
-export function Autocomplete<T extends IDEnabled>({
+export function AutoComplete<T extends IDEnabled>({
     options,
     getOptionLabel,
     onSelect,
@@ -12,7 +12,7 @@ export function Autocomplete<T extends IDEnabled>({
     onChangeText,
     value,
     ...searchBarProps
-}: AutocompleteProps<T>): JSX.Element {
+}: AutoCompleteProps<T>): JSX.Element {
     const [suggestionsVisible, setSuggestionsVisible] = useState(false);
     const [userInput, setUserInput] = useControllableState(value, '', onChangeText);
     const [filteredOptions, setFilteredOptions] = useState<Array<T>>([]);
@@ -71,7 +71,7 @@ export function Autocomplete<T extends IDEnabled>({
     };
 
     return (
-        <BaseAutocomplete
+        <BaseAutoComplete
             value={userInput}
             onSearch={handleSearch}
             onChangeText={handleChangeText}

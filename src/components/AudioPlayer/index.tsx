@@ -37,10 +37,10 @@ export function AudioPlayer({ tracks, ...layerProps }: AudioPlayerProps): JSX.El
     );
 
     return (
-        <Box flexDirection={'row'} padding={spacings.s} {...layerProps} {...getAudioPlayerAccessibilityProps()}>
-            <Image source={image} width={103} height={103} resizeMode={'cover'} borderRadius={borderRadius.m} label={'Song Image'} />
+        <Box flexDirection={'row'} justifyContent={'center'} padding={spacings.s} {...layerProps} {...getAudioPlayerAccessibilityProps()}>
+            <Image source={image} width={120} height={'100%'} resizeMode={'cover'} borderRadius={borderRadius.m} label={'Song Image'} />
             <Layer flex={1} marginLeft={spacings.s}>
-                <Text variant='button' color={colors.text}>
+                <Text variant='button' color={colors.text} marginBottom={spacings.s}>
                     {title}
                 </Text>
                 <AudioProgressBar isPlaying={isPlaying} duration={duration} currentTime={currentTime} onTimeUpdate={handleUpdateTime} />

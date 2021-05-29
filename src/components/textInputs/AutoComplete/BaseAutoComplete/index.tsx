@@ -4,9 +4,9 @@ import { Box } from '../../../containers/Box';
 import { Popover } from '../../../Popover';
 import { SearchBar } from '../../SearchBar';
 import { SuggestionsList } from '../SuggestionsList';
-import { BaseAutocompleteProps, IDEnabled } from '../types';
+import { BaseAutoCompleteProps, IDEnabled } from '../types';
 
-export function BaseAutocomplete<T extends IDEnabled>({
+export function BaseAutoComplete<T extends IDEnabled>({
     suggestionsVisible,
     hideSuggestions,
     filteredData,
@@ -18,7 +18,7 @@ export function BaseAutocomplete<T extends IDEnabled>({
     onChangeText,
     onSearch,
     ...searchBarProps
-}: BaseAutocompleteProps<T>): JSX.Element {
+}: BaseAutoCompleteProps<T>): JSX.Element {
     const { spacings } = useTheme();
 
     useEffect(() => {
@@ -35,6 +35,7 @@ export function BaseAutocomplete<T extends IDEnabled>({
             popoverChildren={(anchorWidth: number) => (
                 <Box
                     width={anchorWidth}
+                    marginTop={spacings.s}
                     padding={0}
                     paddingTop={spacings.xs}
                     paddingBottom={spacings.xs}

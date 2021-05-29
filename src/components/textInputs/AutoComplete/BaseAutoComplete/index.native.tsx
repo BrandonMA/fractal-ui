@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import { Layer } from '../../../containers/Layer';
 import { TextFieldButton } from '../../TextFieldButton';
-import { BaseAutocompleteProps, IDEnabled } from '../types';
-import { AutocompleteModal } from './AutocompleteModal';
+import { BaseAutoCompleteProps, IDEnabled } from '../types';
+import { AutoCompleteModal } from './AutoCompleteModal';
 
-export function BaseAutocomplete<T extends IDEnabled>({
+export function BaseAutoComplete<T extends IDEnabled>({
     doneText = 'Done',
     filteredData,
     getLabel,
@@ -16,7 +16,7 @@ export function BaseAutocomplete<T extends IDEnabled>({
     onChangeText,
     onSearch,
     ...searchBarProps
-}: BaseAutocompleteProps<T>): JSX.Element {
+}: BaseAutoCompleteProps<T>): JSX.Element {
     const [modalVisible, setModalVisible] = useState(false);
 
     const hideModal = useCallback(() => setModalVisible(false), []);
@@ -29,7 +29,7 @@ export function BaseAutocomplete<T extends IDEnabled>({
     return (
         <Layer>
             <TextFieldButton onPress={showModal} value={value} placeholder={placeholder} />
-            <AutocompleteModal
+            <AutoCompleteModal
                 visible={modalVisible}
                 hideModal={hideModal}
                 doneText={doneText}

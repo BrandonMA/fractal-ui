@@ -6,9 +6,9 @@ import { Box } from '../../../containers/Box';
 import { MiddleCellModal } from '../../../modals/MiddleCellModal';
 import { SearchBar } from '../../SearchBar';
 import { SuggestionsList } from '../SuggestionsList';
-import { AutocompleteModalProps, IDEnabled } from '../types';
+import { AutoCompleteModalProps, IDEnabled } from '../types';
 
-export function AutocompleteModal<T extends IDEnabled>({
+export function AutoCompleteModal<T extends IDEnabled>({
     visible,
     hideModal,
     doneText = 'Done',
@@ -21,7 +21,7 @@ export function AutocompleteModal<T extends IDEnabled>({
     onChangeText,
     onSearch,
     ...searchBarProps
-}: AutocompleteModalProps<T>): JSX.Element {
+}: AutoCompleteModalProps<T>): JSX.Element {
     const searchInputRef = useRef<TextInput>();
 
     useEffect(() => {

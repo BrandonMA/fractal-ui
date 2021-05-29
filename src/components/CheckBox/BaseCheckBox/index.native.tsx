@@ -6,7 +6,7 @@ import { BaseCheckBoxProps } from '../types';
 
 export function BaseCheckBox({ value, onValueChange, label }: BaseCheckBoxProps): JSX.Element {
     const handleValueChange = useCallback((): void => {
-        onValueChange(!value);
+        onValueChange?.(!value);
     }, [value, onValueChange]);
 
     return (

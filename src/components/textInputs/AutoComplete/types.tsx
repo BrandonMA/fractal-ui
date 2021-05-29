@@ -12,7 +12,7 @@ export interface SuggestionsListProps<T> {
     multiple?: boolean;
 }
 
-export interface AutocompleteProps<T> extends Omit<SearchBarProps, 'onSearch'> {
+export interface AutoCompleteProps<T> extends Omit<SearchBarProps, 'onSearch'> {
     options: Array<T>;
     getOptionLabel: (option: T) => string;
     onSelect: (value: T | Array<T>) => void;
@@ -20,14 +20,14 @@ export interface AutocompleteProps<T> extends Omit<SearchBarProps, 'onSearch'> {
     controllableSelectedOptions?: Array<T>;
 }
 
-export interface BaseAutocompleteProps<T> extends Omit<SuggestionsListProps<T>, 'onItemPress'>, SearchBarProps {
+export interface BaseAutoCompleteProps<T> extends Omit<SuggestionsListProps<T>, 'onItemPress'>, SearchBarProps {
     onItemPress: (item: T, isSelected: boolean, keepInput?: boolean) => void;
     suggestionsVisible: boolean;
     hideSuggestions: () => void;
     doneText?: string;
 }
 
-export interface AutocompleteModalProps<T> extends Omit<BaseAutocompleteProps<T>, 'suggestionsVisible'> {
+export interface AutoCompleteModalProps<T> extends Omit<BaseAutoCompleteProps<T>, 'suggestionsVisible'> {
     visible: boolean;
     hideModal: () => void;
 }

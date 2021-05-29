@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { registerRootComponent } from 'expo';
 import {
     ActivityIndicator,
-    Autocomplete,
+    AutoComplete,
     Avatar,
     Background,
     blue,
@@ -515,7 +515,7 @@ function AutocompleteFragment(): JSX.Element {
 
     return (
         <Box marginTop={spacings.m} marginBottom={spacings.m}>
-            <Autocomplete
+            <AutoComplete
                 placeholder={'Escribe aquí'}
                 options={top20Films}
                 getOptionLabel={(option) => option.title}
