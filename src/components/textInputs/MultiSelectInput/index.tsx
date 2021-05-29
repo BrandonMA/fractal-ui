@@ -2,8 +2,8 @@ import React from 'react';
 import { IDEnabled } from '../AutoComplete/types';
 import { AutoComplete } from '../AutoComplete';
 import { Button } from '../../buttons/Button';
-import { ChosenItemsList } from './ChosenItemsList';
 import { Layer } from '../../containers';
+import { ChipList } from '../../ChipList';
 
 interface MultiSelectInputProps<T> {
     options: Array<T>;
@@ -16,6 +16,7 @@ interface MultiSelectInputProps<T> {
     controllableSelectedOptions: Array<T>;
     onChangeText: (text: string) => void;
     onSubmitEditing: () => void;
+    placeholder?: string;
 }
 
 export function MultiSelectInput<T extends IDEnabled>({
@@ -28,7 +29,8 @@ export function MultiSelectInput<T extends IDEnabled>({
     inputValue,
     controllableSelectedOptions,
     onChangeText,
-    onSubmitEditing
+    onSubmitEditing,
+    placeholder
 }: MultiSelectInputProps<T>): JSX.Element {
     return (
         <Layer>
@@ -37,13 +39,13 @@ export function MultiSelectInput<T extends IDEnabled>({
                 multiple
                 options={options}
                 getOptionLabel={getOptionLabel}
-                placeholder='Buscar'
+                placeholder={placeholder}
                 onSelect={onSelect}
                 controllableSelectedOptions={controllableSelectedOptions}
                 onChangeText={onChangeText}
                 onSubmitEditing={onSubmitEditing}
             />
-            <ChosenItemsList data={controllableSelectedOptions} getLabel={getOptionLabel} onItemPress={onDeletePress} />
+            <ChipList data={controllableSelectedOptions} getLabel={getOptionLabel} onItemPress={onDeletePress} />
             <Button variant={'warning'} onPress={onClearPress} text={clearButtonText} />
         </Layer>
     );
