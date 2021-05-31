@@ -16,8 +16,10 @@ import { useControllableState } from '../../hooks/useControllableState';
 import { Button } from '../buttons';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { TextField } from './TextField';
+import { getSearchBarAccessibilityProps } from './accessibility/getSearchBarAccessibilityProps';
+import { getButtonSearchBarAccessibilityProps } from './accessibility/getButtonSearchBarAccessibilityProps';
 const SearchBar = forwardRef((_a, ref) => {
-    var { value, onChangeText, onSearch, addEventBasedSearch = false, buttonVariant = 'main' } = _a, others = __rest(_a, ["value", "onChangeText", "onSearch", "addEventBasedSearch", "buttonVariant"]);
+    var { inputRef, value, onChangeText, onSearch, addEventBasedSearch = false, buttonVariant = 'main' } = _a, others = __rest(_a, ["inputRef", "value", "onChangeText", "onSearch", "addEventBasedSearch", "buttonVariant"]);
     const { sizes, spacings } = useTheme();
     const [query, setQuery] = useControllableState(value, '', onChangeText);
     const renderSearchIcon = useCallback((color, size) => React.createElement(SearchIcon, { height: size, width: size, fill: color }), []);
@@ -30,9 +32,9 @@ const SearchBar = forwardRef((_a, ref) => {
     const handleSearch = () => {
         onSearch(query);
     };
-    return (React.createElement(HorizontalLayer, { width: '100%', alignItems: 'center', height: sizes.textFieldHeight },
-        React.createElement(TextField, Object.assign({ ref: ref, value: query, onChangeText: handleChangeText, onSubmitEditing: addEventBasedSearch ? handleSearch : undefined }, others, { flex: 1 })),
-        addEventBasedSearch ? (React.createElement(Button, { variant: buttonVariant, marginLeft: spacings.m, width: sizes.textFieldHeight, onPress: handleSearch }, renderSearchIcon('white', 24))) : null));
+    return (React.createElement(HorizontalLayer, { ref: ref, width: '100%', alignItems: 'center', height: sizes.textFieldHeight },
+        React.createElement(TextField, Object.assign({ ref: inputRef, flex: 1, value: query, onChangeText: handleChangeText, onSubmitEditing: addEventBasedSearch ? handleSearch : undefined }, getSearchBarAccessibilityProps(), others)),
+        addEventBasedSearch ? (React.createElement(Button, Object.assign({ variant: buttonVariant, marginLeft: spacings.m, width: sizes.textFieldHeight, onPress: handleSearch }, getButtonSearchBarAccessibilityProps()), renderSearchIcon('white', 24))) : null));
 });
 SearchBar.displayName = 'SearchBar';
 export { SearchBar };

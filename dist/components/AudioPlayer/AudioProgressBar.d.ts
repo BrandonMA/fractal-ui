@@ -1,4 +1,3 @@
-/// <reference types="react" />
 interface AudioProgressBarProps {
     duration: number;
     currentTime: number;

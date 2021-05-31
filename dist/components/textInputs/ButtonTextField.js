@@ -15,23 +15,22 @@ import { useControllableState } from '../../hooks/useControllableState';
 import { Button } from '../buttons';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { IconTextField } from './IconTextField';
+import { getMessageInputAccessibilityProps } from './accessibility/getMessageInputAccessibilityProps';
+import { getButtonMessageInputAccessibilityProps } from './accessibility/getButtonMessageInputAccessibilityProps';
 const ButtonTextField = forwardRef((_a, ref) => {
-    var { value, image, onChangeText, onPress, buttonVariant = 'main', showButton = false } = _a, others = __rest(_a, ["value", "image", "onChangeText", "onPress", "buttonVariant", "showButton"]);
+    var { value, image, onChangeText, onPress, showButton = false, buttonVariant = 'main' } = _a, others = __rest(_a, ["value", "image", "onChangeText", "onPress", "showButton", "buttonVariant"]);
     const { colors, sizes, spacings } = useTheme();
     const [text, setText] = useControllableState(value, '', onChangeText);
     const renderIcon = useCallback((color, size) => image === null || image === void 0 ? void 0 : image(color, size), [image]);
     const handleChangeText = (text) => {
-        if (!showButton) {
-            onPress(text);
-        }
         setText(text);
     };
-    const handleSend = () => {
+    const handlePress = () => {
         onPress(text);
     };
     return (React.createElement(HorizontalLayer, { width: '100%', alignItems: 'center', height: sizes.textFieldHeight },
-        React.createElement(IconTextField, Object.assign({ ref: ref, flex: 1, value: text, paddingLeft: spacings.xs, onChangeText: handleChangeText, leftImage: showButton ? undefined : renderIcon }, others)),
-        showButton ? (React.createElement(Button, { variant: buttonVariant, marginLeft: spacings.m, width: sizes.textFieldHeight, onPress: handleSend }, image === null || image === void 0 ? void 0 : image(colors.white, 24))) : null));
+        React.createElement(IconTextField, Object.assign({ ref: ref, flex: 1, value: text, paddingLeft: spacings.xs, onChangeText: handleChangeText, leftImage: showButton ? undefined : renderIcon }, getMessageInputAccessibilityProps(), others)),
+        showButton ? (React.createElement(Button, Object.assign({ variant: buttonVariant, marginLeft: spacings.m, width: sizes.textFieldHeight, onPress: handlePress }, getButtonMessageInputAccessibilityProps()), image(colors.white, 24))) : null));
 });
 ButtonTextField.displayName = 'ButtonTextField';
 export { ButtonTextField };

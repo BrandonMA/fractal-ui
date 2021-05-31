@@ -27,7 +27,7 @@ export function DatePicker(_a) {
         setDate(currentDate);
     }, [date, setDate, toggleModal]);
     return (React.createElement(React.Fragment, null,
-        React.createElement(PickerButton, Object.assign({ onPress: toggleModal }, others), mode === 'date' ? date.toLocaleDateString() : date.toLocaleTimeString()),
+        React.createElement(PickerButton, Object.assign({ value: mode === 'date' ? date.toLocaleDateString() : date.toLocaleTimeString(), onPress: toggleModal }, others)),
         modalActive ? (React.createElement(DateTimePicker, { value: date, mode: mode, is24Hour: true, minimumDate: minDate, maximumDate: maxDate, onChange: onPickerValueChange })) : null));
 }
 //# sourceMappingURL=index.android.js.map

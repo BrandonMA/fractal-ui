@@ -9,19 +9,17 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Button } from './Button';
 import { useTheme } from '../../context/hooks/useTheme';
 import { getCircularIconButtonAccessibilityProps } from './accessibility/getCircularIconButtonAccessibilityProps';
-const CircularIconButton = (props) => {
-    const { variant, children } = props, others = __rest(props, ["variant", "children"]);
-    const { colors, sizes } = useTheme();
-    const backgroundColorName = `${variant}InteractiveColor400`;
-    const backgroundColor = colors[backgroundColorName];
-    const pressedColorName = `${variant}InteractiveColor`;
-    const pressedColor = colors[pressedColorName];
-    return (React.createElement(Button, Object.assign({ variant: variant, backgroundColor: backgroundColor, pressedBackgroundColor: pressedColor, height: sizes.interactiveItemHeight, width: sizes.interactiveItemHeight, borderRadius: sizes.interactiveItemHeight / 2 }, getCircularIconButtonAccessibilityProps(), others), children));
-};
+import { useCircularButtonColors } from './hooks/useCircularIconButtonColors';
+const CircularIconButton = forwardRef((props, ref) => {
+    const { variant, children, reduceColor } = props, others = __rest(props, ["variant", "children", "reduceColor"]);
+    const { sizes } = useTheme();
+    const [backgroundColor, foregroundColor, pressedBackgroundColor] = useCircularButtonColors(variant, reduceColor);
+    return (React.createElement(Button, Object.assign({ ref: ref, variant: variant, backgroundColor: backgroundColor, pressedBackgroundColor: pressedBackgroundColor, height: sizes.interactiveItemHeight, width: sizes.interactiveItemHeight, borderRadius: sizes.interactiveItemHeight / 2 }, getCircularIconButtonAccessibilityProps(), others), typeof children === 'function' ? children === null || children === void 0 ? void 0 : children(foregroundColor) : children));
+});
 CircularIconButton.displayName = 'CircularIconButton';
 export { CircularIconButton };
 //# sourceMappingURL=CircularIconButton.js.map

@@ -1,10 +1,4 @@
-/// <reference types="react" />
+import React from 'react';
 import { ButtonProps } from './Button';
-export interface CircularIconButtonProps extends ButtonProps {
-    children: JSX.Element;
-}
-declare const CircularIconButton: {
-    (props: CircularIconButtonProps): JSX.Element;
-    displayName: string;
-};
+declare const CircularIconButton: React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<unknown>>;
 export { CircularIconButton };

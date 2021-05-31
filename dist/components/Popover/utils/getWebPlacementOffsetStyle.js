@@ -1,39 +1,39 @@
-export function getWebPlacementOffsetStyle(anchorElementRef, placement) {
-    if (anchorElementRef.current) {
-        const offsetHeight = anchorElementRef.current.offsetHeight;
-        const offsetWidth = anchorElementRef.current.offsetWidth;
+import { alignWebPopoverIfRequired } from './alignWebPopoverIfRequired';
+export function getWebPlacementOffsetStyle(anchorRef, popoverRef, placement) {
+    let style = {};
+    if (anchorRef.current && popoverRef.current) {
+        const offsetHeight = anchorRef.current.offsetHeight;
+        const offsetWidth = anchorRef.current.offsetWidth;
         if (placement == 'bottom') {
-            return {
+            style = {
                 right: offsetWidth / 2,
                 top: offsetHeight,
-                transform: 'translateX(50%)',
-                width: offsetWidth
+                transform: 'translateX(50%)'
             };
         }
         if (placement === 'top') {
-            return {
+            style = {
                 right: offsetWidth / 2,
                 bottom: offsetHeight,
-                transform: 'translateX(50%)',
-                width: offsetWidth
+                transform: 'translateX(50%)'
             };
         }
         if (placement === 'left') {
-            return {
+            style = {
                 right: offsetWidth,
                 bottom: offsetHeight / 2,
-                transform: 'translateY(50%)',
-                width: offsetWidth
+                transform: 'translateY(50%)'
             };
         }
         if (placement == 'right') {
-            return {
+            style = {
                 left: offsetWidth,
                 bottom: offsetHeight / 2,
-                transform: 'translateY(50%)',
-                width: offsetWidth
+                transform: 'translateY(50%)'
             };
         }
+        style = alignWebPopoverIfRequired(style, anchorRef.current, popoverRef.current);
+        return style;
     }
     return undefined;
 }

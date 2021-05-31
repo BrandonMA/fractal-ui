@@ -19,7 +19,7 @@ import { extractDisplayProps } from '../../../sharedProps/DisplayProps';
 import { extractTextProps } from '../../../sharedProps/TextProps';
 import { extractWebProps } from '../../../sharedProps/WebProps';
 import { extractPlaceholder } from '../../../sharedProps/PlaceholderProps';
-import { getTextFieldAccessibilityProps } from '../accessibility/getTextInputccessibilityProps';
+import { getBaseTextFieldAccessibilityProps } from '../accessibility/getBaseTextFieldAccessibilityProps';
 const StyledTextInput = styled(motion.input) `
     outline: none;
     border-width: 0px;
@@ -39,7 +39,7 @@ const BaseTextField = forwardRef((props, ref) => {
             onSubmitEditing === null || onSubmitEditing === void 0 ? void 0 : onSubmitEditing();
         }
     };
-    return (React.createElement(StyledTextInput, Object.assign({ ref: ref, placeholder: placeholder, selectable: true, onChange: handleChange, onKeyDown: handleKeydown }, others, getTextFieldAccessibilityProps(placeholder))));
+    return (React.createElement(StyledTextInput, Object.assign({ ref: ref, placeholder: placeholder, selectable: true, onChange: handleChange, onKeyDown: handleKeydown }, getBaseTextFieldAccessibilityProps(placeholder), others)));
 });
 BaseTextField.displayName = 'BaseTextField';
 export { BaseTextField };

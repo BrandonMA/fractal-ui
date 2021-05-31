@@ -4,7 +4,8 @@ export interface CheckProps {
     label?: string;
 }
 export interface BaseCheckBoxProps extends CheckProps {
-    onValueChange: (value: boolean) => void;
+    onValueChange?: (value: boolean) => void;
 }
-export interface CheckBoxProps extends BaseCheckBoxProps, Omit<LayerProps, 'children'> {
+export interface CheckBoxProps extends Omit<BaseCheckBoxProps, 'value'>, Omit<LayerProps, 'children'> {
+    value?: boolean;
 }

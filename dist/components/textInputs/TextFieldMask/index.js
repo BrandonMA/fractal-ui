@@ -12,6 +12,7 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { forwardRef, useState } from 'react';
 import { TextField } from '../TextField';
 import { useUpdateValue } from './hooks/useUpdateValue';
+import { getTextFieldMaskAccessibilityProps } from '../accessibility/getTextFieldMaskAccessibilityProps';
 const TextFieldMask = forwardRef((_a, ref) => {
     var { onChangeText, type } = _a, others = __rest(_a, ["onChangeText", "type"]);
     const [value, setValue] = useState('');
@@ -21,7 +22,7 @@ const TextFieldMask = forwardRef((_a, ref) => {
         setValue(maskedText);
         onChangeText === null || onChangeText === void 0 ? void 0 : onChangeText(maskedText, rawText);
     };
-    return React.createElement(TextField, Object.assign({ ref: ref, value: value, onChangeText: handleChangeText }, others));
+    return React.createElement(TextField, Object.assign({ ref: ref, value: value, onChangeText: handleChangeText }, getTextFieldMaskAccessibilityProps(), others));
 });
 TextFieldMask.displayName = 'TextFieldMask';
 export { TextFieldMask };

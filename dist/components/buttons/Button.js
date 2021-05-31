@@ -14,21 +14,19 @@ import { Text } from '../text';
 import { useTheme } from '../../context/hooks/useTheme';
 import { BaseButton } from './BaseButton';
 import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
+import { useButtonColors } from './hooks/useButtonColors';
 const Button = forwardRef((props, ref) => {
-    const { variant, children, text, addShadow, onPress } = props, others = __rest(props, ["variant", "children", "text", "addShadow", "onPress"]);
-    const { borderRadius, colors, sizes, shadows } = useTheme();
+    const { variant, children, text, addShadow, onPress, reduceColor } = props, others = __rest(props, ["variant", "children", "text", "addShadow", "onPress", "reduceColor"]);
+    const { borderRadius, sizes, shadows } = useTheme();
     const [pressed, setPressed] = useState(false);
-    const colorName = `${variant}InteractiveColor`;
-    const color = colors[colorName];
-    const pressedColorName = `${variant}InteractiveColor600`;
-    const pressedColor = colors[pressedColorName];
+    const [backgroundColor, foregroundColor, pressedColor] = useButtonColors(variant, reduceColor);
     const handleButtonPress = () => {
         setPressed(true);
         onPress === null || onPress === void 0 ? void 0 : onPress();
     };
-    return (React.createElement(BaseButton, Object.assign({ ref: ref, width: '100%', height: sizes.interactiveItemHeight, backgroundColor: color, pressedBackgroundColor: pressedColor, borderRadius: borderRadius.m, boxShadow: addShadow ? shadows.mainShadow : undefined, justifyContent: 'center', alignItems: 'center', onPress: handleButtonPress }, getButtonAccessibilityProps(pressed), others),
-        children,
-        text != null ? (React.createElement(Text, { variant: 'button', color: variant === 'content' ? colors.text : 'white' }, text)) : null));
+    return (React.createElement(BaseButton, Object.assign({ ref: ref, width: '100%', height: sizes.interactiveItemHeight, backgroundColor: backgroundColor, pressedBackgroundColor: pressedColor, borderRadius: borderRadius.m, boxShadow: addShadow ? shadows.mainShadow : undefined, justifyContent: 'center', alignItems: 'center', onPress: handleButtonPress }, getButtonAccessibilityProps(pressed), others),
+        typeof children === 'function' ? children === null || children === void 0 ? void 0 : children(foregroundColor) : children,
+        text != null ? (React.createElement(Text, { variant: 'button', color: foregroundColor }, text)) : null));
 });
 Button.displayName = 'Button';
 export { Button };

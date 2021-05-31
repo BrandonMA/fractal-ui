@@ -12,7 +12,9 @@ import { Layer } from '../containers/Layer';
 import { Text } from '../text';
 import { Slider } from '../Slider';
 import { formatNumberToTime } from './utils/formatNumberToTime';
+import { useTheme } from '../../context';
 export function AudioProgressBar({ duration, currentTime, isPlaying, onTimeUpdate }) {
+    const { spacings } = useTheme();
     const [trackProgress, setTrackProgress] = useState(0);
     const [isDragging, setIsDragging] = useState(false);
     const handleSlidingStart = () => setIsDragging(true);
@@ -28,7 +30,7 @@ export function AudioProgressBar({ duration, currentTime, isPlaying, onTimeUpdat
     }, [currentTime, isDragging, isPlaying, trackProgress]);
     return (React.createElement(Layer, null,
         React.createElement(Slider, { value: trackProgress, minimumValue: 0, step: 1, maximumValue: duration, onSlidingStart: handleSlidingStart, onValueChange: handleValueChange, onSlidingComplete: handleSlidingComplete }),
-        React.createElement(Layer, { flexDirection: 'row', justifyContent: 'space-between' },
+        React.createElement(Layer, { flexDirection: 'row', justifyContent: 'space-between', marginTop: spacings.s },
             React.createElement(Text, { variant: 'smallLabel', fontSize: 12 }, `${formatNumberToTime(trackProgress)}`),
             React.createElement(Text, { variant: 'smallLabel', fontSize: 12 }, `${formatNumberToTime(duration)}`))));
 }

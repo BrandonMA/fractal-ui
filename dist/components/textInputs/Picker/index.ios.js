@@ -28,7 +28,7 @@ export function Picker(_a) {
         return React.createElement(PickerItem, { color: colors.text, label: label, value: value, key: value });
     }, [colors.text]);
     return (React.createElement(React.Fragment, null,
-        React.createElement(PickerButton, Object.assign({ onPress: toggleModal }, others), items[index][1]),
+        React.createElement(PickerButton, Object.assign({ value: items[index][1], onPress: toggleModal }, others)),
         React.createElement(BlurrediOSModal, { dismissText: iosDoneText, visible: modalActive, onDismiss: toggleModal },
             React.createElement(BasePicker, { selectedValue: currentValue, onValueChange: handleValueChange }, items.map(renderItem)))));
 }

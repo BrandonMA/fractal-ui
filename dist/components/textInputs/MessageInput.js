@@ -11,12 +11,12 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { forwardRef, useCallback, useState } from 'react';
 import { ButtonTextField } from './ButtonTextField';
-import { Trazado } from '../../assets/TrazadoIcon';
+import { TrazadoIcon } from '../../assets/TrazadoIcon';
 const MessageInput = forwardRef((_a, ref) => {
     var { onSend, onChangeText } = _a, others = __rest(_a, ["onSend", "onChangeText"]);
     const showButton = true;
     const [text, setText] = useState('');
-    const renderIcon = useCallback((color, size) => React.createElement(Trazado, { height: size, width: size, fill: color }), []);
+    const renderIcon = useCallback((color, size) => React.createElement(TrazadoIcon, { height: size, width: size, fill: color }), []);
     const handleSend = () => {
         onSend(text);
     };

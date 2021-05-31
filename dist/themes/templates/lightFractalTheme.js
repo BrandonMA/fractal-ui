@@ -92,7 +92,9 @@ export const sizes = {
     textFieldHeight: 44,
     checkBoxSize: 20,
     radioButtonSize: 20,
-    segmentedControlSize: 32
+    segmentedControlSize: 32,
+    audioControlToggleButtonSize: 32,
+    audioControlToggleButtonIconSize: 16
 };
 export const shadows = {
     mainShadow: '0px 1px 2px rgba(0, 0, 0, 0.05)',

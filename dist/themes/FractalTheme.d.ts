@@ -86,6 +86,8 @@ export interface FractalThemeSizes {
     checkBoxSize: number;
     radioButtonSize: number;
     segmentedControlSize: number;
+    audioControlToggleButtonSize: number;
+    audioControlToggleButtonIconSize: number;
 }
 export interface FractalThemeShadows {
     mainShadow: string;

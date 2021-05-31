@@ -1,10 +1,3 @@
 import { MutableRefObject } from 'react';
-import { PlacementType } from '../types';
-export declare function getWebPlacementOffsetStyle(anchorElementRef: MutableRefObject<HTMLDivElement | undefined>, placement: PlacementType): {
-    left?: number;
-    right?: number;
-    top?: number;
-    bottom?: number;
-    transform: string;
-    width: number;
-} | undefined;
+import { PlacementOffsetStyle, PlacementType } from '../types';
+export declare function getWebPlacementOffsetStyle(anchorRef: MutableRefObject<HTMLDivElement | undefined>, popoverRef: MutableRefObject<HTMLDivElement | undefined>, placement: PlacementType): PlacementOffsetStyle | undefined;

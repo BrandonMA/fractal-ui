@@ -1,0 +1,1 @@
+{"version":3,"file":"getAutocompleteAccessibilityProps.js","sourceRoot":"","sources":["../../../../src/components/textInputs/accessibility/getAutocompleteAccessibilityProps.tsx"],"names":[],"mappings":"AAAA,MAAM,UAAU,iCAAiC;IAC7C,OAAO;QACH,YAAY,EAAE,cAAc;KAC/B,CAAC;AACN,CAAC"}

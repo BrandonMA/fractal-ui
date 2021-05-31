@@ -23,7 +23,7 @@ const CheckBoxInput = styled(motion.input) `
     position: absolute;
 `;
 export function BaseCheckBox({ value, onValueChange, label }) {
-    const handleValueChange = () => onValueChange(!value);
+    const handleValueChange = () => onValueChange === null || onValueChange === void 0 ? void 0 : onValueChange(!value);
     return (React.createElement(Wrapper, null,
         React.createElement(CheckBoxInput, Object.assign({ type: 'checkbox', checked: value, onChange: handleValueChange }, getCheckBoxAccessibilityProps(value))),
         React.createElement(Check, { value: value, label: label })));

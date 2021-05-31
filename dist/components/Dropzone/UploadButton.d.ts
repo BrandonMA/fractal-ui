@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { NativeFileInfo } from './types';
 interface UploadButtonProps {
     onSelectFile: (fileInfo: NativeFileInfo) => void;

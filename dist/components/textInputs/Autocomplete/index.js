@@ -11,9 +11,9 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 import React, { useState } from 'react';
 import { useControllableState } from '../../../hooks/useControllableState';
-import { SearchBar } from '../SearchBar';
-import { AutocompleteWrapper } from './AutocompleteWrapper';
-export function Autocomplete(_a) {
+import { BaseAutoComplete } from './BaseAutoComplete';
+import { getAutocompleteAccessibilityProps } from '../accessibility/getAutocompleteAccessibilityProps';
+export function AutoComplete(_a) {
     var { options, getOptionLabel, onSelect, controllableSelectedOptions, multiple, onChangeText, value } = _a, searchBarProps = __rest(_a, ["options", "getOptionLabel", "onSelect", "controllableSelectedOptions", "multiple", "onChangeText", "value"]);
     const [suggestionsVisible, setSuggestionsVisible] = useState(false);
     const [userInput, setUserInput] = useControllableState(value, '', onChangeText);
@@ -39,8 +39,7 @@ export function Autocomplete(_a) {
     };
     const addSelectedOption = (option) => {
         if (multiple) {
-            selectedOptions.push(option);
-            setSelectedOptions(selectedOptions);
+            setSelectedOptions([...selectedOptions, option]);
         }
         else {
             setSelectedOptions([option]);
@@ -49,8 +48,13 @@ export function Autocomplete(_a) {
     const removeSelectedOption = (option) => {
         setSelectedOptions(selectedOptions.filter((item) => item.id != option.id));
     };
-    const onOptionPress = (option, isSelected) => {
-        setUserInput(multiple ? '' : getOptionLabel(option));
+    const onOptionPress = (option, isSelected, keepInput) => {
+        if (!keepInput && multiple) {
+            setUserInput('');
+        }
+        if (!multiple) {
+            setUserInput(getOptionLabel(option));
+        }
         setSuggestionsVisible(false);
         if (!isSelected) {
             addSelectedOption(option);
@@ -63,7 +67,6 @@ export function Autocomplete(_a) {
     const handleChangeText = (text) => {
         setUserInput(text);
     };
-    return (React.createElement(AutocompleteWrapper, { suggestionsVisible: suggestionsVisible, hideSuggestions: hideSuggestions, filteredData: filteredOptions, getLabel: getOptionLabel, onItemPress: onOptionPress, selectedIds: selectedOptionsIds, multiple: multiple },
-        React.createElement(SearchBar, Object.assign({ value: userInput, onSearch: handleSearch, onChangeText: handleChangeText }, searchBarProps))));
+    return (React.createElement(BaseAutoComplete, Object.assign({ value: userInput, onSearch: handleSearch, onChangeText: handleChangeText, suggestionsVisible: suggestionsVisible, hideSuggestions: hideSuggestions, filteredData: filteredOptions, getLabel: getOptionLabel, onItemPress: onOptionPress, selectedIds: selectedOptionsIds, multiple: multiple }, getAutocompleteAccessibilityProps(), searchBarProps)));
 }
 //# sourceMappingURL=index.js.map

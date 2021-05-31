@@ -12,10 +12,13 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { forwardRef } from 'react';
 import { Layer } from '../containers';
 import { BaseCheckBox } from './BaseCheckBox';
+import { useControllableState } from '../../hooks/useControllableState';
 const CheckBox = forwardRef((_a, ref) => {
-    var { value, onValueChange, label } = _a, layerProps = __rest(_a, ["value", "onValueChange", "label"]);
+    var { value: valueProp, onValueChange, label } = _a, layerProps = __rest(_a, ["value", "onValueChange", "label"]);
+    const [value, setValue] = useControllableState(valueProp, false, onValueChange);
+    const handleValueChange = (newValue) => setValue(newValue);
     return (React.createElement(Layer, Object.assign({ ref: ref }, layerProps),
-        React.createElement(BaseCheckBox, { value: value, onValueChange: onValueChange, label: label })));
+        React.createElement(BaseCheckBox, { value: value, onValueChange: handleValueChange, label: label })));
 });
 CheckBox.displayName = 'CheckBox';
 export { CheckBox };

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { FractalFile } from './types';
 interface UploadedFileListProps {
     files: Array<FractalFile>;

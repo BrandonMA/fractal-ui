@@ -3,11 +3,12 @@ import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { ButtonVariant } from './types/ButtonVariant';
 export interface ToggleButtonProps extends FractalSharedProps, AnimationProps {
     variant: ButtonVariant;
-    active: boolean;
+    active?: boolean;
     useGrayVariant?: boolean;
     children?: (color: string) => ReactNode | Array<ReactNode>;
     style?: any;
     onPress?: () => void;
+    onActiveChange?: (active: boolean) => void;
 }
 declare const ToggleButton: React.ForwardRefExoticComponent<ToggleButtonProps & React.RefAttributes<unknown>>;
 export { ToggleButton };

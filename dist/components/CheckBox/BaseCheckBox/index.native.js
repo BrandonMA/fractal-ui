@@ -4,7 +4,7 @@ import { HorizontalLayer } from '../../containers/HorizontalLayer';
 import { Check } from '../Check';
 export function BaseCheckBox({ value, onValueChange, label }) {
     const handleValueChange = useCallback(() => {
-        onValueChange(!value);
+        onValueChange === null || onValueChange === void 0 ? void 0 : onValueChange(!value);
     }, [value, onValueChange]);
     return (React.createElement(TouchableOpacity, { onPress: handleValueChange },
         React.createElement(HorizontalLayer, { alignItems: 'center' },

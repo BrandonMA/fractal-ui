@@ -11,7 +11,6 @@ export function shuffleArray(initialArray) {
 export function shufflePlayList(initialPlayList, currentIndex) {
     const firstPart = initialPlayList.slice(0, currentIndex + 1);
     const secondPart = initialPlayList.slice(currentIndex + 1);
-    console.log({ initialPlayList, firstPart, secondPart });
     const suffleSecondPart = shuffleArray(secondPart);
     return [...firstPart, ...suffleSecondPart];
 }

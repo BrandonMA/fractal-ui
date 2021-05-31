@@ -24,4 +24,5 @@ export * from './colors';
 export * from './modals';
 export * from './Image';
 export * from './Chip';
+export * from './ChipList';
 //# sourceMappingURL=index.js.map

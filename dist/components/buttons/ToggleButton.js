@@ -12,19 +12,19 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { forwardRef, useState } from 'react';
 import { useTheme } from '../../context/hooks/useTheme';
 import { BaseButton } from './BaseButton';
+import { useToggleButtonColors } from './hooks/useToggleButtonColors';
 import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
+import { getToggleButtonAccessibilityProps } from './accessibility/getToggleButtonAccessibilityProps';
+import { useControllableState } from '../../hooks/useControllableState';
 const ToggleButton = forwardRef((props, ref) => {
-    const { active, variant, children, onPress, useGrayVariant } = props, others = __rest(props, ["active", "variant", "children", "onPress", "useGrayVariant"]);
+    const { active: activeProp, variant, children, onPress, onActiveChange, useGrayVariant } = props, others = __rest(props, ["active", "variant", "children", "onPress", "onActiveChange", "useGrayVariant"]);
     const { colors, sizes, borderRadius } = useTheme();
+    const [active, setActive] = useControllableState(activeProp, false, onActiveChange);
     const [pressed, setPressed] = useState(false);
-    const backgroundColorName = `${variant}InteractiveColor100`;
-    const backgroundColor = active ? colors[backgroundColorName] : colors.background;
-    const pressedColorName = `${variant}InteractiveColor200`;
-    const pressedColor = active ? colors[pressedColorName] : colors.background;
-    const colorName = `${variant}InteractiveColor`;
-    const color = active ? colors[colorName] : useGrayVariant ? colors.placeholder : colors.text;
+    const [backgroundColor, foregroundColor, pressedColor] = useToggleButtonColors(variant, active, useGrayVariant);
     const handleButtonPress = () => {
         setPressed(true);
+        setActive(!active);
         onPress === null || onPress === void 0 ? void 0 : onPress();
     };
     return (React.createElement(BaseButton, Object.assign({ ref: ref, height: sizes.interactiveItemHeight, width: '100%', pressedBackgroundColor: pressedColor, borderRadius: borderRadius.m, justifyContent: 'center', alignItems: 'center', onPress: handleButtonPress, initial: { backgroundColor }, variants: {
@@ -34,7 +34,7 @@ const ToggleButton = forwardRef((props, ref) => {
             inactive: {
                 backgroundColor: colors.background
             }
-        }, animate: active ? 'active' : 'inactive' }, getButtonAccessibilityProps(pressed), others), children === null || children === void 0 ? void 0 : children(color)));
+        }, animate: active ? 'active' : 'inactive' }, getToggleButtonAccessibilityProps(), getButtonAccessibilityProps(pressed), others), children === null || children === void 0 ? void 0 : children(foregroundColor)));
 });
 ToggleButton.displayName = 'ToggleButton';
 export { ToggleButton };
