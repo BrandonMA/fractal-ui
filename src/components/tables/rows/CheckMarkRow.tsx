@@ -1,24 +1,26 @@
 import React, { forwardRef } from 'react';
-import { Layer } from '../../containers/Layer';
+import { HorizontalLayer } from '../../containers/HorizontalLayer';
 import { BaseRow, BaseRowProps } from './BaseRow';
 import { useTheme } from '../../../context';
-import { CheckBox } from '../../CheckBox';
+import { Check } from '../../CheckBox/Check';
 
 export interface CheckMarkRowProps extends BaseRowProps {
     title: string;
     isSelected: boolean;
 }
 
-const CheckMarkRow = forwardRef(({ title, isSelected, ...others }: CheckMarkRowProps, ref: any): JSX.Element => {
-    const { spacings } = useTheme();
-    return (
-        <BaseRow ref={ref} {...others}>
-            <Layer flex={1} marginRight={spacings.s}>
-                <CheckBox value={isSelected} label={title} />
-            </Layer>
-        </BaseRow>
-    );
-});
+const CheckMarkRow = forwardRef(
+    ({ title, isSelected, ...others }: CheckMarkRowProps, ref: any): JSX.Element => {
+        const { spacings } = useTheme();
+        return (
+            <BaseRow ref={ref} {...others}>
+                <HorizontalLayer alignItems={'center'} flex={1} marginRight={spacings.s}>
+                    <Check value={isSelected} label={title} />
+                </HorizontalLayer>
+            </BaseRow>
+        );
+    }
+);
 
 CheckMarkRow.displayName = 'CheckMarkRow';
 
