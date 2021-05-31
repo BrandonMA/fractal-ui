@@ -5,6 +5,7 @@ import { LayerProps } from '../containers/Layer/types';
 import { useTheme } from '../../context/hooks/useTheme';
 import { Layer } from '../containers/Layer';
 import { BaseTextField } from './BaseTextField';
+import { getIconTextFieldAccessibilityProps } from './accessibility/getIconTextFieldAccessibilityProps';
 
 export interface IconTextFieldProps extends Partial<Omit<LayerProps, 'children'>> {
     leftImage?: (color: string, size: number) => JSX.Element;
@@ -53,6 +54,7 @@ const IconTextField = forwardRef(
                     fontSize={14}
                     onChangeText={onChangeText}
                     placeholder={placeholder}
+                    {...getIconTextFieldAccessibilityProps()}
                     {...textFieldProps}
                 />
                 {rightImage != null ? (

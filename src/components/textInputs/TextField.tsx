@@ -3,6 +3,7 @@ import { useTheme } from '../../context/hooks/useTheme';
 import { sizes } from '../../themes/templates/lightFractalTheme';
 import { BaseTextField } from './BaseTextField';
 import { TextFieldProps } from './BaseTextField/types';
+import { getTextFieldAccessibilityProps } from './accessibility/getTextFieldAccessibilityProps';
 
 const TextField = forwardRef(
     (props: TextFieldProps, ref: any): JSX.Element => {
@@ -19,6 +20,7 @@ const TextField = forwardRef(
                 paddingRight={spacings.s}
                 paddingLeft={spacings.s}
                 height={sizes.textFieldHeight}
+                {...getTextFieldAccessibilityProps()}
                 {...props}
             />
         );

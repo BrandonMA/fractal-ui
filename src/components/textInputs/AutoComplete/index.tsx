@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useControllableState } from '../../../hooks/useControllableState';
 import { BaseAutoComplete } from './BaseAutoComplete';
 import { AutoCompleteProps, IDEnabled } from './types';
+import { getAutocompleteAccessibilityProps } from '../accessibility/getAutocompleteAccessibilityProps';
 
 export function AutoComplete<T extends IDEnabled>({
     options,
@@ -82,6 +83,7 @@ export function AutoComplete<T extends IDEnabled>({
             onItemPress={onOptionPress}
             selectedIds={selectedOptionsIds}
             multiple={multiple}
+            {...getAutocompleteAccessibilityProps()}
             {...searchBarProps}
         />
     );

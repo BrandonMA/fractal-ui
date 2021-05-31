@@ -2,6 +2,7 @@ import React, { forwardRef, useState } from 'react';
 import { TextField } from '../TextField';
 import { useUpdateValue } from './hooks/useUpdateValue';
 import { TextFieldMaskProps } from './types';
+import { getTextFieldMaskAccessibilityProps } from '../accessibility/getTextFieldMaskAccessibilityProps';
 
 const TextFieldMask = forwardRef(
     ({ onChangeText, type, ...others }: TextFieldMaskProps, ref: any): JSX.Element => {
@@ -15,7 +16,7 @@ const TextFieldMask = forwardRef(
             onChangeText?.(maskedText, rawText);
         };
 
-        return <TextField ref={ref} value={value} onChangeText={handleChangeText} {...others} />;
+        return <TextField ref={ref} value={value} onChangeText={handleChangeText} {...getTextFieldMaskAccessibilityProps()} {...others} />;
     }
 );
 

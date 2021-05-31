@@ -7,8 +7,10 @@ import { Layer } from '../../containers/Layer';
 import { ChevronDownIcon } from '../../../assets/ChevronDownIcon';
 import { PickerItem } from './PickerItem';
 import { PickerProps } from './types/PickerProps';
+import { getPickerAccessibilityProps } from '../accessibility/getPickerAccessibilityProps';
 
 export function Picker({ items, onChange, value, defaultValue, disabled, ...others }: PickerProps): JSX.Element {
+    console.log(onChange);
     const [currentValue, handleValueChange] = usePickerState(defaultValue, items, value, onChange);
     const { colors, sizes, borderRadius, spacings } = useTheme();
 
@@ -44,6 +46,7 @@ export function Picker({ items, onChange, value, defaultValue, disabled, ...othe
                 mode='dropdown'
                 fontSize={14}
                 flex={1}
+                {...getPickerAccessibilityProps()}
             >
                 {items.map(renderItem)}
             </BasePicker>

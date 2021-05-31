@@ -4,6 +4,8 @@ import { useControllableState } from '../../hooks/useControllableState';
 import { Button, ButtonVariant } from '../buttons';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { IconTextField, IconTextFieldProps } from './IconTextField';
+import { getMessageInputAccessibilityProps } from './accessibility/getMessageInputAccessibilityProps';
+import { getButtonMessageInputAccessibilityProps } from './accessibility/getButtonMessageInputAccessibilityProps';
 
 interface ButtonTextFieldProps extends IconTextFieldProps {
     onPress: (text: string) => void;
@@ -38,10 +40,17 @@ const ButtonTextField = forwardRef(
                     paddingLeft={spacings.xs}
                     onChangeText={handleChangeText}
                     leftImage={showButton ? undefined : renderIcon}
+                    {...getMessageInputAccessibilityProps()}
                     {...others}
                 />
                 {showButton ? (
-                    <Button variant={buttonVariant} marginLeft={spacings.m} width={sizes.textFieldHeight} onPress={handlePress}>
+                    <Button
+                        variant={buttonVariant}
+                        marginLeft={spacings.m}
+                        width={sizes.textFieldHeight}
+                        onPress={handlePress}
+                        {...getButtonMessageInputAccessibilityProps()}
+                    >
                         {image(colors.white, 24)}
                     </Button>
                 ) : null}

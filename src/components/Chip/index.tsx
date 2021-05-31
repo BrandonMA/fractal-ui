@@ -4,6 +4,7 @@ import { useTheme } from '../../context/hooks/useTheme';
 import { Box } from '../containers/Box';
 import { Text } from '../text';
 import { CrossButton } from '../buttons/CrossButton';
+import { getChipAccessibilityProps } from './accessibility/getChipAccessibilityProps';
 
 const Chip = forwardRef(({ text, children, onCrossButtonPress, ...others }: ChipProps, ref: any): JSX.Element => {
     const { spacings } = useTheme();
@@ -16,6 +17,7 @@ const Chip = forwardRef(({ text, children, onCrossButtonPress, ...others }: Chip
             alignItems={'center'}
             justifyContent={'center'}
             padding={spacings.xs}
+            {...getChipAccessibilityProps(text)}
             {...others}
         >
             {text != null ? (

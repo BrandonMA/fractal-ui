@@ -6,6 +6,8 @@ import { Button, ButtonVariant } from '../buttons';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { TextFieldProps } from './BaseTextField/types';
 import { TextField } from './TextField';
+import { getSearchBarAccessibilityProps } from './accessibility/getSearchBarAccessibilityProps';
+import { getButtonSearchBarAccessibilityProps } from './accessibility/getButtonSearchBarAccessibilityProps';
 
 export interface SearchBarProps extends TextFieldProps {
     onSearch: (query: string) => void;
@@ -39,14 +41,21 @@ const SearchBar = forwardRef(
             <HorizontalLayer ref={ref} width={'100%'} alignItems={'center'} height={sizes.textFieldHeight}>
                 <TextField
                     ref={inputRef}
+                    flex={1}
                     value={query}
                     onChangeText={handleChangeText}
                     onSubmitEditing={addEventBasedSearch ? handleSearch : undefined}
+                    {...getSearchBarAccessibilityProps()}
                     {...others}
-                    flex={1}
                 />
                 {addEventBasedSearch ? (
-                    <Button variant={buttonVariant} marginLeft={spacings.m} width={sizes.textFieldHeight} onPress={handleSearch}>
+                    <Button
+                        variant={buttonVariant}
+                        marginLeft={spacings.m}
+                        width={sizes.textFieldHeight}
+                        onPress={handleSearch}
+                        {...getButtonSearchBarAccessibilityProps()}
+                    >
                         {renderSearchIcon('white', 24)}
                     </Button>
                 ) : null}

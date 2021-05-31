@@ -1,6 +1,6 @@
 import { Box, Button, CircularIconButton, Text, TextButton, useTheme } from '../../src';
 import React, { useState } from 'react';
-import { ToggleButton } from '../../dist/components/buttons/ToggleButton';
+import { ToggleButton } from '../../src/components/buttons/ToggleButton';
 import { RoundedToggleButton } from '../../src/components/buttons/RoundedToggleButton';
 import { LoadIcon } from '../../src/assets/LoadIcon';
 import { FilterIcon } from '../../src/assets/FilterIcon';

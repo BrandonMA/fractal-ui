@@ -1,4 +1,4 @@
-export function getTextFieldAccessibilityProps(placeholder?: string, disabled?: boolean): Record<string, any> {
+export function getBaseTextFieldAccessibilityProps(placeholder?: string, disabled?: boolean): Record<string, any> {
     return {
         role: 'textbox',
         'aria-placeholder': placeholder,

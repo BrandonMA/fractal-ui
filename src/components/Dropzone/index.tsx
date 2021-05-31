@@ -4,6 +4,7 @@ import { useDropzone } from './hooks/useDropzone';
 import { DropzoneProps } from './types';
 import { DropBox } from './DropBox';
 import { UploadedFileList } from './UploadedFileList';
+import { getDropzoneAccessibilityProps } from './accessibility/getDropzoneAccessibilityProps';
 
 export function Dropzone({
     text,
@@ -23,7 +24,7 @@ export function Dropzone({
     );
 
     return (
-        <Layer>
+        <Layer {...getDropzoneAccessibilityProps()}>
             <DropBox
                 dropContainerProps={containerProps}
                 fileInputProps={fileInputProps}

@@ -9,7 +9,7 @@ import { extractDisplayProps } from '../../../sharedProps/DisplayProps';
 import { extractTextProps } from '../../../sharedProps/TextProps';
 import { extractWebProps } from '../../../sharedProps/WebProps';
 import { extractPlaceholder } from '../../../sharedProps/PlaceholderProps';
-import { getTextFieldAccessibilityProps } from '../accessibility/getTextInputccessibilityProps';
+import { getBaseTextFieldAccessibilityProps } from '../accessibility/getBaseTextFieldAccessibilityProps';
 
 const StyledTextInput = styled(motion.input as any)`
     outline: none;
@@ -42,8 +42,8 @@ const BaseTextField = forwardRef(
                 selectable
                 onChange={handleChange}
                 onKeyDown={handleKeydown}
+                {...getBaseTextFieldAccessibilityProps(placeholder)}
                 {...others}
-                {...getTextFieldAccessibilityProps(placeholder)}
             />
         );
     }
