@@ -1,9 +1,9 @@
 import React from 'react';
-import { IDEnabled } from '../AutoComplete/types';
-import { AutoComplete } from '../AutoComplete';
-import { Button } from '../../buttons/Button';
-import { Layer } from '../../containers';
-import { ChipList } from '../../ChipList';
+import { IDEnabled } from './AutoComplete/types';
+import { AutoComplete } from './AutoComplete';
+import { Button } from '../buttons/Button';
+import { Layer } from '../containers';
+import { ChipList } from '../ChipList';
 
 interface MultiSelectInputProps<T> {
     options: Array<T>;

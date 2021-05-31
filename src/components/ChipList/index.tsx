@@ -2,7 +2,7 @@ import { AnimatePresence } from 'framer-motion';
 import React from 'react';
 import { useTheme } from '../../context';
 import { Chip } from '../Chip';
-import { IDEnabled } from '../textInputs/Autocomplete/types';
+import { IDEnabled } from '../textInputs/AutoComplete/types';
 import { ScrollWrapper } from './ScrollWrapper';
 
 const styleVariants = {
@@ -34,13 +34,7 @@ export function ChipList<T extends IDEnabled>({ data, getLabel, onItemPress }: C
     };
 
     return (
-        <ScrollWrapper
-            minHeight={64}
-            marginTop={spacings.s}
-            marginBottom={spacings.s}
-            borderRadius={borderRadius.s}
-            backgroundColor={colors.background}
-        >
+        <ScrollWrapper marginTop={spacings.s} marginBottom={spacings.s} borderRadius={borderRadius.s} backgroundColor={colors.background}>
             <AnimatePresence>{data.map(renderItem)}</AnimatePresence>
         </ScrollWrapper>
     );
