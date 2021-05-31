@@ -7,13 +7,13 @@ import { Box } from './containers/Box';
 import { Popover } from './Popover';
 import { Text } from './text';
 
-interface MoreDropdownButtonProps {
+interface OptionsMenuButtonProps {
     customIcon?: (color: string) => ReactNode;
     options: Array<string>;
     onOptionPress: (option: string) => void;
 }
 
-export function MoreDropdownButton({ options, onOptionPress, customIcon }: MoreDropdownButtonProps): JSX.Element {
+export function OptionsMenuButton({ options, onOptionPress, customIcon }: OptionsMenuButtonProps): JSX.Element {
     const { sizes, spacings } = useTheme();
     const [optionsVisible, setOptionsVisible] = useState(false);
 
