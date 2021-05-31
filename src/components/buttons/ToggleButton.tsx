@@ -6,24 +6,28 @@ import { ButtonVariant } from './types/ButtonVariant';
 import { useToggleButtonColors } from './hooks/useToggleButtonColors';
 import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
 import { getToggleButtonAccessibilityProps } from './accessibility/getToggleButtonAccessibilityProps';
+import { useControllableState } from '../../hooks/useControllableState';
 
 export interface ToggleButtonProps extends FractalSharedProps, AnimationProps {
     variant: ButtonVariant;
-    active: boolean;
+    active?: boolean;
     useGrayVariant?: boolean;
     children?: (color: string) => ReactNode | Array<ReactNode>;
     style?: any;
     onPress?: () => void;
+    onActiveChange?: (active: boolean) => void;
 }
 
 const ToggleButton = forwardRef((props: ToggleButtonProps, ref: any): JSX.Element => {
-    const { active, variant, children, onPress, useGrayVariant, ...others } = props;
+    const { active: activeProp, variant, children, onPress, onActiveChange, useGrayVariant, ...others } = props;
     const { colors, sizes, borderRadius } = useTheme();
+    const [active, setActive] = useControllableState(activeProp, false, onActiveChange);
     const [pressed, setPressed] = useState(false);
     const [backgroundColor, foregroundColor, pressedColor] = useToggleButtonColors(variant, active, useGrayVariant);
 
     const handleButtonPress = (): void => {
         setPressed(true);
+        setActive(!active);
         onPress?.();
     };
 

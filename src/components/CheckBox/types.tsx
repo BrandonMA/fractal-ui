@@ -1,7 +1,7 @@
 import { LayerProps } from '../containers/Layer/types';
 
 export interface CheckProps {
-    value: boolean;
+    value?: boolean;
     label?: string;
 }
 
