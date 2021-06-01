@@ -1,30 +1,28 @@
 import React, { forwardRef } from 'react';
 import { AppleIcon } from '../../assets/AppleIcon';
-import { ButtonProps } from '../buttons/Button';
-import { BaseMediaButton } from './BaseMediaButton';
+import { Button, ButtonProps } from '../buttons/Button';
 import { getAppleButtonAccessibilityProps } from './accessibility/getAppleButtonAccessibilityProps';
 
 export type AppleButtonProps = Partial<Omit<ButtonProps, 'variant'>> & {
     loading?: boolean;
 };
 
-const AppleButton = forwardRef(
-    (props: AppleButtonProps, ref: any): JSX.Element => {
-        const { text } = props;
+const AppleButton = forwardRef((props: AppleButtonProps, ref: any): JSX.Element => {
+    const { text } = props;
 
-        return (
-            <BaseMediaButton
-                ref={ref}
-                backgroundColor='black'
-                pressedBackgroundColor={'#111111'}
-                {...props}
-                {...getAppleButtonAccessibilityProps()}
-            >
-                <AppleIcon height={text != null ? 18 : 24} fill='white' />
-            </BaseMediaButton>
-        );
-    }
-);
+    return (
+        <Button
+            ref={ref}
+            addShadow
+            backgroundColor='black'
+            pressedBackgroundColor={'#111111'}
+            {...getAppleButtonAccessibilityProps()}
+            {...props}
+        >
+            <AppleIcon height={text != null ? 18 : 24} fill='white' />
+        </Button>
+    );
+});
 
 AppleButton.displayName = 'AppleButton';
 

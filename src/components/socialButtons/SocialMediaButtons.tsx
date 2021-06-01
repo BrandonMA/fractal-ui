@@ -37,7 +37,7 @@ const SocialMediaButtons = forwardRef(
     ): JSX.Element => {
         const { spacings } = useTheme();
         return (
-            <Layer ref={ref} padding={spacings.m} {...others}>
+            <Layer ref={ref} {...others}>
                 <HorizontalLayer marginBottom={spacings.m}>
                     <GoogleButton loading={googleLoading} flex={1} onPress={onGooglePress} />
                     <Layer width={16} />

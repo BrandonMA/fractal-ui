@@ -9,7 +9,7 @@ import { useButtonColors } from './hooks/useButtonColors';
 
 export interface ButtonProps extends FractalSharedProps, AnimationProps {
     style?: any;
-    variant: ButtonVariant;
+    variant?: ButtonVariant;
     text?: string;
     addShadow?: boolean;
     pressedBackgroundColor?: string;
@@ -19,7 +19,7 @@ export interface ButtonProps extends FractalSharedProps, AnimationProps {
 }
 
 const Button = forwardRef((props: ButtonProps, ref: any): JSX.Element => {
-    const { variant, children, text, addShadow, onPress, reduceColor, ...others } = props;
+    const { variant = 'main', children, text, addShadow, onPress, reduceColor, ...others } = props;
     const { borderRadius, sizes, shadows, spacings } = useTheme();
     const [pressed, setPressed] = useState(false);
     const [backgroundColor, foregroundColor, pressedColor] = useButtonColors(variant, reduceColor);
