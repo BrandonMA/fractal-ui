@@ -2,67 +2,42 @@ import React, { useState } from 'react';
 import { registerRootComponent } from 'expo';
 import {
     ActivityIndicator,
-    AutoComplete,
-    Avatar,
     Background,
-    blue,
-    BlurrediOSModal,
     Box,
     Bubble,
     Button,
     CheckBox,
     Chip,
-    CircularIconButton,
     ColorPicker,
     CrossButton,
-    DatePicker,
-    DetailsRow,
     Dropzone,
-    ErrorMessage,
     FractalAppRoot,
-    Grid,
-    GridColumn,
-    GridList,
-    GridRow,
-    IconTextField,
-    Image,
-    ImageBackground,
     Layer,
-    MessageInput,
-    MiddleCellModal,
     PaddingLayer,
-    Picker,
     Popover,
     RadioGroup,
-    SearchBar,
     SegmentedControl,
     Separator,
     Slider,
     SocialMediaButtons,
     Switch,
-    TableContainer,
     Text,
-    TextField,
-    TextFieldMask,
-    TimePicker,
     useTheme
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
-import { BuggyComponent } from './documentation/examples/BuggyComponent';
 import { ThemeSwapper } from './documentation/examples/ThemeSwapper';
 import { MultiSelectInputExample } from './documentation/examples/MultiSelectInputExample';
 import { AudioPlayer } from './src/components/AudioPlayer';
-import { FileIcon } from './src/assets/FileIcon';
-import { SearchIcon } from './src/assets/SearchIcon';
+import { TextsFragments } from './documentation/fragments/Texts';
+import { ContainersFragments } from './documentation/fragments/Containers';
 import { ButtonsFragments } from './documentation/fragments/Buttons';
-import { FilterIcon } from './src/assets/FilterIcon';
-
-const styleVariants = {
-    layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
-    layerVisible: { scale: 1, opacity: 1, backgroundColor: blue.base },
-    initial: { height: 15, width: 15, opacity: 0 },
-    visible: { height: 100, width: 100, opacity: 1 }
-};
+import { ImagesFragments } from './documentation/fragments/Images';
+import { TextInputsFragments } from './documentation/fragments/TextInputs';
+import { ModalsFragments } from './documentation/fragments/Modals';
+import { MessagesFragments } from './documentation/fragments/Messages';
+import { TablesFragments } from './documentation/fragments/Tables';
+import { GridsFragments } from './documentation/fragments/Grids';
+import { FileIcon } from './src/assets/FileIcon';
 
 const tracks = [
     {
@@ -87,15 +62,6 @@ const tracks = [
         //color: 'orange'
     }
 ];
-
-const detailsCardContent: Array<[string, string]> = [
-    ['Title 1', 'Details 1'],
-    ['Title 2', 'Details 2']
-];
-
-function logErrorToService(error: Error, componentStack: string) {
-    console.log('Log Error To Service: ', { error, componentStack });
-}
 
 function AudioPlayerFragment(): JSX.Element {
     const { spacings } = useTheme();
@@ -160,42 +126,6 @@ function ActivityIndicatorFragment(): JSX.Element {
             <ActivityIndicator width={width} height={height} color={colors.warningInteractiveColor} marginRight={marginRight} />
             <ActivityIndicator width={width} height={height} color={colors.dangerInteractiveColor} marginRight={marginRight} />
             <ActivityIndicator width={width} height={height} color={colors.text} marginRight={marginRight} />
-        </Box>
-    );
-}
-
-function AvatarImageFragment(): JSX.Element {
-    const { spacings } = useTheme();
-
-    return (
-        <Box flexDirection={'row'} marginTop={spacings.s} marginBottom={spacings.xl}>
-            <Avatar source={'https://picsum.photos/id/370/200'} label='Avatar' />
-            <Image
-                source={'https://picsum.photos/id/870/200/300'}
-                label='Asset'
-                marginLeft={spacings.m}
-                width={100}
-                height={64}
-                borderRadius={16}
-            />
-        </Box>
-    );
-}
-
-function ImageBackgroundFragment(): JSX.Element {
-    const { spacings } = useTheme();
-
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <ImageBackground
-                source={'https://picsum.photos/id/870/200/300'}
-                width={200}
-                height={200}
-                borderRadius={16}
-                justifyContent={'center'}
-            >
-                <Text variant={'button'}>Lorem Ipsum is simply dummy text.</Text>
-            </ImageBackground>
         </Box>
     );
 }
@@ -297,95 +227,6 @@ function BubbleFragment(): JSX.Element {
     );
 }
 
-function LayerAnimatedFragment(): JSX.Element {
-    const { spacings } = useTheme();
-    const [layerVariant, setLayerVariant] = useState('layerVisible');
-    const toggleVariant = () => setLayerVariant((currentValue) => (currentValue === 'layerVisible' ? 'layerInitial' : 'layerVisible'));
-
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <Layer
-                height={100}
-                width={100}
-                initial={'layerInitial'}
-                backgroundColor={'#FFF'}
-                animate={layerVariant}
-                variants={styleVariants}
-            />
-            <Button
-                width={268}
-                variant={'main'}
-                alignSelf={'center'}
-                text={'Toggle animation'}
-                onPress={toggleVariant}
-                marginTop={spacings.s}
-            />
-        </Box>
-    );
-}
-
-function TextFragment(): JSX.Element {
-    const { colors, spacings } = useTheme();
-
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <Text variant={'title'} marginBottom={spacings.s}>
-                Title text.
-            </Text>
-            <Text variant={'title2'} marginBottom={spacings.s}>
-                Title2 text.
-            </Text>
-            <Text variant={'title3'} marginBottom={spacings.s}>
-                Title3 text.
-            </Text>
-            <Text variant={'subtitle'} marginBottom={spacings.s}>
-                Subtitle text.
-            </Text>
-            <Text variant={'placeholder'} marginBottom={spacings.s}>
-                Placeholder text.
-            </Text>
-            <Text variant={'normal'} marginBottom={spacings.s}>
-                Normal text.
-            </Text>
-            <Text variant={'label'} marginBottom={spacings.s}>
-                Label text..
-            </Text>
-            <Text variant={'small'} marginBottom={spacings.s}>
-                Small text.
-            </Text>
-            <Text variant={'smallLabel'} marginBottom={spacings.s}>
-                Small label text.
-            </Text>
-            <Text variant={'button'} marginBottom={spacings.s}>
-                Button text.
-            </Text>
-            <Text variant={'textButton'} marginBottom={spacings.s}>
-                Text button text.
-            </Text>
-            <Text variant={'normal'} selectable marginBottom={spacings.s}>
-                Selectable text.
-            </Text>
-            <Text variant={'normal'} selectable selectionColor={colors.alternativeInteractiveColor} marginBottom={spacings.s}>
-                Selectable text with different color (Only on Android).
-            </Text>
-        </Box>
-    );
-}
-
-function BoxContentFragment(): JSX.Element {
-    const { spacings } = useTheme();
-
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <Text variant={'normal'} marginBottom={spacings.m}>
-                Use it to separate your components into blocks.
-            </Text>
-            <Separator marginBottom={spacings.m} />
-            <Text variant={'normal'}>Like this.</Text>
-        </Box>
-    );
-}
-
 function SeparatorsFragment(): JSX.Element {
     const { spacings } = useTheme();
 
@@ -423,228 +264,12 @@ function ColorPickerFragment(): JSX.Element {
     );
 }
 
-function TextFieldFragment(): JSX.Element {
-    const { spacings } = useTheme();
-
-    return (
-        <Layer marginBottom={spacings.xl}>
-            <Text variant={'title'} marginBottom={spacings.s}>
-                Text Field Example
-            </Text>
-            <Box marginBottom={spacings.xl}>
-                <TextField placeholder='Escribe aquí' />
-            </Box>
-            <Text variant={'title'} marginBottom={spacings.s}>
-                Text Field Mask Example
-            </Text>
-            <Box>
-                <TextFieldMask
-                    type={'money'}
-                    placeholder={'Monto'}
-                    onChangeText={(maskedText, rawText) => console.log({ maskedText, rawText })}
-                />
-            </Box>
-        </Layer>
-    );
-}
-
-function IconTextFieldFragment(): JSX.Element {
-    const { spacings } = useTheme();
-    const renderSearchIcon = React.useCallback((color: string, size: number) => <SearchIcon height={size} width={size} fill={color} />, []);
-
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <IconTextField leftImage={renderSearchIcon} placeholder='Escribe aquí' />
-        </Box>
-    );
-}
-
 function PopoverContent(): JSX.Element {
     const { spacings } = useTheme();
+
     return (
         <Box marginTop={spacings.m} width={'100%'}>
             <Button variant='alternative' text='Pasion' />
-        </Box>
-    );
-}
-
-function SearchBarFragment(): JSX.Element {
-    const { spacings } = useTheme();
-    const [active, setActive] = useState(false);
-
-    const deactivate = () => setActive(false);
-    const toggleActive = () => setActive((active) => !active);
-
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <SearchBar
-                enableSearchButton
-                onSearch={(query: string) => console.log('Query: ', query)}
-                onChangeText={(text) => console.log(`New text ${text}`)}
-                placeholder='Escribe aquí'
-            >
-                <Popover active={active} onRequestClose={deactivate} popoverChildren={() => <PopoverContent />}>
-                    <CircularIconButton onPress={toggleActive} variant={'success'} marginLeft={spacings.s}>
-                        {(color) => <FilterIcon height={24} width={24} fill={color} />}
-                    </CircularIconButton>
-                </Popover>
-            </SearchBar>
-        </Box>
-    );
-}
-
-function MessageInputFragment(): JSX.Element {
-    const { spacings } = useTheme();
-
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <MessageInput onSend={(message: string) => console.log('Message: ', message)} placeholder='Escribe aquí' />
-        </Box>
-    );
-}
-
-function AutocompleteFragment(): JSX.Element {
-    const { spacings } = useTheme();
-    const [active, setActive] = useState(false);
-
-    const deactivate = () => setActive(false);
-    const toggleActive = () => setActive((active) => !active);
-
-    interface Film {
-        id: string;
-        title: string;
-        year: number;
-    }
-
-    const top20Films: Array<Film> = [
-        { id: '1', title: 'The Shawshank Redemption', year: 1994 },
-        { id: '2', title: 'The Godfather', year: 1972 },
-        { id: '3', title: 'The Godfather: Part II', year: 1974 },
-        { id: '4', title: 'The Dark Knight', year: 2008 },
-        { id: '5', title: '12 Angry Men', year: 1957 },
-        { id: '6', title: "Schindler's List", year: 1993 },
-        { id: '7', title: 'Pulp Fiction', year: 1994 },
-        { id: '8', title: 'The Lord of the Rings: The Return of the King', year: 2003 },
-        { id: '9', title: 'The Good, the Bad and the Ugly', year: 1966 },
-        { id: '10', title: 'Fight Club', year: 1999 },
-        { id: '11', title: 'The Lord of the Rings: The Fellowship of the Ring', year: 2001 },
-        { id: '12', title: 'Star Wars: Episode V - The Empire Strikes Back', year: 1980 },
-        { id: '13', title: 'Forrest Gump', year: 1994 },
-        { id: '14', title: 'Inception', year: 2010 },
-        { id: '15', title: 'The Lord of the Rings: The Two Towers', year: 2002 },
-        { id: '16', title: "One Flew Over the Cuckoo's Nest", year: 1975 },
-        { id: '17', title: 'Goodfellas', year: 1990 },
-        { id: '18', title: 'The Matrix', year: 1999 },
-        { id: '19', title: 'Seven Samurai', year: 1954 },
-        { id: '20', title: 'Star Wars: Episode IV - A New Hope', year: 1977 }
-    ];
-
-    const handleSelect = (option: Film | Film[]) => {
-        console.log('onSelectFilm: ', option);
-    };
-
-    return (
-        <Box marginTop={spacings.m} marginBottom={spacings.m}>
-            <AutoComplete
-                placeholder={'Escribe aquí'}
-                options={top20Films}
-                onChangeText={(text) => console.log(`New text is ${text}`)}
-                getOptionLabel={(option) => option.title}
-                onSelect={handleSelect}
-            >
-                <Popover active={active} onRequestClose={deactivate} popoverChildren={() => <PopoverContent />}>
-                    <CircularIconButton onPress={toggleActive} variant={'success'} marginLeft={spacings.s}>
-                        {(color) => <FilterIcon height={24} width={24} fill={color} />}
-                    </CircularIconButton>
-                </Popover>
-            </AutoComplete>
-        </Box>
-    );
-}
-
-function PickerFragment(): JSX.Element {
-    const { spacings } = useTheme();
-
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <Picker
-                onChange={(value) => console.log(value)}
-                iosDoneText='Done'
-                items={[
-                    ['1', 'Hoy'],
-                    ['2', 'Ayer'],
-                    ['3', 'Prueba'],
-                    ['4', 'Cuatro'],
-                    ['5', 'Cinco']
-                ]}
-                defaultValue={'3'}
-            />
-        </Box>
-    );
-}
-
-function DatePickerFragment(): JSX.Element {
-    const { spacings } = useTheme();
-
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <DatePicker iosDoneText='Done' onChange={(date) => console.log('Local Date: ', date.toLocaleDateString())} />
-        </Box>
-    );
-}
-
-function TimePickerFragment(): JSX.Element {
-    const { spacings } = useTheme();
-
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <TimePicker iosDoneText='Done' onChange={(date) => console.log(date.toLocaleDateString())} />
-        </Box>
-    );
-}
-
-function BlurredModalFragment(): JSX.Element {
-    const { spacings } = useTheme();
-    const [blurredModalVisible, setBlurredModalVisible] = useState(false);
-    const toggleBlurredModal = () => setBlurredModalVisible((currentValue) => !currentValue);
-
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <Button variant='main' text='Show Blurred Modal' onPress={toggleBlurredModal} />
-            <BlurrediOSModal visible={blurredModalVisible} dismissText={'Done'} onDismiss={toggleBlurredModal}>
-                <Box margin={spacings.m}>
-                    <Button variant='warning' text='Dismiss Modal' onPress={toggleBlurredModal} />
-                </Box>
-            </BlurrediOSModal>
-        </Box>
-    );
-}
-
-function MiddleCellModalFragment(): JSX.Element {
-    const { spacings } = useTheme();
-    const [middleCellVisible, setMiddleCellVisible] = useState(false);
-    const toggleMiddleCell = () => setMiddleCellVisible((currentValue) => !currentValue);
-
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <Button variant='main' text='Show Middle Cell Modal' onPress={toggleMiddleCell} />
-            <MiddleCellModal visible={middleCellVisible} onDismiss={toggleMiddleCell}>
-                <Box>
-                    <Button variant='warning' text='Dismiss Cell Modal' onPress={toggleMiddleCell} />
-                </Box>
-            </MiddleCellModal>
-        </Box>
-    );
-}
-
-function ErrorMessageFragment(): JSX.Element {
-    const { spacings } = useTheme();
-
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <ErrorMessage onError={logErrorToService}>
-                <BuggyComponent />
-            </ErrorMessage>
         </Box>
     );
 }
@@ -664,57 +289,6 @@ function PopoverFragment(): JSX.Element {
             >
                 <Button variant={'main'} width={220} onPress={togglePopover} text={'Popover'} />
             </Popover>
-        </Box>
-    );
-}
-
-function DetailsListFragment(): JSX.Element {
-    const { spacings } = useTheme();
-
-    return (
-        <TableContainer
-            label='2'
-            title='Title'
-            titleColorVariant='warning'
-            labelColorVariant='warning'
-            marginTop={spacings.s}
-            marginBottom={spacings.xl}
-        >
-            {detailsCardContent.map((item, index) => {
-                const isLastItem = index === detailsCardContent.length - 1;
-                return <DetailsRow key={item[0]} title={item[0]} details={item[1]} addSeparator={!isLastItem} />;
-            })}
-        </TableContainer>
-    );
-}
-
-function GridListFragment(): JSX.Element {
-    const { colors, spacings } = useTheme();
-
-    return (
-        <GridList
-            data={['One', 'Two', 'Three', 'Four']}
-            numColumns={2}
-            backgroundColor={colors.warningInteractiveColor}
-            marginTop={spacings.s}
-            marginBottom={spacings.xl}
-            renderItem={() => <Box margin={4} height={60} minWidth={30} />}
-        />
-    );
-}
-
-function GridFragment(): JSX.Element {
-    const { colors, spacings } = useTheme();
-
-    return (
-        <Box height={300} marginTop={spacings.s} marginBottom={spacings.xl}>
-            <Grid>
-                <GridColumn backgroundColor={colors.dangerInteractiveColor300} />
-                <GridColumn>
-                    <GridRow backgroundColor={colors.warningInteractiveColor300} />
-                    <GridRow backgroundColor={colors.mainInteractiveColor300} />
-                </GridColumn>
-            </Grid>
         </Box>
     );
 }
@@ -742,10 +316,7 @@ function Content(): JSX.Element {
             <CrossButtonFragment />
             <Text variant={'title'}>Activity Indicator Example</Text>
             <ActivityIndicatorFragment />
-            <Text variant={'title'}>Avatar and Image Example</Text>
-            <AvatarImageFragment />
-            <Text variant={'title'}>ImageBackground Example</Text>
-            <ImageBackgroundFragment />
+            <ImagesFragments />
             <Text variant={'title'}>Segmented Control Example</Text>
             <SegmentedControlFragment />
             <Text variant={'title'}>Slider Example</Text>
@@ -758,46 +329,20 @@ function Content(): JSX.Element {
             <RadioFragment />
             <Text variant={'title'}>Bubble Example</Text>
             <BubbleFragment />
-            <Text variant={'title'}>Layer Animated Example</Text>
-            <LayerAnimatedFragment />
-            <Text variant={'title'}>Text Example</Text>
-            <TextFragment />
-            <Text variant={'title'}>Box Example</Text>
-            <BoxContentFragment />
+            <TextsFragments />
+            <ContainersFragments />
             <Text variant={'title'}>Separator Example</Text>
             <SeparatorsFragment />
             <ButtonsFragments />
             <Text variant={'title'}>Color Picker Example</Text>
             <ColorPickerFragment />
-            <TextFieldFragment />
-            <Text variant={'title'}>Icon Text Field Example</Text>
-            <IconTextFieldFragment />
-            <Text variant={'title'}>Search Bar Example</Text>
-            <SearchBarFragment />
-            <Text variant={'title'}>Autocomplete Example</Text>
-            <AutocompleteFragment />
-            <Text variant={'title'}>Message Input Example</Text>
-            <MessageInputFragment />
-            <Text variant={'title'}>Picker Example</Text>
-            <PickerFragment />
-            <Text variant={'title'}>Date Picker Example</Text>
-            <DatePickerFragment />
-            <Text variant={'title'}>Time Picker Example</Text>
-            <TimePickerFragment />
-            <Text variant={'title'}>Blurred Modal Example</Text>
-            <BlurredModalFragment />
-            <Text variant={'title'}>Middle Cell Modal Example</Text>
-            <MiddleCellModalFragment />
-            <Text variant={'title'}>Error Message Example</Text>
-            <ErrorMessageFragment />
+            <TextInputsFragments />
+            <ModalsFragments />
+            <MessagesFragments />
             <Text variant={'title'}>PopoverView Example</Text>
             <PopoverFragment />
-            <Text variant={'title'}>Details List Example</Text>
-            <DetailsListFragment />
-            <Text variant={'title'}>Grid List Example</Text>
-            <GridListFragment />
-            <Text variant={'title'}>Grid Example</Text>
-            <GridFragment />
+            <TablesFragments />
+            <GridsFragments />
             <Text variant={'title'}>Social Media Buttons</Text>
             <SocialMediaButtonsFragment />
         </PaddingLayer>
