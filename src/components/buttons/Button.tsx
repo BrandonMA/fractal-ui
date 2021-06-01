@@ -20,7 +20,7 @@ export interface ButtonProps extends FractalSharedProps, AnimationProps {
 
 const Button = forwardRef((props: ButtonProps, ref: any): JSX.Element => {
     const { variant, children, text, addShadow, onPress, reduceColor, ...others } = props;
-    const { borderRadius, sizes, shadows } = useTheme();
+    const { borderRadius, sizes, shadows, spacings } = useTheme();
     const [pressed, setPressed] = useState(false);
     const [backgroundColor, foregroundColor, pressedColor] = useButtonColors(variant, reduceColor);
 
@@ -32,7 +32,6 @@ const Button = forwardRef((props: ButtonProps, ref: any): JSX.Element => {
     return (
         <BaseButton
             ref={ref}
-            width={'100%'}
             height={sizes.interactiveItemHeight}
             backgroundColor={backgroundColor}
             pressedBackgroundColor={pressedColor}
@@ -40,6 +39,8 @@ const Button = forwardRef((props: ButtonProps, ref: any): JSX.Element => {
             boxShadow={addShadow ? shadows.mainShadow : undefined}
             justifyContent='center'
             alignItems='center'
+            paddingRight={spacings.s}
+            paddingLeft={spacings.s}
             onPress={handleButtonPress}
             {...getButtonAccessibilityProps(pressed)}
             {...others}

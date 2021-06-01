@@ -10,7 +10,6 @@ import { PickerProps } from './types/PickerProps';
 import { getPickerAccessibilityProps } from '../accessibility/getPickerAccessibilityProps';
 
 export function Picker({ items, onChange, value, defaultValue, disabled, ...others }: PickerProps): JSX.Element {
-    console.log(onChange);
     const [currentValue, handleValueChange] = usePickerState(defaultValue, items, value, onChange);
     const { colors, sizes, borderRadius, spacings } = useTheme();
 

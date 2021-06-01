@@ -15,7 +15,7 @@ export function useCircularButtonColors(variant: ButtonVariant, reduceColor = fa
         if (variant === 'content') {
             return 'text';
         } else {
-            return `${variant}InteractiveColor600`;
+            return reduceColor ? `${variant}InteractiveColor` : `${variant}InteractiveColor700`;
         }
     })();
 

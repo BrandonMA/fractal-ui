@@ -12,6 +12,7 @@ import {
     Button,
     CheckBox,
     Chip,
+    CircularIconButton,
     ColorPicker,
     CrossButton,
     DatePicker,
@@ -54,6 +55,7 @@ import { AudioPlayer } from './src/components/AudioPlayer';
 import { FileIcon } from './src/assets/FileIcon';
 import { SearchIcon } from './src/assets/SearchIcon';
 import { ButtonsFragments } from './documentation/fragments/Buttons';
+import { FilterIcon } from './src/assets/FilterIcon';
 
 const styleVariants = {
     layerInitial: { scale: 0, opacity: 0, backgroundColor: blue.base100 },
@@ -206,7 +208,7 @@ function SegmentedControlFragment(): JSX.Element {
         <Box marginTop={spacings.s} marginBottom={spacings.xl}>
             <SegmentedControl
                 selectedIndex={selectedIndex}
-                values={['One', 'Two', 'Three', 'Four']}
+                values={['One', 'Two']}
                 onChange={(value, index) => {
                     console.log(value);
                     setSelectedIndex(index);
@@ -457,12 +459,36 @@ function IconTextFieldFragment(): JSX.Element {
     );
 }
 
+function PopoverContent(): JSX.Element {
+    const { spacings } = useTheme();
+    return (
+        <Box marginTop={spacings.m} width={'100%'}>
+            <Button variant='alternative' text='Pasion' />
+        </Box>
+    );
+}
+
 function SearchBarFragment(): JSX.Element {
     const { spacings } = useTheme();
+    const [active, setActive] = useState(false);
+
+    const deactivate = () => setActive(false);
+    const toggleActive = () => setActive((active) => !active);
 
     return (
         <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <SearchBar addEventBasedSearch onSearch={(query: string) => console.log('Query: ', query)} placeholder='Escribe aquí' />
+            <SearchBar
+                enableSearchButton
+                onSearch={(query: string) => console.log('Query: ', query)}
+                onChangeText={(text) => console.log(`New text ${text}`)}
+                placeholder='Escribe aquí'
+            >
+                <Popover active={active} onRequestClose={deactivate} popoverChildren={() => <PopoverContent />}>
+                    <CircularIconButton onPress={toggleActive} variant={'success'} marginLeft={spacings.s}>
+                        {(color) => <FilterIcon height={24} width={24} fill={color} />}
+                    </CircularIconButton>
+                </Popover>
+            </SearchBar>
         </Box>
     );
 }
@@ -479,6 +505,10 @@ function MessageInputFragment(): JSX.Element {
 
 function AutocompleteFragment(): JSX.Element {
     const { spacings } = useTheme();
+    const [active, setActive] = useState(false);
+
+    const deactivate = () => setActive(false);
+    const toggleActive = () => setActive((active) => !active);
 
     interface Film {
         id: string;
@@ -518,9 +548,16 @@ function AutocompleteFragment(): JSX.Element {
             <AutoComplete
                 placeholder={'Escribe aquí'}
                 options={top20Films}
+                onChangeText={(text) => console.log(`New text is ${text}`)}
                 getOptionLabel={(option) => option.title}
                 onSelect={handleSelect}
-            />
+            >
+                <Popover active={active} onRequestClose={deactivate} popoverChildren={() => <PopoverContent />}>
+                    <CircularIconButton onPress={toggleActive} variant={'success'} marginLeft={spacings.s}>
+                        {(color) => <FilterIcon height={24} width={24} fill={color} />}
+                    </CircularIconButton>
+                </Popover>
+            </AutoComplete>
         </Box>
     );
 }
@@ -612,15 +649,6 @@ function ErrorMessageFragment(): JSX.Element {
     );
 }
 
-function PopoverContent(): JSX.Element {
-    const { spacings } = useTheme();
-    return (
-        <Box marginTop={spacings.m} width={'100%'}>
-            <Button variant='alternative' text='Pasion' />
-        </Box>
-    );
-}
-
 function PopoverFragment(): JSX.Element {
     const { spacings } = useTheme();
     const [popoverVisible, setPopoverVisible] = useState(false);
@@ -632,7 +660,7 @@ function PopoverFragment(): JSX.Element {
                 placement={'bottom'}
                 active={popoverVisible}
                 onRequestClose={() => setPopoverVisible(false)}
-                popoverChildren={PopoverContent}
+                popoverChildren={() => <PopoverContent />}
             >
                 <Button variant={'main'} width={220} onPress={togglePopover} text={'Popover'} />
             </Popover>
@@ -718,7 +746,7 @@ function Content(): JSX.Element {
             <AvatarImageFragment />
             <Text variant={'title'}>ImageBackground Example</Text>
             <ImageBackgroundFragment />
-            <Text variant={'title'}>Button Group Example</Text>
+            <Text variant={'title'}>Segmented Control Example</Text>
             <SegmentedControlFragment />
             <Text variant={'title'}>Slider Example</Text>
             <SliderFragment />

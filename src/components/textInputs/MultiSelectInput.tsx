@@ -29,7 +29,6 @@ export function MultiSelectInput<T extends IDEnabled>({
     inputValue,
     controllableSelectedOptions,
     onChangeText,
-    onSubmitEditing,
     placeholder
 }: MultiSelectInputProps<T>): JSX.Element {
     return (
@@ -43,7 +42,6 @@ export function MultiSelectInput<T extends IDEnabled>({
                 onSelect={onSelect}
                 controllableSelectedOptions={controllableSelectedOptions}
                 onChangeText={onChangeText}
-                onSubmitEditing={onSubmitEditing}
             />
             <ChipList data={controllableSelectedOptions} getLabel={getOptionLabel} onItemPress={onDeletePress} />
             <Button variant={'warning'} onPress={onClearPress} text={clearButtonText} />
