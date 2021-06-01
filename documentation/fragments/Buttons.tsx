@@ -1,6 +1,6 @@
 import { Box, Button, CircularIconButton, Text, TextButton, useTheme } from '../../src';
 import React, { useState } from 'react';
-import { ToggleButton } from '../../src/components/buttons/ToggleButton';
+// import { ToggleButton } from '../../src/components/buttons/ToggleButton';
 import { RoundedToggleButton } from '../../src/components/buttons/RoundedToggleButton';
 import { LoadIcon } from '../../src/assets/LoadIcon';
 import { FilterIcon } from '../../src/assets/FilterIcon';
@@ -22,8 +22,8 @@ export function ToggleButtonFragment(): JSX.Element {
     const { spacings } = useTheme();
     return (
         <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <ToggleButton variant={'main'} active={false} marginBottom={spacings.s} />
-            <ToggleButton variant={'content'} active={false} />
+            {/*<ToggleButton variant={'main'} active={false} marginBottom={spacings.s} />*/}
+            {/*<ToggleButton variant={'content'} active={false} />*/}
         </Box>
     );
 }

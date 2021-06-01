@@ -15,7 +15,6 @@ interface MultiSelectInputProps<T> {
     inputValue?: string;
     controllableSelectedOptions: Array<T>;
     onChangeText: (text: string) => void;
-    onSubmitEditing: () => void;
     placeholder?: string;
 }
 

@@ -19,6 +19,7 @@ export interface SearchBarProps extends LayerProps {
     placeholder?: string;
     value?: string;
     onChangeText?: (text: string) => void;
+    searchAriaLabel?: string;
 }
 
 const SearchBar = forwardRef(
@@ -34,6 +35,7 @@ const SearchBar = forwardRef(
             textFieldProps,
             children,
             placeholder,
+            searchAriaLabel = 'Search',
             ...others
         }: SearchBarProps,
         ref: any
@@ -66,7 +68,13 @@ const SearchBar = forwardRef(
                 />
                 {children}
                 {enableSearchButton ? (
-                    <Button text={buttonText} variant={buttonVariant} marginLeft={spacings.s} onPress={handleSearch}>
+                    <Button
+                        ariaLabel={searchAriaLabel}
+                        text={buttonText}
+                        variant={buttonVariant}
+                        marginLeft={spacings.s}
+                        onPress={handleSearch}
+                    >
                         {buttonText == null ? <SearchIcon height={24} width={24} fill={'white'} /> : null}
                     </Button>
                 ) : null}
