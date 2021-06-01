@@ -28,16 +28,6 @@ export function AutoComplete<T extends IDEnabled>({
     const [selectedOptions, setSelectedOptions] = useControllableState(controllableSelectedOptions, [], handleSelect);
     const selectedOptionsIds = selectedOptions.map((selectedOption) => selectedOption.id);
 
-    const handleSearch = (query: string) => {
-        const newFilteredOptions = options.filter((option) => {
-            const candidate = getOptionLabel(option);
-            const clearUserInput = query.trim();
-            return candidate.toLowerCase().indexOf(clearUserInput.toLowerCase()) > -1;
-        });
-        setSuggestionsVisible(true);
-        setFilteredOptions(newFilteredOptions);
-    };
-
     const addSelectedOption = (option: T) => {
         if (multiple) {
             setSelectedOptions([...selectedOptions, option]);
@@ -67,14 +57,20 @@ export function AutoComplete<T extends IDEnabled>({
 
     const hideSuggestions = () => setSuggestionsVisible(false);
 
-    const handleChangeText = (text: string) => {
-        setUserInput(text);
+    const handleChangeText = (query: string) => {
+        const newFilteredOptions = options.filter((option) => {
+            const candidate = getOptionLabel(option);
+            const clearUserInput = query.trim();
+            return candidate.toLowerCase().indexOf(clearUserInput.toLowerCase()) > -1;
+        });
+        setSuggestionsVisible(true);
+        setFilteredOptions(newFilteredOptions);
+        setUserInput(query);
     };
 
     return (
         <BaseAutoComplete
             value={userInput}
-            onSearch={handleSearch}
             onChangeText={handleChangeText}
             suggestionsVisible={suggestionsVisible}
             hideSuggestions={hideSuggestions}
