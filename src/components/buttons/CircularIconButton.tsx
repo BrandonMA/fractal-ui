@@ -4,8 +4,7 @@ import { useTheme } from '../../context/hooks/useTheme';
 import { getCircularIconButtonAccessibilityProps } from './accessibility/getCircularIconButtonAccessibilityProps';
 import { useCircularButtonColors } from './hooks/useCircularIconButtonColors';
 
-const CircularIconButton = forwardRef((props: ButtonProps, ref: any): JSX.Element => {
-    const { variant, children, reduceColor, ...others } = props;
+const CircularIconButton = forwardRef(({ variant = 'main', children, reduceColor, ...others }: ButtonProps, ref: any): JSX.Element => {
     const { sizes } = useTheme();
 
     const [backgroundColor, foregroundColor, pressedBackgroundColor] = useCircularButtonColors(variant, reduceColor);
