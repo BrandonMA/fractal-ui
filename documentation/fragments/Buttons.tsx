@@ -1,64 +1,35 @@
-import { Box, Button, CircularIconButton, Text, TextButton, useTheme } from '../../src';
 import React, { useState } from 'react';
-// import { ToggleButton } from '../../src/components/buttons/ToggleButton';
-import { RoundedToggleButton } from '../../src/components/buttons/RoundedToggleButton';
-import { LoadIcon } from '../../src/assets/LoadIcon';
-import { FilterIcon } from '../../src/assets/FilterIcon';
-import { TrashIcon } from '../../src/assets/TrashIcon';
+import {
+    useTheme,
+    Box,
+    Button,
+    Text,
+    CrossButton,
+    CircularIconButton,
+    TextButton,
+    ToggleButton,
+    RoundedToggleButton,
+    LoadIcon,
+    FilterIcon,
+    TrashIcon,
+    AppleIcon,
+    BugIcon,
+    CheckIcon,
+    ChevronDownIcon,
+    FacebookIcon,
+    GoogleIcon,
+    MoreVerticalIcon,
+    SearchIcon,
+    PreviousIcon,
+    NextIcon
+} from '../../src';
 
-export function ButtonFragment(): JSX.Element {
+export function CrossButtonFragment(): JSX.Element {
     const { spacings } = useTheme();
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <Button variant={'main'} text={'Button'} marginBottom={spacings.s} />
-            <Button variant={'main'} text={'Button'} marginBottom={spacings.s} reduceColor />
-            <Button variant={'content'} text='Button with content variant' marginBottom={spacings.s} />
-            <Button variant={'content'} text='Button with content variant' marginBottom={spacings.s} reduceColor />
-        </Box>
-    );
-}
-
-export function ToggleButtonFragment(): JSX.Element {
-    const { spacings } = useTheme();
-    return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            {/*<ToggleButton variant={'main'} active={false} marginBottom={spacings.s} />*/}
-            {/*<ToggleButton variant={'content'} active={false} />*/}
-        </Box>
-    );
-}
-
-export function RoundedToggleButtonFragment(): JSX.Element {
-    const { spacings } = useTheme();
-    const [active, setActive] = useState(false);
-    const toggleActive = () => setActive((active) => !active);
 
     return (
-        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <RoundedToggleButton variant={'main'} active={active} onPress={toggleActive} marginBottom={spacings.s}>
-                {(color) => <LoadIcon height={24} width={24} fill={color} />}
-            </RoundedToggleButton>
-            <RoundedToggleButton variant={'main'} active={active} onPress={toggleActive} marginBottom={spacings.s} useGrayVariant>
-                {(color) => <LoadIcon height={24} width={24} fill={color} />}
-            </RoundedToggleButton>
-            <RoundedToggleButton variant={'alternative'} active={active} onPress={toggleActive} marginBottom={spacings.s}>
-                {(color) => <LoadIcon height={24} width={24} fill={color} />}
-            </RoundedToggleButton>
-            <RoundedToggleButton variant={'success'} active={active} onPress={toggleActive} marginBottom={spacings.s}>
-                {(color) => <LoadIcon height={24} width={24} fill={color} />}
-            </RoundedToggleButton>
-            <RoundedToggleButton variant={'warning'} active={active} onPress={toggleActive} marginBottom={spacings.s}>
-                {(color) => <LoadIcon height={24} width={24} fill={color} />}
-            </RoundedToggleButton>
-            <RoundedToggleButton variant={'danger'} active={active} onPress={toggleActive} marginBottom={spacings.s}>
-                {(color) => <LoadIcon height={24} width={24} fill={color} />}
-            </RoundedToggleButton>
-            <RoundedToggleButton variant={'content'} active={active} onPress={toggleActive} marginBottom={spacings.s}>
-                {(color) => <LoadIcon height={24} width={24} fill={color} />}
-            </RoundedToggleButton>
-            <RoundedToggleButton variant={'content'} active={active} onPress={toggleActive} useGrayVariant>
-                {(color) => <LoadIcon height={24} width={24} fill={color} />}
-            </RoundedToggleButton>
+        <Box alignContent={'center'} marginTop={spacings.s} marginBottom={spacings.xl}>
+            <CrossButton onPress={() => console.log('Cross button pressed')} />
         </Box>
     );
 }
@@ -74,13 +45,184 @@ export function TextButtonFragment(): JSX.Element {
             <TextButton variant={'alternative'} marginBottom={spacings.s}>
                 Alternative
             </TextButton>
-            <TextButton variant={'success'} marginBottom={spacings.s}>
-                Success
+            <TextButton variant={'danger'} marginBottom={spacings.s}>
+                Danger
             </TextButton>
             <TextButton variant={'warning'} marginBottom={spacings.s}>
                 Warning
             </TextButton>
-            <TextButton variant={'danger'}>Danger</TextButton>
+            <TextButton variant={'success'} marginBottom={spacings.s}>
+                Success
+            </TextButton>
+            <TextButton
+                variant={'main'}
+                flexDirection={'row'}
+                marginBottom={spacings.s}
+                leftIcon={(color) => <SearchIcon height={20} width={20} fill={color} />}
+            >
+                Main with left icon
+            </TextButton>
+            <TextButton
+                variant={'alternative'}
+                flexDirection={'row'}
+                marginBottom={spacings.s}
+                rightIcon={(color) => <SearchIcon height={20} width={20} fill={color} />}
+            >
+                Alternative with right icon
+            </TextButton>
+            <TextButton
+                variant={'danger'}
+                flexDirection={'row'}
+                marginBottom={spacings.s}
+                leftIcon={(color) => <PreviousIcon height={20} width={20} fill={color} />}
+                rightIcon={(color) => <NextIcon height={20} width={20} fill={color} />}
+            >
+                Danger with left and right icon
+            </TextButton>
+        </Box>
+    );
+}
+
+export function ButtonFragment(): JSX.Element {
+    const { colors, spacings } = useTheme();
+
+    return (
+        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
+            <Button variant={'main'} text={'Main'} marginBottom={spacings.s} />
+            <Button variant={'main'} text={'Main reduced'} marginBottom={spacings.s} reduceColor />
+            <Button variant={'alternative'} text={'Alternative'} marginBottom={spacings.s} />
+            <Button variant={'alternative'} text={'Alternative reduced'} marginBottom={spacings.s} reduceColor />
+            <Button variant={'danger'} text={'Danger'} marginBottom={spacings.s} />
+            <Button variant={'danger'} text={'Danger reduced'} marginBottom={spacings.s} reduceColor />
+            <Button variant={'warning'} text={'Warning'} marginBottom={spacings.s} />
+            <Button variant={'warning'} text={'Warning reduced'} marginBottom={spacings.s} reduceColor />
+            <Button variant={'success'} text={'Success'} marginBottom={spacings.s} />
+            <Button variant={'success'} text={'Success reduced'} marginBottom={spacings.s} reduceColor />
+            <Button variant={'content'} text={'Button with content variant'} marginBottom={spacings.s} />
+            <Button variant={'content'} text={'Button with content variant'} marginBottom={spacings.s} reduceColor />
+            <Button
+                variant={'content'}
+                text={'Button with Main color as background color'}
+                marginBottom={spacings.s}
+                reduceColor
+                addShadow
+                pressedBackgroundColor={colors.mainInteractiveColor}
+            />
+            <Button
+                variant={'content'}
+                text={'Button with Alternative color as background color'}
+                marginBottom={spacings.s}
+                reduceColor
+                addShadow
+                pressedBackgroundColor={colors.alternativeInteractiveColor}
+            />
+            <Button
+                variant={'content'}
+                text={'Button with Danger color as background color'}
+                marginBottom={spacings.s}
+                reduceColor
+                addShadow
+                pressedBackgroundColor={colors.dangerInteractiveColor}
+            />
+            <Button
+                variant={'content'}
+                text={'Button with Warning color as background color'}
+                marginBottom={spacings.s}
+                reduceColor
+                addShadow
+                pressedBackgroundColor={colors.warningInteractiveColor}
+            />
+            <Button
+                variant={'content'}
+                text={'Button with Success color as background color'}
+                marginBottom={spacings.s}
+                reduceColor
+                addShadow
+                pressedBackgroundColor={colors.successInteractiveColor}
+            />
+        </Box>
+    );
+}
+
+export function ToggleButtonFragment(): JSX.Element {
+    const { colors, spacings } = useTheme();
+    const [active, setActive] = useState(false);
+    const [text, setText] = useState('Toggle Button');
+
+    const toggleActive = (active: boolean | ((prevState: boolean) => boolean)) => {
+        setActive(active);
+        setText(active ? 'Toggle Button activated' : 'ToggleButton');
+    };
+
+    return (
+        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
+            <ToggleButton variant={'main'} active={active} onActiveChange={toggleActive} marginBottom={spacings.s}>
+                {() => (
+                    <Text variant={'button'} color={colors.text}>
+                        {text}
+                    </Text>
+                )}
+            </ToggleButton>
+            <ToggleButton variant={'main'} active={active} onActiveChange={toggleActive} marginBottom={spacings.s}>
+                {(color) => <LoadIcon height={24} width={24} fill={color} />}
+            </ToggleButton>
+            <ToggleButton variant={'main'} active={active} onActiveChange={toggleActive} useGrayVariant>
+                {(color) => <LoadIcon height={24} width={24} fill={color} />}
+            </ToggleButton>
+        </Box>
+    );
+}
+
+export function RoundedToggleButtonFragment(): JSX.Element {
+    const { spacings } = useTheme();
+    const [active, setActive] = useState(false);
+
+    const toggleActive = (active: boolean | ((prevState: boolean) => boolean)) => setActive(active);
+
+    return (
+        <Box flexDirection={'row'} marginTop={spacings.s} marginBottom={spacings.xl}>
+            <RoundedToggleButton variant={'main'} active={active} onActiveChange={toggleActive} marginRight={spacings.s}>
+                {(color) => <FacebookIcon height={24} width={24} fill={color} />}
+            </RoundedToggleButton>
+            <RoundedToggleButton variant={'main'} active={active} onActiveChange={toggleActive} marginRight={spacings.s} useGrayVariant>
+                {(color) => <FacebookIcon height={24} width={24} fill={color} />}
+            </RoundedToggleButton>
+            <RoundedToggleButton variant={'alternative'} active={active} onActiveChange={toggleActive} marginRight={spacings.s}>
+                {(color) => <AppleIcon height={24} width={24} fill={color} />}
+            </RoundedToggleButton>
+            <RoundedToggleButton
+                variant={'alternative'}
+                active={active}
+                onActiveChange={toggleActive}
+                marginRight={spacings.s}
+                useGrayVariant
+            >
+                {(color) => <AppleIcon height={24} width={24} fill={color} />}
+            </RoundedToggleButton>
+            <RoundedToggleButton variant={'danger'} active={active} onActiveChange={toggleActive} marginRight={spacings.s}>
+                {(color) => <BugIcon height={24} width={24} fill={color} />}
+            </RoundedToggleButton>
+            <RoundedToggleButton variant={'danger'} active={active} onActiveChange={toggleActive} marginRight={spacings.s} useGrayVariant>
+                {(color) => <BugIcon height={24} width={24} fill={color} />}
+            </RoundedToggleButton>
+            <RoundedToggleButton variant={'warning'} active={active} onActiveChange={toggleActive} marginRight={spacings.s}>
+                {(color) => <CheckIcon height={24} width={24} fill={color} />}
+            </RoundedToggleButton>
+            <RoundedToggleButton variant={'warning'} active={active} onActiveChange={toggleActive} marginRight={spacings.s} useGrayVariant>
+                {(color) => <CheckIcon height={24} width={24} fill={color} />}
+            </RoundedToggleButton>
+            <RoundedToggleButton variant={'success'} active={active} onActiveChange={toggleActive} marginRight={spacings.s}>
+                {(color) => <ChevronDownIcon height={24} width={24} fill={color} />}
+            </RoundedToggleButton>
+            <RoundedToggleButton variant={'success'} active={active} onActiveChange={toggleActive} marginRight={spacings.s} useGrayVariant>
+                {(color) => <ChevronDownIcon height={24} width={24} fill={color} />}
+            </RoundedToggleButton>
+            <RoundedToggleButton variant={'content'} active={active} onActiveChange={toggleActive} marginRight={spacings.s}>
+                {(color) => <GoogleIcon height={24} width={24} fill={color} />}
+            </RoundedToggleButton>
+            <RoundedToggleButton variant={'content'} active={active} onActiveChange={toggleActive} useGrayVariant>
+                {(color) => <GoogleIcon height={24} width={24} fill={color} />}
+            </RoundedToggleButton>
         </Box>
     );
 }
@@ -96,20 +238,29 @@ export function CircularIconButtonFragment(): JSX.Element {
             <CircularIconButton variant={'main'} marginRight={spacings.m} reduceColor>
                 {(color) => <LoadIcon height={24} width={24} fill={color} />}
             </CircularIconButton>
-            <CircularIconButton variant={'success'} marginRight={spacings.m}>
+            <CircularIconButton variant={'alternative'} marginRight={spacings.m}>
                 {(color) => <FilterIcon height={24} width={24} fill={color} />}
             </CircularIconButton>
-            <CircularIconButton variant={'success'} marginRight={spacings.m} reduceColor>
+            <CircularIconButton variant={'alternative'} marginRight={spacings.m} reduceColor>
                 {(color) => <FilterIcon height={24} width={24} fill={color} />}
             </CircularIconButton>
             <CircularIconButton variant={'danger'} marginRight={spacings.m}>
                 {(color) => <TrashIcon height={24} width={24} fill={color} />}
             </CircularIconButton>
-            <CircularIconButton variant={'content'} marginRight={spacings.m}>
+            <CircularIconButton variant={'danger'} marginRight={spacings.m} reduceColor>
                 {(color) => <TrashIcon height={24} width={24} fill={color} />}
             </CircularIconButton>
-            <CircularIconButton variant={'content'} marginRight={spacings.m} reduceColor>
-                {(color) => <TrashIcon height={24} width={24} fill={color} />}
+            <CircularIconButton variant={'warning'} marginRight={spacings.m}>
+                {(color) => <MoreVerticalIcon height={24} width={24} fill={color} />}
+            </CircularIconButton>
+            <CircularIconButton variant={'warning'} marginRight={spacings.m} reduceColor>
+                {(color) => <MoreVerticalIcon height={24} width={24} fill={color} />}
+            </CircularIconButton>
+            <CircularIconButton variant={'success'} marginRight={spacings.m}>
+                {(color) => <SearchIcon height={24} width={24} fill={color} />}
+            </CircularIconButton>
+            <CircularIconButton variant={'success'} marginRight={spacings.m} reduceColor>
+                {(color) => <SearchIcon height={24} width={24} fill={color} />}
             </CircularIconButton>
         </Box>
     );
@@ -118,6 +269,8 @@ export function CircularIconButtonFragment(): JSX.Element {
 export function ButtonsFragments(): JSX.Element {
     return (
         <>
+            <Text variant={'title'}>Cross Button Example</Text>
+            <CrossButtonFragment />
             <Text variant={'title'}>Text Button Example</Text>
             <TextButtonFragment />
             <Text variant={'title'}>Button Example</Text>

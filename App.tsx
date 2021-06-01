@@ -9,7 +9,6 @@ import {
     CheckBox,
     Chip,
     ColorPicker,
-    CrossButton,
     Dropzone,
     FractalAppRoot,
     Layer,
@@ -102,16 +101,6 @@ function Chipfragment(): JSX.Element {
     );
 }
 
-function CrossButtonFragment(): JSX.Element {
-    const { spacings } = useTheme();
-
-    return (
-        <Box alignContent={'center'} marginTop={spacings.s} marginBottom={spacings.xl}>
-            <CrossButton />
-        </Box>
-    );
-}
-
 function ActivityIndicatorFragment(): JSX.Element {
     const { colors, spacings } = useTheme();
     const width = 25;
@@ -125,7 +114,6 @@ function ActivityIndicatorFragment(): JSX.Element {
             <ActivityIndicator width={width} height={height} color={colors.successInteractiveColor} marginRight={marginRight} />
             <ActivityIndicator width={width} height={height} color={colors.warningInteractiveColor} marginRight={marginRight} />
             <ActivityIndicator width={width} height={height} color={colors.dangerInteractiveColor} marginRight={marginRight} />
-            <ActivityIndicator width={width} height={height} color={colors.text} marginRight={marginRight} />
         </Box>
     );
 }
@@ -255,9 +243,9 @@ function ColorPickerFragment(): JSX.Element {
                 colors={[
                     colors.mainInteractiveColor,
                     colors.alternativeInteractiveColor,
-                    colors.successInteractiveColor,
                     colors.dangerInteractiveColor,
-                    colors.warningInteractiveColor
+                    colors.warningInteractiveColor,
+                    colors.successInteractiveColor
                 ]}
             />
         </Box>
@@ -312,8 +300,6 @@ function Content(): JSX.Element {
             <Chipfragment />
             <Text variant={'title'}>Multi Select Input Example</Text>
             <MultiSelectInputExample />
-            <Text variant={'title'}>Cross Button Example</Text>
-            <CrossButtonFragment />
             <Text variant={'title'}>Activity Indicator Example</Text>
             <ActivityIndicatorFragment />
             <ImagesFragments />
