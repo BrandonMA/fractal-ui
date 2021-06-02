@@ -16,8 +16,10 @@ import {
     CircularIconButton,
     MessageInput,
     SearchIcon,
-    FilterIcon
+    FilterIcon,
+    Layer
 } from '../../src';
+import { HorizontalLayer } from '../../src/components/containers/HorizontalLayer';
 
 function PopoverContent(): JSX.Element {
     const { spacings } = useTheme();
@@ -39,18 +41,35 @@ function SearchBarFragment(): JSX.Element {
     return (
         <Box marginTop={spacings.s} marginBottom={spacings.xl}>
             <SearchBar
-                enableSearchButton
-                placeholder={'Escribe aquí'}
+                placeholder={'Search Bar'}
                 buttonVariant={'main'}
                 onChangeText={(text) => console.log(`New text ${text}`)}
                 onSearch={(query: string) => console.log('Query: ', query)}
-            >
+                marginBottom={spacings.m}
+            />
+            <SearchBar
+                enableSearchButton
+                placeholder={'Search Bar with button'}
+                buttonVariant={'main'}
+                onChangeText={(text) => console.log(`New text ${text}`)}
+                onSearch={(query: string) => console.log('Query: ', query)}
+                marginBottom={spacings.m}
+            />
+            <HorizontalLayer>
+                <SearchBar
+                    enableSearchButton
+                    placeholder={'Search Bar with button and other component'}
+                    buttonVariant={'main'}
+                    flex={1}
+                    onChangeText={(text) => console.log(`New text ${text}`)}
+                    onSearch={(query: string) => console.log('Query: ', query)}
+                />
                 <Popover active={active} onRequestClose={deactivate} popoverChildren={() => <PopoverContent />}>
                     <CircularIconButton onPress={toggleActive} variant={'success'} marginLeft={spacings.s}>
                         {(color) => <FilterIcon height={24} width={24} fill={color} />}
                     </CircularIconButton>
                 </Popover>
-            </SearchBar>
+            </HorizontalLayer>
         </Box>
     );
 }
@@ -103,13 +122,24 @@ function AutocompleteFragment(): JSX.Element {
                 onChangeText={(text) => console.log(`New text is ${text}`)}
                 getOptionLabel={(option) => option.title}
                 onSelect={handleSelect}
-            >
+            />
+            <Layer height={spacings.m} />
+            <HorizontalLayer>
+                <Layer flex={1}>
+                    <AutoComplete
+                        placeholder={'AutoComplete and other component'}
+                        options={top20Films}
+                        onChangeText={(text) => console.log(`New text is ${text}`)}
+                        getOptionLabel={(option) => option.title}
+                        onSelect={handleSelect}
+                    />
+                </Layer>
                 <Popover active={active} onRequestClose={deactivate} popoverChildren={() => <PopoverContent />}>
                     <CircularIconButton onPress={toggleActive} variant={'success'} marginLeft={spacings.s}>
                         {(color) => <FilterIcon height={24} width={24} fill={color} />}
                     </CircularIconButton>
                 </Popover>
-            </AutoComplete>
+            </HorizontalLayer>
         </Box>
     );
 }
