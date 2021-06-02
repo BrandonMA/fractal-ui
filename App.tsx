@@ -37,6 +37,7 @@ import { MessagesFragments } from './documentation/fragments/Messages';
 import { TablesFragments } from './documentation/fragments/Tables';
 import { GridsFragments } from './documentation/fragments/Grids';
 import { FileIcon } from './src/assets/FileIcon';
+import { PlacementType } from './src/components/Popover/types';
 
 const tracks = [
     {
@@ -121,8 +122,8 @@ function Chipfragment(): JSX.Element {
 
     return (
         <Layer flexDirection={'row'} marginTop={spacings.s} marginBottom={spacings.xl}>
-            <Chip marginRight={spacings.s} text={'Ver reportes'} />
-            <Chip marginRight={spacings.s}>
+            <Chip text={'Ver reportes'} marginRight={spacings.s} onCrossButtonPress={() => console.log('Cross button pressed')} />
+            <Chip marginRight={spacings.s} onCrossButtonPress={() => console.log('Cross button pressed')}>
                 <FileIcon height={24} width={24} fill={colors.text} />
             </Chip>
         </Layer>
@@ -170,11 +171,18 @@ function SegmentedControlFragment(): JSX.Element {
 function SliderFragment(): JSX.Element {
     const { spacings } = useTheme();
     const [sliderValue, setSliderValue] = useState(0);
+
     const handleSliderValue = (value: number) => setSliderValue(value);
 
     return (
         <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <Slider onSlidingComplete={handleSliderValue} minimumValue={0} maximumValue={100} />
+            <Slider
+                step={1}
+                minimumValue={0}
+                maximumValue={100}
+                onSlidingComplete={handleSliderValue}
+                onSlidingStart={() => console.log('Slide started')}
+            />
             <Text variant={'normal'}>{`Value: ${sliderValue}`}</Text>
         </Box>
     );
@@ -263,17 +271,20 @@ function SeparatorsFragment(): JSX.Element {
 
 function ColorPickerFragment(): JSX.Element {
     const { colors, spacings } = useTheme();
+    const [selectedColor, setSelectedColor] = useState(colors.successInteractiveColor);
 
     return (
         <Box marginTop={spacings.s} marginBottom={spacings.xl}>
             <ColorPicker
-                onColorChange={(color) => console.log(color)}
+                value={selectedColor}
+                defaultValue={selectedColor}
+                onColorChange={(color) => setSelectedColor(color)}
                 colors={[
                     colors.mainInteractiveColor,
                     colors.alternativeInteractiveColor,
+                    colors.successInteractiveColor,
                     colors.dangerInteractiveColor,
-                    colors.warningInteractiveColor,
-                    colors.successInteractiveColor
+                    colors.warningInteractiveColor
                 ]}
             />
         </Box>
@@ -292,17 +303,25 @@ function PopoverContent(): JSX.Element {
 
 function PopoverFragment(): JSX.Element {
     const { spacings } = useTheme();
+
+    const placements: Array<PlacementType> = ['top', 'bottom', 'left', 'right'];
+
     const [popoverVisible, setPopoverVisible] = useState(false);
-    const togglePopover = () => setPopoverVisible((currentValue) => !currentValue);
+    const [placement, setPlacement] = useState(placements[0]);
+
+    const togglePopover = () => {
+        setPopoverVisible((currentValue) => !currentValue);
+    };
+
+    const requestClose = () => {
+        const index = placements.indexOf(placement);
+        setPlacement(index + 1 < placements.length ? placements[index + 1] : placements[0]);
+        setPopoverVisible(false);
+    };
 
     return (
         <Box marginTop={spacings.s} marginBottom={spacings.xl} alignItems='center'>
-            <Popover
-                placement={'bottom'}
-                active={popoverVisible}
-                onRequestClose={() => setPopoverVisible(false)}
-                popoverChildren={() => <PopoverContent />}
-            >
+            <Popover placement={placement} active={popoverVisible} onRequestClose={requestClose} popoverChildren={() => <PopoverContent />}>
                 <Button variant={'main'} width={220} onPress={togglePopover} text={'Popover'} />
             </Popover>
         </Box>
