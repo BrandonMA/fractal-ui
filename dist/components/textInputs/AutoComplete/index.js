@@ -28,15 +28,6 @@ export function AutoComplete(_a) {
     };
     const [selectedOptions, setSelectedOptions] = useControllableState(controllableSelectedOptions, [], handleSelect);
     const selectedOptionsIds = selectedOptions.map((selectedOption) => selectedOption.id);
-    const handleSearch = (query) => {
-        const newFilteredOptions = options.filter((option) => {
-            const candidate = getOptionLabel(option);
-            const clearUserInput = query.trim();
-            return candidate.toLowerCase().indexOf(clearUserInput.toLowerCase()) > -1;
-        });
-        setSuggestionsVisible(true);
-        setFilteredOptions(newFilteredOptions);
-    };
     const addSelectedOption = (option) => {
         if (multiple) {
             setSelectedOptions([...selectedOptions, option]);
@@ -64,9 +55,16 @@ export function AutoComplete(_a) {
         }
     };
     const hideSuggestions = () => setSuggestionsVisible(false);
-    const handleChangeText = (text) => {
-        setUserInput(text);
+    const handleChangeText = (query) => {
+        const newFilteredOptions = options.filter((option) => {
+            const candidate = getOptionLabel(option);
+            const clearUserInput = query.trim();
+            return candidate.toLowerCase().indexOf(clearUserInput.toLowerCase()) > -1;
+        });
+        setSuggestionsVisible(true);
+        setFilteredOptions(newFilteredOptions);
+        setUserInput(query);
     };
-    return (React.createElement(BaseAutoComplete, Object.assign({ value: userInput, onSearch: handleSearch, onChangeText: handleChangeText, suggestionsVisible: suggestionsVisible, hideSuggestions: hideSuggestions, filteredData: filteredOptions, getLabel: getOptionLabel, onItemPress: onOptionPress, selectedIds: selectedOptionsIds, multiple: multiple }, getAutocompleteAccessibilityProps(), searchBarProps)));
+    return (React.createElement(BaseAutoComplete, Object.assign({ value: userInput, onChangeText: handleChangeText, suggestionsVisible: suggestionsVisible, hideSuggestions: hideSuggestions, filteredData: filteredOptions, getLabel: getOptionLabel, onItemPress: onOptionPress, selectedIds: selectedOptionsIds, multiple: multiple }, getAutocompleteAccessibilityProps(), searchBarProps)));
 }
 //# sourceMappingURL=index.js.map

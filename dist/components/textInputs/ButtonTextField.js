@@ -9,7 +9,7 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef, useCallback } from 'react';
+import React, { forwardRef } from 'react';
 import { useTheme } from '../../context';
 import { useControllableState } from '../../hooks/useControllableState';
 import { Button } from '../buttons';
@@ -17,20 +17,24 @@ import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { IconTextField } from './IconTextField';
 import { getMessageInputAccessibilityProps } from './accessibility/getMessageInputAccessibilityProps';
 import { getButtonMessageInputAccessibilityProps } from './accessibility/getButtonMessageInputAccessibilityProps';
+import { Layer } from '../containers';
 const ButtonTextField = forwardRef((_a, ref) => {
-    var { value, image, onChangeText, onPress, showButton = false, buttonVariant = 'main' } = _a, others = __rest(_a, ["value", "image", "onChangeText", "onPress", "showButton", "buttonVariant"]);
+    var _b;
+    var { value, buttonImage, onChangeText, onButtonPress, buttonVariant = 'main', buttonText, showButton = true, buttonAriaLabel, leftImage, rightImage, textFieldProps, inputRef, placeholder, onSubmitEditing } = _a, layerProps = __rest(_a, ["value", "buttonImage", "onChangeText", "onButtonPress", "buttonVariant", "buttonText", "showButton", "buttonAriaLabel", "leftImage", "rightImage", "textFieldProps", "inputRef", "placeholder", "onSubmitEditing"]);
     const { colors, sizes, spacings } = useTheme();
     const [text, setText] = useControllableState(value, '', onChangeText);
-    const renderIcon = useCallback((color, size) => image === null || image === void 0 ? void 0 : image(color, size), [image]);
     const handleChangeText = (text) => {
         setText(text);
     };
     const handlePress = () => {
-        onPress(text);
+        onButtonPress === null || onButtonPress === void 0 ? void 0 : onButtonPress(text);
     };
-    return (React.createElement(HorizontalLayer, { width: '100%', alignItems: 'center', height: sizes.textFieldHeight },
-        React.createElement(IconTextField, Object.assign({ ref: ref, flex: 1, value: text, paddingLeft: spacings.xs, onChangeText: handleChangeText, leftImage: showButton ? undefined : renderIcon }, getMessageInputAccessibilityProps(), others)),
-        showButton ? (React.createElement(Button, Object.assign({ variant: buttonVariant, marginLeft: spacings.m, width: sizes.textFieldHeight, onPress: handlePress }, getButtonMessageInputAccessibilityProps()), image(colors.white, 24))) : null));
+    const handleSubmitEditing = () => {
+        onSubmitEditing === null || onSubmitEditing === void 0 ? void 0 : onSubmitEditing(text);
+    };
+    return (React.createElement(HorizontalLayer, Object.assign({ ref: ref, alignItems: 'center', height: sizes.textFieldHeight }, layerProps),
+        React.createElement(IconTextField, Object.assign({ value: text, flex: 1, placeholder: placeholder, leftImage: leftImage, rightImage: rightImage, textFieldProps: Object.assign(Object.assign({}, textFieldProps), { onSubmitEditing: (_b = textFieldProps === null || textFieldProps === void 0 ? void 0 : textFieldProps.onSubmitEditing) !== null && _b !== void 0 ? _b : handleSubmitEditing }), inputRef: inputRef, paddingLeft: spacings.xs, onChangeText: handleChangeText }, getMessageInputAccessibilityProps())),
+        React.createElement(Layer, { marginLeft: showButton ? spacings.m : undefined }, showButton ? (React.createElement(Button, Object.assign({ ariaLabel: buttonAriaLabel, variant: buttonVariant, onPress: handlePress, text: buttonText }, getButtonMessageInputAccessibilityProps()), buttonText == null && buttonImage ? buttonImage(colors.white, 22) : null)) : null)));
 });
 ButtonTextField.displayName = 'ButtonTextField';
 export { ButtonTextField };

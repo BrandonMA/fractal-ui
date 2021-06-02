@@ -9,7 +9,7 @@ export interface SuggestionsListProps<T> {
     selectedIds: Array<string>;
     multiple?: boolean;
 }
-export interface AutoCompleteProps<T> extends Omit<SearchBarProps, 'onSearch'> {
+export interface AutoCompleteProps<T> extends SearchBarProps {
     options: Array<T>;
     getOptionLabel: (option: T) => string;
     onSelect: (value: T | Array<T>) => void;

@@ -13,8 +13,9 @@ import React from 'react';
 import { ScrollableTableContent } from './ScrollableTableContent';
 import { TableContainer } from './TableContainer';
 export function ScrollableTableContainer(_a) {
-    var { children } = _a, others = __rest(_a, ["children"]);
+    var { children, nonScrollableChildren } = _a, others = __rest(_a, ["children", "nonScrollableChildren"]);
     return (React.createElement(TableContainer, Object.assign({}, others),
+        nonScrollableChildren,
         React.createElement(ScrollableTableContent, null, children)));
 }
 //# sourceMappingURL=ScrollableTableContainer.js.map

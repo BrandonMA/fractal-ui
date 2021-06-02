@@ -14,7 +14,7 @@ export function useCircularButtonColors(variant, reduceColor = false) {
             return 'text';
         }
         else {
-            return `${variant}InteractiveColor600`;
+            return reduceColor ? `${variant}InteractiveColor` : `${variant}InteractiveColor700`;
         }
     })();
     const pressedColorName = (() => {

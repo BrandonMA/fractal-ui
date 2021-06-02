@@ -14,3 +14,7 @@ export * from './PreviousIcon';
 export * from './RepeatIcon';
 export * from './ShuffleIcon';
 export * from './TrazadoIcon';
+export * from './FilterIcon';
+export * from './LoadIcon';
+export * from './TrashIcon';
+export * from './MoreVerticalIcon';

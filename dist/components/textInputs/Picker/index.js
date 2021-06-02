@@ -20,7 +20,6 @@ import { PickerItem } from './PickerItem';
 import { getPickerAccessibilityProps } from '../accessibility/getPickerAccessibilityProps';
 export function Picker(_a) {
     var { items, onChange, value, defaultValue, disabled } = _a, others = __rest(_a, ["items", "onChange", "value", "defaultValue", "disabled"]);
-    console.log(onChange);
     const [currentValue, handleValueChange] = usePickerState(defaultValue, items, value, onChange);
     const { colors, sizes, borderRadius, spacings } = useTheme();
     const renderItem = useCallback((item) => {

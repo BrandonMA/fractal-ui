@@ -27,6 +27,6 @@ interface DefaultTexProps {
 export interface TextProps extends FractalSharedProps, AnimationProps, DefaultTexProps, FractalTextProps {
     children?: string | number;
     style?: any;
-    variant: RequiredKeys<FractalThemeTextVariants>;
+    variant?: RequiredKeys<FractalThemeTextVariants>;
 }
 export {};

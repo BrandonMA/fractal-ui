@@ -1,11 +1,9 @@
 import React from 'react';
-import { ButtonVariant } from '../buttons';
-import { TextFieldProps } from './BaseTextField/types';
-export interface SearchBarProps extends TextFieldProps {
-    onSearch: (query: string) => void;
-    inputRef?: any;
-    addEventBasedSearch?: boolean;
-    buttonVariant?: ButtonVariant;
+import { ButtonTextFieldProps } from './ButtonTextField';
+export interface SearchBarProps extends ButtonTextFieldProps {
+    onSearch?: (query: string) => void;
+    enableSearchButton?: boolean;
+    searchAriaLabel?: string;
 }
 declare const SearchBar: React.ForwardRefExoticComponent<SearchBarProps & React.RefAttributes<unknown>>;
 export { SearchBar };

@@ -9,22 +9,13 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef, useCallback, useState } from 'react';
+import React, { forwardRef, useCallback } from 'react';
 import { ButtonTextField } from './ButtonTextField';
 import { TrazadoIcon } from '../../assets/TrazadoIcon';
 const MessageInput = forwardRef((_a, ref) => {
-    var { onSend, onChangeText } = _a, others = __rest(_a, ["onSend", "onChangeText"]);
-    const showButton = true;
-    const [text, setText] = useState('');
+    var { onSend } = _a, others = __rest(_a, ["onSend"]);
     const renderIcon = useCallback((color, size) => React.createElement(TrazadoIcon, { height: size, width: size, fill: color }), []);
-    const handleSend = () => {
-        onSend(text);
-    };
-    const handleChangeText = (text) => {
-        setText(text);
-        onChangeText === null || onChangeText === void 0 ? void 0 : onChangeText(text);
-    };
-    return (React.createElement(ButtonTextField, Object.assign({ ref: ref, showButton: showButton, buttonVariant: 'success', image: renderIcon, onPress: handleSend, onChangeText: handleChangeText, textFieldProps: { onSubmitEditing: showButton ? undefined : handleSend } }, others)));
+    return (React.createElement(ButtonTextField, Object.assign({ ref: ref, buttonVariant: 'success', buttonImage: renderIcon, onButtonPress: onSend, onSubmitEditing: onSend }, others)));
 });
 MessageInput.displayName = 'MessageInput';
 export { MessageInput };

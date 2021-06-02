@@ -23,7 +23,7 @@ export function UploadButton({ onSelectFile, text = 'Seleccionar archivo', accep
         }
     });
     return (React.createElement(Button, { variant: 'main', onPress: pickFile },
-        React.createElement(HorizontalLayer, null,
+        React.createElement(HorizontalLayer, { justifyContent: 'center', alignItems: 'center', padding: spacings.s },
             React.createElement(UploadIcon, { width: 24, height: 24, fill: 'white' }),
             React.createElement(Text, { variant: 'button', marginLeft: spacings.xs }, text))));
 }

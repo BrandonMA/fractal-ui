@@ -1,2 +1,7 @@
+import { ReactNode } from 'react';
 import { TableContainerProps } from './types';
-export declare function ScrollableTableContainer({ children, ...others }: TableContainerProps): JSX.Element;
+interface ScrollableTableContainerProps extends TableContainerProps {
+    nonScrollableChildren: ReactNode | Array<ReactNode>;
+}
+export declare function ScrollableTableContainer({ children, nonScrollableChildren, ...others }: ScrollableTableContainerProps): JSX.Element;
+export {};

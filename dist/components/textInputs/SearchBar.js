@@ -9,32 +9,24 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { useCallback, forwardRef } from 'react';
+import React, { forwardRef, useCallback } from 'react';
 import { SearchIcon } from '../../assets/SearchIcon';
-import { useTheme } from '../../context';
 import { useControllableState } from '../../hooks/useControllableState';
-import { Button } from '../buttons';
-import { HorizontalLayer } from '../containers/HorizontalLayer';
-import { TextField } from './TextField';
-import { getSearchBarAccessibilityProps } from './accessibility/getSearchBarAccessibilityProps';
-import { getButtonSearchBarAccessibilityProps } from './accessibility/getButtonSearchBarAccessibilityProps';
+import { ButtonTextField } from './ButtonTextField';
 const SearchBar = forwardRef((_a, ref) => {
-    var { inputRef, value, onChangeText, onSearch, addEventBasedSearch = false, buttonVariant = 'main' } = _a, others = __rest(_a, ["inputRef", "value", "onChangeText", "onSearch", "addEventBasedSearch", "buttonVariant"]);
-    const { sizes, spacings } = useTheme();
+    var { value, onChangeText, onSearch, enableSearchButton = false, buttonText, buttonVariant = 'main', placeholder, searchAriaLabel = 'Search' } = _a, others = __rest(_a, ["value", "onChangeText", "onSearch", "enableSearchButton", "buttonText", "buttonVariant", "placeholder", "searchAriaLabel"]);
     const [query, setQuery] = useControllableState(value, '', onChangeText);
-    const renderSearchIcon = useCallback((color, size) => React.createElement(SearchIcon, { height: size, width: size, fill: color }), []);
     const handleChangeText = (text) => {
-        if (!addEventBasedSearch) {
-            onSearch(text);
+        if (!enableSearchButton) {
+            onSearch === null || onSearch === void 0 ? void 0 : onSearch(text);
         }
         setQuery(text);
     };
+    const renderIcon = useCallback((color, size) => React.createElement(SearchIcon, { height: size, width: size, fill: color }), []);
     const handleSearch = () => {
-        onSearch(query);
+        onSearch === null || onSearch === void 0 ? void 0 : onSearch(query);
     };
-    return (React.createElement(HorizontalLayer, { ref: ref, width: '100%', alignItems: 'center', height: sizes.textFieldHeight },
-        React.createElement(TextField, Object.assign({ ref: inputRef, flex: 1, value: query, onChangeText: handleChangeText, onSubmitEditing: addEventBasedSearch ? handleSearch : undefined }, getSearchBarAccessibilityProps(), others)),
-        addEventBasedSearch ? (React.createElement(Button, Object.assign({ variant: buttonVariant, marginLeft: spacings.m, width: sizes.textFieldHeight, onPress: handleSearch }, getButtonSearchBarAccessibilityProps()), renderSearchIcon('white', 24))) : null));
+    return (React.createElement(ButtonTextField, Object.assign({ ref: ref, value: value, placeholder: placeholder, leftImage: enableSearchButton ? undefined : renderIcon, onChangeText: handleChangeText, textFieldProps: { onSubmitEditing: enableSearchButton ? handleSearch : undefined }, showButton: enableSearchButton, buttonText: buttonText, buttonVariant: buttonVariant, onButtonPress: handleSearch, buttonAriaLabel: searchAriaLabel, buttonImage: renderIcon }, others)));
 });
 SearchBar.displayName = 'SearchBar';
 export { SearchBar };

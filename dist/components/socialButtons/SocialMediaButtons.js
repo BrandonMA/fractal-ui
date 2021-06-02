@@ -19,7 +19,7 @@ import { HorizontalLayer } from '../containers/HorizontalLayer';
 const SocialMediaButtons = forwardRef((_a, ref) => {
     var { onGooglePress, onFacebookPress, onApplePress, googleLoading, facebookLoading, appleLoading, appleText, removeAppleButton } = _a, others = __rest(_a, ["onGooglePress", "onFacebookPress", "onApplePress", "googleLoading", "facebookLoading", "appleLoading", "appleText", "removeAppleButton"]);
     const { spacings } = useTheme();
-    return (React.createElement(Layer, Object.assign({ ref: ref, padding: spacings.m }, others),
+    return (React.createElement(Layer, Object.assign({ ref: ref }, others),
         React.createElement(HorizontalLayer, { marginBottom: spacings.m },
             React.createElement(GoogleButton, { loading: googleLoading, flex: 1, onPress: onGooglePress }),
             React.createElement(Layer, { width: 16 }),

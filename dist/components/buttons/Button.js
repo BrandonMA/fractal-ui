@@ -15,16 +15,16 @@ import { useTheme } from '../../context/hooks/useTheme';
 import { BaseButton } from './BaseButton';
 import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
 import { useButtonColors } from './hooks/useButtonColors';
-const Button = forwardRef((props, ref) => {
-    const { variant, children, text, addShadow, onPress, reduceColor } = props, others = __rest(props, ["variant", "children", "text", "addShadow", "onPress", "reduceColor"]);
-    const { borderRadius, sizes, shadows } = useTheme();
+const Button = forwardRef((_a, ref) => {
+    var { variant = 'main', ariaLabel, children, text, addShadow, onPress, reduceColor } = _a, others = __rest(_a, ["variant", "ariaLabel", "children", "text", "addShadow", "onPress", "reduceColor"]);
+    const { borderRadius, sizes, shadows, spacings } = useTheme();
     const [pressed, setPressed] = useState(false);
     const [backgroundColor, foregroundColor, pressedColor] = useButtonColors(variant, reduceColor);
     const handleButtonPress = () => {
         setPressed(true);
         onPress === null || onPress === void 0 ? void 0 : onPress();
     };
-    return (React.createElement(BaseButton, Object.assign({ ref: ref, width: '100%', height: sizes.interactiveItemHeight, backgroundColor: backgroundColor, pressedBackgroundColor: pressedColor, borderRadius: borderRadius.m, boxShadow: addShadow ? shadows.mainShadow : undefined, justifyContent: 'center', alignItems: 'center', onPress: handleButtonPress }, getButtonAccessibilityProps(pressed), others),
+    return (React.createElement(BaseButton, Object.assign({ ref: ref, height: sizes.interactiveItemHeight, backgroundColor: backgroundColor, pressedBackgroundColor: pressedColor, borderRadius: borderRadius.m, boxShadow: addShadow ? shadows.mainShadow : undefined, justifyContent: 'center', alignItems: 'center', paddingRight: spacings.s, paddingLeft: spacings.s, onPress: handleButtonPress }, getButtonAccessibilityProps(pressed, false, text !== null && text !== void 0 ? text : ariaLabel), others),
         typeof children === 'function' ? children === null || children === void 0 ? void 0 : children(foregroundColor) : children,
         text != null ? (React.createElement(Text, { variant: 'button', color: foregroundColor }, text)) : null));
 });

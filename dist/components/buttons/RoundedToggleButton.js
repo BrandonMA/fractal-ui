@@ -1,6 +1,6 @@
-import { ToggleButton } from './ToggleButton';
-import { useTheme } from '../../context';
 import React from 'react';
+import { useTheme } from '../../context';
+import { ToggleButton } from './ToggleButton';
 import { getRoundedToggleButtonAccessibilityProps } from './accessibility/getRoundedToggleButtonAccessibilityProps';
 export function RoundedToggleButton(props) {
     const { sizes } = useTheme();

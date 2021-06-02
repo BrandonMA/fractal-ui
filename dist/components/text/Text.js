@@ -13,7 +13,7 @@ import React, { forwardRef } from 'react';
 import { useTheme } from '../../context/hooks/useTheme';
 import { BaseText } from './BaseText';
 const Text = forwardRef((_a, ref) => {
-    var { variant } = _a, others = __rest(_a, ["variant"]);
+    var { variant = 'normal' } = _a, others = __rest(_a, ["variant"]);
     const { textVariants, colors } = useTheme();
     const { fontSize, fontWeight, color, fontFamily } = textVariants[variant];
     const finalColor = colors[color];
