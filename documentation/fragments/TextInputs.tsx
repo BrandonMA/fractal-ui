@@ -24,7 +24,7 @@ function PopoverContent(): JSX.Element {
 
     return (
         <Box marginTop={spacings.m} width={'100%'}>
-            <Button variant='alternative' text='Pasion' />
+            <Button variant={'alternative'} text={'Pasion'} />
         </Box>
     );
 }
@@ -40,9 +40,10 @@ function SearchBarFragment(): JSX.Element {
         <Box marginTop={spacings.s} marginBottom={spacings.xl}>
             <SearchBar
                 enableSearchButton
-                onSearch={(query: string) => console.log('Query: ', query)}
+                placeholder={'Escribe aquí'}
+                buttonVariant={'main'}
                 onChangeText={(text) => console.log(`New text ${text}`)}
-                placeholder='Escribe aquí'
+                onSearch={(query: string) => console.log('Query: ', query)}
             >
                 <Popover active={active} onRequestClose={deactivate} popoverChildren={() => <PopoverContent />}>
                     <CircularIconButton onPress={toggleActive} variant={'success'} marginLeft={spacings.s}>
@@ -141,6 +142,12 @@ function TextFieldMaskFragment(): JSX.Element {
             <TextFieldMask
                 type={'money'}
                 placeholder={'Monto'}
+                marginBottom={spacings.s}
+                onChangeText={(maskedText, rawText) => console.log({ maskedText, rawText })}
+            />
+            <TextFieldMask
+                type={'phone'}
+                placeholder={'Numero telefono'}
                 onChangeText={(maskedText, rawText) => console.log({ maskedText, rawText })}
             />
         </Box>
@@ -154,7 +161,8 @@ function IconTextFieldFragment(): JSX.Element {
 
     return (
         <Box marginTop={spacings.s} marginBottom={spacings.xl}>
-            <IconTextField leftImage={renderSearchIcon} placeholder='Escribe aquí' />
+            <IconTextField leftImage={renderSearchIcon} placeholder='Escribe aquí' marginBottom={spacings.s} />
+            <IconTextField rightImage={renderSearchIcon} placeholder='Escribe aquí' />
         </Box>
     );
 }
@@ -175,6 +183,19 @@ function PickerFragment(): JSX.Element {
                     ['5', 'Cinco']
                 ]}
                 defaultValue={'3'}
+                marginBottom={spacings.s}
+            />
+            <Picker
+                iosDoneText='Done'
+                items={[
+                    ['1', 'Hoy'],
+                    ['2', 'Ayer'],
+                    ['3', 'Prueba ( deshabilitado / disabled )'],
+                    ['4', 'Cuatro'],
+                    ['5', 'Cinco']
+                ]}
+                defaultValue={'3'}
+                disabled
             />
         </Box>
     );

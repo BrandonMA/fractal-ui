@@ -131,17 +131,17 @@ function Chipfragment(): JSX.Element {
 
 function ActivityIndicatorFragment(): JSX.Element {
     const { colors, spacings } = useTheme();
+
     const width = 25;
     const height = 25;
-    const marginRight = 10;
 
     return (
         <Box alignContent={'center'} flexDirection={'row'} marginTop={spacings.s} marginBottom={spacings.xl}>
-            <ActivityIndicator width={width} height={height} color={colors.mainInteractiveColor} marginRight={marginRight} />
-            <ActivityIndicator width={width} height={height} color={colors.alternativeInteractiveColor} marginRight={marginRight} />
-            <ActivityIndicator width={width} height={height} color={colors.successInteractiveColor} marginRight={marginRight} />
-            <ActivityIndicator width={width} height={height} color={colors.warningInteractiveColor} marginRight={marginRight} />
-            <ActivityIndicator width={width} height={height} color={colors.dangerInteractiveColor} marginRight={marginRight} />
+            <ActivityIndicator width={width} height={height} color={colors.mainInteractiveColor} marginRight={spacings.m} />
+            <ActivityIndicator width={width} height={height} color={colors.alternativeInteractiveColor} marginRight={spacings.m} />
+            <ActivityIndicator width={width} height={height} color={colors.successInteractiveColor} marginRight={spacings.m} />
+            <ActivityIndicator width={width} height={height} color={colors.warningInteractiveColor} marginRight={spacings.m} />
+            <ActivityIndicator width={width} height={height} color={colors.dangerInteractiveColor} marginRight={spacings.m} />
         </Box>
     );
 }
