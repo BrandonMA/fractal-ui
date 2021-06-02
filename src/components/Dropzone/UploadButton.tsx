@@ -23,10 +23,10 @@ export function UploadButton({ onSelectFile, text = 'Seleccionar archivo', accep
         }
     };
     return (
-        <Button variant='main' onPress={pickFile}>
-            <HorizontalLayer>
+        <Button variant={'main'} onPress={pickFile}>
+            <HorizontalLayer justifyContent={'center'} alignItems={'center'} padding={spacings.s}>
                 <UploadIcon width={24} height={24} fill={'white'} />
-                <Text variant='button' marginLeft={spacings.xs}>
+                <Text variant={'button'} marginLeft={spacings.xs}>
                     {text}
                 </Text>
             </HorizontalLayer>
