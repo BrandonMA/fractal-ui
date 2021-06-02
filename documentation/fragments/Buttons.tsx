@@ -151,7 +151,7 @@ export function ToggleButtonFragment(): JSX.Element {
 
     const toggleActive = (active: boolean | ((prevState: boolean) => boolean)) => {
         setActive(active);
-        setText(active ? 'Toggle Button activated' : 'ToggleButton');
+        setText(active ? 'Toggle Button activated' : 'Toggle Button');
     };
 
     return (
@@ -180,44 +180,44 @@ export function RoundedToggleButtonFragment(): JSX.Element {
     const toggleActive = (active: boolean | ((prevState: boolean) => boolean)) => setActive(active);
 
     return (
-        <Box flexDirection={'row'} marginTop={spacings.s} marginBottom={spacings.xl}>
-            <RoundedToggleButton variant={'main'} active={active} onActiveChange={toggleActive} marginRight={spacings.s}>
+        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
+            <RoundedToggleButton variant={'main'} active={active} onActiveChange={toggleActive} marginBottom={spacings.s}>
                 {(color) => <FacebookIcon height={24} width={24} fill={color} />}
             </RoundedToggleButton>
-            <RoundedToggleButton variant={'main'} active={active} onActiveChange={toggleActive} marginRight={spacings.s} useGrayVariant>
+            <RoundedToggleButton variant={'main'} active={active} onActiveChange={toggleActive} marginBottom={spacings.s} useGrayVariant>
                 {(color) => <FacebookIcon height={24} width={24} fill={color} />}
             </RoundedToggleButton>
-            <RoundedToggleButton variant={'alternative'} active={active} onActiveChange={toggleActive} marginRight={spacings.s}>
+            <RoundedToggleButton variant={'alternative'} active={active} onActiveChange={toggleActive} marginBottom={spacings.s}>
                 {(color) => <AppleIcon height={24} width={24} fill={color} />}
             </RoundedToggleButton>
             <RoundedToggleButton
                 variant={'alternative'}
                 active={active}
                 onActiveChange={toggleActive}
-                marginRight={spacings.s}
+                marginBottom={spacings.s}
                 useGrayVariant
             >
                 {(color) => <AppleIcon height={24} width={24} fill={color} />}
             </RoundedToggleButton>
-            <RoundedToggleButton variant={'danger'} active={active} onActiveChange={toggleActive} marginRight={spacings.s}>
+            <RoundedToggleButton variant={'danger'} active={active} onActiveChange={toggleActive} marginBottom={spacings.s}>
                 {(color) => <BugIcon height={24} width={24} fill={color} />}
             </RoundedToggleButton>
-            <RoundedToggleButton variant={'danger'} active={active} onActiveChange={toggleActive} marginRight={spacings.s} useGrayVariant>
+            <RoundedToggleButton variant={'danger'} active={active} onActiveChange={toggleActive} marginBottom={spacings.s} useGrayVariant>
                 {(color) => <BugIcon height={24} width={24} fill={color} />}
             </RoundedToggleButton>
-            <RoundedToggleButton variant={'warning'} active={active} onActiveChange={toggleActive} marginRight={spacings.s}>
+            <RoundedToggleButton variant={'warning'} active={active} onActiveChange={toggleActive} marginBottom={spacings.s}>
                 {(color) => <CheckIcon height={24} width={24} fill={color} />}
             </RoundedToggleButton>
-            <RoundedToggleButton variant={'warning'} active={active} onActiveChange={toggleActive} marginRight={spacings.s} useGrayVariant>
+            <RoundedToggleButton variant={'warning'} active={active} onActiveChange={toggleActive} marginBottom={spacings.s} useGrayVariant>
                 {(color) => <CheckIcon height={24} width={24} fill={color} />}
             </RoundedToggleButton>
-            <RoundedToggleButton variant={'success'} active={active} onActiveChange={toggleActive} marginRight={spacings.s}>
+            <RoundedToggleButton variant={'success'} active={active} onActiveChange={toggleActive} marginBottom={spacings.s}>
                 {(color) => <ChevronDownIcon height={24} width={24} fill={color} />}
             </RoundedToggleButton>
-            <RoundedToggleButton variant={'success'} active={active} onActiveChange={toggleActive} marginRight={spacings.s} useGrayVariant>
+            <RoundedToggleButton variant={'success'} active={active} onActiveChange={toggleActive} marginBottom={spacings.s} useGrayVariant>
                 {(color) => <ChevronDownIcon height={24} width={24} fill={color} />}
             </RoundedToggleButton>
-            <RoundedToggleButton variant={'content'} active={active} onActiveChange={toggleActive} marginRight={spacings.s}>
+            <RoundedToggleButton variant={'content'} active={active} onActiveChange={toggleActive} marginBottom={spacings.s}>
                 {(color) => <GoogleIcon height={24} width={24} fill={color} />}
             </RoundedToggleButton>
             <RoundedToggleButton variant={'content'} active={active} onActiveChange={toggleActive} useGrayVariant>
@@ -231,35 +231,35 @@ export function CircularIconButtonFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <Box flexDirection={'row'} marginTop={spacings.s} marginBottom={spacings.xl}>
-            <CircularIconButton variant={'main'} marginRight={spacings.m}>
+        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
+            <CircularIconButton variant={'main'} marginBottom={spacings.s}>
                 {(color) => <LoadIcon height={24} width={24} fill={color} />}
             </CircularIconButton>
-            <CircularIconButton variant={'main'} marginRight={spacings.m} reduceColor>
+            <CircularIconButton variant={'main'} marginBottom={spacings.s} reduceColor>
                 {(color) => <LoadIcon height={24} width={24} fill={color} />}
             </CircularIconButton>
-            <CircularIconButton variant={'alternative'} marginRight={spacings.m}>
+            <CircularIconButton variant={'alternative'} marginBottom={spacings.s}>
                 {(color) => <FilterIcon height={24} width={24} fill={color} />}
             </CircularIconButton>
-            <CircularIconButton variant={'alternative'} marginRight={spacings.m} reduceColor>
+            <CircularIconButton variant={'alternative'} marginBottom={spacings.s} reduceColor>
                 {(color) => <FilterIcon height={24} width={24} fill={color} />}
             </CircularIconButton>
-            <CircularIconButton variant={'danger'} marginRight={spacings.m}>
+            <CircularIconButton variant={'danger'} marginBottom={spacings.s}>
                 {(color) => <TrashIcon height={24} width={24} fill={color} />}
             </CircularIconButton>
-            <CircularIconButton variant={'danger'} marginRight={spacings.m} reduceColor>
+            <CircularIconButton variant={'danger'} marginBottom={spacings.s} reduceColor>
                 {(color) => <TrashIcon height={24} width={24} fill={color} />}
             </CircularIconButton>
-            <CircularIconButton variant={'warning'} marginRight={spacings.m}>
+            <CircularIconButton variant={'warning'} marginBottom={spacings.s}>
                 {(color) => <MoreVerticalIcon height={24} width={24} fill={color} />}
             </CircularIconButton>
-            <CircularIconButton variant={'warning'} marginRight={spacings.m} reduceColor>
+            <CircularIconButton variant={'warning'} marginBottom={spacings.s} reduceColor>
                 {(color) => <MoreVerticalIcon height={24} width={24} fill={color} />}
             </CircularIconButton>
-            <CircularIconButton variant={'success'} marginRight={spacings.m}>
+            <CircularIconButton variant={'success'} marginBottom={spacings.s}>
                 {(color) => <SearchIcon height={24} width={24} fill={color} />}
             </CircularIconButton>
-            <CircularIconButton variant={'success'} marginRight={spacings.m} reduceColor>
+            <CircularIconButton variant={'success'} marginBottom={spacings.s} reduceColor>
                 {(color) => <SearchIcon height={24} width={24} fill={color} />}
             </CircularIconButton>
         </Box>
