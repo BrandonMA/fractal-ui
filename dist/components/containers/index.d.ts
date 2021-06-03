@@ -4,3 +4,4 @@ export * from './Background';
 export * from './Box';
 export * from './MarginLayer';
 export * from './PaddingLayer';
+export * from './HorizontalLayer';
