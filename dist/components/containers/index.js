@@ -1,5 +1,6 @@
 export * from './ImageBackground';
 export * from './Layer';
+export * from './Layer/types';
 export * from './Background';
 export * from './Box';
 export * from './MarginLayer';

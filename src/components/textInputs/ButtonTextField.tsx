@@ -16,6 +16,7 @@ export interface ButtonTextFieldProps extends IconTextFieldProps {
     buttonText?: string;
     buttonAriaLabel?: string;
     showButton?: boolean;
+    useForegroundVariant?: boolean;
 }
 
 const ButtonTextField = forwardRef(
@@ -35,6 +36,7 @@ const ButtonTextField = forwardRef(
             inputRef,
             placeholder,
             onSubmitEditing,
+            useForegroundVariant,
             ...layerProps
         }: ButtonTextFieldProps,
         ref: any
@@ -66,6 +68,7 @@ const ButtonTextField = forwardRef(
                     inputRef={inputRef}
                     paddingLeft={spacings.xs}
                     onChangeText={handleChangeText}
+                    backgroundColor={useForegroundVariant ? colors.foreground : colors.background}
                     {...getMessageInputAccessibilityProps()}
                 />
                 <Layer marginLeft={showButton ? spacings.m : undefined}>

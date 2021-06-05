@@ -20,7 +20,7 @@ import { getButtonMessageInputAccessibilityProps } from './accessibility/getButt
 import { Layer } from '../containers';
 const ButtonTextField = forwardRef((_a, ref) => {
     var _b;
-    var { value, buttonImage, onChangeText, onButtonPress, buttonVariant = 'main', buttonText, showButton = true, buttonAriaLabel, leftImage, rightImage, textFieldProps, inputRef, placeholder, onSubmitEditing } = _a, layerProps = __rest(_a, ["value", "buttonImage", "onChangeText", "onButtonPress", "buttonVariant", "buttonText", "showButton", "buttonAriaLabel", "leftImage", "rightImage", "textFieldProps", "inputRef", "placeholder", "onSubmitEditing"]);
+    var { value, buttonImage, onChangeText, onButtonPress, buttonVariant = 'main', buttonText, showButton = true, buttonAriaLabel, leftImage, rightImage, textFieldProps, inputRef, placeholder, onSubmitEditing, useForegroundVariant } = _a, layerProps = __rest(_a, ["value", "buttonImage", "onChangeText", "onButtonPress", "buttonVariant", "buttonText", "showButton", "buttonAriaLabel", "leftImage", "rightImage", "textFieldProps", "inputRef", "placeholder", "onSubmitEditing", "useForegroundVariant"]);
     const { colors, sizes, spacings } = useTheme();
     const [text, setText] = useControllableState(value, '', onChangeText);
     const handleChangeText = (text) => {
@@ -33,7 +33,7 @@ const ButtonTextField = forwardRef((_a, ref) => {
         onSubmitEditing === null || onSubmitEditing === void 0 ? void 0 : onSubmitEditing(text);
     };
     return (React.createElement(HorizontalLayer, Object.assign({ ref: ref, alignItems: 'center', height: sizes.textFieldHeight }, layerProps),
-        React.createElement(IconTextField, Object.assign({ value: text, flex: 1, placeholder: placeholder, leftImage: leftImage, rightImage: rightImage, textFieldProps: Object.assign(Object.assign({}, textFieldProps), { onSubmitEditing: (_b = textFieldProps === null || textFieldProps === void 0 ? void 0 : textFieldProps.onSubmitEditing) !== null && _b !== void 0 ? _b : handleSubmitEditing }), inputRef: inputRef, paddingLeft: spacings.xs, onChangeText: handleChangeText }, getMessageInputAccessibilityProps())),
+        React.createElement(IconTextField, Object.assign({ value: text, flex: 1, placeholder: placeholder, leftImage: leftImage, rightImage: rightImage, textFieldProps: Object.assign(Object.assign({}, textFieldProps), { onSubmitEditing: (_b = textFieldProps === null || textFieldProps === void 0 ? void 0 : textFieldProps.onSubmitEditing) !== null && _b !== void 0 ? _b : handleSubmitEditing }), inputRef: inputRef, paddingLeft: spacings.xs, onChangeText: handleChangeText, backgroundColor: useForegroundVariant ? colors.foreground : colors.background }, getMessageInputAccessibilityProps())),
         React.createElement(Layer, { marginLeft: showButton ? spacings.m : undefined }, showButton ? (React.createElement(Button, Object.assign({ ariaLabel: buttonAriaLabel, variant: buttonVariant, onPress: handlePress, text: buttonText }, getButtonMessageInputAccessibilityProps()), buttonText == null && buttonImage ? buttonImage(colors.white, 22) : null)) : null)));
 });
 ButtonTextField.displayName = 'ButtonTextField';
