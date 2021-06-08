@@ -11,10 +11,11 @@ interface MultiSelectInputProps<T> {
     onSelect: (values: Array<T>) => void;
     onDeletePress: (item: T) => void;
     onClearPress: () => void;
+    onChangeText: (text: string) => void;
+    onSubmitEditing: () => void;
     clearButtonText?: string;
     inputValue?: string;
     controllableSelectedOptions: Array<T>;
-    onChangeText: (text: string) => void;
     placeholder?: string;
 }
 
@@ -28,7 +29,8 @@ export function MultiSelectInput<T extends IDEnabled>({
     inputValue,
     controllableSelectedOptions,
     onChangeText,
-    placeholder
+    placeholder,
+    onSubmitEditing
 }: MultiSelectInputProps<T>): JSX.Element {
     return (
         <Layer>
@@ -41,6 +43,7 @@ export function MultiSelectInput<T extends IDEnabled>({
                 onSelect={onSelect}
                 controllableSelectedOptions={controllableSelectedOptions}
                 onChangeText={onChangeText}
+                onSubmitEditing={onSubmitEditing}
             />
             <ChipList data={controllableSelectedOptions} getLabel={getOptionLabel} onItemPress={onDeletePress} />
             <Button variant={'warning'} onPress={onClearPress} text={clearButtonText} />

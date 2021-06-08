@@ -5,11 +5,12 @@ interface MultiSelectInputProps<T> {
     onSelect: (values: Array<T>) => void;
     onDeletePress: (item: T) => void;
     onClearPress: () => void;
+    onChangeText: (text: string) => void;
+    onSubmitEditing: () => void;
     clearButtonText?: string;
     inputValue?: string;
     controllableSelectedOptions: Array<T>;
-    onChangeText: (text: string) => void;
     placeholder?: string;
 }
-export declare function MultiSelectInput<T extends IDEnabled>({ options, getOptionLabel, clearButtonText, onSelect, onClearPress, onDeletePress, inputValue, controllableSelectedOptions, onChangeText, placeholder }: MultiSelectInputProps<T>): JSX.Element;
+export declare function MultiSelectInput<T extends IDEnabled>({ options, getOptionLabel, clearButtonText, onSelect, onClearPress, onDeletePress, inputValue, controllableSelectedOptions, onChangeText, placeholder, onSubmitEditing }: MultiSelectInputProps<T>): JSX.Element;
 export {};
