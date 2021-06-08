@@ -4,8 +4,8 @@ import { useControllableState } from '../../hooks/useControllableState';
 import { Button, ButtonVariant } from '../buttons';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { IconTextField, IconTextFieldProps } from './IconTextField';
-import { getMessageInputAccessibilityProps } from './accessibility/getMessageInputAccessibilityProps';
-import { getButtonMessageInputAccessibilityProps } from './accessibility/getButtonMessageInputAccessibilityProps';
+import { getButtonTextFieldAccessibilityProps } from './accessibility/getButtonTextFieldAccessibilityProps';
+import { getButtonIconAccessibilityProps } from './accessibility/getButtonIconAccessibilityProps';
 import { Layer } from '../containers';
 
 export interface ButtonTextFieldProps extends IconTextFieldProps {
@@ -69,7 +69,7 @@ const ButtonTextField = forwardRef(
                     paddingLeft={spacings.xs}
                     onChangeText={handleChangeText}
                     backgroundColor={useForegroundVariant ? colors.foreground : colors.background}
-                    {...getMessageInputAccessibilityProps()}
+                    {...getButtonTextFieldAccessibilityProps(buttonAriaLabel)}
                 />
                 <Layer marginLeft={showButton ? spacings.m : undefined}>
                     {showButton ? (
@@ -78,7 +78,7 @@ const ButtonTextField = forwardRef(
                             variant={buttonVariant}
                             onPress={handlePress}
                             text={buttonText}
-                            {...getButtonMessageInputAccessibilityProps()}
+                            {...getButtonIconAccessibilityProps(buttonAriaLabel)}
                         >
                             {buttonText == null && buttonImage ? buttonImage(colors.white, 22) : null}
                         </Button>

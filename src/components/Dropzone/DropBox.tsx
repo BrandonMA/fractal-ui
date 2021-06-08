@@ -72,7 +72,14 @@ export function DropBox({
             <FileInput {...fileInputProps} />
             <UploadIcon width={24} height={24} fill={colors.text} />
             <Layer width={spacings.xs} />
-            <StyledText selectable={false} fontFamily={fontFamily} fontSize={fontSize} fontWeight={fontWeight} color={finalColor}>
+            <StyledText
+                tabIndex={0}
+                selectable={false}
+                fontFamily={fontFamily}
+                fontSize={fontSize}
+                fontWeight={fontWeight}
+                color={finalColor}
+            >
                 {text}
                 <StyledButton onClick={onButtonPress} color={colors.mainInteractiveColor}>
                     {textButton}

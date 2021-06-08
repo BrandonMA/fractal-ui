@@ -1,5 +1,5 @@
 export function getSearchBarAccessibilityProps(): Record<string, any> {
     return {
-        'aria-label': 'search bar'
+        'aria-label': 'Search Bar'
     };
 }

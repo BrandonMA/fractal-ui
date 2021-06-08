@@ -1,5 +1,5 @@
 export function getCircularIconButtonAccessibilityProps(): Record<string, any> {
     return {
-        'aria-label': 'Circular icon'
+        'aria-label': 'Circular Icon'
     };
 }

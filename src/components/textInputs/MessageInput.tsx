@@ -18,6 +18,7 @@ const MessageInput = forwardRef(({ onSend, ...others }: MessageInputProps, ref: 
             buttonImage={renderIcon}
             onButtonPress={onSend}
             onSubmitEditing={onSend}
+            buttonAriaLabel={'Message'}
             {...others}
         />
     );

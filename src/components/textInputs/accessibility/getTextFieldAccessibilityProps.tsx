@@ -1,5 +1,5 @@
 export function getTextFieldAccessibilityProps(): Record<string, any> {
     return {
-        'aria-label': 'Text field'
+        'aria-label': 'Text Field'
     };
 }

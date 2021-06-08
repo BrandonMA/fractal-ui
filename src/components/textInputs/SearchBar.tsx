@@ -6,7 +6,7 @@ import { ButtonTextField, ButtonTextFieldProps } from './ButtonTextField';
 export interface SearchBarProps extends ButtonTextFieldProps {
     onSearch?: (query: string) => void;
     enableSearchButton?: boolean;
-    searchAriaLabel?: string;
+    ariaLabel?: string;
 }
 
 const SearchBar = forwardRef(
@@ -19,7 +19,7 @@ const SearchBar = forwardRef(
             buttonText,
             buttonVariant = 'main',
             placeholder,
-            searchAriaLabel = 'Search',
+            ariaLabel = 'Search',
             ...others
         }: SearchBarProps,
         ref: any
@@ -51,7 +51,7 @@ const SearchBar = forwardRef(
                 buttonText={buttonText}
                 buttonVariant={buttonVariant}
                 onButtonPress={handleSearch}
-                buttonAriaLabel={searchAriaLabel}
+                buttonAriaLabel={ariaLabel}
                 buttonImage={renderIcon}
                 {...others}
             />

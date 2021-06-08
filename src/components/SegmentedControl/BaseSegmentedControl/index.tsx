@@ -12,7 +12,6 @@ import {
 } from '../../../sharedProps';
 import { useTheme } from '../../../context/hooks/useTheme';
 import { SegmentedControlTab } from '../SegmentControlTap';
-import { getSegmentedControlAccessibilityProps } from '../accessibility/getSegmentedControlAccessibilityProps';
 
 const Container = styled(motion.ol as any)`
     list-style: none;
@@ -44,16 +43,16 @@ const BaseSegmentedControl = forwardRef(
             <AnimateSharedLayout>
                 <Container
                     ref={ref}
-                    backgroundColor={backgroundColor ?? colors.background}
+                    tabIndex={0}
                     margin={0}
                     padding={2}
                     width={'100%'}
+                    backgroundColor={backgroundColor ?? colors.background}
                     height={sizes.segmentedControlSize}
                     borderRadius={borderRadius.s}
                     display={'inline-flex'}
                     flexDirection={'row'}
                     {...layerProps}
-                    {...getSegmentedControlAccessibilityProps()}
                 >
                     {values.map((item, index) => {
                         return (

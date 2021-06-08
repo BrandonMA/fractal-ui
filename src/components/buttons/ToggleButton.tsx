@@ -5,7 +5,6 @@ import { BaseButton } from './BaseButton';
 import { ButtonVariant } from './types/ButtonVariant';
 import { useToggleButtonColors } from './hooks/useToggleButtonColors';
 import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
-import { getToggleButtonAccessibilityProps } from './accessibility/getToggleButtonAccessibilityProps';
 import { useControllableState } from '../../hooks/useControllableState';
 
 export interface ToggleButtonProps extends FractalSharedProps, AnimationProps {
@@ -51,8 +50,7 @@ const ToggleButton = forwardRef((props: ToggleButtonProps, ref: any): JSX.Elemen
                 }
             }}
             animate={active ? 'active' : 'inactive'}
-            {...getToggleButtonAccessibilityProps()}
-            {...getButtonAccessibilityProps(pressed)}
+            {...getButtonAccessibilityProps(pressed, false, 'Toggle')}
             {...others}
         >
             {children?.(foregroundColor)}

@@ -4,6 +4,7 @@ import { Box } from '../containers';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { Text } from '../text';
 import { TableContainerProps, TextColorVariant } from './types';
+import { getTableContainerAccessibilityProps } from './accessibility/getTableContainerAccessibilityProps';
 
 const TableContainer = forwardRef(
     (
@@ -29,7 +30,7 @@ const TableContainer = forwardRef(
         const labelColor = colors[labelColorName];
 
         return (
-            <Box ref={ref} {...others}>
+            <Box ref={ref} {...getTableContainerAccessibilityProps()} {...others}>
                 <HorizontalLayer marginBottom={spacings.m} flex={1} justifyContent='space-between' alignItems={'center'}>
                     <Text variant={titleTextVariant} color={titleColor}>
                         {title}

@@ -1,5 +1,5 @@
 export function getButtonSearchBarAccessibilityProps(): Record<string, any> {
     return {
-        'aria-label': 'search'
+        'aria-label': 'Search'
     };
 }
