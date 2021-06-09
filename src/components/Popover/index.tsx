@@ -2,7 +2,7 @@ import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { Layer } from '../containers/Layer';
 import { styleVariants } from './utils/styleVariants';
-import { PlacementOffsetStyle, PopoverProps } from './types/types';
+import { PlacementOffsetStyle, PopoverProps } from './types';
 import { getWebPlacementOffsetStyle } from './utils/getWebPlacementOffsetStyle';
 import { OutsideClickListener } from './OutsideClickListener';
 

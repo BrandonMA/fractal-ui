@@ -21,7 +21,8 @@ import {
     SocialMediaButtons,
     Switch,
     Text,
-    useTheme
+    useTheme,
+    PlacementType
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { ThemeSwapper } from './documentation/examples/ThemeSwapper';
@@ -37,7 +38,6 @@ import { MessagesFragments } from './documentation/fragments/Messages';
 import { TablesFragments } from './documentation/fragments/Tables';
 import { GridsFragments } from './documentation/fragments/Grids';
 import { FileIcon } from './src/assets/FileIcon';
-import { PlacementType } from './src/components/Popover/types/types';
 
 const tracks = [
     {
