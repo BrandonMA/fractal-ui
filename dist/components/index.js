@@ -8,6 +8,7 @@ export * from './grids';
 export * from './messages';
 export * from './buttons';
 export * from './Popover';
+export * from './Popover/types';
 export * from './radio';
 export * from './SegmentedControl';
 export * from './Slider';
@@ -23,6 +24,7 @@ export * from './Separator';
 export * from './colors';
 export * from './modals';
 export * from './Image';
+export * from './Image/types';
 export * from './Chip';
 export * from './ChipList';
 //# sourceMappingURL=index.js.map

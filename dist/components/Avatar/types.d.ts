@@ -1,4 +1,4 @@
-import { ImageProps } from '../Image/types/types';
+import { ImageProps } from '../Image/types';
 export interface AvatarProps extends ImageProps {
     size?: number;
 }

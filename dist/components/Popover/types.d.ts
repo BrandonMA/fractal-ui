@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { LayerProps } from '../../containers/Layer/types';
+import { LayerProps } from '../containers/Layer/types';
 export interface LayoutRectangle {
     x: number;
     y: number;

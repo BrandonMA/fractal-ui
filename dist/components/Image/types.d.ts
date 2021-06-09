@@ -1,4 +1,4 @@
-import { LayerProps } from '../../containers/Layer/types';
+import { LayerProps } from '../containers/Layer/types';
 declare type ImageRequireSource = number;
 declare type ImageSourcePropType = ImageRequireSource | string;
 export declare type ResizeModeType = 'cover' | 'contain' | 'stretch' | 'repeat' | 'center';
