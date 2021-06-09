@@ -1,4 +1,4 @@
-import { LayerProps } from '../containers/Layer/types';
+import { LayerProps } from '../../containers/Layer/types';
 
 type ImageRequireSource = number;
 

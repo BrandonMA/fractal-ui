@@ -1,4 +1,4 @@
-import { LayoutRectangle, NativePlacementOffsetStyle, PlacementType } from '../types';
+import { LayoutRectangle, NativePlacementOffsetStyle, PlacementType } from '../types/types';
 import { alignNativePopoverIfRequired } from './alignNativePopoverIfRequired';
 
 export function getNativePlacementOffsetStyle(

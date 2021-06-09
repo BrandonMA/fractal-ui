@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useTheme, Box, Layer, Avatar, Image, ImageBackground, Text } from '../../src';
-import { ResizeModeType } from '../../src/components/Image/types';
+import { ResizeModeType } from '../../src/components/Image/types/types';
 
 function AvatarImageFragment(): JSX.Element {
     const { spacings } = useTheme();

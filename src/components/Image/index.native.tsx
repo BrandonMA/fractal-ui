@@ -8,7 +8,7 @@ import {
     extractShadowProps
 } from '../../sharedProps';
 import Reanimated from 'react-native-reanimated';
-import { ImageProps } from './types';
+import { ImageProps } from './types/types';
 import { useAnimationStyles } from '../../animations/native/hooks/useAnimationStyles';
 
 const StyledImage = styled(Reanimated.Image)`

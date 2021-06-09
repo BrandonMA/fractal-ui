@@ -4,7 +4,7 @@ import { Pressable } from '../buttons/Pressable';
 import { Layer } from '../containers/Layer';
 import { Modal } from '../modals/Modal';
 import { styleVariants } from './utils/styleVariants';
-import { LayoutRectangle, PopoverProps } from './types';
+import { LayoutRectangle, PopoverProps } from './types/types';
 import { getNativePlacementOffsetStyle } from './utils/getNativePlacementOffsetStyle';
 
 const Popover = forwardRef(

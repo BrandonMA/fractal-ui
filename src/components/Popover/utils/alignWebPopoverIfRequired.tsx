@@ -1,4 +1,4 @@
-import { PlacementOffsetStyle } from '../types';
+import { PlacementOffsetStyle } from '../types/types';
 
 const flipSign = (x: number) => x * -1;
 

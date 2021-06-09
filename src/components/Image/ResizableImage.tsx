@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Layer } from '../containers/Layer';
-import { ResizeModeProps } from './types';
+import { ResizeModeProps } from './types/types';
 
 function extractResizeModeProps({ source, resizeMode = 'cover', backgroundSize }: ResizeModeProps): string {
     return `

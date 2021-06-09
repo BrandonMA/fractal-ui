@@ -1,5 +1,5 @@
 import { MutableRefObject } from 'react';
-import { PlacementOffsetStyle, PlacementType } from '../types';
+import { PlacementOffsetStyle, PlacementType } from '../types/types';
 import { alignWebPopoverIfRequired } from './alignWebPopoverIfRequired';
 
 export function getWebPlacementOffsetStyle(

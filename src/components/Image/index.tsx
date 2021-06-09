@@ -1,5 +1,5 @@
 import React, { forwardRef, useCallback } from 'react';
-import { ImageProps } from './types';
+import { ImageProps } from './types/types';
 import { ResizableImage } from './ResizableImage';
 import { Layer } from '../containers/Layer';
 import { getImageAccessibilityProps } from './accessibility/getImageAccessibilityProps';
