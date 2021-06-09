@@ -14,7 +14,7 @@ import { SearchIcon } from '../../assets/SearchIcon';
 import { useControllableState } from '../../hooks/useControllableState';
 import { ButtonTextField } from './ButtonTextField';
 const SearchBar = forwardRef((_a, ref) => {
-    var { value, onChangeText, onSearch, enableSearchButton = false, buttonText, buttonVariant = 'main', placeholder, searchAriaLabel = 'Search' } = _a, others = __rest(_a, ["value", "onChangeText", "onSearch", "enableSearchButton", "buttonText", "buttonVariant", "placeholder", "searchAriaLabel"]);
+    var { value, onChangeText, onSearch, enableSearchButton = false, buttonText, buttonVariant = 'main', placeholder, ariaLabel = 'Search' } = _a, others = __rest(_a, ["value", "onChangeText", "onSearch", "enableSearchButton", "buttonText", "buttonVariant", "placeholder", "ariaLabel"]);
     const [query, setQuery] = useControllableState(value, '', onChangeText);
     const handleChangeText = (text) => {
         if (!enableSearchButton) {
@@ -26,7 +26,7 @@ const SearchBar = forwardRef((_a, ref) => {
     const handleSearch = () => {
         onSearch === null || onSearch === void 0 ? void 0 : onSearch(query);
     };
-    return (React.createElement(ButtonTextField, Object.assign({ ref: ref, value: value, placeholder: placeholder, leftImage: enableSearchButton ? undefined : renderIcon, onChangeText: handleChangeText, textFieldProps: { onSubmitEditing: enableSearchButton ? handleSearch : undefined }, showButton: enableSearchButton, buttonText: buttonText, buttonVariant: buttonVariant, onButtonPress: handleSearch, buttonAriaLabel: searchAriaLabel, buttonImage: renderIcon }, others)));
+    return (React.createElement(ButtonTextField, Object.assign({ ref: ref, value: value, placeholder: placeholder, leftImage: enableSearchButton ? undefined : renderIcon, onChangeText: handleChangeText, textFieldProps: { onSubmitEditing: enableSearchButton ? handleSearch : undefined }, showButton: enableSearchButton, buttonText: buttonText, buttonVariant: buttonVariant, onButtonPress: handleSearch, buttonAriaLabel: ariaLabel, buttonImage: renderIcon }, others)));
 });
 SearchBar.displayName = 'SearchBar';
 export { SearchBar };

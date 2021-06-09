@@ -1,6 +1,6 @@
 export function getCrossButtonAccessibilityProps() {
     return {
-        'aria-label': 'Croos'
+        'aria-label': 'Cross'
     };
 }
 //# sourceMappingURL=getCrossButtonAccessibilityProps.js.map

@@ -45,7 +45,7 @@ export function DropBox({ dropContainerProps, dragFocused, fileInputProps, onBut
         React.createElement(FileInput, Object.assign({}, fileInputProps)),
         React.createElement(UploadIcon, { width: 24, height: 24, fill: colors.text }),
         React.createElement(Layer, { width: spacings.xs }),
-        React.createElement(StyledText, { selectable: false, fontFamily: fontFamily, fontSize: fontSize, fontWeight: fontWeight, color: finalColor },
+        React.createElement(StyledText, { tabIndex: 0, selectable: false, fontFamily: fontFamily, fontSize: fontSize, fontWeight: fontWeight, color: finalColor },
             text,
             React.createElement(StyledButton, { onClick: onButtonPress, color: colors.mainInteractiveColor }, textButton))));
 }

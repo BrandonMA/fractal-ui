@@ -1,6 +1,6 @@
 export function getTextFieldMaskAccessibilityProps() {
     return {
-        'aria-label': 'text field mask'
+        'aria-label': 'Text Field Mask'
     };
 }
 //# sourceMappingURL=getTextFieldMaskAccessibilityProps.js.map

@@ -14,6 +14,7 @@ import { useTheme } from '../../context/hooks/useTheme';
 import { Box } from '../containers';
 import { HorizontalLayer } from '../containers/HorizontalLayer';
 import { Text } from '../text';
+import { getTableContainerAccessibilityProps } from './accessibility/getTableContainerAccessibilityProps';
 const TableContainer = forwardRef((_a, ref) => {
     var { title, children, titleTextVariant = 'title', titleColorVariant = 'text', label, labelColorVariant = 'text' } = _a, others = __rest(_a, ["title", "children", "titleTextVariant", "titleColorVariant", "label", "labelColorVariant"]);
     const { colors, spacings } = useTheme();
@@ -22,7 +23,7 @@ const TableContainer = forwardRef((_a, ref) => {
     const titleColor = colors[titleColorName];
     const labelColorName = getColorName(labelColorVariant);
     const labelColor = colors[labelColorName];
-    return (React.createElement(Box, Object.assign({ ref: ref }, others),
+    return (React.createElement(Box, Object.assign({ ref: ref }, getTableContainerAccessibilityProps(), others),
         React.createElement(HorizontalLayer, { marginBottom: spacings.m, flex: 1, justifyContent: 'space-between', alignItems: 'center' },
             React.createElement(Text, { variant: titleTextVariant, color: titleColor }, title),
             React.createElement(Text, { variant: 'label', color: labelColor }, label)),

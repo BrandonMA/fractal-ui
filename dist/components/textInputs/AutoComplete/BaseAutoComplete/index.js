@@ -25,6 +25,6 @@ export function BaseAutoComplete(_a) {
     }, [filteredData.length, hideSuggestions]);
     return (React.createElement(Popover, { placement: 'bottom', active: suggestionsVisible, onRequestClose: hideSuggestions, popoverChildren: (anchorWidth) => (React.createElement(Box, { width: anchorWidth, marginTop: spacings.s, padding: 0, paddingTop: spacings.xs, paddingBottom: spacings.xs, maxHeight: 240, overflow: 'scroll' },
             React.createElement(SuggestionsList, { multiple: multiple, filteredData: filteredData, getLabel: getLabel, onItemPress: onItemPress, selectedIds: selectedIds }))) },
-        React.createElement(SearchBar, Object.assign({ value: value, onSearch: onSearch, onChangeText: onChangeText }, searchBarProps))));
+        React.createElement(SearchBar, Object.assign({ value: value, ariaLabel: 'Autocomplete', onSearch: onSearch, onChangeText: onChangeText }, searchBarProps))));
 }
 //# sourceMappingURL=index.js.map

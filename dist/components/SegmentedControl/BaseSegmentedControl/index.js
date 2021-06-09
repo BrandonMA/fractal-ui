@@ -15,7 +15,6 @@ import styled from 'styled-components';
 import { extractBackgroundProps, extractBorderProps, extractDimensionProps, extractDisplayProps, extractShadowProps, extractWebProps } from '../../../sharedProps';
 import { useTheme } from '../../../context/hooks/useTheme';
 import { SegmentedControlTab } from '../SegmentControlTap';
-import { getSegmentedControlAccessibilityProps } from '../accessibility/getSegmentedControlAccessibilityProps';
 const Container = styled(motion.ol) `
     list-style: none;
     ${extractBackgroundProps};
@@ -29,7 +28,7 @@ const BaseSegmentedControl = forwardRef((_a, ref) => {
     var { selectedIndex, values, tintColor, backgroundColor, textStyle, activeTextStyle, onTabPress } = _a, layerProps = __rest(_a, ["selectedIndex", "values", "tintColor", "backgroundColor", "textStyle", "activeTextStyle", "onTabPress"]);
     const { colors, borderRadius, sizes } = useTheme();
     return (React.createElement(AnimateSharedLayout, null,
-        React.createElement(Container, Object.assign({ ref: ref, backgroundColor: backgroundColor !== null && backgroundColor !== void 0 ? backgroundColor : colors.background, margin: 0, padding: 2, width: '100%', height: sizes.segmentedControlSize, borderRadius: borderRadius.s, display: 'inline-flex', flexDirection: 'row' }, layerProps, getSegmentedControlAccessibilityProps()), values.map((item, index) => {
+        React.createElement(Container, Object.assign({ ref: ref, tabIndex: 0, margin: 0, padding: 2, width: '100%', backgroundColor: backgroundColor !== null && backgroundColor !== void 0 ? backgroundColor : colors.background, height: sizes.segmentedControlSize, borderRadius: borderRadius.s, display: 'inline-flex', flexDirection: 'row' }, layerProps), values.map((item, index) => {
             return (React.createElement(SegmentedControlTab, { selected: selectedIndex === index, hideDivider: backgroundColor != undefined ||
                     tintColor != undefined ||
                     selectedIndex === index ||

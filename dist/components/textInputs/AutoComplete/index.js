@@ -12,7 +12,6 @@ var __rest = (this && this.__rest) || function (s, e) {
 import React, { useState } from 'react';
 import { useControllableState } from '../../../hooks/useControllableState';
 import { BaseAutoComplete } from './BaseAutoComplete';
-import { getAutocompleteAccessibilityProps } from '../accessibility/getAutocompleteAccessibilityProps';
 export function AutoComplete(_a) {
     var { options, getOptionLabel, onSelect, controllableSelectedOptions, multiple, onChangeText, value } = _a, searchBarProps = __rest(_a, ["options", "getOptionLabel", "onSelect", "controllableSelectedOptions", "multiple", "onChangeText", "value"]);
     const [suggestionsVisible, setSuggestionsVisible] = useState(false);
@@ -65,6 +64,6 @@ export function AutoComplete(_a) {
         setFilteredOptions(newFilteredOptions);
         setUserInput(query);
     };
-    return (React.createElement(BaseAutoComplete, Object.assign({ value: userInput, onChangeText: handleChangeText, suggestionsVisible: suggestionsVisible, hideSuggestions: hideSuggestions, filteredData: filteredOptions, getLabel: getOptionLabel, onItemPress: onOptionPress, selectedIds: selectedOptionsIds, multiple: multiple }, getAutocompleteAccessibilityProps(), searchBarProps)));
+    return (React.createElement(BaseAutoComplete, Object.assign({ value: userInput, onChangeText: handleChangeText, suggestionsVisible: suggestionsVisible, hideSuggestions: hideSuggestions, filteredData: filteredOptions, getLabel: getOptionLabel, onItemPress: onOptionPress, selectedIds: selectedOptionsIds, multiple: multiple }, searchBarProps)));
 }
 //# sourceMappingURL=index.js.map

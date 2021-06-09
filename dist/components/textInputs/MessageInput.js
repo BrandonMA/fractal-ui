@@ -15,7 +15,7 @@ import { TrazadoIcon } from '../../assets/TrazadoIcon';
 const MessageInput = forwardRef((_a, ref) => {
     var { onSend } = _a, others = __rest(_a, ["onSend"]);
     const renderIcon = useCallback((color, size) => React.createElement(TrazadoIcon, { height: size, width: size, fill: color }), []);
-    return (React.createElement(ButtonTextField, Object.assign({ ref: ref, buttonVariant: 'success', buttonImage: renderIcon, onButtonPress: onSend, onSubmitEditing: onSend }, others)));
+    return (React.createElement(ButtonTextField, Object.assign({ ref: ref, buttonVariant: 'success', buttonImage: renderIcon, onButtonPress: onSend, onSubmitEditing: onSend, buttonAriaLabel: 'Message' }, others)));
 });
 MessageInput.displayName = 'MessageInput';
 export { MessageInput };

@@ -1,6 +1,6 @@
 export function getButtonSearchBarAccessibilityProps() {
     return {
-        'aria-label': 'search'
+        'aria-label': 'Search'
     };
 }
 //# sourceMappingURL=getButtonSearchBarAccessibilityProps.js.map

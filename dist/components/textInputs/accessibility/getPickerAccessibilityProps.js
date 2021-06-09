@@ -1,6 +1,6 @@
 export function getPickerAccessibilityProps() {
     return {
-        'aria-label': 'picker'
+        'aria-label': 'Picker'
     };
 }
 //# sourceMappingURL=getPickerAccessibilityProps.js.map
