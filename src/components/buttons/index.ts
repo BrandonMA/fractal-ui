@@ -8,5 +8,6 @@ export * from './ToggleButton';
 export * from './RoundedToggleButton';
 export * from './CrossButton';
 export * from './CircularIconButton';
+export * from './OptionsButton';
 export * from './types';
 export { useButtonColors } from './hooks/useButtonColors';

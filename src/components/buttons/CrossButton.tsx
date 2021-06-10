@@ -9,24 +9,22 @@ interface CloseButtonProps extends FractalSharedProps, AnimationProps {
     onPress?: () => void;
 }
 
-const CrossButton = forwardRef(
-    (props: CloseButtonProps, ref: any): JSX.Element => {
-        const { colors } = useTheme();
-        return (
-            <BaseButton
-                ref={ref}
-                height={24}
-                width={24}
-                justifyContent='center'
-                alignItems='center'
-                {...getCrossButtonAccessibilityProps()}
-                {...props}
-            >
-                <CloseIcon height={24} width={24} fill={colors.text} />
-            </BaseButton>
-        );
-    }
-);
+const CrossButton = forwardRef((props: CloseButtonProps, ref: any): JSX.Element => {
+    const { colors } = useTheme();
+    return (
+        <BaseButton
+            ref={ref}
+            height={24}
+            width={24}
+            justifyContent='center'
+            alignItems='center'
+            {...getCrossButtonAccessibilityProps()}
+            {...props}
+        >
+            <CloseIcon height={24} width={24} fill={colors.text} />
+        </BaseButton>
+    );
+});
 
 CrossButton.displayName = 'CrossButton';
 
