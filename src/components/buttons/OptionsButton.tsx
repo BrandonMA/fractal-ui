@@ -1,18 +1,14 @@
 import React, { forwardRef } from 'react';
 import { MoreHorizontalIcon } from '../../assets/MoreHorizontalIcon';
 import { useTheme } from '../../context/hooks/useTheme';
-import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { BaseButton } from './BaseButton';
+import { ActionButtonProps } from './types';
 
-interface OptionsButtonProps extends FractalSharedProps, AnimationProps {
-    onPress?: () => void;
-}
-
-const OptionsButton = forwardRef((props: OptionsButtonProps, ref: any): JSX.Element => {
+const OptionsButton = forwardRef(({ size = 24, ...others }: ActionButtonProps, ref: any): JSX.Element => {
     const { colors } = useTheme();
     return (
-        <BaseButton ref={ref} height={24} width={24} justifyContent='center' alignItems='center' aria-label='Options' {...props}>
-            <MoreHorizontalIcon height={24} width={24} fill={colors.text} />
+        <BaseButton ref={ref} height={size} width={size} justifyContent='center' alignItems='center' aria-label='Options' {...others}>
+            <MoreHorizontalIcon height={size} width={size} fill={colors.text} />
         </BaseButton>
     );
 });

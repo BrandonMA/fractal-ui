@@ -1,27 +1,23 @@
 import React, { forwardRef } from 'react';
 import { CloseIcon } from '../../assets/CloseIcon';
 import { useTheme } from '../../context/hooks/useTheme';
-import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { BaseButton } from './BaseButton';
 import { getCrossButtonAccessibilityProps } from './accessibility/getCrossButtonAccessibilityProps';
+import { ActionButtonProps } from './types';
 
-interface CloseButtonProps extends FractalSharedProps, AnimationProps {
-    onPress?: () => void;
-}
-
-const CrossButton = forwardRef((props: CloseButtonProps, ref: any): JSX.Element => {
+const CrossButton = forwardRef(({ size = 24, ...others }: ActionButtonProps, ref: any): JSX.Element => {
     const { colors } = useTheme();
     return (
         <BaseButton
             ref={ref}
-            height={24}
-            width={24}
+            height={size}
+            width={size}
             justifyContent='center'
             alignItems='center'
             {...getCrossButtonAccessibilityProps()}
-            {...props}
+            {...others}
         >
-            <CloseIcon height={24} width={24} fill={colors.text} />
+            <CloseIcon height={size} width={size} fill={colors.text} />
         </BaseButton>
     );
 });
