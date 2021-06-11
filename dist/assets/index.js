@@ -18,4 +18,5 @@ export * from './FilterIcon';
 export * from './LoadIcon';
 export * from './TrashIcon';
 export * from './MoreVerticalIcon';
+export * from './MoreHorizontalIcon';
 //# sourceMappingURL=index.js.map

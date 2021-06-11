@@ -10,16 +10,15 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React, { forwardRef } from 'react';
-import { CloseIcon } from '../../assets/CloseIcon';
+import { MoreHorizontalIcon } from '../../assets/MoreHorizontalIcon';
 import { useTheme } from '../../context/hooks/useTheme';
 import { BaseButton } from './BaseButton';
-import { getCrossButtonAccessibilityProps } from './accessibility/getCrossButtonAccessibilityProps';
-const CrossButton = forwardRef((_a, ref) => {
+const OptionsButton = forwardRef((_a, ref) => {
     var { size = 24 } = _a, others = __rest(_a, ["size"]);
     const { colors } = useTheme();
-    return (React.createElement(BaseButton, Object.assign({ ref: ref, height: size, width: size, justifyContent: 'center', alignItems: 'center' }, getCrossButtonAccessibilityProps(), others),
-        React.createElement(CloseIcon, { height: size, width: size, fill: colors.text })));
+    return (React.createElement(BaseButton, Object.assign({ ref: ref, height: size, width: size, justifyContent: 'center', alignItems: 'center', "aria-label": 'Options' }, others),
+        React.createElement(MoreHorizontalIcon, { height: size, width: size, fill: colors.text })));
 });
-CrossButton.displayName = 'CrossButton';
-export { CrossButton };
-//# sourceMappingURL=CrossButton.js.map
+OptionsButton.displayName = 'CrossButton';
+export { OptionsButton };
+//# sourceMappingURL=OptionsButton.js.map

@@ -1,7 +1,4 @@
 import React from 'react';
-import { AnimationProps, FractalSharedProps } from '../../sharedProps';
-interface CloseButtonProps extends FractalSharedProps, AnimationProps {
-    onPress?: () => void;
-}
-declare const CrossButton: React.ForwardRefExoticComponent<CloseButtonProps & React.RefAttributes<unknown>>;
+import { ActionButtonProps } from './types';
+declare const CrossButton: React.ForwardRefExoticComponent<ActionButtonProps & React.RefAttributes<unknown>>;
 export { CrossButton };
