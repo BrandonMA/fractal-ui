@@ -22,7 +22,8 @@ import {
     Switch,
     Text,
     useTheme,
-    PlacementType
+    PlacementType,
+    FileIcon
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
 import { ThemeSwapper } from './documentation/examples/ThemeSwapper';
@@ -36,7 +37,6 @@ import { ModalsFragments } from './documentation/fragments/Modals';
 import { MessagesFragments } from './documentation/fragments/Messages';
 import { TablesFragments } from './documentation/fragments/Tables';
 import { GridsFragments } from './documentation/fragments/Grids';
-import { FileIcon } from './src/assets/FileIcon';
 
 function SwapThemeFragment(): JSX.Element {
     const { spacings } = useTheme();
