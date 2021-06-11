@@ -61,7 +61,6 @@
         "eslint-plugin-react-hooks": "^4.2.0",
         "eslint-plugin-standard": "^5.0.0",
         "expo": "^41.0.0",
-        "expo-av": "~9.1.2",
         "expo-blur": "~9.0.3",
         "expo-document-picker": "^9.1.2",
         "expo-module-scripts": "^2.0.0",
