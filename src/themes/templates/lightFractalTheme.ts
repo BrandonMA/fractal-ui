@@ -101,6 +101,7 @@ export const borderRadius: FractalThemeBorderRadius = {
 
 export const sizes: FractalThemeSizes = {
     interactiveItemHeight: 44,
+    loadingComponentHeightForButton: 24,
     textFieldIconSize: 16,
     textFieldHeight: 44,
     checkBoxSize: 20,

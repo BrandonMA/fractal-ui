@@ -6,6 +6,7 @@ import { AnimationProps, FractalSharedProps } from '../../sharedProps';
 import { ButtonVariant } from './types/ButtonVariant';
 import { getButtonAccessibilityProps } from './accessibility/getButtonAccessibilityProps';
 import { useButtonColors } from './hooks/useButtonColors';
+import { ActivityIndicator } from '../ActivityIndicator';
 
 export interface ButtonProps extends FractalSharedProps, AnimationProps {
     style?: any;
@@ -18,14 +19,15 @@ export interface ButtonProps extends FractalSharedProps, AnimationProps {
     reduceColor?: boolean;
     ariaLabel?: string;
     disabled?: boolean;
+    loading?: boolean;
 }
 
 const Button = forwardRef(
     (
-        { variant = 'main', disabled, ariaLabel, children, text, addShadow, onPress, reduceColor, ...others }: ButtonProps,
+        { variant = 'main', disabled, loading, ariaLabel, children, text, addShadow, onPress, reduceColor, ...others }: ButtonProps,
         ref: any
     ): JSX.Element => {
-        const { borderRadius, sizes, shadows, spacings } = useTheme();
+        const { borderRadius, sizes, shadows, spacings, colors } = useTheme();
         const [pressed, setPressed] = useState(false);
         const [backgroundColor, foregroundColor, pressedColor] = useButtonColors(variant, reduceColor);
 
@@ -47,17 +49,27 @@ const Button = forwardRef(
                 paddingRight={spacings.s}
                 paddingLeft={spacings.s}
                 onPress={handleButtonPress}
-                opacity={disabled ? 0.5 : 1}
-                pointerEvents={disabled ? 'none' : undefined}
+                opacity={disabled || loading ? 0.5 : 1}
+                pointerEvents={disabled || loading ? 'none' : undefined}
                 {...getButtonAccessibilityProps(pressed, false, text ?? ariaLabel)}
                 {...others}
             >
-                {typeof children === 'function' ? children?.(foregroundColor) : children}
-                {text != null ? (
-                    <Text variant='button' color={foregroundColor}>
-                        {text}
-                    </Text>
-                ) : null}
+                {loading ? (
+                    <ActivityIndicator
+                        color={colors.white}
+                        height={sizes.loadingComponentHeightForButton}
+                        width={sizes.loadingComponentHeightForButton}
+                    />
+                ) : (
+                    <>
+                        {typeof children === 'function' ? children?.(foregroundColor) : children}
+                        {text != null ? (
+                            <Text variant='button' color={foregroundColor}>
+                                {text}
+                            </Text>
+                        ) : null}
+                    </>
+                )}
             </BaseButton>
         );
     }

@@ -94,6 +94,7 @@ export function ButtonFragment(): JSX.Element {
             <Button variant={'main'} text={'Main'} marginBottom={spacings.s} />
             <Button variant={'main'} text={'Main reduced'} marginBottom={spacings.s} reduceColor />
             <Button variant={'main'} text={'Main disabled'} marginBottom={spacings.s} disabled />
+            <Button variant={'main'} text={'Main loading'} marginBottom={spacings.s} loading />
             <Button variant={'main'} text={'Main reduced disabled'} marginBottom={spacings.s} reduceColor disabled />
             <Button variant={'alternative'} text={'Alternative'} marginBottom={spacings.s} />
             <Button variant={'alternative'} text={'Alternative reduced'} marginBottom={spacings.s} reduceColor />
