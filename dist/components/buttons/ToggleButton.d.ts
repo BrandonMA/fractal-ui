@@ -9,6 +9,7 @@ export interface ToggleButtonProps extends FractalSharedProps, AnimationProps {
     style?: any;
     onPress?: () => void;
     onActiveChange?: (active: boolean) => void;
+    disabled?: boolean;
 }
 declare const ToggleButton: React.ForwardRefExoticComponent<ToggleButtonProps & React.RefAttributes<unknown>>;
 export { ToggleButton };

@@ -11,6 +11,8 @@ export interface ButtonProps extends FractalSharedProps, AnimationProps {
     onPress?: () => void;
     reduceColor?: boolean;
     ariaLabel?: string;
+    disabled?: boolean;
+    loading?: boolean;
 }
 declare const Button: React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<unknown>>;
 export { Button };

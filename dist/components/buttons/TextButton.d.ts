@@ -10,6 +10,7 @@ export interface TextButtonProps extends FractalSharedProps, AnimationProps {
     rightIcon?: (color: string) => JSX.Element;
     style?: any;
     onPress?: () => void;
+    disabled?: boolean;
 }
 declare const TextButton: React.ForwardRefExoticComponent<TextButtonProps & React.RefAttributes<unknown>>;
 export { TextButton };

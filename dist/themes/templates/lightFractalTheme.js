@@ -88,6 +88,7 @@ export const borderRadius = {
 };
 export const sizes = {
     interactiveItemHeight: 44,
+    loadingComponentHeightForButton: 24,
     textFieldIconSize: 16,
     textFieldHeight: 44,
     checkBoxSize: 20,

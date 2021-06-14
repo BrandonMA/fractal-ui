@@ -15,11 +15,11 @@ import { useTheme } from '../../context/hooks/useTheme';
 import { TouchableOpacity } from './TouchableOpacity';
 import { getTextButtonAccessibilityProps } from './accessibility/getTextButtonAccessibilityProps';
 const TextButton = forwardRef((_a, ref) => {
-    var { variant, children, leftIcon, rightIcon, textProps } = _a, others = __rest(_a, ["variant", "children", "leftIcon", "rightIcon", "textProps"]);
+    var { variant, children, leftIcon, rightIcon, textProps, disabled } = _a, others = __rest(_a, ["variant", "children", "leftIcon", "rightIcon", "textProps", "disabled"]);
     const { colors } = useTheme();
     const colorName = `${variant}InteractiveColor`;
     const color = colors[colorName];
-    return (React.createElement(TouchableOpacity, Object.assign({ ref: ref }, others, getTextButtonAccessibilityProps(children)),
+    return (React.createElement(TouchableOpacity, Object.assign({ ref: ref, opacity: disabled ? 0.5 : 1, pointerEvents: disabled ? 'none' : undefined }, others, getTextButtonAccessibilityProps(children)),
         leftIcon && leftIcon(color),
         children && (React.createElement(Text, Object.assign({ fontWeight: 500, variant: 'textButton', color: color }, textProps), children)),
         rightIcon && rightIcon(color)));

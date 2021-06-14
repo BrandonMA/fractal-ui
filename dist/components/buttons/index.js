@@ -10,5 +10,5 @@ export * from './CrossButton';
 export * from './CircularIconButton';
 export * from './OptionsButton';
 export * from './types';
-export { useButtonColors } from './hooks/useButtonColors';
+export * from './OptionsMenuButton';
 //# sourceMappingURL=index.js.map

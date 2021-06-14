@@ -81,6 +81,7 @@ export interface FractalThemeBorderRadius {
 }
 export interface FractalThemeSizes {
     interactiveItemHeight: number;
+    loadingComponentHeightForButton: number;
     textFieldIconSize: number;
     textFieldHeight: number;
     checkBoxSize: number;
