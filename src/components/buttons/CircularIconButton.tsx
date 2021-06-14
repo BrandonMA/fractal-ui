@@ -6,7 +6,6 @@ import { useCircularButtonColors } from './hooks/useCircularIconButtonColors';
 
 const CircularIconButton = forwardRef(({ variant = 'main', children, reduceColor, ...others }: ButtonProps, ref: any): JSX.Element => {
     const { sizes } = useTheme();
-
     const [backgroundColor, foregroundColor, pressedBackgroundColor] = useCircularButtonColors(variant, reduceColor);
 
     return (

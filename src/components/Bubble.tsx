@@ -37,36 +37,34 @@ interface BubbleProps extends BubbleTriangleProps, TouchableOpacityProps {
     arrowPosition: 'left' | 'right';
 }
 
-const Bubble = forwardRef(
-    ({ children, arrowPosition, color, ...others }: BubbleProps, ref: any): JSX.Element => {
-        const { shadows, spacings, borderRadius } = useTheme();
-        return (
-            <TouchableOpacity ref={ref} {...others}>
+const Bubble = forwardRef(({ children, arrowPosition, color, ...others }: BubbleProps, ref: any): JSX.Element => {
+    const { shadows, spacings, borderRadius } = useTheme();
+    return (
+        <TouchableOpacity ref={ref} {...others}>
+            <Layer
+                position={'relative'}
+                maxWidth={'75%'}
+                paddingLeft={arrowPosition === 'left' ? 6 : 0}
+                paddingRight={arrowPosition === 'right' ? 6 : 0}
+                flexDirection={'row'}
+                alignSelf={arrowPosition === 'left' ? 'flex-start' : 'flex-end'}
+            >
                 <Layer
-                    position={'relative'}
-                    maxWidth={'75%'}
-                    paddingLeft={arrowPosition === 'left' ? 6 : 0}
-                    paddingRight={arrowPosition === 'right' ? 6 : 0}
-                    flexDirection={'row'}
-                    alignSelf={arrowPosition === 'left' ? 'flex-start' : 'flex-end'}
+                    padding={spacings.m}
+                    backgroundColor={color}
+                    borderRadius={borderRadius.m}
+                    borderTopLeftRadius={arrowPosition === 'left' ? 0 : borderRadius.m}
+                    borderTopRightRadius={arrowPosition === 'right' ? 0 : borderRadius.m}
+                    boxShadow={shadows.mainShadow}
+                    width={'100%'}
                 >
-                    <Layer
-                        padding={spacings.m}
-                        backgroundColor={color}
-                        borderRadius={borderRadius.m}
-                        borderTopLeftRadius={arrowPosition === 'left' ? 0 : borderRadius.m}
-                        borderTopRightRadius={arrowPosition === 'right' ? 0 : borderRadius.m}
-                        boxShadow={shadows.mainShadow}
-                        width={'100%'}
-                    >
-                        {children}
-                    </Layer>
-                    {arrowPosition == 'left' ? <BubbleTriangleLeft color={color} /> : <BubbleTriangleRight color={color} />}
+                    {children}
                 </Layer>
-            </TouchableOpacity>
-        );
-    }
-);
+                {arrowPosition == 'left' ? <BubbleTriangleLeft color={color} /> : <BubbleTriangleRight color={color} />}
+            </Layer>
+        </TouchableOpacity>
+    );
+});
 
 Bubble.displayName = 'Bubble';
 

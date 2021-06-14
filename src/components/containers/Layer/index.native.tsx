@@ -17,12 +17,10 @@ const StyledLayer = styled(Reanimated.View)`
     ${extractShadowProps};
 ` as typeof Reanimated.View;
 
-const Layer = forwardRef(
-    ({ style, ...others }: LayerProps, ref: any): JSX.Element => {
-        const animationStyles = useAnimationStyles(others);
-        return <StyledLayer ref={ref} {...others} style={[animationStyles, style]} />;
-    }
-);
+const Layer = forwardRef(({ style, ...others }: LayerProps, ref: any): JSX.Element => {
+    const animationStyles = useAnimationStyles(others);
+    return <StyledLayer ref={ref} {...others} style={[animationStyles, style]} />;
+});
 
 Layer.displayName = 'Layer';
 

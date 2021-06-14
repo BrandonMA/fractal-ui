@@ -17,10 +17,14 @@ export interface ButtonProps extends FractalSharedProps, AnimationProps {
     onPress?: () => void;
     reduceColor?: boolean;
     ariaLabel?: string;
+    disabled?: boolean;
 }
 
 const Button = forwardRef(
-    ({ variant = 'main', ariaLabel, children, text, addShadow, onPress, reduceColor, ...others }: ButtonProps, ref: any): JSX.Element => {
+    (
+        { variant = 'main', disabled, ariaLabel, children, text, addShadow, onPress, reduceColor, ...others }: ButtonProps,
+        ref: any
+    ): JSX.Element => {
         const { borderRadius, sizes, shadows, spacings } = useTheme();
         const [pressed, setPressed] = useState(false);
         const [backgroundColor, foregroundColor, pressedColor] = useButtonColors(variant, reduceColor);
@@ -43,6 +47,8 @@ const Button = forwardRef(
                 paddingRight={spacings.s}
                 paddingLeft={spacings.s}
                 onPress={handleButtonPress}
+                opacity={disabled ? 0.5 : 1}
+                pointerEvents={disabled ? 'none' : undefined}
                 {...getButtonAccessibilityProps(pressed, false, text ?? ariaLabel)}
                 {...others}
             >

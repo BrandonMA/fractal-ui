@@ -1,11 +1,11 @@
 import React, { ReactNode, useState } from 'react';
-import { MoreVerticalIcon } from '../assets/MoreVerticalIcon';
-import { useTheme } from '../context';
-import { CircularIconButton } from './buttons/CircularIconButton';
-import { TouchableOpacity } from './buttons/TouchableOpacity';
-import { Box } from './containers/Box';
-import { Popover } from './Popover';
-import { Text } from './text';
+import { MoreVerticalIcon } from '../../assets/MoreVerticalIcon';
+import { useTheme } from '../../context';
+import { CircularIconButton } from './CircularIconButton';
+import { TouchableOpacity } from './TouchableOpacity';
+import { Box } from '../containers/Box';
+import { Popover } from '../Popover';
+import { Text } from '../text';
 
 interface OptionsMenuButtonProps {
     customIcon?: (color: string) => ReactNode;

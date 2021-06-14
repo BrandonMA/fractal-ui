@@ -8,11 +8,9 @@ const StyledGrid = styled(Layer)`
     ${extractGridItemProps};
 `;
 
-const GridRow = forwardRef(
-    (props: GridItemProps, ref: any): JSX.Element => {
-        return <StyledGrid ref={ref} flexDirection={'row'} {...props} {...getGridRowAccessibilityProps()} />;
-    }
-);
+const GridRow = forwardRef((props: GridItemProps, ref: any): JSX.Element => {
+    return <StyledGrid ref={ref} flexDirection={'row'} {...props} {...getGridRowAccessibilityProps()} />;
+});
 
 GridRow.displayName = 'GridRow';
 

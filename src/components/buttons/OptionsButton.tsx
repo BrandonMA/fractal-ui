@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { MoreHorizontalIcon } from '../../assets/MoreHorizontalIcon';
+import { ThreeDotsIcon } from '../../assets/MoreHorizontalIcon';
 import { useTheme } from '../../context/hooks/useTheme';
 import { BaseButton } from './BaseButton';
 import { ActionButtonProps } from './types';
@@ -8,7 +8,7 @@ const OptionsButton = forwardRef(({ size = 24, ...others }: ActionButtonProps, r
     const { colors } = useTheme();
     return (
         <BaseButton ref={ref} height={size} width={size} justifyContent='center' alignItems='center' aria-label='Options' {...others}>
-            <MoreHorizontalIcon height={size} width={size} fill={colors.text} />
+            <ThreeDotsIcon height={size} width={size} fill={colors.text} />
         </BaseButton>
     );
 });

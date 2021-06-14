@@ -11,25 +11,23 @@ interface RadioGroupItemProps {
     handleChange: (value: string) => void;
 }
 
-const RadioGroupItem = memo(
-    ({ item, isLastItem, flexDirection, active, handleChange }: RadioGroupItemProps): JSX.Element => {
-        const { spacings } = useTheme();
+const RadioGroupItem = memo(({ item, isLastItem, flexDirection, active, handleChange }: RadioGroupItemProps): JSX.Element => {
+    const { spacings } = useTheme();
 
-        const handlePress = () => handleChange(item.value);
+    const handlePress = () => handleChange(item.value);
 
-        return (
-            <RadioButton
-                marginBottom={flexDirection != 'row' && isLastItem ? 0 : spacings.s}
-                marginRight={flexDirection == 'row' && isLastItem ? 0 : spacings.s}
-                key={item.value}
-                active={active}
-                label={item.label}
-                value={item.value}
-                onPress={handlePress}
-            />
-        );
-    }
-);
+    return (
+        <RadioButton
+            marginBottom={flexDirection != 'row' && isLastItem ? 0 : spacings.s}
+            marginRight={flexDirection == 'row' && isLastItem ? 0 : spacings.s}
+            key={item.value}
+            active={active}
+            label={item.label}
+            value={item.value}
+            onPress={handlePress}
+        />
+    );
+});
 
 RadioGroupItem.displayName = 'RadioGroupItem';
 

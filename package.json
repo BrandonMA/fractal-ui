@@ -15,7 +15,7 @@
         "start": "expo start",
         "build": "expo-module build",
         "clean": "rm -rf ./dist",
-        "format": "prettier --write App.tsx src/**/*.{ts,tsx}",
+        "format": "prettier --write App.tsx src/*.{ts,tsx} src/**/*.{ts,tsx} src/**/**/*.{ts,tsx}",
         "lint": "eslint src/ --fix",
         "bare-start": "react-native start",
         "ios": "react-native run-ios",

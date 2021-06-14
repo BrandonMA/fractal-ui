@@ -19,21 +19,19 @@ const StyledImage = styled(Reanimated.Image)`
     ${extractShadowProps};
 `;
 
-const Image = forwardRef(
-    ({ source, resizeMode, style, ...others }: ImageProps, ref: any): JSX.Element => {
-        const animationStyles = useAnimationStyles(others);
+const Image = forwardRef(({ source, resizeMode, style, ...others }: ImageProps, ref: any): JSX.Element => {
+    const animationStyles = useAnimationStyles(others);
 
-        return (
-            <StyledImage
-                ref={ref}
-                source={typeof source == 'string' ? { uri: source } : source}
-                resizeMode={resizeMode}
-                {...others}
-                style={[animationStyles, style]}
-            />
-        );
-    }
-);
+    return (
+        <StyledImage
+            ref={ref}
+            source={typeof source == 'string' ? { uri: source } : source}
+            resizeMode={resizeMode}
+            {...others}
+            style={[animationStyles, style]}
+        />
+    );
+});
 
 Image.displayName = 'Image';
 

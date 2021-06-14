@@ -8,22 +8,20 @@ export interface SeparatorProps extends Omit<LayerProps, 'children'> {
     isAtBackgroundLevel?: boolean;
 }
 
-const Separator = forwardRef(
-    ({ isAtBackgroundLevel, ...others }: SeparatorProps, ref: any): JSX.Element => {
-        const { colors } = useTheme();
+const Separator = forwardRef(({ isAtBackgroundLevel, ...others }: SeparatorProps, ref: any): JSX.Element => {
+    const { colors } = useTheme();
 
-        return (
-            <Layer
-                ref={ref}
-                height={1}
-                width={'100%'}
-                backgroundColor={isAtBackgroundLevel ? colors.placeholder : colors.background}
-                {...others}
-                {...getSeparatorAccessibilityProps()}
-            />
-        );
-    }
-);
+    return (
+        <Layer
+            ref={ref}
+            height={1}
+            width={'100%'}
+            backgroundColor={isAtBackgroundLevel ? colors.placeholder : colors.background}
+            {...others}
+            {...getSeparatorAccessibilityProps()}
+        />
+    );
+});
 
 Separator.displayName = 'Separator';
 

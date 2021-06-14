@@ -42,6 +42,9 @@ export function TextButtonFragment(): JSX.Element {
             <TextButton variant={'main'} marginBottom={spacings.s}>
                 Main
             </TextButton>
+            <TextButton variant={'main'} marginBottom={spacings.s} disabled>
+                Main disabled
+            </TextButton>
             <TextButton variant={'alternative'} marginBottom={spacings.s}>
                 Alternative
             </TextButton>
@@ -84,12 +87,14 @@ export function TextButtonFragment(): JSX.Element {
 }
 
 export function ButtonFragment(): JSX.Element {
-    const { colors, spacings } = useTheme();
+    const { spacings } = useTheme();
 
     return (
         <Box marginTop={spacings.s} marginBottom={spacings.xl}>
             <Button variant={'main'} text={'Main'} marginBottom={spacings.s} />
             <Button variant={'main'} text={'Main reduced'} marginBottom={spacings.s} reduceColor />
+            <Button variant={'main'} text={'Main disabled'} marginBottom={spacings.s} disabled />
+            <Button variant={'main'} text={'Main reduced disabled'} marginBottom={spacings.s} reduceColor disabled />
             <Button variant={'alternative'} text={'Alternative'} marginBottom={spacings.s} />
             <Button variant={'alternative'} text={'Alternative reduced'} marginBottom={spacings.s} reduceColor />
             <Button variant={'danger'} text={'Danger'} marginBottom={spacings.s} />
@@ -100,46 +105,6 @@ export function ButtonFragment(): JSX.Element {
             <Button variant={'success'} text={'Success reduced'} marginBottom={spacings.s} reduceColor />
             <Button variant={'content'} text={'Button with content variant'} marginBottom={spacings.s} />
             <Button variant={'content'} text={'Button with content variant'} marginBottom={spacings.s} reduceColor />
-            <Button
-                variant={'content'}
-                text={'Button with Main color as background color'}
-                marginBottom={spacings.s}
-                reduceColor
-                addShadow
-                pressedBackgroundColor={colors.mainInteractiveColor}
-            />
-            <Button
-                variant={'content'}
-                text={'Button with Alternative color as background color'}
-                marginBottom={spacings.s}
-                reduceColor
-                addShadow
-                pressedBackgroundColor={colors.alternativeInteractiveColor}
-            />
-            <Button
-                variant={'content'}
-                text={'Button with Danger color as background color'}
-                marginBottom={spacings.s}
-                reduceColor
-                addShadow
-                pressedBackgroundColor={colors.dangerInteractiveColor}
-            />
-            <Button
-                variant={'content'}
-                text={'Button with Warning color as background color'}
-                marginBottom={spacings.s}
-                reduceColor
-                addShadow
-                pressedBackgroundColor={colors.warningInteractiveColor}
-            />
-            <Button
-                variant={'content'}
-                text={'Button with Success color as background color'}
-                marginBottom={spacings.s}
-                reduceColor
-                addShadow
-                pressedBackgroundColor={colors.successInteractiveColor}
-            />
         </Box>
     );
 }
@@ -160,6 +125,13 @@ export function ToggleButtonFragment(): JSX.Element {
                 {() => (
                     <Text variant={'button'} color={colors.text}>
                         {text}
+                    </Text>
+                )}
+            </ToggleButton>
+            <ToggleButton variant={'main'} active={false} marginBottom={spacings.s} disabled>
+                {() => (
+                    <Text variant={'button'} color={colors.text}>
+                        {'Disabled'}
                     </Text>
                 )}
             </ToggleButton>
