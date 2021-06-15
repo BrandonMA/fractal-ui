@@ -8,7 +8,7 @@ import { OutsideClickListener } from './OutsideClickListener';
 
 const Popover = forwardRef(
     (
-        { active, placement = 'bottom', popoverChildren, popoverContainerProps, onRequestClose, ...others }: PopoverProps,
+        { active, placement = 'bottom', popoverChildren, popoverContainerProps, onRequestClose, children, ...others }: PopoverProps,
         ref: any
     ): JSX.Element => {
         const [placementOffsetStyle, setPlacementOffsetStyle] = useState<PlacementOffsetStyle>();
@@ -22,8 +22,8 @@ const Popover = forwardRef(
 
         return (
             <OutsideClickListener onOutsideClick={onRequestClose}>
-                <Layer ref={ref} position={'relative'} display={'inline-block'}>
-                    <Layer ref={anchorRef} {...others} />
+                <Layer ref={ref} position={'relative'} display={'inline-block'} {...others}>
+                    {children(anchorRef)}
                     <AnimatePresence>
                         {active ? (
                             <Layer
@@ -32,7 +32,6 @@ const Popover = forwardRef(
                                 animate={styleVariants.visible}
                                 exit={styleVariants.initial}
                                 position={'absolute'}
-                                minWidth={200}
                                 zIndex={2000}
                                 style={placementOffsetStyle}
                                 {...popoverContainerProps}

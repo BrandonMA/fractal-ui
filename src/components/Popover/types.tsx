@@ -22,10 +22,12 @@ export interface NativePlacementOffsetStyle extends Omit<PlacementOffsetStyle, '
 
 export type PlacementType = 'top' | 'right' | 'bottom' | 'left';
 
-export interface PopoverProps extends LayerProps {
+export interface PopoverProps extends Omit<LayerProps, 'children'> {
     active: boolean;
     onRequestClose: () => void;
     placement?: PlacementType;
     popoverChildren: (anchorWidth?: number) => ReactNode;
     popoverContainerProps?: Omit<LayerProps, 'children'>;
+    modalBackgroundColor?: string;
+    children: (anchorRef: any) => ReactNode | Array<ReactNode>;
 }

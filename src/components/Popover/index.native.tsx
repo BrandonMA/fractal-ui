@@ -9,7 +9,16 @@ import { getNativePlacementOffsetStyle } from './utils/getNativePlacementOffsetS
 
 const Popover = forwardRef(
     (
-        { active, placement = 'bottom', popoverChildren, popoverContainerProps, onRequestClose, ...others }: PopoverProps,
+        {
+            active,
+            placement = 'bottom',
+            popoverChildren,
+            popoverContainerProps,
+            onRequestClose,
+            children,
+            modalBackgroundColor,
+            ...others
+        }: PopoverProps,
         ref: any
     ): JSX.Element => {
         const [anchorViewLayout, setAnchorViewLayout] = useState<LayoutRectangle>({ x: 0, y: 0, height: 0, width: 0 });
@@ -37,17 +46,23 @@ const Popover = forwardRef(
         }, [active, measureInWindow]);
 
         return (
-            <Layer ref={ref}>
-                <Layer ref={anchorRef} {...others} />
+            <Layer ref={ref} {...others}>
+                {children(anchorRef)}
                 <Modal visible={active}>
-                    <Pressable zIndex={0} onPress={onRequestClose} position='absolute' width='100%' height='100%' />
+                    <Pressable
+                        zIndex={0}
+                        onPress={onRequestClose}
+                        position='absolute'
+                        width='100%'
+                        height='100%'
+                        backgroundColor={modalBackgroundColor}
+                    />
                     <Layer
                         onLayout={onPopoverLayout}
                         initial={styleVariants.initial}
                         animate={styleVariants.visible}
                         exit={styleVariants.initial}
                         position={'absolute'}
-                        minWidth={200}
                         zIndex={2}
                         style={styles}
                         {...popoverContainerProps}

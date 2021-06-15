@@ -65,9 +65,11 @@ function SearchBarFragment(): JSX.Element {
                     onSearch={(query: string) => console.log('Query: ', query)}
                 />
                 <Popover active={active} onRequestClose={deactivate} popoverChildren={() => <PopoverContent />}>
-                    <CircularIconButton onPress={toggleActive} variant={'success'} marginLeft={spacings.s}>
-                        {(color) => <FilterIcon height={24} width={24} fill={color} />}
-                    </CircularIconButton>
+                    {(ref) => (
+                        <CircularIconButton ref={ref} onPress={toggleActive} variant={'success'} marginLeft={spacings.s}>
+                            {(color) => <FilterIcon height={24} width={24} fill={color} />}
+                        </CircularIconButton>
+                    )}
                 </Popover>
             </HorizontalLayer>
         </Box>
@@ -135,9 +137,11 @@ function AutocompleteFragment(): JSX.Element {
                     />
                 </Layer>
                 <Popover active={active} onRequestClose={deactivate} popoverChildren={() => <PopoverContent />}>
-                    <CircularIconButton onPress={toggleActive} variant={'success'} marginLeft={spacings.s}>
-                        {(color) => <FilterIcon height={24} width={24} fill={color} />}
-                    </CircularIconButton>
+                    {(ref) => (
+                        <CircularIconButton ref={ref} onPress={toggleActive} variant={'success'} marginLeft={spacings.s}>
+                            {(color) => <FilterIcon height={24} width={24} fill={color} />}
+                        </CircularIconButton>
+                    )}
                 </Popover>
             </HorizontalLayer>
         </Box>

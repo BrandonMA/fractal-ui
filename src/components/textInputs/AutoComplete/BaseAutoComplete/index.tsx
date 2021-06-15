@@ -52,7 +52,16 @@ export function BaseAutoComplete<T extends IDEnabled>({
                 </Box>
             )}
         >
-            <SearchBar value={value} ariaLabel={'Autocomplete'} onSearch={onSearch} onChangeText={onChangeText} {...searchBarProps} />
+            {(ref) => (
+                <SearchBar
+                    ref={ref}
+                    value={value}
+                    ariaLabel={'Autocomplete'}
+                    onSearch={onSearch}
+                    onChangeText={onChangeText}
+                    {...searchBarProps}
+                />
+            )}
         </Popover>
     );
 }

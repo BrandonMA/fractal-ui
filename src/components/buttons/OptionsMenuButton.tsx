@@ -40,11 +40,13 @@ export function OptionsMenuButton({ options, onOptionPress, customIcon }: Option
 
     return (
         <Popover placement={'bottom'} active={optionsVisible} onRequestClose={hideOptions} popoverChildren={renderMenu}>
-            <CircularIconButton variant={'content'} reduceColor onPress={toggleOptions}>
-                {customIcon
-                    ? customIcon
-                    : (color) => <MoreVerticalIcon height={sizes.textFieldIconSize} width={sizes.textFieldIconSize} fill={color} />}
-            </CircularIconButton>
+            {(ref) => (
+                <CircularIconButton ref={ref} variant={'content'} reduceColor onPress={toggleOptions}>
+                    {customIcon
+                        ? customIcon
+                        : (color) => <MoreVerticalIcon height={sizes.textFieldIconSize} width={sizes.textFieldIconSize} fill={color} />}
+                </CircularIconButton>
+            )}
         </Popover>
     );
 }
