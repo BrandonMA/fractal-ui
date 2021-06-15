@@ -16,7 +16,7 @@ import { Modal } from '../modals/Modal';
 import { styleVariants } from './utils/styleVariants';
 import { getNativePlacementOffsetStyle } from './utils/getNativePlacementOffsetStyle';
 const Popover = forwardRef((_a, ref) => {
-    var { active, placement = 'bottom', popoverChildren, popoverContainerProps, onRequestClose } = _a, others = __rest(_a, ["active", "placement", "popoverChildren", "popoverContainerProps", "onRequestClose"]);
+    var { active, placement = 'bottom', popoverChildren, popoverContainerProps, onRequestClose, children, modalBackgroundColor } = _a, others = __rest(_a, ["active", "placement", "popoverChildren", "popoverContainerProps", "onRequestClose", "children", "modalBackgroundColor"]);
     const [anchorViewLayout, setAnchorViewLayout] = useState({ x: 0, y: 0, height: 0, width: 0 });
     const [popoverViewLayout, setPopoverViewLayout] = useState({ x: 0, y: 0, height: 0, width: 0 });
     const anchorRef = useRef();
@@ -37,11 +37,11 @@ const Popover = forwardRef((_a, ref) => {
             measureInWindow();
         }
     }, [active, measureInWindow]);
-    return (React.createElement(Layer, { ref: ref },
-        React.createElement(Layer, Object.assign({ ref: anchorRef }, others)),
+    return (React.createElement(Layer, Object.assign({ ref: ref }, others),
+        children(anchorRef),
         React.createElement(Modal, { visible: active },
-            React.createElement(Pressable, { zIndex: 0, onPress: onRequestClose, position: 'absolute', width: '100%', height: '100%' }),
-            React.createElement(Layer, Object.assign({ onLayout: onPopoverLayout, initial: styleVariants.initial, animate: styleVariants.visible, exit: styleVariants.initial, position: 'absolute', minWidth: 200, zIndex: 2, style: styles }, popoverContainerProps), popoverChildren(anchorViewLayout.width)))));
+            React.createElement(Pressable, { zIndex: 0, onPress: onRequestClose, position: 'absolute', width: '100%', height: '100%', backgroundColor: modalBackgroundColor }),
+            React.createElement(Layer, Object.assign({ onLayout: onPopoverLayout, initial: styleVariants.initial, animate: styleVariants.visible, exit: styleVariants.initial, position: 'absolute', zIndex: 2, style: styles }, popoverContainerProps), popoverChildren(anchorViewLayout.width)))));
 });
 Popover.displayName = 'Popover';
 export { Popover };

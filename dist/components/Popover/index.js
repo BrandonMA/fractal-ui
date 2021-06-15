@@ -17,7 +17,7 @@ import { getWebPlacementOffsetStyle } from './utils/getWebPlacementOffsetStyle';
 import { OutsideClickListener } from './OutsideClickListener';
 const Popover = forwardRef((_a, ref) => {
     var _b;
-    var { active, placement = 'bottom', popoverChildren, popoverContainerProps, onRequestClose } = _a, others = __rest(_a, ["active", "placement", "popoverChildren", "popoverContainerProps", "onRequestClose"]);
+    var { active, placement = 'bottom', popoverChildren, popoverContainerProps, onRequestClose, children } = _a, others = __rest(_a, ["active", "placement", "popoverChildren", "popoverContainerProps", "onRequestClose", "children"]);
     const [placementOffsetStyle, setPlacementOffsetStyle] = useState();
     const anchorRef = useRef();
     const popoverRef = useRef();
@@ -26,9 +26,9 @@ const Popover = forwardRef((_a, ref) => {
         setPlacementOffsetStyle(getWebPlacementOffsetStyle(anchorRef, popoverRef, placement));
     }, [placement, active]);
     return (React.createElement(OutsideClickListener, { onOutsideClick: onRequestClose },
-        React.createElement(Layer, { ref: ref, position: 'relative', display: 'inline-block' },
-            React.createElement(Layer, Object.assign({ ref: anchorRef }, others)),
-            React.createElement(AnimatePresence, null, active ? (React.createElement(Layer, Object.assign({ ref: popoverRef, initial: styleVariants.initial, animate: styleVariants.visible, exit: styleVariants.initial, position: 'absolute', minWidth: 200, zIndex: 2000, style: placementOffsetStyle }, popoverContainerProps), popoverChildren(anchorWidth))) : null))));
+        React.createElement(Layer, Object.assign({ ref: ref, position: 'relative', display: 'inline-block' }, others),
+            children(anchorRef),
+            React.createElement(AnimatePresence, null, active ? (React.createElement(Layer, Object.assign({ ref: popoverRef, initial: styleVariants.initial, animate: styleVariants.visible, exit: styleVariants.initial, position: 'absolute', zIndex: 2000, style: placementOffsetStyle }, popoverContainerProps), popoverChildren(anchorWidth))) : null))));
 });
 Popover.displayName = 'Popover';
 export { Popover };
