@@ -25,10 +25,10 @@ const Popover = forwardRef((_a, ref) => {
     useEffect(() => {
         setPlacementOffsetStyle(getWebPlacementOffsetStyle(anchorRef, popoverRef, placement));
     }, [placement, active]);
-    return (React.createElement(OutsideClickListener, { onOutsideClick: onRequestClose },
-        React.createElement(Layer, Object.assign({ ref: ref, position: 'relative', display: 'inline-block' }, others),
-            children(anchorRef),
-            React.createElement(AnimatePresence, null, active ? (React.createElement(Layer, Object.assign({ ref: popoverRef, initial: styleVariants.initial, animate: styleVariants.visible, exit: styleVariants.initial, position: 'absolute', zIndex: 2000, style: placementOffsetStyle }, popoverContainerProps), popoverChildren(anchorWidth))) : null))));
+    return (React.createElement(Layer, Object.assign({ ref: ref, position: 'relative', display: 'inline-block' }, others),
+        children(anchorRef),
+        React.createElement(AnimatePresence, null, active ? (React.createElement(OutsideClickListener, { onOutsideClick: onRequestClose },
+            React.createElement(Layer, Object.assign({ ref: popoverRef, initial: styleVariants.initial, animate: styleVariants.visible, exit: styleVariants.initial, position: 'absolute', zIndex: 2000, style: placementOffsetStyle }, popoverContainerProps), popoverChildren(anchorWidth)))) : null)));
 });
 Popover.displayName = 'Popover';
 export { Popover };

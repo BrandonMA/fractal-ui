@@ -30,7 +30,7 @@ export function getNativePlacementOffsetStyle(anchorLayoutRectangle, popoverLayo
         style = {
             left: anchorLayoutRectangle.x + anchorWidth,
             top: yValueHorizontal,
-            transform: []
+            transform: [{ translateY: -(popoverLayoutRectangle.height / 2) }]
         };
     }
     style = alignNativePopoverIfRequired(style, anchorLayoutRectangle, popoverLayoutRectangle, placement);
