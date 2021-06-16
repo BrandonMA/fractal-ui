@@ -21,11 +21,11 @@ const Popover = forwardRef(
         }, [placement, active]);
 
         return (
-            <OutsideClickListener onOutsideClick={onRequestClose}>
-                <Layer ref={ref} position={'relative'} display={'inline-block'} {...others}>
-                    {children(anchorRef)}
-                    <AnimatePresence>
-                        {active ? (
+            <Layer ref={ref} position={'relative'} display={'inline-block'} {...others}>
+                {children(anchorRef)}
+                <AnimatePresence>
+                    {active ? (
+                        <OutsideClickListener onOutsideClick={onRequestClose}>
                             <Layer
                                 ref={popoverRef}
                                 initial={styleVariants.initial}
@@ -38,10 +38,10 @@ const Popover = forwardRef(
                             >
                                 {popoverChildren(anchorWidth)}
                             </Layer>
-                        ) : null}
-                    </AnimatePresence>
-                </Layer>
-            </OutsideClickListener>
+                        </OutsideClickListener>
+                    ) : null}
+                </AnimatePresence>
+            </Layer>
         );
     }
 );

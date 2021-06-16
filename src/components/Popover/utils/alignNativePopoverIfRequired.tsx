@@ -12,11 +12,17 @@ export function alignNativePopoverIfRequired(
     const offsetPopoverWidth =
         placement == 'top' || placement == 'bottom' ? popoverLayoutRectangle.width / 2 : popoverLayoutRectangle.width;
     const offsetPopoverHeight = popoverLayoutRectangle.height;
+    const anchorWidth = anchorLayoutRectangle.width;
+    const popoverWidth = popoverLayoutRectangle.width;
 
     const isOverflowingRight: boolean = (style.left ? style.left : 0) + offsetPopoverWidth > screenWidth;
-    const isOverflowingLeft: boolean = (style.left ? style.left : 0) - offsetPopoverWidth < 0;
+    const isOverflowingLeft: boolean = (style.left ? style.left : 0) < 0;
     const isOverflowingTop: boolean = (style.top ? style.top : 0) - offsetPopoverHeight < 0;
     const isOverflowingBottom: boolean = (style.top ? style.top : 0) + offsetPopoverHeight > screenHeight;
+
+    console.log({ offsetPopoverWidth, left: style.left });
+
+    console.log({ isOverflowingRight, isOverflowingLeft, isOverflowingTop, isOverflowingBottom });
 
     if (isOverflowingTop) {
         style = {
@@ -36,15 +42,17 @@ export function alignNativePopoverIfRequired(
 
     if (isOverflowingLeft) {
         style = {
-            left: 0,
-            top: style.top
+            left: anchorLayoutRectangle.x + anchorWidth,
+            top: style.top,
+            transform: style.transform
         };
     }
 
     if (isOverflowingRight) {
         style = {
-            right: 0,
-            top: style.top
+            left: anchorLayoutRectangle.x - popoverWidth,
+            top: style.top,
+            transform: style.transform
         };
     }
     return style;

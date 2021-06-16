@@ -12,35 +12,40 @@ export function getWebPlacementOffsetStyle(
     if (anchorRef.current && popoverRef.current) {
         const offsetHeight = anchorRef.current.offsetHeight;
         const offsetWidth = anchorRef.current.offsetWidth;
+        const offsetLeft = anchorRef.current.offsetLeft;
+        const offsetTop = anchorRef.current.offsetTop;
+        const popoverWidth = popoverRef.current.offsetWidth;
+        const popoverHeight = popoverRef.current.offsetHeight;
+
         if (placement == 'bottom') {
             style = {
-                right: offsetWidth / 2,
+                left: offsetLeft + offsetWidth / 2,
                 top: offsetHeight,
-                transform: 'translateX(50%)'
+                transform: 'translateX(-50%)'
             };
         }
         if (placement === 'top') {
             style = {
-                right: offsetWidth / 2,
-                bottom: offsetHeight,
-                transform: 'translateX(50%)'
+                left: offsetLeft + offsetWidth / 2,
+                top: offsetTop - popoverHeight,
+                transform: 'translateX(-50%)'
             };
         }
         if (placement === 'left') {
             style = {
-                right: offsetWidth,
-                bottom: offsetHeight / 2,
-                transform: 'translateY(50%)'
+                left: offsetLeft - popoverWidth,
+                top: offsetTop + offsetHeight / 2,
+                transform: 'translateY(-50%)'
             };
         }
         if (placement == 'right') {
             style = {
-                left: offsetWidth,
-                bottom: offsetHeight / 2,
-                transform: 'translateY(50%)'
+                left: offsetLeft + offsetWidth,
+                top: offsetTop + offsetHeight / 2,
+                transform: 'translateY(-50%)'
             };
         }
-        style = alignWebPopoverIfRequired(style, anchorRef.current, popoverRef.current);
+        style = alignWebPopoverIfRequired(style, anchorRef.current, popoverWidth, popoverHeight, placement);
         return style;
     }
     return undefined;
