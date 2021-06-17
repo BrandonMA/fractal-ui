@@ -20,10 +20,6 @@ export function alignNativePopoverIfRequired(
     const isOverflowingTop: boolean = (style.top ? style.top : 0) - offsetPopoverHeight < 0;
     const isOverflowingBottom: boolean = (style.top ? style.top : 0) + offsetPopoverHeight > screenHeight;
 
-    console.log({ offsetPopoverWidth, left: style.left });
-
-    console.log({ isOverflowingRight, isOverflowingLeft, isOverflowingTop, isOverflowingBottom });
-
     if (isOverflowingTop) {
         style = {
             left: style.left,
