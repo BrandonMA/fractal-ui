@@ -22,10 +22,8 @@ import {
 import { HorizontalLayer } from '../../src/components/containers/HorizontalLayer';
 
 function PopoverContent(): JSX.Element {
-    const { spacings } = useTheme();
-
     return (
-        <Box marginTop={spacings.m} width={'100%'}>
+        <Box width={110}>
             <Button variant={'alternative'} text={'Pasion'} />
         </Box>
     );

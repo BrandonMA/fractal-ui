@@ -1,5 +1,26 @@
 import { PlacementOffsetStyle, PlacementType } from '../types';
 
+const flipSign = (x: number) => x * -1;
+
+function getElementViewportOffset(
+    element: HTMLDivElement,
+    offset = 0
+): {
+    top: number;
+    bottom: number;
+    left: number;
+    right: number;
+} {
+    const rect = element.getBoundingClientRect();
+
+    return {
+        top: rect.top - offset,
+        bottom: flipSign(rect.bottom - window.innerHeight) - offset,
+        left: rect.left - offset,
+        right: flipSign(rect.right - window.innerWidth) - offset
+    };
+}
+
 export function alignWebPopoverIfRequired(
     style: PlacementOffsetStyle,
     anchorElement: HTMLDivElement,
@@ -7,47 +28,41 @@ export function alignWebPopoverIfRequired(
     popoverHeight: number,
     placement: PlacementType
 ): PlacementOffsetStyle {
-    const finalPopoverWidth = placement == 'top' || placement == 'bottom' ? popoverWidth / 2 : popoverWidth;
-    const finalPopoverHeight = placement == 'top' || placement == 'bottom' ? popoverWidth : popoverWidth / 2;
     const offsetHeight = anchorElement.offsetHeight;
     const offsetWidth = anchorElement.offsetWidth;
-    const offsetTop = anchorElement.offsetTop;
-    const offsetLeft = anchorElement.offsetLeft;
+    const offset = getElementViewportOffset(anchorElement, 0);
 
-    const isOverflowingRight: boolean = (style.left ? style.left : 0) + finalPopoverWidth > window.innerWidth;
-    const isOverflowingLeft: boolean = (style.left ? style.left : 0) < 0;
-    const isOverflowingTop: boolean = (style.top ? style.top : 0) - finalPopoverHeight < 0;
-    const isOverflowingBottom: boolean = (style.top ? style.top : 0) + popoverHeight > window.innerHeight - 40;
+    const isVertical = placement == 'top' || placement == 'bottom';
 
-    if (isOverflowingTop) {
-        style = {
-            left: style.left,
-            top: offsetHeight,
-            transform: style.transform
-        };
-    }
+    const offsetPopoverWidth = isVertical ? popoverWidth / 2 : popoverWidth;
+    const offsetPopoverHeight = isVertical ? popoverHeight : popoverHeight / 2;
 
-    if (isOverflowingBottom) {
-        style = {
-            left: style.left,
-            top: offsetTop - popoverHeight,
-            transform: style.transform
-        };
-    }
-
-    if (isOverflowingLeft) {
-        style = {
-            left: offsetLeft + offsetWidth,
-            top: style.top
-        };
-    }
+    const isOverflowingRight = offset.left + offsetWidth / 2 + offsetPopoverWidth > window.innerWidth;
+    const isOverflowingLeft = offset.right + offsetWidth / 2 + offsetPopoverWidth > window.innerWidth;
+    const isOverflowingBottom = offset.top + (isVertical ? offsetHeight : offsetHeight / 2) + offsetPopoverHeight > window.innerHeight;
+    const isOverflowingTop = offset.bottom + (isVertical ? offsetHeight : offsetHeight / 2) + offsetPopoverHeight > window.innerHeight;
 
     if (isOverflowingRight) {
-        style = {
-            left: offsetLeft - popoverWidth,
-            top: style.top,
-            transform: style.transform
-        };
+        style.left = undefined;
+        style.right = isVertical ? 0 : offsetWidth;
+        if (isVertical) {
+            style.transform = undefined;
+        }
+    }
+    if (isOverflowingLeft) {
+        style.left = isVertical ? 0 : offsetWidth;
+        if (isVertical) {
+            style.transform = undefined;
+        }
+    }
+    if (isOverflowingBottom) {
+        style.top = undefined;
+        style.bottom = offsetHeight;
+        style.transform = undefined;
+    }
+    if (isOverflowingTop) {
+        style.top = offsetHeight;
+        style.transform = undefined;
     }
     return style;
 }

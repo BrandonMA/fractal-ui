@@ -21,7 +21,6 @@ import {
     Switch,
     Text,
     useTheme,
-    PlacementType,
     FileIcon
 } from './src';
 import { SafeAreaView, ScrollView } from 'react-native';
@@ -247,24 +246,19 @@ function PopoverContent(): JSX.Element {
 function PopoverFragment(): JSX.Element {
     const { spacings } = useTheme();
 
-    const placements: Array<PlacementType> = ['top', 'bottom', 'left', 'right'];
-
     const [popoverVisible, setPopoverVisible] = useState(false);
-    const [placement, setPlacement] = useState(placements[0]);
 
     const togglePopover = () => {
         setPopoverVisible((currentValue) => !currentValue);
     };
 
     const requestClose = () => {
-        const index = placements.indexOf(placement);
-        setPlacement(index + 1 < placements.length ? placements[index + 1] : placements[0]);
         setPopoverVisible(false);
     };
 
     return (
         <Box marginTop={spacings.s} marginBottom={spacings.xl} alignItems='center'>
-            <Popover placement={placement} active={popoverVisible} onRequestClose={requestClose} popoverChildren={() => <PopoverContent />}>
+            <Popover placement={'bottom'} active={popoverVisible} onRequestClose={requestClose} popoverChildren={() => <PopoverContent />}>
                 {(ref) => <Button ref={ref} variant={'main'} width={220} onPress={togglePopover} text={'Popover'} />}
             </Popover>
         </Box>
