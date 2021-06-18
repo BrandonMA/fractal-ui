@@ -22,16 +22,6 @@ export function alignNativePopoverIfRequired(
     const isOverflowingTop: boolean = (style.top ? style.top : 0) - offsetPopoverHeight < 0;
     const isOverflowingBottom: boolean = (style.top ? style.top : 0) + offsetPopoverHeight > screenHeight;
 
-    console.log({
-        newLeft: 54 - offsetPopoverWidth,
-        offsetPopoverHeight,
-        top: style.top,
-        isOverflowingRight,
-        isOverflowingLeft,
-        isOverflowingBottom,
-        isOverflowingTop
-    });
-
     if (isOverflowingRight) {
         style = {
             left: isVertical ? anchorLayoutRectangle.x + anchorWidth - popoverWidth : anchorLayoutRectangle.x - popoverWidth,

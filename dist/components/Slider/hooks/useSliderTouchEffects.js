@@ -5,24 +5,26 @@ export function useSliderTouchEffects(setEventSource, handleSliderMove, sliderRe
         handleSliderMove(event);
     }, [handleSliderMove, setEventSource]);
     const handleCleanTouchStart = useCallback(() => {
-        sliderRef.current.removeEventListener('touchmove', handleTouchMove);
+        var _a;
+        (_a = sliderRef.current) === null || _a === void 0 ? void 0 : _a.removeEventListener('touchmove', handleTouchMove);
         setDragging(false);
     }, [handleTouchMove, sliderRef, setDragging]);
     const handleTouchStart = useCallback((event) => {
+        var _a, _b, _c;
         if (event.cancelable)
             event.preventDefault();
         handleMoveStart(event);
-        sliderRef.current.addEventListener('touchmove', handleTouchMove);
-        sliderRef.current.addEventListener('touchend', handleCleanTouchStart);
-        sliderRef.current.addEventListener('touchcancel', handleCleanTouchStart);
+        (_a = sliderRef.current) === null || _a === void 0 ? void 0 : _a.addEventListener('touchmove', handleTouchMove);
+        (_b = sliderRef.current) === null || _b === void 0 ? void 0 : _b.addEventListener('touchend', handleCleanTouchStart);
+        (_c = sliderRef.current) === null || _c === void 0 ? void 0 : _c.addEventListener('touchcancel', handleCleanTouchStart);
     }, [handleCleanTouchStart, handleMoveStart, handleTouchMove, sliderRef]);
     useEffect(() => {
         const sliderDomElement = sliderRef.current;
-        sliderDomElement.addEventListener('touchstart', handleTouchStart, { passive: false });
+        sliderDomElement === null || sliderDomElement === void 0 ? void 0 : sliderDomElement.addEventListener('touchstart', handleTouchStart, { passive: false });
         return () => {
-            sliderDomElement.removeEventListener('touchstart', handleTouchStart, { passive: false });
-            sliderDomElement.removeEventListener('touchend', handleCleanTouchStart);
-            sliderDomElement.removeEventListener('touchcancel', handleCleanTouchStart);
+            sliderDomElement === null || sliderDomElement === void 0 ? void 0 : sliderDomElement.removeEventListener('touchstart', handleTouchStart);
+            sliderDomElement === null || sliderDomElement === void 0 ? void 0 : sliderDomElement.removeEventListener('touchend', handleCleanTouchStart);
+            sliderDomElement === null || sliderDomElement === void 0 ? void 0 : sliderDomElement.removeEventListener('touchcancel', handleCleanTouchStart);
         };
     }, [handleCleanTouchStart, handleTouchStart, sliderRef]);
 }

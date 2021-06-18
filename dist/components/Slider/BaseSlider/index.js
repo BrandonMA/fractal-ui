@@ -1,17 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { clampValue, valueToPercentage } from '../utils';
 import { useTheme } from '../../../context/hooks/useTheme';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
+import { getSliderAccessibilityProps } from '../accessibility/getSliderAccessibilityProps';
+import { getSliderInputAccessibilityProps } from '../accessibility/getSliderInputAccessibilityProps';
 import { useControllableState } from '../../../hooks/useControllableState';
 import { useHandleSliderMove } from '../hooks/useHandleSliderMove';
 import { useSliderTouchEffects } from '../hooks/useSliderTouchEffects';
 import { useHandleOnKeyDown } from '../hooks/useHandleOnKeyDown';
 import { useHandleOnMouseDown } from '../hooks/useHandleOnMouseDown';
 import { useCleanEventSource } from '../hooks/useCleanEventSource';
-import { getSliderAccessibilityProps } from '../accessibility/getSliderAccessibilityProps';
-import { getSliderInputAccessibilityProps } from '../accessibility/getSliderInputAccessibilityProps';
 const StyledRange = styled.div `
     position: relative;
     border-radius: 2px;
@@ -50,9 +50,11 @@ export function BaseSlider({ value, defaultValue = 0, minimumValue = 0, maximumV
     const clampedValue = useRef(clampValue(computedValue, minimumValue, maximumValue));
     clampedValue.current = clampValue(computedValue, minimumValue, maximumValue);
     const trackPercentage = valueToPercentage(clampedValue.current, minimumValue, maximumValue);
-    const handleSlidingStart = () => onSlidingStart === null || onSlidingStart === void 0 ? void 0 : onSlidingStart(clampedValue.current);
+    const handleSlidingStart = useCallback(() => {
+        onSlidingStart === null || onSlidingStart === void 0 ? void 0 : onSlidingStart(clampedValue.current);
+    }, [onSlidingStart]);
     const handleOnKeyDown = useHandleOnKeyDown(maximumValue, minimumValue, step, defaultValue, setValue, clampedValue, setEventSource, handleSlidingStart);
-    const handleMoveStart = (event) => {
+    const handleMoveStart = useCallback((event) => {
         var _a, _b;
         if (thumbRef.current) {
             const { clientX } = (_b = (_a = event.touches) === null || _a === void 0 ? void 0 : _a[0]) !== null && _b !== void 0 ? _b : event;
@@ -60,7 +62,7 @@ export function BaseSlider({ value, defaultValue = 0, minimumValue = 0, maximumV
             setDragging(true);
             handleSlidingStart();
         }
-    };
+    }, [handleSlidingStart]);
     const handleSliderMove = useHandleSliderMove(maximumValue, minimumValue, step, setValue, thumbRef, diffRef, sliderRef);
     const handleMouseDown = useHandleOnMouseDown(setEventSource, handleSliderMove, setDragging, handleMoveStart);
     useSliderTouchEffects(setEventSource, handleSliderMove, sliderRef, setDragging, handleMoveStart);
