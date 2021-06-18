@@ -1,18 +1,18 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { BaseSliderProps, EventSource } from '../types';
 import { clampValue, valueToPercentage } from '../utils';
 import { useTheme } from '../../../context/hooks/useTheme';
 import { extractBackgroundProps } from '../../../sharedProps/BackgroundProps';
 import { extractShadowProps } from '../../../sharedProps/ShadowProps';
+import { getSliderAccessibilityProps } from '../accessibility/getSliderAccessibilityProps';
+import { getSliderInputAccessibilityProps } from '../accessibility/getSliderInputAccessibilityProps';
 import { useControllableState } from '../../../hooks/useControllableState';
 import { useHandleSliderMove } from '../hooks/useHandleSliderMove';
 import { useSliderTouchEffects } from '../hooks/useSliderTouchEffects';
 import { useHandleOnKeyDown } from '../hooks/useHandleOnKeyDown';
 import { useHandleOnMouseDown } from '../hooks/useHandleOnMouseDown';
 import { useCleanEventSource } from '../hooks/useCleanEventSource';
-import { getSliderAccessibilityProps } from '../accessibility/getSliderAccessibilityProps';
-import { getSliderInputAccessibilityProps } from '../accessibility/getSliderInputAccessibilityProps';
 
 const StyledRange = styled.div`
     position: relative;
@@ -60,7 +60,7 @@ export function BaseSlider({
     const [isDragging, setDragging] = useState(false);
     const [eventSource, setEventSource] = useState<EventSource>();
 
-    const sliderRef = useRef<any>(null);
+    const sliderRef = useRef<HTMLDivElement>(null);
     const thumbRef = useRef<HTMLDivElement>(null);
     const diffRef = useRef<any>(null);
     const clampedValue = useRef(clampValue(computedValue, minimumValue, maximumValue));
@@ -68,7 +68,9 @@ export function BaseSlider({
     clampedValue.current = clampValue(computedValue, minimumValue, maximumValue);
     const trackPercentage = valueToPercentage(clampedValue.current, minimumValue, maximumValue);
 
-    const handleSlidingStart = () => onSlidingStart?.(clampedValue.current);
+    const handleSlidingStart = useCallback(() => {
+        onSlidingStart?.(clampedValue.current);
+    }, [onSlidingStart]);
 
     const handleOnKeyDown = useHandleOnKeyDown(
         maximumValue,
@@ -81,15 +83,18 @@ export function BaseSlider({
         handleSlidingStart
     );
 
-    const handleMoveStart = (event) => {
-        if (thumbRef.current) {
-            const { clientX } = event.touches?.[0] ?? event;
-            diffRef.current = clientX - thumbRef.current.getBoundingClientRect().left;
+    const handleMoveStart = useCallback(
+        (event) => {
+            if (thumbRef.current) {
+                const { clientX } = event.touches?.[0] ?? event;
+                diffRef.current = clientX - thumbRef.current.getBoundingClientRect().left;
 
-            setDragging(true);
-            handleSlidingStart();
-        }
-    };
+                setDragging(true);
+                handleSlidingStart();
+            }
+        },
+        [handleSlidingStart]
+    );
 
     const handleSliderMove = useHandleSliderMove(maximumValue, minimumValue, step, setValue, thumbRef, diffRef, sliderRef);
     const handleMouseDown = useHandleOnMouseDown(setEventSource, handleSliderMove, setDragging, handleMoveStart);

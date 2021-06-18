@@ -4,7 +4,7 @@ import { EventSource } from '../types';
 export function useSliderTouchEffects(
     setEventSource: Dispatch<SetStateAction<EventSource | undefined>>,
     handleSliderMove: (event: any) => void,
-    sliderRef: RefObject<any>,
+    sliderRef: RefObject<HTMLDivElement>,
     setDragging: (dragging: boolean) => void,
     handleMoveStart: (event: any) => void
 ): void {
@@ -17,7 +17,7 @@ export function useSliderTouchEffects(
     );
 
     const handleCleanTouchStart = useCallback(() => {
-        sliderRef.current.removeEventListener('touchmove', handleTouchMove);
+        sliderRef.current?.removeEventListener('touchmove', handleTouchMove);
         setDragging(false);
     }, [handleTouchMove, sliderRef, setDragging]);
 
@@ -26,20 +26,20 @@ export function useSliderTouchEffects(
             if (event.cancelable) event.preventDefault();
             handleMoveStart(event);
 
-            sliderRef.current.addEventListener('touchmove', handleTouchMove);
-            sliderRef.current.addEventListener('touchend', handleCleanTouchStart);
-            sliderRef.current.addEventListener('touchcancel', handleCleanTouchStart);
+            sliderRef.current?.addEventListener('touchmove', handleTouchMove);
+            sliderRef.current?.addEventListener('touchend', handleCleanTouchStart);
+            sliderRef.current?.addEventListener('touchcancel', handleCleanTouchStart);
         },
         [handleCleanTouchStart, handleMoveStart, handleTouchMove, sliderRef]
     );
 
     useEffect(() => {
         const sliderDomElement = sliderRef.current;
-        sliderDomElement.addEventListener('touchstart', handleTouchStart, { passive: false });
+        sliderDomElement?.addEventListener('touchstart', handleTouchStart, { passive: false });
         return () => {
-            sliderDomElement.removeEventListener('touchstart', handleTouchStart, { passive: false });
-            sliderDomElement.removeEventListener('touchend', handleCleanTouchStart);
-            sliderDomElement.removeEventListener('touchcancel', handleCleanTouchStart);
+            sliderDomElement?.removeEventListener('touchstart', handleTouchStart);
+            sliderDomElement?.removeEventListener('touchend', handleCleanTouchStart);
+            sliderDomElement?.removeEventListener('touchcancel', handleCleanTouchStart);
         };
     }, [handleCleanTouchStart, handleTouchStart, sliderRef]);
 }
