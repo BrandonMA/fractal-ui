@@ -9,22 +9,42 @@ export function alignNativePopoverIfRequired(
     popoverLayoutRectangle: LayoutRectangle,
     placement: PlacementType
 ): NativePlacementOffsetStyle {
-    const offsetPopoverWidth =
-        placement == 'top' || placement == 'bottom' ? popoverLayoutRectangle.width / 2 : popoverLayoutRectangle.width;
+    const isVertical = placement == 'top' || placement == 'bottom';
+    const offsetPopoverWidth = isVertical ? popoverLayoutRectangle.width / 2 : popoverLayoutRectangle.width;
     const offsetPopoverHeight = popoverLayoutRectangle.height;
     const anchorWidth = anchorLayoutRectangle.width;
     const popoverWidth = popoverLayoutRectangle.width;
 
     const isOverflowingRight: boolean = (style.left ? style.left : 0) + offsetPopoverWidth > screenWidth;
-    const isOverflowingLeft: boolean = (style.left ? style.left : 0) < 0;
+    const isOverflowingLeft: boolean = isVertical
+        ? (style.left ? style.left : 0) - offsetPopoverWidth < 0
+        : (style.left ? style.left : 0) < 0;
     const isOverflowingTop: boolean = (style.top ? style.top : 0) - offsetPopoverHeight < 0;
     const isOverflowingBottom: boolean = (style.top ? style.top : 0) + offsetPopoverHeight > screenHeight;
+
+    console.log({
+        newLeft: 54 - offsetPopoverWidth,
+        offsetPopoverHeight,
+        top: style.top,
+        isOverflowingRight,
+        isOverflowingLeft,
+        isOverflowingBottom,
+        isOverflowingTop
+    });
+
+    if (isOverflowingRight) {
+        style = {
+            left: isVertical ? anchorLayoutRectangle.x + anchorWidth - popoverWidth : anchorLayoutRectangle.x - popoverWidth,
+            top: style.top,
+            transform: isVertical ? undefined : style.transform
+        };
+    }
 
     if (isOverflowingTop) {
         style = {
             left: style.left,
             top: anchorLayoutRectangle.y + anchorLayoutRectangle.height,
-            transform: style.transform
+            transform: isVertical ? style.transform : undefined
         };
     }
 
@@ -32,23 +52,15 @@ export function alignNativePopoverIfRequired(
         style = {
             left: style.left,
             top: anchorLayoutRectangle.y - popoverLayoutRectangle.height,
-            transform: style.transform
+            transform: isVertical ? style.transform : undefined
         };
     }
 
     if (isOverflowingLeft) {
         style = {
-            left: anchorLayoutRectangle.x + anchorWidth,
+            left: isVertical ? anchorLayoutRectangle.x : anchorLayoutRectangle.x + anchorWidth,
             top: style.top,
-            transform: style.transform
-        };
-    }
-
-    if (isOverflowingRight) {
-        style = {
-            left: anchorLayoutRectangle.x - popoverWidth,
-            top: style.top,
-            transform: style.transform
+            transform: isVertical ? undefined : style.transform
         };
     }
     return style;
