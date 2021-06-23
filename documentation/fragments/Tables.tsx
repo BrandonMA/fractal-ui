@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTheme, Text, TableContainer, DetailsRow } from '../../src';
+import { useTheme, Text, TableContainer, DetailsRow, SimpleRow } from '../../src';
 
 const detailsCardContent: Array<[string, string]> = [
     ['Title 1', 'Details 1'],
@@ -18,10 +18,10 @@ function DetailsListFragment(): JSX.Element {
             marginTop={spacings.s}
             marginBottom={spacings.xl}
         >
-            {detailsCardContent.map((item, index) => {
-                const isLastItem = index === detailsCardContent.length - 1;
-                return <DetailsRow key={item[0]} title={item[0]} details={item[1]} addSeparator={!isLastItem} />;
+            {detailsCardContent.map((item) => {
+                return <DetailsRow key={item[0]} title={item[0]} details={item[1]} addSeparator />;
             })}
+            <SimpleRow title={'Titleeeeeeeeeeee'} />
         </TableContainer>
     );
 }

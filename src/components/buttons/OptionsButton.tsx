@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { ThreeDotsIcon } from '../../assets/MoreHorizontalIcon';
+import { ThreeDotsIcon } from '../../assets/ThreeDotsIcon';
 import { useTheme } from '../../context/hooks/useTheme';
 import { BaseButton } from './BaseButton';
 import { ActionButtonProps } from './types';

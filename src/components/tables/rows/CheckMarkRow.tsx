@@ -9,18 +9,16 @@ export interface CheckMarkRowProps extends BaseRowProps {
     isSelected: boolean;
 }
 
-const CheckMarkRow = forwardRef(
-    ({ title, isSelected, ...others }: CheckMarkRowProps, ref: any): JSX.Element => {
-        const { spacings } = useTheme();
-        return (
-            <BaseRow ref={ref} {...others}>
-                <HorizontalLayer alignItems={'center'} flex={1} marginRight={spacings.s}>
-                    <Check value={isSelected} label={title} />
-                </HorizontalLayer>
-            </BaseRow>
-        );
-    }
-);
+const CheckMarkRow = forwardRef(({ title, isSelected, ...others }: CheckMarkRowProps, ref: any): JSX.Element => {
+    const { spacings } = useTheme();
+    return (
+        <BaseRow ref={ref} {...others}>
+            <HorizontalLayer alignItems={'center'} flex={1} marginRight={spacings.s}>
+                <Check value={isSelected} label={title} />
+            </HorizontalLayer>
+        </BaseRow>
+    );
+});
 
 CheckMarkRow.displayName = 'CheckMarkRow';
 

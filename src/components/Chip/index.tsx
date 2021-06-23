@@ -3,7 +3,7 @@ import { ChipProps } from './types';
 import { useTheme } from '../../context/hooks/useTheme';
 import { Box } from '../containers/Box';
 import { Text } from '../text';
-import { CrossButton } from '../buttons/CrossButton';
+import { CrossButton } from '../buttons';
 import { getChipAccessibilityProps } from './accessibility/getChipAccessibilityProps';
 
 const Chip = forwardRef(({ text, children, onCrossButtonPress, ...others }: ChipProps, ref: any): JSX.Element => {

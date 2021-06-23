@@ -8,3 +8,4 @@ export * from './Box';
 export * from './MarginLayer';
 export * from './PaddingLayer';
 export * from './HorizontalLayer';
+export * from './ScrollView';

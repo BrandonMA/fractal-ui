@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import Svg, { SvgProps, G, Circle } from 'react-native-svg';
 
-const MoreHorizontalIcon = memo((props: SvgProps) => {
+const ThreeDotsIcon = memo((props: SvgProps) => {
     return (
         <Svg focusable={false} viewBox='0 0 18 4' {...props}>
             <G fillRule='evenodd'>
@@ -13,6 +13,6 @@ const MoreHorizontalIcon = memo((props: SvgProps) => {
     );
 });
 
-MoreHorizontalIcon.displayName = 'MoreHorizontalIcon';
+ThreeDotsIcon.displayName = 'ThreeDotsIcon';
 
-export { MoreHorizontalIcon };
+export { ThreeDotsIcon };
