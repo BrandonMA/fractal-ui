@@ -13,7 +13,7 @@ import React, { forwardRef } from 'react';
 import { useTheme } from '../../context/hooks/useTheme';
 import { Box } from '../containers/Box';
 import { Text } from '../text';
-import { CrossButton } from '../buttons/CrossButton';
+import { CrossButton } from '../buttons';
 import { getChipAccessibilityProps } from './accessibility/getChipAccessibilityProps';
 const Chip = forwardRef((_a, ref) => {
     var { text, children, onCrossButtonPress } = _a, others = __rest(_a, ["text", "children", "onCrossButtonPress"]);

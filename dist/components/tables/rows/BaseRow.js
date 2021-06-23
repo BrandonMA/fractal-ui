@@ -9,17 +9,19 @@ var __rest = (this && this.__rest) || function (s, e) {
         }
     return t;
 };
-import React, { forwardRef } from 'react';
-import { HorizontalLayer } from '../../containers/HorizontalLayer';
+import React, { forwardRef, memo } from 'react';
 import { Separator } from '../../Separator';
 import { useTheme } from '../../../context';
+import { Layer } from '../../containers';
 const BaseRow = forwardRef((_a, ref) => {
-    var { addSeparator = false } = _a, others = __rest(_a, ["addSeparator"]);
+    var { addSeparator = false, children } = _a, others = __rest(_a, ["addSeparator", "children"]);
     const { spacings } = useTheme();
-    return (React.createElement(React.Fragment, null,
-        React.createElement(HorizontalLayer, Object.assign({ ref: ref, alignItems: 'center', marginBottom: addSeparator ? spacings.s : undefined }, others)),
-        addSeparator ? React.createElement(Separator, { marginBottom: spacings.s }) : null));
+    return (React.createElement(Layer, Object.assign({ paddingTop: spacings.s, ref: ref }, others),
+        children,
+        addSeparator ? React.createElement(Separator, { marginTop: spacings.s }) : null));
 });
 BaseRow.displayName = 'BaseRow';
-export { BaseRow };
+const MemoizedBaseRow = memo(BaseRow);
+MemoizedBaseRow.displayName = 'MemoizedBaseRow';
+export { BaseRow, MemoizedBaseRow };
 //# sourceMappingURL=BaseRow.js.map

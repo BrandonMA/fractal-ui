@@ -25,3 +25,4 @@ export * from './Image';
 export * from './Image/types';
 export * from './Chip';
 export * from './ChipList';
+export * from './RecyclerView';

@@ -10,14 +10,12 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 import React, { forwardRef } from 'react';
-import { Layer } from '../../containers/Layer';
 import { Text } from '../../text';
 import { BaseRow } from './BaseRow';
 const SimpleRow = forwardRef((_a, ref) => {
     var { title } = _a, others = __rest(_a, ["title"]);
     return (React.createElement(BaseRow, Object.assign({ ref: ref }, others),
-        React.createElement(Layer, { flexGrow: 1 },
-            React.createElement(Text, { variant: 'small' }, title))));
+        React.createElement(Text, { variant: 'small' }, title)));
 });
 SimpleRow.displayName = 'SimpleRow';
 export { SimpleRow };

@@ -8,7 +8,7 @@ export * from './FileIcon';
 export * from './FilterIcon';
 export * from './GoogleIcon';
 export * from './LoadIcon';
-export * from './MoreHorizontalIcon';
+export * from './ThreeDotsIcon';
 export * from './MoreVerticalIcon';
 export * from './NextIcon';
 export * from './PauseIcon';

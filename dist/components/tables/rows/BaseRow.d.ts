@@ -4,4 +4,5 @@ export interface BaseRowProps extends LayerProps {
     addSeparator?: boolean;
 }
 declare const BaseRow: React.ForwardRefExoticComponent<BaseRowProps & React.RefAttributes<unknown>>;
-export { BaseRow };
+declare const MemoizedBaseRow: React.MemoExoticComponent<React.ForwardRefExoticComponent<BaseRowProps & React.RefAttributes<unknown>>>;
+export { BaseRow, MemoizedBaseRow };
