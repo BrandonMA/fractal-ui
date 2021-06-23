@@ -30,7 +30,9 @@
         "framer-motion": "^4.1.11",
         "react": "16.13.1",
         "react-native-reanimated": "^2.0.0",
-        "react-native-svg": "12.1.0"
+        "react-native-svg": "12.1.0",
+        "react-virtualized-auto-sizer": "^1.0.5",
+        "recyclerlistview": "^3.0.5"
     },
     "dependencies": {
         "@bma98/size-class": "^2.2.0",
