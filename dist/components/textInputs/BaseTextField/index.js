@@ -22,7 +22,7 @@ import { extractPlaceholder } from '../../../sharedProps/PlaceholderProps';
 import { getBaseTextFieldAccessibilityProps } from '../accessibility/getBaseTextFieldAccessibilityProps';
 const StyledTextInput = styled(motion.input) `
     outline: none;
-    border-width: 0px;
+    border-width: 0;
     ${extractPlaceholder};
     ${extractBackgroundProps};
     ${extractDimensionProps};

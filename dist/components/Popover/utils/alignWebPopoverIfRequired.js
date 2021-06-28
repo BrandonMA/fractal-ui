@@ -12,7 +12,7 @@ export function alignWebPopoverIfRequired(style, anchorElement, popoverWidth, po
     const offsetHeight = anchorElement.offsetHeight;
     const offsetWidth = anchorElement.offsetWidth;
     const offset = getElementViewportOffset(anchorElement, 0);
-    const isVertical = placement == 'top' || placement == 'bottom';
+    const isVertical = placement === 'top' || placement === 'bottom';
     const offsetPopoverWidth = isVertical ? popoverWidth / 2 : popoverWidth;
     const offsetPopoverHeight = isVertical ? popoverHeight : popoverHeight / 2;
     const isOverflowingRight = offset.left + offsetWidth / 2 + offsetPopoverWidth > window.innerWidth;

@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native';
 const { width: screenWidth, height: screenHeight } = Dimensions.get('screen');
 export function alignNativePopoverIfRequired(style, anchorLayoutRectangle, popoverLayoutRectangle, placement) {
-    const isVertical = placement == 'top' || placement == 'bottom';
+    const isVertical = placement === 'top' || placement === 'bottom';
     const offsetPopoverWidth = isVertical ? popoverLayoutRectangle.width / 2 : popoverLayoutRectangle.width;
     const offsetPopoverHeight = popoverLayoutRectangle.height;
     const anchorWidth = anchorLayoutRectangle.width;
@@ -16,28 +16,28 @@ export function alignNativePopoverIfRequired(style, anchorLayoutRectangle, popov
         style = {
             left: isVertical ? anchorLayoutRectangle.x + anchorWidth - popoverWidth : anchorLayoutRectangle.x - popoverWidth,
             top: style.top,
-            transform: isVertical ? undefined : style.transform
+            transform: isVertical ? [] : style.transform
         };
     }
     if (isOverflowingTop) {
         style = {
             left: style.left,
             top: anchorLayoutRectangle.y + anchorLayoutRectangle.height,
-            transform: isVertical ? style.transform : undefined
+            transform: isVertical ? style.transform : []
         };
     }
     if (isOverflowingBottom) {
         style = {
             left: style.left,
             top: anchorLayoutRectangle.y - popoverLayoutRectangle.height,
-            transform: isVertical ? style.transform : undefined
+            transform: isVertical ? style.transform : []
         };
     }
     if (isOverflowingLeft) {
         style = {
             left: isVertical ? anchorLayoutRectangle.x : anchorLayoutRectangle.x + anchorWidth,
             top: style.top,
-            transform: isVertical ? undefined : style.transform
+            transform: isVertical ? [] : style.transform
         };
     }
     return style;

@@ -32,7 +32,7 @@ export function alignWebPopoverIfRequired(
     const offsetWidth = anchorElement.offsetWidth;
     const offset = getElementViewportOffset(anchorElement, 0);
 
-    const isVertical = placement == 'top' || placement == 'bottom';
+    const isVertical = placement === 'top' || placement === 'bottom';
 
     const offsetPopoverWidth = isVertical ? popoverWidth / 2 : popoverWidth;
     const offsetPopoverHeight = isVertical ? popoverHeight : popoverHeight / 2;

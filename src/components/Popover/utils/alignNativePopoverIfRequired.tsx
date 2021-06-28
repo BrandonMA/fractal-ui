@@ -9,7 +9,7 @@ export function alignNativePopoverIfRequired(
     popoverLayoutRectangle: LayoutRectangle,
     placement: PlacementType
 ): NativePlacementOffsetStyle {
-    const isVertical = placement == 'top' || placement == 'bottom';
+    const isVertical = placement === 'top' || placement === 'bottom';
     const offsetPopoverWidth = isVertical ? popoverLayoutRectangle.width / 2 : popoverLayoutRectangle.width;
     const offsetPopoverHeight = popoverLayoutRectangle.height;
     const anchorWidth = anchorLayoutRectangle.width;
