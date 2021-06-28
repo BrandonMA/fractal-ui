@@ -26,7 +26,7 @@ export function alignNativePopoverIfRequired(
         style = {
             left: isVertical ? anchorLayoutRectangle.x + anchorWidth - popoverWidth : anchorLayoutRectangle.x - popoverWidth,
             top: style.top,
-            transform: isVertical ? undefined : style.transform
+            transform: isVertical ? [] : style.transform
         };
     }
 
@@ -34,7 +34,7 @@ export function alignNativePopoverIfRequired(
         style = {
             left: style.left,
             top: anchorLayoutRectangle.y + anchorLayoutRectangle.height,
-            transform: isVertical ? style.transform : undefined
+            transform: isVertical ? style.transform : []
         };
     }
 
@@ -42,7 +42,7 @@ export function alignNativePopoverIfRequired(
         style = {
             left: style.left,
             top: anchorLayoutRectangle.y - popoverLayoutRectangle.height,
-            transform: isVertical ? style.transform : undefined
+            transform: isVertical ? style.transform : []
         };
     }
 
@@ -50,7 +50,7 @@ export function alignNativePopoverIfRequired(
         style = {
             left: isVertical ? anchorLayoutRectangle.x : anchorLayoutRectangle.x + anchorWidth,
             top: style.top,
-            transform: isVertical ? undefined : style.transform
+            transform: isVertical ? [] : style.transform
         };
     }
     return style;

@@ -23,7 +23,7 @@ import { HorizontalLayer } from '../../src/components/containers/HorizontalLayer
 
 function PopoverContent(): JSX.Element {
     return (
-        <Box width={110}>
+        <Box width={120}>
             <Button variant={'alternative'} text={'Pasion'} />
         </Box>
     );
