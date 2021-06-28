@@ -21,29 +21,27 @@ const StyledSelect = styled(motion.select as any)`
     ${extractWebProps};
 ` as typeof motion.select;
 
-const BasePicker = forwardRef(
-    ({ onValueChange, enabled, selectedValue, ...others }: BasePickerProps, ref: any): JSX.Element => {
-        const handleChange = useCallback<any>(
-            (e: { target: { selectedIndex: any; value: any } }) => {
-                const { selectedIndex, value } = e.target;
-                if (onValueChange) {
-                    onValueChange(value, selectedIndex);
-                }
-            },
-            [onValueChange]
-        );
-        return (
-            <StyledSelect
-                ref={ref}
-                disabled={enabled === false ? true : undefined}
-                onChange={handleChange}
-                value={selectedValue}
-                {...getBasePickerAccessibilityProps()}
-                {...others}
-            />
-        );
-    }
-);
+const BasePicker = forwardRef(({ onValueChange, enabled, selectedValue, ...others }: BasePickerProps, ref: any): JSX.Element => {
+    const handleChange = useCallback<any>(
+        (e: { target: { selectedIndex: any; value: any } }) => {
+            const { selectedIndex, value } = e.target;
+            if (onValueChange) {
+                onValueChange(value, selectedIndex);
+            }
+        },
+        [onValueChange]
+    );
+    return (
+        <StyledSelect
+            ref={ref}
+            disabled={enabled === false ? true : undefined}
+            onChange={handleChange}
+            value={selectedValue}
+            {...getBasePickerAccessibilityProps()}
+            {...others}
+        />
+    );
+});
 
 BasePicker.displayName = 'BasePicker';
 

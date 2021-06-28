@@ -18,12 +18,10 @@ const StyledLayer = styled(Reanimated.createAnimatedComponent(SafeAreaView))`
     ${extractShadowProps};
 ` as typeof Reanimated.View;
 
-const SafeAreaLayer = forwardRef(
-    ({ style, ...others }: LayerProps, ref: any): JSX.Element => {
-        const animationStyles = useAnimationStyles(others);
-        return <StyledLayer ref={ref} {...others} style={[animationStyles, style]} />;
-    }
-);
+const SafeAreaLayer = forwardRef(({ style, ...others }: LayerProps, ref: any): JSX.Element => {
+    const animationStyles = useAnimationStyles(others);
+    return <StyledLayer ref={ref} {...others} style={[animationStyles, style]} />;
+});
 
 SafeAreaLayer.displayName = 'SafeAreaLayer';
 

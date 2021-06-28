@@ -1,4 +1,4 @@
-import React, { forwardRef, ForwardedRef } from 'react';
+import React, { forwardRef, Ref } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { TextFieldProps } from './types';
@@ -13,7 +13,7 @@ import { getBaseTextFieldAccessibilityProps } from '../accessibility/getBaseText
 
 const StyledTextInput = styled(motion.input as any)`
     outline: none;
-    border-width: 0px;
+    border-width: 0;
     ${extractPlaceholder};
     ${extractBackgroundProps};
     ${extractDimensionProps};
@@ -23,31 +23,29 @@ const StyledTextInput = styled(motion.input as any)`
     ${extractWebProps};
 ` as typeof motion.input;
 
-const BaseTextField = forwardRef(
-    (props: TextFieldProps, ref: ForwardedRef<HTMLInputElement>): JSX.Element => {
-        const { onChangeText, onSubmitEditing, placeholder, ...others } = props;
+const BaseTextField = forwardRef((props: TextFieldProps, ref: Ref<HTMLInputElement>): JSX.Element => {
+    const { onChangeText, onSubmitEditing, placeholder, ...others } = props;
 
-        const handleChange = (event: { target: { value: string } }): void => onChangeText && onChangeText(event.target.value);
+    const handleChange = (event: { target: { value: string } }): void => onChangeText && onChangeText(event.target.value);
 
-        const handleKeydown = (keyboardEvent: React.KeyboardEvent<HTMLInputElement>): void => {
-            if (keyboardEvent.key === 'Enter') {
-                onSubmitEditing?.();
-            }
-        };
+    const handleKeydown = (keyboardEvent: React.KeyboardEvent<HTMLInputElement>): void => {
+        if (keyboardEvent.key === 'Enter') {
+            onSubmitEditing?.();
+        }
+    };
 
-        return (
-            <StyledTextInput
-                ref={ref}
-                placeholder={placeholder}
-                selectable
-                onChange={handleChange}
-                onKeyDown={handleKeydown}
-                {...getBaseTextFieldAccessibilityProps(placeholder)}
-                {...others}
-            />
-        );
-    }
-);
+    return (
+        <StyledTextInput
+            ref={ref}
+            placeholder={placeholder}
+            selectable
+            onChange={handleChange}
+            onKeyDown={handleKeydown}
+            {...getBaseTextFieldAccessibilityProps(placeholder)}
+            {...others}
+        />
+    );
+});
 
 BaseTextField.displayName = 'BaseTextField';
 

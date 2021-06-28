@@ -19,22 +19,20 @@ const StyledPressable = styled(Reanimated.createAnimatedComponent(RNPressable as
     ${extractShadowProps};
 `;
 
-const Pressable = forwardRef(
-    ({ style, ...others }: PressableProps, ref: any): JSX.Element => {
-        const animationStyles = useAnimationStyles(others);
-        const [tapStyles, handlePressIn, handlePressOut] = usePressableAnimationStyles(others);
+const Pressable = forwardRef(({ style, ...others }: PressableProps, ref: any): JSX.Element => {
+    const animationStyles = useAnimationStyles(others);
+    const [tapStyles, handlePressIn, handlePressOut] = usePressableAnimationStyles(others);
 
-        return (
-            <StyledPressable
-                ref={ref}
-                onPressIn={handlePressIn}
-                onPressOut={handlePressOut}
-                style={[animationStyles, tapStyles, style]}
-                {...others}
-            />
-        );
-    }
-);
+    return (
+        <StyledPressable
+            ref={ref}
+            onPressIn={handlePressIn}
+            onPressOut={handlePressOut}
+            style={[animationStyles, tapStyles, style]}
+            {...others}
+        />
+    );
+});
 
 Pressable.displayName = 'Pressable';
 

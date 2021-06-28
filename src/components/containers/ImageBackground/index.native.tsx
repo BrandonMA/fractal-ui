@@ -18,21 +18,19 @@ const StyledImageBackground = styled(Reanimated.createAnimatedComponent(RNImageB
     ${extractShadowProps};
 ` as typeof styled.ImageBackground;
 
-const ImageBackground = forwardRef(
-    ({ source, resizeMode, style, ...others }: ImageBackgroundProps, ref: any): JSX.Element => {
-        const animationStyles = useAnimationStyles(others);
+const ImageBackground = forwardRef(({ source, resizeMode, style, ...others }: ImageBackgroundProps, ref: any): JSX.Element => {
+    const animationStyles = useAnimationStyles(others);
 
-        return (
-            <StyledImageBackground
-                ref={ref}
-                resizeMode={resizeMode}
-                source={typeof source == 'string' ? { uri: source } : source}
-                {...others}
-                style={[animationStyles, style]}
-            />
-        );
-    }
-);
+    return (
+        <StyledImageBackground
+            ref={ref}
+            resizeMode={resizeMode}
+            source={typeof source == 'string' ? { uri: source } : source}
+            {...others}
+            style={[animationStyles, style]}
+        />
+    );
+});
 
 ImageBackground.displayName = 'ImageBackground';
 
