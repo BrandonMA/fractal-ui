@@ -37,10 +37,12 @@ export function alignWebPopoverIfRequired(
     const offsetPopoverWidth = isVertical ? popoverWidth / 2 : popoverWidth;
     const offsetPopoverHeight = isVertical ? popoverHeight : popoverHeight / 2;
 
-    const isOverflowingRight = offset.left + offsetWidth / 2 + offsetPopoverWidth > window.innerWidth;
-    const isOverflowingLeft = offset.right + offsetWidth / 2 + offsetPopoverWidth > window.innerWidth;
+    const isOverflowingRight = offset.left + (isVertical ? offsetWidth / 2 : offsetWidth) + offsetPopoverWidth > window.innerWidth;
+    const isOverflowingLeft = offset.right + (isVertical ? offsetWidth / 2 : offsetWidth) + offsetPopoverWidth > window.innerWidth;
     const isOverflowingBottom = offset.top + (isVertical ? offsetHeight : offsetHeight / 2) + offsetPopoverHeight > window.innerHeight;
     const isOverflowingTop = offset.bottom + (isVertical ? offsetHeight : offsetHeight / 2) + offsetPopoverHeight > window.innerHeight;
+
+    console.log({ isOverflowingRight, isOverflowingLeft, isOverflowingBottom, isOverflowingTop });
 
     if (isOverflowingRight) {
         style.left = undefined;
@@ -49,20 +51,20 @@ export function alignWebPopoverIfRequired(
             style.transform = undefined;
         }
     }
-    if (isOverflowingLeft) {
-        style.left = isVertical ? 0 : offsetWidth;
-        if (isVertical) {
-            style.transform = undefined;
-        }
+    if (isOverflowingTop) {
+        style.top = offsetHeight;
+        style.transform = undefined;
     }
     if (isOverflowingBottom) {
         style.top = undefined;
         style.bottom = offsetHeight;
         style.transform = undefined;
     }
-    if (isOverflowingTop) {
-        style.top = offsetHeight;
-        style.transform = undefined;
+    if (isOverflowingLeft) {
+        style.left = isVertical ? 0 : offsetWidth;
+        if (isVertical) {
+            style.transform = undefined;
+        }
     }
     return style;
 }
