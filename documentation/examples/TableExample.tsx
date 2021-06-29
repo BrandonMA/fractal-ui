@@ -20,7 +20,8 @@ import { useSizeValue } from '@bma98/size-class';
 
 const data = Array<number>();
 
-for (let i = 0; i < 1001; i++) {
+const max = 1001;
+for (let i = 0; i < max; i++) {
     data.push(i);
 }
 
@@ -35,7 +36,7 @@ export function RowExample({ index = 0, ...others }: RowExampleProps): JSX.Eleme
     const { spacings, colors } = useTheme();
 
     return (
-        <MemoizedBaseRow addSeparator={index !== 1000} paddingTop={spacings.s} {...others}>
+        <MemoizedBaseRow addSeparator={index !== max - 1} paddingTop={spacings.s} {...others}>
             <HorizontalLayer width={'100%'} alignItems={'center'}>
                 <CheckBox value={false} marginRight={spacings.s} />
                 <Layer flex={1}>
@@ -129,7 +130,7 @@ export function TableTwo(): JSX.Element {
                     layoutProvider={layoutProvider}
                     dataProvider={dataProviderState}
                     rowRenderer={rowRenderer}
-                    initialRenderIndex={1000}
+                    initialRenderIndex={max - 1}
                 />
             </Layer>
         </TableContainer>
