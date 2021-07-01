@@ -5,6 +5,8 @@ import {
     Button,
     Text,
     CrossButton,
+    OptionsButton,
+    OptionsMenuButton,
     CircularIconButton,
     TextButton,
     ToggleButton,
@@ -30,6 +32,34 @@ export function CrossButtonFragment(): JSX.Element {
     return (
         <Box alignContent={'center'} marginTop={spacings.s} marginBottom={spacings.xl}>
             <CrossButton onPress={() => console.log('Cross button pressed')} />
+        </Box>
+    );
+}
+
+function OptionsMenuButtonFragment(): JSX.Element {
+    const { spacings } = useTheme();
+
+    return (
+        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
+            <OptionsButton />
+        </Box>
+    );
+}
+
+function OptionsButtonFragment(): JSX.Element {
+    const { spacings } = useTheme();
+
+    const optionsValue = ['Option 1', 'Option 2', 'Option 3'];
+
+    return (
+        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
+            <OptionsMenuButton
+                options={optionsValue}
+                onOptionPress={(value) => {
+                    console.log(value);
+                }}
+                customIcon={(color) => <ChevronDownIcon height={24} width={24} fill={color} />}
+            />
         </Box>
     );
 }
@@ -418,6 +448,10 @@ export function ButtonsFragments(): JSX.Element {
         <>
             <Text variant={'title'}>Cross Button Example</Text>
             <CrossButtonFragment />
+            <Text variant={'title'}>Options Menu Button Example</Text>
+            <OptionsMenuButtonFragment />
+            <Text variant={'title'}>Options Button Example</Text>
+            <OptionsButtonFragment />
             <Text variant={'title'}>Text Button Example</Text>
             <TextButtonFragment />
             <Text variant={'title'}>Button Example</Text>

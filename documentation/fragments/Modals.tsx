@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useTheme, Box, Button, Text, BlurrediOSModal, MiddleCellModal } from '../../src';
+import { useTheme, Box, Button, Text, BlurrediOSModal, MiddleCellModal, BottomCellModal } from '../../src';
 
 function BlurredModalFragment(): JSX.Element {
     const { spacings } = useTheme();
@@ -37,6 +37,24 @@ function MiddleCellModalFragment(): JSX.Element {
     );
 }
 
+function BottomCellModalFragment(): JSX.Element {
+    const { spacings } = useTheme();
+    const [bottomCellVisible, setBottomCellVisible] = useState(false);
+
+    const toggleBottomCell = () => setBottomCellVisible((currentValue) => !currentValue);
+
+    return (
+        <Box marginTop={spacings.s} marginBottom={spacings.xl}>
+            <Button variant='main' text='Show Bottom Cell Modal' onPress={toggleBottomCell} />
+            <BottomCellModal visible={bottomCellVisible} onDismiss={toggleBottomCell}>
+                <Box>
+                    <Button variant='warning' text='Dismiss Cell Modal' onPress={toggleBottomCell} />
+                </Box>
+            </BottomCellModal>
+        </Box>
+    );
+}
+
 export function ModalsFragments(): JSX.Element {
     return (
         <>
@@ -44,6 +62,8 @@ export function ModalsFragments(): JSX.Element {
             <BlurredModalFragment />
             <Text variant={'title'}>Middle Cell Modal Example</Text>
             <MiddleCellModalFragment />
+            <Text variant={'title'}>Bottom Cell Modal Example</Text>
+            <BottomCellModalFragment />
         </>
     );
 }

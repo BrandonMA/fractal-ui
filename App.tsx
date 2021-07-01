@@ -3,6 +3,7 @@ import { registerRootComponent } from 'expo';
 import {
     ActivityIndicator,
     Background,
+    LoadingBackground,
     Box,
     Button,
     CheckBox,
@@ -346,11 +347,21 @@ function PopoverFragment(): JSX.Element {
     );
 }
 
+function TableExampleFragment(): JSX.Element {
+    const { spacings } = useTheme();
+
+    return (
+        <Layer height={500} marginTop={spacings.s} marginBottom={spacings.xl}>
+            <TableExample />
+        </Layer>
+    );
+}
+
 function SocialMediaButtonsFragment(): JSX.Element {
     const { spacings } = useTheme();
 
     return (
-        <Layer marginTop={spacings.s} alignItems='center'>
+        <Layer alignItems={'center'} marginTop={spacings.s} marginBottom={spacings.xl}>
             <SocialMediaButtons
                 width={'100%'}
                 marginTop={spacings.s}
@@ -372,6 +383,16 @@ function SocialMediaButtonsFragment(): JSX.Element {
                 onApplePress={() => console.log('Apple button pressed')}
             />
         </Layer>
+    );
+}
+
+function LoadingBackgroundFragment(): JSX.Element {
+    const { spacings } = useTheme();
+
+    return (
+        <Box alignItems={'center'} marginTop={spacings.s} marginBottom={spacings.xl}>
+            <LoadingBackground width={'40%'} height={'40%'} />
+        </Box>
     );
 }
 
@@ -413,11 +434,12 @@ function Content(): JSX.Element {
             <PopoverFragment />
             <TablesFragments />
             <GridsFragments />
+            <Text variant={'title'}>Table Example</Text>
+            <TableExampleFragment />
             <Text variant={'title'}>Social Media Buttons</Text>
             <SocialMediaButtonsFragment />
-            <Layer height={500}>
-                <TableExample />
-            </Layer>
+            <Text variant={'title'}>Loading Background</Text>
+            <LoadingBackgroundFragment />
         </PaddingLayer>
     );
 }
